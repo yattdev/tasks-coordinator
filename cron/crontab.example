@@ -1,5 +1,14 @@
 # Reference only — the Coordinator self-provisions these (PROMPT.md, SELF-PROVISIONED WAKE-UP).
 # Markers are load-bearing: the coordinator finds/heals its entries by them. Never remove.
+# Both entries run EVERY DAY — the human works every day; never restrict to weekdays.
+# The cycle entry is adaptive: the coordinator keeps it only while the pipeline
+# (Spec..CI Fixup) has tasks, and drops it when the pipeline is empty.
 CRON_TZ=America/Toronto
-0 8 * * 1-5 $HOME/.local/bin/kandev-coordinator-wake.sh STANDUP # kandev-coordinator-standup
-*/45 8-18 * * 1-5 $HOME/.local/bin/kandev-coordinator-wake.sh CYCLE # kandev-coordinator-cycle
+0 8 * * * $HOME/.local/bin/kandev-coordinator-wake.sh STANDUP # kandev-coordinator-standup
+*/45 8-22 * * * $HOME/.local/bin/kandev-coordinator-wake.sh CYCLE # kandev-coordinator-cycle
+
+# Environments without a crontab binary (e.g. kandev worktree executor): the
+# coordinator uses the agent-harness scheduler (CronList/CronCreate) with the
+# same markers embedded in the job prompts. Harness jobs are session-scoped and
+# auto-expire (~7 days), so they are re-verified and recreated on every wake-up.
+# UTC equivalents used there (EDT): standup 57 11 * * *, cycle hourly 12-23,0-2.

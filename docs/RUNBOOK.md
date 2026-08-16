@@ -1,5 +1,38 @@
 # Runbook
 
+## Harness-scheduler mode (no `crontab` binary — current kandev worktree executor)
+The coordinator schedules wake-ups with the agent-harness cron tools instead:
+- Jobs carry the same markers (`# kandev-coordinator-standup`, `# kandev-coordinator-cycle`)
+  inside the job prompt; standup fires DAILY (57 11 UTC = 7:57 Montreal EDT).
+- Jobs are session-scoped and auto-expire after ~7 days; the coordinator
+  re-verifies and recreates them on every wake-up. If the agent session is
+  fully restarted, any manual message to the coordinator task re-arms them.
+- The cycle job exists only while the pipeline (Spec..CI Fixup) has tasks.
+
+## Task failed to start: "Preparing worktree (checking out '…') fatal: '…' already exists"
+Stale worktree dirs from a terminal session block fresh env prep (restore is
+refused for terminal sessions; fresh-create collides with leftover dirs).
+1. Verify the leftover worktrees are clean (`git status`) — branch refs live in
+   the shared git dirs and survive removal.
+2. Park (never rm) the dirs into /data/trash/, then `git worktree prune` in the
+   shared repos.
+3. Re-fire auto-start: same-step moves do NOT re-fire it and messages to
+   terminal sessions error — bounce the task out to the inert Todo step and
+   back to its target step (Todo only acts on turn START, so it's a safe hop).
+
+## Task failed to start: "base branch does not exist: main"
+The task's repository has no such branch — commonly an EMPTY repo (no initial
+commit). Seed the repo (initial commit on the default branch) with the owning
+task's credentials, then re-trigger the start (bounce, above).
+
+## Step agent silently never launched (task idle in a step for hours)
+Auto-start can fail without any message on the task. Check
+/data/logs/backend-logs.log by task_id ("session entry created" missing after
+the move = never launched). Re-fire with the Todo bounce; attach a hand-off
+prompt on the move back. Note: move_task's prompt queues to the OLD primary
+session when no live session exists — after relaunch, message the NEW session
+explicitly (list_task_sessions → message_task with session_id).
+
 ## No standup this morning
 1. `crontab -l | grep kandev-coordinator` — entries present, exactly once each?
 2. 2. `tail -50 ~/.local/state/kandev/coordinator-wake.log` — did cron fire? FATAL lines?

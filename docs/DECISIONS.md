@@ -25,6 +25,30 @@ High-stakes fork / irreconcilable cross-task conflict / systemic anomaly.
 Everything else: decide-and-document as vetoable. Matches the trust model:
 veto async from the board rather than pre-approve.
 
+## Daily standup + adaptive cycle cadence (2026-08-16, human-directed)
+The human works every day — weekday-only schedules were wrong. Standup fires
+daily. Mid-interval monitoring (30–60 min) is judged from board occupancy:
+active tasks anywhere Spec..CI Fixup → cycle wake-ups on (in-progress tasks
+often block silently and don't report); empty pipeline → standup only.
+
+## Spec is a first-class monitored step (2026-08-16, human-directed)
+Spec tasks block quietly, wait on "human input" the coordinator can answer
+(conventions, directory layout, scope interpretation), or sit with complete
+plans. The coordinator answers what a lead would answer, and moves
+plan-complete Spec tasks forward to Todo itself (vetoable, reported as FYI).
+
+## Harness scheduler fallback (2026-08-16)
+This executor image has no crontab binary. Wake-ups use the agent-harness
+cron tools with the same markers in job prompts; jobs are session-scoped and
+auto-expire (~7 days), so every wake-up re-verifies and recreates them.
+Trade-off accepted: a full session restart drops the jobs until the next
+manual message re-arms bootstrap — flagged in the setup report 2026-08-16.
+
+## Flag substitution (2026-08-16, human-approved)
+No flag_task tool exists in the MCP server. Interim: flag =
+`[COORDINATOR FLAG]` comment + daily-report line; unflag =
+`[COORDINATOR UNFLAG]`. Auto-reverts if a real flag tool appears.
+
 ## DST
 CRON_TZ=America/Toronto so 8:00 tracks Montreal wall clock across EST/EDT.
 If the cron daemon ignores CRON_TZ, entries are in UTC with the assumed

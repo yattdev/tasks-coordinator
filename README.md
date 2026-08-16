@@ -2,9 +2,14 @@
 
 Long-lived task pinned to the board that supervises all active tasks
 (spec → work → review → qa → pr → ci-fixup), resolves blockers with a
-DECIDE / RECOMMEND / ESCALATE ladder, and posts a daily standup report
-at 8:00 America/Montreal. Replaces the human as first responder;
-escalates only high-stakes forks.
+DECIDE / RECOMMEND / ESCALATE ladder, and posts a standup report every
+day at 8:00 America/Montreal. Between standups it self-schedules
+mid-interval monitoring cycles (30–60 min) whenever the pipeline has
+active tasks — in-progress tasks often block silently, so cadence is
+judged from board occupancy, not a fixed clock. Spec gets first-class
+attention: the coordinator answers answerable questions itself and
+moves plan-complete tasks forward to Todo. Replaces the human as first
+responder; escalates only high-stakes forks.
 
 ## Components
 - [PROMPT.md](PROMPT.md) — the Coordinator's workstep prompt (source of truth; paste into the KanDev task)
