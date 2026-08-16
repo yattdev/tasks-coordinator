@@ -1,0 +1,5 @@
+# Reference only — the Coordinator self-provisions these (PROMPT.md, SELF-PROVISIONED WAKE-UP).
+# Markers are load-bearing: the coordinator finds/heals its entries by them. Never remove.
+CRON_TZ=America/Toronto
+0 8 * * 1-5 $HOME/.local/bin/kandev-coordinator-wake.sh STANDUP # kandev-coordinator-standup
+*/45 8-18 * * 1-5 $HOME/.local/bin/kandev-coordinator-wake.sh CYCLE # kandev-coordinator-cycle
