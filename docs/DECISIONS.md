@@ -37,12 +37,19 @@ Spec tasks block quietly, wait on "human input" the coordinator can answer
 plans. The coordinator answers what a lead would answer, and moves
 plan-complete Spec tasks forward to Todo itself (vetoable, reported as FYI).
 
-## Harness scheduler fallback (2026-08-16)
-This executor image has no crontab binary. Wake-ups use the agent-harness
-cron tools with the same markers in job prompts; jobs are session-scoped and
-auto-expire (~7 days), so every wake-up re-verifies and recreates them.
-Trade-off accepted: a full session restart drops the jobs until the next
-manual message re-arms bootstrap — flagged in the setup report 2026-08-16.
+## Task creator owns Todo → Work (2026-08-17, human-directed)
+Todo intentionally does not auto-start an agent. When the Coordinator creates a
+child, that child completes Spec, and its approved plan lands in Todo, the
+Coordinator must move it promptly to Work and verify the Work session started.
+This exception is ownership-scoped: unrelated/manual Todo tasks remain human-owned.
+
+## Host cron interim, native same-session wakes durable (2026-08-17, human-directed)
+The task container has no crontab binary and loses state at session end, so cron
+belongs on the host and is installed by an operator. It calls the wake script,
+which invokes External MCP `message_task_kandev` for the existing Coordinator
+task/session. Native KanDev task/session wake tools are the durable replacement:
+after verified migration, remove only the Coordinator's marker cron entries.
+Until either path is verified, every manual nudge runs bootstrap plus a cycle.
 
 ## Flag substitution (2026-08-16, human-approved)
 No flag_task tool exists in the MCP server. Interim: flag =
@@ -66,6 +73,6 @@ daily-standup/adaptive-cadence changes → merged v2026-08-17). PROMPT.md change
 are mirrored into the kandev task description after every merge.
 
 ## DST
-CRON_TZ=America/Toronto so 8:00 tracks Montreal wall clock across EST/EDT.
+CRON_TZ=America/Montreal so 07:56 tracks Montreal wall clock across EST/EDT.
 If the cron daemon ignores CRON_TZ, entries are in UTC with the assumed
 offset noted in the marker comment (drifts 1h at DST changes).

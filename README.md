@@ -7,8 +7,9 @@ day at 8:00 America/Montreal. Between standups it self-schedules
 mid-interval monitoring cycles (30–60 min) whenever the pipeline has
 active tasks — in-progress tasks often block silently, so cadence is
 judged from board occupancy, not a fixed clock. Spec gets first-class
-attention: the coordinator answers answerable questions itself and
-moves plan-complete tasks forward to Todo. Replaces the human as first
+attention: the coordinator answers answerable questions itself, moves
+plan-complete tasks forward to Todo, and moves its own created children
+onward to Work because Todo does not auto-start agents. Replaces the human as first
 responder; escalates only high-stakes forks.
 
 ## Components
@@ -25,8 +26,11 @@ responder; escalates only high-stakes forks.
    fill MCP_URL / TASK_ID / MCP_TOKEN, `chmod 600`.
 3. Install `bin/kandev-coordinator-wake.sh` → `~/.local/bin/`, `chmod +x`.
 4. Dry-run: `kandev-coordinator-wake.sh CYCLE` — coordinator should wake and log a cycle.
-5. The coordinator provisions/heals its own crontab on every session start
-   (see SELF-PROVISIONED WAKE-UP in PROMPT.md); `cron/crontab.example` is the reference.
+5. A host operator installs the marker-scoped entries from `cron/crontab.example`.
+   The task container has no crontab and must never be treated as the durable host.
+6. Until host cron is verified, every manual nudge performs bootstrap verification
+   plus a full monitoring cycle. Migrate to native same-session wakes when available,
+   removing only the Coordinator's marker entries from host cron.
 
 ## Wake protocol
 `WAKE:STANDUP` → full cycle + daily report. `WAKE:CYCLE` → cycle only.

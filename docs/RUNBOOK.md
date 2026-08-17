@@ -1,20 +1,23 @@
 # Runbook
 
-## Harness-scheduler mode (no `crontab` binary — current kandev worktree executor)
-The coordinator schedules wake-ups with the agent-harness cron tools instead:
-- Jobs carry the same markers (`# kandev-coordinator-standup`, `# kandev-coordinator-cycle`)
-  inside the job prompt; standup fires DAILY (57 11 UTC = 7:57 Montreal EDT).
-- Jobs only DELIVER while the session is IDLE. A long turn spanning the standup
-  minute swallows the wake until the turn ends — on 2026-08-17 the 11:57 job
-  fired on time and the report still went out 35 minutes late. Do not hold long
-  turns across your standup time; end the turn and let the wake land.
-- Jobs are session-scoped: they auto-expire after ~7 days AND they vanish
-  entirely the moment the session ends. A NEW coordinator session therefore
-  starts with `CronList` empty — that is expected, not a bug, and re-provisioning
-  both jobs is the first action of any restarted session (before any triage).
-  If the agent session is fully restarted, any manual message to the coordinator
-  task re-arms them.
-- The cycle job exists only while the pipeline (Spec..CI Fixup) has tasks.
+## Coordinator-created child reaches Todo after Spec
+Todo is deliberately inert: it does not auto-start an implementation agent.
+If the Coordinator created/owns the child, verify that its saved plan is complete
+and approved, move it Todo→Work with a concise implementation handoff, then list
+its sessions and confirm a Work-profile session is RUNNING. If the move conflicts
+because an obsolete Spec execution still appears live, stop only that direct
+child's stale execution, retry the move, and record the recovery. Never apply this
+rule to unrelated/manual Todo tasks.
+
+## Wake delivery before native same-session scheduling ships
+The task container is not the cron host: it has no `crontab` binary and loses
+state when the session ends. A host operator installs the marker-scoped cron
+entries and credential file; the Coordinator verifies their reported state but
+does not attempt to install container cron. Standup fires daily at 07:56
+America/Montreal. Until host delivery is verified, every manual human nudge is
+the recovery trigger: verify bootstrap state, run a full cycle, and persist the
+degradation. When native list/upsert/delete task-session wake tools ship, migrate
+both markers, verify same-session delivery, then remove only those host entries.
 
 ## Task failed to start: "Preparing worktree (checking out '…') fatal: '…' already exists"
 Stale worktree dirs from a terminal session block fresh env prep (restore is
@@ -145,6 +148,10 @@ Claude profiles to the editing steps, fix the container sandbox policy, or
 rebuild the task environment. Before choosing, check whether a task with a FRESH
 workspace on the same repo can edit — if it can, the variable is environment age
 and rebuilding the stuck task's environment is the narrow fix.
+Before declaring the failure host-wide, compare a sibling task using the SAME
+step profile and repository. A sibling that can edit is decisive evidence that
+the variable is workspace/session preparation, not the global host policy; send
+that comparison to the blocked task and require exact differentiating evidence.
 
 ## More than one coordinator is alive
 Several coordinator TASKS share this repo, each in its own worktree. The shared
