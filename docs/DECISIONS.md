@@ -49,6 +49,22 @@ No flag_task tool exists in the MCP server. Interim: flag =
 `[COORDINATOR FLAG]` comment + daily-report line; unflag =
 `[COORDINATOR UNFLAG]`. Auto-reverts if a real flag tool appears.
 
+## Platform bugs become board tasks (2026-08-17, human-directed)
+The coordinator never fixes kandev platform code and never merely reports a
+platform bug: it CREATES a task (evidence + where-to-look + acceptance criteria
+incl. regression test) and monitors it like any other. First instance: stale
+pending-move replay in workflow routing (task 6e0fc028).
+
+## Knowledge sync across coordinator worktrees (2026-08-17, human-directed)
+Each coordinator instance runs in its own worktree of the shared clone; main
+(/data/home/Code/coordinator) is the source of truth. Rebase onto main before
+editing; after every commit, fast-forward main from the main checkout
+(`git -C /data/home/Code/coordinator merge --ff-only <branch>`). Conflicts are
+hand-merged into a superseding version — never discard the other side's
+learning (first occurrence: main's degraded-mode refinements × this branch's
+daily-standup/adaptive-cadence changes → merged v2026-08-17). PROMPT.md changes
+are mirrored into the kandev task description after every merge.
+
 ## DST
 CRON_TZ=America/Toronto so 8:00 tracks Montreal wall clock across EST/EDT.
 If the cron daemon ignores CRON_TZ, entries are in UTC with the assumed

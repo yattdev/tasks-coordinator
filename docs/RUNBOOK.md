@@ -33,6 +33,15 @@ prompt on the move back. Note: move_task's prompt queues to the OLD primary
 session when no live session exists — after relaunch, message the NEW session
 explicitly (list_task_sessions → message_task with session_id).
 
+## Task ping-pongs back to a previous step with an unchanged tree (pending-move replay)
+Platform bug (kandev, confirmed 2026-08-17; fix task on board): a "pending move"
+recorded while a session is mid-turn can re-apply after its first application,
+yanking the task back (e.g. QA→Review) with an UNCHANGED tree and eating the
+current step's step_complete signals. Triage: diff the tree between re-entries —
+changed = by-design re-review (let it flow); unchanged = the replay bug.
+Remedy: coordinator forward-move past the poisoned edge (trail must justify:
+the affected steps already passed), then create/point to the platform bug task.
+
 ## No standup this morning
 1. `crontab -l | grep kandev-coordinator` — entries present, exactly once each?
 2. 2. `tail -50 ~/.local/state/kandev/coordinator-wake.log` — did cron fire? FATAL lines?
