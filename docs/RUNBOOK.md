@@ -131,6 +131,26 @@ rebuild the task environment. Before choosing, check whether a task with a FRESH
 workspace on the same repo can edit — if it can, the variable is environment age
 and rebuilding the stuck task's environment is the narrow fix.
 
+## More than one coordinator is alive
+Several coordinator TASKS share this repo, each in its own worktree. The shared
+project memory under
+`/data/home/.claude/projects/-data-home-Code-coordinator/memory/` is keyed to the
+DIRECTORY, not to a task, so a fresh session will read it and may adopt another
+task's identity wholesale. Confirm your own `Kandev Task ID` from your session
+context before you post, move, flag, or write a task plan. On 2026-08-17 a
+session in `coordinator-long-liv_hnr95fk5` (task f2949187) believed it was
+a68df3ae for an entire day, posting that task's daily report and overwriting its
+plan four times.
+Wake ownership is SINGLE-OWNER: exactly one coordinator holds the marker cron
+jobs and the board watch — the one the human directs, whose description carries
+the charter mirror. Every other instance is STANDBY: no wake jobs, no nudges, no
+moves, no comments on board tasks. A standby takes over only when the active
+coordinator is unresponsive to a manual nudge, and announces the takeover on the
+active task first. Two coordinators with independent session-bound cron jobs
+will double-nudge every stuck task and file duplicate standups.
+Handover needs no negotiation: all durable state lives in this repo and in the
+active task's plan, so a standby can take over cold.
+
 ## No standup this morning
 1. `crontab -l | grep kandev-coordinator` — entries present, exactly once each?
 2. 2. `tail -50 ~/.local/state/kandev/coordinator-wake.log` — did cron fire? FATAL lines?
