@@ -166,6 +166,26 @@ will double-nudge every stuck task and file duplicate standups.
 Handover needs no negotiation: all durable state lives in this repo and in the
 active task's plan, so a standby can take over cold.
 
+## Created a task and it never starts (Work step, no agent activity)
+A task placed directly in the Work step can sit idle indefinitely because its
+Work agent refuses to start without a SAVED APPROVED PLAN — creating the task
+with a detailed description is not enough. Symptom: task shows in Work, no agent
+messages, no session activity, worktree at the base commit with a clean status.
+Fix: save a plan on it (`create_task_plan_kandev`, content can be derived
+verbatim from the task description) and nudge it. Cost when missed: task
+d5e71c58 was created 05:05 on 2026-08-17 and sat idle over seven hours.
+If you create a task at Work, verify within one cycle that it actually produced
+an agent message — do not assume creation means running.
+
+## Two coordinators escalating the same issue: name actions, not letters
+When more than one coordinator writes to the human about the same decision, do
+NOT label options A/B/C — the instances will number them differently and the
+human's "do A" becomes ambiguous. On 2026-08-17 two coordinators sent mirrored
+recommendations for the editing blocker with A and B swapped; the substance
+agreed, the letters did not. Name the action in the sentence ("pin Claude
+profiles to the editing steps" / "relax the container seccomp+AppArmor policy")
+so a one-word reply cannot select the wrong one.
+
 ## No standup this morning
 1. `crontab -l | grep kandev-coordinator` — entries present, exactly once each?
 2. 2. `tail -50 ~/.local/state/kandev/coordinator-wake.log` — did cron fire? FATAL lines?
