@@ -4,9 +4,12 @@
 The coordinator schedules wake-ups with the agent-harness cron tools instead:
 - Jobs carry the same markers (`# kandev-coordinator-standup`, `# kandev-coordinator-cycle`)
   inside the job prompt; standup fires DAILY (57 11 UTC = 7:57 Montreal EDT).
-- Jobs are session-scoped and auto-expire after ~7 days; the coordinator
-  re-verifies and recreates them on every wake-up. If the agent session is
-  fully restarted, any manual message to the coordinator task re-arms them.
+- Jobs are session-scoped: they auto-expire after ~7 days AND they vanish
+  entirely the moment the session ends. A NEW coordinator session therefore
+  starts with `CronList` empty — that is expected, not a bug, and re-provisioning
+  both jobs is the first action of any restarted session (before any triage).
+  If the agent session is fully restarted, any manual message to the coordinator
+  task re-arms them.
 - The cycle job exists only while the pipeline (Spec..CI Fixup) has tasks.
 
 ## Task failed to start: "Preparing worktree (checking out '…') fatal: '…' already exists"
@@ -41,6 +44,22 @@ current step's step_complete signals. Triage: diff the tree between re-entries �
 changed = by-design re-review (let it flow); unchanged = the replay bug.
 Remedy: coordinator forward-move past the poisoned edge (trail must justify:
 the affected steps already passed), then create/point to the platform bug task.
+
+## A step posts its verdict then sits still (eaten step_complete signal)
+A healthy turn logs `on_turn_complete consuming explicit signal` for the task id
+in /data/logs/backend-logs.log. A step with `auto_advance_requires_signal: true`
+that posts its result and then stops moving, with that line ABSENT for the turn,
+did not get its signal through. Look just before it for a `pending move recorded`
+/ `applying pending move` pair on a DIFFERENT session id, plus
+`reusing existing session for profile` and `found resume token for session
+resumption` — the step was re-entered on a resumed session rather than a fresh
+one, even when the step declares `reset_agent_context` on_enter.
+Triage: (a) replay path consumed the signal, or (b) the resumed agent never
+emitted it because it never saw the on_enter contract. Both look identical on
+the board. Remedy: nudge the step's own session to re-emit step_complete first
+(cheap, usually works); only forward-move past the edge if it cannot.
+Observed 2026-08-17 04:26–04:27 UTC on task 6e0fc028 — the pending-move fix task
+reproducing the failure on itself; evidence posted on that task.
 
 ## No standup this morning
 1. `crontab -l | grep kandev-coordinator` — entries present, exactly once each?
