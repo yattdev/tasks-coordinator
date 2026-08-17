@@ -51,11 +51,20 @@ shape alone is not enough.
 A healthy turn logs `on_turn_complete consuming explicit signal` for the task id
 in /data/logs/backend-logs.log. A step with `auto_advance_requires_signal: true`
 that posts its result and then stops moving, with that line ABSENT for the turn,
-never emitted the signal. The overwhelmingly common cause is the boring one — the
-agent finished its work, wrote its verdict, and forgot the tool call — NOT the
-platform eating the signal. Nudge the step's own session with an explicit
-trigger/action/fallback; it costs one message and usually moves immediately.
-Only after a nudge produces a signal that is logged as consumed and the task
+never emitted the signal. It was NOT eaten in transit — but do not conclude the
+agent was merely careless either. ROOT CAUSE FOUND 2026-08-17 (kandev commit
+8dee5c978, `fix: inject completion context after workflow reset`): the
+completion-signal contract was injected into the step prompt only when the
+session state was `Created`. A step re-entered on a REUSED session is
+`WAITING_FOR_INPUT`, so on re-entry the agent was never told to call
+step_complete_kandev — even when the step declares both `reset_agent_context`
+and `auto_advance_requires_signal`. The agent could not have known. The fix
+extends the condition to steps declaring `reset_agent_context` on_enter.
+Remedy while that fix is unmerged, and for any residual case: nudge the step's
+own session with an explicit trigger/action/fallback naming step_complete_kandev.
+It costs one message and moves the task immediately, because the agent's work is
+genuinely finished — only the instruction was missing.
+Only after a nudge produces a signal that IS logged as consumed and the task
 still does not move should you suspect the routing layer.
 Do not read a resumed session as evidence of a replay: `reusing existing session
 for profile` + `found resume token for session resumption` is ordinary re-entry,
