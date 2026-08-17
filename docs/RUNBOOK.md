@@ -44,36 +44,42 @@ current step's step_complete signals. Triage: diff the tree between re-entries �
 changed = by-design re-review (let it flow); unchanged = the replay bug.
 Remedy: coordinator forward-move past the poisoned edge (trail must justify:
 the affected steps already passed), then create/point to the platform bug task.
+Before calling it a replay, apply the transcript check in the next section — log
+shape alone is not enough.
 
-REPRODUCTION RECIPE (observed twice on task 6e0fc028, 2026-08-17): once a pending
-move has been applied, DELIVERING ANY MESSAGE TO THE TASK re-applies it — same
-`session_id` in the log line even though that session has been COMPLETED for half
-an hour, same from_step_id/to_step_id. Both applications first log
-`task state updated` back to the pending move's FROM step, then transition to its
-TO step, so the task is yanked out of a step it is legitimately sitting in.
-  04:26:10 pending move recorded (session 8c401f9f, mid-turn)
-  04:26:31 applying pending move 485f61e8 -> 6c2e5bf5   (first application)
-  04:56:09 applying pending move 485f61e8 -> 6c2e5bf5   (REPLAY, same session)
-Practical consequence for the coordinator: nudging a task parked by this bug can
-itself trigger the replay and cost another turn. Nudge ONCE, watch the log for a
-second `applying pending move`, and if it fires, stop messaging and forward-move
-instead.
-
-## A step posts its verdict then sits still (eaten step_complete signal)
+## A step posts its verdict then sits still (no forward move)
 A healthy turn logs `on_turn_complete consuming explicit signal` for the task id
 in /data/logs/backend-logs.log. A step with `auto_advance_requires_signal: true`
 that posts its result and then stops moving, with that line ABSENT for the turn,
-did not get its signal through. Look just before it for a `pending move recorded`
-/ `applying pending move` pair on a DIFFERENT session id, plus
-`reusing existing session for profile` and `found resume token for session
-resumption` — the step was re-entered on a resumed session rather than a fresh
-one, even when the step declares `reset_agent_context` on_enter.
-Triage: (a) replay path consumed the signal, or (b) the resumed agent never
-emitted it because it never saw the on_enter contract. Both look identical on
-the board. Remedy: nudge the step's own session to re-emit step_complete first
-(cheap, usually works); only forward-move past the edge if it cannot.
-Observed 2026-08-17 04:26–04:27 UTC on task 6e0fc028 — the pending-move fix task
-reproducing the failure on itself; evidence posted on that task.
+never emitted the signal. The overwhelmingly common cause is the boring one — the
+agent finished its work, wrote its verdict, and forgot the tool call — NOT the
+platform eating the signal. Nudge the step's own session with an explicit
+trigger/action/fallback; it costs one message and usually moves immediately.
+Only after a nudge produces a signal that is logged as consumed and the task
+still does not move should you suspect the routing layer.
+Do not read a resumed session as evidence of a replay: `reusing existing session
+for profile` + `found resume token for session resumption` is ordinary re-entry,
+and the same `session_id` appearing on two `applying pending move` lines usually
+means one session was resumed twice, not that one move applied twice. To claim a
+replay you need two applications of ONE recorded move — check for a matching
+`pending move recorded` line before each application, and read the recording
+session's transcript to see whether it deliberately issued the second move.
+(Learned the hard way 2026-08-17 on task 6e0fc028: the coordinator called a
+replay from log shape alone and had to retract it — the QA agent had plainly
+called move_task_kandev the second time. Read the transcript before the verdict.)
+
+## Step re-enters on an ALREADY-COMPLETED session and loops
+Symptom: A→B→A→B with no new commits, each step insisting it is already done.
+Mechanism (observed 2026-08-17, task 6e0fc028, Review<->QA): a step that already
+finished is re-entered on its old session; the resumed agent sees the board
+sitting in its own step, reasonably concludes "my earlier completion signal must
+have been canceled", re-routes to the neighbouring step and re-signals — which
+returns `already_signaled` — and the neighbour then advances back into it. Both
+agents behave correctly; the cycle is structural and the task cannot exit it.
+Remedy: coordinator forward-moves PAST BOTH looping steps (here Review/QA -> PR)
+with a hand-off prompt that states which gates already passed, at which commit,
+and instructs the receiving agent not to re-run them or self-route. Trail must
+justify it: both gates genuinely passed on the same commit.
 
 ## No standup this morning
 1. `crontab -l | grep kandev-coordinator` — entries present, exactly once each?
