@@ -4,6 +4,10 @@
 The coordinator schedules wake-ups with the agent-harness cron tools instead:
 - Jobs carry the same markers (`# kandev-coordinator-standup`, `# kandev-coordinator-cycle`)
   inside the job prompt; standup fires DAILY (57 11 UTC = 7:57 Montreal EDT).
+- Jobs only DELIVER while the session is IDLE. A long turn spanning the standup
+  minute swallows the wake until the turn ends — on 2026-08-17 the 11:57 job
+  fired on time and the report still went out 35 minutes late. Do not hold long
+  turns across your standup time; end the turn and let the wake land.
 - Jobs are session-scoped: they auto-expire after ~7 days AND they vanish
   entirely the moment the session ends. A NEW coordinator session therefore
   starts with `CronList` empty — that is expected, not a bug, and re-provisioning
@@ -94,8 +98,18 @@ justify it: both gates genuinely passed on the same commit.
 Symptom, from a codex-profile session: `apply_patch verification failed: Failed
 to read file to update ... fs sandbox helper failed ... bwrap: No permissions to
 create a new namespace`. Creating NEW files succeeds; only existing-file patches
-fail. Cause is environmental — this container blocks unprivileged user
-namespaces — so it is never the agent's fault and never fixed by retrying.
+fail. Never the agent's fault, never fixed by retrying.
+MEASURE IT, do not assume (2026-08-17 12:33 UTC):
+  cat /proc/sys/kernel/unprivileged_userns_clone   -> 1        (kernel ALLOWS)
+  cat /proc/sys/user/max_user_namespaces           -> 236497   (kernel ALLOWS)
+  unshare --user --pid echo ok                     -> Operation not permitted
+  grep ^Seccomp: /proc/self/status                 -> Seccomp: 2
+  cat /proc/self/attr/current                      -> docker-default (enforce)
+So the kernel permits user namespaces and the CONTAINER RUNTIME denies the
+syscall. The fix is at container-run level (`--security-opt seccomp=unconfined`,
+`--security-opt apparmor=unconfined`, or a profile permitting
+`clone(CLONE_NEWUSER)`) — which may be deliberate hardening, so it is a human
+decision, not something to route around.
 Do NOT ask the agent to use direct-write workarounds: codex sessions carry a
 patch-only constraint and are right to refuse.
 DEAD WORKAROUND — do not promise it: spawning an editing-capable Claude session
