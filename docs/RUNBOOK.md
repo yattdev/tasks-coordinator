@@ -90,6 +90,33 @@ with a hand-off prompt that states which gates already passed, at which commit,
 and instructs the receiving agent not to re-run them or self-route. Trail must
 justify it: both gates genuinely passed on the same commit.
 
+## Agent cannot edit existing files (bwrap / userns)
+Symptom, from a codex-profile session: `apply_patch verification failed: Failed
+to read file to update ... fs sandbox helper failed ... bwrap: No permissions to
+create a new namespace`. Creating NEW files succeeds; only existing-file patches
+fail. Cause is environmental — this container blocks unprivileged user
+namespaces — so it is never the agent's fault and never fixed by retrying.
+Do NOT ask the agent to use direct-write workarounds: codex sessions carry a
+patch-only constraint and are right to refuse.
+DEAD WORKAROUND — do not promise it: spawning an editing-capable Claude session
+onto the stuck task with `spawn_session_kandev` now returns
+`FORBIDDEN: cannot spawn a session on a task in another workspace`. The
+coordinator can only add sessions to tasks sharing its OWN materialized
+workspace. Verify the tool call BEFORE telling a task help is coming (2026-08-17:
+announced it to 9e67c426, then had to retract).
+Every step in the Daily workflow pins a codex profile, and the Claude profiles on
+this board (all `bypassPermissions`, which edit via native tools and never invoke
+bwrap) are reachable only as a task's own assignee profile — which the step pin
+overrides. So there is no coordinator-level fix.
+What to do instead: (1) get the task to land everything achievable as NEW files
+(spec/ADR docs, new modules) so the stop is partial, not total; (2) ask it for a
+concrete blocked-list of deliverables plus the exact existing-file paths — that
+list is the escalation's payload; (3) escalate to the human with options: pin
+Claude profiles to the editing steps, fix the container sandbox policy, or
+rebuild the task environment. Before choosing, check whether a task with a FRESH
+workspace on the same repo can edit — if it can, the variable is environment age
+and rebuilding the stuck task's environment is the narrow fix.
+
 ## No standup this morning
 1. `crontab -l | grep kandev-coordinator` — entries present, exactly once each?
 2. 2. `tail -50 ~/.local/state/kandev/coordinator-wake.log` — did cron fire? FATAL lines?
