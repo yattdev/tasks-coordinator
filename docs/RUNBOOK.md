@@ -45,6 +45,20 @@ changed = by-design re-review (let it flow); unchanged = the replay bug.
 Remedy: coordinator forward-move past the poisoned edge (trail must justify:
 the affected steps already passed), then create/point to the platform bug task.
 
+REPRODUCTION RECIPE (observed twice on task 6e0fc028, 2026-08-17): once a pending
+move has been applied, DELIVERING ANY MESSAGE TO THE TASK re-applies it — same
+`session_id` in the log line even though that session has been COMPLETED for half
+an hour, same from_step_id/to_step_id. Both applications first log
+`task state updated` back to the pending move's FROM step, then transition to its
+TO step, so the task is yanked out of a step it is legitimately sitting in.
+  04:26:10 pending move recorded (session 8c401f9f, mid-turn)
+  04:26:31 applying pending move 485f61e8 -> 6c2e5bf5   (first application)
+  04:56:09 applying pending move 485f61e8 -> 6c2e5bf5   (REPLAY, same session)
+Practical consequence for the coordinator: nudging a task parked by this bug can
+itself trigger the replay and cost another turn. Nudge ONCE, watch the log for a
+second `applying pending move`, and if it fires, stop messaging and forward-move
+instead.
+
 ## A step posts its verdict then sits still (eaten step_complete signal)
 A healthy turn logs `on_turn_complete consuming explicit signal` for the task id
 in /data/logs/backend-logs.log. A step with `auto_advance_requires_signal: true`
