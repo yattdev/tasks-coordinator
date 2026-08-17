@@ -93,6 +93,21 @@ Remedy: coordinator forward-moves PAST BOTH looping steps (here Review/QA -> PR)
 with a hand-off prompt that states which gates already passed, at which commit,
 and instructs the receiving agent not to re-run them or self-route. Trail must
 justify it: both gates genuinely passed on the same commit.
+DO NOT conflate this with the agent-context reset skip. Investigated on the
+source 2026-08-17 (task d5e71c58) and confirmed INDEPENDENT: retained
+agent-visible context cannot recreate or cancel a completion signal, because
+completion is orchestrator-side state and `already_signaled` is only the MCP
+dedupe result. The loop is also already treated separately in-tree —
+`handleAgentBootReady` must not call `processOnTurnCompleteViaEngine`, asserted
+by `event_handlers_github_review_test.go`. The confirming check: in the observed
+loop the resumed agent derived "my signal must have been canceled" from the
+VISIBLE BOARD STATE, not from stale memory, so a properly context-reset agent
+would have reasoned identically. Fixing the reset does not fix the loop.
+For reference, the reset skip itself (a different bug): on_enter reset runs
+BEFORE lazy resume, `resetAgentContext` finds no live execution id, returns
+success WITHOUT clearing `executors_running.resume_token`, and the later lazy
+resume copies that stale token into `req.ACPSessionID` — so the first resumed
+turn carries old context and the reset silently reported success.
 
 ## Agent cannot edit existing files (bwrap / userns)
 Symptom, from a codex-profile session: `apply_patch verification failed: Failed
