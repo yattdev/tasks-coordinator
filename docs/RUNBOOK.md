@@ -175,6 +175,15 @@ coordinator, and had a `WAKE:CYCLE` fire four hours later from the survivor.
 If a WAKE arrives while you are standby: do NOT run the cycle. Verify and clear
 the job, tell the active coordinator its verification of your standby is void,
 and take no board actions.
+VERIFYING A PEER'S STANDBY — do it behaviourally, not declaratively. One
+coordinator cannot inspect another's session, so a peer's "my CronList is empty"
+is unfalsifiable and, on 2026-08-17, was wrong. The check that works instead:
+sweep /data/logs/backend-logs.log over the window and attribute every board
+event — moves, messages, pending-move recordings — to a session id. All actions
+on monitored tasks should trace to the ACTIVE coordinator's session; anything
+unattributed is the signal to investigate. Run it each cycle. This corroborates
+standby from the board trail rather than from either party's self-report, and it
+also catches a standby that is misbehaving without having admitted it.
 
 ## Created a task and it never starts (Work step, no agent activity)
 A task placed directly in the Work step can sit idle indefinitely because its
