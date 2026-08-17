@@ -165,6 +165,16 @@ active task first. Two coordinators with independent session-bound cron jobs
 will double-nudge every stuck task and file duplicate standups.
 Handover needs no negotiation: all durable state lives in this repo and in the
 active task's plan, so a standby can take over cold.
+GOING STANDBY: delete your marker jobs, then re-run `CronList` and read the
+result — do not infer an empty list from your own delete calls. A session-bound
+job can survive what looks like a clean sweep, and a recurring WAKE firing into
+a session that believes it is dormant restores exactly the double-nudging
+standby exists to prevent. On 2026-08-17 f2949187 deleted two jobs, one of them
+an id that was not the live cycle job, reported "no marker jobs" to the active
+coordinator, and had a `WAKE:CYCLE` fire four hours later from the survivor.
+If a WAKE arrives while you are standby: do NOT run the cycle. Verify and clear
+the job, tell the active coordinator its verification of your standby is void,
+and take no board actions.
 
 ## Created a task and it never starts (Work step, no agent activity)
 A task placed directly in the Work step can sit idle indefinitely because its
