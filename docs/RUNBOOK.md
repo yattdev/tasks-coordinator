@@ -173,7 +173,19 @@ will double-nudge every stuck task and file duplicate standups.
 Handover needs no negotiation: all durable state lives in this repo and in the
 active task's plan, so a standby can take over cold.
 GOING STANDBY: delete your marker jobs, then re-run `CronList` and read the
-result — do not infer an empty list from your own delete calls. A session-bound
+result — do not infer an empty list from your own delete calls. BUT KNOW THAT
+RE-LISTING IS NOT SUFFICIENT EITHER: on 2026-08-17 f2949187 re-listed twice,
+both times reading a genuine "No scheduled jobs", and `d67a02fb` still fired a
+`WAKE:CYCLE` into that session at 13:25 the NEXT DAY. Two explanations fit and
+this session could not distinguish them — CronList under-reporting a live job,
+or the job list being restored from a pre-deletion snapshot when the session
+resumed across a suspend. Either way the practical rule is the same: harness
+cron state is not durable evidence of anything. Treat a clean `CronList` as
+weak, not proof; expect a stray WAKE and handle it per the rule below; and rely
+on the behavioural check for the real answer. This is one of the reasons the
+charter moved wake delivery to HOST crontab (see "Wake delivery before native
+same-session scheduling ships") — container-side scheduler state does not
+survive session boundaries reliably in either direction. A session-bound
 job can survive what looks like a clean sweep, and a recurring WAKE firing into
 a session that believes it is dormant restores exactly the double-nudging
 standby exists to prevent. On 2026-08-17 f2949187 deleted two jobs, one of them
