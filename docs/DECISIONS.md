@@ -72,6 +72,29 @@ learning (first occurrence: main's degraded-mode refinements × this branch's
 daily-standup/adaptive-cadence changes → merged v2026-08-17). PROMPT.md changes
 are mirrored into the kandev task description after every merge.
 
+## 24/7 monitoring + visible ask-channel (2026-08-18, human-directed)
+The coordinator is not human and must not mimic human working hours: hourly
+cycles run around the clock whenever anything is in the pipeline, in a
+creator-owned Todo handoff, or parked on a decision. Quiet cycles reduce depth,
+never frequency. Separately: every human-facing question/blocker goes through
+ask_user_question_kandev (visible input icon on the task) — the editing-blocker
+decision sat unanswered a full day because it lived only in prose reports.
+Text reports summarize; the ask tool escalates.
+
+## Blessed unblock powers (2026-08-18, human-approved)
+Standing powers, used sparingly, always logged vetoable: (1) spawn_session onto
+a stuck same-workspace task; (2) forward moves past confirmed platform defects;
+(3) gh pushes for mechanical repo operations (seeds, authorized PR closures).
+Granted after all three proved out on 2026-08-17 (scheduler-fix session, loop
+bypass, template seed).
+
+## Editing blocker resolution: pin now, container-fix later (2026-08-18, human decision)
+Human chose BOTH: pin Claude profiles to Work/Review/CI-Fixup immediately
+(human clicks; coordinator verifies via list_workflow_steps and resumes the
+gated tasks), and a platform task (6a5a2f73) designs a configurable
+userns-permitting seccomp profile for executor containers as the durable fix —
+after which the pinning can be reverted.
+
 ## DST
 CRON_TZ=America/Montreal so 07:56 tracks Montreal wall clock across EST/EDT.
 If the cron daemon ignores CRON_TZ, entries are in UTC with the assumed
