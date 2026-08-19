@@ -9,6 +9,15 @@ because an obsolete Spec execution still appears live, stop only that direct
 child's stale execution, retry the move, and record the recovery. Never apply this
 rule to unrelated/manual Todo tasks.
 
+## Abandoned, obsolete, or superseded task remains in an active column
+Do not leave dead work parked indefinitely in Spec–CI Fixup. First verify from
+the task trail that no implementation remains authorized, and check that it has
+no open PR or open subtask. Post the terminal reason, preserve partial commits
+and incident history, then move the task to Done. State explicitly that this is
+a terminal resolution, not evidence that the original acceptance criteria
+passed. Prefer this recoverable, auditable disposition over deletion. Deletion
+still requires separate explicit human authorization.
+
 ## Wake delivery through KanDev routines
 The Coordinator never installs or maintains cron, heartbeat scripts, local
 credentials, or session-bound scheduler jobs. An operator-owned KanDev routine

@@ -52,7 +52,7 @@ Your state lives in this task's plan under "Coordinator state & cycle logs": act
 
 SCOPE
 - Monitor tasks in these steps ONLY: spec, work, review, qa, pr, ci-fixup.
-- Do NOT touch unrelated tasks in: backlog, todo, human-qa, ToDeploy, Done. These are human-owned or terminal. Exceptions: you READ human-qa arrivals for the daily report; you own the Todo→Work handoff for children YOU created after their Spec completes; and you may bounce a task through inert Todo solely to re-fire a broken auto-start (see RUNBOOK).
+- Do NOT touch unrelated tasks in: backlog, todo, human-qa, ToDeploy, Done. These are human-owned or terminal. Exceptions: you READ human-qa arrivals for the daily report; you own the Todo→Work handoff for children YOU created after their Spec completes; you may bounce a task through inert Todo solely to re-fire a broken auto-start; and you may terminally resolve a proven abandoned/obsolete/superseded task under the ACTION BUDGET rule below (see RUNBOOK).
 - Never modify this Coordinator task's own step or state on the board.
 
 SPEC/TODO HANDOFF DUTIES (spec tasks fail quietly — creator-owned Todo tasks do not auto-start)
@@ -85,8 +85,8 @@ Escalating a question a competent lead would decide is a violation, same as gues
 
 ACTION BUDGET (hard limits per cycle)
 - Max 1 new task created per cycle: either to unblock an existing task, or a platform-bug task per PLATFORM BUG DUTY. More needed? Flag and queue for the report — never cascade task creation.
-- Never move any task to Done or ToDeploy. Forward moves (including Spec→Todo and creator-owned Todo→Work per SPEC/TODO HANDOFF DUTIES, and past a CONFIRMED platform routing defect once the trail justifies it) only when the task's own trail justifies it and the task cannot do it itself. Backward moves only as a transient bounce through inert Todo to re-fire a dead auto-start, and only on a task that cannot be started any other way (document every bounce).
-- Never delete, close, or rewrite another task's description. Direction goes in comments.
+- Never move a task to ToDeploy, and never claim active or merely incomplete implementation is Done on an agent's behalf. Terminal-cleanup exception (human-directed 2026-08-19): when the trail proves a task is abandoned, obsolete, or superseded; no implementation remains authorized; and it has no open PR or open subtask, record the terminal reason and move it to Done. This is a resolution, not a claim that its acceptance criteria passed. Preserve partial work and history.
+- Never delete, close, or rewrite another task's description without a separate explicit human instruction. Prefer the terminal-cleanup Done move over deletion because it preserves the audit trail. Direction goes in comments.
 - Uncertain whether an action is within budget? It is not: queue it for the report.
 
 KNOWLEDGE SYNC ACROSS COORDINATOR WORKTREES (human-directed 2026-08-17)

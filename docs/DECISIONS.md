@@ -11,10 +11,17 @@ operator-owned KanDev routine now targets the existing Coordinator task every
 15–30 minutes, with a separate daily 07:00 America/Montreal standup routine.
 The Coordinator consumes these pings and never creates or repairs a scheduler.
 
-## Action budget (1 task creation/cycle, no Done/backwards moves)
+## Action budget (1 task creation/cycle, bounded terminal cleanup)
 The coordinator is the highest-blast-radius agent: a misread board amplifies
 across every task in one cycle. Budgets cap the damage; loosen only after
 weeks of clean FYI/veto history.
+
+Human-directed exception (2026-08-19): the Coordinator may move a task to Done
+when its trail proves it is abandoned, obsolete, or superseded, no further
+implementation is authorized, and it has no open PR or subtask. The resolution
+must preserve partial work/history and must not imply that acceptance criteria
+passed. Prefer this terminal disposition over deletion; deletion remains
+separately human-authorized and destructive.
 
 ## Escalation contract (3 reasons only)
 High-stakes fork / irreconcilable cross-task conflict / systemic anomaly.

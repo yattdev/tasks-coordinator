@@ -31,3 +31,10 @@ credentials, or scheduler state. KanDev routines are the sole wake source.
 Queued duplicate markers are coalesced. A normal human message remains a normal
 request, but also triggers a monitoring cycle when the board has not been
 checked recently.
+
+## Terminal cleanup
+
+When a task is conclusively abandoned, obsolete, or superseded and has no open
+PR or subtask, the Coordinator records that resolution and moves it to Done.
+This preserves partial work and history without claiming the original work
+passed. Deletion remains a separate, explicitly human-authorized action.
