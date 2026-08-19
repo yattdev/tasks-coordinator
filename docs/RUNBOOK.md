@@ -168,17 +168,33 @@ the variable is workspace/session preparation, not the global host policy; send
 that comparison to the blocked task and require exact differentiating evidence.
 
 ## More than one coordinator is alive
+**FIRST, AND MOST IMPORTANT: there is one Coordinator PER WORKSPACE, and they are
+peers, not rivals.** Two coordinator tasks existing does NOT mean one must stand
+down. Before concluding anything about ownership, resolve which WORKSPACE each
+coordinator serves — `list_related_tasks_kandev` on your own task id returns your
+`workspace_id`. A coordinator only has standing on its own workspace's board, and
+has none on anyone else's. Known live pairs: `a68df3ae` serves workspace
+`2e62401b` (Kandev); `f2949187` serves `d35ace87` (Performcoop).
 Several coordinator TASKS share this repo, each in its own worktree. The shared
 project memory under
 `/data/home/.claude/projects/-data-home-Code-coordinator/memory/` is keyed to the
 DIRECTORY, not to a task, so a fresh session will read it and may adopt another
-task's identity wholesale. Confirm your own `Kandev Task ID` from your session
-context before you post, move, flag, or write a task plan. On 2026-08-17 a
-session in `coordinator-long-liv_hnr95fk5` (task f2949187) believed it was
-a68df3ae for an entire day, posting that task's daily report and overwriting its
-plan four times.
-Wake ownership is SINGLE-OWNER: exactly one coordinator is the target of the
-KanDev routines and owns the board watch — the one the human directs, whose
+task's identity wholesale. Confirm your own `Kandev Task ID` AND workspace from
+your session context before you post, move, flag, or write a task plan.
+WHAT THIS COST ON 2026-08-17..19: a session in `coordinator-long-liv_hnr95fk5`
+(task f2949187, Performcoop) read the memory, concluded it was a68df3ae, and for
+two days supervised the KANDEV board — nudging, forward-moving and creating tasks
+it had no standing over, and overwriting a68df3ae's plan four times. On noticing
+the clash it then negotiated a "single-owner standby" with a68df3ae and stood its
+OWN board down, which is how a Spec task on Performcoop got told to take its
+question to a coordinator in another workspace that could not even see it. Both
+errors came from the same missing question: WHICH BOARD IS MINE?
+The standby doctrine below applies ONLY to two coordinators contending for the
+SAME workspace. If your workspaces differ, you are both active, you owe each
+other nothing but courtesy, and standing down is itself the failure.
+Wake ownership is SINGLE-OWNER WITHIN ONE WORKSPACE (irrelevant across
+workspaces — each board's coordinator gets its own routines): exactly one
+coordinator per board is the target of that board's routines and owns its watch — the one the human directs, whose
 description carries the charter mirror. Every other instance is STANDBY: it is
 not a routine target and makes no nudges, moves, or comments on board tasks. A
 standby takes over only after the routine target is changed by the operator and
