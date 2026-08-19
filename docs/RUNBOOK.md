@@ -6,13 +6,18 @@ Every cycle, for each active task, ask one question the task itself rarely asks:
 worktree?** Agents reason carefully about the durability of their notes,
 criteria and plans while the actual deliverable sits untracked, because the
 deliverable feels solid — they have been editing it all day.
-Observed 2026-08-19 on `3c2a0d34`: the agent refused to regenerate a 692-line
-plan to protect 39 verbatim source comments, rejected an untracked resting place
-for an acceptance criterion, and flagged that staged is not committed — while
-`DIAGNOSTIC_REPORT_ANALYSIS.md`, the 208-line client-facing deliverable under
-active human review and carrying the estimate, sat untracked at repo root the
-entire time. Three careful durability decisions, and the one artifact that
-mattered most was the one nobody checked.
+Observed 2026-08-19 on `3c2a0d34`: `DIAGNOSTIC_REPORT_ANALYSIS.md`, the 208-line
+client-facing deliverable under active human review and carrying the estimate,
+sat untracked at repo root across four sessions of work.
+ACCURACY CORRECTION, because the first version of this entry was unfair to that
+agent: it HAD noticed and raised the exposure to the human in the message
+immediately before the coordinator's — independently and at the same moment. The
+lesson is therefore NOT "agents fail to notice their deliverable is exposed".
+The lesson is that **noticing is not securing**: the document remained untracked
+for as long after it was surfaced as before, because surfacing it created a
+pending human decision rather than a durable artifact. Run the check yourself
+each cycle regardless of whether the task has raised it, and treat "flagged to
+the human" as an open exposure, not a closed one.
 Cheap check, run it per task: `git status --short` in the task's worktree, and
 read the `??` lines as "dies when this worktree is cleaned up". Do not accept
 "it's in the plan" as cover — a plan holding source material is not the same as
