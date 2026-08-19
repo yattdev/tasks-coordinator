@@ -1,5 +1,34 @@
 # Runbook
 
+## A large task plan is append-only BY HAND, not by tool
+`update_task_plan_kandev` and `create_task_plan_kandev` take FULL CONTENT — every
+write regenerates the whole document through token output, with no byte-fidelity
+guarantee. That is harmless for a plan you authored and can re-derive. It is
+dangerous once a plan holds material that cannot be regenerated: verbatim source
+comments, transcribed requirements, exact quotes, anything whose value is that it
+is a faithful copy.
+Observed 2026-08-19 on `3c2a0d34`: a 692-line plan held the only verbatim
+transcription of 39 source comments. Appending one acceptance criterion would
+have meant regenerating all 39 through the model. The agent refused; a previous
+session on the same task had refused for the same reason. Upheld — trading an
+irreplaceable requirements artifact to record a criterion about not losing
+artifacts is exactly backwards.
+Before rewriting any plan, ask what in it cannot be regenerated. If the answer is
+"nothing", rewrite freely. If it holds copied source material, treat it as
+append-only by hand and put new material somewhere else.
+**Somewhere else does NOT mean an untracked file.** The same agent first parked
+the criterion in an untracked `SPEC_ADDENDUM_INTERNAL.md` at repo root — a worse
+failure mode than the one it avoided: it dies with the worktree, is invisible to
+anyone without that checkout, and never reaches the Review or QA agent. An
+acceptance criterion nobody downstream can see does not exist. Two resting places
+that actually work, and they compose:
+1. A TRACKED repo file, under the repo's existing docs convention rather than at
+   root — survives the worktree, travels with the branch, appears in the diff the
+   reviewer reads.
+2. A COMMENT on the task — durable board state that Review and QA agents read as
+   a matter of course. This is what makes a criterion operative rather than
+   merely recorded.
+
 ## Never message a task parked in Todo — it bounces BACKWARDS
 Todo carries an `on_turn_start` rule that moves the task to another step the
 instant anything starts a turn there. On the Performcoop board (workflow
