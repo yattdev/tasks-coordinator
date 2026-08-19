@@ -16,6 +16,34 @@ RELATED JUDGEMENT worth copying: to keep files out of a push, use the LOCAL
 exclude, never the tracked `.gitignore`. Editing the tracked ignore file to avoid
 pushing something is itself a pushed change — self-defeating, and easy to miss.
 
+## A task push can take down SHARED containers (compose project-name collision)
+Happened for real on 2026-08-19: pushing from task `89812cba`'s worktree took the
+main dev database down for a couple of minutes.
+Mechanism, and it is armed on every worktree of a repo that does this:
+1. `git config core.hooksPath .githooks`, and `.githooks/pre-push` execs
+   `qualitycheck.sh`, which runs `docker compose` UNSCOPED (`qualitycheck.sh:15`).
+2. Docker Compose derives its project name from the DIRECTORY BASENAME when
+   `COMPOSE_PROJECT_NAME` is unset. Every task worktree for this repo is called
+   `…/<task-slug>/performcoop` — basename `performcoop`, identical to the main
+   checkout at `/data/home/Code/performcoop`.
+3. So the hook operates on the MAIN checkout's containers. It recreated the live
+   `performcoop-db-1` using the task's `DB_PORT`, which then failed to start on a
+   port collision with the task's own DB.
+The only protection is `COMPOSE_PROJECT_NAME=<task>` in the worktree's `.env` —
+and an agent rewriting `.env` during a QA/Review pass can silently drop that
+line, disarming it without any error. That is exactly how it happened.
+SWEEP, run it before any task reaches PR rather than after an outage:
+    for d in /data/tasks/*/<repo> /data/home/Code/<repo>; do
+      printf '%-56s %s\n' "$d" "$(grep -h '^COMPOSE_PROJECT_NAME' "$d/.env" 2>/dev/null || echo MISSING)"
+    done
+On 2026-08-19 that returned MISSING for 9 of 10 worktrees. Most were dormant
+(Done/Backlog tasks never push), so triage by whether the task is ACTIVE — the
+risk is a live task reaching PR, not a stale directory.
+Durable fixes are repo-level and belong to the human: scope the hook's compose
+invocation with `-p`/`--project-name`, or stop naming worktree subdirectories
+after the repo. A per-worktree `.env` line is a patch, not a fix, because the
+next `.env` rewrite removes it again.
+
 ## Re-check a dirty working tree before flagging it
 A `git status` snapshot taken while an agent's turn is running is a photograph of
 a moving target. Build steps and test runs dirty the tree transiently, and the
