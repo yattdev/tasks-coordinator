@@ -1,5 +1,29 @@
 # Runbook
 
+## Audit where the DELIVERABLE lives, not just where the notes live
+Every cycle, for each active task, ask one question the task itself rarely asks:
+**where does its primary output physically live, and does it survive the
+worktree?** Agents reason carefully about the durability of their notes,
+criteria and plans while the actual deliverable sits untracked, because the
+deliverable feels solid — they have been editing it all day.
+Observed 2026-08-19 on `3c2a0d34`: the agent refused to regenerate a 692-line
+plan to protect 39 verbatim source comments, rejected an untracked resting place
+for an acceptance criterion, and flagged that staged is not committed — while
+`DIAGNOSTIC_REPORT_ANALYSIS.md`, the 208-line client-facing deliverable under
+active human review and carrying the estimate, sat untracked at repo root the
+entire time. Three careful durability decisions, and the one artifact that
+mattered most was the one nobody checked.
+Cheap check, run it per task: `git status --short` in the task's worktree, and
+read the `??` lines as "dies when this worktree is cleaned up". Do not accept
+"it's in the plan" as cover — a plan holding source material is not the same as
+the document built from it.
+Legitimate answer: the deliverable lives outside the repo and is delivered by
+another channel. Then have them NAME the channel. The only thing to rule out is
+"one worktree's disk".
+When a task is already waiting on a human for one decision, BUNDLE the commit
+ask into it rather than sending a second and third. One decision, several things
+unblocked.
+
 ## A large task plan is append-only BY HAND, not by tool
 `update_task_plan_kandev` and `create_task_plan_kandev` take FULL CONTENT — every
 write regenerates the whole document through token output, with no byte-fidelity
