@@ -245,6 +245,18 @@ session state was `Created`. A step re-entered on a REUSED session is
 step_complete_kandev — even when the step declares both `reset_agent_context`
 and `auto_advance_requires_signal`. The agent could not have known. The fix
 extends the condition to steps declaring `reset_agent_context` on_enter.
+CAUTION — the signature is NECESSARY, NOT SUFFICIENT. `WAITING_FOR_INPUT`
+seconds after a step agent starts also matches an agent that is simply between
+polls, or one whose session was interrupted mid-poll and later resumes on its
+own. Observed 2026-08-19 on `89812cba`: the coordinator read a 2-second
+start-to-`WAITING_FOR_INPUT` gap in CI Fixup as a lost completion contract; the
+agent was in fact mid-poll on a 15-minute CI pipeline, resumed, found it green,
+and advanced itself. Same signature, different cause.
+Therefore PHRASE THE NUDGE AS A QUESTION, never an assertion: "signal if you are
+done, or reply with one line saying what you are waiting on." A question costs
+nothing when the diagnosis is wrong and still unblocks when it is right.
+Asserting "your session never received the contract" would have been confidently
+incorrect and would have taught the agent to discount the next message.
 Remedy while that fix is unmerged, and for any residual case: nudge the step's
 own session with an explicit trigger/action/fallback naming step_complete_kandev.
 It costs one message and moves the task immediately, because the agent's work is
