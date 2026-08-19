@@ -188,6 +188,36 @@ Handover needs no negotiation: all durable state lives in this repo and in the
 active task's plan, so a standby can take over cold.
 If a routine ping reaches a standby, do NOT run the cycle. Tell the active
 coordinator and ask the operator to remove that standby from the routine target.
+A WAKE:STANDUP reaching a standby is the dangerous one: the standup is a FILE
+(`standups/standup-YYYY-MM-DD.md`) in this shared clone with a five-day
+rotation, so two coordinators running it write the same path and both
+fast-forward main — one silently clobbers the other, or the rotation deletes
+files while the other is mid-write. Chat duplication is embarrassing; this
+corrupts the durable record. Decline it and say so; never write that path unless
+you are the routine target.
+DECIDING WHETHER YOU ARE ACTUALLY STANDBY: liveness of the other coordinator is
+"received a routine ping AND produced a turn", not "its session state reads
+alive". Check the backend log for wake deliveries per task id over the last
+interval and for its turn boundaries. On 2026-08-19 both routines pinged the
+standby as well as the active coordinator; the standby confirmed it was still
+standby by seeing 2 deliveries to a68df3ae vs 1 to itself, plus a turn ending
+seconds earlier. An idle-between-turns session would otherwise read as dead and
+invite a wrong takeover.
+
+## The visible ask channel can fail closed
+The charter makes `ask_user_question_kandev` binding for every human-facing
+blocker, but it requires a human attached to the calling session. From a
+standby, headless, or routine-driven session it returns
+`backend error [INTERNAL_ERROR]: Clarification request timed out or was
+cancelled`. Such a session CANNOT comply with the rule as written: its
+escalation dead-ends, and if it does not check the return value the blocker
+disappears silently. This is the 2026-08-17 prose-only failure arriving from the
+opposite direction — the mechanism meant to guarantee visibility failing closed.
+Workaround: route the ask through a coordinator session that HAS a human
+attached (normally the active coordinator), state plainly that you are relaying
+rather than originating, and give the decision as named options so a one-word
+answer resolves it. Always read the tool's return value; never assume an ask is
+pending because you called the tool.
 VERIFYING A PEER'S STANDBY — do it behaviourally, not declaratively. One
 coordinator cannot inspect another's routine configuration. The check that works:
 sweep /data/logs/backend-logs.log over the window and attribute every board
