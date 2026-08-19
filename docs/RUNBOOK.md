@@ -9,15 +9,20 @@ because an obsolete Spec execution still appears live, stop only that direct
 child's stale execution, retry the move, and record the recovery. Never apply this
 rule to unrelated/manual Todo tasks.
 
-## Wake delivery before native same-session scheduling ships
-The task container is not the cron host: it has no `crontab` binary and loses
-state when the session ends. A host operator installs the marker-scoped cron
-entries and credential file; the Coordinator verifies their reported state but
-does not attempt to install container cron. Standup fires daily at 07:56
-America/Montreal. Until host delivery is verified, every manual human nudge is
-the recovery trigger: verify bootstrap state, run a full cycle, and persist the
-degradation. When native list/upsert/delete task-session wake tools ship, migrate
-both markers, verify same-session delivery, then remove only those host entries.
+## Wake delivery through KanDev routines
+The Coordinator never installs or maintains cron, heartbeat scripts, local
+credentials, or session-bound scheduler jobs. An operator-owned KanDev routine
+targets the existing Coordinator task every 15–30 minutes with `WAKE:CYCLE`.
+A second routine sends `WAKE:STANDUP` every day at 07:00 America/Montreal.
+
+If routine delivery appears late, process the current message and compare its
+timestamp with the last recorded routine ping. Record the gap as a degradation
+and raise one visible human ask so the operator can inspect the routine. Do not
+construct a fallback scheduler.
+
+For a standup ping, run the full cycle, write
+`standups/standup-YYYY-MM-DD.md` using the Montreal date, retain the five newest
+dated reports, and reply in chat with only today's document name.
 
 ## Task failed to start: "Preparing worktree (checking out '…') fatal: '…' already exists"
 Stale worktree dirs from a terminal session block fresh env prep (restore is
@@ -163,40 +168,19 @@ context before you post, move, flag, or write a task plan. On 2026-08-17 a
 session in `coordinator-long-liv_hnr95fk5` (task f2949187) believed it was
 a68df3ae for an entire day, posting that task's daily report and overwriting its
 plan four times.
-Wake ownership is SINGLE-OWNER: exactly one coordinator holds the marker cron
-jobs and the board watch — the one the human directs, whose description carries
-the charter mirror. Every other instance is STANDBY: no wake jobs, no nudges, no
-moves, no comments on board tasks. A standby takes over only when the active
-coordinator is unresponsive to a manual nudge, and announces the takeover on the
-active task first. Two coordinators with independent session-bound cron jobs
-will double-nudge every stuck task and file duplicate standups.
+Wake ownership is SINGLE-OWNER: exactly one coordinator is the target of the
+KanDev routines and owns the board watch — the one the human directs, whose
+description carries the charter mirror. Every other instance is STANDBY: it is
+not a routine target and makes no nudges, moves, or comments on board tasks. A
+standby takes over only after the routine target is changed by the operator and
+the takeover is announced on the formerly active task. Two active targets will
+double-nudge every stuck task and create duplicate standups.
 Handover needs no negotiation: all durable state lives in this repo and in the
 active task's plan, so a standby can take over cold.
-GOING STANDBY: delete your marker jobs, then re-run `CronList` and read the
-result — do not infer an empty list from your own delete calls. BUT KNOW THAT
-RE-LISTING IS NOT SUFFICIENT EITHER: on 2026-08-17 f2949187 re-listed twice,
-both times reading a genuine "No scheduled jobs", and `d67a02fb` still fired a
-`WAKE:CYCLE` into that session at 13:25 the NEXT DAY. Two explanations fit and
-this session could not distinguish them — CronList under-reporting a live job,
-or the job list being restored from a pre-deletion snapshot when the session
-resumed across a suspend. Either way the practical rule is the same: harness
-cron state is not durable evidence of anything. Treat a clean `CronList` as
-weak, not proof; expect a stray WAKE and handle it per the rule below; and rely
-on the behavioural check for the real answer. This is one of the reasons the
-charter moved wake delivery to HOST crontab (see "Wake delivery before native
-same-session scheduling ships") — container-side scheduler state does not
-survive session boundaries reliably in either direction. A session-bound
-job can survive what looks like a clean sweep, and a recurring WAKE firing into
-a session that believes it is dormant restores exactly the double-nudging
-standby exists to prevent. On 2026-08-17 f2949187 deleted two jobs, one of them
-an id that was not the live cycle job, reported "no marker jobs" to the active
-coordinator, and had a `WAKE:CYCLE` fire four hours later from the survivor.
-If a WAKE arrives while you are standby: do NOT run the cycle. Verify and clear
-the job, tell the active coordinator its verification of your standby is void,
-and take no board actions.
+If a routine ping reaches a standby, do NOT run the cycle. Tell the active
+coordinator and ask the operator to remove that standby from the routine target.
 VERIFYING A PEER'S STANDBY — do it behaviourally, not declaratively. One
-coordinator cannot inspect another's session, so a peer's "my CronList is empty"
-is unfalsifiable and, on 2026-08-17, was wrong. The check that works instead:
+coordinator cannot inspect another's routine configuration. The check that works:
 sweep /data/logs/backend-logs.log over the window and attribute every board
 event — moves, messages, pending-move recordings — to a session id. All actions
 on monitored tasks should trace to the ACTIVE coordinator's session; anything
@@ -225,26 +209,17 @@ profiles to the editing steps" / "relax the container seccomp+AppArmor policy")
 so a one-word reply cannot select the wrong one.
 
 ## No standup this morning
-1. `crontab -l | grep kandev-coordinator` — entries present, exactly once each?
-2. 2. `tail -50 ~/.local/state/kandev/coordinator-wake.log` — did cron fire? FATAL lines?
-3. 3. Manual wake: `kandev-coordinator-wake.sh STANDUP` — watch the task in the UI.
-4. 4. Script OK but task silent → check the task's session state in KanDev;
-5.    test whether `message_task_kandev` relaunches idle sessions (see DECISIONS).
-6. 
-7. ## Wake script fails
-8. - `FATAL: coordinator.env missing` → recreate from config/coordinator.env.example, chmod 600.
-9. - `initialize failed HTTP ...` → MCP_URL/port wrong, endpoint down, or auth; try `tools/list` manually.
-10. - `tools/call failed` / isError → check argument names (`task_id`, `message`) against `tools/list`.
-11. 
-12. ## Coordinator misbehaving (over-escalating / over-deciding / looping)
-13. - Read its cycle logs on the task — decisions are one-line documented.
-14. - Veto via comment; it calibrates from vetoes.
-15. - Looping or runaway: flag the task with "STOP — wait for direction"; it must freeze.
-16. 
-17. ## Duplicate cron entries
-18. Remove all marker-carrying entries, let the next session start re-provision
-19. (idempotent check is on every session start).
-20. 
-21. ## Weekly hygiene
-22. Cycle logs on the task grow; have the coordinator roll up old logs into a
-23. weekly summary comment (or do it manually) to keep its context lean.
+1. Check that the daily routine is enabled, targets the active Coordinator task,
+   uses `WAKE:STANDUP`, and is scheduled for 07:00 America/Montreal.
+2. Check the task's sessions and routine execution history for delivery errors.
+3. Send one manual `WAKE:STANDUP` to recover today's report; do not add cron or
+   another heartbeat.
+
+## Coordinator misbehaving (over-escalating / over-deciding / looping)
+- Read its cycle logs on the task — decisions are one-line documented.
+- Veto via comment; it calibrates from vetoes.
+- Looping or runaway: flag the task with "STOP — wait for direction"; it must freeze.
+
+## Weekly hygiene
+Cycle logs on the task grow; have the coordinator roll up old logs into a
+weekly summary comment (or do it manually) to keep its context lean.

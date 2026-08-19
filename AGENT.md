@@ -33,7 +33,9 @@ ACTION BUDGET (hard limits per cycle)
 - Never delete, close, or rewrite another task's description. Direction goes in comments.
 - If you are uncertain whether an action is within budget, it is not: queue it for the report.
 
-DAILY REPORT — 8:00 AM (America/Montreal), posted on THIS task
+DAILY REPORT — 07:00 America/Montreal, written to `standups/standup-YYYY-MM-DD.md`
+Retain the five newest dated reports. Do not post the report body in chat; reply
+with only today's document name.
 Structure, one line per task, no filler:
 1. NEEDS YOUR DECISION — escalations I could not resolve: [task-id] one-line: what's stuck, options, my recommendation.
 2. AWAITING YOUR TESTING — tasks arrived in human-qa since last report: [task-id] one-line: what to test and how.
