@@ -22,12 +22,31 @@ failure mode than the one it avoided: it dies with the worktree, is invisible to
 anyone without that checkout, and never reaches the Review or QA agent. An
 acceptance criterion nobody downstream can see does not exist. Two resting places
 that actually work, and they compose:
-1. A TRACKED repo file, under the repo's existing docs convention rather than at
-   root — survives the worktree, travels with the branch, appears in the diff the
-   reviewer reads.
-2. A COMMENT on the task — durable board state that Review and QA agents read as
-   a matter of course. This is what makes a criterion operative rather than
-   merely recorded.
+1. A TRACKED repo file, placed BESIDE THE CODE IT CONSTRAINS — survives the
+   worktree, travels with the branch, appears in the diff the reviewer reads.
+   **VERIFY THE DESTINATION IS ACTUALLY TRACKABLE FIRST: `git check-ignore -v
+   <path>`.** Do not assume a `docs/` convention exists. In the Performcoop repo
+   `28bb119f`, `/docs` is gitignored (`.gitignore:19`), there is no `docs/`
+   directory on disk, and tracked markdown is four files. A coordinator told a
+   task to move an acceptance criterion into `docs/` there on 2026-08-19; it
+   would have landed in a gitignored directory, reproducing the invisibility it
+   was meant to fix, while looking deliberate enough that nobody would question
+   it. The agent checked and refused. Check before you direct.
+   Corollary hazard on that repo: because `/docs` is ignored, documentation
+   written there exists on one worktree's disk and is invisible to git and to
+   every other checkout. Task `bcb507ce`'s handoff cites `docs/regenerate-entity-titles.md`
+   as pre-existing; if it exists at all it is untracked and dies with its
+   worktree. Treat any cited doc under an ignored path as non-existent until
+   `git ls-files` proves otherwise.
+2. The TASK CONVERSATION — an agent's own messages already are durable board
+   state, retrievable via `get_task_conversation_kandev`. Note there is NO append
+   primitive for a task's own conversation: `update_task_kandev` is
+   full-description replacement, carrying the same fidelity risk as a plan
+   rewrite. Never direct a task to overwrite its description to record something.
+STAGED IS NOT COMMITTED. A staged file lives in the worktree index and dies with
+the worktree exactly as an untracked one does. If a task's instructions forbid
+committing without a human ask, the criterion is not durable until that ask
+lands — say so rather than letting a staged file pass for a saved one.
 
 ## Never message a task parked in Todo — it bounces BACKWARDS
 Todo carries an `on_turn_start` rule that moves the task to another step the
