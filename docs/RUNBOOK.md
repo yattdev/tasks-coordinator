@@ -1,5 +1,21 @@
 # Runbook
 
+## Local ignores in a LINKED WORKTREE go in the common dir
+Task worktrees on this board are linked worktrees: `.git` is a FILE, not a
+directory. Two consequences that cost real time on 2026-08-19 (`3c2a0d34`):
+- `.git/info/exclude` fails outright with "Not a directory".
+- Writing to `$(git rev-parse --git-dir)/info/exclude` SILENTLY DOES NOTHING —
+  that resolves to `…/.git/worktrees/<name>/`, which git does not read ignores
+  from. No error; the file just stays untracked.
+Git reads `info/exclude` from **`$(git rev-parse --git-common-dir)`**. Verified:
+in a coordinator worktree `--git-dir` gives `…/.git/worktrees/coordinator2` while
+`--git-common-dir` gives `…/.git`. Always confirm the write took with
+`git check-ignore -v <path>` — a correct exclusion names the common-dir file and
+line, e.g. `/data/home/Code/performcoop/.git/info/exclude:22`.
+RELATED JUDGEMENT worth copying: to keep files out of a push, use the LOCAL
+exclude, never the tracked `.gitignore`. Editing the tracked ignore file to avoid
+pushing something is itself a pushed change — self-defeating, and easy to miss.
+
 ## Re-check a dirty working tree before flagging it
 A `git status` snapshot taken while an agent's turn is running is a photograph of
 a moving target. Build steps and test runs dirty the tree transiently, and the
