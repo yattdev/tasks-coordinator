@@ -30,6 +30,14 @@ RULE: before sending a message about uncommitted or untracked work, re-run
 nothing — the agent handled it. Costs one command; the alternative is
 interrupting a productive agent to report its own already-finished housekeeping,
 which trains it to treat coordinator messages as noise.
+The rule cuts both ways — it is a filter, not an excuse for silence. Same task,
+same day at 22:12: 36 `.po` files under `stashed/locales/**` were modified and
+STILL modified 30 seconds later. Persisted, so flagged. The diff was
+auto-injected translation-consistency comments (HTML inside `#.` comments), i.e.
+a `makemessages`-style build side effect writing into an archived tree — the kind
+of churn that gets swept into a feature MR by a broad `git add -A` at PR time,
+leaving a reviewer to guess whether 36 unrelated translation files were
+intentional. Re-check, then flag what survives.
 This does NOT apply to a persistently exposed artifact: `?? DIAGNOSTIC_REPORT_ANALYSIS.md`
 sat untracked across many cycles and was real. The distinction is duration —
 re-check, and flag what survives the re-check.
