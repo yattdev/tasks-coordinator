@@ -1,5 +1,22 @@
 # Runbook
 
+## Never message a task parked in Todo — it bounces BACKWARDS
+Todo carries an `on_turn_start` rule that moves the task to another step the
+instant anything starts a turn there. On the Performcoop board (workflow
+`fd52d550`) that target is **Spec**, so a task that has just completed Spec and
+auto-advanced into Todo will be shoved straight back into Spec by ANY inbound
+message — including a coordinator's congratulations. It then re-runs a finished
+spec, and the completed plan is at risk of being re-litigated.
+Observed 2026-08-19: `89812cba` completed Spec and reached Todo at 19:32:48; a
+coordinator message at 19:33 started a turn and bounced it to Spec at 19:34:31.
+RULE: when a task is sitting in Todo, do not message it. Move it forward FIRST
+(Todo has no auto-start, so it will never leave on its own), and put whatever you
+wanted to say in the move's hand-off `prompt` — that reaches the receiving agent
+at the new step without triggering the bounce.
+This is the same mechanism as the deliberate "Todo bounce" used to re-fire a dead
+auto-start; check each board's Todo `on_turn_start` target before relying on
+either behaviour, because the destination differs per workflow.
+
 ## Coordinator-created child reaches Todo after Spec
 Todo is deliberately inert: it does not auto-start an implementation agent.
 If the Coordinator created/owns the child, verify that its saved plan is complete
