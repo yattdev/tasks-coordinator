@@ -1,5 +1,23 @@
 # Runbook
 
+## Re-check a dirty working tree before flagging it
+A `git status` snapshot taken while an agent's turn is running is a photograph of
+a moving target. Build steps and test runs dirty the tree transiently, and the
+agent commits or reverts moments later. Twice on 2026-08-19 a coordinator
+snapshot would have produced a false flag on `89812cba`:
+- 20:42 showed `M forms/training.py` uncommitted entering Review; the agent
+  committed it at 20:43. The message and the commit crossed.
+- 21:42 showed four modified `stashed/locales/**/django.po` files; seconds later
+  the tree was clean. Transient artifacts of the QA build.
+RULE: before sending a message about uncommitted or untracked work, re-run
+`git status --short` and confirm the finding still holds. If it cleared, say
+nothing — the agent handled it. Costs one command; the alternative is
+interrupting a productive agent to report its own already-finished housekeeping,
+which trains it to treat coordinator messages as noise.
+This does NOT apply to a persistently exposed artifact: `?? DIAGNOSTIC_REPORT_ANALYSIS.md`
+sat untracked across many cycles and was real. The distinction is duration —
+re-check, and flag what survives the re-check.
+
 ## Audit where the DELIVERABLE lives, not just where the notes live
 Every cycle, for each active task, ask one question the task itself rarely asks:
 **where does its primary output physically live, and does it survive the
