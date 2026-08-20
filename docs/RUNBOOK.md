@@ -148,14 +148,11 @@ committing without a human ask, the criterion is not durable until that ask
 lands — say so rather than letting a staged file pass for a saved one.
 
 ## Never message a task parked in Todo — it bounces BACKWARDS
-Todo carries an `on_turn_start` rule that moves the task to another step the
-instant anything starts a turn there. On the Performcoop board (workflow
-`fd52d550`) that target is **Spec**, so a task that has just completed Spec and
-auto-advanced into Todo will be shoved straight back into Spec by ANY inbound
-message — including a coordinator's congratulations. It then re-runs a finished
-spec, and the completed plan is at risk of being re-litigated.
-Observed 2026-08-19: `89812cba` completed Spec and reached Todo at 19:32:48; a
-coordinator message at 19:33 started a turn and bounced it to Spec at 19:34:31.
+Some workflows give Todo an `on_turn_start` rule that moves the task to another
+step the instant anything starts a turn there. A task that has just completed
+Spec and auto-advanced into Todo can therefore be shoved straight back into Spec
+by ANY inbound message — including a coordinator's congratulations. It then
+re-runs a finished spec, and the completed plan is at risk of being re-litigated.
 RULE: when a task is sitting in Todo, do not message it. Move it forward FIRST
 (Todo has no auto-start, so it will never leave on its own), and put whatever you
 wanted to say in the move's hand-off `prompt` — that reaches the receiving agent
@@ -172,6 +169,35 @@ its sessions and confirm a Work-profile session is RUNNING. If the move conflict
 because an obsolete Spec execution still appears live, stop only that direct
 child's stale execution, retry the move, and record the recovery. Never apply this
 rule to unrelated/manual Todo tasks.
+
+## A resumed session is running but the task is still in the wrong column
+`message_task_kandev` can successfully resume an idle session without changing
+the task's workflow step. This creates a convincing false healthy signal: the
+agent is RUNNING, but the authoritative board still says Todo, Review, or another
+stale step, so the next lifecycle transition and profile selection are wrong.
+After every resume, move, or recovery, re-list the task and its sessions. Verify
+the physical `workflow_step_id`, task state, primary session, effective profile,
+and pending move together. For a Coordinator-owned approved Todo task, perform
+Todo→Work with the implementation handoff first and verify the Work on-entry
+session starts; do not treat a resumed Spec/old session as equivalent.
+
+## Task files are writable but Git cannot create `index.lock`
+A managed task worktree may allow normal source edits and tests while its `.git`
+file points to a linked-worktree administration directory outside the writable
+task root. `git status` and `git diff` still work, but `git add`, `git restore`,
+or `git commit` fails with read-only `.../.git/worktrees/<name>/index.lock`.
+This is a Git-metadata authorization defect, not the same bug as duplicate
+workspace materialization or canonical-workspace reuse.
+
+Capture `git rev-parse --git-dir`, `git rev-parse --git-common-dir`, the exact
+failed command, and the index-lock error. Do not broaden permissions to the
+entire common `.git`, symlink around the sandbox, or expose sibling worktree
+administration. Preserve the worktree and its diff. File a platform task whose
+acceptance covers task-scoped linked gitdir/common-dir projection, primary and
+later-attached repositories, real add/commit, normal concurrent lock conflicts,
+and sibling isolation. If a separately authorized writable checkout is used to
+recover work, verify every transferred file by checksum/diff and keep the
+original checkout untouched for evidence.
 
 ## Abandoned, obsolete, or superseded task remains in an active column
 Do not leave dead work parked indefinitely in Spec–CI Fixup. First verify from

@@ -1,5 +1,21 @@
 # Design decisions
 
+## One active Coordinator per workspace (2026-08-20, incident-derived)
+Coordinator ownership is scoped by `workspace_id`, not by repository directory,
+shared memory, task title, or routine name. Every session resolves its own task,
+workspace, and workflow before board action. Coordinators for different
+workspaces remain active peers; standby and takeover rules apply only to
+same-workspace contention. This prevents a shared-memory identity from causing
+cross-board moves, plan overwrites, false routine-target alarms, or an entire
+unrelated board being stood down.
+
+## Workflow column plus session must reconcile (2026-08-20)
+The workflow step is authoritative. Messaging an idle session may make it
+RUNNING without correcting a stale column, profile, or pending move. Every action
+cycle therefore re-lists touched tasks and verifies physical step, task state,
+primary session, effective profile, and pending move. Coordinator-owned approved
+Todo tasks are moved Todo→Work before messaging so on-entry owns the new session.
+
 ## Long-lived pinned task, not a daemon
 Reuses KanDev primitives (session, tools, flags, comment trail) and dogfoods
 the platform. A separate service only if event-driven triggers become necessary.

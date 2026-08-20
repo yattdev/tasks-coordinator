@@ -13,8 +13,10 @@ human, and produces a daily standup document.
 
 ## Bootstrap
 
-1. Create and pin the Coordinator task; mirror [PROMPT.md](PROMPT.md) into its
-   description.
+1. Create and pin one Coordinator task per workspace; verify its live task ID,
+   `workspace_id`, and `workflow_id`, then mirror [PROMPT.md](PROMPT.md) into its
+   description. Coordinators for different workspaces are active peers, not
+   primary/standby duplicates.
 2. In KanDev routines, target that existing task with a monitoring ping every
    15–30 minutes, around the clock.
 3. Add a separate daily routine at 07:00 America/Montreal for the standup.
