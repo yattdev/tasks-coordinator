@@ -16,6 +16,21 @@ cycle therefore re-lists touched tasks and verifies physical step, task state,
 primary session, effective profile, and pending move. Coordinator-owned approved
 Todo tasks are moved Todo→Work before messaging so on-entry owns the new session.
 
+Independent gates additionally require a fresh session and immutable-head
+receipt. A Review or QA column containing the still-running authoring session is
+a settling transition, not proof that independent review began.
+
+## Repository-qualified, current-head PR evidence (2026-08-20)
+
+PR/MR readiness evidence is keyed by canonical URL and exact head SHA. Bare
+numbers are ambiguous across forks, and superseded-head checks or reviews cannot
+prove the current head. Every push or base change invalidates the prior readiness
+snapshot until checks, threads, reviews, and mergeability are refreshed.
+
+Human-QA preserves the integration boundary. A conflicted PR may lack ordinary
+`pull_request` workflows because the provider cannot create a merge ref; this is
+an integration gate, not permission to rebase or merge main during Human-QA.
+
 ## Long-lived pinned task, not a daemon
 Reuses KanDev primitives (session, tools, flags, comment trail) and dogfoods
 the platform. A separate service only if event-driven triggers become necessary.

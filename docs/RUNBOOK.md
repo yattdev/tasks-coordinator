@@ -138,6 +138,30 @@ When a task is already waiting on a human for one decision, BUNDLE the commit
 ask into it rather than sending a second and third. One decision, several things
 unblocked.
 
+## A PR number without a repository is ambiguous
+
+Treat a PR or MR as `(host, owner, repository, number, head SHA)`, not as a bare
+number. Forks routinely reuse the same number as the canonical repository. A
+command run from the wrong checkout can therefore return a real, green, merged
+PR that is completely unrelated to the task under review.
+
+Before classifying CI or review readiness:
+
+1. Resolve the task's deliverable repository and remotes.
+2. Record the canonical PR/MR URL and any fork PR separately.
+3. Verify the live head SHA matches the audited checkout or explicitly explain
+   why it does not.
+4. Query checks, threads, reviews, and mergeability against that qualified URL.
+5. Repeat the snapshot after every push, base update, or conflict-resolution
+   commit. Older-head evidence remains historical only.
+
+If GitHub reports `CONFLICTING`/`DIRTY`, ordinary `pull_request` workflows may
+be absent because no merge ref can be created. Inspect workflow triggers and a
+prior clean head before calling missing CI a permissions or path-filter defect.
+During Human-QA, preserve the phase boundary: do not rebase, merge main, squash,
+rewrite, or resolve the conflict. Record the integration gate and require a
+fresh exact-head CI snapshot after an authorized integration-phase resolution.
+
 ## A large task plan is append-only BY HAND, not by tool
 `update_task_plan_kandev` and `create_task_plan_kandev` take FULL CONTENT — every
 write regenerates the whole document through token output, with no byte-fidelity
@@ -219,6 +243,22 @@ the physical `workflow_step_id`, task state, primary session, effective profile,
 and pending move together. For a Coordinator-owned approved Todo task, perform
 Todo→Work with the implementation handoff first and verify the Work on-entry
 session starts; do not treat a resumed Spec/old session as equivalent.
+
+## A column move did not create an independent reviewer
+
+Review and QA are evidence gates, not labels. A manual move can leave the
+authoring Work turn RUNNING while the board already displays Review, especially
+when adjacent steps select the same profile. That is a transition in progress,
+not an independent review.
+
+After moving into an independence-required gate, re-list sessions and verify a
+fresh session ID, the intended effective profile, and the exact immutable head
+under audit. If the old authoring session is still active, record "gate
+transition settling" and wait for or recover the lifecycle; do not claim the
+gate started or passed. If a stale turn traps every nudge, only the target's
+direct parent may stop that turn. The direct parent then starts a fresh gate
+session and returns its ID plus a PASS/BLOCKER receipt. Never infer independence
+from the workflow column alone.
 
 ## Task files are writable but Git cannot create `index.lock`
 A managed task worktree may allow normal source edits and tests while its `.git`
