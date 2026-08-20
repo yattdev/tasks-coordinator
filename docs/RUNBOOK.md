@@ -387,14 +387,12 @@ fast-forward main — one silently clobbers the other, or the rotation deletes
 files while the other is mid-write. Chat duplication is embarrassing; this
 corrupts the durable record. Decline it and say so; never write that path unless
 you are the routine target.
-DECIDING WHETHER YOU ARE ACTUALLY STANDBY: liveness of the other coordinator is
-"received a routine ping AND produced a turn", not "its session state reads
-alive". Check the backend log for wake deliveries per task id over the last
-interval and for its turn boundaries. On 2026-08-19 both routines pinged the
-standby as well as the active coordinator; the standby confirmed it was still
-standby by seeing 2 deliveries to a68df3ae vs 1 to itself, plus a turn ending
-seconds earlier. An idle-between-turns session would otherwise read as dead and
-invite a wrong takeover.
+DECIDING WHETHER YOU ARE ACTUALLY STANDBY: first prove both coordinators belong
+to the same workspace. Only then use liveness evidence: "received that
+workspace's routine ping AND produced a turn", not "its session state reads
+alive". Check the backend log for deliveries keyed by task and workspace over
+the last interval and for turn boundaries. Never infer duplicate targeting from
+two different workspace coordinators receiving similarly named routines.
 
 ## The visible ask channel can fail closed
 The charter makes `ask_user_question_kandev` binding for every human-facing
