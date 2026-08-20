@@ -108,3 +108,22 @@ after which the pinning can be reverted.
 ## Time zone
 The standup routine uses America/Montreal so 07:00 follows local wall time
 across EST/EDT. The report filename uses that same local calendar date.
+
+## Human-QA requires a LAN Docker clone of main data (2026-08-20, human-directed)
+
+For tasks that need a persistent runtime, Human-QA readiness now requires one
+exact-head task-owned Docker instance, the previous task instance stopped, a
+verified LAN URL, and a private writable clone of a sanitized immutable snapshot
+of the main container's application data. The main instance and data remain
+strictly read-only. This is an acceptance gate, not a best-effort convenience:
+wrong-head, empty, unseeded, shared-main, credential-bearing, non-Docker,
+localhost-only, or feature-broken instances are rejected. Runtime-free tasks may
+declare `TEST_RUNTIME=NONE` with a reason.
+
+Rationale: realistic data is required for meaningful human testing, while
+sharing the live database makes a test destructive. Exact-head isolation and
+destination-only credentials/fixtures make the result reproducible and keep
+main safe. The first enforcement cycle also found stale external-content FTS
+rows that passed SQLite integrity checks but broke the next task insert, so the
+handoff additionally requires disposable-write proof rather than integrity
+checks alone.

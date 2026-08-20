@@ -1,5 +1,44 @@
 # Runbook
 
+## Human-QA runtime provisioning is an acceptance gate
+
+For every Human-QA task that needs an application runtime, create a separate
+Docker instance from the exact tested head and stop that task's older test
+instance first. Publish and verify a `0.0.0.0` binding through the machine's
+actual LAN address; `127.0.0.1` is diagnostic evidence, not a human handoff.
+
+Seed the instance from a task-private writable clone of a sanitized, immutable
+snapshot of the main container's application data. Treat the main container and
+its volumes as read-only. Destination-only operations include migrations,
+database/index repairs, test-user creation, and feature fixtures. Never copy
+provider credentials, auth sessions/tokens, managed-Git secrets, agent homes,
+repositories/worktrees, caches, builds, or logs. Preserve representative
+non-secret rows and required attachments so the human tests realistic state.
+
+Before publishing `TEST_INSTANCE_READY`, prove and record:
+
+- task ID, exact source commit, image and container IDs;
+- `0.0.0.0` port binding, canonical LAN URL, HTTP health, and test login;
+- seed manifest/hash, private clone path, database integrity, and one disposable
+  destination-only write/delete;
+- representative data counts and task-specific feature checks;
+- the previous task instance is stopped, the main instance remains healthy and
+  unchanged, and exact start/stop commands are available.
+
+SQLite integrity checks do not prove external-content FTS consistency. When a
+cloned `tasks_fts` contains stale/orphan row IDs, repair only the private clone
+in an exclusive transaction by deleting the FTS rows and reinserting canonical
+`tasks` rows with matching `rowid`; then verify exact counts, zero orphans,
+`quick_check`, `integrity_check`, and a disposable task lifecycle. The generic
+FTS `rebuild` control command is not valid for the schema that exposed this
+failure.
+
+Reject wrong-head, empty, unseeded, shared-main, credential-bearing,
+non-Docker, localhost-only, or feature-broken handoffs. A compliant instance
+that reveals a product defect sends the task back to implementation. A task may
+use `TEST_RUNTIME=NONE` only when its deliverable genuinely has no persistent
+runtime (for example docs, a code-only library, or test-runner infrastructure).
+
 ## Local ignores in a LINKED WORKTREE go in the common dir
 Task worktrees on this board are linked worktrees: `.git` is a FILE, not a
 directory. Two consequences that cost real time on 2026-08-19 (`3c2a0d34`):
