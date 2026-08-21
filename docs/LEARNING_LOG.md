@@ -18,6 +18,9 @@
   not emit a standup or completed-cycle receipt from partial evidence.
 - Files: `docs/RUNBOOK.md`, `docs/DECISIONS.md`, and this log. `PROMPT.md` was
   unchanged, so no live task-description mirror is required.
+- Policy commit: `305cd10` (`docs(coordinator): tighten recovery evidence
+  boundaries`). Shared `main` fast-forwarded successfully with no conflicts or
+  unresolved items; this receipt commit was fast-forwarded separately.
 
 ## 2026-08-21 — stale sessions and gate ownership
 
