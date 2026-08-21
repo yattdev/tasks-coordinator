@@ -68,6 +68,20 @@ Human-QA preserves the integration boundary. A conflicted PR may lack ordinary
 `pull_request` workflows because the provider cannot create a merge ref; this is
 an integration gate, not permission to rebase or merge main during Human-QA.
 
+## Merge-result failures are classified by semantics and job boundary (2026-08-21)
+
+A failing merge-result test is not automatically a branch regression. If a
+current-main test encodes an assumption that contradicts the task's accepted
+invariant, the integration phase owns reconciliation of the test fixture and
+the merge result; Human-QA does not weaken production behavior or bring main
+into the branch. Fresh merge-result CI is required after that authorized work.
+
+CI classification is per job and failure boundary, not per workflow aggregate.
+Runner/artifact/setup failures before product execution are infrastructure,
+while a deterministic product test that reaches the application remains
+task-owned even if an unrelated shard is broken. Both classifications coexist
+and receive separate remediation/evidence.
+
 ## Long-lived pinned task, not a daemon
 Reuses KanDev primitives (session, tools, flags, comment trail) and dogfoods
 the platform. A separate service only if event-driven triggers become necessary.

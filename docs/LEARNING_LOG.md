@@ -1,5 +1,19 @@
 # Coordinator learning-cycle log
 
+## 2026-08-21 — semantic merge-result and mixed-CI triage
+
+- Added semantic merge-result triage: a current-main test that contradicts an
+  accepted feature invariant is an integration-phase reconciliation problem,
+  not permission for Human-QA to regress production behavior or rewrite the
+  branch.
+- Required fresh testing of the actual merge result after the upstream fixture
+  or expectation is corrected under integration authority.
+- Added per-job CI classification: runner/artifact/setup breakage remains
+  infrastructure, while a deterministic product failure in another shard of
+  the same red workflow remains task-owned and actionable.
+- Files: `docs/RUNBOOK.md`, `docs/DECISIONS.md`, and this log. `PROMPT.md` was
+  unchanged, so no live task-description mirror is required.
+
 ## 2026-08-21 — exact-head runtimes and credential-scoped PR recovery
 
 - Made QA-instance validity explicitly exact-head: any push or integration

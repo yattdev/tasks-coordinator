@@ -169,6 +169,25 @@ During Human-QA, preserve the phase boundary: do not rebase, merge main, squash,
 rewrite, or resolve the conflict. Record the integration gate and require a
 fresh exact-head CI snapshot after an authorized integration-phase resolution.
 
+When a merge-result test fails, classify the assertion before assigning the
+failure. Compare the failing test and its introduction point with the task's
+accepted invariant and branch diff. A current-main test can encode an assumption
+that directly contradicts the feature (for example requiring reuse of an object
+whose terminal state the feature must reject). Changing production solely to
+make that test pass would regress the accepted behavior. Preserve both pieces of
+evidence and hand the conflict to the integration phase: update the upstream
+fixture/expectation to a semantically valid case, resolve any source conflicts,
+then run the actual merge-result matrix. Human-QA must not perform that rebase or
+merge, and a branch-only green run cannot replace merge-result evidence.
+
+Classify each failed CI job independently, even when one workflow aggregate is
+red. Missing built artifacts, runner cancellation, or setup failure before the
+product starts is infrastructure evidence. A deterministic product scenario
+that reaches the application and fails repeatedly remains task-owned even when
+another shard in the same run is broken by infrastructure. Do not let the infra
+failure dismiss the product failure, and do not ask code changes for the infra
+shard. Record the exact job/artifact boundary and rerun both after remediation.
+
 If an agent nevertheless rebases, force-pushes, or otherwise rewrites history
 against an explicit handoff constraint, freeze further mutation rather than
 trying to undo it destructively. Record the prior and new heads, parents, push
