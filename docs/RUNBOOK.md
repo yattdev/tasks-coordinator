@@ -39,6 +39,13 @@ that reveals a product defect sends the task back to implementation. A task may
 use `TEST_RUNTIME=NONE` only when its deliverable genuinely has no persistent
 runtime (for example docs, a code-only library, or test-runner infrastructure).
 
+Any push, merge, rebase, or conflict-resolution commit immediately withdraws a
+published instance's readiness until it is rebuilt and revalidated at the new
+exact head. The old container may remain available briefly for diagnosis, but
+label it stale and do not include it in a current human-testing inventory. Do
+not infer that a conflict-only merge is runtime-neutral: the merge result is the
+artifact under acceptance, even when the feature files did not conflict.
+
 ## Local ignores in a LINKED WORKTREE go in the common dir
 Task worktrees on this board are linked worktrees: `.git` is a FILE, not a
 directory. Two consequences that cost real time on 2026-08-19 (`3c2a0d34`):
@@ -303,6 +310,40 @@ The Kandev health endpoint and read-only database/process inspection are valid
 diagnostics during this incident, but they are not an authorization path. Never
 write the database directly, extract browser/session credentials, or restart a
 shared backend merely to recover board control.
+
+Routine wake messages do not repair a wedged task-control transport. After one
+bounded critical-tool probe fails, terminate the call, report the exact caller
+session that must be replaced, and stop. Do not write a standup, claim a cycle,
+or update monitoring timestamps from partial read-only evidence: list, inspect,
+message/move, and persistence are part of the cycle contract. Narrow external
+work that was separately and explicitly authorized (for example resolving a
+known PR thread) may still proceed, but it does not substitute for board
+monitoring and its receipt may need redelivery after session replacement.
+
+## A task's GitHub credential failed, but the PR action is mechanical
+
+A task-local credential broker or helper can return `401`, `403`, or a denied
+lease while the Coordinator still has a valid repository-scoped `gh` identity.
+Treat that as a capability-specific gate, not proof that the requested PR action
+is impossible. For an already-authorized mechanical action such as replying to
+and resolving a review thread:
+
+1. Verify the canonical owner/repository/PR and exact current head.
+2. Read every unresolved thread and match it to concrete code/test evidence on
+   that head; duplicate findings still receive separate replies.
+3. Post a concise technical reply, resolve only the addressed thread, and record
+   the resulting discussion URL plus `isResolved=true`.
+4. Re-query unresolved count and current-head CI without changing code, history,
+   merge state, or the Human-QA phase.
+5. If provider rate limiting begins, stop retrying. Preserve the successful
+   mutation receipts and classify remaining CI/review evidence as temporarily
+   unavailable rather than green.
+
+Never copy credentials into another task, reveal tokens, or use this fallback
+to perform implementation, merge, rebase, release, or an unrequested review
+decision. If the Kandev message transport is wedged, report the receipt through
+the available channel and redeliver it after the Coordinator session is
+replaced; do not claim the task conversation was updated.
 
 ## Producing a current LAN test-instance inventory
 

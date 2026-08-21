@@ -41,6 +41,22 @@ only the caller session. Health/database/process reads may establish the
 diagnosis, but direct database mutation, credential extraction, and shared
 backend restarts are not recovery mechanisms.
 
+## External credentials are action-scoped, not session-scoped (2026-08-21)
+
+A worker's failed GitHub credential lease does not make an authorized,
+mechanical PR action impossible when the Coordinator independently holds a
+valid repository-scoped identity. The Coordinator may reply to and resolve
+already-addressed review threads after verifying canonical repository, exact
+head, code/test evidence, and current unresolved state. It records discussion
+URLs and the resulting state, never transfers credentials, and does not expand
+this exception to implementation, history changes, merge, or release.
+
+Provider rate limits are evidence gates: successful mutations remain valid, but
+unavailable follow-up queries are reported as unavailable rather than inferred
+green. Likewise, external PR work completed during a Kandev transport outage
+does not constitute a monitoring cycle and must not advance board state without
+task-control reconciliation.
+
 ## Repository-qualified, current-head PR evidence (2026-08-20)
 
 PR/MR readiness evidence is keyed by canonical URL and exact head SHA. Bare
