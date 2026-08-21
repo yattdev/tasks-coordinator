@@ -13,6 +13,9 @@
   the same red workflow remains task-owned and actionable.
 - Files: `docs/RUNBOOK.md`, `docs/DECISIONS.md`, and this log. `PROMPT.md` was
   unchanged, so no live task-description mirror is required.
+- Policy commit: `cc0f3ad` (`docs(coordinator): classify merge-result
+  failures`). Shared `main` fast-forwarded successfully with no conflicts or
+  unresolved items; this receipt commit was fast-forwarded separately.
 
 ## 2026-08-21 — exact-head runtimes and credential-scoped PR recovery
 
