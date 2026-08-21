@@ -9,6 +9,7 @@ human, and produces a daily standup document.
 - [PROMPT.md](PROMPT.md) — live Coordinator charter and source of truth
 - [docs/DECISIONS.md](docs/DECISIONS.md) — design decisions
 - [docs/RUNBOOK.md](docs/RUNBOOK.md) — operations and troubleshooting
+- [docs/LEARNING_LOG.md](docs/LEARNING_LOG.md) — shared learning-cycle receipts
 - [standups/](standups/) — date-stamped standup reports; newest five retained
 
 ## Bootstrap
