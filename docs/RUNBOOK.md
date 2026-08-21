@@ -162,6 +162,14 @@ During Human-QA, preserve the phase boundary: do not rebase, merge main, squash,
 rewrite, or resolve the conflict. Record the integration gate and require a
 fresh exact-head CI snapshot after an authorized integration-phase resolution.
 
+If an agent nevertheless rebases, force-pushes, or otherwise rewrites history
+against an explicit handoff constraint, freeze further mutation rather than
+trying to undo it destructively. Record the prior and new heads, parents, push
+mode/lease evidence, and a scope diff; then require an independent containment
+review of the resulting head. Never use reset/force-push as an automatic
+recovery, because that can erase legitimate concurrent work and the incident
+evidence needed to decide the correct disposition.
+
 ## A large task plan is append-only BY HAND, not by tool
 `update_task_plan_kandev` and `create_task_plan_kandev` take FULL CONTENT — every
 write regenerates the whole document through token output, with no byte-fidelity
@@ -259,6 +267,52 @@ gate started or passed. If a stale turn traps every nudge, only the target's
 direct parent may stop that turn. The direct parent then starts a fresh gate
 session and returns its ID plus a PASS/BLOCKER receipt. Never infer independence
 from the workflow column alone.
+
+## Review evidence exists, but the task has not traversed the gate
+
+An independent audit performed while a task is still physically in Work is
+useful evidence, but it does not mean the workflow has traversed Review or QA.
+Report the physical column honestly and move the task through its configured
+gates so each on-entry contract gets a chance to run. Conversely, once the task
+is physically in Review and an exact-head independent PASS is established, do
+not keep it there merely because GitHub Actions has not run or is incomplete.
+Required CI belongs to PR/CI Fixup; Review owns code-review findings and the
+immutable-head verdict. Re-check the head and actionable threads, advance the
+passed gate, and let downstream stages own their evidence.
+
+## A session says RUNNING but produces no process, output, or timestamp
+
+Treat `RUNNING` as a claim to verify, not proof of live work. A stale session can
+retain that state after its agent process disappeared, accept queued messages
+without consuming them, and leave a caller's `message_task_kandev` request
+waiting indefinitely. Confirm all three signals before acting:
+
+1. the session timestamp advances or its conversation gains output;
+2. a process/execution exists for the task workspace or session; and
+3. a bounded read-only task-control probe returns.
+
+If none does, stop sending messages: repeated queue writes do not wake the
+agent and can wedge the Coordinator's MCP transport. `stop_task_kandev` is
+parent-scoped and stops all live sessions on a direct child; it is not a general
+single-session admin kill. For an unrelated top-level task, ask the operator to
+stop the exact stale session in the UI. If the Coordinator's own MCP transport
+remains hung after the target is stopped, replace only the Coordinator session;
+the Coordinator task, plan, worktree, and history remain durable.
+
+The Kandev health endpoint and read-only database/process inspection are valid
+diagnostics during this incident, but they are not an authorization path. Never
+write the database directly, extract browser/session credentials, or restart a
+shared backend merely to recover board control.
+
+## Producing a current LAN test-instance inventory
+
+Do not copy yesterday's Human-QA ledger into a user-facing inventory. For every
+listed instance, re-probe the canonical LAN URL (not localhost), verify the
+documented destination-only login against the instance's normal auth endpoint,
+and resolve the task's current canonical PR URL(s). Exclude superseded runtime
+ports and closed duplicate PRs. If one task exposes two services, list both and
+state which service requires credentials; never expose API keys, provider
+tokens, or production credentials alongside the test login.
 
 ## Task files are writable but Git cannot create `index.lock`
 A managed task worktree may allow normal source edits and tests while its `.git`

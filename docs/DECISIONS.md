@@ -20,6 +20,27 @@ Independent gates additionally require a fresh session and immutable-head
 receipt. A Review or QA column containing the still-running authoring session is
 a settling transition, not proof that independent review began.
 
+## Gate evidence follows physical ownership (2026-08-21)
+
+Ad-hoc review evidence gathered during Work does not imply the task already
+traversed Review or QA. The physical workflow step remains authoritative and
+configured gate entry must still occur. After an exact-head independent Review
+PASS exists in the physical Review step, however, missing or incomplete CI is
+not a reason to hold Review: PR and CI Fixup own CI evidence. This keeps each
+stage accountable for its own contract and prevents both skipped gates and
+Review becoming a catch-all waiting room.
+
+## Stale RUNNING recovery is session-scoped, never database-scoped (2026-08-21)
+
+A RUNNING row without a live process, output, or advancing timestamp is stale
+even if it accepts queued messages. Repeated messages can wedge the caller's MCP
+transport and must stop after a bounded probe. Parent-scoped stop remains the
+only task-agent stop authority; unrelated top-level sessions require operator
+UI action. If the caller stays wedged after the stale target is stopped, replace
+only the caller session. Health/database/process reads may establish the
+diagnosis, but direct database mutation, credential extraction, and shared
+backend restarts are not recovery mechanisms.
+
 ## Repository-qualified, current-head PR evidence (2026-08-20)
 
 PR/MR readiness evidence is keyed by canonical URL and exact head SHA. Bare
