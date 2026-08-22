@@ -846,6 +846,56 @@ web units in CI once the branch builds is an acceptable fallback — never weake
 skip tests to force green, and do not treat it as blocking the implementation.
 
 
+## A base repair turns feature-complete branches CONFLICTING — that is integration-phase, not a defect
+
+When a repair lands on main (or main otherwise advances), every feature-complete
+branch that predates it can flip to `mergeable=false` / `CONFLICTING` / `DIRTY`.
+Standard backend/E2E CI legitimately will NOT dispatch on a conflicting PR, so its
+check set goes thin (only preview/CodeRabbit-type checks remain). This is EXPECTED
+after a base move, not a branch-owned failure.
+
+Classify these as **integration-pending**: branch-green, review-ready, with a
+conflict to be resolved when the task leaves Human-QA into the integration/PR
+stage. Do NOT chase it:
+- In Human-QA the phase boundary forbids merging main / rebasing to resolve it.
+- Re-running CI will not help while the PR is conflicting.
+- A task that correctly holds rather than "fixing" the conflict is behaving well;
+  confirm its reading and record it as integration-pending so nobody mistakes the
+  CONFLICTING state for a defect.
+Expect a WAVE of these right after any base repair; classify and move on rather
+than pinging each one.
+
+## Verify a broken base is repaired by COMPILING it, not by tracking one PR
+
+When you escalate "merge PR #X to unbreak main," the goal is that main compiles —
+not that specific PR. The repair may land via a DIFFERENT PR (a base breakage was
+escalated as #2842 but actually repaired by #2916). Confirm the lift by building
+the affected package at current `upstream/main` (or diffing the exact broken
+line/symbol), not by watching your escalated PR's merge state. Lift a dispatch
+hold on the compile check, then let the inherited-red PRs clear as they re-run or
+integrate against the repaired base.
+
+## A degenerate test assertion reads red regardless of the code under test
+
+Before accepting "my E2E/acceptance gate is red" as a feature failure, check the
+test itself is not degenerate. A real example: `expect(``).toContain("Operation
+not permitted")` — an EMPTY template literal as the subject, so the gate is
+unconditionally red whatever the code does. Symptoms: a gate that fails
+identically before and after unrelated fixes, or on a clean checkout. The fix is a
+one-line test correction owned by the task that owns the gate; warn against
+"loosening" the assertion to force green when the real expected string differs.
+
+## Cross-task delegation edges belong on the DEPENDENT, not the prerequisite
+
+When task A's work is a prerequisite for task B's acceptance criterion, the
+enforcing `blocked_by` edge (if any) goes on B pointing at A — never on A pointing
+at B, which would block the prerequisite on its own dependent. Also note that a
+criterion "delegated" only in prose is not mechanically enforced:
+`list_related_tasks_kandev` will show empty edges. Either add the edge on the
+dependent, or track the delegation explicitly in coordinator state and the report;
+do not assume a prose handoff is visible on the board.
+
+
 ## Weekly hygiene
 Cycle logs on the task grow; have the coordinator roll up old logs into a
 weekly summary comment (or do it manually) to keep its context lean.

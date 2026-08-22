@@ -123,3 +123,25 @@ docs/RUNBOOK.md (5 playbooks), docs/DECISIONS.md (3 decisions), docs/QA_INSTANCE
 
 Not carried into shared policy: PR numbers, ports, container names, credentials,
 task IDs, per-task status — all transient.
+
+## 2026-08-22c — base-repair recovery, zero-diff disposition
+
+Lessons since a011058:
+
+- Zero-diff platform fix → Done directly (skip PR/CI-Fixup): dd4f90b0's host NAT
+  remediation had an empty diff; its regression gate is the disposable-bridge apt
+  probe, not code. Reconciled the ACTION BUDGET Done rule to cover this.
+- Broken-base dispatch hold: hold when upstream/main does not compile; lift by
+  compiling the base, not by tracking the escalated PR (repair landed via #2916,
+  not the escalated #2842).
+- After a base repair, feature-complete branches flip CONFLICTING — classify as
+  integration-pending (branch-green, review-ready, conflict resolved post-Human-QA);
+  do not merge main in Human-QA to "fix" it; expect a wave, do not ping each.
+- Degenerate test assertion (`expect(``).toContain(...)`, empty template literal)
+  reads red regardless of the code — check the test before blaming the feature.
+- Cross-task delegation edges belong on the DEPENDENT pointing at the prerequisite,
+  never the reverse; a prose-only delegation is not mechanically enforced.
+
+Files: PROMPT.md (ACTION BUDGET zero-diff Done + dispatch-hold, version stamp),
+docs/RUNBOOK.md (4 playbooks), docs/DECISIONS.md (2 decisions), docs/LEARNING_LOG.md.
+Not carried: PR numbers as policy, ports, credentials, task-specific status.

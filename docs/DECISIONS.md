@@ -270,3 +270,25 @@ browsing) is corrected by constraining it (inbound interface, or excluding
 container source ranges), never by deleting it. Establish what a rule is FOR
 before recommending its removal; the acceptance test is run from the exact path
 the failure used (a bridge container for Docker egress).
+
+## Zero-diff verified platform fixes go straight to Done (2026-08-22)
+
+A task whose deliverable is a host/platform remediation with an empty diff — the
+fix lives in operator-applied host config, not code — is routed directly to Done
+once its own acceptance gate is independently verified, skipping PR and CI Fixup.
+Marching an empty diff through those steps produces a guaranteed no-op or failure.
+
+Rationale: dd4f90b0 (Docker-bridge port-80 NAT redirect) fixed a host-config fault
+with zero repository change; its regression test is the disposable-bridge apt
+probe, not an in-repo artifact. Recorded as a resolution with evidence, not a claim
+that a code PR passed review; the acceptance criterion that lived in a sibling
+feature task was reassigned there rather than closed. Logged vetoable.
+
+## A broken base pauses dispatch; the compile check lifts it (2026-08-22)
+
+When upstream/main does not compile, hold routine task dispatch — every branch is
+red on the same inherited line and pushing work forward adds nothing. Escalate the
+single high-leverage ask (merge the repair / fix the base). Lift the hold when the
+base compiles again, verified by building it directly, because the repair may land
+via a different PR than the one escalated (broken base escalated as #2842, repaired
+by #2916). Knowledge, standup, and learning work continue through the hold.
