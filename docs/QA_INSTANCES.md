@@ -104,3 +104,14 @@ docker inspect -f '{{range $p,$b := .HostConfig.PortBindings}}{{$p}} {{$b}}{{end
 restart because no container carried a restart policy. Host-local curls to the
 LAN IP prove the BIND, not the firewall — ask the operator to confirm one URL
 from another machine and keep that caveat until they do.
+
+## Identify which component a control belongs to before filing a defect
+
+A "disabled control" report is not a defect until you confirm WHICH control it is.
+A Notes task nearly filed a host/plugin regression over a disabled
+`enhance-prompt-button` — which is the adjacent CORE task-chat control and
+correctly depends on the user's default utility-agent setting. The feature's own
+control (`notes-enhance-button` / `toolbar-item-enhance`) was enabled and correct.
+Two similarly-named controls, different ownership, different correct behaviour.
+Match the test-id/component to the feature under test before routing anything to
+implementation; a phantom defect wastes a turn and impugns correct work.

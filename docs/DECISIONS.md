@@ -242,3 +242,31 @@ from its primary session state, not from the step it occupies.
 Rationale: the Coordinator reported a task as "implementing" while it had been
 idle and blocked for ninety minutes. The operator noticed before the Coordinator
 did. A column cannot distinguish blocked from busy.
+
+## The ask-channel is for blocked tasks too, and must be used (reaffirmed 2026-08-22)
+
+Any blocker requiring operator decision, permission, credential, or a fix only the
+operator can apply — whether it originates in the Coordinator's own work or in a
+supervised task/subtask — is surfaced through ask_user_question_kandev, not left in
+a cycle report. The operator reaffirmed they will not notice prose escalations.
+
+Rationale: the operator directly corrected a reading that the ask tool should be
+used sparingly — "use the ask tool, otherwise I'll not notice anything," extended
+to "blocked tasks that need my clarification should also use it." A report is a
+summary; the ask channel is the notification.
+
+## Verify operator infra fixes before closing (2026-08-22)
+
+When the operator says a host/network/infra issue is fixed, re-run the defect's
+acceptance test and report concrete evidence before marking it resolved. This is
+loop-closing, not distrust, and it has caught a fix that was reported but not
+actually applied (a NAT rule still redirecting because a broad rule was left in
+place / the wrong ruleset engine was edited).
+
+## Deliberate host rules are scoped, not removed (2026-08-22)
+
+A host redirect/NAT/proxy rule that serves an operator convenience (e.g. port-80
+browsing) is corrected by constraining it (inbound interface, or excluding
+container source ranges), never by deleting it. Establish what a rule is FOR
+before recommending its removal; the acceptance test is run from the exact path
+the failure used (a bridge container for Docker egress).

@@ -93,3 +93,33 @@ docs/RUNBOOK.md (six playbooks), docs/DECISIONS.md (four decisions), README.md.
 
 Not carried into shared policy: instance ports, container names, credentials,
 task IDs, and per-task status — all transient.
+
+## 2026-08-22b — infra fixes, base-branch breakage, task-startup recoveries
+
+Lessons captured since 518382a:
+
+- Task startup: an untrusted worktree `mise.toml` fails sessions at ACP init;
+  `mise trust` + respawn is the fix. A subtask stranded in Backlogs must be moved
+  to Work before a respawn does anything.
+- Broken BASE: `upstream/main` failed to compile and cascaded red CI onto every
+  mergeable PR; N tasks independently reporting the same failing line is evidence
+  of a broken base, and the fix is landing ONE repair PR, not N cherry-picks.
+- Verify operator infra fixes with the defect's own acceptance test — a NAT-rule
+  "fixed" report was re-probed from a bridge container and still failed; the
+  definitive Docker-egress test is a full `apt-get update`, not just a fetch.
+- Deliberate host rules are scoped (inbound iface / exclude container sources),
+  never removed.
+- rolldown/rollup optional-binding misses after fresh pnpm install are a known
+  install artifact, not an environment block; confirm via other worktrees, remedy
+  with `pnpm install --force`.
+- Ask-channel reaffirmed by the operator: use it for blocked tasks, not just own
+  escalations; prose is not surfacing.
+- QA: identify which component a UI control belongs to before filing a defect
+  (adjacent enhance-prompt-button vs notes-enhance-button phantom defect).
+
+Files: PROMPT.md (ask-channel reaffirmation, verify-operator-fix, version stamp),
+docs/RUNBOOK.md (5 playbooks), docs/DECISIONS.md (3 decisions), docs/QA_INSTANCES.md
+(phantom-control), docs/LEARNING_LOG.md.
+
+Not carried into shared policy: PR numbers, ports, container names, credentials,
+task IDs, per-task status — all transient.

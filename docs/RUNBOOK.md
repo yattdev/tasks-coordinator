@@ -761,6 +761,91 @@ in `iptables` has no effect if the active ruleset is `nftables`; packet counters
 `iptables -t nat -L -n -v` show which rule is really matching.
 
 
+## Task fails to start: worktree `mise.toml` is untrusted
+
+Symptom: a freshly-created task/subtask's sessions go straight to FAILED at ACP
+init, seconds after starting, with no agent output. Backend log shows the
+execution "marking execution as failed" right after "initializing ACP session"
+for that worktree path.
+
+Cause: the worktree's `mise.toml` was never trusted, so `mise` refuses to load
+the repo toolchain and the agent process cannot resolve its interpreter.
+
+Fix (blessed operational unblock — mechanical, reversible, log as vetoable):
+```
+cd <task-worktree>
+mise trust            # approves only this repo's mise.toml for the current user
+mise trust --show     # expect: <path>: trusted
+mise ls --current     # expect the repo toolchain to resolve with no prompt
+```
+Then the task's failed sessions are terminal and cannot be resumed by a message —
+respawn with spawn_session_kandev (or hand the restart to the parent, which owns
+its subtask). Verify the new session reaches RUNNING and that `mise exec -- <tool>
+--version` works inside the worktree, so a second blocker is not hiding behind the
+first.
+
+## A subtask that failed to auto-start may be stranded in Backlogs
+
+A subtask created in the Backlogs step (`@dw-backlogs` = "DO NOTHING AT THIS
+STAGE") will refuse to work even after you clear its startup blocker: a session
+spawned there correctly does nothing. Respawning alone is not enough. Move it to
+Work first (resolve the step ID via discovery, never hardcode), THEN spawn.
+
+Root cause is usually a parent that created the subtask in Backlogs instead of
+Work. The workstep rule is "confident spec → start subtask at Work; never leave a
+subtask in Backlog." Hand the restart to the parent when it is available — it owns
+the subtask's step placement and context — rather than moving another task's
+subtask yourself.
+
+## The failing PR is red because the BASE does not compile
+
+Before routing a red CI to the PR that shows it, suspect the base branch when the
+SAME failing symbol or line appears across MULTIPLE unrelated PRs. On 2026-08-22
+`upstream/main` itself failed to compile (`undefined: taskID`/`status` at
+`internal/github/service_pr_watch.go:1024`), and because `internal/orchestrator`
+imports `internal/github` transitively, every branch that became mergeable went
+red on the same cascade: build → Backend Tests, Static Checks, Postgres, Windows
+all no-compile → E2E shards skip.
+
+Triage discipline:
+- Reproduce on a clean base checkout. A failure present on the base is not the
+  PR's.
+- Count independent reporters. When N tasks each report the identical failing line
+  from their own CI, that is near-certain evidence of a broken base, not N
+  coincidences.
+- The fix is landing the ONE repair PR, not N cherry-picks. Escalate "merge PR
+  #X to unbreak main" as a single high-leverage ask; hold routine dispatch until
+  it lands, because every mergeable PR will stay red until it does.
+
+## Verify an operator's infra "fixed" claim with the acceptance test
+
+When the operator reports a host/network/infra fix, close the loop with the
+defect's own acceptance test before marking it resolved — not distrust, just
+confirmation, and it catches non-applied changes. A NAT-rule "fixed" report was
+re-probed from a throwaway bridge container and still returned the app's SPA
+(leftover broad rule / rule edited in the wrong ruleset engine); a later "fixed,
+double check" genuinely passed. For the Docker-egress redirect the definitive test
+is a full signature-verifying apt run, not just a metadata fetch:
+```
+docker run --rm --network bridge debian:bookworm-slim sh -c 'apt-get update'
+# APT_EXIT=0 with all InRelease files fetched = truly fixed
+```
+Report the concrete evidence, name what you verified, and if it still fails say so
+plainly with the captured bytes.
+
+## Optional native binding missing after a fresh install (rolldown/rollup family)
+
+Symptom: web Vitest/build fails with a missing platform-optional native binding
+(e.g. `@rolldown/binding-linux-x64-gnu`) right after a fresh `pnpm install`. This
+is a known npm/pnpm optional-dependency resolution bug, NOT a hard environment
+block — confirm by checking whether OTHER worktrees in the same container ran web
+tests successfully (they usually did). Cheapest remedies first, in the affected
+worktree only (do not thrash across all of them): `pnpm install --force` or
+`pnpm rebuild` in `apps/`, then re-run. If it still will not resolve, verifying
+web units in CI once the branch builds is an acceptable fallback — never weaken or
+skip tests to force green, and do not treat it as blocking the implementation.
+
+
 ## Weekly hygiene
 Cycle logs on the task grow; have the coordinator roll up old logs into a
 weekly summary comment (or do it manually) to keep its context lean.
