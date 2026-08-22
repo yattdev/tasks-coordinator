@@ -164,3 +164,23 @@ correct on a quiet board and must not manufacture pings (existing PROMPT rule).
 
 Files: docs/RUNBOOK.md (1 playbook), docs/LEARNING_LOG.md. No PROMPT change → no
 task-description mirror needed.
+
+## 2026-08-22e — active board-management sweep (operator-directed)
+
+Operator directed: "monitor board for CI issues, move tasks forward/backward, give
+update." Ran a full monitored-steps sweep and acted. Durable lessons:
+
+- A branch that MERGED a broken base carries the breakage; re-running CI never
+  clears it. Fix = integrate the repaired base (a CI-Fixup action, not Human-QA).
+  Distinct from integration-pending CONFLICTING. (c642d57a #2909 merged broken main
+  at 999d60327 before #2916 repaired it.)
+- A Spec/plan-mode task blocked on a KNOWN fix is unblocked by moving it to Work
+  (edit capability), not by more discussion; decide the fork it raised rather than
+  parking it. (6a5a2f73 stuck read-only 7h on the userns line-69 assertion fix.)
+- CI-Fixup task with green CI and nothing left to fix advances forward, not idle.
+  (55d2d589 #2800 sat 14h at 35/35 green → moved to Human-QA.)
+- Under GitHub rate limiting, fall back to a task's own self-reported CI state and
+  say so.
+
+Files: docs/RUNBOOK.md (3 playbooks), docs/LEARNING_LOG.md. No PROMPT change.
+Not carried: PR numbers/heads, task-specific status.

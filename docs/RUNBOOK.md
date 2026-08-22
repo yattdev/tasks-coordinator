@@ -921,6 +921,51 @@ failures is the base repair propagating. Observe the count climb; do not ping �
 is self-resolving.
 
 
+## A branch that MERGED a broken base carries the breakage — re-running CI cannot clear it
+
+Distinct from the integration-pending CONFLICTING case (where a branch merely
+conflicts with an advanced base). Here a task already MERGED a broken base into its
+branch — e.g. it merged `main` to resolve a conflict WHILE main did not compile, so
+the non-compiling code is now a commit ON the branch. Its CI is red and will STAY
+red on every re-run, because the broken code travels with the branch; re-triggering
+checks changes nothing.
+
+Symptom: a CI-Fixup/PR-stage task idle for hours with ~10 failures all tracing to
+the same base defect, whose last activity predates the base repair, and whose
+history contains a `Merge ... main` commit made during the broken window.
+
+Fix (this is a CI-Fixup/integration action, NOT a Human-QA one — merging main is
+allowed here): direct the task to `git fetch` and merge the now-REPAIRED main into
+its branch with an ordinary merge (no rebase/squash — preserve reviewed history),
+resolve on semantics, push, and confirm the inherited cascade is gone. Only a
+failure that does NOT trace to the old defect after that is genuinely the branch's.
+
+## A Spec/plan-mode task blocked on a KNOWN fix: the forward move to Work IS the unblock
+
+When a task in Spec (plan/read-only mode) reports it has already identified the fix
+but "cannot edit / cannot run / blocked on your decision," do not keep discussing —
+it physically cannot act in that step. Decide the fork it raised (lead-decidable —
+say "proceed" when a competent lead would), and MOVE IT TO WORK so it gains edit and
+run capability. The move is the unblock; a message alone leaves it stuck read-only.
+Verify a fresh Work session starts RUNNING with edit capability afterward. A task
+that says "the call is yours or the Coordinator's" and has been declined twice is
+waiting on exactly this — provide it rather than parking it for the operator.
+
+## On-demand "monitor CI and move tasks" — the active-management sweep
+
+When the operator directs active board management (move tasks forward/backward,
+find CI issues), run the full monitored-steps pass and act, do not just report:
+- Check each PR's CI. When the GitHub API is intermittently rate-limited (primary
+  quota healthy but calls 403), fall back to the task's OWN most recent self-report
+  of CI state, and say which source you used.
+- CI-Fixup task with green CI and nothing left to fix → advance it forward (its next
+  step, typically Human-QA); it should not sit idle once CI is clean.
+- Red from a merged broken base → integrate the repaired base (playbook above).
+- Committed work idle for hours with no PR opened → nudge the owner (parent for a
+  subtask) to poll, open the canonical PR(s) against the repaired base, and advance.
+- Genuinely dependency-parked tasks stay parked; note them, do not force-move.
+
+
 ## Weekly hygiene
 Cycle logs on the task grow; have the coordinator roll up old logs into a
 weekly summary comment (or do it manually) to keep its context lean.
