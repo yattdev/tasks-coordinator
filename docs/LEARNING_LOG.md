@@ -145,3 +145,22 @@ Lessons since a011058:
 Files: PROMPT.md (ACTION BUDGET zero-diff Done + dispatch-hold, version stamp),
 docs/RUNBOOK.md (4 playbooks), docs/DECISIONS.md (2 decisions), docs/LEARNING_LOG.md.
 Not carried: PR numbers as policy, ports, credentials, task-specific status.
+
+## 2026-08-22d — base-repair recovery confirmed; boundary-verify technique
+
+Little NEW policy this cycle — the eventful lessons (zero-diff Done, dispatch hold,
+integration-pending, mise-trust, fixture-fit) were captured in 2026-08-22a..c and
+held true as the board recovered. Deliberately did not manufacture duplicate rules.
+
+One durable addition: how to verify a resumed Human-QA task stayed within the phase
+boundary — `git merge-base --is-ancestor upstream/main HEAD` false = boundary held;
+distinguish an old history merge from a current-cycle merge. Confirmed in practice:
+957da1cb resumed post-hold, fixed real E2E fixtures RED->GREEN, did NOT merge main
+(boundary preserved); b6fb09ba #2842 went from thin/CONFLICTING to 52/52 green as
+the base repair propagated (self-resolving, no ping).
+
+Also reaffirmed: repeated zero-change monitoring cycles returning "no action" are
+correct on a quiet board and must not manufacture pings (existing PROMPT rule).
+
+Files: docs/RUNBOOK.md (1 playbook), docs/LEARNING_LOG.md. No PROMPT change → no
+task-description mirror needed.

@@ -896,6 +896,31 @@ dependent, or track the delegation explicitly in coordinator state and the repor
 do not assume a prose handoff is visible on the board.
 
 
+## Verify a resumed Human-QA task stayed inside the phase boundary
+
+When a task resumes branch work in Human-QA (e.g. after a hold lifts and it fixes
+CI against a repaired base), confirm it did NOT merge main — the boundary forbids
+rebasing/merging main there. Check from its worktree:
+
+```
+git rev-parse --short HEAD
+git merge-base --is-ancestor upstream/main HEAD   # true => main WAS merged in (violation); false => boundary held
+git log --oneline --merges -3                      # inspect any merge commits
+```
+
+Distinguish an OLD merge in history (e.g. a legitimate merge from before the
+Human-QA phase, when the branch first integrated) from a CURRENT-cycle merge. Only
+`upstream/main` being an ancestor of the CURRENT head means main was just folded
+in; a stale merge commit deeper in history with `is-ancestor` returning false is
+fine. Legitimate small QA fixes pushed to the task's own branch (verified
+RED->GREEN, no main merge) are within bounds and need no intervention.
+
+Positive-recovery signal: after a base repair, a PR whose check set goes from thin
+(only preview/CodeRabbit while CONFLICTING) to a full terminal set with zero
+failures is the base repair propagating. Observe the count climb; do not ping — it
+is self-resolving.
+
+
 ## Weekly hygiene
 Cycle logs on the task grow; have the coordinator roll up old logs into a
 weekly summary comment (or do it manually) to keep its context lean.
