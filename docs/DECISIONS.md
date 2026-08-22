@@ -193,3 +193,52 @@ main safe. The first enforcement cycle also found stale external-content FTS
 rows that passed SQLite integrity checks but broke the next task insert, so the
 handoff additionally requires disposable-write proof rather than integrity
 checks alone.
+
+## QA fixtures default to purpose-built, not to a production copy (2026-08-22)
+
+Seeding Human-QA instances from the live application database is permitted only
+when broad real-world breadth is the thing under test AND the feature has no live
+write path. Otherwise build a synthetic fixture.
+
+Rationale: a blanket "copy production" instruction issued mid-cycle produced, in
+one afternoon, a copied `master.key` inside a LAN-published container, an instance
+serving the operator's entire board with authentication disabled, and several
+wasted rebuilds. It also failed on the merits — production could not contain the
+states the features needed (an available plugin upgrade, monitored workflow steps,
+a resolvable in-container workspace path). Tasks that refused the instruction were
+right, and the refusals contained it faster than review did.
+
+Corollary: order matters. "Load real data, then verify isolation" creates the
+exposure before checking it. Never put data in reach that the feature could act on.
+
+## A shared repair lands once, not per PR (2026-08-22)
+
+When a broken base blocks multiple branches, the repair commit is landed once via
+its owning PR. Narrow cherry-picks are authorized only for a task physically
+unable to commit locally, and must be declared in the PR description as an
+imported repair that will dedupe when the owning PR lands.
+
+Rationale: N copies of the same commit across N PRs collide on merge and obscure
+which branch actually owns the fix.
+
+## An honest "not testable here" beats a fixture that looks ready (2026-08-22)
+
+When the QA image cannot exercise a feature's success path — missing binary,
+missing agent-profile family, feature flag off, session-scoped tool unreachable —
+classify the task as ready for review WITHOUT a runtime instance and hand over
+named automated coverage instead. Do not stage files that make a broken path look
+demonstrable.
+
+Rationale: a display-only fixture converts an infrastructure gap into a false bug
+report against the feature, wasting the reviewer's time and impugning correct work.
+Three tasks hit distinct image limits in one cycle; each was more useful having
+said so plainly.
+
+## Report session state, not board column (2026-08-22)
+
+Any statement that a task is working, implementing, or progressing must be derived
+from its primary session state, not from the step it occupies.
+
+Rationale: the Coordinator reported a task as "implementing" while it had been
+idle and blocked for ninety minutes. The operator noticed before the Coordinator
+did. A column cannot distinguish blocked from busy.

@@ -56,3 +56,40 @@
 - Merge result: shared `main` fast-forwarded successfully to the policy commit;
   no conflicts. The log/link commit was then fast-forwarded separately.
 - `PROMPT.md` was unchanged, so no live task-description mirror was required.
+
+## 2026-08-22 — Human-QA instance provisioning cycle
+
+Lessons captured, all incident-derived from a single Human-QA provisioning cycle
+across 18 tasks and 16 containers:
+
+- Fixture fit: copying the live database into QA instances is the wrong default.
+  It produced a copied `master.key` in a LAN-published container, an instance
+  serving the whole board unauthenticated, and several wasted rebuilds — and it
+  could not exercise the features anyway. Tasks that refused the instruction were
+  right; their refusals contained the incident faster than review did.
+- Order of operations: "load real data, then verify isolation" creates the
+  exposure before checking it. Features that ACT get synthetic data.
+- Evidence discipline: report the primary SESSION state, not the board column. A
+  task sat idle and blocked for 90 minutes while being reported as implementing.
+- Inherited vs owned failures: bisect before assigning. A launcher panic on a
+  73-file PR touched zero launcher files; `upstream/main` itself failed to compile
+  and cascaded ~10 red checks onto unrelated clean PRs.
+- Shared repairs land once. Narrow cherry-picks only for tasks physically blocked
+  from committing locally.
+- Provenance: layered images report the BASE OCI revision; plugin binaries carry
+  no VCS stamp (`(devel)` + zero pseudo-version); compare payload digests, never
+  the outer tarball SHA; a build timestamp is not provenance.
+- Green CI is not universal evidence — env-dependent defects pass on runners and
+  fail deterministically in agent containers, and the reverse.
+- Enumerate-then-fix beats one-item-per-CI-round discovery.
+- A host redirect may be deliberate: scope it (`-i <lan-if>` / `! -s 172.16.0.0/12`),
+  do not remove it. Verify from a throwaway bridge container.
+- An honest "not testable here" beats a display-only fixture, which converts an
+  infrastructure gap into a false bug report against the feature.
+
+Files changed: PROMPT.md (version stamp, Human-QA gate extension, triage evidence
+rule), docs/QA_INSTANCES.md (new, linked from PROMPT/RUNBOOK/README),
+docs/RUNBOOK.md (six playbooks), docs/DECISIONS.md (four decisions), README.md.
+
+Not carried into shared policy: instance ports, container names, credentials,
+task IDs, and per-task status — all transient.

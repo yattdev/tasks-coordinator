@@ -2,6 +2,9 @@
 
 ## Human-QA runtime provisioning is an acceptance gate
 
+Fixture-vs-copy decision, hard prohibitions, credential handoff and image
+capability limits live in [QA_INSTANCES.md](QA_INSTANCES.md).
+
 For every Human-QA task that needs an application runtime, create a separate
 Docker instance from the exact tested head and stop that task's older test
 instance first. Publish and verify a `0.0.0.0` binding through the machine's
@@ -667,6 +670,96 @@ so a one-word reply cannot select the wrong one.
 - Read its cycle logs on the task — decisions are one-line documented.
 - Veto via comment; it calibrates from vetoes.
 - Looping or runaway: flag the task with "STOP — wait for direction"; it must freeze.
+
+## A task looks active but is IDLE — read session state, not the column
+
+A task sitting in Work reads as "implementing". It is not evidence. On
+2026-08-22 a task sat WAITING_FOR_INPUT for ninety minutes, blocked, while the
+Coordinator reported it as "Spec done, implementing" — because the report was
+derived from its column. The operator caught it, not the Coordinator.
+
+Before describing any task as working, call `list_task_sessions_kandev` and read
+the primary session's `state` and `updated_at`. Report the session, not the step:
+"idle 4h, blocked on X" and "actively running" are different facts and the column
+shows neither. A quiet stop looks identical to progress on a board.
+
+Corollary for task agents: when something stops you that is not yours to fix, say
+it in a way that reads as BLOCKED, not as a status line.
+
+## Inherited vs owned failure — bisect before you assign
+
+Before routing a CI or test failure to the task whose PR shows it red, establish
+ownership:
+
+1. Does the branch touch the failing package at all?
+   `git diff --name-only <base>..<head> -- <path>` — an empty result is decisive.
+2. Does the failure reproduce on the base, or on an older base?
+   Build or run the package at each. A failure present on main is not theirs.
+3. Only then assign it.
+
+Worked example: a launcher panic on a 73-file feature PR touched ZERO launcher
+files and passed cleanly on an older main; the regression had arrived with a
++1345-line rewrite on main and belonged in its own task. Separately, `upstream/main`
+itself failed to compile (`undefined: taskID` in `internal/github`), which cascaded
+into ~10 red checks on an unrelated PR whose own merge was clean.
+
+**Do not proliferate a shared repair across PRs.** When one commit fixes a broken
+base, land it ONCE. Authorize a narrow cherry-pick only where a task is physically
+blocked from committing locally (broken typecheck hook); a task that only needs CI
+green should wait for the fix to land, or N duplicate commits will collide on merge.
+
+## Provenance: images and artifacts lie in specific ways
+
+- **Layered QA images report the BASE image's OCI revision.**
+  `org.opencontainers.image.revision` returned the base's SHA on a container built
+  by layering. Trust `docker inspect <container> --format '{{.Config.Image}}'`,
+  not labels — and note the container's image is not the same fact as the task's
+  branch head. State both separately.
+- **Plugin artifacts carry no VCS stamp.** `go version -m` reports a local
+  `replace` as `(devel)` with a zero pseudo-version, so the host SDK revision a
+  plugin linked against is UNRECOVERABLE from the artifact. Do not ask a task to
+  determine it that way.
+- **Compare payload digests, never the outer tarball SHA.** Tar metadata and entry
+  ordering vary legitimately between builds. Two archives with identical
+  `manifest.yaml` and `ui/bundle.js` differed only in the server binary — because
+  they were linked against different sibling checkouts.
+- A build timestamp is not provenance. Reject "built after the HEAD timestamp" as
+  evidence.
+
+## Green CI is not universal evidence
+
+A defect can be invisible to CI and deterministic locally, or the reverse.
+`internal/launcher` passed on CI runners (7.36s) while failing every time in agent
+containers, because both regressions depended on ambient env CI does not set
+(`KANDEV_HOME_DIR`, `KANDEV_NO_BROWSER`). When a fix targets environment-dependent
+behaviour, require LOCAL verification under a fresh temporary env and state
+explicitly that a clean pipeline cannot validate it.
+
+## Enumerate then fix — do not discover one item per CI round
+
+When a hardening change starts surfacing latent violations (mocks returning a now-
+rejected value, fixtures missing new state), do not let CI find them one at a time;
+each round is a full pipeline wait. Sweep the tree for every implementation of the
+affected interface, fix the whole class, run the full suite locally, and push once.
+A five-implementation sweep replaced an open-ended fix-push-wait loop.
+
+## A host redirect may be DELIBERATE — scope it, do not remove it
+
+Before recommending removal of a NAT/proxy rule, establish what it is for. A
+PREROUTING `--dport 80 -j REDIRECT --to-ports 38429` rule existed so the operator
+could browse the app from another machine without typing a port. Unscoped, it also
+caught Docker bridge EGRESS, so `apt-get` inside every `docker build` received the
+app's SPA instead of signed repository metadata and failed `NOSPLIT`.
+
+The fix preserves intent: constrain the rule to the inbound LAN path
+(`-i <lan-if>`) or exclude container sources (`! -s 172.16.0.0/12`). Verify from a
+throwaway bridge container, which is the exact path `docker build` uses:
+`docker run --rm --network bridge <img> curl -sD- http://deb.debian.org/debian/dists/bookworm/InRelease`
+— HTML or app headers in that response means the rule still matches. Adding scoped
+rules does not help if the original broad rule is still present, and a rule edited
+in `iptables` has no effect if the active ruleset is `nftables`; packet counters in
+`iptables -t nat -L -n -v` show which rule is really matching.
+
 
 ## Weekly hygiene
 Cycle logs on the task grow; have the coordinator roll up old logs into a
