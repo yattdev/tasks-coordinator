@@ -1,5 +1,20 @@
 # Design decisions
 
+## Coordinator continuity is storage-backed, not session-backed (2026-08-24, human-directed)
+
+The long-lived Coordinator role must survive session termination, compaction,
+model changes, and provider limits. Its continuity is deliberately split across
+versioned binding policy (`PROMPT.md`), versioned reusable procedures and
+learning (`docs/`), and frequently updated live operational state (the Kandev
+task plan). Model-specific conversation memory is never the only copy.
+
+Every session loads these layers before acting and performs a save checkpoint
+before yielding. Repository compatibility loaders and the mirrored live task
+description make the bootstrap visible to different agent clients. If a hard
+interruption prevents saving, the successor reconstructs from task/session,
+repository, provider, and log evidence and repairs the handoff. We preserve
+decisions and evidence, not hidden chain-of-thought.
+
 ## Reply-bearing delegation requires proactive follow-up (2026-08-24, human-directed)
 
 Every outbound task/session request that expects a reply is tracked in a

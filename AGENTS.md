@@ -13,6 +13,12 @@ do not duplicate the charter here. Read the relevant sections of
 `docs/RUNBOOK.md`, `docs/DECISIONS.md`, and `docs/QA_INSTANCES.md` when the action
 they govern arises.
 
+Before ending every turn or allowing a session/model switch, perform the
+continuity checkpoint in `PROMPT.md` and `docs/CONTINUITY.md`: persist live
+obligations and the executable handoff in the Coordinator task plan, and commit
+generally reusable learning to shared main. Delivery in conversation alone is
+not durable state.
+
 Every full board monitoring cycle includes the complete Done column and enforces
 the Done terminal-integrity gate in `PROMPT.md`. A merged PR or Done placement is
 not sufficient evidence that local work was pushed and preserved.

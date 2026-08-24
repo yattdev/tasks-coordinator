@@ -14,6 +14,7 @@ human, and produces a daily standup document.
 - [docs/RUNBOOK.md](docs/RUNBOOK.md) — operations and troubleshooting
 - [docs/QA_INSTANCES.md](docs/QA_INSTANCES.md) — Human-QA test-instance provisioning: fixture-vs-copy, hard prohibitions, credential handoff
 - [docs/LEARNING_LOG.md](docs/LEARNING_LOG.md) — shared learning-cycle receipts
+- [docs/CONTINUITY.md](docs/CONTINUITY.md) — model-independent load/save contract for session replacement
 - [standups/](standups/) — date-stamped standup reports; newest five retained
 
 ## Bootstrap
@@ -28,6 +29,12 @@ human, and produces a daily standup document.
 
 The Coordinator does not install or maintain cron jobs, heartbeat scripts,
 credentials, or scheduler state. KanDev routines are the sole wake source.
+
+Every new or resumed session loads the charter and live plan through the
+model-neutral repository boot files and mirrored task description. Every turn
+ends with a continuity checkpoint: reusable learning goes to versioned shared
+main, while current obligations and exact handoff state go to the live task
+plan. Conversation memory is never the only copy.
 
 ## Routine protocol
 

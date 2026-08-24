@@ -254,3 +254,18 @@ container names, credentials, PR states, and provider reset times were excluded.
 
 Files: `PROMPT.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, and
 `docs/LEARNING_LOG.md`.
+
+## 2026-08-24h — model-independent continuity checkpoints
+
+- The Coordinator's identity and capability must not depend on one model
+  session remaining alive. Durable continuity now has three layers: binding
+  policy, reusable versioned capability, and live operational state.
+- Every new/resumed/switched session has an explicit load protocol; every turn
+  has a save checkpoint. Replacement sessions receive executable obligations,
+  evidence identities, follow-up triggers, fallbacks, and preserved-work paths.
+- Hard interruptions are recovered from source evidence. The contract does not
+  pretend to preserve private hidden reasoning; it preserves decisions,
+  evidence, procedures, and unfinished work.
+
+Files: `PROMPT.md`, all compatibility boot loaders, `README.md`,
+`docs/CONTINUITY.md`, `docs/DECISIONS.md`, and `docs/LEARNING_LOG.md`.

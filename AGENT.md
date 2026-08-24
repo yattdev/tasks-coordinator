@@ -2,4 +2,5 @@
 
 The canonical cross-agent bootstrap is `AGENTS.md` (plural). Read it, then read
 `PROMPT.md` completely before every turn. This singular filename is retained
-only for clients that historically looked for `AGENT.md`.
+only for clients that historically looked for `AGENT.md`. Before yielding, run
+the continuity checkpoint required by those files.
