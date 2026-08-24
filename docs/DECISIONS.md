@@ -104,6 +104,14 @@ an auditable shared trail, normally at most two concurrently with disjoint
 assignments. Delegation never creates a scheduler or persistent board task and
 ends at the active turn's stated stop condition.
 
+First pilot receipt: temporary session `a2a3eccc-0bd3-4364-8eef-2f782635166e`
+triaged three named message-linked tasks read-only, detected one superseded
+instruction, one healthy exact-head CI wait, and one duplicate-session risk from
+a pinned rate-limited profile. The primary independently re-queried both PRs and
+all three session inventories before accepting the report. The helper's relation
+reads were forbidden, but the bounded fallback evidence was sufficient; no
+helper mutation was required.
+
 ## KanDev routines are the sole wake source (2026-08-19, human-directed)
 The self-managed cron/heartbeat design failed to keep the Coordinator awake and
 created unverifiable scheduler state across sessions. It is removed. An
