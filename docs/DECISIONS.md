@@ -86,6 +86,24 @@ and receive separate remediation/evidence.
 Reuses KanDev primitives (session, tools, flags, comment trail) and dogfoods
 the platform. A separate service only if event-driven triggers become necessary.
 
+## Temporary helpers accelerate triage; authority stays primary (2026-08-24, human-directed)
+
+The active Coordinator may use bounded temporary sessions/agents to triage an
+inbound message burst or gather evidence for disjoint task slices. Helpers are
+read-only by default, receive only the task IDs and context needed for their
+slice, and report evidence/classification/recommendation back to the primary
+session. They are not additional coordinators and do not independently move,
+message, flag, create, archive, delete, edit, push, escalate, clean resources, or
+declare gates complete.
+
+The primary Coordinator retains decision and reporting responsibility. It
+independently verifies workspace and task/PR identity, current head/state,
+authority, and any explicitly delegated mutation, then reconciles live state and
+records helper provenance. Prefer temporary sessions on the Coordinator task for
+an auditable shared trail, normally at most two concurrently with disjoint
+assignments. Delegation never creates a scheduler or persistent board task and
+ends at the active turn's stated stop condition.
+
 ## KanDev routines are the sole wake source (2026-08-19, human-directed)
 The self-managed cron/heartbeat design failed to keep the Coordinator awake and
 created unverifiable scheduler state across sessions. It is removed. An
