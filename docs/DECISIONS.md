@@ -1,5 +1,20 @@
 # Design decisions
 
+## Reply-bearing delegation requires proactive follow-up (2026-08-24, human-directed)
+
+Every outbound task/session request that expects a reply is tracked in a
+persisted follow-up ledger until the requested evidence or explicit response is
+observed. Transport acknowledgement and `WAITING_FOR_INPUT` do not prove the
+handoff completed: sessions can be interrupted, terminated, or rate-limited
+without reporting back.
+
+The Coordinator rechecks due entries during routine cycles, avoids duplicate
+pings while work is active, waits until a known provider reset before one
+retry, and then executes a recorded fallback or escalation. Urgent work may be
+routed to the primary or another authorized helper immediately, while partial
+work and transcripts remain preserved. This gives proactive recovery without
+adding a hidden scheduler or multiplying sessions.
+
 ## WAKE:CYCLE is an explicit action contract (2026-08-24, human-directed)
 
 The routine may deliver either the short `WAKE:CYCLE` marker or the expanded

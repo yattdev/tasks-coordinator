@@ -496,6 +496,38 @@ HANDLING** in `PROMPT.md`; routine configuration may use that expanded payload
 verbatim, but a marker-only delivery has exactly the same requirements.
 A second routine sends `WAKE:STANDUP` every day at 07:00 America/Montreal.
 
+## Follow up on delegated requests and rate-limited sessions
+
+An outbound message is not complete merely because the API returned `sent` or
+`queued`. Whenever a task/session request expects evidence or a decision, add a
+follow-up entry to the Coordinator plan with the target task and session, exact
+expected receipt, sent time, next check, attempt count, observed state/error,
+owner, and fallback. Include a reasonable response window or an event trigger
+such as a provider reset.
+
+At every routine cycle, reconcile due entries against the live task, every
+session, and the conversation:
+
+1. Close the entry only when the requested evidence, result, or explicit reply
+   is actually present. `WAITING_FOR_INPUT` alone is ambiguous.
+2. If the target is actively working on the same request, do not duplicate the
+   ping; advance the next check and retain ownership.
+3. If the session reports a known model/provider reset, record the reset and do
+   not spam it beforehand. On the first routine after the reset, retry once and
+   verify that the session runs or replies.
+4. If the session ended, failed, or remains unanswered after that retry,
+   preserve its transcript and worktree, classify the handoff stalled/blocked,
+   and use the recorded fallback: handle it in the primary, route it to another
+   already-authorized helper, resume the correct existing task session, or
+   visibly escalate when human action is genuinely required.
+5. If the work is urgent, use the fallback immediately instead of waiting for a
+   reset. Do not create duplicate implementation sessions or discard incomplete
+   work.
+
+The ledger is coordination state, not a scheduler: routine wakes drive these
+checks, and the Coordinator must not create timers, cron jobs, or polling
+helpers. Remove closed entries after their result is captured in the cycle log.
+
 If routine delivery appears late, process the current message and compare its
 timestamp with the last recorded routine ping. Record the gap as a degradation
 and raise one visible human ask so the operator can inspect the routine. Do not

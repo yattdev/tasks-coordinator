@@ -238,3 +238,19 @@ force a full `PROMPT.md` and live-plan read on every turn. Files changed:
 Files: `PROMPT.md`, `README.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`,
 `docs/QA_INSTANCES.md`, and `docs/LEARNING_LOG.md`. Transient task IDs, ports,
 container names, credentials, PR states, and provider reset times were excluded.
+
+## 2026-08-24g — proactive follow-up for interrupted delegations
+
+- A helper using a rate-limited model received new work but could only emit the
+  provider limit message and never returned the requested receipt. A delivered
+  message and `WAITING_FOR_INPUT` therefore cannot be treated as completion.
+- Every reply-bearing delegation now gets a persisted follow-up ledger entry
+  with expected evidence, next check, attempt count, observed failure/reset,
+  owner, and fallback. Routine cycles reconcile due entries, retry once after a
+  known reset, and route urgent or repeatedly unanswered work instead of
+  silently abandoning it or spamming duplicate requests.
+- The ledger is driven by existing routine wakes; it does not create a scheduler
+  or polling helper.
+
+Files: `PROMPT.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, and
+`docs/LEARNING_LOG.md`.
