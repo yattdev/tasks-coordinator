@@ -68,6 +68,29 @@ Human-QA preserves the integration boundary. A conflicted PR may lack ordinary
 `pull_request` workflows because the provider cannot create a merge ref; this is
 an integration gate, not permission to rebase or merge main during Human-QA.
 
+## Draft readiness belongs to the task agent; the Coordinator owns the gate (2026-08-24, human-directed)
+
+When no acceptance criterion genuinely requires remaining human testing, the
+owning task agent makes its PR/MR ready after it has committed and pushed a clean
+exact head, run applicable tests with high confidence, obtained terminal-green
+required CI, addressed and replied to every actionable review thread, supplied
+sanitized screenshots/recordings for visual changes, and refreshed an accurate
+reviewer-facing title/body/scope and mergeability snapshot.
+
+The Coordinator directs and verifies this work as the board lead; it does not
+implement the task's missing fixes, tests, or visual evidence. A credentialed
+Coordinator fallback may perform only the mechanical draft→ready provider action
+after the task agent explicitly reports readiness and the primary independently
+verifies the complete gate. Human-only testing, external access, or approval keeps
+the PR draft and is surfaced through the visible ask channel. Ready-for-review is
+not merge, deploy, or permission to skip workflow gates, and every later head/base
+change invalidates the readiness snapshot.
+
+A bounded read-only helper (`/root/pr_readiness_policy_audit`) audited this rule's
+placement against the existing exact-head, credential-fallback, human-testing,
+and delegation policies. The primary independently reviewed its receipt and
+adopted the monitoring-cycle enforcement hook; the helper made no changes.
+
 ## Merge-result failures are classified by semantics and job boundary (2026-08-21)
 
 A failing merge-result test is not automatically a branch regression. If a

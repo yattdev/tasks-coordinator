@@ -232,6 +232,43 @@ review of the resulting head. Never use reset/force-push as an automatic
 recovery, because that can erase legitimate concurrent work and the incident
 evidence needed to decide the correct disposition.
 
+## Turn a draft PR/MR ready through its task agent
+
+Draft readiness is a delivery gate, not an implementation task for the
+Coordinator. Direct the owning task agent to close its own evidence gaps and run
+the provider's draft-to-ready action. The Coordinator independently verifies the
+receipt and may perform only that mechanical provider action when the agent is
+otherwise ready but its PR-write credential is unavailable.
+
+Before marking ready, bind the evidence to the canonical URL and exact head:
+
+1. Worktree is clean; local head, upstream branch, and PR/MR head match; all
+   task-authored work is committed and pushed.
+2. Title, body, base, labels/release notes where applicable, and changed-file
+   scope describe the current diff without unrelated or hidden work. Migration,
+   compatibility, rollout, and rollback notes are present when the change needs
+   them.
+3. The task agent ran the applicable local/unit/integration/security tests and
+   reported high-confidence acceptance evidence. Exact-head required CI is
+   terminal: green or legitimately skipped, with no branch-owned failure or
+   pending required job.
+4. Every actionable review thread has a technical reply and is resolved; refresh
+   reviews, checks, and mergeability after the last push or base update.
+5. Visual changes include sanitized reviewer-facing screenshots or recordings of
+   the meaningful before/after or state variants. Include responsive, theme, or
+   error/loading states when those materially changed.
+6. No acceptance criterion still requires human testing, external hardware or
+   account access, security/product approval, or another human-only decision.
+   If one does, keep the draft and surface the exact handoff through the visible
+   ask channel. Automated evidence may close code-only work; screenshots do not
+   waive an explicitly required human acceptance check.
+
+After the transition, verify `isDraft=false`, canonical head unchanged, current
+CI/thread counts, and record the provider URL. Marking ready invites review; it
+does not authorize merge, rebase, deployment, or workflow-stage skipping. A later
+head/base change invalidates the snapshot; have the task agent re-run the gate and
+re-draft if the new work is incomplete or introduces a human-only acceptance need.
+
 ## A large task plan is append-only BY HAND, not by tool
 `update_task_plan_kandev` and `create_task_plan_kandev` take FULL CONTENT — every
 write regenerates the whole document through token output, with no byte-fidelity
