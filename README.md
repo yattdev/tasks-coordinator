@@ -31,7 +31,7 @@ credentials, or scheduler state. KanDev routines are the sole wake source.
 
 ## Routine protocol
 
-- `WAKE:CYCLE` — run one monitoring cycle and persist the cycle log.
+- `WAKE:CYCLE` — run the complete action-oriented monitoring contract in `PROMPT.md`, including exact-head PR readiness and Done terminal-integrity checks, then persist the cycle log.
 - `WAKE:STANDUP` — run one monitoring cycle, then write
   `standups/standup-YYYY-MM-DD.md` using the Montreal calendar date.
 

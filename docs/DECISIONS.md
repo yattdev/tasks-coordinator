@@ -1,5 +1,18 @@
 # Design decisions
 
+## WAKE:CYCLE is an explicit action contract (2026-08-24, human-directed)
+
+The routine may deliver either the short `WAKE:CYCLE` marker or the expanded
+canonical checklist in `PROMPT.md`; both require the same complete action cycle.
+The expanded prompt makes durable the operating lessons that are easy to omit
+under queue pressure: bootstrap from live identity and persisted state, inspect
+all sessions and Done receipts, delegate only bounded read-only evidence slices,
+diagnose failures from transcripts/logs, preserve incomplete work, enforce
+exact-head draft readiness, distinguish branch defects from base/provider
+failures, use valid Human-QA fixtures, surface human-only blockers through the
+visible ask channel, reconcile every mutation, and persist the result. The
+routine schedule remains operator-owned and is not changed by a cycle.
+
 ## One active Coordinator per workspace (2026-08-20, incident-derived)
 Coordinator ownership is scoped by `workspace_id`, not by repository directory,
 shared memory, task title, or routine name. Every session resolves its own task,

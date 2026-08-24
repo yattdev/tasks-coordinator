@@ -478,6 +478,9 @@ still requires separate explicit human authorization.
 The Coordinator never installs or maintains cron, heartbeat scripts, local
 credentials, or session-bound scheduler jobs. An operator-owned KanDev routine
 targets the existing Coordinator task every 15–30 minutes with `WAKE:CYCLE`.
+The marker invokes the full canonical action checklist under **WAKE MESSAGE
+HANDLING** in `PROMPT.md`; routine configuration may use that expanded payload
+verbatim, but a marker-only delivery has exactly the same requirements.
 A second routine sends `WAKE:STANDUP` every day at 07:00 America/Montreal.
 
 If routine delivery appears late, process the current message and compare its
