@@ -148,6 +148,39 @@ When a task is already waiting on a human for one decision, BUNDLE the commit
 ask into it rather than sending a second and third. One decision, several things
 unblocked.
 
+## Audit every new or changed Done task before allowing cleanup
+
+Done is a terminal state, not proof of durability. On every full cycle enumerate
+the entire column, then deep-audit entries without a matching terminal receipt or
+whose task/PR/session/worktree state changed since that receipt.
+
+For each task:
+
+1. Read the latest plan and conversation plus every session, relation, dependency,
+   and subtask. Record running/failed sessions and pending moves.
+2. Qualify every repository and PR/MR. Record the accepted/merged head and the
+   last head approved in Human-QA or ToDeploy.
+3. In every materialized worktree, run `git status --short --branch`, record
+   `HEAD`, branch/upstream, and enumerate commits not contained by the accepted
+   head, remote branch, or integration target. Re-check a dirty tree before
+   acting, per the transient-dirt rule above.
+4. Treat any commit made after the accepted Human-QA head as new work. Require it
+   to be pushed and to receive the applicable review/CI/integration evidence.
+5. Inventory untracked deliverables and task-owned containers/data. Never remove
+   resources until unique work is durable and the terminal disposition is proven.
+6. Write a receipt containing task ID, audit time, repository/PR identity,
+   accepted and local heads, containment/tree result, session/subtask result, and
+   resource disposition. Stable receipts get a cheap live-state comparison on
+   later cycles; they do not require repeated full archaeology.
+
+Failure response: freeze cleanup, preserve all artifacts, post a Coordinator flag
+with exact commit/path evidence, move the task to the narrowest safe active step,
+and direct/restart its responsible agent. Use Work for authoring/push recovery,
+Human-QA only when new behavior needs renewed acceptance, and CI-Fixup/integration
+after accepted Human-QA work needs base integration. If credentials or authority
+are the only blocker, raise one precise human ask. Do not reset, delete, clean,
+or infer supersession from an older merged PR.
+
 ## A PR number without a repository is ambiguous
 
 Treat a PR or MR as `(host, owner, repository, number, head SHA)`, not as a bare

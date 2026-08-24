@@ -201,3 +201,19 @@ Not carried: PR numbers/heads, task-specific status.
 
 Files: PROMPT.md (op-fix caveat, version stamp), docs/RUNBOOK.md (3 playbooks),
 docs/DECISIONS.md (1 decision), docs/LEARNING_LOG.md.
+## 2026-08-24 — Done-column durability incident
+
+Task `9ededcef-07cd-45fa-97b1-6b899becef74` exposed the missing terminal audit:
+the linked PR was merged and the task moved Human-QA → ToDeploy → Done, while a
+later local commit appeared not to have been pushed. Follow-up archaeology proved
+the landed implementation already covered the original scenario through later
+work, but that recovery does not make the process safe: a merged PR cannot prove
+that the final local head contains no unique work.
+
+Policy change: every cycle now enumerates Done; new/changed entries get a
+repository/session/resource terminal-integrity receipt, and unique local work is
+preserved and returned to an active recovery step. Cross-agent boot shims now
+force a full `PROMPT.md` and live-plan read on every turn. Files changed:
+`PROMPT.md`, `AGENTS.md`, `AGENT.md`, `CLAUDE.md`,
+`.github/copilot-instructions.md`, `README.md`, `docs/DECISIONS.md`,
+`docs/RUNBOOK.md`, and this log.

@@ -105,6 +105,31 @@ must preserve partial work/history and must not imply that acceptance criteria
 passed. Prefer this terminal disposition over deletion; deletion remains
 separately human-authorized and destructive.
 
+## Done is a monitored terminal-integrity lane (2026-08-24, human-directed)
+
+The Coordinator enumerates Done on every full cycle. It deep-audits newly
+entered, changed, unreceipted, or suspicious tasks and shallow-verifies stable
+tasks against a persisted terminal receipt. A merged PR is necessary evidence
+for normal code work but is not sufficient: the local task head may contain a
+later Human-QA commit that was never pushed or included in the merge.
+
+The receipt binds task ID, qualified PR/MR and accepted head, local head, remote
+containment, tree state, session/subtask state, and resource disposition. Unique
+local or untracked work halts cleanup and authorizes a move to the narrowest safe
+active recovery step. Work is never discarded on a claim of supersession without
+ancestry or scenario-level equivalence evidence. This recovery is a safety action,
+not a claim that the operator's Done move was generally wrong.
+
+## One canonical charter with model-specific loaders (2026-08-24)
+
+`PROMPT.md` remains the only full Coordinator policy. Root `AGENTS.md`, root
+`CLAUDE.md`, and `.github/copilot-instructions.md` are thin boot loaders that
+require a complete charter and live-plan read at the start of every turn. This
+is more reliable than a skill alone: skills are selected by task trigger and are
+not guaranteed to load for every routine wake or across agent vendors. The live
+Kandev task description remains the runtime launch copy and is mirrored after
+each charter change.
+
 ## Escalation contract (3 reasons only)
 High-stakes fork / irreconcilable cross-task conflict / systemic anomaly.
 Everything else: decide-and-document as vetoable. Matches the trust model:
