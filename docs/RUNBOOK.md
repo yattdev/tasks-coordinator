@@ -966,6 +966,53 @@ find CI issues), run the full monitored-steps pass and act, do not just report:
 - Genuinely dependency-parked tasks stay parked; note them, do not force-move.
 
 
+## Before a manual workaround on a FAILED task, check if a platform fix OWNS its failure — and preserves it as the reproduction
+
+A FAILED task with a proven-safe operational fix (e.g. clear a stale-worktree
+collision with `git worktree remove`) is tempting to just fix. STOP first and
+check whether a platform-bug task already owns that failure CLASS and is using
+THIS task's exact state as its live reproduction case. If it is, applying the
+workaround destroys the repro the durable fix is validated against — a net loss,
+even though the workaround itself was safe.
+
+Worked example: task 375dcc90 was FAILED on a stale-worktree collision and I had a
+verified-safe `git worktree remove` ready (recovered commit durable on its branch).
+But task c0db9627 was a platform fix for that exact collision class, citing
+375dcc90's worktree as its reproduction. Correct action: do NOT clear it; leave the
+FAILED task preserved until the fix (its PR) lands, then it resumes via the repaired
+reconciliation logic. Search the board for a platform-bug task referencing the same
+symptom/task-id before any one-off unblock.
+
+Corollary: if you OFFERED an operational fix on an earlier cycle and it was not
+urgent, re-verify on the next cycle before executing — the durable fix may now be
+in flight, which flips the answer from "apply" to "preserve and wait."
+
+## A shared credential/push wall is a platform defect — escalate the fix PR, don't per-task workaround
+
+When multiple tasks independently report the SAME push/credential failure
+(e.g. `git_credential_lease_invalid` 401 blocking every `git push`/PR write), it is
+a platform defect, not N task problems — and there is usually already a task/PR
+fixing it. Do not spawn per-task workarounds. Actions:
+- Identify the fix PR and escalate merging it as the single board-unblocking move
+  (it is likely sitting in Human-QA awaiting the human).
+- Coordinator credentials can RELAY reads and post PR comments for a blocked task
+  (working around a stale per-session lease), and can push a task's PRESERVED fix
+  branch as a best-effort stopgap — but these are best-effort under the same
+  intermittent rate limit, and the durable fix landing is what actually clears it.
+- A task that captured its blocker and parked (with a preserved fix branch) rather
+  than looping retries is behaving correctly; confirm the park, do not nudge.
+
+## State-plan hygiene: keep it under the API rewrite limit
+
+The Coordinator's persisted state plan can grow past what update_task_plan /
+update_task can rewrite in one call, after which cycle logs cannot be appended and
+the plan silently stops updating. Keep it compact: roll cycle logs older than ~7
+days into a one-line summary, and archive the full history to a dated file under
+docs/archive/ rather than letting the live plan balloon. If it already exceeds the
+limit, record the cycle summary in the cycle response and flag a compaction pass;
+do not fight the API repeatedly.
+
+
 ## Weekly hygiene
 Cycle logs on the task grow; have the coordinator roll up old logs into a
 weekly summary comment (or do it manually) to keep its context lean.

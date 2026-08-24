@@ -184,3 +184,20 @@ update." Ran a full monitored-steps sweep and acted. Durable lessons:
 
 Files: docs/RUNBOOK.md (3 playbooks), docs/LEARNING_LOG.md. No PROMPT change.
 Not carried: PR numbers/heads, task-specific status.
+
+## 2026-08-24 — reproduction-preservation, credential push-wall, state-plan hygiene
+
+- Do NOT apply a safe one-off workaround to a FAILED task that is the live
+  reproduction for an in-flight platform fix. 375dcc90 (stale-worktree) had a
+  verified-safe `git worktree remove` ready, but c0db9627's platform fix used
+  375's worktree as its repro; preserving the failed state was correct. Added a
+  PROMPT caveat to the blessed operational-fix power + RUNBOOK/DECISIONS entries.
+- A shared credential/push wall (git_credential_lease_invalid across multiple
+  tasks) is a platform defect; escalate the fix PR (#2940, Human-QA), relay
+  reads/comments and push preserved fixes via coordinator creds best-effort, do
+  not per-task-workaround. Parked tasks with preserved fix branches are correct.
+- State-plan hygiene: the persisted plan can exceed the API rewrite limit and stop
+  updating; keep it compact and archive history proactively.
+
+Files: PROMPT.md (op-fix caveat, version stamp), docs/RUNBOOK.md (3 playbooks),
+docs/DECISIONS.md (1 decision), docs/LEARNING_LOG.md.

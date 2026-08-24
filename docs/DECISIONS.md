@@ -292,3 +292,16 @@ single high-leverage ask (merge the repair / fix the base). Lift the hold when t
 base compiles again, verified by building it directly, because the repair may land
 via a different PR than the one escalated (broken base escalated as #2842, repaired
 by #2916). Knowledge, standup, and learning work continue through the hold.
+
+## Preserve a platform fix's reproduction over a safe one-off workaround (2026-08-24)
+
+When a FAILED task is the live reproduction case for an in-flight platform-bug fix,
+the Coordinator does NOT apply an otherwise-safe operational workaround to unblock
+it — the failed state is preserved until the fix lands, then the task resumes on
+the repaired logic.
+
+Rationale: 375dcc90 (stale-worktree collision) had a verified-safe `git worktree
+remove` available, but c0db9627's platform fix cited 375dcc90's worktree as its
+reproduction. Clearing it would have destroyed the repro the fix is validated
+against — a worse outcome than a preserved FAILED task. "Safe to do" is not
+"correct to do" when a durable fix depends on the broken state.
