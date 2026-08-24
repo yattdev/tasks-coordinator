@@ -269,6 +269,19 @@ does not authorize merge, rebase, deployment, or workflow-stage skipping. A late
 head/base change invalidates the snapshot; have the task agent re-run the gate and
 re-draft if the new work is incomplete or introduces a human-only acceptance need.
 
+Local screenshot capture is acceptance evidence for the task agent, but it is
+not reviewer-facing until the reviewer can open it from the PR/MR. If provider
+authentication, browser-session requirements, or rate limits block attachment:
+
+- keep the PR/MR draft and record the exact publication blocker truthfully;
+- preserve the sanitized local capture paths plus hashes and the exact tested
+  head so publication can resume without repeating QA unnecessarily;
+- do not create a code commit solely to carry screenshots, and do not upload
+  them to an unapproved third-party host;
+- do not treat the provider outage as a branch failure or manufacture a code
+  change; retry the attachment only after provider access recovers, then refresh
+  the body/checks/threads and run the normal draft-readiness gate.
+
 ## A large task plan is append-only BY HAND, not by tool
 `update_task_plan_kandev` and `create_task_plan_kandev` take FULL CONTENT — every
 write regenerates the whole document through token output, with no byte-fidelity

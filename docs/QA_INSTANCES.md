@@ -115,3 +115,25 @@ control (`notes-enhance-button` / `toolbar-item-enhance`) was enabled and correc
 Two similarly-named controls, different ownership, different correct behaviour.
 Match the test-id/component to the feature under test before routing anything to
 implementation; a phantom defect wastes a turn and impugns correct work.
+
+## Prove the fixture satisfies the entry conditions before interpreting a no-op
+
+Missing DOM, network traffic, or state mutation does not by itself prove a UI
+regression. First trace the handler's guard conditions and query the fixture for
+the prerequisite state. A mobile plugin-panel observation was initially treated
+as a possible host/plugin defect, but the synthetic task had zero sessions; the
+host intentionally required an effective session ID before changing panels, so
+the selector correctly no-op'd and the plugin never mounted or requested task
+storage.
+
+For a guarded feature path:
+
+1. Name the prerequisite IDs/state from the code path (session, workspace,
+   profile, capability, permission, record relation, or hydration state).
+2. Query the exact QA fixture and prove those prerequisites exist.
+3. If they do not, classify the observation as an insufficient fixture, not a
+   product defect. Do not patch either component to make an invalid scenario run.
+4. Re-test with a valid fixture, or cite named automated coverage that constructs
+   the prerequisite state and asserts the downstream DOM/request/persistence.
+5. File or route a defect only if the valid scenario fails or base-vs-head
+   comparison attributes the behavior to the task branch.

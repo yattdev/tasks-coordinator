@@ -217,3 +217,24 @@ force a full `PROMPT.md` and live-plan read on every turn. Files changed:
 `PROMPT.md`, `AGENTS.md`, `AGENT.md`, `CLAUDE.md`,
 `.github/copilot-instructions.md`, `README.md`, `docs/DECISIONS.md`,
 `docs/RUNBOOK.md`, and this log.
+
+## 2026-08-24f — explicit wake contract, fixture prerequisites, visual publication
+
+- The short `WAKE:CYCLE` marker was too easy to interpret as a status sweep.
+  Human direction expanded it into an explicit action contract covering live
+  bootstrap, complete active+Done inventory, bounded helper delegation with
+  primary accountability, evidence-based failure diagnosis, safe board action,
+  exact-head draft readiness, visible escalation, and terminal reconciliation.
+- A sessionless synthetic task produced no mobile panel DOM or storage request.
+  Code-path inspection and an exact fixture query proved the handler correctly
+  required an effective session ID. Durable rule: verify every entry-condition
+  prerequisite before interpreting a no-op; invalid fixtures are not product
+  defects, and named automated coverage may prove the valid path.
+- Sanitized local screenshots can prove that QA was performed but do not satisfy
+  reviewer-facing visual evidence until attached to the PR/MR. Provider auth or
+  rate limits keep the PR draft; preserve paths/hashes and exact-head identity,
+  avoid binary evidence commits or unapproved hosts, and publish after recovery.
+
+Files: `PROMPT.md`, `README.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`,
+`docs/QA_INSTANCES.md`, and `docs/LEARNING_LOG.md`. Transient task IDs, ports,
+container names, credentials, PR states, and provider reset times were excluded.
