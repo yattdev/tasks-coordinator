@@ -268,6 +268,17 @@ platform bug: it CREATES a task (evidence + where-to-look + acceptance criteria
 incl. regression test) and monitors it like any other. First instance: stale
 pending-move replay in workflow routing (task 6e0fc028).
 
+## Task PR/MR links follow the current deliverable (2026-08-27, human-directed)
+Provider-linked PR/MR cards are operational identity, not immutable history.
+When a recovery, superseding implementation, or follow-up PR/MR becomes the
+task's current deliverable, the Coordinator verifies its canonical repository
+identity, removes the obsolete association, and links the replacement. Old URLs
+remain in the task trail and terminal receipt for auditability. A merged link is
+not removed when it is still the canonical completed deliverable. If Kandev
+lacks safe link mutation, the Coordinator creates one platform capability task,
+persists the pending replacement set, and waits for deployment rather than
+editing storage directly or leaving future Coordinators to rediscover the gap.
+
 ## Knowledge sync across coordinator worktrees (2026-08-17, human-directed)
 Each coordinator instance runs in its own worktree of the shared clone; main
 (/data/home/Code/coordinator) is the source of truth. Rebase onto main before
