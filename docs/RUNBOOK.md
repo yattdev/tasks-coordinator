@@ -231,12 +231,12 @@ number. Forks routinely reuse the same number as the canonical repository. A
 command run from the wrong checkout can therefore return a real, green, merged
 PR that is completely unrelated to the task under review.
 
-## Approve routine task actions without a Human visit
+## Exercise full board approval authority without a Human visit
 
-When a same-workspace task asks for approval, classify the proposed operation
-before escalating. If it is scoped, evidence-backed, non-destructive,
-non-security-sensitive, and compatible with current ownership boundaries, send
-an explicit Coordinator approval containing:
+When a same-workspace task asks for approval, the Coordinator is the approval
+principal. Classify the concrete operation before escalating. If it is neither
+destructive/practically irreversible nor security/trust-boundary sensitive, send
+an explicit Coordinator approval immediately containing:
 
 1. full task ID and canonical repository/remote;
 2. exact branch and head when the action publishes or reconciles work;
@@ -245,13 +245,18 @@ an explicit Coordinator approval containing:
 5. required receipt and verification gate; and
 6. fallback: stop without mutation and report the exact blocker.
 
-Normal pushes and additive merges that preserve both histories are routine.
-Force-push, rebase, squash, amend, reset, clean, deletion/resource removal,
-credential or security-boundary changes, production deployment, protected
-branch merge, and Human-representative external communication are not. If an
-executor guard refuses a properly scoped Coordinator approval, preserve the
-task and attach the reproduction to the existing grant-management platform
-task; do not repeatedly send the Human to individual task conversations.
+Normal pushes and additive merges that preserve both histories are
+Coordinator-approved. Escalate only deletion/resource removal, reset, clean,
+discard, force-push, published-history rewriting, secret/credential disclosure
+or scope expansion, authorization weakening, security-policy bypass, and
+cross-workspace/trust-boundary access. Using already configured credentials for
+an ordinary authorized operation is not itself a security escalation. Labels
+such as production, protected branch, cost, or external communication do not by
+themselves require Human approval; classify the actual operation by destructive
+and security impact. If an executor guard refuses a properly scoped Coordinator
+approval, preserve the task and attach the reproduction to the existing
+grant-management platform task; do not repeatedly send the Human to individual
+task conversations.
 
 Before classifying CI or review readiness:
 
