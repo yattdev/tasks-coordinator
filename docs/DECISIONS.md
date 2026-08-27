@@ -212,6 +212,32 @@ active recovery step. Work is never discarded on a claim of supersession without
 ancestry or scenario-level equivalence evidence. This recovery is a safety action,
 not a claim that the operator's Done move was generally wrong.
 
+## Done is destructive cleanup, not "closed" or merely complete (2026-08-27, human-directed)
+
+The workflow columns represent distinct lifecycle states. Active delivery lanes
+retain tasks whose canonical PR/MR is open or whose review, testing, CI,
+integration, or merge is unfinished. `ToDeploy` is post-acceptance and
+post-merge: required Human validation has passed when applicable, the canonical
+deliverable is merged, and the task remains available while deployment,
+dependencies, subtasks, sessions, or post-merge coordination still need it.
+
+`Done` is terminal and cleanup-capable. Its agent may remove task worktrees,
+local branches, runtimes, and artifacts after verification, so placing an open
+PR, merely green branch, closed-unmerged PR, or still-needed task there creates
+a data-loss risk. Normal code work reaches Done only after the canonical
+deliverable is merged, acceptance is satisfied, no task/session/runtime or
+dependency still needs it, all work is durable, and cleanup is safe. The
+abandoned/obsolete/superseded exception still requires no open PR/MR or subtask
+and an explicit terminal reason.
+
+Incident receipt: task `65af61f6-792d-497c-a313-a0436f6fe627` was recovered
+from Done to Review while canonical `kdlbs/kandev#3052` remained open. The Done
+agent correctly refused cleanup because the Kanban implementation/test content
+was not preserved in the main checkout; nothing was deleted. This establishes
+an explicit pre-move gate: verify merged identity, accepted head, no open
+replacement, no remaining dependency/session need, durable local work, and safe
+resource disposition before exposing a task to Done cleanup.
+
 ## ToDeploy is strictly human-owned except for Coordinator-created tasks (2026-08-27, human-directed)
 
 While a task is physically in ToDeploy, the Coordinator does not perform

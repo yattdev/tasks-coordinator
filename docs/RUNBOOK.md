@@ -182,7 +182,17 @@ unblocked.
 
 ## Audit every new or changed Done task before allowing cleanup
 
-Done is a terminal state, not proof of durability. On every full cycle enumerate
+Done is a terminal destructive-cleanup state, not a synonym for "closed,"
+"implementation complete," "ready," or merely "merged." Before moving normal
+code work into Done, require all of: the canonical PR/MR is merged at the
+accepted head; required acceptance/Human testing passed; no open replacement
+PR/MR exists; no task/session/runtime/subtask/dependency still needs the task;
+all task-authored work is durable; and cleanup is safe. A closed-unmerged PR is
+not terminal evidence. `ToDeploy` is the post-acceptance, post-merge holding lane
+while deployment or other consumers still need the task; preserve its strict
+Human ownership boundary.
+
+On every full cycle enumerate
 the entire column, then deep-audit entries without a matching terminal receipt or
 whose task/PR/session/worktree state changed since that receipt.
 
@@ -205,7 +215,8 @@ For each task:
    resource disposition. Stable receipts get a cheap live-state comparison on
    later cycles; they do not require repeated full archaeology.
 
-Failure response: freeze cleanup, preserve all artifacts, post a Coordinator flag
+Failure response: an open PR/MR, missing merge receipt, remaining consumer, or
+unsafe cleanup receipt is a Done-integrity failure. Freeze cleanup, preserve all artifacts, post a Coordinator flag
 with exact commit/path evidence, move the task to the narrowest safe active step,
 and direct/restart its responsible agent. Use Work for authoring/push recovery,
 Human-QA only when new behavior needs renewed acceptance, and CI-Fixup/integration
