@@ -49,6 +49,38 @@ label it stale and do not include it in a current human-testing inventory. Do
 not infer that a conflict-only merge is runtime-neutral: the merge result is the
 artifact under acceptance, even when the feature files did not conflict.
 
+## Retrieve workspace container data only through the source broker
+
+The reviewed broker is the only authorized path from a registered Coordinator
+task worktree to containers associated with its own workspace. Before using it,
+resolve the Coordinator's full task ID and `workspace_id` from live Kandev tools
+and run from `/data/tasks/<coordinator-task-directory>/coordinator`. Never use
+the shared `/data/home/Code/coordinator` checkout as a source-access identity.
+
+Use progressive disclosure:
+
+1. `docker kandev source list` — authoritative container inventory; an empty
+   list ends the investigation.
+2. `docker kandev source inspect <listed-container>` — metadata before content.
+3. `docker kandev source logs <listed-container> --tail <small-N> --since <short-duration>`
+   only when metadata is insufficient. Treat redaction as best effort and do
+   not repost suspected secrets.
+4. `docker kandev source db-dump <listed-container> --target-task <full-uuid> --name <descriptive>.sql`
+   only when task data is genuinely required and the target is active in the
+   same workspace. Do not target a protected non-Coordinator ToDeploy task.
+
+For every dump, record the broker's exact inbox path, byte count, and SHA-256.
+Send those values to the target task and direct it to verify the hash, import
+only into its isolated Compose database, test, and delete the dump promptly.
+Credentials stay inside the broker; dumps remain sensitive because same-UID
+read confidentiality is not complete. Every request and result is audited.
+
+Never use raw `docker exec`, `docker run`, `docker cp`, the Docker API/socket, a
+source-container shell, environment inspection, cross-workspace access, or a
+filesystem/security workaround. A denial is terminal for that operation:
+preserve the exact error and request that the operator register the project in
+the workspace or add a reviewed broker operation.
+
 ## Local ignores in a LINKED WORKTREE go in the common dir
 Task worktrees on this board are linked worktrees: `.git` is a FILE, not a
 directory. Two consequences that cost real time on 2026-08-19 (`3c2a0d34`):

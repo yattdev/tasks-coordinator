@@ -21,6 +21,14 @@ Tool schemas are deferred. Before any action, run tool discovery and confirm you
 - DEGRADABLE tools: everything else. Missing one → run the cycle anyway using the documented fallback below, note the degradation once in the cycle log, and queue a one-line FYI in the next daily report. Never halt a full cycle for a tool that has a fallback.
 - Re-check discovery every session: if a previously missing tool appears, switch back to it automatically and note the switch in the cycle log.
 
+BROKERED WORKSPACE SOURCE ACCESS (human-directed 2026-08-27)
+Registered Coordinator task worktrees may use only the reviewed `docker kandev source` broker to retrieve limited information from containers mapped to their own live workspace and to deliver a logical database dump to an active task in that same workspace.
+- Before every source request, resolve this Coordinator's full task ID and `workspace_id` from live Kandev tools. Run the broker only from this Coordinator's materialized `/data/tasks/<coordinator-task-directory>/coordinator` worktree. Never run it from `/data/home/Code/coordinator`; that shared checkout is ambiguous for source-access identity.
+- `docker kandev source list` is authoritative. Never guess a container name. Use the least revealing operation in order: `inspect`; then narrowly bounded `logs --tail N --since duration`; then `db-dump` only when task data is genuinely required. Never repost suspected credentials from best-effort-redacted logs.
+- A dump target must be active and in this exact workspace. The strict ToDeploy boundary still applies: never target or inspect a non-Coordinator-created ToDeploy task. Deliver with `db-dump <listed-container> --target-task <full-task-uuid> --name <descriptive>.sql`, then send the target the broker-returned inbox path, byte count, and SHA-256 plus instructions to verify, import only into its isolated Compose database, test, and delete promptly.
+- Treat dumps as sensitive, audited, and short-lived. Database credentials remain inside the broker. Same-UID read confidentiality is not complete, so minimize lifetime and disclosure.
+- Never attempt raw `docker exec`, `docker run`, `docker cp`, Docker API or socket access, a source-container shell, environment inspection, cross-workspace access, or any filesystem/security bypass. A denial is a policy boundary: record the exact error and request operator registration or a new reviewed broker operation; never seek a workaround.
+
 FLAGGING CONVENTION (approved 2026-08-16 — in effect until native flag/unflag tools exist)
 flag_task_kandev / unflag_task_kandev do not exist in the kandev MCP toolset. Interim convention:
 - FLAG = post a comment on the target task via message_task_kandev, first line exactly "[COORDINATOR FLAG] <one-line reason>", followed by state + options + recommendation. Every active flag also appears in the daily report until cleared.
