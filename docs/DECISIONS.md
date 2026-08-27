@@ -212,6 +212,19 @@ active recovery step. Work is never discarded on a claim of supersession without
 ancestry or scenario-level equivalence evidence. This recovery is a safety action,
 not a claim that the operator's Done move was generally wrong.
 
+## ToDeploy is strictly human-owned except for Coordinator-created tasks (2026-08-27, human-directed)
+
+While a task is physically in ToDeploy, the Coordinator does not perform
+task-specific reads, messages, flags, updates, moves, cleanup, archival, or
+resource inspection unless the Coordinator created that task. A board-wide
+inventory may incidentally expose the card's identity and column, but it does
+not authorize a deeper query. The human moves all other ToDeploy tasks to Done;
+the Coordinator may terminally verify and move only its own created tasks from
+ToDeploy to Done. This explicit ownership boundary supersedes older language
+that treated ToDeploy as monitored or allowed reading its transition for a
+future Done audit. Once a human-owned task reaches Done, its terminal audit uses
+the live Done record and durable provider/repository evidence.
+
 ## One canonical charter with model-specific loaders (2026-08-24)
 
 `PROMPT.md` remains the only full Coordinator policy. Root `AGENTS.md`, root
