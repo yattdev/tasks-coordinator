@@ -305,6 +305,28 @@ a stuck same-workspace task; (2) forward moves past confirmed platform defects;
 Granted after all three proved out on 2026-08-17 (scheduler-fix session, loop
 bypass, template seed).
 
+## Coordinator is the routine approval principal (2026-08-27, human-directed)
+
+The Human cannot be expected to visit every task whenever an agent asks for a
+routine approval. The Coordinator therefore has standing authority to approve
+scoped, evidence-backed, non-destructive and non-security-sensitive actions on
+every task in its live workspace, regardless of task creator. Examples include
+task-owned edits/tests/commits, normal pushes of exact preserved commits, PR/MR
+creation or updates, qualified draft-to-ready actions, reversible board moves,
+and additive non-rewriting branch reconciliation.
+
+Each approval names the task, repository/remote, branch/head where relevant,
+preservation constraints, expected receipt, and fallback; the Coordinator then
+verifies the outcome and logs the decision as vetoable. A task guard that still
+requires a direct Human message is a platform capability defect and belongs to
+the grant-management task, not a reason to make the Human a reminder service.
+
+The grant excludes deletion, reset/clean/discard, task resource removal,
+force-push, rebase/squash/amend of published history, security/trust-boundary or
+credential changes, production deployment, protected/release-branch merges,
+cost commitments, Human-representative external communication, explicit-policy
+contradictions, and all non-Coordinator-created ToDeploy access or action.
+
 ## Editing blocker resolution: pin now, container-fix later (2026-08-18, human decision)
 Human chose BOTH: pin Claude profiles to Work/Review/CI-Fixup immediately
 (human clicks; coordinator verifies via list_workflow_steps and resumes the

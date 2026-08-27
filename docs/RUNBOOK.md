@@ -220,6 +220,28 @@ number. Forks routinely reuse the same number as the canonical repository. A
 command run from the wrong checkout can therefore return a real, green, merged
 PR that is completely unrelated to the task under review.
 
+## Approve routine task actions without a Human visit
+
+When a same-workspace task asks for approval, classify the proposed operation
+before escalating. If it is scoped, evidence-backed, non-destructive,
+non-security-sensitive, and compatible with current ownership boundaries, send
+an explicit Coordinator approval containing:
+
+1. full task ID and canonical repository/remote;
+2. exact branch and head when the action publishes or reconciles work;
+3. the one authorized operation and explicit prohibitions;
+4. artifacts/worktree/history that must be preserved;
+5. required receipt and verification gate; and
+6. fallback: stop without mutation and report the exact blocker.
+
+Normal pushes and additive merges that preserve both histories are routine.
+Force-push, rebase, squash, amend, reset, clean, deletion/resource removal,
+credential or security-boundary changes, production deployment, protected
+branch merge, and Human-representative external communication are not. If an
+executor guard refuses a properly scoped Coordinator approval, preserve the
+task and attach the reproduction to the existing grant-management platform
+task; do not repeatedly send the Human to individual task conversations.
+
 Before classifying CI or review readiness:
 
 1. Resolve the task's deliverable repository and remotes.
