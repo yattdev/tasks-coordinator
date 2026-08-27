@@ -341,6 +341,15 @@ learning (first occurrence: main's degraded-mode refinements × this branch's
 daily-standup/adaptive-cadence changes → merged v2026-08-17). PROMPT.md changes
 are mirrored into the kandev task description after every merge.
 
+## Standing workspace source-broker authority (2026-08-27, human-directed)
+Broker-validated Coordinators may autonomously use `docker kandev source` list,
+curated inspect, bounded logs, and logical database dumps, including
+production-like data requested by active same-workspace tasks. Case-by-case
+human approval is unnecessary; broker enforcement is authoritative for target
+activity and workspace membership. Source access identity always comes from the
+Coordinator's materialized task worktree, while the shared main checkout remains
+the Git synchronization point for durable Coordinator knowledge.
+
 ## 24/7 monitoring + visible ask-channel (updated 2026-08-19, human-directed)
 The coordinator is not human and must not mimic human working hours: routine
 cycles run every 15–30 minutes around the clock whenever anything is in a

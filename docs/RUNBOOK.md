@@ -57,6 +57,12 @@ resolve the Coordinator's full task ID and `workspace_id` from live Kandev tools
 and run from `/data/tasks/<coordinator-task-directory>/coordinator`. Never use
 the shared `/data/home/Code/coordinator` checkout as a source-access identity.
 
+Standing authorization allows a broker-validated Coordinator to use source
+list, curated inspect, bounded logs, and logical database dumps autonomously,
+including production-like data requested by same-workspace tasks. Do not seek
+case-by-case human approval; broker enforcement is authoritative for target
+activity and workspace membership.
+
 Use progressive disclosure:
 
 1. `docker kandev source list` — authoritative container inventory; an empty

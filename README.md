@@ -36,6 +36,16 @@ ends with a continuity checkpoint: reusable learning goes to versioned shared
 main, while current obligations and exact handoff state go to the live task
 plan. Conversation memory is never the only copy.
 
+## Workspace source broker
+
+A Coordinator may autonomously use the reviewed `docker kandev source` broker
+for source list, curated inspection, bounded logs, and logical database dumps,
+including production-like data requested by an active same-workspace task. The
+broker's workspace/target validation is authoritative; no case-by-case approval
+is required. Source requests run only from the Coordinator's materialized task
+worktree, never the shared main checkout. See
+[docs/RUNBOOK.md](docs/RUNBOOK.md#retrieve-workspace-container-data-only-through-the-source-broker).
+
 ## Routine protocol
 
 - `WAKE:CYCLE` — run the complete action-oriented monitoring contract in `PROMPT.md`, including exact-head PR readiness and Done terminal-integrity checks, then persist the cycle log.
