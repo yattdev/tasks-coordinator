@@ -350,6 +350,17 @@ activity and workspace membership. Source access identity always comes from the
 Coordinator's materialized task worktree, while the shared main checkout remains
 the Git synchronization point for durable Coordinator knowledge.
 
+## Database dump delivery is not restore acceptance (2026-08-28)
+Broker authorization and artifact integrity prove that the correct bytes reached
+the correct same-workspace task; they do not prove that the destination database
+accepted every statement. A restore can leave a plausible partial schema even
+when the dump contains the missing table definition and the client appears
+silent. Therefore the handoff has three independent gates: delivery hash/size,
+unsuppressed client exit and first-error evidence into a known-clean task-owned
+database, then schema/data plus feature-level verification. Overlaying a retry
+onto a partial restore obscures causality, so retries start from a recreated
+task-owned destination and use a fresh short-lived artifact when necessary.
+
 ## 24/7 monitoring + visible ask-channel (updated 2026-08-19, human-directed)
 The coordinator is not human and must not mimic human working hours: routine
 cycles run every 15–30 minutes around the clock whenever anything is in a

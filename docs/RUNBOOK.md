@@ -81,6 +81,25 @@ only into its isolated Compose database, test, and delete the dump promptly.
 Credentials stay inside the broker; dumps remain sensitive because same-UID
 read confidentiality is not complete. Every request and result is audited.
 
+Treat delivery, import, and restore acceptance as three separate receipts:
+
+1. **Delivery:** verify the broker-returned byte count and SHA-256 before use.
+2. **Import:** use an empty/recreated task-owned destination unless a compatible
+   pre-existing schema is explicitly proven. Run the database client without
+   `--force` or error suppression, preserve its real exit status (avoid losing
+   it through a pipeline), and capture stderr. No client output is not success.
+   On failure, stop at the first SQL error and retain only its sanitized code,
+   dump line, destination engine/version, and relevant server diagnostic.
+3. **Restore acceptance:** after a zero client exit, verify expected schema
+   breadth, required critical tables, representative domain counts, and the
+   task's feature-level dry run/tests. A valid artifact that contains a table's
+   DDL can still yield a partial destination if the import path failed.
+
+Never overlay-retry against a partial restore. Recreate only the task-owned
+destination, confirm the diagnostic import path is ready, then request a fresh
+dump if the sensitive artifact was already deleted. Delete the dump and
+temporary diagnostics promptly after the required evidence is captured.
+
 Never use raw `docker exec`, `docker run`, `docker cp`, the Docker API/socket, a
 source-container shell, environment inspection, cross-workspace access, or a
 filesystem/security workaround. A denial is terminal for that operation:
