@@ -973,6 +973,28 @@ shows neither. A quiet stop looks identical to progress on a board.
 Corollary for task agents: when something stops you that is not yours to fix, say
 it in a way that reads as BLOCKED, not as a status line.
 
+## Blocked is an action queue, not a parking lot
+
+Moving a task to Blocked is the start of a recovery workflow, not its outcome.
+In the same cycle, assign the blocker owner, take the narrowest safe action, and
+record the expected receipt plus next-check trigger in the follow-up ledger.
+
+- If the Coordinator can decide or approve the action, do it now and verify the
+  responsible session starts.
+- If another task or platform capability owns the blocker, direct that owner and
+  track the dependency to its concrete acceptance receipt.
+- If an external system has a deterministic reset/deployment time, record it and
+  retry once on the first normal wake after the trigger.
+- If only the Human can supply the remaining permission, information, testing,
+  or trust-boundary decision, raise the visible input request immediately with
+  the blocked consequence and a recommendation.
+
+Every cycle rechecks every Blocked trigger. An unchanged blocker suppresses a
+duplicate ping, not the inspection or ledger update. When the trigger clears,
+resume/move the task and verify the receiving session in the same cycle. A card
+that was merely moved aside, with no executing owner and no surfaced Human ask,
+is a Coordinator failure.
+
 ## Inherited vs owned failure — bisect before you assign
 
 Before routing a CI or test failure to the task whose PR shows it red, establish
