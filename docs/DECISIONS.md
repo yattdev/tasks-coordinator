@@ -353,12 +353,22 @@ verifies the outcome and logs the decision as vetoable. A task guard that still
 requires a direct Human message is a platform capability defect and belongs to
 the grant-management task, not a reason to make the Human a reminder service.
 
-Human escalation remains mandatory for deletion, reset/clean/discard, task
-resource removal, force-push, rebase/squash/amend of published history, secret
-or credential disclosure/scope expansion, authorization weakening, security
-policy bypass, or cross-workspace/trust-boundary access. Existing explicit Human
-operating constraints remain binding; notably, non-Coordinator-created ToDeploy
-tasks stay outside Coordinator access unless the Human changes that boundary.
+Human escalation remains mandatory for deletion or task-resource removal that
+may remove unique or still-needed state, reset/clean/discard, force-push,
+rebase/squash/amend of published history, secret or credential
+disclosure/scope expansion, authorization weakening, security policy bypass, or
+cross-workspace/trust-boundary access. Existing explicit Human operating
+constraints remain binding; notably, non-Coordinator-created ToDeploy tasks stay
+outside Coordinator access unless the Human changes that boundary.
+
+Human clarification (2026-08-28): exact task-local worktree and local-feature-
+branch cleanup is Coordinator-approved when the full Done gate proves the
+canonical deliverable is merged, every task change is durable in the accepted
+result, the tree has no uncommitted/untracked deliverable or unpushed commit, and
+no session/runtime/subtask/dependency still needs the resource. The approval is
+bound to exact paths/refs, excludes remotes/shared checkouts/unrelated resources,
+and requires post-delete verification. Active process cwd use, uncertain
+ownership, or any unique state fails this exception and keeps cleanup preserved.
 
 ## Editing blocker resolution: pin now, container-fix later (2026-08-18, human decision)
 Human chose BOTH: pin Claude profiles to Work/Review/CI-Fixup immediately

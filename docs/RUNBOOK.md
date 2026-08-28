@@ -246,11 +246,21 @@ an explicit Coordinator approval immediately containing:
 6. fallback: stop without mutation and report the exact blocker.
 
 Normal pushes and additive merges that preserve both histories are
-Coordinator-approved. Escalate only deletion/resource removal, reset, clean,
-discard, force-push, published-history rewriting, secret/credential disclosure
-or scope expansion, authorization weakening, security-policy bypass, and
-cross-workspace/trust-boundary access. Using already configured credentials for
-an ordinary authorized operation is not itself a security escalation. Labels
+Coordinator-approved. So is exact task-local worktree/local-branch cleanup after
+the complete Done gate proves the accepted PR/MR is merged, every task change is
+contained or superseded, the tree has no uncommitted/untracked deliverable or
+unpushed commit, and no session/runtime/subtask/dependency still needs the local
+copy. Bind that approval to the exact path and ref, exclude remotes/shared
+checkouts/other resources, and require path/worktree-inventory/ref-absence
+verification afterward. Active process cwd use or uncertain ownership fails the
+gate and leaves everything preserved.
+
+Escalate deletion/resource removal that may remove unique or still-needed state,
+reset, clean, discard, force-push, published-history rewriting,
+secret/credential disclosure or scope expansion, authorization weakening,
+security-policy bypass, and cross-workspace/trust-boundary access. Using already
+configured credentials for an ordinary authorized operation is not itself a
+security escalation. Labels
 such as production, protected branch, cost, or external communication do not by
 themselves require Human approval; classify the actual operation by destructive
 and security impact. If an executor guard refuses a properly scoped Coordinator
