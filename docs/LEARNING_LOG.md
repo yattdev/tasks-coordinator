@@ -297,3 +297,21 @@ Files: `docs/RUNBOOK.md` and `docs/LEARNING_LOG.md`.
   not authorize speculative recreation or cleanup.
 
 Files: `docs/RUNBOOK.md` and `docs/LEARNING_LOG.md`.
+
+## 2026-08-28c — first-class Coordinator plugin principal
+
+Window: no prior explicit `WAKE:LEARNING` timestamp existed, so this cycle used
+the available Coordinator cycle logs and direct Human corrections through
+2026-08-28T03:54:27Z.
+
+- Captured one durable architectural decision: an ordinary task remains the
+  bootstrap fallback, while the target Coordinator is a workspace-scoped plugin
+  principal with isolated durable state and audited, mediated board/session
+  operations rather than unrestricted cross-task filesystem access.
+- Rejected as already covered: reset-aware GitHub retries versus invalid
+  authentication; unanswered-session follow-up; verified redundant task-local
+  cleanup; and missing/backlink-mismatched linked-worktree administration.
+- Rejected as transient: current PR heads, provider states, task/session IDs,
+  runtime ports, and the latest Redmine recovery receipt.
+
+Files: `docs/DECISIONS.md` and `docs/LEARNING_LOG.md`.

@@ -537,3 +537,29 @@ remove` available, but c0db9627's platform fix cited 375dcc90's worktree as its
 reproduction. Clearing it would have destroyed the repro the fix is validated
 against — a worse outcome than a preserved FAILED task. "Safe to do" is not
 "correct to do" when a durable fix depends on the broken state.
+
+## Coordinator is a workspace plugin principal, not a worker-task role (2026-08-28, human-directed)
+
+The long-lived Coordinator task is a useful bootstrap and compatibility model,
+but it is not the target architecture. An ordinary task inherits task-scoped
+relationships, session lifecycle, workflow transitions, and parent-only action
+limits. Making it supervise unrelated board tasks therefore requires fragile
+special cases, duplicates policy/state across workspaces, and leaves board
+orchestration vulnerable to an ordinary task session becoming stale or blocked.
+
+The target is a first-class, workspace-scoped Coordinator plugin principal. It
+owns isolated durable orchestration state, board/event history, monitoring and
+escalation policy, and explicit audited capabilities for task inspection,
+messaging, movement, dependency management, session control, PR/MR links, and
+automation. Parent-equivalent or cross-task operations are mediated platform
+operations: validate the workspace, exact target, preservation preconditions,
+and permitted action, perform only that bounded operation, and return an audit
+receipt. The plugin is not granted an unrestricted cross-task filesystem or
+container shell.
+
+Versioned plugin policy can distribute improvements consistently across
+workspaces while each workspace keeps separate authority and state. Destructive
+unique-state operations and security/trust-boundary changes remain Human-gated;
+the existing verified-redundant cleanup exception and full same-workspace
+approval policy still apply. Until the plugin is deployed, the task-based
+Coordinator remains the operational fallback and must obey its current scope.
