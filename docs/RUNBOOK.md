@@ -596,10 +596,17 @@ session, and the conversation:
    not spam it beforehand. On the first routine after the reset, retry once and
    verify that the session runs or replies.
 4. If the session ended, failed, or remains unanswered after that retry,
-   preserve its transcript and worktree, classify the handoff stalled/blocked,
-   and use the recorded fallback: handle it in the primary, route it to another
-   already-authorized helper, resume the correct existing task session, or
-   visibly escalate when human action is genuinely required.
+   first inspect all task sessions, the conversation, pending queue, workspace
+   loading, and backend startup error. Preserve its transcript and worktree and
+   classify the handoff stalled/blocked. If the request was never consumed and
+   the workspace is healthy, start one fresh session with the original handoff
+   plus its preservation receipt. If workspace loading failed, route the exact
+   error to the existing repair owner and retry the task only after that repair
+   trigger clears. Otherwise use the recorded fallback: handle it in the
+   primary, route it to another already-authorized helper, resume the correct
+   existing task session, or visibly escalate when human action is genuinely
+   required. Never send a second copy merely because the first transport call
+   returned `sent` or `queued`.
 5. If the work is urgent, use the fallback immediately instead of waiting for a
    reset. Do not create duplicate implementation sessions or discard incomplete
    work.

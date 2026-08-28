@@ -30,6 +30,14 @@ routed to the primary or another authorized helper immediately, while partial
 work and transcripts remain preserved. This gives proactive recovery without
 adding a hidden scheduler or multiplying sessions.
 
+An unanswered request is a state-diagnosis event, not a reason to repeat the
+message. The Coordinator inspects every session, conversation, pending queue,
+workspace startup, and backend error. It then chooses exactly one corresponding
+action: leave an actively working session alone, start one replacement session
+when the prior session is terminal and the workspace is healthy, or route a
+workspace-start failure to its existing repair owner and retry only after the
+repair trigger clears.
+
 ## WAKE:CYCLE is an explicit action contract (2026-08-24, human-directed)
 
 The routine may deliver either the short `WAKE:CYCLE` marker or the expanded
