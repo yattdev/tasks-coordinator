@@ -269,3 +269,17 @@ Files: `PROMPT.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, and
 
 Files: `PROMPT.md`, all compatibility boot loaders, `README.md`,
 `docs/CONTINUITY.md`, `docs/DECISIONS.md`, and `docs/LEARNING_LOG.md`.
+
+## 2026-08-28 — missing linked-worktree administration recovery
+
+- A readable linked-worktree `.git` pointer is insufficient validity evidence
+  when its per-worktree admin directory disappeared during restoration.
+- Native `git worktree repair` does not reconstruct that missing target, while
+  automatic recreation can erase unique checkout content.
+- Recovery is task-identity scoped: preserve and inventory content first,
+  restore the exact validated admin entry when available, otherwise use an
+  authorized snapshot/new-path rematerialization, then verify read-only Git
+  metadata and one bounded agent start. A repair task must not inspect or mutate
+  foreign task worktrees merely because it owns the platform defect.
+
+Files: `docs/RUNBOOK.md` and `docs/LEARNING_LOG.md`.

@@ -558,6 +558,40 @@ and sibling isolation. If a separately authorized writable checkout is used to
 recover work, verify every transferred file by checksum/diff and keep the
 original checkout untouched for evidence.
 
+## Restored checkout points to a missing linked-worktree admin directory
+
+A restored checkout can retain a readable `.git` pointer file while the exact
+per-worktree administration directory under the repository's common `.git` is
+missing. Do not treat the readable pointer as proof that the worktree is valid:
+agent launch will fail when Git resolves the absent target. Native
+`git worktree repair <checkout>` cannot recreate this state when the pointer no
+longer references a repository, and an automatic recreate path that begins by
+removing the checkout can destroy unique uncommitted or untracked work.
+
+Preserve the checkout and stop duplicate session starts. The least-destructive
+recovery is task-identity scoped:
+
+1. Under the owning task identity, record the exact checkout, branch, HEAD,
+   remote containment, and all uncommitted/untracked content. If the task cannot
+   start, a platform-owned recovery operation must gather this receipt without
+   broadening another task's filesystem scope.
+2. Prefer restoring only the exact per-worktree admin entry from a trustworthy
+   same-workspace backup. Validate reciprocal `gitdir`, `commondir`, HEAD/ref,
+   and checkout identity before accepting it.
+3. Verify read-only `git -C <checkout> status --porcelain`, `git log -1`, and
+   the platform's repository metadata resolver, then start exactly one bounded
+   acceptance session.
+4. If no valid metadata backup exists, require an authorized content-preserving
+   snapshot, materialize a new task-owned path, atomically update durable
+   worktree records, and retain the original until startup and integrity checks
+   pass.
+
+Never forge Git metadata, prune/recreate the damaged checkout before proving
+content durability, broaden access to the common `.git`, or use a repair task's
+identity to inspect foreign task worktrees. A repair owner may define and test
+the platform operation, but each recovery executes under the owning task or a
+reviewed platform rematerializer.
+
 ## Abandoned, obsolete, or superseded task remains in an active column
 Do not leave dead work parked indefinitely in Spec–CI Fixup. First verify from
 the task trail that no implementation remains authorized, and check that it has
