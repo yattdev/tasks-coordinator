@@ -592,6 +592,23 @@ identity to inspect foreign task worktrees. A repair owner may define and test
 the platform operation, but each recovery executes under the owning task or a
 reviewed platform rematerializer.
 
+### Linked-worktree backlink disagrees with the workspace marker
+
+Agent startup may also fail before prompt consumption with exit 78 even when a
+`.git` target exists: the linked-worktree backlink and Kandev's task/workspace
+marker identify different registrations. Treat this as an ownership-integrity
+failure, not permission to rewrite either side or start another session.
+
+Preserve the checkout and route the exact error/path to the managed-worktree
+repair owner. Under the owning task identity or a reviewed platform operation,
+validate the workspace marker, `.git` pointer, reciprocal worktree admin entry,
+repository/task ownership, branch, and HEAD. Repair only the inconsistent
+metadata atomically, then require read-only `git status --porcelain`,
+`git log -1`, platform metadata resolution, and one bounded agent start. If
+ownership is ambiguous or there is no trustworthy registration source, stop and
+return the mismatch; do not recreate, prune, clean, or rematerialize the
+checkout speculatively.
+
 ## Abandoned, obsolete, or superseded task remains in an active column
 Do not leave dead work parked indefinitely in Spec–CI Fixup. First verify from
 the task trail that no implementation remains authorized, and check that it has

@@ -283,3 +283,17 @@ Files: `PROMPT.md`, all compatibility boot loaders, `README.md`,
   foreign task worktrees merely because it owns the platform defect.
 
 Files: `docs/RUNBOOK.md` and `docs/LEARNING_LOG.md`.
+
+## 2026-08-28b — linked-worktree backlink/marker mismatch
+
+- A restored task can fail before consuming its handoff even when its `.git`
+  metadata exists: the linked-worktree backlink may disagree with Kandev's
+  task/workspace marker.
+- Repeated session starts cannot repair an ownership mismatch. Preserve the
+  checkout and validate the marker, pointer, reciprocal admin entry, task/repo
+  ownership, branch, and HEAD under the owning task identity.
+- Repair only the inconsistent metadata atomically, then prove read-only Git
+  resolution and one bounded start. Ambiguous ownership stops recovery; it does
+  not authorize speculative recreation or cleanup.
+
+Files: `docs/RUNBOOK.md` and `docs/LEARNING_LOG.md`.
