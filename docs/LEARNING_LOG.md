@@ -421,7 +421,6 @@ That claim was WRONG and is retracted. Do not act on the earlier version.**
   `gh api rate_limit` reports full quota — a secondary rate limit, tracked separately.
 
 Files: `docs/LEARNING_LOG.md`.
-
 ## 2026-08-29c — Filesystem & Docker contract independently validated PASS after the live-attestation fix
 
 Rerun of the agreed contract (`docs/FILESYSTEM_DOCKER_CONTRACT.md`) from coordinator session
@@ -481,3 +480,34 @@ Also cleared this cycle: D4 (shared knowledge base is `rw` again) and D5 (main c
 `feature/coordinator-long-liv-802` both at `98117b8`, zero divergence — nothing stranded).
 
 Files: `docs/LEARNING_LOG.md`, `docs/FILESYSTEM_DOCKER_CONTRACT.md`.
+## 2026-08-28 — workspace source authority and verified restore receipts
+
+No precise prior learning-cycle timestamp was persisted, so this cycle used the
+available activity since the final 2026-08-24 learning-log entry as its window.
+
+Lessons captured:
+
+- Broker-validated Coordinators have standing authority to use source list,
+  curated inspect, bounded logs, and logical database dumps—including
+  production-like data requested by active same-workspace tasks—without
+  case-by-case human approval. Broker workspace/target validation is the
+  authoritative boundary.
+- Dump delivery, database import, and restore acceptance are separate gates. A
+  valid hash and present table DDL do not prove a complete destination restore;
+  use a known-clean task-owned database, preserve the client's real exit/error
+  evidence, verify schema/data and task behavior, and delete artifacts promptly.
+
+Rejected by the filter: exact task IDs, artifact paths, hashes, byte/table/row
+counts, ports, and engine patch versions were transient incident evidence; the
+local patch-tool degradation was environment-specific rather than shared
+Coordinator policy.
+
+Files changed: `PROMPT.md`, `README.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, and this log. Policy commits are `a76caca` (standing broker
+authority after rebase) and `ffb1128` (restore acceptance).
+
+Merge/mirror status: rebase onto `main` succeeded without conflict, but shared
+main could not fast-forward because `/data/home/Code/coordinator` is read-only
+(`unable to unlink old` for the four policy files). Main remained unchanged;
+the complete `PROMPT.md` mirror is intentionally pending the required
+fast-forward. Operator action is required; no filesystem workaround was used.
