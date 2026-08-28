@@ -193,6 +193,24 @@ operator-owned KanDev routine now targets the existing Coordinator task every
 15–30 minutes, with a separate daily 07:00 America/Montreal standup routine.
 The Coordinator consumes these pings and never creates or repairs a scheduler.
 
+## Disposable wake sessions are reminder carriers, not reminder state (2026-08-28, human-directed)
+
+Each `WAKE:CYCLE` may create a new automation session that is removed after a
+retention window. Therefore a wake session cannot be the sole durable home of a
+GitHub rate-limit reminder. The Coordinator stores one reset record per GitHub
+resource in its plan, using `Retry-After` or `X-RateLimit-Reset` plus a 15–30
+second buffer, and the first routine at or after that deadline performs one
+bounded retry. A repeated limit updates the same dedupe entry; `401` is handled
+as a separate credential blocker.
+
+A live wake session may accelerate delivery only through a native, verified
+future-delivery operation whose receipt includes the dedupe key and timestamp
+and whose retention covers the deadline. Immediate/queued task messaging is not
+scheduling. This preserves the operator-owned routine boundary, prevents sleep
+or polling loops, and makes session deletion harmless. The Coordinator plugin
+should expose the native schedule-at accelerator while retaining the plan
+ledger as authoritative state.
+
 ## Action budget (1 task creation/cycle, bounded terminal cleanup)
 The coordinator is the highest-blast-radius agent: a misread board amplifies
 across every task in one cycle. Budgets cap the damage; loosen only after

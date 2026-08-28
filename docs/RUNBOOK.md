@@ -666,6 +666,37 @@ The ledger is coordination state, not a scheduler: routine wakes drive these
 checks, and the Coordinator must not create timers, cron jobs, or polling
 helpers. Remove closed entries after their result is captured in the cycle log.
 
+### GitHub API reset ledger across disposable wake sessions
+
+Every `WAKE:CYCLE` delivery may receive a fresh automation session, and old wake
+sessions are removed after a retention window. Never store a GitHub reset
+reminder only in one of those sessions. When a monitored task reports a GitHub
+API rate limit:
+
+1. Confirm the failure is rate limiting rather than invalid authentication.
+   Prefer `Retry-After`; otherwise use `X-RateLimit-Reset` for a primary rate
+   limit. Add a 15–30 second safety buffer.
+2. Upsert one Coordinator-plan entry keyed by the GitHub resource, for example
+   `github-rate-limit:core`. Record the affected tasks/actions, observed limit
+   evidence, reset time, buffered due time, attempt count, owner, and fallback.
+3. Do not sleep, poll, or repeatedly retry. Continue every action that does not
+   need the limited resource. On the first normal routine at or after the due
+   time, recheck the resource once and execute only the deduplicated pending
+   actions that are still current.
+4. If the resource is still limited, refresh the same entry from the new
+   headers and advance its due time. If the response is instead `401`, park on
+   credential restoration; a reset does not repair authentication.
+5. A latest live wake session may be used as an additional reminder carrier
+   only when Kandev exposes a native future-delivery operation, returns a
+   scheduled receipt containing the dedupe key and timestamp, and the session's
+   retention covers that timestamp. `message_task_kandev` is immediate/queued,
+   so sending it a future timestamp is not scheduling. Session deletion never
+   removes the authoritative plan entry.
+
+This gives reset-aware retries the precision available from the current routine
+without inventing a hidden scheduler. Native Coordinator-plugin scheduling can
+later accelerate the wake while preserving the same durable ledger contract.
+
 If routine delivery appears late, process the current message and compare its
 timestamp with the last recorded routine ping. Record the gap as a degradation
 and raise one visible human ask so the operator can inspect the routine. Do not
