@@ -1469,6 +1469,31 @@ Two things that are easy to get wrong:
   arguments prints only the compose line and never mentions `support`; run
   `docker kandev support` with no arguments for its authoritative command list.
 
+#### When Support answers BLOCKED
+
+A genuine `KANDEV_SUPPORT_STATUS: BLOCKED` with a non-zero return code proves
+that broker delivery worked; it does **not** clear the task blocker. Read and
+persist the response's exact missing authority or capability and its smallest next
+action. Physically move the affected workflow task to Blocked with its preservation
+receipt and deterministic resume trigger, then stop retrying the unchanged request.
+
+Two verified boundaries matter:
+
+- Persistent canonical workspace-repository inventory is not safely repairable by
+  Support unless an audited repair operation exists. Do not substitute direct
+  SQLite edits or repository-row recreation; require a scoped operation that
+  validates IDs, backs up state, rematerializes only the affected record, and
+  proves a guarded session launches.
+- Support cannot provision, reuse, or expose host GitLab credentials when no
+  reviewed task-scoped credential broker exists. Require a revocable credential
+  with only the task's needed MR/API/upload scope and accept only non-secret
+  success metadata. Never mount host `glab` or Codex state.
+
+In both cases, route the missing platform capability to the platform operator or
+Human once, record the consequence, and resume atomically only after the named
+acceptance receipt. A second identical Support request cannot create missing
+authority and is queue noise.
+
 Verified fail-closed behaviour (2026-08-29T07:20Z): an unknown request ID returns
 `support request is unavailable`; an explicit file outside the coordinator task
 root returns `path is outside this agent task: <path>`; and a request missing any
@@ -1646,6 +1671,27 @@ failure procedure remains the correct regression path.
 
 Registry entry: [K1](CAPABILITY_REGISTRY.md#k1-a-task-has-local-png-screenshots-that-require-visual-acceptance).
 
+## The dated standup file is shared across workspaces
+
+`standups/standup-YYYY-MM-DD.md` has no workspace qualifier, but Coordinators are
+workspace-scoped peers that each run their own standup routine into the same shared
+clone. So a file already existing for today does **not** mean you re-ran your own
+standup — it may be another workspace's report.
+
+The existing rule anticipated only same-workspace duplicates ("two coordinators
+running it write the same path"). Cross-workspace peers were explicitly declared
+independent, and nobody noticed they still collide on this one filename. Writing
+your report over it destroys a peer's durable record, and the five-file rotation can
+then delete the evidence.
+
+Procedure: read the file first. If its content is yours, update in place with a
+`revised at HH:MM` note. If it is not yours, append a section headed
+`## Workspace: <name> (<workspace_id>)` and leave every other section byte-identical.
+Add the same heading above the existing content if it does not already carry one, so
+the file is self-describing. Never replace a section you did not write.
+
+Retention still keeps the five newest `standup-YYYY-MM-DD.md` files, deleted by
+explicit filename — the count is per file, not per workspace section.
 ## Board mechanics: cards advance themselves, and a move call only queues
 
 Two behaviours to check before you attribute a card's position to anyone's decision.

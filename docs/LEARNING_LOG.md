@@ -984,7 +984,7 @@ Files: `docs/CAPABILITY_REGISTRY.md` (new K1, registry-version 2026-08-29e),
 `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log. `PROMPT.md` unchanged because the
 existing binding registry-maintenance rule already covers the capability.
 
-## 2026-08-29j — independent post-recreate confirmation; two rules sharpened
+## 2026-08-29n — independent post-recreate confirmation; two rules sharpened
 
 Window: 2026-08-29T08:16Z to 2026-08-29T11:05Z (from the previous entry's knowledge
 commit to now). Support reported the KVM blocker cleared after a force-recreate and
@@ -1026,7 +1026,7 @@ Files: `docs/CAPABILITY_REGISTRY.md` (rule 7, registry-version 2026-08-29f),
 
 ## 2026-08-29k — verify the instrument before acting on it
 
-Addendum to `2026-08-29j`, same window.
+Addendum to `2026-08-29n`, same window.
 
 - A link check flagged a peer's registry link as broken. The link was correct; the
   **checker** was wrong — it stripped underscores from heading anchors, so
@@ -1143,7 +1143,66 @@ friction, and check your own instruction first.
 
 Files: `docs/RUNBOOK.md`, `docs/LEARNING_LOG.md`.
 
-## 2026-08-29m — the board moves cards by itself, and a successful move call is not a moved card
+## 2026-08-29m — Support delivery success is distinct from blocker resolution
+
+Window: 2026-08-29T11:05Z to 2026-08-29T11:09Z.
+
+- Two broker requests reached the autonomous Support worker and returned genuine
+  terminal `KANDEV_SUPPORT_STATUS: BLOCKED` responses. This is a third broker
+  outcome distinct from queue backpressure and resolved work: transport succeeded,
+  but the requested environment repair exceeded the reviewed capability surface.
+- Durable boundary: without an audited operation, Support must not repair
+  persistent canonical workspace-repository inventory through direct backend
+  edits. Without a reviewed task-scoped credential broker, it must not provision,
+  reuse, expose, or mount host GitLab credentials.
+- Coordinator action is therefore deterministic: preserve and physically park the
+  affected task, record the exact missing capability and smallest operator action,
+  and resume only on a non-secret acceptance receipt. Re-sending the unchanged
+  request cannot create authority and only adds queue noise.
+- This corrects a tempting but false inference that end-to-end broker delivery
+  means every host/environment blocker is automatically actionable by Support.
+
+Rejected as transient: task/session/request IDs, repository rows, MR numbers,
+commit hashes, provider timestamps, and specific command timeouts.
+
+Files: `docs/CAPABILITY_REGISTRY.md` (new G3, registry-version 2026-08-29h),
+`docs/RUNBOOK.md`, this log. `PROMPT.md` unchanged because its existing binding
+rule already requires autonomous broker routing and escalation of genuine terminal
+faults.
+## 2026-08-29p — the shared standup file collides across workspaces
+
+Window: 2026-08-29T11:05Z to 2026-08-29T11:15Z, during a `WAKE:STANDUP` on the
+Co-Up board.
+
+- **New, corrective:** `standups/standup-YYYY-MM-DD.md` carries no workspace
+  qualifier, while Coordinators are workspace-scoped peers each running their own
+  standup routine into the same shared clone. Today's file already existed and
+  described an entirely different board (52 cards, PRs #3048/#3136/#3143) — a peer's
+  report, not a re-run of mine. Following the routine literally ("update today's
+  file") would have destroyed it, and the five-file rotation could then have deleted
+  the evidence.
+- The existing rule anticipated only *same-workspace* duplicates and explicitly
+  declared cross-workspace Coordinators independent peers — which is true for wake
+  ownership and false for this one filename. The gap was in the seam between two
+  correct rules, not inside either.
+- Resolution: the dated file now carries one `## Workspace: <name> (<id>)` section
+  per workspace, appended never overwritten, with a header explaining why. Bound in
+  `PROMPT.md` and given a runbook procedure.
+- **Capability recorded:** `docker kandev workspace description-update <file>` exists
+  (verified via `docker kandev workspace`). This closes a gap I had been carrying for
+  three cycles — the `PROMPT.md` charter mirror was deferred because sending a 60 KB+
+  document inline risked a truncated description, which is worse than a stale one.
+  Registry entry F1 now names it. Another instance of the day's recurring lesson:
+  the capability existed and was simply undiscovered, and `docker kandev` with no
+  arguments does not list `workspace` either.
+
+Rejected as transient: board counts, the specific stalled task IDs, and the
+session-start incident (escalated to Support, not yet a durable rule — if the ACP
+start path proves to have a recurring failure mode it earns a playbook then).
+
+Files: `PROMPT.md`, `docs/RUNBOOK.md`, `docs/CAPABILITY_REGISTRY.md`
+(registry-version 2026-08-29h), this log.
+## 2026-08-29q — the board moves cards by itself, and a successful move call is not a moved card
 
 Two mechanics I did not know, found while a card kept "drifting" out of the lane I put
 it in. Both are properties of the board, not of any agent, and both cost me a wrong
