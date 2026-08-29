@@ -1998,3 +1998,38 @@ forty minutes earlier the same day.
 already exists, not creating a second agent. Spawning remains the wrong reach: its own
 guidance restricts it to explicit user request, and it is what produces the two-agents
 problem rather than merely risking it.
+
+## A single failing E2E shard: check the sibling PRs before blaming the branch
+
+One shard red out of fourteen, with the rest green, is ambiguous on its own. **Before
+concluding it is branch-owned, read the other open PRs' checks.** The cross-PR shape is
+the cheapest discriminator available and needs no extra permissions:
+
+- **Several PRs each failing a *different* single shard, on unrelated diffs, at the same
+  time** → systemic E2E behaviour in the environment, not three independent defects.
+- **Only one PR failing, repeatedly, on the same shard** → look hard at that branch.
+
+Observed 2026-08-29: three PRs failed Shard 13/14, Shard 2/14, and (still running)
+respectively, across diffs for GitHub rate coordination, worktree admin-directory
+recovery, and repository discovery — no shared code path a single shard would exercise.
+
+**Both readings have been correct on this board within one day**, so do not adopt either
+as a default:
+
+- Shard 9/14 was traced to a **real** defect — an unscoped locator matching two rendered
+  elements, tripping Playwright strict mode. Proven by making it reproduce, then fixing it.
+- Shard 13/14 survived **10/10** local repeats with `--repeat-each=10 --retries=0` and was
+  honestly classified *"unresolved CI-only, likely environment/load-dependent"*.
+
+**Method that holds either way:** trace to the exact spec and line from the job log, then
+run that test locally with repeats and retries disabled. Ten clean runs is not proof of a
+flake, but it separates a finding from a guess. **Never add a retry or a sleep to turn a
+shard green without a diagnosis** — it buries the signal for every other branch.
+
+**Two confounders to state when reporting:**
+- A local pass taken *after* `make build` does not separate "flaky" from "CI artifacts
+  differ" — the rebuild confounds that exact comparison.
+- "Retries reproduced the same failure" is evidence of **determinism**, not flakiness.
+
+**And the aggregators are noise.** `E2E Tests Passed` and `Merge E2E Reports` fail because
+a shard did. One root cause, three red marks — diagnose the shard, ignore the other two.
