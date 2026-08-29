@@ -671,28 +671,30 @@ The general lesson is that "cannot" claims must name the exact route tested, and
 guarded broker's advertised surface (`docker kandev` no-args omits `support`
 entirely) is not evidence of what it can do.
 
-## A queued support request is backpressure, not a stall (2026-08-29, verified)
+## Active Support writers are broker backpressure, not terminal failure (2026-08-29, supersession)
 
-Delivery into the Kandev Support thread serialises on a single writer. The broker
-holds a request `queued` under contention, retries with capped exponential backoff,
-and reports `complete` only after Codex processes it. An end-to-end acceptance test
-on 2026-08-29 held `queued` for ~15.5 minutes and then returned `returncode: 0`
-with a genuine Support reply that echoed the coordinator task ID and broker request
-ID.
+**Supersedes** the earlier same-day conclusion that a persistent
+`thread-store conflict: ... already has an active writer` required operator
+release and could legitimately complete with return code 1. The corrected worker
+keeps such requests queued and retries them automatically with capped exponential
+backoff. It reports `complete` only after Codex processes the request.
 
-This closes the earlier writer-conflict blocker, which was a fail-fast bug rather
-than a capability limit: requests returned `complete`/`returncode 1` in ~10s with
-`thread-store conflict ... already has an active writer`. Requests that failed under
-that behaviour were **not** retroactively requeued and stay terminally failed;
-check such an ID once, then send a fresh request.
+Independent end-to-end validations from guarded Coordinator sessions proved the
+state contract: `send` exited 0 and returned one queued request ID; adaptive
+status checks remained queued with exit 0 for roughly twelve to sixteen minutes;
+status then became complete with return code 0; and `receive` exited 0 with a
+genuine Support response carrying the Coordinator and broker request identities,
+rather than the former conflict transcript. The same test confirmed fail-closed
+behavior for unknown IDs, outside-task-root files, and incomplete request JSON.
 
-Operationally the Coordinator must therefore treat a long `queued` as success in
-progress: poll on a ~30s interval, never resend into the same serialised queue, and
-continue unblocked work instead of holding a cycle open. The general lesson is that
-a slow queue and a broken queue look identical at a single poll — the two are
-distinguished by whether the terminal state ever arrives, so the honest report while
-waiting is "queued, still retrying", never "complete" and never "stalled".
+Therefore Coordinators record and poll the same request ID, check previously
+requeued requests before sending replacements, and never infer failure or create
+a duplicate from a long queued interval. Requests that failed under the former
+worker were requeued during deployment, so an old request ID is checked before a
+replacement is sent. Only a terminal non-zero broker result or a state-contract
+violation is an escalation.
 
-Rationale: the previous fail-fast behaviour trained readers to interpret contention
-as a hard blocker needing operator intervention, which cost a human escalation for
-something the system resolves on its own within minutes.
+Operationally, a long `queued` means success in progress: poll adaptively with
+capped backoff, continue unrelated board work, and report "queued, still
+retrying" rather than "complete" or "stalled". This avoids human escalation
+for contention the broker resolves itself.

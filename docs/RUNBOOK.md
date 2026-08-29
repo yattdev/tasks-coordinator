@@ -1426,7 +1426,9 @@ shell's cwd is the common trap: a file created in `coordinator/` and sent as
 and fails with `path is unavailable: ... No such file or directory`.
 
 `send` returns `{"request_id": "...", "status": "queued"}`. Poll `status`
-adaptively — requests have completed in ~10-15s — then `receive` the answer.
+adaptively with capped exponential backoff, then `receive` the answer. A busy
+Support thread can keep a request queued for minutes; keep the same request ID and
+never create a duplicate merely because it remains queued.
 
 The broker attaches the coordinator task ID, workspace ID and name, worktree, and
 timestamp itself, so do not duplicate them; put the affected task/session ID inside
@@ -1441,12 +1443,11 @@ Two things that are easy to get wrong:
   `docker kandev support` with no arguments for its authoritative command list.
 
 Verified fail-closed behaviour (2026-08-29T07:20Z): an unknown request ID returns
-`support request is unavailable`; a file outside the coordinator task root fails to resolve
-(`path is unavailable: ... No such file or directory`, because paths are mapped
-into the task root); a request missing any required field is refused
-by name. Requests are cheap to retry, but a repeated identical failure is a fault
-to escalate, not something to retry in a loop. Do not claim delivery succeeded when
-`returncode` is non-zero.
+`support request is unavailable`; an explicit file outside the coordinator task
+root returns `path is outside this agent task: <path>`; and a request missing any
+required field is refused by name. Requests are cheap to retry, but a repeated
+identical failure is a fault to escalate, not something to retry in a loop. Do not
+claim delivery succeeded when `returncode` is non-zero.
 
 ### Why `codex exec resume` cannot be used from a container
 
@@ -1470,13 +1471,13 @@ claim a delivery mechanism exists that you have not exercised.
 Delivery into the support thread serialises on a single writer. When Support is
 busy the broker holds the request `queued` and retries with capped exponential
 backoff; it reports `complete` only once Codex has actually processed it.
-Verified 2026-08-29T07:42Z: a request stayed `queued` for **~15.5 minutes**
-(07:26:15 → 07:42:01) and then completed with `returncode: 0` and a real reply.
+Two guarded validations stayed `queued` for roughly twelve to sixteen minutes
+and then completed with `returncode: 0` and a real reply.
 
-So: **a long `queued` is the system working.** Poll patiently on a ~30s interval
-and do not resend — a duplicate request just adds another item to the same
-serialised queue. Budget minutes, not seconds, and carry on with unblocked work
-while you wait rather than blocking a cycle on it.
+So: **a long `queued` is the system working.** Poll adaptively with capped
+backoff and do not resend — a duplicate request just adds another item to the
+same serialised queue. Budget minutes, not seconds, and carry on with unblocked
+work while you wait rather than blocking a cycle on it.
 
 Superseded failure mode (fixed 2026-08-29): requests used to fail fast, returning
 `status: complete, returncode: 1` within ~10s with
@@ -1484,9 +1485,10 @@ Superseded failure mode (fixed 2026-08-29): requests used to fail fast, returnin
 `receive`. If you ever see that again, the retry handling has regressed — report it
 with the request ID rather than retrying in a loop.
 
-**Requests that failed under the old behaviour were NOT requeued.** They still read
-`complete` / `returncode 1` forever. Check an old ID once, then abandon it and send
-a fresh request; do not wait for it to self-heal.
+Requests that failed under the old behavior were requeued during deployment.
+Check a previous request ID before sending a replacement. If it is queued, keep
+polling it; if it is complete, receive it and inspect its return code and response.
+Only send a fresh request when no usable previous ID exists.
 
 ### Reading the response
 
