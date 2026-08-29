@@ -10,6 +10,7 @@ human, and produces a daily standup document.
 - [PROMPT.md](PROMPT.md) — live Coordinator charter and source of truth
 - [AGENTS.md](AGENTS.md) — model-neutral per-turn bootstrap into the charter
 - [CLAUDE.md](CLAUDE.md) and [.github/copilot-instructions.md](.github/copilot-instructions.md) — thin compatibility loaders; policy remains in `PROMPT.md`
+- [docs/CAPABILITY_REGISTRY.md](docs/CAPABILITY_REGISTRY.md) — canonical situation-to-action registry: what a Coordinator may do in each situation, with which capability, authority, evidence, and escalation route
 - [docs/DECISIONS.md](docs/DECISIONS.md) — design decisions
 - [docs/RUNBOOK.md](docs/RUNBOOK.md) — operations and troubleshooting
 - [docs/QA_INSTANCES.md](docs/QA_INSTANCES.md) — Human-QA test-instance provisioning: fixture-vs-copy, hard prohibitions, credential handoff

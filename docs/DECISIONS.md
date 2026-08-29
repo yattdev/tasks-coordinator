@@ -698,3 +698,35 @@ Operationally, a long `queued` means success in progress: poll adaptively with
 capped backoff, continue unrelated board work, and report "queued, still
 retrying" rather than "complete" or "stalled". This avoids human escalation
 for contention the broker resolves itself.
+
+## A capability registry routes situations to actions (2026-08-29, Support-directed)
+
+Coordinator policy had grown across `PROMPT.md`, a 1500-line runbook, a 700-line
+decision log, an access contract, and a learning log. Every one of those is correct
+and none of them answers the question an operating Coordinator actually asks:
+*given this situation, what may I do, with which command, under whose authority,
+and what proves it worked.* Reconstructing that from five documents mid-cycle is
+where sessions guess.
+
+`docs/CAPABILITY_REGISTRY.md` is that index. Each entry carries trigger, action,
+exact capability/command, authority/scope, evidence, escalation destination, and
+prohibited alternatives, grouped by situation family. `PROMPT.md` points every
+Coordinator at it in the per-turn bootstrap.
+
+It is deliberately a **router, not a retelling**: entries stay short and link to the
+deeper procedure. Duplicated procedure would drift, and a stale copy consulted first
+is worse than no copy. Precedence is explicit — `PROMPT.md` binds authority, the
+runbook binds procedure, and a disagreement is a defect fixed in both places in one
+change rather than left live.
+
+Known gaps are recorded as entries rather than omitted. Android emulator/device
+UI-QA has no verified Coordinator capability today, so the registry says exactly
+that and routes it to Support. An absent entry reads as "no guidance"; a recorded
+gap reads as "verified absent", which is the difference between a Coordinator
+escalating correctly and one inventing a workaround.
+
+The maintenance rule is the load-bearing part: a verified capability, limitation,
+workaround, or Support resolution must update the registry and every affected
+record in the same change. A capability proven in one session and not written down
+is lost at the next session boundary — the same failure the shared-knowledge
+discipline exists to prevent.

@@ -797,3 +797,39 @@ concrete.
 
 Files: `docs/RUNBOOK.md`, this log. `PROMPT.md` unchanged — the binding rule already
 routes Support through the broker — so no charter mirror is triggered.
+
+## 2026-08-29f — capability/situation registry
+
+Window: 2026-08-29T07:50Z to 2026-08-29T08:10Z. Support-directed implementation of
+a canonical capability/situation registry.
+
+- Created `docs/CAPABILITY_REGISTRY.md` (registry-version 2026-08-29a): 10 situation
+  families — board monitoring and adaptive polling; task supervision, flags,
+  blockers, workflow state, PR readiness and stale sessions; Coordinator
+  filesystem/workspace scope; task Compose versus the Coordinator source broker;
+  Android UI-QA/emulator; description/prompt synchronization; contacting autonomous
+  Kandev Support; owner routing across Support/board task/Human; hard boundaries;
+  and failure/status semantics. Every entry carries trigger, action, exact
+  capability, authority, evidence, escalation destination, and prohibitions.
+- Referenced prominently from the `PROMPT.md` per-turn bootstrap and listed in
+  README components. Deliberately built as a router with links, not a copy of the
+  runbook, because a duplicated procedure drifts and a stale copy consulted first is
+  worse than none.
+- Recorded a known gap honestly rather than omitting it: Android emulator/device
+  UI-QA has NO verified Coordinator capability, so the entry says so and routes to
+  Support. An absent entry reads as "no guidance"; a recorded gap reads as
+  "verified absent".
+- Added a binding maintenance rule in both the registry and `PROMPT.md`: a verified
+  capability, limitation, workaround, or Support resolution updates the registry and
+  every affected runbook/decision/learning record in the SAME change, and a
+  contradiction between them is a defect to fix immediately.
+- Validation: a link checker resolves every markdown target and heading anchor in
+  the registry, plus the inbound references from `PROMPT.md` and README, against the
+  real files and their computed slugs.
+
+Rejected as transient: live board contents, task/session IDs, and current request
+IDs. No secrets, tokens, or LAN URLs entered shared knowledge.
+
+Files: `docs/CAPABILITY_REGISTRY.md` (new), `PROMPT.md`, `README.md`,
+`docs/DECISIONS.md`, this log. `PROMPT.md` changed, so the live-description charter
+mirror is due.
