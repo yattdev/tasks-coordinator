@@ -624,3 +624,16 @@ host `~/.codex`, or retry unsupported workarounds.
 Rationale: this preserves host isolation while giving environment blockers a
 single named owner and a reproducible handoff instead of leaving workflow tasks
 stalled or cycling through ineffective retries.
+
+Two Coordinators reproduced the `-32600` failure independently, from different
+worktrees and sessions, on 2026-08-29. The CLI is installed and authenticated, so
+the call genuinely reaches the RPC layer; only the host thread's rollout state is
+absent. The finding is therefore recorded as SETTLED — later cycles escalate
+through the trail rather than re-probing it and burning turns.
+
+Corollary on capability discovery: a guarded broker may under-report itself.
+`docker kandev --help` announces `docker compose` support only, while
+`docker kandev source list` succeeds and returns the workspace inventory.
+Establish capability by running the specific documented operation, not by reading
+top-level help — otherwise a working authorized path is mistaken for a missing
+one, producing exactly the needless escalation this decision exists to prevent.

@@ -63,6 +63,16 @@ including production-like data requested by same-workspace tasks. Do not seek
 case-by-case human approval; broker enforcement is authoritative for target
 activity and workspace membership.
 
+Discover the broker's capabilities from `docker kandev source` (no arguments),
+which prints the authoritative subcommand list. Do NOT use `docker kandev --help`
+to decide what is available: it reports only `kandev-agent-docker: guarded Docker
+access supports 'docker compose' only` and never mentions `source`, even where
+`docker kandev source list` succeeds and returns the workspace inventory. Reading
+the top-level help alone leads to the wrong conclusion that the reviewed source
+broker is unavailable — and then to a needless escalation or a forbidden
+workaround. Confirm capability by running the operation. (`kandev-agent-docker-broker
+--help` blocks without output; do not call it.)
+
 Use progressive disclosure:
 
 1. `docker kandev source list` — authoritative container inventory; an empty
@@ -1399,6 +1409,10 @@ documented command from inside an agent container fails:
 
     Error: thread/resume: thread/resume failed: no rollout found for
     thread id 01a043b4-fe52-7020-94bb-de94e72f8a07 (code -32600)
+
+Independently reproduced from a second Coordinator worktree and session on
+2026-08-29 (same `-32600`, same absent rollout). Treat the finding as SETTLED:
+re-testing it each cycle only burns turns — escalate through the trail instead.
 
 The `codex` CLI is present (`/data/.npm-global/bin/codex`) and authenticated — the
 structured JSON-RPC `-32600` proves the call was made — but the thread's rollout

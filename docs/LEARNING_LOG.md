@@ -634,3 +634,53 @@ only git creates an `index.lock` — an argument that does not depend on descrip
 first needs correcting; the second needs evidence it cannot obtain from where it stands.**
 
 Files: `docs/LEARNING_LOG.md`.
+
+## 2026-08-29b — Kandev Support escalation route; broker capability discovery
+
+Window: 2026-08-28T04:01Z (last cycle receipt on this branch) to 2026-08-29T07:00Z.
+Shared `main` advanced from `78a21c6` to `6f42c9a` during the window and already
+absorbed both peer Coordinator branches, so this cycle's gathering was mostly
+verification rather than rescue.
+
+Lessons captured:
+
+- Environment blockers (missing tools/dependencies, permission failures,
+  unavailable host capabilities, absent emulator/device support) escalate to the
+  host `Kandev Support — Codex` agent, and are a distinct class from kandev
+  product defects, which remain board tasks under PLATFORM BUG DUTY. A peer
+  Coordinator landed the binding `PROMPT.md` rule and decision concurrently
+  (`fd65560`, `fa743df`) while this cycle was editing; the two versions were
+  synthesized rather than duplicated — main's leaner charter line and fuller
+  required-fields decision were kept, and only this cycle's genuinely additional
+  findings were grafted on. The README entry point remains this cycle's.
+- Agents cannot deliver a support request themselves. Independently reproduced the
+  documented `codex exec resume` failing with `no rollout found for thread id ...
+  (code -32600)` from a second Coordinator worktree/session — CLI installed and
+  authenticated, host thread state deliberately unmounted. Recorded as SETTLED so
+  later cycles stop re-probing it.
+- A guarded broker can under-report its own capabilities. `docker kandev --help`
+  says `guarded Docker access supports 'docker compose' only` and never mentions
+  `source`, yet `docker kandev source list` succeeds. `docker kandev source` with
+  no arguments is the authoritative capability list; establish capability by
+  running the documented operation. Reading top-level help alone would misread a
+  working authorized path as missing, producing a needless escalation or a
+  forbidden workaround.
+
+Rejected by the filter:
+
+- Re-documenting the support identity/thread ID and the delivery failure —
+  already covered by `6f42c9a`; sharpened in place with the reproduction and a
+  do-not-re-test instruction instead of adding a near-duplicate section.
+- The 2026-08-28 "shared main is read-only" claim — already retracted on main by
+  `8d85b0c` (mount namespaces are private). Not re-litigated here.
+- Transient and excluded: container names/IDs/images and workspace inventory from
+  `source list`, peer branch SHAs, live board status, and this Coordinator's
+  session ID.
+
+Cross-worktree note: this cycle began by fast-forwarding a peer branch and
+cherry-picking a second one, because both carried committed learning that shared
+`main` did not yet have. Both landed independently mid-cycle, so the duplicates
+were dropped on rebase — no learning was discarded, and the originals remain on
+`main` under their authors' commits (`67d9e9e`, `6fc33f7`, `66dbfd6`, `c1446b5`).
+
+Files: `PROMPT.md`, `README.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, and this log.
