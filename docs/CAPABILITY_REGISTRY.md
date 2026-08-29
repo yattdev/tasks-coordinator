@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-08-29f -->
+<!-- registry-version: 2026-08-29g -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -327,6 +327,6 @@ Rules:
 2. Route detail correctly: authority → `PROMPT.md`; procedure → `RUNBOOK.md`; rationale and supersessions → `DECISIONS.md`; the cycle receipt → `LEARNING_LOG.md`. This file holds the decision router only — link, do not copy long procedures.
 3. A contradiction with a linked document is a defect. Fix both sides in one change; never leave two live rules disagreeing.
 4. Record known gaps and conditional capabilities explicitly (see [E1](#e1-a-task-needs-an-android-emulator-or-on-device-ui-qa)) rather than omitting the situation — an absent entry reads as "no guidance", a recorded gap reads as "verified absent".
-5. Verify every added link resolves before committing.
+5. Verify every added link resolves before committing — and verify your checker first. A heading anchor is: lowercase; strip everything that is not a word character, whitespace, or ASCII hyphen (**underscores survive**, em-dashes and backticks do not); then replace **each** whitespace character with one hyphen (runs are **not** collapsed, so `IDLE — read` yields `idle--read`). A checker that strips underscores or collapses runs reports false breakage and invites "fixing" links that were already correct.
 6. **A capability claim must name what was executed.** Record a status as working only after running the capability in the context that will actually use it, and state the command and its observable result. Neither absence of documentation nor presence of configuration is evidence: on 2026-08-29 an exhaustive knowledge-base search wrongly concluded Android was unsupported, and a configuration inspection then wrongly reported it verified end to end — only an actual emulator launch settled it. Use the four honest statuses: **VERIFIED WORKING** (executed here, with evidence), **VERIFIED BLOCKED** (executed here, failed, with the exact error), **UNVERIFIED** (not executed in this context), and **NOT PROVISIONED** (deliberately absent by design).
 7. A verification does not transfer across execution contexts **or across process lifetimes**. Say which context was tested and when. A capability can be present, configured, and still unusable where it is needed; and a long-lived agent process keeps the device/group policy it was created with, so after an image rebuild or force-recreate an earlier negative result is stale until re-executed in a fresh process. Re-test before carrying any BLOCKED verdict forward, and never let a cosmetic display (e.g. namespaced ownership rendering as `nobody:nogroup`) stand in for an executed check — it reads identically whether access succeeds or fails.

@@ -1023,3 +1023,29 @@ Rejected by the filter:
 
 Files: `docs/CAPABILITY_REGISTRY.md` (rule 7, registry-version 2026-08-29f),
 `docs/RUNBOOK.md`. `PROMPT.md` unchanged — no charter mirror triggered.
+
+## 2026-08-29k — verify the instrument before acting on it
+
+Addendum to `2026-08-29j`, same window.
+
+- A link check flagged a peer's registry link as broken. The link was correct; the
+  **checker** was wrong — it stripped underscores from heading anchors, so
+  `#...-with-view_image` never matched. Correcting that then produced four fresh
+  false positives, because the second version collapsed whitespace runs while the
+  anchor format does not.
+- Canonical anchor rule, now recorded in registry maintenance rule 5: lowercase;
+  strip everything that is not a word character, whitespace, or ASCII hyphen
+  (underscores survive, em-dashes and backticks do not); replace **each** whitespace
+  character with one hyphen, without collapsing runs — so `IDLE — read` yields
+  `idle--read`.
+- The general lesson: **a validator is itself unverified until tested against a case
+  whose answer you already know.** Acting on the first result would have "fixed" a
+  working link into a broken one — the validator would have caused the defect it
+  claimed to find. Before trusting any checker, run it against one known-good and one
+  known-bad input.
+- This is the same shape as the day's other corrections, now at one more remove:
+  documentation absence was not capability absence, configuration was not execution,
+  and here a tool's verdict was not the property it claimed to measure.
+
+Files: `docs/CAPABILITY_REGISTRY.md` (maintenance rule 5, registry-version
+2026-08-29g), this log.
