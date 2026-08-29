@@ -277,6 +277,30 @@ Support-initiated end-to-end acceptance. Record kept because it establishes what
 
 **Rule this produced:** **a probe handed to you is a claim, not a fact.** Run it verbatim before recording it as the acceptance criterion; a probe that assumes an exported variable, a cwd, or a tool on PATH can fail in the direction that manufactures a false defect.
 
+**A2b result — `RESOLVED`, delivered proactively at ~16:51Z.** Corrected probe supplied and **verified by me verbatim: exit 0, no residue left in the cache directory.** It derives the path with `go env GOMODCACHE`, keeps the narrow-path assertion, and removes its probe on interrupt via a trap. Support also answered both side questions: `tests/test-agent-guard.sh:84` never reads `$GOMODCACHE` (it probes `/data/home/go` directly, so the in-repo regression was never exposed to the false negative), and the guard's persisted allowlist contains only `/data/home/go` at `scripts/kandev-agent-guard:343`.
+
+### Canonical Go-cache acceptance probe (verified 2026-08-29, exit 0)
+```sh
+sh -ceu '
+  gomodcache="$(go env GOMODCACHE)"
+  test "$gomodcache" = /data/home/go/pkg/mod
+  test -d "$gomodcache"
+  probe=""
+  cleanup() { [ -z "$probe" ] || rm -f -- "$probe"; }
+  trap cleanup EXIT HUP INT TERM
+  probe="$(mktemp "$gomodcache"/.kandev-write-probe.XXXXXX)"
+  test -f "$probe"; rm -f -- "$probe"; test ! -e "$probe"
+  probe=""
+'
+```
+**Run this after any container recreate.** Exit 0 is the acceptance criterion.
+
+### Degradation status corrected on evidence, not inference
+- **D9 (Go cache):** **partially resolved** — policy persisted in deployment source (`main` `7af25f5bad785aff7f2d1316d4cf170a9855be61` contains `aad8cd55`, binds only `/data/home/go`), current guarded writability verified. **Recreation-survival still unverified**; run the probe above after a recreate to close it.
+- **D14 (`lsof`):** **runtime and deployment definition verified; recreation persistence pending.** `/usr/bin/lsof` exists now and `Dockerfile.local:21` installs it persistently. **Deliberately NOT closed** on a single runtime observation — Support explicitly set that bar and it is the right one. Close only when a recreated guarded session again passes `command -v lsof`.
+
+**The wider rule both of these produced:** *a runtime observation proves the present, not the deployment.* Confirm the persisted definition **and** re-verify after recreation before closing an environment degradation.
+
 ---
 
 ## H. Who owns a problem: Support vs project task vs Human
