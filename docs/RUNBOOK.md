@@ -1914,3 +1914,36 @@ carrying an open finding without anyone pushing a commit.**
 This compounds the push-timing trap already recorded: a reading is bound to the SHA **and
 the draft state** it was taken under. Two PRs on this board went non-draft on numbers
 gathered seconds after a push; a third acquired a new thread purely from the flip.
+
+## `git cherry` is only valid for 1:1 history rewrites — it lies about squash merges
+
+`git cherry <upstream> <branch>` compares **individual patch-ids**. That makes it reliable
+for rebases and cherry-picks, where each original commit has one equivalent upstream, and
+**unreliable for squash merges**, where N commits collapse into one whose patch matches
+none of them individually. A squash-merged branch reports every commit as `+` — "absent
+upstream" — which reads exactly like unmerged work.
+
+Both cases occurred on 2026-08-29 and needed opposite treatment:
+
+- **Rebase (`f4136a59`/#2872):** `git cherry` marked all 8 local commits `-`. Correct — the
+  branch had been rebased, so each commit had a 1:1 equivalent. That is what disproved my
+  claim the work existed only on one disk.
+- **Squash (`55d2d589`/#2800):** `git cherry` marked all 3 branch commits `+`. **Wrong
+  reading if trusted** — main carried the squash as `afda29463`, and taking `+` at face
+  value would have reversed a correct Done placement.
+
+**For a possibly-squashed branch, compare content, not commits:**
+
+```sh
+# files the branch touched, then whether those files still differ from main
+files=$(git diff --name-only <main>...<branch>)
+git diff --stat <main> <branch> -- $files      # empty or drift-only => integrated
+```
+
+An empty result, or a delta that runs the *other* way (main ahead on unrelated files),
+means the work is integrated regardless of what `git cherry` says. Check the direction of
+any remaining delta before concluding: main having lines the branch lacks is ordinary
+drift, not lost work.
+
+Also search main for the squash itself — `git log <main> --grep='#<pr-number>'` — since a
+squash commit usually keeps the PR number in its subject.
