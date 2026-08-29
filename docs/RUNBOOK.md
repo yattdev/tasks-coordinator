@@ -2103,6 +2103,20 @@ them.
 2. intermittency that a single green push run does not disprove;
 3. an environment difference between push runs and PR runs.
 
+**Worked example, resolved 2026-08-29 — the discriminator that finally worked was a third PR.**
+Three PRs carried the same base-side test through their merge refs. Two failed it, on
+*different* shards; the third **passed the entire suite** — Desktop Smoke, 6 container shards
+and 14 normal shards — with the same test present in its merge ref. Combined with the base's
+own push run passing on that content, and with hypothesis 1 independently eliminated on both
+candidate diffs (one structurally, one because the failing test seeds its data through a mock
+the diff never touches), **the same content passing on one merge ref while failing on two
+others is the signature of intermittency, not of a deterministic branch-or-base defect.**
+
+The general move: **when a base-side test fails through merge refs, look for a sibling PR whose
+merge ref carries the same content and passed.** One green sibling does more to separate
+intermittency from a real defect than any amount of local reproduction on a branch that does
+not contain the test.
+
 **Where a branch's diff is plausibly connected to the failing assertion, hypothesis 1
 deserves ruling out before the task is told the failure is not its concern.**
 
