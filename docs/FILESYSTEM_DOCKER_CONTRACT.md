@@ -124,7 +124,7 @@ its own namespace, saw `ro`, and escalated a board-wide read-only regression tha
 exist. It imposed a dispatch hold, withheld an approved UX direction, and declined to start a
 requested task — all on invalid evidence.
 
-## 7. Implementation status — validated 2026-08-29T05:0xZ
+## 7. Implementation status — validated 2026-08-29T05:10Z
 
 Independently revalidated with reversible write probes from coordinator session
 `2b3b715c-8dff-43b6-af81-5d0f1f94f246`. See `docs/LEARNING_LOG.md` 2026-08-29c for evidence.
