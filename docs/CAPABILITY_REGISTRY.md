@@ -341,7 +341,7 @@ sh -ceu '
 | The problem is… | Owner | Route |
 |---|---|---|
 | Host/container environment: missing tool or dependency, permission/access failure, unavailable host capability, emulator/device support | **Kandev Support** | [G1](#g1-an-environment-blocker-stops-a-task) |
-| A defect in the kandev **product** (routing, env prep, scheduling, session lifecycle, API — anything in `kdlbs/kandev`) | **Board task** | Create one platform-bug task with symptom, evidence, where to look, and a regression-test acceptance criterion (PLATFORM BUG DUTY). Counts against the per-cycle budget |
+| A defect in the kandev **product** (routing, env prep, scheduling, session lifecycle, API — anything in `kdlbs/kandev`) | **Board task** | Create a platform-bug task with symptom, evidence, where to look, and a regression-test acceptance criterion (PLATFORM BUG DUTY). No per-cycle cap — create one card per verified defect, however many that is |
 | A defect in a task's own work | **That task's agent** | Direct it; do not implement for it |
 | Destructive/irreversible on unique state, or security/trust-boundary | **Human** | `ask_user_question_kandev` with concrete options + recommendation |
 | Human testing, physical access, or information only the Human has | **Human** | Visible ask — but never present ordinary task approval as the blocker |
@@ -370,7 +370,8 @@ Production, protected/release branch, cost, and external-communication **labels*
 - **Other tasks' descriptions**: never delete, close, or rewrite without separate explicit Human instruction; direction goes in comments.
 - **Spend**: no action whose cost the Human has not authorized; cost alone is not an approval gate, but committing new spend is.
 - **Production data**: sanitized, isolated, short-lived only; never mount, share, or mutate the main data store ([QA_INSTANCES](QA_INSTANCES.md)).
-- **Budget**: max 1 new task per cycle. Uncertain whether an action is in budget? It is not — queue it.
+- **Task creation**: UNLIMITED per cycle, any in-scope repo (platform, plugin, project), any kind of work — bugs, features, capability, docs, fixes. No numeric cap, no approval gate (human-directed 2026-08-29). The gate is **viability**: verify the need against live evidence, check no existing card covers it, and be able to state problem / why it matters / acceptance criteria. Cannot justify it on evidence? Do not create it.
+- **Other budget items**: uncertain whether a non-creation action is in budget? It is not — queue it.
 
 ---
 

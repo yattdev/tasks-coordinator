@@ -2749,12 +2749,20 @@ They had never said it. The charter says the opposite, in two places:
 > like any other task… Platform-bug tasks are **explicitly authorized
 > creations**."
 >
-> **ACTION BUDGET** — "Max 1 new task created per cycle: either to unblock an
-> existing task, or a platform-bug task per PLATFORM BUG DUTY."
+> **ACTION BUDGET** (as it read at the time) — "Max 1 new task created per
+> cycle: either to unblock an existing task, or a platform-bug task per
+> PLATFORM BUG DUTY."
 
-Creation is required and budgeted at one per cycle. There is no approval gate.
-My worktree was level with shared main at the time, so this was not staleness —
-I fabricated the rule and then acted on it for hours.
+Creation is required, and there is no approval gate. My worktree was level with
+shared main at the time, so this was not staleness — I fabricated the rule and
+then acted on it for hours.
+
+> **SUPERSEDED 2026-08-29** — the operator removed the per-cycle cap entirely.
+> Creation is now UNLIMITED across every in-scope repo, gated on verified
+> viability rather than a count. See "Task creation is unlimited — the gate is
+> viability, not volume" below. The lesson of this incident is unchanged and
+> now applies with more force: the invented constraint here was an approval
+> gate, and inventing a *numeric* one would be the same error.
 
 ### What it cost
 
@@ -2786,3 +2794,65 @@ failure directions cost the same:
 
 All three are the same error: sourcing authority from memory instead of the
 document that defines it.
+
+---
+
+## Task creation is unlimited — the gate is viability, not volume
+
+Human directive 2026-08-29 (Correction 34), granted immediately after
+Correction 33. The operator read the charter line I had quoted back at them and
+removed the constraint itself:
+
+> "Remove this limitation, I authorised unlimit tasks creations if revelant for
+> any repos. Revelant mean you double and judge right to create it not create
+> because you like without reach to confirm the viability. Tasks can create for
+> feature, add capability, bugs, docs update whatever to improve, fixes etc for
+> any repos (Plateform, plugin, project etc)."
+
+### What changed
+
+The `ACTION BUDGET` cap of **one new task per cycle** is gone. There is no
+numeric limit and no approval gate on creating a task. Scope is explicitly
+**every repository in scope** — the kandev platform (`kdlbs/kandev`), plugin
+repos, and project repos — and **every kind of work**: bugs, features, new
+capability, documentation updates, refactors, tests, chores, fixes,
+improvements of any sort.
+
+### What did NOT change
+
+The cap was the wrong control, not the only control. The replacement is a
+**viability gate**, and it is stricter per-card than the cap ever was. Before
+creating, you must be able to answer all four:
+
+1. **Evidence** — what live state proves this is real? The repo, the board,
+   backend logs, a reproduction. Not a hunch, not "this codebase would probably
+   benefit from", not a pattern you recognise from elsewhere.
+2. **Non-duplication** — does a card already cover it? Search the board first,
+   including Done and the human-owned backlogs. A second card for the same
+   defect splits its history.
+3. **Statement** — can you write the problem, why it matters, where to look,
+   and concrete acceptance criteria? If the acceptance criteria are vague, the
+   investigation is not finished and the card is premature.
+4. **Judgment** — did you decide it is worth doing, or did it merely appeal to
+   you? The operator's phrasing is the test: *"not create because you like
+   without reach to confirm the viability."*
+
+A card you cannot justify on evidence is noise. One well-scoped card beats
+three speculative ones. Cascading is still wrong — but the failure mode is
+**unverified** creation, not the count. Ten verified cards in a cycle is
+correct behaviour; one invented card is a violation.
+
+### Ordering
+
+When several are genuinely warranted in one cycle, sequence them: create the
+prerequisite first, then the dependent, and wire `blocked_by` on the
+**dependent** pointing at the prerequisite. Prose-only "this depends on that"
+is not mechanically visible on the board.
+
+### Why the operator gave this
+
+Correction 33 cost two confirmed platform defects a cycle of delay because I
+parked one and deferred the other as "queued for next cycle" under the budget.
+The budget was converting verified findings into a backlog the operator had to
+chase. Their standing complaint applies: *"you're a board manager and I'm not
+your alarm."* Ration the *unverified*, never the *verified*.

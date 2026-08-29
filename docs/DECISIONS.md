@@ -211,10 +211,26 @@ or polling loops, and makes session deletion harmless. The Coordinator plugin
 should expose the native schedule-at accelerator while retaining the plan
 ledger as authoritative state.
 
-## Action budget (1 task creation/cycle, bounded terminal cleanup)
+## Action budget (unlimited creation under a viability gate, bounded terminal cleanup)
 The coordinator is the highest-blast-radius agent: a misread board amplifies
-across every task in one cycle. Budgets cap the damage; loosen only after
-weeks of clean FYI/veto history.
+across every task in one cycle. The original control was a numeric cap of one
+task creation per cycle.
+
+**Revised 2026-08-29 (human-directed).** The cap is removed. Task creation is
+unlimited, across every in-scope repository — platform, plugin, and project —
+for bugs, features, capability, documentation, and fixes alike. The rationale
+for the change: a numeric cap does not distinguish a verified defect from a
+speculative one, so it rationed exactly the wrong thing. It let one unverified
+card through per cycle while forcing verified platform defects into a backlog
+the operator had to chase.
+
+The replacement control is a **viability gate** applied per card: live evidence
+for the need, a board search proving non-duplication, and a statement of
+problem / why it matters / where to look / acceptance criteria. That gate binds
+each creation individually, so it scales with volume instead of capping it. The
+blast-radius argument still holds — it is now answered by verification quality,
+not by arithmetic. Full procedure in RUNBOOK, "Task creation is unlimited — the
+gate is viability, not volume".
 
 Human-directed exception (2026-08-19): the Coordinator may move a task to Done
 when its trail proves it is abandoned, obsolete, or superseded, no further
