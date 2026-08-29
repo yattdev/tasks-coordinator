@@ -2440,3 +2440,55 @@ git fetch -q origin && git branch -r --contains <sha>   # now returns the ref
 
 `branch -r --contains` returning nothing is the actual definition of the
 exposure, so it is also the actual definition of the fix.
+
+## Untracked does not mean unpreserved — check `git log --all -- <path>` before calling it lost
+
+Incident 2026-08-29 (Correction 27). `9ededcef-07cd-45fa-97b1-6b899becef74`
+showed 22 untracked files under `apps/`, including real-looking Go and TSX
+sources. I called it "the worst preservation exposure on the board" and said
+problem 2 was "the serious one" — files existing "in exactly one place."
+
+All 22 already existed in repository history. `apps/web/app/office/layout.tsx`
+was committed in `0630a0284` (#2813), an ancestor of canonical main, and the
+same path appears across **50 worktrees** on this host — tracked in some, `M`
+in others, `??` in others. A file reads as `??` whenever the current branch's
+base predates the commit that introduced it. That is a statement about the
+branch, not about whether the content survives.
+
+### The check, before escalating anything as lost
+
+```sh
+git log --all --oneline -1 -- "<path>"     # empty => genuinely never committed
+```
+
+Run it per path. Cheap, and it separates the two cases that look identical in
+`git status`:
+
+- **`??` and absent from all history** — genuinely unique, act on it
+- **`??` but present in history** — a branch-state artefact, leave it alone
+
+The commits were the real exposure and they were handled separately; the
+untracked list was noise I amplified. Note the asymmetry in cost: treating
+untracked-but-preserved files as lost invites someone to commit another
+branch's content into the wrong card.
+
+## Never reconstruct a full UUID from a truncated display
+
+Same cycle, smaller. My own query printed `substr(id,1,8)`, and I then passed a
+full session UUID built around that prefix to `message_task_kandev`. No such
+session existed — `NOT_FOUND`. The real one shared the first 8 characters and
+differed after.
+
+`PROMPT.md` already requires writing full task UUIDs precisely because a
+truncated ID is unusable. The trap here is subtler: a truncated ID is not just
+unusable, it is *forgeable* — 8 hex characters look specific enough to complete
+from memory, and the completion will be wrong.
+
+Select the full column when you intend to use the value:
+
+```sh
+sqlite3 db "SELECT id FROM task_sessions WHERE ..."      # not substr(id,1,8)
+```
+
+It failed safely here only because the fabricated UUID matched nothing. It
+would not have failed safely had it matched something.
