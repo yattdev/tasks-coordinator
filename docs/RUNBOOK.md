@@ -2357,6 +2357,26 @@ Note it cuts both ways with the already-recorded inverse: `gh auth status` can
 report an invalid token while REST calls succeed. Neither summary command is
 evidence. Only the call you need is.
 
+**Second observation, 2026-08-29T18:18Z — sharper than the first.** Seconds
+apart, on the same `core` resource:
+
+```
+real call headers:  X-Ratelimit-Remaining: 0     Used: 5000   Reset: 1788028785
+gh api rate_limit:  remaining: 5000              used: 0      reset: 1788031115
+```
+
+Not merely stale — the two disagree on *every* field including the reset
+timestamp, which differ by 39 minutes. They are describing different buckets.
+Take the reset from the failing call's own `X-Ratelimit-Reset` header; the one
+`rate_limit` prints is for a window that is not blocking you, and waiting on it
+wastes the difference.
+
+Corollary: the limit **oscillates**. It cleared at 17:47Z ahead of its predicted
+18:36Z reset, then re-exhausted by 18:18Z. Re-test every cycle in both
+directions — do not assume a cleared limit stays cleared any more than you
+assume a stale one still holds. Git-over-SSH and `git ls-remote` are unaffected
+throughout; when the API is down, preservation pushes still work.
+
 ## Check whether the board already fixed it before you research the mechanism
 
 Incident 2026-08-29 (Correction 25). Support was blocked by a pre-commit hook
