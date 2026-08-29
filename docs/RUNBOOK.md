@@ -2221,3 +2221,70 @@ and 1514 upstream, with a call site at line 1024 that **does not compile on the 
 - **Do not "repair" a defect that exists only on a stale base.** It is history, not a bug;
   re-cut the tree from the canonical remote instead. And do not rewrite someone else's fork
   main to fix the staleness — that is their branch to manage.
+
+## More than one Coordinator runs on this host — resolve a task's workspace before acting on it
+
+A task ID looks globally unique, and it is. That is exactly what makes it
+misleading: it carries no visible hint of *which board it belongs to*, so a
+request naming one reads as addressed to you when it may not be.
+
+This host runs several workspaces, and at least two of them drive a long-lived
+Coordinator with the same title and its own HeartBeat cadence:
+
+| Workspace | ID prefix | Coordinator task |
+|---|---|---|
+| Kandev (mine) | `2e62401b` | `a68df3ae` |
+| Performcoop | `d35ace87` | `f2949187` |
+
+Their HeartBeats interleave with mine minutes apart (16:30:56 vs 16:30:59), so
+board timing alone will not tell you whose card you are looking at.
+
+### The check, before any task-scoped action
+
+```sh
+sqlite3 -header "file:/data/data/kandev.db?mode=ro" \
+  "SELECT w.name, t.workspace_id FROM tasks t
+     JOIN workspaces w ON w.id=t.workspace_id WHERE t.id='<task-id>';"
+```
+
+If the workspace is not yours, stop. The charter grants session spawning
+same-workspace only, and `kandev-agent-guard` enforces the same boundary
+independently — coordinator elevation is scoped to `$coordinator_workspace_id`
+(line 174). Read access across workspaces is permitted and is enough to
+diagnose; acting is not. Route it to that workspace's Coordinator instead.
+
+Note the asymmetry: `list_task_sessions_kandev` happily returned another
+workspace's sessions. **Being able to read it is not evidence you may act on
+it.** A permissive read path is a diagnosis affordance, not a grant.
+
+### Corollary: a fix verified at the boundary is not verified at the failure
+
+Support reported this hotfix RESOLVED having confirmed the mount boundary —
+`git status` and `git add -A --dry-run` passing under the guard, correct rw/ro
+bindings. But the recorded failure was an *ACP initialize handshake* failure
+(`write |1: file already closed`). Those commands never open a handshake, so
+every check could pass while the reported defect remained untouched.
+
+Before accepting any RESOLVED, ask: **does the evidence exercise the same code
+path as the error?** Cheapest objective test — has anything actually run since
+the fix landed?
+
+```sh
+stat -c '%y' /usr/local/bin/kandev-agent-guard    # when the fix landed
+sqlite3 "file:/data/data/kandev.db?mode=ro" \
+  "SELECT MAX(started_at) FROM task_sessions;"     # last launch anywhere
+```
+
+Here the guard changed at 17:05:18Z and the newest session anywhere had started
+17:01:12Z — four minutes *earlier*. Nothing had exercised the fix at all.
+
+Two further traps in the same report:
+
+- **Distinct `data.error` strings are distinct defects until proven otherwise.**
+  `write |1: file already closed` (task-session launch) and `peer disconnected
+  before response` (summarize/handoff) share a `-32603` envelope and nothing
+  else; the latter appears in no `task_sessions` row. Do not let one hotfix
+  silently close both.
+- **A live-patched binary is not a shipped one.** No image-baked copy existed;
+  a restart before the image lands reverts the fix and turns any earlier green
+  into a false record.
