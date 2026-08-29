@@ -2687,3 +2687,53 @@ action. "Needs an owner" and "none expected" are not next actions; they are
 placeholders that survive review because they read like conclusions. **Audit for
 weak wording in your own records, and re-read the card rather than re-reading
 your summary of it.**
+
+## Agent tags are self-scoped — to tag another card, delegate to that card
+
+Verified live 2026-08-29T22:08Z by a full round trip (`create_tag` → `add_tag`
+→ `list_tags` → `delete_tag`, catalog left empty afterwards). The tags plugin
+exposes six agent tools and they all work:
+
+```
+list_tags · create_tag · add_tag · remove_tag · update_tag · delete_tag
+```
+
+**None of them takes a task ID.** Every one is scoped to *the current task* —
+the card the calling agent runs inside. `add_tag` accepts only `tag_id` and
+`note`. So a Coordinator can label the single card that needs labelling least,
+and no other.
+
+### The workaround (operator-directed 2026-08-29)
+
+**To tag a card, delegate to that card.** Message the task and state exactly
+which tags to apply, update or remove; its own agent applies them to itself.
+Do not report tagging as impossible — it is reachable, just indirectly.
+
+Give the target the tag names and the intent, not a vague ask. If the tag does
+not exist yet, say so — the catalog is shared workspace-wide, so any agent can
+`create_tag` and every other agent will then see it.
+
+### Why the catalog is safe to share
+
+State is stored per workspace and keyed by task:
+
+```go
+host.GetState(ctx, "workspace", workspaceID, tagStateKey)   // one doc per workspace
+doc.Tasks[taskID]                                            // map within it
+```
+
+Tags carry `owner`, `agent` and `human` fields, so agent-applied tags stay
+distinguishable from the operator's, and `remove_tag` only removes *this
+agent's* application — an agent cannot strip a human's tag.
+
+### Scope of the fix, if you are asked
+
+`584997a4-90bc-4496-b2b8-184a6123b247` owns this. It is a **plugin-only**
+change — `yattdev/kandev-plugin-tags`, files `manifest.yaml` and
+`server/agent_tags.go`. The platform needs nothing: `AgentToolContext` in
+`apps/backend/pkg/pluginsdk/types.go` already carries `WorkspaceID` beside
+`TaskID`, and the workspace-scoped store means an accepted `task_id` can only
+ever write into the caller's own workspace. **Cross-workspace tagging is
+impossible by construction, not by a check anyone has to remember to write.**
+
+Do not repeat the investigation — read this, then verify only what you rely on.
