@@ -389,3 +389,20 @@ Window: 2026-08-29T02:00Z–02:45Z, triggered by direct Human review corrections
   symptom into a false global degradation.
 
 Files: `PROMPT.md`, `docs/LEARNING_LOG.md`.
+
+## 2026-08-29b — platform update left every task worktree read-only
+
+- After a Kandev platform update, `/data/tasks/<task>/…` worktrees and the shared common
+  git dir `/data/home/Code/kandev-source/.git` were mounted `ro`, while only the Coordinator's
+  own worktree and `/data/home/Code/coordinator` remained `rw`.
+- Symptom is silent until an agent attempts a write: sessions sit `WAITING_FOR_INPUT` and the
+  backend log shows no errors, because nothing has tried to stage or commit yet. A board can
+  therefore look healthy while being globally unable to do any implementation work.
+- Detection: probe `git -C <worktree> add -A --dry-run` and `touch $(git rev-parse --git-dir)`
+  rather than waiting for agent failures. Verified conclusively when a task that had committed
+  successfully two hours earlier could no longer stage.
+- Coordinator response: hold new task dispatch and implementation direction while worktrees are
+  read-only — dispatching work only manufactures guaranteed failures — and escalate the exact
+  mount list. Do not wake parked agents into a read-only filesystem.
+
+Files: `docs/LEARNING_LOG.md`.
