@@ -1763,3 +1763,52 @@ unwanted destination is gone. Verify by re-reading `pending_moves`.
 Columns are `id, session_id, task_id, workflow_id, workflow_step_id, step_position,
 queued_at, actor, sender_session_id, move_id` — note `step_position`, which is easy to
 misread as an applied/status flag when scanning a row positionally.
+
+## ⚠️ Check `pending_moves` before messaging any task — a stale queued move fires on resume
+
+A queued move has **no TTL**. It sits in `pending_moves` until the session it is keyed to
+reaches a turn boundary, however long that takes. Rows nine days old were found live on
+2026-08-29. `pending_moves.session_id` is the **task's** session that must complete a
+turn; `sender_session_id` is whoever requested the move.
+
+**The consequence: messaging a task can silently relocate it.** Sending to a task whose
+session is `WAITING_FOR_INPUT` resumes that session; when its turn completes, a move
+queued days ago by a long-gone Coordinator fires. You will have moved a card without
+intending to, and without the move appearing anywhere in your own cycle log.
+
+**This can move a card out of Done.** On 2026-08-29 a verified-Done task carried a queued
+move to Blocked, keyed to its `WAITING_FOR_INPUT` primary session — one message away from
+breaking the DONE TERMINAL-INTEGRITY gate, with no agent at fault.
+
+Before messaging, waking, or moving any task, check it:
+
+```sh
+sqlite3 -noheader -separator ' | ' "file:/data/data/kandev.db?mode=ro" "
+SELECT substr(pm.task_id,1,8),
+       COALESCE(cur.name,'(not on this board)') AS current_lane,
+       COALESCE(tgt.name,'?')                  AS queued_target,
+       pm.session_id, pm.queued_at
+FROM pending_moves pm
+LEFT JOIN tasks t ON t.id=pm.task_id
+LEFT JOIN workflow_steps cur ON cur.id=t.workflow_step_id
+LEFT JOIN workflow_steps tgt ON tgt.id=pm.workflow_step_id
+ORDER BY pm.queued_at;"
+```
+
+A row whose `queued_target` differs from `current_lane` is an armed move. Then classify
+it — cross-reference `pm.session_id` against `list_task_sessions_kandev` for that task:
+
+- **session present and `WAITING_FOR_INPUT` → LIVE.** It will fire the moment anything
+  resumes that session. Treat the task as message-unsafe until the row is cleared.
+- **session absent from the task's session list → orphaned.** It cannot fire. Leave it;
+  it is noise, not a hazard.
+- One task can carry **several** armed rows — `session_id` is `UNIQUE`, not `task_id`, so
+  each session that ever queued a move contributes its own. Read all of them.
+
+**Clearing an armed row is not yet a proven-safe operation.** Supersession works when you
+issue a move for a task whose session is the keyed one (verified 2026-08-29: re-issuing a
+move to the card's current lane retargeted the row in place, same row id, and it then
+cleared harmlessly). What is **not** established is whether issuing that move first
+*resumes* a dormant session and fires the old row before superseding it. Do not test that
+on a Done card. If a live row must be cleared on a card that matters, escalate rather than
+experiment.

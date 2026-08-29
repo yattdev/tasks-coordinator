@@ -1284,3 +1284,53 @@ unwatched — the fourth time in this session that an agent declining my instruc
 prevented the harm.
 
 Files: `docs/RUNBOOK.md`, `docs/LEARNING_LOG.md`.
+
+## 2026-08-29r — a queued move has no expiry, and messaging a task can fire one from nine days ago
+
+Found while auditing `pending_moves` board-wide rather than for a single card — which I
+had not done before, having only ever looked up the row for the task in front of me.
+
+Seven rows existed. **Every one targeted a lane different from where its card actually
+sat**, and the oldest had been queued nine days earlier. These are not residue; a queued
+move waits indefinitely for its keyed session to reach a turn boundary.
+
+| card | lane | queued target | keyed session | verdict |
+|---|---|---|---|---|
+| `7dac85e2` | **Done** | Blocked | `e4f06dea` `WAITING_FOR_INPUT` | **live** |
+| `9e67c426` | Blocked | CI Fixup | `d3720d53` `WAITING_FOR_INPUT` | **live** |
+| `9e67c426` | Blocked | Work | `3e60d669` `WAITING_FOR_INPUT` | **live** |
+| `52892e8e` | Blocked | Human-QA | `dd25091c` — absent from the task's sessions | orphaned, inert |
+
+### Why this matters more than it first looks
+
+`WAITING_FOR_INPUT` is not dormant in the sense that matters. **Sending a message resumes
+the session, and the resumed turn fires the queued move.** So an ordinary Coordinator
+action — nudging a silent task, asking a question, issuing a handoff — silently relocates
+the card, executing an instruction some other Coordinator queued days earlier. It will not
+appear in your cycle log as a move you made, because you did not make it.
+
+`7dac85e2` is the sharp case: a task I audited and deliberately left in Done, one message
+away from leaving Done for Blocked. The DONE TERMINAL-INTEGRITY gate can be broken with no
+agent at fault and no Coordinator intending it.
+
+### What generalises
+
+- **`session_id` is `UNIQUE`, not `task_id`.** A task accumulates one armed row per
+  session that ever queued a move — `9e67c426` carries two, pointing at different lanes.
+  Looking up "the" pending row for a task is the wrong mental model.
+- **The row's keyed session decides whether it is a hazard.** Present and
+  `WAITING_FOR_INPUT` → live. Absent from the task's session list → orphaned and inert.
+  Both look identical in `pending_moves` alone; the classification only exists once you
+  cross-reference `list_task_sessions_kandev`.
+- **I did not act on it.** The supersession trick is verified for clearing a row on a card
+  whose session is active, but whether issuing that move *first resumes* a dormant session
+  and fires the old row is untested. On a verified-Done card that is not an experiment
+  worth running blind — record and escalate instead. Given how much of today came from
+  acting on an unverified mechanism, the restraint is the point.
+
+Related: [[the board advances only on an explicit signal]] — that correction and this
+finding are the same lesson from opposite sides. There I invented a system behaviour that
+did not exist and blamed an agent for it; here a real system behaviour exists that would
+have been blamed on nobody at all.
+
+Files: `docs/RUNBOOK.md`, `docs/LEARNING_LOG.md`.
