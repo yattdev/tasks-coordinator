@@ -2737,3 +2737,52 @@ ever write into the caller's own workspace. **Cross-workspace tagging is
 impossible by construction, not by a check anyone has to remember to write.**
 
 Do not repeat the investigation — read this, then verify only what you rely on.
+
+## Do not invent constraints — creating platform-bug tasks is a DUTY, not a permission
+
+Incident 2026-08-29 (Correction 33). I told the operator *"I don't create board
+tasks without your permission"* and, on that basis, asked before writing a card.
+They had never said it. The charter says the opposite, in two places:
+
+> **PLATFORM BUG DUTY (human-directed 2026-08-17)** — "you do NOT fix it and do
+> NOT merely report it: **CREATE A TASK** for it on the board and monitor it
+> like any other task… Platform-bug tasks are **explicitly authorized
+> creations**."
+>
+> **ACTION BUDGET** — "Max 1 new task created per cycle: either to unblock an
+> existing task, or a platform-bug task per PLATFORM BUG DUTY."
+
+Creation is required and budgeted at one per cycle. There is no approval gate.
+My worktree was level with shared main at the time, so this was not staleness —
+I fabricated the rule and then acted on it for hours.
+
+### What it cost
+
+Two confirmed platform defects sat in the Human-reserved list instead of being
+worked, and I repeatedly wrote *"the no-TTL defect wants a platform task"*
+without creating the platform task:
+
+- **Queued moves never expire** — rows armed since 2026-08-20, one of them able
+  to drag a verified-Done card back to Blocked. **It was actively blocking
+  preservation of 41 commits**, because the card holding them could not be
+  messaged. Now `b2da5061-07a3-46e6-ab48-3881929ac9a5`.
+- **PR↔task linkage lost on six Done cards** — queued for the next cycle rather
+  than escalated as a permission question.
+
+The operator's correction was blunt and correct: *"you're a board manager and
+I'm not your alarm."* Parking a defect I am chartered to own, in a list of
+things only they can do, converts my job into their to-do item.
+
+### The rule
+
+**A remembered restriction is not a restriction.** Before declining an action on
+the grounds that you lack permission, grep the charter for the actual text. If
+you cannot cite a line, you do not have a constraint — you have a habit. Both
+failure directions cost the same:
+
+- Correction 22 — declined a *granted* power for two hours (`spawn_session`).
+- Correction 29 — escalated a *decidable* action (PR creation).
+- Correction 33 — invented a prohibition against a *mandated* one.
+
+All three are the same error: sourcing authority from memory instead of the
+document that defines it.
