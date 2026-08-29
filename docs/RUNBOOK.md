@@ -2487,6 +2487,20 @@ Run it per path. Cheap, and it separates the two cases that look identical in
 - **`??` and absent from all history** — genuinely unique, act on it
 - **`??` but present in history** — a branch-state artefact, leave it alone
 
+**Path history is the weak form of this check.** A path can have history while
+the bytes on disk right now are new. To prove the *content* is preserved, hash
+it and ask whether the object exists:
+
+```sh
+h=$(git hash-object "$f") && git cat-file -e "$h" && echo preserved
+```
+
+Applied to the 22 files above: **22 preserved, 0 unique.** That is the answer
+that actually closes the question — path history alone would have left open
+whether the working copies had diverged. Use `git log --all -- <path>` to
+triage quickly, then `hash-object`/`cat-file -e` before telling anyone their
+files are safe or that a stray needs an owner.
+
 The commits were the real exposure and they were handled separately; the
 untracked list was noise I amplified. Note the asymmetry in cost: treating
 untracked-but-preserved files as lost invites someone to commit another
