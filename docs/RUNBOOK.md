@@ -2492,3 +2492,60 @@ sqlite3 db "SELECT id FROM task_sessions WHERE ..."      # not substr(id,1,8)
 
 It failed safely here only because the fabricated UUID matched nothing. It
 would not have failed safely had it matched something.
+
+## To say what a commit did, read the diff — not the file it landed in
+
+Incident 2026-08-29 (Correction 28, and the second instance of this exact
+failure in one day — see Correction 24).
+
+I told `b74833e7-a05f-4cdf-81cf-db5b4c02f368` that `19fee65` "now binds" the
+Git common directory read-write, `<common>/worktrees` read-only, and the task's
+own admin entry read-write, citing guard lines 424–430. I had read those lines
+in the **running guard** and attributed them to the commit.
+
+They predate it:
+
+```sh
+git show 19fee65^:scripts/kandev-agent-guard   # 424/429/430 already present
+```
+
+The commit's entire guard change is three lines — a rename plus one added path:
+
+```diff
+-path_is_code_repo_gitdir() {
++path_is_approved_repo_gitdir() {
+-    for base in /data/home/Code "$host_code"; do
++    for base in /data/home/Code /data/repos/workspaces "$host_code"; do
+```
+
+An **allow-list widening**, not new mount semantics. Before it, a managed-repo
+worktree was denied at that check and never reached the binding stage; after it,
+the pre-existing bindings apply. The observable effect on the reported failure
+was what I claimed. The mechanism was not — and the agent was assessing
+redundancy of its own tested work against my description.
+
+### The rule
+
+A file shows you the *cumulative* state of every commit that ever touched it.
+Only the diff shows you what one commit contributed. When the claim is "this
+change did X" — especially when someone will delete tested code based on it:
+
+```sh
+git show <sha> -- <path>            # what this commit actually changed
+git show <sha>^:<path>              # what was already there
+git show --stat <sha>               # full blast radius, all files
+```
+
+Note the shape shared with Correction 24, where I asserted the guard was exiting
+early from reading its script and Support disproved it by observing the process.
+**Reading an artifact tells you its present state; it does not tell you how the
+state came to be, or what a specific actor did.** For causal claims, use the
+instrument that records the change: the diff, or direct observation.
+
+### When the other party cannot see the source
+
+`b74833e7` could not fetch `19fee65` — it lives in the deployment repository,
+not `kandev-source`. It said so plainly and declined to remove behavior it could
+not verify against, which was correct. If you have the read access and they do
+not, paste the verbatim diff rather than paraphrasing it. A paraphrase is how
+the error above reached them in the first place.
