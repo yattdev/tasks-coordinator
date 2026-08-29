@@ -731,3 +731,23 @@ workaround, or Support resolution must update the registry and every affected
 record in the same change. A capability proven in one session and not written down
 is lost at the next session boundary — the same failure the shared-knowledge
 discipline exists to prevent.
+
+## Local QA image inspection is a verified capability, not a metadata check (2026-08-29, corrective)
+
+The approved `view_image` capability is VERIFIED WORKING after the Kandev runtime
+recreation. In the consuming QA session, desktop-web, responsive-web, and native
+Android PNGs all decoded immediately and their actual rendered contents were
+inspected successfully. Earlier hangs came from pre-recreate execution contexts and
+do not describe the repaired runtime.
+
+The distinction matters in both directions. A valid PNG, dimensions, checksum,
+DOM/XML hierarchy, or clean console does not prove pixels are correct; conversely,
+a tool transport hang does not prove feature code is wrong. QA records visual
+content only after decoded inspection. A fresh bounded hang is routed as one Kandev
+platform board defect with preserved artifacts, not as a host-environment Support
+request and not as a reason to rewrite the feature.
+
+Responsive web and native UI also remain separate evidence classes. A screenshot
+may pass visually and still not satisfy a native-device criterion if it came from a
+browser viewport. The registry and runbook therefore require explicit per-file and
+per-platform labeling.

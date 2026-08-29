@@ -953,3 +953,33 @@ acceptance evidence, not as a permanent catalogue promise.
 Files: `PROMPT.md` (binding E1 reference/status), `docs/CAPABILITY_REGISTRY.md`
 (E1 rewritten, registry-version 2026-08-29d), `docs/RUNBOOK.md`,
 `docs/DECISIONS.md` (superseded gap rationale), this log.
+
+## 2026-08-29j — approved local image inspection is VERIFIED WORKING (corrective)
+
+Window: 2026-08-29T08:41Z to 2026-08-29T09:01Z. A QA task that had preserved all
+feature evidence but repeatedly hung in `view_image` was resumed after the Kandev
+runtime recreation and ran one bounded consuming-session retry.
+
+- **Final status: VERIFIED WORKING.** Desktop-web, responsive-web, and native
+  Android PNGs all decoded immediately through the approved image-inspection
+  capability. The QA agent inspected the actual rendered content, confirmed the
+  disabled historical participant and stored answer with no task-related clipping,
+  overlap, or error artifact, recorded a visual PASS, and advanced the workflow.
+- **Corrective:** the earlier hang was valid evidence for the pre-recreate process,
+  but not for the repaired runtime. Capability status must include process lifetime;
+  after a known runtime recreation, one fresh bounded execution supersedes a stale
+  process result.
+- **Evidence classes remain strict:** image metadata and DOM/XML hierarchy are
+  useful preflight evidence but never pixel acceptance. Responsive web is not
+  native UI. A platform-tool hang is not a feature-code failure.
+- **Routing:** a fresh bounded `view_image` hang is a Kandev product/tool defect and
+  belongs in one platform board task with preserved artifacts. It does not route to
+  host-environment Support, and it does not justify unbounded retries.
+
+Rejected as transient: task/session IDs, artifact paths, image hashes, and exact
+tool-call timestamps. The three image classes are retained only as reproducible
+acceptance evidence.
+
+Files: `docs/CAPABILITY_REGISTRY.md` (new K1, registry-version 2026-08-29e),
+`docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log. `PROMPT.md` unchanged because the
+existing binding registry-maintenance rule already covers the capability.

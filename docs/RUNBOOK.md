@@ -1582,3 +1582,34 @@ Genuinely code-only mobile work still uses the ordinary `TEST_RUNTIME=NONE` path
 that is not a stand-in for UI-QA that a criterion actually requires.
 
 Registry entry: [E1](CAPABILITY_REGISTRY.md#e1-a-task-needs-an-android-emulator-or-on-device-ui-qa).
+
+## Inspecting QA screenshots with `view_image`
+
+**Status 2026-08-29: VERIFIED WORKING after the Kandev runtime recreation.** Use the
+approved image-inspection capability for screenshots already present in a task
+workspace or `/tmp`; filesystem metadata is only a preflight, not visual evidence.
+
+1. Confirm the exact artifact belongs to the task and preserve it until the QA/PR
+   handoff is durable. `file`, dimensions, and a hash may establish integrity but do
+   not establish what is rendered.
+2. Call `view_image` with the absolute path and `detail=original` for every decisive
+   screenshot. Inspect the actual criterion: content, state, clipping, overlap,
+   error artifacts, and any required platform-specific UI.
+3. Record a per-file PASS/FAIL receipt. Label responsive-web images as responsive
+   web; they never substitute for native-device evidence.
+4. If a call remains RUNNING without output, terminate it at a bounded interval and
+   preserve the path, timestamp, duration, and termination result. After a known
+   runtime/process recreation, perform exactly one fresh consuming-session retry.
+5. If the fresh retry still hangs, treat it as a Kandev product/tool defect, create
+   or update one platform board task, and physically Block the dependent task with a
+   preservation receipt and deterministic resume trigger. Do not route a missing
+   Kandev platform feature to Kandev Support and do not modify feature code merely
+   to compensate for an inspection failure.
+
+Recovery receipt: after the 2026-08-29 runtime recreation, three previously blocked
+valid PNGs (desktop web, responsive web, and native Android) decoded immediately in
+the owning QA session. Their visual contents passed and the task advanced. This
+supersedes pre-recreate hang evidence for the current capability status; the bounded
+failure procedure remains the correct regression path.
+
+Registry entry: [K1](CAPABILITY_REGISTRY.md#k1-a-task-has-local-png-screenshots-that-require-visual-acceptance).

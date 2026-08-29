@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-08-29d -->
+<!-- registry-version: 2026-08-29e -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -298,6 +298,19 @@ Production, protected/release branch, cost, and external-communication **labels*
 ### J6. Unexplained board state
 - **Action** Suspect your own persistence failure FIRST. Compare your last successful state write against the board's change timestamps and read the actual move/handoff message — it carries the actor's tag.
 - **Never** Invent an external actor to explain state you cannot account for, and never escalate that fiction.
+
+---
+
+## K. Visual QA image inspection
+
+### K1. A task has local PNG screenshots that require visual acceptance
+- **Status** **VERIFIED WORKING — approved local image inspection.** This is distinct from checking file type, dimensions, or hashes, which do not prove visual content.
+- **Trigger** QA requires pixel/content inspection of screenshots already preserved in a task workspace or `/tmp`.
+- **Action** Use the approved `view_image` capability on each decisive PNG, inspect the rendered content against the criterion, and record a per-file PASS/FAIL receipt. Follow [Inspecting QA screenshots](RUNBOOK.md#inspecting-qa-screenshots-with-view_image).
+- **Capability** `view_image({path: <absolute-local-path>, detail: "original"})` for task-workspace or temporary images.
+- **Evidence (verified 2026-08-29 after the Kandev runtime recreation)** Three valid PNGs — desktop web, responsive web, and native Android — decoded immediately in the consuming QA session. The agent visually confirmed the disabled historical participant and stored answer, with no task-related clipping, overlap, or error artifact, then advanced QA.
+- **If it fails** One bounded retry after a known runtime/process recreation is enough. A fresh call that remains RUNNING without output is a Kandev product/tool defect: preserve the artifacts, record path/timestamp/duration and termination receipt, and route one platform board task under [H](#h-who-owns-a-problem-support-vs-project-task-vs-human). It is not a host-environment Support request and not a feature-code failure by itself.
+- **Never** Substitute `file`, dimensions, checksums, DOM/XML hierarchy, responsive-web output, or console cleanliness for the required visual/native evidence. Never repeat unbounded hangs or delete the preserved images before the receiving QA/PR step has durable evidence.
 
 ---
 
