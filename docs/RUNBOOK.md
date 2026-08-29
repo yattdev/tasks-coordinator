@@ -1408,6 +1408,17 @@ and a `changed` flag:
 Verify afterwards rather than trusting the receipt: read the description back and
 diff it against `PROMPT.md`. Run this after **every** `PROMPT.md` change.
 
+**"Every change" includes changes you did not make.** `PROMPT.md` is shared, so it also
+advances when you merge or fast-forward another Coordinator's work — and your mirror goes
+stale without you touching the file. On 2026-08-29 a mirror verified at 64,483 bytes was
+still live while `PROMPT.md` had reached 66,615 through four other Coordinators' commits
+arriving via a merge; re-running the update returned `changed: true`, confirming running
+Coordinators had been on a stale charter. **Re-mirror after any operation that can move
+`PROMPT.md`, including a merge, a rebase, or a fast-forward** — not only after you edit it.
+
+A cheap way to catch it: after syncing the shared repo, compare `wc -c < PROMPT.md`
+against the byte count in your last mirror receipt. A mismatch means re-mirror.
+
 Background: the local API is not a substitute — `PATCH http://localhost:38429/api/v1/tasks/<id>`
 returns 401 from inside an agent container even with `KANDEV_FEATURES_AUTH=false`.
 Do not go looking for a credential to work around that; use the broker.

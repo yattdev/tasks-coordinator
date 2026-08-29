@@ -775,3 +775,43 @@ executed.
 Rationale: the asymmetry matters. A stale WORKING verdict fails loudly the next time
 someone uses the capability. A stale BLOCKED verdict is silent — work is scoped
 around a limitation that no longer exists, and nobody discovers the cost.
+
+## Granted powers are exercised, not re-litigated against tool text (2026-08-29, incident-derived clarification)
+
+Clarifies **Blessed unblock powers (2026-08-18, human-approved)** rather than superseding
+it. The grant stands unchanged; what was missing was a precedence rule for when a tool's
+own description is narrower than the grant.
+
+**What happened.** `spawn_session_kandev` describes itself as for use "only when the user
+explicitly requests another Kandev session or a Kandev workflow requires session
+coordination." The 2026-08-18 grant — restated in `PROMPT.md` under BLESSED UNBLOCK POWERS
+— authorises spawning onto a stuck same-workspace task. On 2026-08-29 a Coordinator
+repeatedly declined to spawn, reasoning from the tool text, and reported to the Human each
+cycle that it "still had not spawned." A task stayed unreachable for over two hours with a
+hung primary session, no live sibling to route through, and a non-draft pull request
+presenting as merge-ready while carrying an unresolved false-reject defect.
+
+**The decision: the charter governs.** Where a granted power and a tool description
+disagree on permission, exercise the power, log it, and leave it vetoable — that is what
+"used sparingly, always logged, vetoable" already provides for. Do not re-derive permission
+from tool text on each use; powers granted once decay silently if every use requires
+re-authorisation.
+
+**Preconditions actually worth checking** — these are about safety, not permission, and all
+four were verified before the eventual spawn:
+1. same workspace as the Coordinator;
+2. the target session is *provably* stuck — `updated_at` frozen across several cycles **and**
+   no worktree writes — not merely quiet;
+3. nothing at risk in the worktree: clean tree, ahead-of-remote 0;
+4. no live non-primary session already available, since messaging an existing one via
+   `session_id` is lighter than spawning.
+
+**Evidence that the two-agents-on-one-worktree fear was overweighted.** Earlier the same day
+a sibling session ran on a different hung-primary task for 15+ minutes with no conflict and
+no primary wake-up. The 2026-08-17 incident that motivated the caution involved spawning
+onto a *healthy* session misread as stalled — which precondition 2 is what prevents.
+`PROMPT.md` also notes a step pin may override the requested profile; verify the effective
+profile after spawning.
+
+Related: `docs/RUNBOOK.md` "A hung primary session is not always the end — check for a live
+sibling session"; `docs/LEARNING_LOG.md` 2026-08-29.
