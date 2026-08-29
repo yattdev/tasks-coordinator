@@ -1845,3 +1845,48 @@ If a PR turns up, ask the task agent whether it was ever linked — its own hist
 distinguish a regression from an omission, and yours cannot. Note that an unlinked PR is
 invisible to board tooling: its CI cannot be resolved without manually mapping the branch
 to a provider repo.
+
+## `queued` vs `sent` tells you the target's session state — and a hung session is unreachable
+
+`message_task_kandev` returns `sent` when the target session can accept immediately and
+**`queued` when it is running** — the message waits for the turn boundary, exactly like
+`pending_moves`. So the return value is a free read on the target's liveness.
+
+**A repeated `queued` on one task while others return `sent` means that session is mid-turn
+and staying there.** Confirm it is hung rather than merely busy — all three together:
+
+```sh
+# 1. session state and how long since it last advanced
+#    (list_task_sessions_kandev -> state RUNNING, updated_at not moving)
+# 2. no worktree activity
+find <worktree> -type f -not -path '*/.git/*' -printf '%TY-%Tm-%Td %TH:%TM %p\n' | sort -r | head -3
+# 3. nothing at risk if it is restarted
+git -C <worktree> status --porcelain | wc -l        # 0
+git -C <worktree> rev-list --count @{u}..HEAD       # 0
+```
+
+Observed 2026-08-29: a session reported `RUNNING` for 57 minutes with no file touched and
+no `updated_at` change, while three Coordinator messages stacked up behind it. The agent
+was not ignoring anything — it could not receive.
+
+### What a Coordinator can and cannot do about it
+
+**Both remedies are parent-gated and unavailable for a task you did not spawn:**
+
+- `message_task_kandev` with `delivery_mode="interrupt"` → `FORBIDDEN: delivery_mode="interrupt" is only allowed when the sender is the target task's direct parent`
+- `stop_task_kandev` → same restriction; "only its direct parent may call this halt-only tool"
+
+Both fail loudly rather than silently queueing, so **attempting the interrupt is safe** and
+is the correct first move once you have verified nothing is at risk.
+
+`spawn_session_kandev` is not parent-gated, but **do not reach for it here.** Its own
+guidance restricts it to cases where the user explicitly asks or a workflow requires
+session coordination, and putting a second agent on a worktree already owned by another is
+how two agents ended up sharing one checkout for ~40 minutes earlier in this session. A
+hung session is not a dead one; it may resume.
+
+**So a hung session on a task you do not parent is a genuine escalation**, not something to
+engineer around. Record it with the three pieces of evidence above, classify the task
+`stalled` rather than `waiting`, and put it to the Human with the restart options. Note in
+the record that the agent's silence is a platform symptom and not a performance judgement —
+the queued messages prove it never had the chance to respond.
