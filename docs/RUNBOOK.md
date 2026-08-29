@@ -2327,3 +2327,65 @@ The same report blamed "golangci-lint lock contention" and advised waiting for t
 - **Is anyone holding it?** Both candidate locks on shared `/data` were two days stale with no holder. "Wait for the owner" waits on nothing when the owner is already gone.
 
 State your blind spots when you report this: a container PID namespace cannot see host processes, and container `/tmp` is a different filesystem from the host's, so *absence of a holder in my view is not proof of absence.* Ask the party who can see the host to identify it by name and PID rather than asserting it is stale.
+
+## `gh api rate_limit` is exempt from its own limit — it will tell you the quota is full while every real call 403s
+
+`PROMPT.md` already says to test the exact capability you need rather than
+trusting a summary command, and to record which surface was actually tested.
+This is the sharpest instance of that so far, because the misleading surface is
+the one whose entire purpose is reporting the limit.
+
+Observed 2026-08-29T17:36Z, seconds apart:
+
+```
+gh api rate_limit   -> core {limit:5000, remaining:5000, used:0}
+                       graphql {limit:5000, remaining:5000, used:0}
+gh api repos/kdlbs/kandev/pulls?head=...
+                    -> HTTP 403 "API rate limit exceeded for user ID 79718216"
+```
+
+Both statements were true at once. The `rate_limit` endpoint does not count
+against the limit and, when the account is throttled by a *secondary* limit
+rather than exhausted primary quota, it keeps reporting a pristine budget.
+
+**So `rate_limit` cannot clear or confirm a provider hold.** Probe with a real
+content call — the cheapest read you actually need. Take the reset timestamp
+from the 403's own headers/body, not from `rate_limit`'s `reset` field, which
+describes a window that is not the one blocking you.
+
+Note it cuts both ways with the already-recorded inverse: `gh auth status` can
+report an invalid token while REST calls succeed. Neither summary command is
+evidence. Only the call you need is.
+
+## Check whether the board already fixed it before you research the mechanism
+
+Incident 2026-08-29 (Correction 25). Support was blocked by a pre-commit hook
+that hardcoded `origin/main`. I traced the mechanism carefully and correctly —
+remotes, divergence, `--new-from-rev` semantics, blast radius — then sent it as
+a finding and suggested reconsidering the hook's design.
+
+The fix had merged **two days earlier**: PR #3074, `b3cdbf858`, replacing the
+hardcoded ref with a fork-aware `scripts/resolve-go-lint-base`, shipped with a
+154-line test. The board card that owned it, `63d60af8-d1b8-48ef-a7c8-043a4488dd7a`
+("Fix fork-aware Go lint base resolution"), was sitting in Done **and was listed
+in my own ledger.** I found it a few minutes later during the routine board
+census, and had to send a correction.
+
+Nothing about the mechanism analysis was wrong. The failure was ordering: I
+researched before checking whether the answer was already owned.
+
+### The cheap check, first not last
+
+Before investigating any defect, grep the ledger and the Done column for its
+subject:
+
+```sh
+grep -in '<subject keyword>' /tmp/plan.md          # your own ledger
+git -C <repo> log --oneline --all --grep='<keyword>' -i | head
+```
+
+A Done card is not archived history — it is the record of what this board has
+already solved. Treat it as the first source consulted, not the place you
+happen to notice something afterwards. The cost of skipping it here was a wrong
+recommendation sent to another party, inviting them to rebuild something that
+already existed with tests.
