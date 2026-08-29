@@ -421,6 +421,7 @@ That claim was WRONG and is retracted. Do not act on the earlier version.**
   `gh api rate_limit` reports full quota — a secondary rate limit, tracked separately.
 
 Files: `docs/LEARNING_LOG.md`.
+
 ## 2026-08-29c — Filesystem & Docker contract independently validated PASS after the live-attestation fix
 
 Rerun of the agreed contract (`docs/FILESYSTEM_DOCKER_CONTRACT.md`) from coordinator session
@@ -1486,3 +1487,30 @@ the Human reads, so the card is not mistaken for an agent that stalled.
 Related: [[flipping draft to ready is itself a review trigger]].
 
 Files: `docs/LEARNING_LOG.md`.
+
+## 2026-08-29v — proactive Support delivery plus guarded-session acceptance
+
+Two environment acceptance requests produced an important split in evidence ownership.
+The broker delivered both results automatically to the Coordinator without polling or a
+Human relay, so transport and routing were proven. Support nevertheless returned
+`BLOCKED`: it could inspect the deployment policy but had no reviewed operation for
+executing inside the named guarded task session.
+
+That did **not** mean the capabilities were blocked. Running the supplied checks in the
+actual session proved both:
+
+- guarded Android/KVM wrappers booted a listed headless AVD to
+  `sys.boot_completed=1`, returned API/model data, captured a valid screenshot, and
+  shut down without residual emulator/qemu/adb processes; physical USB remains
+  intentionally unprovisioned;
+- task-owned `docker compose` started and executed a disposable service, while direct
+  unrelated `docker inspect`, `docker exec`, and `docker stop` each failed closed
+  with exit 78 before daemon access.
+
+Durable lesson: a Support-side runner gap and an unavailable task capability are
+different claims. A proactive `BLOCKED` response proves delivery but must be interpreted
+at the exact boundary it names. When Support supplies safe in-scope acceptance commands,
+execute them in the owning guarded session, preserve the boundary, and send one fresh
+evidence-bearing follow-up only if the delivered result remains incomplete.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, this log.

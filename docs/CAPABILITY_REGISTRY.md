@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-08-29h -->
+<!-- registry-version: 2026-08-29i -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -156,9 +156,12 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 ## D. Docker: task Compose vs Coordinator source broker
 
 ### D1. An ordinary task needs containers
+- **Status** **VERIFIED WORKING — task-scoped Compose with fail-closed raw Docker.**
+- **Action** Run Compose only from a disposable or task-owned directory inside the current task root. For an isolation acceptance test, prove one task-owned service can start and execute, then prove unrelated direct Docker operations are rejected before daemon access. Follow [Verify task-scoped Compose isolation](RUNBOOK.md#verify-task-scoped-compose-isolation-from-a-guarded-task-session).
 - **Capability** Task-scoped `docker compose` only, inside its own task scope.
 - **Authority** The task's own. The Coordinator directs; it does not run the task's runtime for it.
-- **Never** Raw daemon or socket access, by any principal.
+- **Evidence (verified 2026-08-29)** A disposable Alpine Compose service started and its in-volume ready marker was readable; `docker inspect`, `docker exec`, and `docker stop` against an unrelated name each exited 78 with `guarded Docker access supports 'docker compose' only`. The disposable container, network, volume, file, and directory were removed.
+- **Never** Raw daemon or socket access, another Docker binary, bind mounts outside the task root, or an unrelated container. If a read-only direct probe unexpectedly succeeds, stop the negative test before issuing a mutating command and report the boundary regression.
 
 ### D2. The Coordinator needs workspace container data
 - **Trigger** Diagnosis needs container metadata, logs, or task data.
@@ -242,6 +245,22 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Action** **Stop.** The final result arrives automatically as a new Coordinator message. Do not poll `status` in a loop and never ask the Human to relay. Verify the delivered claim independently before acting on it; if the result is incomplete or exposes a further defect, send a **fresh** request rather than resending the old one.
 - **Evidence** Verified end-to-end 2026-08-29 (acceptance run below): results arrived as Coordinator messages with no status polling and no human relay.
 - **Never** Poll continuously; treat a delivered claim as verified without checking it yourself; resend an unchanged request.
+
+**A delivered `BLOCKED` result can still be a successful transport receipt but an
+incomplete acceptance result.** If Support names a guarded-session assertion it cannot
+execute and supplies a safe in-scope command, run that assertion in the named session.
+Do not mark the underlying capability Blocked merely because Support lacks a cross-session
+runner. If the assertion passes, send one fresh evidence-bearing Support request only when
+the delivered result explicitly requires a follow-up; if it fails, send the exact output
+as the new defect. Never duplicate the original request.
+
+**B1/B2 acceptance (verified 2026-08-29).** Both host/mobile and scoped-Docker
+requests arrived automatically as Coordinator messages without polling or Human relay.
+Support correctly declared its inability to execute inside the live guarded session.
+Coordinator-side execution then passed: the Android wrapper booted a KVM-backed
+`Pixel_3_API_29`, collected API/model/PNG evidence, and shut down cleanly; task-scoped
+Compose succeeded while unrelated `inspect`/`exec`/`stop` commands failed closed
+with exit 78. Physical USB remains NOT PROVISIONED.
 
 ### G5. The broker fails closed on bad input — exit 78, no request created
 - **Trigger** Malformed JSON, or any of the four required strings missing/empty.

@@ -1585,6 +1585,56 @@ Useful and non-obvious: `/home/ayattara/Code/kandev` **is** readable from inside
 container at its host path, so host paths quoted in a request can be verified before
 sending even though host Codex state cannot.
 
+### Proactive result delivery and a Support-side execution boundary
+
+Support results can arrive automatically as new Coordinator messages, with no Human
+relay and no `status`/`receive` polling. When an acceptance request explicitly tests
+that delivery mode, record the request ID and wait for the message; polling would
+invalidate the test.
+
+A proactive `KANDEV_SUPPORT_STATUS: BLOCKED` proves transport worked, not necessarily
+that the requested capability is unavailable. Support may be unable to enter the named
+guarded task session even though that session can execute the acceptance itself. Handle
+that case narrowly:
+
+1. Verify the response names the exact missing Support-side runner and supplies safe,
+   in-scope acceptance commands.
+2. Run those commands only in the named task root/session. Preserve the original
+   security boundary; do not substitute raw Docker, host execution, credentials, or a
+   broader device mount.
+3. Record command output, exit codes, cleanup, and the independent PASS/FAIL.
+4. If the delivered result explicitly remains incomplete, send one fresh Support request
+   containing the independent evidence and expected closure. Await its proactive result;
+   do not poll or duplicate it.
+
+Verified 2026-08-29: Android/KVM and task-scoped Docker requests were routed correctly
+and delivered proactively. Support could inspect deployment policy but not execute
+inside the live guarded Coordinator session. Coordinator-side execution passed both
+acceptance suites; this was a runner-scope boundary, not an Android or Docker isolation
+failure.
+
+## Verify task-scoped Compose isolation from a guarded task session
+
+Use a disposable directory under the current task root. Define a minimal service with a
+named volume, start it through `docker compose up -d`, and prove
+`docker compose exec -T <service> test -f <marker>` succeeds. Record the generated
+project/container identity so the positive evidence is unambiguously task-owned.
+
+Then test the negative boundary sequentially:
+
+    docker inspect <unrelated-name>
+    docker exec <unrelated-name> true
+    docker stop <unrelated-name>
+
+Each command must fail before daemon access with broker rejection and a non-zero exit
+(verified exit 78). Safety ordering matters: if the read-only `inspect` unexpectedly
+succeeds, stop immediately and do not attempt `exec` or `stop`; report the isolation
+regression through Kandev Support. Do not try another Docker binary or socket.
+
+Finish with `docker compose down -v --remove-orphans` from the exact disposable
+directory, remove only the files/directories created by the probe, and verify no task
+resource or repository change remains.
+
 ## Android UI-QA through the guarded emulator/adb wrappers
 
 **Status 2026-08-29: VERIFIED WORKING for guarded headless AVD UI-QA.** Physical
