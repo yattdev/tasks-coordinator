@@ -2997,3 +2997,63 @@ Two habits that catch it:
 - Cross-check against the plan. The correct id was already recorded there from an
   earlier cycle; the ledger disagreed with the value I had just extracted, and the
   ledger was right.
+
+---
+
+## An upstream PR is not a dead end — notify the maintainer
+
+Human directive 2026-08-29 (Correction 37), given right after I reported an
+upstream PR as something the operator should merge:
+
+> "From now any mergeable PRs under the repo kdlbs/ should notify
+> @carlosflorencio to take review, he's the maintainer should notify for new
+> push, chance. Of course the PRs should be ready first. Tasks that land repo
+> under kdlbs/ could also notify @jcfs and @zeval if the tasks touch mostly
+> this think that they already touched."
+
+### What this corrects
+
+Correction 36 taught me that `kdlbs/*` PRs are not the operator's to merge, and
+I moved them to WATCH. But I wrote WATCH as *"only option is pinging the
+maintainer or waiting"* — describing an action and then not taking it, while
+leaving it in a column that reads as passive. That is the same failure as
+parking a verified defect: I identified the move and assigned it to nobody.
+
+The routine nudge is **mine**. Only a personal escalation is the operator's.
+
+### The rule
+
+**Readiness first.** Notify only when the PR is non-draft, every required check
+is terminal green *on the current head*, threads are resolved, and it is
+mergeable. Pinging a maintainer at a red or draft PR spends a human's attention
+for nothing and trains them to ignore the next ping. If it is not ready, the
+action is to make it ready.
+
+**Always `@carlosflorencio`** — the `kdlbs` maintainer, who holds the merge.
+Notify when the PR first becomes ready, and **again on a new push or material
+change**, because his earlier review no longer describes the current head.
+
+**`@jcfs` and `@zeval` conditionally** — only when the change lands mostly in
+code they have already worked on. Establish that from evidence:
+
+```sh
+git log --format='%an %ae' -- <changed paths> | sort | uniq -c | sort -rn
+```
+
+Mention them when they are genuinely the prior owners of the touched area.
+Mentioning them on everything is noise and destroys the signal that makes the
+mention worth anything.
+
+**The Coordinator posts it.** Task agents get HTTP 401 from `gh` (D18), so
+delegating this and assuming it happened is how it silently does not happen.
+
+**Once per head.** Persist PR number + the exact head SHA notified. Never
+re-mention the same person for the same head, however many cycles pass — R8
+applies to humans with *more* force than to agents. New head, new notification;
+unchanged head, silence.
+
+### Reporting shape
+
+Not a bare WATCH line. Report as: *notified `@carlosflorencio` at `<head>` on
+`<date>`, awaiting upstream review*, with the age. That tells the operator the
+nudge happened and that only a personal escalation remains to them.

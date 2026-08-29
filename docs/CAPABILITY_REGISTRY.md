@@ -363,6 +363,7 @@ Production, protected/release branch, cost, and external-communication **labels*
 
 ### I3. Structural boundaries that never bend
 - **Merging**: NEVER, by any agent, under any circumstance, until the human changes this (2026-08-29). Green/clean/approved = ready for a HUMAN decision, not authorization. No auto-merge, no directing an agent to merge; the full-approval grant does not reach merges.
+- **Upstream `kdlbs/*` PR that is READY**: **Coordinator action, not a dead end** — post a mention of `@carlosflorencio` (maintainer, holds the merge) on the PR; add `@jcfs`/`@zeval` only when prior authorship on the touched paths shows they own that area. Readiness first (non-draft, green on current head, threads resolved). **Once per head**, recorded with PR number + head SHA; re-notify on a new push, never on an unchanged head. Agents are credential-blocked (D18), so the Coordinator posts it.
 - **Merge asks**: resolve `base.repo.full_name` (not the head). `yattdev/*` or `ayattara-sfl/*` → human can merge, goes in NEEDS YOUR DECISION. `kdlbs/*` or third-party → human CANNOT merge, goes in WATCH as awaiting the upstream maintainer.
 - **ToDeploy**: never move a task into it; never touch a task already in it unless this Coordinator created that task. A workflow-wide inventory may incidentally return its ID/title/column — issue no task-specific read or mutation.
 - **Backlogs / ToDeploy** are Human-managed holding columns; **Human-QA** waits for Human review.
