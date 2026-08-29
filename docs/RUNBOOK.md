@@ -3117,3 +3117,85 @@ AND no `CHANGES_REQUESTED` outstanding AND no unaddressed blocker in issue
 comments AND the maintainer's last word is older than the author's last reply.
 Anything less is not ready, and must not be reported as ready or used to
 justify notifying a maintainer.
+
+---
+
+## `move_task_kandev` is NOT unconditionally queued — I had this wrong
+
+My board mechanics carried "`move_task_kandev` 200 = queued" as an unconditional
+rule. It is not, and believing it cost a cycle of unnecessary caution.
+
+The deferred path is taken **only when the task's PRIMARY session is `RUNNING`
+or `STARTING`** (`apps/backend/internal/mcp/handlers/config_task_handlers.go`,
+around L66-69). Otherwise the call falls through to `applyMoveTaskImmediate`,
+which moves the card synchronously and **never writes a `pending_moves` row**.
+
+Found by the agent on `b2da5061`, which owns that table, when I asked whether my
+pending board moves would pollute its reproduction. It correctly answered that
+the premise behind my caution was wrong. I then verified it myself read-only
+before acting, and again afterwards:
+
+```sql
+-- before: are the targets idle, so the move applies immediately?
+SELECT ts.state,
+       (SELECT COUNT(*) FROM task_sessions x
+         WHERE x.task_id=t.id AND x.state IN ('RUNNING','STARTING'))
+FROM tasks t LEFT JOIN task_sessions ts ON ts.task_id=t.id AND ts.is_primary=1
+WHERE t.id IN (...);
+-- after: row count must be unchanged
+SELECT COUNT(*) FROM pending_moves WHERE workflow_id='<yours>';
+```
+
+Three moves executed against `WAITING_FOR_INPUT` primaries added zero rows.
+
+**Practical rule:** check the primary session state before assuming a move will
+queue. An idle target moves now. Only a mid-turn target defers — and that is
+also the only case where a hand-off `prompt` matters.
+
+## `pending_moves` is global; filter by `workflow_id` or you will read another board
+
+The table spans every workspace. Reading it raw and counting rows will hand you
+other Coordinators' armed moves, which you have **no standing** to act on.
+
+On 2026-08-29 a task agent reported "seven rows, not the four you briefed,"
+which briefly looked like my armed-row picture was incomplete — a safety-
+relevant gap, since that picture decides which cards are message-unsafe. It was
+not. Four rows were mine (`workflow_id = 90f322ed-…`); the other three belonged
+to workflow `e0df4bac-…`, a different workspace, with a different
+`sender_session_id`. The "second orphan" it flagged was in that other workflow.
+
+Always scope the read:
+
+```sql
+SELECT pm.session_id, pm.task_id,
+       CASE WHEN ts.id IS NULL THEN 'ABSENT->orphan' ELSE ts.state END
+FROM pending_moves pm LEFT JOIN task_sessions ts ON ts.id = pm.session_id
+WHERE pm.workflow_id = '<your workflow>' ORDER BY pm.queued_at;
+```
+
+A read-only open (`sqlite3 -readonly "file:/data/data/kandev.db?mode=ro"`) is
+the authoritative way to establish the armed set and whether each keyed session
+still exists. Prefer it over inference — but scope every query, and never treat
+another workflow's rows as yours to reason about or act on.
+
+Related trap: `repositories` can hold several rows with the SAME name for
+different workspaces. Three rows named `kdlbs/kandev` exist here, one of them
+with `default_branch = upstream/main`. Pick yours by matching `local_path`
+against your `workspace_id`, or by which id your own tasks actually use — never
+by name.
+
+## An MCP INTERNAL_ERROR does not mean nothing happened
+
+`create_task_kandev` inserts the task row, then resolves the repository. When
+resolution fails it returns `INTERNAL_ERROR: Failed to create task` while the
+row survives — with its prompt, its step, and its `deferred_launch` metadata,
+but no repository. Retrying on the error produces a duplicate card. That is
+exactly what happened to me on 2026-08-29; filed as a platform bug with the
+reproduction, and the orphan archived rather than deleted so the evidence
+survives.
+
+**Before retrying any failed creation, check whether it actually failed.** Query
+for the intended title, or look for a task with no `task_repositories` row.
+Schema-level validation failures (e.g. a title over 60 chars) are clean and
+create nothing — the partial commit is specific to the handler's post-insert
+resolution path.
