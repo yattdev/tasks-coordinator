@@ -1404,30 +1404,48 @@ Support identity (human-directed 2026-08-29):
       codex exec resume 01a043b4-fe52-7020-94bb-de94e72f8a07 \
         "KANDEV SUPPORT REQUEST: <request>"
 
-**Agents cannot deliver this themselves — tested 2026-08-29T06:52Z.** Running the
-documented command from inside an agent container fails:
+**THE CANONICAL ROUTE IS THE BROKER — use it, never `codex exec resume` directly.**
+A validated coordinator contacts Support through three guarded commands:
 
-    Error: thread/resume: thread/resume failed: no rollout found for
-    thread id 01a043b4-fe52-7020-94bb-de94e72f8a07 (code -32600)
+    docker kandev support send <request.json>
+    docker kandev support status <request-id>
+    docker kandev support receive <request-id>
 
-Independently reproduced from a second Coordinator worktree and session on
-2026-08-29 (same `-32600`, same absent rollout). Treat the finding as SETTLED:
-re-testing it each cycle only burns turns — escalate through the trail instead.
+`send` takes a regular JSON file (not a symlink, <=128 KB) resolved **inside the
+coordinator task root**, so pass a path relative to it, e.g.
+`coordinator/support-request.json`. It returns `{"request_id": "...", "status":
+"queued"}`. Poll `status` until it reports `complete`, then `receive` the answer.
 
-The `codex` CLI is present (`/data/.npm-global/bin/codex`) and authenticated — the
-structured JSON-RPC `-32600` proves the call was made — but the thread's rollout
-state is not container-visible. `find`/`grep` over `/data/home/.codex` shows no
-trace of that thread ID. This is intentional: host Codex state is deliberately not
-mounted into agent containers. There is no support broker socket either; `/run`
-contains only `kandev-agent-docker.sock`.
+Required schema — all four fields must be non-empty strings, or the broker refuses:
 
-**Do not** mount or expose host `~/.codex` into an agent as a workaround, and do not
-claim a support queue or delivery mechanism exists. Until a reviewed support broker
-exists, the only route is to record the request in the board/task trail — the
-Coordinator plan for coordinator-level blockers, the owning task's trail otherwise —
-so the host-side agent or the operator can pick it up and run the command. The thread ID
-is stable, but autonomous coordinator-to-support delivery needs a narrow reviewed
-message broker that does not yet exist; do not imply otherwise.
+    {
+      "problem": "<observed behavior>",
+      "evidence": "<errors, logs, commands>",
+      "expected_outcome": "<desired behavior>",
+      "security_constraints": "<anything that must remain isolated>"
+    }
+
+The broker attaches the coordinator task ID, workspace ID and name, worktree and
+timestamp itself, so do not duplicate them; put the affected task/session ID inside
+`problem` or `evidence`.
+
+Verified fail-closed behaviour (2026-08-29T07:20Z): an unknown request ID returns
+`support request is unavailable`; a file outside the coordinator task root returns
+`path is outside this agent task`; a request missing any required field is refused
+by name. Do not ask the Human to relay routine support requests — this route is
+autonomous.
+
+**Known live blocker (2026-08-29T07:20Z):** `send`, `status` and `receive` all work,
+but delivery into the support thread currently fails with
+`thread-store conflict: thread 01a043b4-... already has an active writer (code -32600)`,
+returning `status: complete, returncode: 1`. Three attempts, including one after a
+pause, failed identically, so it is not transient. This is a **different** failure from
+the earlier container-side `no rollout found`: the broker reaches the thread, but
+another writer holds it. Resolution is host-side — release the active writer on that
+thread. Until then, `send` still records the request; re-`receive` after the lock clears.
+
+Do **not** mount or expose host `~/.codex`, and do not claim delivery succeeded when
+`returncode` is non-zero.
 
 **Canonical request format (operator-supplied 2026-08-29).** Use these exact labels;
 an unlabelled one-line request is not the agreed shape:
