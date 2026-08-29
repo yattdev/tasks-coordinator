@@ -1466,24 +1466,37 @@ behalf, so host Codex state stays unmounted.
 Never mount or expose host `~/.codex` into an agent as a workaround, and never
 claim a delivery mechanism exists that you have not exercised.
 
-### Writer contention is backpressure — expect a long `queued`, not a failure
+### Queue behaviour: `queued` -> `processing` -> `complete`
 
-Delivery into the support thread serialises on a single writer. When Support is
-busy the broker holds the request `queued` and retries with capped exponential
-backoff; it reports `complete` only once Codex has actually processed it.
-Two guarded validations stayed `queued` for roughly twelve to sixteen minutes
-and then completed with `returncode: 0` and a real reply.
+`status` reports one of three states. `queued` means the request is waiting its
+turn, `processing` means the worker has picked it up, and `complete` means the run
+finished — check `returncode`, since `complete` alone does not mean success.
 
-So: **a long `queued` is the system working.** Poll adaptively with capped
-backoff and do not resend — a duplicate request just adds another item to the
-same serialised queue. Budget minutes, not seconds, and carry on with unblocked
-work while you wait rather than blocking a cycle on it.
+Delivery is serialised, restart-safe, and oldest-first, so a request waits behind
+whatever is already in flight; under contention the broker holds it `queued` and
+retries with capped exponential backoff, reporting `complete` only once Codex has
+actually processed it.
+
+Latency spans two regimes, and neither generalises alone:
+
+- **Seconds** on a clear queue — verified 2026-08-29T07:46Z, `queued` ->
+  `processing` -> `complete` with `returncode: 0` in about 8 seconds.
+- **Minutes** while earlier requests drain — separate guarded validations stayed
+  `queued` for roughly twelve to sixteen minutes before completing with
+  `returncode: 0` and a real reply.
+
+So poll with adaptive backoff (a few seconds early, widening to ~30s) and treat a
+long `queued` as the system working, not a stall. Never resend: a duplicate only
+adds another item to the same ordered queue. Carry on with unblocked work rather
+than holding a cycle open.
 
 Superseded failure mode (fixed 2026-08-29): requests used to fail fast, returning
 `status: complete, returncode: 1` within ~10s with
 `thread-store conflict: ... already has an active writer (code -32600)` in
-`receive`. If you ever see that again, the retry handling has regressed — report it
-with the request ID rather than retrying in a loop.
+`receive`, because delivery contended with the operator's interactive support chat.
+Support now delivers on a dedicated worker-owned thread. If that conflict ever
+reappears, the isolation has regressed — report it with the request ID rather than
+retrying in a loop.
 
 Requests that failed under the old behavior were requeued during deployment.
 Check a previous request ID before sending a replacement. If it is queued, keep
@@ -1495,6 +1508,11 @@ Only send a fresh request when no usable previous ID exists.
 `receive` returns the **full Codex transcript**, not just the answer: a header
 (version, workdir, model, sandbox, session id), the rendered request, the reply,
 and a token count. The actionable content is the assistant turn at the end.
+
+Ignore the host-side warning `failed to load models cache` / `failed to renew cache
+TTL: missing field supports_parallel_tool_calls`. It appears on the stderr of
+successful `returncode: 0` runs too, so it is noise, never the fault — diagnose from
+`returncode` and the assistant turn, not from the presence of an ERROR line.
 
 The broker composes the prompt itself and attaches the coordinator task ID,
 workspace/worktree, and broker request ID — confirmed present in the delivered

@@ -761,3 +761,39 @@ exact timestamps beyond the one duration that makes the polling budget concrete.
 Files: `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log. `PROMPT.md` unchanged —
 the binding rule already routes Support through the broker; polling cadence is
 operational detail, so no charter mirror is triggered.
+
+## 2026-08-29e — Support channel independently confirmed; three-state queue
+
+Window: 2026-08-29T07:45Z to 2026-08-29T07:47Z. Independent Coordinator-side
+confirmation after Kandev Support moved delivery to a dedicated worker-owned Codex
+thread.
+
+- CONFIRMED WORKING with a fresh request. `send` exit 0, status went
+  `queued` -> `processing` -> `complete` with `returncode: 0`, `receive` exit 0 and
+  returned a genuine Support reply echoing the coordinator task ID, workspace scope,
+  and the new request ID. Total round trip about 8 seconds.
+- Corrective: `status` has a **third** state, `processing`, previously undocumented
+  because every earlier observation was either an instant failure or a long
+  contended wait. The documented `queued|complete` pair was simply incomplete —
+  a reminder that a state machine observed only at its extremes will be
+  mis-specified.
+- Sharpened the latency guidance rather than replacing it. Both observations are
+  real and neither generalises alone: ~8 seconds on a clear queue, ~15.5 minutes
+  while earlier requests drain. Delivery is serialised, restart-safe, and
+  oldest-first, so poll with adaptive backoff and never resend into the same
+  ordered queue.
+- The root cause of the original conflict is now named in the runbook: delivery
+  contended with the operator's interactive support chat. Isolation onto a
+  worker-owned thread is what fixed it, so a reappearance of
+  `already has an active writer` means that isolation regressed — a report, not a
+  retry loop.
+- Corrective: the host-side `supports_parallel_tool_calls` cache warning appears on
+  the stderr of SUCCESSFUL runs too. It is noise, never the fault. Diagnose from
+  `returncode` and the assistant turn, not from the presence of an ERROR line.
+
+Rejected as transient: request IDs, host session ID, model name, token counts, and
+exact wall-clock timestamps beyond the two durations that make the polling budget
+concrete.
+
+Files: `docs/RUNBOOK.md`, this log. `PROMPT.md` unchanged — the binding rule already
+routes Support through the broker — so no charter mirror is triggered.
