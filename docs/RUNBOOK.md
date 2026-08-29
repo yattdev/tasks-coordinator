@@ -1890,3 +1890,27 @@ engineer around. Record it with the three pieces of evidence above, classify the
 `stalled` rather than `waiting`, and put it to the Human with the restart options. Note in
 the record that the agent's silence is a platform symptom and not a performance judgement —
 the queued messages prove it never had the chance to respond.
+
+## Flipping Draft→ready is itself a review trigger — readiness is not terminal
+
+Some reviewers are suppressed while a pull request is Draft and fire on the transition to
+ready. Observed 2026-08-29 on #3136: verified at 12:47Z as **3 threads, all resolved**,
+45 checks passing; the agent flipped it to ready; by 12:52Z it was **4 threads, one
+unresolved**, posted by `chatgpt-codex-connector` after the flip.
+
+So the sequence "verify, then flip" does not end the work. **A PR can go from clean to
+carrying an open finding without anyone pushing a commit.**
+
+- **Re-read a PR a few minutes after it goes non-draft**, not only after a push. Checks
+  and threads both.
+- **Do not treat an agent's ready-flip as closing the card.** Keep it in the monitored set
+  until the post-flip read is clean.
+- **A second flip can attract a further reviewer.** Expect the cycle to repeat after each
+  fix-and-reflip.
+- When this happens, say plainly that the agent's verification was correct at the time.
+  The finding arrived *because* of the flip; treating it as a missed check is both wrong
+  and discouraging.
+
+This compounds the push-timing trap already recorded: a reading is bound to the SHA **and
+the draft state** it was taken under. Two PRs on this board went non-draft on numbers
+gathered seconds after a push; a third acquired a new thread purely from the flip.
