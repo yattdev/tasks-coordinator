@@ -857,3 +857,41 @@ carry context explicitly in the task plan and the spawn/wake prompt instead.
 Related: `docs/RUNBOOK.md` "A hung primary session is not always the end"; the escalation route
 in "Escalating an environment blocker to Kandev Support"; broker request
 `0048c56c-effd-41b0-a630-be7f5bc22307`.
+
+## 2026-08-29 — The shipped guard is more permissive than `b74833e7`'s preserved design
+
+**Observation, not a decision to act — recorded so the difference is not lost.**
+
+`19fee65` made managed-repository worktrees usable by widening an admission
+allow-list (`path_is_code_repo_gitdir` → `path_is_approved_repo_gitdir`, adding
+`/data/repos/workspaces`). The mount semantics it admits into were already
+there, and they are broad:
+
+```
+kandev-agent-guard:424   --bind      "$common"            "$common"       # RW, whole common dir
+kandev-agent-guard:429   --ro-bind   "$common/worktrees"  "$common/worktrees"
+kandev-agent-guard:430   --bind      "$gitdir"            "$gitdir"       # RW, own admin entry
+```
+
+Task `b74833e7-a05f-4cdf-81cf-db5b4c02f368` independently built a tighter
+arrangement in its `gitMetadataMounts`: mount the common Git directory
+**read-only**, mask `worktrees` with tmpfs, then reopen **only validated
+writable dependencies**. Same goal, strictly smaller writable surface — the
+shipped version grants write to the entire common directory where the
+alternative grants it to an enumerated set.
+
+That agent reached this after I twice mischaracterised `19fee65` to it
+(Corrections 28), and it re-derived the comparison from the actual diff rather
+than my description.
+
+**Why this is recorded rather than actioned.** The deployed behaviour is not
+wrong — it is bounded by the backlink verification and the worktrees RO bind,
+and it fixed a real failure. Tightening it is a platform change nobody has
+asked for, and `b74833e7`'s delivery route is a Human-reserved decision because
+its branch has diverged (286 remote / 28 local). The point of this entry is that
+**its work is not superseded by `19fee65`, and one concrete reason is that it is
+stricter** — which matters if anyone later reads "the guard already fixed that"
+and concludes the card can be dropped.
+
+Its commits are preserved at `origin/backup/make-managed-task-wo-sgn-local-1`
+= `4696708551325ccde07ea0f928f0c48d699ab5a6`.
