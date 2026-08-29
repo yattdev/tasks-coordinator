@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-08-29a -->
+<!-- registry-version: 2026-08-29b -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -177,17 +177,16 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 
 ## E. Android UI-QA / emulator
 
-### E1. A task needs an Android emulator, device, or UI-QA run
-- **Trigger** Mobile task requires emulator/device execution or on-device UI verification.
-- **Action** **No verified Coordinator capability exists for this today.** Do not claim one and do not attempt a workaround. Treat it as a host/container environment limitation.
-- **Capability** None verified. Escalate through the Support broker with the exact requirement (API level, image, headless vs GUI, `adb` needs).
-- **Authority** Host capability provisioning is Support/operator territory, not Coordinator.
-- **Evidence** For any *code-only* mobile work, the ordinary evidence rules still apply: do not manufacture a runtime — declare `TEST_RUNTIME=NONE` with a reason and hand over named automated coverage ([Human-QA gate](RUNBOOK.md#human-qa-runtime-provisioning-is-an-acceptance-gate)).
-- **Escalate to** [Kandev Support](#g1-an-environment-blocker-stops-a-task) for capability provisioning; the Human only if the decision is whether to fund/approve it.
-- **Never** Report a mobile UI acceptance criterion as satisfied without a real device/emulator run; never stage a display-only fixture that makes a broken path look demonstrable.
-- **Registry note** This entry is a known gap. When emulator support is verified, replace it with the real procedure per [Maintenance](#maintenance).
-
----
+### E1. A task needs an Android emulator or on-device UI-QA
+- **Trigger** Mobile task requires emulator execution or on-device UI verification.
+- **Action** **Available conditionally — headless AVD only.** Use the guarded wrappers; do not attempt a raw or host path. Physical-device UI-QA is **not provisioned** (USB/ADB host passthrough is intentionally absent) — scope such acceptance criteria to a headless AVD or to code-only evidence.
+- **Capability** Guarded `emulator` and `adb` wrappers (`/usr/local/bin`), plus a read-only host Android SDK and AVD catalogue (`emulator -list-avds`). Agent-local adb state uses port **5038**. The wrapper enforces headless, read-only, no-snapshot operation and stages only disposable AVD metadata under `/data/home/.android`.
+- **Authority** Coordinator/task-agent usable within the guarded path. This is a constrained wrapper plus filesystem guard, **not** a workspace-scoped broker RPC — a broker-only design would need a separate reviewed implementation.
+- **Evidence** Select your emulator serial explicitly and **shut the emulator down afterward**. The SDK's installed API level and system image determine which AVD can run; Kandev imposes no fixed API level.
+- **Known blocker (verified 2026-08-29)** An x86_64 AVD needs usable KVM acceleration, and `/dev/kvm` is currently `crw-rw---- nobody:nogroup` — not readable or writable by the agent user, so emulator start fails. Support classifies this as a **host/container mapping issue to repair, not a permanent limitation**. Report it via [G1](#g1-an-environment-blocker-stops-a-task) with the exact permission error; do not record Android as unsupported.
+- **Escalate to** [Kandev Support](#g1-an-environment-blocker-stops-a-task) for the KVM authorization repair or any SDK/system-image gap; the Human only if funding or physical hardware is the question.
+- **Never** Request `/dev/dri`, X11, Wayland, USB, raw Docker, or a host adb server — their absence is deliberate. Never claim physical-device capability. Never report a mobile UI acceptance criterion as satisfied without a real emulator run, and never stage a display-only fixture that makes a broken path look demonstrable.
+- **Related** For code-only mobile work the ordinary rule still applies: do not manufacture a runtime — declare `TEST_RUNTIME=NONE` with a reason and hand over named automated coverage ([Human-QA gate](RUNBOOK.md#human-qa-runtime-provisioning-is-an-acceptance-gate)).
 
 ## F. Description / prompt synchronization
 
@@ -316,5 +315,5 @@ Rules:
 1. Bump `registry-version` on every content change.
 2. Route detail correctly: authority → `PROMPT.md`; procedure → `RUNBOOK.md`; rationale and supersessions → `DECISIONS.md`; the cycle receipt → `LEARNING_LOG.md`. This file holds the decision router only — link, do not copy long procedures.
 3. A contradiction with a linked document is a defect. Fix both sides in one change; never leave two live rules disagreeing.
-4. Record known gaps explicitly (see [E1](#e1-a-task-needs-an-android-emulator-device-or-ui-qa-run)) rather than omitting the situation — an absent entry reads as "no guidance", a recorded gap reads as "verified absent".
+4. Record known gaps and conditional capabilities explicitly (see [E1](#e1-a-task-needs-an-android-emulator-or-on-device-ui-qa)) rather than omitting the situation — an absent entry reads as "no guidance", a recorded gap reads as "verified absent".
 5. Verify every added link resolves before committing.

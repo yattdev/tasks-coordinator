@@ -833,3 +833,42 @@ IDs. No secrets, tokens, or LAN URLs entered shared knowledge.
 Files: `docs/CAPABILITY_REGISTRY.md` (new), `PROMPT.md`, `README.md`,
 `docs/DECISIONS.md`, this log. `PROMPT.md` changed, so the live-description charter
 mirror is due.
+
+## 2026-08-29g — Android UI-QA is conditionally available, not absent (corrective)
+
+Window: 2026-08-29T08:03Z to 2026-08-29T08:10Z. Reported the registry's Android gap
+to Kandev Support through the broker; Support answered and the gap entry was wrong.
+
+- **Corrective:** registry entry E1 claimed "no verified Coordinator capability
+  exists" for Android UI-QA. Support confirmed it is **available conditionally —
+  headless AVD only**, through guarded `emulator`/`adb` wrappers, a read-only host
+  SDK and AVD catalogue, agent-local adb on port 5038, and disposable AVD metadata
+  under `/data/home/.android`. Verified locally: both wrappers exist on `PATH` and
+  `emulator -list-avds` returns a populated catalogue.
+- Physical-device UI-QA is genuinely not provisioned; USB/ADB host passthrough is
+  deliberately absent. That half of the entry was right.
+- Real blocker identified: `/dev/kvm` is `crw-rw---- nobody:nogroup` and unreadable
+  by the agent user, so an x86_64 AVD cannot accelerate. Support classifies this as
+  a host/container mapping issue to repair, not a permanent limitation — so the
+  correct record is "conditionally available, pending KVM authorization repair",
+  never "unsupported".
+- The capability is a constrained wrapper plus filesystem guard, **not** a
+  workspace-scoped broker RPC. Do not assume broker validation semantics apply to
+  every guarded capability; the two shapes differ and a broker-only Android design
+  would need separate review.
+- Method lesson: **absence of documentation is not absence of capability.** The gap
+  was recorded honestly from an exhaustive knowledge-base search, and the search was
+  accurate — yet the conclusion was wrong, because the capability existed and had
+  simply never been written down. A verified-absent claim should be tested against
+  the environment (does the binary exist? does the inventory command answer?) before
+  it is published, not derived from documentation alone. This is the same shape as
+  the earlier `codex exec resume` error: a "cannot" claim must name the exact route
+  tested.
+- The maintenance rule worked as intended on its first exercise: Support's answer
+  updated the registry, runbook, and this log in one change.
+
+Rejected as transient: AVD names, request IDs, and device serials.
+
+Files: `docs/CAPABILITY_REGISTRY.md` (E1 rewritten, registry-version 2026-08-29b),
+`docs/RUNBOOK.md` (new procedure), this log. `PROMPT.md` unchanged — no charter
+mirror triggered.

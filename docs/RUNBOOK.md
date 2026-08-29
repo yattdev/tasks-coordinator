@@ -1521,3 +1521,40 @@ transcript — which is why those fields must not be duplicated into your JSON.
 Useful and non-obvious: `/home/ayattara/Code/kandev` **is** readable from inside the
 container at its host path, so host paths quoted in a request can be verified before
 sending even though host Codex state cannot.
+
+## Android UI-QA through the guarded emulator/adb wrappers
+
+Android UI-QA is available **conditionally: headless AVD only**. Physical-device
+UI-QA is not provisioned — USB/ADB host passthrough is intentionally absent, so a
+device-only acceptance criterion must be rescoped, not worked around.
+
+What exists (verified 2026-08-29):
+
+- Guarded `emulator` and `adb` wrappers on `PATH` at `/usr/local/bin`.
+- A read-only host Android SDK and AVD catalogue — `emulator -list-avds` is the
+  authoritative inventory; never guess an AVD name.
+- Only `/dev/kvm` is passed into the guarded session. No `/dev/dri`, X11, Wayland,
+  USB, raw Docker, or host adb server.
+- Agent-local adb state on port **5038**, with disposable AVD metadata staged under
+  `/data/home/.android`.
+- The wrapper enforces headless, read-only, no-snapshot operation.
+
+Procedure: list AVDs, start one headless, **select your emulator serial explicitly**
+(never assume a default when several may run), do the UI-QA work, then **shut the
+emulator down**. Leaving one running strands host resources for every other agent.
+The SDK's installed API level and system image determine which AVD can run; Kandev
+imposes no fixed API level.
+
+**Current blocker — KVM authorization.** An x86_64 AVD needs usable KVM
+acceleration, and `/dev/kvm` is presently `crw-rw---- nobody:nogroup`: not readable
+or writable by the agent user, so emulator start fails. Kandev Support classifies
+this as a host/container mapping issue **to repair, not a permanent product
+limitation**. Report it through the Support broker with the exact permission error;
+do not record Android as unsupported and do not seek a privilege workaround.
+
+Note the shape of this capability: it is a constrained wrapper plus filesystem
+guard, **not** a workspace-scoped broker RPC like `docker kandev source`. A
+broker-only design would require a separate reviewed implementation, so do not
+assume broker-style validation semantics apply here.
+
+Registry entry: [E1](CAPABILITY_REGISTRY.md#e1-a-task-needs-an-android-emulator-or-on-device-ui-qa).
