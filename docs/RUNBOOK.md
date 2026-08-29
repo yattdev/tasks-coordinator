@@ -3057,3 +3057,63 @@ unchanged head, silence.
 Not a bare WATCH line. Report as: *notified `@carlosflorencio` at `<head>` on
 `<date>`, awaiting upstream review*, with the age. That tells the operator the
 nudge happened and that only a personal escalation remains to them.
+
+---
+
+## `mergeable_state: clean` + green checks does NOT mean review-ready
+
+Burned twice on 2026-08-29, on both PRs I had ranked as the operator's top two
+actions. Both were reported by me as "clean, every gate passed, nothing blocks
+it." Both had substantive unaddressed review findings.
+
+`mergeable_state` is a **git** property — it means the branch merges without
+conflict. `check-runs` are **CI**. Neither knows anything about review content.
+Review findings live in three separate places, and a PR can be green and clean
+with a blocking objection sitting in any of them:
+
+| where | API | what hides there |
+| --- | --- | --- |
+| inline review comments | `/pulls/{n}/comments` | line-anchored bot and human review |
+| formal reviews | `/pulls/{n}/reviews` | `CHANGES_REQUESTED` verdicts |
+| **issue comments** | `/issues/{n}/comments` | **maintainer discussion, and CI-bot review verdicts** |
+
+The third is the one that bites. A `github-actions[bot]` comment titled
+*"Findings — Blocker (must fix before merge)"* is an issue comment. It does not
+touch `mergeable_state`, does not appear as a failing check, and does not show
+up in `review_comments`.
+
+### Two concrete misses
+
+**#2868** — I reported "clean, 62h, acceptance only." The maintainer had asked
+for a UX change that *inverted the PR's premise*, in issue comments. Worse, my
+first sweep piped `/issues/{n}/comments` through `head -60` and truncated his
+four comments out of the output entirely, so I concluded "no maintainer
+comments exist." **Never truncate a comment sweep; filter it by author instead.**
+
+**#3136** — I was one step from pinging the maintainer when a `Blocker` finding
+turned up in issue comments. It happened to be already fixed by four later
+commits, but I only knew that because I checked commit dates against the comment
+date and then read the code. Had I pinged first, I would have sent a maintainer
+to a PR whose security-critical predicate was untested.
+
+### The check that catches all three
+
+Compare **the maintainer's last substantive comment timestamp against the
+author's last reply timestamp.** If the maintainer's is newer, there is an
+unaddressed request, whatever the merge state says:
+
+```
+#2868: carlos 2026-08-27T08:54:44Z  >  yattdev 2026-08-27T08:36:09Z  -> UNADDRESSED
+```
+
+And when a finding predates the current head, do not assume it is stale *or*
+live — list the commits since it and read the code at the head before deciding.
+A commit titled like the fix is a claim; the code is the evidence.
+
+### Readiness, restated
+
+Non-draft AND mergeable AND required checks terminal green on the current head
+AND no `CHANGES_REQUESTED` outstanding AND no unaddressed blocker in issue
+comments AND the maintainer's last word is older than the author's last reply.
+Anything less is not ready, and must not be reported as ready or used to
+justify notifying a maintainer.
