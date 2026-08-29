@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-08-29i -->
+<!-- registry-version: 2026-08-29j -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -261,6 +261,12 @@ Coordinator-side execution then passed: the Android wrapper booted a KVM-backed
 `Pixel_3_API_29`, collected API/model/PNG evidence, and shut down cleanly; task-scoped
 Compose succeeded while unrelated `inspect`/`exec`/`stop` commands failed closed
 with exit 78. Physical USB remains NOT PROVISIONED.
+
+The evidence-bearing closure request `980ec435-5096-4dd6-af2e-6a50f5624c1e`
+also arrived proactively, returned `KANDEV_SUPPORT_STATUS: RESOLVED`, accepted both
+Coordinator-side receipts, and confirmed no platform change was required. This closes
+the end-to-end acceptance; no `status` or `receive` command was used, so receive exit
+codes are intentionally N/A for this proactive-delivery test.
 
 ### G5. The broker fails closed on bad input — exit 78, no request created
 - **Trigger** Malformed JSON, or any of the four required strings missing/empty.

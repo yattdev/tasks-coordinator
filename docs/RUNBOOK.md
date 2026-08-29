@@ -1613,6 +1613,11 @@ inside the live guarded Coordinator session. Coordinator-side execution passed b
 acceptance suites; this was a runner-scope boundary, not an Android or Docker isolation
 failure.
 
+The single evidence-bearing follow-up was then delivered proactively as `RESOLVED` and
+confirmed that both receipts complete acceptance with no platform change. When that
+closure matches the independently recorded evidence, close the follow-up ledger and do
+not send another request merely to acknowledge it.
+
 ## Verify task-scoped Compose isolation from a guarded task session
 
 Use a disposable directory under the current task root. Define a minimal service with a

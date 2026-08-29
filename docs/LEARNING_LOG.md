@@ -1513,4 +1513,9 @@ at the exact boundary it names. When Support supplies safe in-scope acceptance c
 execute them in the owning guarded session, preserve the boundary, and send one fresh
 evidence-bearing follow-up only if the delivered result remains incomplete.
 
+The evidence-bearing follow-up later arrived proactively as `RESOLVED`, accepted both
+guarded-session receipts, and required no platform change. That final message closes the
+loop: once Support's closure agrees with the independently captured evidence, persist the
+receipt and stop—an acknowledgement-only Support request would be a duplicate.
+
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, this log.
