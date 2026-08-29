@@ -1524,9 +1524,9 @@ sending even though host Codex state cannot.
 
 ## Android UI-QA through the guarded emulator/adb wrappers
 
-**Status 2026-08-29: VERIFIED BLOCKED.** Headless AVD UI-QA cannot run — `/dev/kvm`
-is inaccessible in the guarded container/user namespace. Physical-device UI-QA is
-separately unsupported; USB/ADB host passthrough is intentionally absent.
+**Status 2026-08-29: VERIFIED WORKING for guarded headless AVD UI-QA.** Physical
+USB/device UI-QA is separately **NOT PROVISIONED**; USB/ADB host passthrough remains
+intentionally absent.
 
 The surface exists and looks healthy, which is why this needs writing down:
 
@@ -1534,30 +1534,48 @@ The surface exists and looks healthy, which is why this needs writing down:
 - A read-only host Android SDK; `emulator -list-avds` returns a populated catalogue.
 - `adb` starts an agent-local daemon on port **5038**.
 
-None of that implies a runnable emulator. A guarded task session invoking
-`/usr/local/bin/emulator` directly is the intended path — there is no
-Coordinator-only guard entrypoint and no workspace-scoped KVM/ADB broker operation.
+A guarded task session invoking the wrappers directly is the intended path — there
+is no Coordinator-only guard entrypoint and no workspace-scoped KVM/ADB broker.
+Use the inventory rather than assuming an AVD name, and do not write to the host
+SDK or catalogue:
 
-**The block.** `/dev/kvm` is present as `crw-rw---- nobody:nogroup`, but that is
-*unmapped host ownership inside the container user namespace*, not a real group you
-belong to. Apparent membership in `nogroup` grants nothing:
+    emulator -list-avds
+    python3 -c "import os; fd=os.open('/dev/kvm', os.O_RDWR); os.close(fd)"
+    emulator -accel-check
+    emulator -avd <listed-avd> -no-window -no-audio -no-boot-anim \
+      -gpu swiftshader_indirect -no-snapshot-load -no-snapshot-save
 
-    os.access('/dev/kvm', R_OK|W_OK) -> False
-    os.open('/dev/kvm', O_RDWR)      -> [Errno 13] Permission denied
-    emulator -avd <avd> -no-window   -> ProbeKVM: This user doesn't have
-                                        permissions to use KVM (/dev/kvm)
-                                        The KVM line in /etc/group is: [LINE_NOT_FOUND]
+Keep the emulator command running in its own bounded session. Poll `adb devices -l`
+and `adb -s <serial> shell getprop sys.boot_completed` with capped backoff until the
+property is `1` or the task's time budget expires. Then collect the criterion's real
+evidence, including at minimum:
 
-No `qemu-system` process survives, `adb devices` stays empty, and
-`adb -s emulator-5554 shell getprop sys.boot_completed` reports the device is not
-found. A `KVM_GID` or group-membership fix cannot repair an unmapped device ID, and
-no runtime task authorization can grant that access safely.
+    adb -s <serial> shell getprop ro.build.version.sdk
+    adb -s <serial> shell getprop ro.product.model
 
-**Unblocking requires an owning infrastructure change** — a reviewed
-workspace-scoped KVM emulator broker, or a safe host/container device-identity
-mapping that makes `/dev/kvm` openable without widening filesystem, Docker, USB, or
-display access. Neither exists today, so do not retry the emulator each cycle and
-do not seek a privilege workaround.
+For visual evidence, `adb -s <serial> exec-out screencap -p` may be redirected to a
+task-owned or temporary PNG. Shut down with `adb -s <serial> emu kill`; if console
+authentication prevents that command from terminating the wrapper-launched process,
+use `adb -s <serial> shell reboot -p`, wait for the emulator command to exit, then
+run `adb kill-server`. Confirm no `emulator`, `qemu-system`, or `adb` process remains.
+
+**Independent acceptance receipt (2026-08-29).** In the resumed Coordinator
+session, `/dev/kvm` opened O_RDWR and `emulator -accel-check` reported KVM version 12
+usable. `Pixel_3_API_29` booted as `emulator-5554`, reached
+`sys.boot_completed=1`, reported API 29/model `Android SDK built for x86`, and
+produced a valid 1080x1920 screenshot. `adb shell reboot -p` ended the emulator;
+final process checks were empty. The SDK and AVD catalogue were mounted `ro`, the
+protected Code parent was non-writable, and no `codex-linux-sandbox` process wrapped
+tool commands.
+
+The earlier VERIFIED BLOCKED receipt was produced by a stale pre-recreate process.
+Two persistent defects were repaired on 2026-08-29: stored session
+`runtime_config.mode` could override the enforced full-access guard profile and
+re-enable the provider inner sandbox; and the `agentctl` user transition dropped the
+host KVM supplemental GID because the image lacked a matching group. The runtime
+mode fields are now migrated and protected by triggers, and the rebuilt image
+creates/reuses the host KVM group and adds `kandev`. A namespaced `/dev/kvm` may
+still display `nobody:nogroup`; successful open and acceleration are authoritative.
 
 Do **not** substitute code-only evidence for an on-device acceptance criterion.
 Genuinely code-only mobile work still uses the ordinary `TEST_RUNTIME=NONE` path;

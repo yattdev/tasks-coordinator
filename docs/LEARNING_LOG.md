@@ -914,3 +914,42 @@ Rejected as transient: request IDs, AVD names, emulator build number, and image 
 
 Files: `docs/CAPABILITY_REGISTRY.md` (E1 rewritten, maintenance rules 6-7 added,
 registry-version 2026-08-29c), `docs/RUNBOOK.md`, this log. `PROMPT.md` unchanged.
+
+## 2026-08-29i — Android headless AVD UI-QA is VERIFIED WORKING (corrective supersession)
+
+Window: 2026-08-29T08:20Z to 2026-08-29T08:41Z. Kandev Support repaired two
+independent launch-path defects, force-recreated Kandev, and requested acceptance
+from the actual resumed Coordinator session. This entry supersedes the current
+capability conclusion in 2026-08-29h; the method lessons in that entry remain valid.
+
+- **Final status: VERIFIED WORKING for guarded headless AVD UI-QA.** The resumed
+  Coordinator session opened `/dev/kvm` O_RDWR; `emulator -accel-check` exited 0
+  with KVM version 12 usable; the guarded AVD boot produced `emulator-5554` and
+  reached `sys.boot_completed=1`; adb reported API 29 and model
+  `Android SDK built for x86`; screencap produced a valid 1080x1920 PNG; and a clean
+  guest poweroff plus adb shutdown left no emulator, qemu, or adb process. The SDK
+  and AVD catalogue stayed read-only, the protected Code parent stayed
+  non-writable, and no `codex-linux-sandbox` process wrapped tool commands.
+- **Physical USB/device QA remains NOT PROVISIONED.** Headless AVD success does not
+  imply USB passthrough, a host adb server, display access, or permission to request
+  them.
+- **Root causes:** persisted session `runtime_config.mode` could override the
+  enforced full-access profile and re-enable the provider inner sandbox; separately,
+  the `agentctl` user transition dropped host KVM supplemental GID 993 because the
+  image lacked a matching group entry. Support migrated and guarded the runtime mode
+  fields, rebuilt the image to create/reuse the host KVM group and add `kandev`, and
+  force-recreated Kandev. The prior failure came from a stale pre-recreate process.
+- **Method correction:** execution remains authoritative, but the execution context
+  includes process lifetime. A failure from a process that predates an image/group
+  recreation cannot validate the recreated environment. After such a repair, test
+  from a resumed/fresh consuming session and record both the process context and the
+  actual device-open/boot result. Namespaced device owner text is cosmetic when an
+  O_RDWR open and accelerated boot succeed.
+
+Rejected as transient: the emulator serial, screenshot path/hash, wrapper process
+IDs, and exact boot duration. The AVD/API/model appear only as reproducible
+acceptance evidence, not as a permanent catalogue promise.
+
+Files: `PROMPT.md` (binding E1 reference/status), `docs/CAPABILITY_REGISTRY.md`
+(E1 rewritten, registry-version 2026-08-29d), `docs/RUNBOOK.md`,
+`docs/DECISIONS.md` (superseded gap rationale), this log.

@@ -719,11 +719,12 @@ is worse than no copy. Precedence is explicit — `PROMPT.md` binds authority, t
 runbook binds procedure, and a disagreement is a defect fixed in both places in one
 change rather than left live.
 
-Known gaps are recorded as entries rather than omitted. Android emulator/device
-UI-QA has no verified Coordinator capability today, so the registry says exactly
-that and routes it to Support. An absent entry reads as "no guidance"; a recorded
-gap reads as "verified absent", which is the difference between a Coordinator
-escalating correctly and one inventing a workaround.
+Known gaps are recorded as entries rather than omitted. The original Android entry
+correctly exposed a gap but its status has since been superseded: guarded headless
+AVD UI-QA is VERIFIED WORKING after executed Coordinator-session acceptance on
+2026-08-29, while physical USB/device UI-QA remains NOT PROVISIONED. An absent entry
+reads as "no guidance"; an explicit status distinguishes a working path from a
+deliberately absent one without inviting an invented workaround.
 
 The maintenance rule is the load-bearing part: a verified capability, limitation,
 workaround, or Support resolution must update the registry and every affected
