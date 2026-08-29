@@ -2389,3 +2389,54 @@ already solved. Treat it as the first source consulted, not the place you
 happen to notice something afterwards. The cost of skipping it here was a wrong
 recommendation sent to another party, inviting them to rebuild something that
 already existed with tests.
+
+## Preserving uncontained commits: reach for the additive route before the one that needs permission
+
+Incident 2026-08-29 (Correction 26). `b74833e7-a05f-4cdf-81cf-db5b4c02f368` had
+28 commits that `git branch -r --contains HEAD` placed in **no remote ref at
+all** — one disk, no copies. Its branch had also diverged badly (286 remote
+commits it lacked, 28 local ones the remote lacked).
+
+I directed a rebase of the 28 onto the updated remote. My reasoning was
+defensible — the charter reserves *published*-history rewrites, and these were
+unpublished — but the agent refused, citing its own standing no-rewrite
+preservation constraint. **It was right.** `PROMPT.md` makes a task-specific
+directive a safety boundary; I had not checked its constraints before naming a
+route that crossed them.
+
+The correct route needed no permission from anyone:
+
+```sh
+git push origin HEAD:refs/heads/backup/<branch>-local-1
+```
+
+Purely additive. Creates a new ref, rewrites nothing, rebases nothing, touches
+neither the existing remote branch nor the local one. Exposure closed six
+minutes after I named it: `4696708551325ccde07ea0f928f0c48d699ab5a6`.
+
+It was already board practice — `9349b6e5` had been preserving three commits at
+`origin/backup/allow-coordinator-re-wxo-local-3` the whole time.
+
+### The ordering rule
+
+When work is at risk, separate two questions that feel like one:
+
+1. **How do I make this durable?** — usually additive, usually needs no approval
+2. **How do I deliver it?** — merge/rebase/force, may need approval
+
+Answer (1) first and independently. Durability is not a step on the way to
+delivery; it is a separate, cheaper, non-destructive goal. I conflated them,
+reached for the route requiring authority, and got refused — while the safe one
+sat unused.
+
+### Verify preservation from the ref, not the report
+
+Confirm both, not just the agent's message:
+
+```sh
+git ls-remote origin 'refs/heads/backup/<name>'   # ref exists, points where expected
+git fetch -q origin && git branch -r --contains <sha>   # now returns the ref
+```
+
+`branch -r --contains` returning nothing is the actual definition of the
+exposure, so it is also the actual definition of the fix.
