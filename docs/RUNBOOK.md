@@ -2856,3 +2856,75 @@ parked one and deferred the other as "queued for next cycle" under the budget.
 The budget was converting verified findings into a backlog the operator had to
 chase. Their standing complaint applies: *"you're a board manager and I'm not
 your alarm."* Ration the *unverified*, never the *verified*.
+
+---
+
+## Never merge; and check who owns the merge button before asking
+
+Human directive 2026-08-29 (Corrections 35 and 36), given together.
+
+### 35 — no agent merges, ever
+
+> "One thing important that agent should NEVER merge, the human should be the
+> only one to merge until it changes."
+
+Absolute and unconditional. Not the Coordinator, not a task agent, not a
+helper. Green CI, `mergeable: true`, zero unresolved threads, an approving
+review, and 60 hours of waiting are all still just *readiness for a human
+decision*. None of them authorizes the act.
+
+Specifically prohibited: merging; enabling auto-merge; instructing a task agent
+to merge; treating a Coordinator approval as covering a merge. The FULL
+COORDINATOR APPROVAL AUTHORITY grant explicitly does **not** reach merges — it
+covers actions that are neither destructive/irreversible nor
+security/trust-boundary, and the operator has carved merges out by name.
+
+### 36 — a merge ask is scoped to the BASE repository owner
+
+> "task under yattdev/, ayattara-sfl on github i can merge them, but those under
+> another repo like (kdlbs/kandev, kdlbs/xx), i cannot merge because there're
+> contribution to improve kandev plateform, the mainteneur is the one that have
+> right to merge."
+
+Read `base.repo.full_name`, never the head. A PR from `yattdev/kandev` into
+`kdlbs/kandev` is an **upstream** decision — the fork in the head field is
+ours, the merge button is not.
+
+| Base owner | Human can merge? | Where it goes in the standup |
+| --- | --- | --- |
+| `yattdev/*`, `ayattara-sfl/*` | yes | NEEDS YOUR DECISION — "merge PR #### into `main` and deploy it" |
+| `kdlbs/*`, any third party | **no** | WATCH — "submitted upstream to `<owner>`, awaiting their maintainer", with age |
+
+For upstream PRs the human's only real options are to ping the maintainer or to
+wait. Say that plainly. Never phrase an upstream PR as an action they can take.
+
+### What this cost, and the check that would have caught it
+
+On 2026-08-29 the top two items on the human-reserved list were "MERGE #3136"
+and "#2868 — clean, 60h+, oldest on the board." Both have base `kdlbs/kandev`.
+The human had no merge button for either, and #2868 had been sitting in their
+decision queue for sixty hours as a result.
+
+The evidence to catch this was already in my own ledger:
+
+> **D25** — `yattdev` has no write access to `kdlbs/kandev` — fork PRs are the
+> route, proven by #3145.
+
+I recorded the constraint and then wrote escalations that contradicted it,
+because "the PR is clean" and "the human can merge it" were never connected as
+separate facts. **A readiness verdict is not a routing decision.** Resolve the
+base owner as part of building the ask, and cross-check the degradation ledger
+you already maintain before putting anything in NEEDS YOUR DECISION.
+
+### Terminology (same message)
+
+> "choice another word, accept does not make to much sense for me, even
+> 'test-it, need-test, no-test-requis' are good."
+
+Retire **accept / acceptance as a human-facing status label**. Use `needs-test`
+when the human must test or sign off and `no-test-needed` when they must not;
+`test-it` / `need-test` / `no-test-requis` are equally fine — be consistent
+within one report. Applies to labels, tags, status words, and report headings.
+
+This does **not** touch the term *acceptance criteria*, which stays. That names
+a property of the work, not a status shown to the operator.
