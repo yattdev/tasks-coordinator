@@ -1202,46 +1202,63 @@ start path proves to have a recurring failure mode it earns a playbook then).
 
 Files: `PROMPT.md`, `docs/RUNBOOK.md`, `docs/CAPABILITY_REGISTRY.md`
 (registry-version 2026-08-29h), this log.
-## 2026-08-29q — the board moves cards by itself, and a successful move call is not a moved card
 
-Two mechanics I did not know, found while a card kept "drifting" out of the lane I put
-it in. Both are properties of the board, not of any agent, and both cost me a wrong
-accusation before I checked.
+## 2026-08-29q — a lane change is an agent's decision; I read half a schema and called it drift
 
-### 1. Six of the twelve lanes advance a card when its agent completes a turn
+I spent a cycle "fixing" a card that was never broken, and the agent working it had to
+tell me so. Three separate errors, each one a layer under the last.
 
-Verified against `workflow_steps.events` for workflow `90f322ed`:
+### What I claimed, and why it was wrong
 
-| advances on turn completion | holds still |
-|---|---|
-| Spec, Work, Review, QA, PR, CI Fixup | Backlogs, Todo, **Blocked**, Human-QA, ToDeploy, Done |
+`workflow_steps.events` carries `on_turn_complete` on six of the twelve lanes — Spec,
+Work, Review, QA, PR, CI Fixup. I read that, saw those same six also carry
+`on_enter: auto_start_agent`, and concluded the board walks cards forward unattended:
+enter a lane, an agent starts, it finishes a turn, the card advances, repeat. I wrote
+that up as a mechanism and acted on it.
 
-Every advancing lane also carries `on_enter: auto_start_agent`. That closes a loop: the
-card enters a lane, an agent starts, the agent finishes a turn, the card advances, an
-agent starts again. A card with a live agent walks itself forward through all six with
-nobody deciding anything. I first read this as an agent mis-routing its own card and
-said so; it was the workflow, and I had to retract.
+**It is false.** The column immediately beside `events` is
+`auto_advance_requires_signal`, and it is `1` on all six of those lanes. Advancement
+fires **only when the agent explicitly signals step completion**. Nothing drifts. Every
+lane change on this board is a decision somebody made.
 
-**The trap inside the trap:** two different event shapes do this. `move_to_next` and
-`move_to_step {step_id}`. I grepped only for `move_to_next`, concluded Work was a stable
-place to park a card, and told an agent so — Work advances to Review via `move_to_step`.
-Match on `on_turn_complete`, never on the specific verb.
+So the "drift" I was chasing was the agent doing its job: `@codex-dw-pr` STEP 7 ends the
+PR phase by routing to CI Fixup, and states outright *"Do not monitor CI here. CI
+monitoring belongs to [CI FIXUP PHASE]."* Pending checks belong to CI Fixup **by
+design**. I had inferred the opposite from the lane's name — that CI Fixup means a red
+pipeline with a job to repair — and told the agent its correct routing was wrong, twice,
+then queued a move parking it in Blocked, outside the lane that was supposed to be
+watching its CI.
 
-**Consequence worth knowing:** the chain terminates at Human-QA, which auto-starts but
-does not advance. So a drifting card cannot run away to Done — but it *will* land in a
-Human-owned column, announcing itself as ready for testing. A Draft PR with checks still
-in flight arriving there spends the operator's attention on nothing.
+The agent pushed back with its phase contract quoted. It was right on every point.
 
-**Where to park a card that must wait:** `Blocked` is the only lane that keeps an agent
-attached and does not move it. That is also what the column-ownership policy already
-prescribes for a task that cannot progress, so the mechanical answer and the policy
-answer agree.
+### The three failures, named
 
-### 2. `move_task_kandev` returning 200 means *queued*, not *moved*
+1. **I read one column and stopped.** `events` without `auto_advance_requires_signal` is
+   half a schema, and the missing half inverted the meaning. Same shape as recording
+   `pending_moves.applied` — a column I never checked existed.
+2. **I inferred lane semantics from lane names.** The authority is
+   `workflow_steps.prompt`, which names the phase contract the agent is actually
+   executing. It is one query. I never ran it until after being corrected.
+3. **I attributed a system behaviour to an agent, then attributed an agent's decision to
+   a system.** Both directions, same cycle, and I wrote a shared learning entry
+   confidently asserting the second one.
+
+### What is actually true and worth keeping
+
+- **Read the phase prompt before judging a card's lane.**
+  `SELECT prompt FROM workflow_steps WHERE id='<step-uuid>';` The lane name is a label;
+  the prompt is the contract. Where they disagree, the prompt wins.
+- **A card in a lane you did not expect is a decision, not a malfunction.** Ask the agent
+  what phase it is executing before moving it. It has the contract; you are guessing.
+- **The stable/advancing split still exists** — Backlogs, Todo, Blocked, Human-QA,
+  ToDeploy and Done have no `on_turn_complete` at all — but on this board it never fires
+  unattended, so it is not a hazard to route around.
+
+### `move_task_kandev` returning 200 means *queued*, not *moved* (this part held up)
 
 A move requested while the target's session is mid-turn is deferred to the turn
-boundary. The call returns success, and the returned task JSON shows the **requested**
-`workflow_step_id` — so the response looks like proof of a move that has not happened.
+boundary. The call returns success and the returned task JSON echoes the **requested**
+`workflow_step_id`, so the response looks like proof of a move that has not happened.
 The real state:
 
 - `tasks.workflow_step_id` is unchanged, and `updated_at` does not advance
@@ -1249,25 +1266,21 @@ The real state:
 
 The row's **presence is the signal** — there is no `applied` flag, and the row is
 removed once the move lands. `pending_moves.session_id` is `UNIQUE`, one pending move
-per session, which is why a second request **supersedes** the first rather than
-stacking: I moved one card twice and the corrected destination replaced the wrong one.
+per session, so a second request **supersedes** the first in place rather than stacking.
+That property is what let me cancel the bad Blocked move: I issued a move to the lane
+the card was already in, and the queued row retargeted itself, same row id.
 
 Watch the column order when reading the raw row — `step_position` sits where an
 `applied` flag would plausibly go, and I misread its `0` as exactly that before checking
 `.schema`. Read the schema before naming a column you have only seen positionally.
 
-I also read the unchanged task row as "my move was rejected", when both calls had in
-fact been accepted.
-
-So: never confirm a move from the tool response. Confirm from
-`tasks.workflow_step_id`, and if it disagrees, check `pending_moves` for an unapplied
-row before concluding anything failed.
-
 ### The pattern
 
-Both of these are the same failure I logged in `2026-08-29l`: I treated an accepted
-request as a completed effect, and I treated a system behaviour as an agent's choice.
-Before recording a defect against an agent, establish that a human or an agent decided
-the thing at all — the board has its own opinions and acts on them.
+Every correction I have logged today reduces to concluding before inspecting. This one
+adds a sharper version: **when a conclusion makes an agent look wrong, that is the moment
+to go back and check the schema, not the moment to send the instruction.** The agent's
+refusal is what stopped this from becoming a card parked in the wrong lane with its CI
+unwatched — the fourth time in this session that an agent declining my instruction
+prevented the harm.
 
 Files: `docs/RUNBOOK.md`, `docs/LEARNING_LOG.md`.

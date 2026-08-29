@@ -1692,41 +1692,49 @@ the file is self-describing. Never replace a section you did not write.
 
 Retention still keeps the five newest `standup-YYYY-MM-DD.md` files, deleted by
 explicit filename — the count is per file, not per workspace section.
-## Board mechanics: cards advance themselves, and a move call only queues
 
-Two behaviours to check before you attribute a card's position to anyone's decision.
+## Board mechanics: lane changes are decisions, and a move call only queues
 
-### Which lanes advance a card when its agent completes a turn
+Two things to establish before you touch a card's position.
 
-For workflow `90f322ed`, from `workflow_steps.events`:
+### Cards do not drift — advancement requires an explicit signal
 
-- **Advance on turn completion:** Spec, Work, Review, QA, PR, CI Fixup
-- **Hold still:** Backlogs, Todo, **Blocked**, Human-QA, ToDeploy, Done
-
-All six advancing lanes also auto-start an agent on entry, so a card with a live session
-walks forward through the whole chain unattended. **This is not agent mis-routing — do
-not record it as one.** The chain stops at Human-QA (auto-starts, does not advance), so
-a card cannot drift to Done; it drifts into a Human-owned column instead and falsely
-reads as ready for testing.
-
-Re-derive the map for any workflow rather than trusting the table above, and match on
-the event *trigger*, not the verb — advancement is expressed as **both** `move_to_next`
-and `move_to_step`, and grepping for only the first will tell you a lane is stable when
-it is not:
+`workflow_steps.events` carries `on_turn_complete` on Spec, Work, Review, QA, PR and CI
+Fixup, and those same lanes auto-start an agent on entry. **This does not mean cards
+walk forward on their own.** The governing column is `auto_advance_requires_signal`,
+which is `1` on all six: the card advances only when the agent explicitly signals step
+completion. Read both columns together — `events` alone inverts the meaning:
 
 ```sh
 sqlite3 -noheader -separator ' | ' "file:/data/data/kandev.db?mode=ro" \
   "SELECT position, name,
-          CASE WHEN events LIKE '%on_turn_complete%' THEN 'ADVANCES' ELSE 'stable' END,
-          CASE WHEN events LIKE '%auto_start_agent%' THEN 'auto-start' ELSE '-' END
+          CASE WHEN events LIKE '%on_turn_complete%' THEN 'advances' ELSE 'terminal' END,
+          auto_advance_requires_signal AS needs_signal
    FROM workflow_steps WHERE workflow_id='<workflow-uuid>' ORDER BY position;"
 ```
 
-**To park a card that must wait** (CI in flight, an external dependency): use
-**Blocked**. It is the only lane that keeps the agent attached without moving the card,
-and it is what the column-ownership policy already requires for a task that cannot
-progress. Tell the agent explicitly to idle and not signal completion, and say what you
-will do when the wait ends — otherwise a parked card reads as an accusation.
+So **a card in a lane you did not expect got there because an agent decided to put it
+there.** Treat that as a decision to understand, not a malfunction to correct.
+
+### Read the phase prompt before judging whether a lane is right
+
+The lane name is a label; the contract the agent is executing is in
+`workflow_steps.prompt`:
+
+```sh
+sqlite3 -noheader "file:/data/data/kandev.db?mode=ro" \
+  "SELECT prompt FROM workflow_steps WHERE id='<step-uuid>';"
+```
+
+Concretely, and counter to what the names suggest: **CI Fixup owns pending-CI
+monitoring**, not just red pipelines. `@codex-dw-pr` ends the PR phase by routing to CI
+Fixup and says *"Do not monitor CI here. CI monitoring belongs to [CI FIXUP PHASE]."* A
+Draft PR with checks still running belongs in CI Fixup. Inferring otherwise from the
+lane name cost a cycle and two wrong instructions to an agent that was following its
+contract correctly.
+
+If a card's lane still looks wrong after reading the prompt, **ask the agent which phase
+it is executing** before moving it. It holds the contract; you are inferring.
 
 ### Confirm a move from the database, never from the tool response
 
@@ -1746,15 +1754,12 @@ sqlite3 -noheader -separator ' | ' "file:/data/data/kandev.db?mode=ro" \
 
 **The row's presence means the move is still queued** — there is no `applied` column,
 and the row is deleted once the move lands. `session_id` is `UNIQUE`, so a second move
-request **supersedes** the first rather than stacking; correcting a queued move is safe.
-Issue the corrected move and verify exactly one pending row survives, naming the
-destination you want. Do not conclude a move failed, and do not re-issue it repeatedly,
-until you have checked `pending_moves`.
+request **supersedes** the first in place rather than stacking.
+
+**To cancel a queued move you should not have issued:** submit a move to the lane the
+card is already in. The pending row retargets to that no-op, same row id, and the
+unwanted destination is gone. Verify by re-reading `pending_moves`.
 
 Columns are `id, session_id, task_id, workflow_id, workflow_step_id, step_position,
 queued_at, actor, sender_session_id, move_id` — note `step_position`, which is easy to
 misread as an applied/status flag when scanning a row positionally.
-
-Note the schema: there are no `sessions` or `messages` tables in this database; session
-and conversation state live elsewhere. Use `list_task_sessions_kandev` and
-`get_task_conversation_kandev` for those.
