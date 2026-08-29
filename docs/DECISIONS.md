@@ -751,3 +751,27 @@ Responsive web and native UI also remain separate evidence classes. A screenshot
 may pass visually and still not satisfy a native-device criterion if it came from a
 browser viewport. The registry and runbook therefore require explicit per-file and
 per-platform labeling.
+
+## Capability verdicts expire with the process that produced them (2026-08-29)
+
+A capability status is a claim about a moment and a process, not a permanent
+property of the system. Recording it without that binding produced three
+contradictory verdicts on Android UI-QA in one day.
+
+The failure mode is specific and repeatable: a long-lived agent process retains the
+device and supplemental-group policy it was created with. After an image rebuild or
+force-recreate, that process keeps failing while a freshly started one succeeds, and
+`id` output is identical in both — so nothing in the session hints that the verdict
+is stale. Compounding it, namespaced device ownership renders as `nobody:nogroup`
+whether or not access works, which invites a confident wrong inference from `ls -l`.
+
+Therefore a BLOCKED verdict carries an expiry: re-execute it in a fresh process
+before carrying it forward, especially across any platform rebuild. And a status is
+only ever set from an executed check — never from a display, a configuration file, or
+a peer's report, however authoritative. This extends registry maintenance rule 7 and
+is the general form of the earlier rule that a capability claim must name what was
+executed.
+
+Rationale: the asymmetry matters. A stale WORKING verdict fails loudly the next time
+someone uses the capability. A stale BLOCKED verdict is silent — work is scoped
+around a limitation that no longer exists, and nobody discovers the cost.

@@ -1583,6 +1583,11 @@ that is not a stand-in for UI-QA that a criterion actually requires.
 
 Registry entry: [E1](CAPABILITY_REGISTRY.md#e1-a-task-needs-an-android-emulator-or-on-device-ui-qa).
 
+**Verifying the shutdown — do not let the receipt lie.** `pgrep -c -f qemu-system`
+counts the invoking shell's own command line, so it reports stray processes that do
+not exist and can also mask a real one. Confirm with a pattern that cannot match the
+checker, e.g. `ps -eo pid,comm | grep -i qemu` or `pgrep -c -x qemu-system-x86_64`.
+A cleanup receipt built on a self-matching pattern is not evidence.
 ## Inspecting QA screenshots with `view_image`
 
 **Status 2026-08-29: VERIFIED WORKING after the Kandev runtime recreation.** Use the

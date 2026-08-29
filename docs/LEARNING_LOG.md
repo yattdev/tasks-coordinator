@@ -983,3 +983,43 @@ acceptance evidence.
 Files: `docs/CAPABILITY_REGISTRY.md` (new K1, registry-version 2026-08-29e),
 `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log. `PROMPT.md` unchanged because the
 existing binding registry-maintenance rule already covers the capability.
+
+## 2026-08-29j — independent post-recreate confirmation; two rules sharpened
+
+Window: 2026-08-29T08:16Z to 2026-08-29T11:05Z (from the previous entry's knowledge
+commit to now). Support reported the KVM blocker cleared after a force-recreate and
+asked for an independent re-test.
+
+- **Independent confirmation, not a new claim.** Executed the full path in this
+  post-recreate session: `os.open('/dev/kvm', O_RDWR)` succeeded, `emulator
+  -list-avds` returned 10 AVDs, `Pixel_3_API_29` booted as `emulator-5554` with
+  `sys.boot_completed=1`, API 29 / Android 10 / `Android SDK built for x86` / x86
+  ABI, and `adb emu kill` left no `qemu-system` process. A peer Coordinator had
+  already landed the corrected VERIFIED WORKING entry with a fuller receipt
+  (`061a2e4`), so this cycle deliberately did NOT rewrite E1 — a second description
+  of the same finding is the near-duplicate the filter exists to prevent.
+- **Sharpened in place (registry maintenance rule 7):** a verification does not
+  transfer across execution contexts **or across process lifetimes**. The peer
+  captured the incident narrative; the binding general rule still said only
+  "different execution context". A long-lived agent process keeps the device/group
+  policy it was created with, so after an image rebuild or force-recreate an earlier
+  negative result is stale until re-executed in a fresh process. The identical test
+  failed at 08:13Z and passed at 11:01Z with no change to `id` output.
+- **Also folded into rule 7:** a cosmetic display is never a substitute for an
+  executed check. `/dev/kvm` renders as `crw-rw---- nobody:nogroup` both when
+  `open()` fails and when it succeeds, so the earlier "unmapped ownership" reading
+  was inference from a display that carries no signal either way.
+- **New (runbook):** a cleanup receipt must not be built on a self-matching pattern.
+  `pgrep -c -f qemu-system` counts the invoking shell's own command line — it
+  reported four stray emulator processes when there were none, twice. Confirm with
+  `ps -eo pid,comm | grep -i qemu` or `pgrep -c -x`. This matters because cleanup
+  receipts are exactly where a false reading goes unchallenged.
+
+Rejected by the filter:
+- Re-describing the Android capability, evidence, or the pre-recreate remediation —
+  already landed by a peer this window; sharpened the one under-general rule instead.
+- The KVM group/GID remediation detail — platform-side, already recorded by its owner.
+- Transient: request IDs, AVD names, emulator/qemu build strings, device serials.
+
+Files: `docs/CAPABILITY_REGISTRY.md` (rule 7, registry-version 2026-08-29f),
+`docs/RUNBOOK.md`. `PROMPT.md` unchanged — no charter mirror triggered.
