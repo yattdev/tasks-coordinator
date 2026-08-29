@@ -2928,3 +2928,35 @@ within one report. Applies to labels, tags, status words, and report headings.
 
 This does **not** touch the term *acceptance criteria*, which stays. That names
 a property of the work, not a status shown to the operator.
+
+---
+
+## A backend restart at a step transition swallows the on-entry auto-start
+
+Observed 2026-08-29 (degradation D28) on `584997a4-90bc-4496-b2b8-184a6123b247`.
+
+Review and QA both carry `on_turn_complete: move_to_next`, so a card traverses
+Work → Review → QA on its own. Every one of those steps also carries
+`on_enter: auto_start_agent`. If the backend restarts at the instant a card
+enters a step, the entry fires but its auto-start does not survive — and the
+card sits in the new column with **no session for that gate**.
+
+The card looked correct from every angle that does not check sessions: right
+column, work delivered, PR open, clean and green. Its only session was the
+authoring Work session, parked at `WAITING_FOR_INPUT`. The QA gate had never
+run. The tell was that its `updated_at` (22:48:59Z) matched the backend restart
+timestamp in `/data/logs/backend-logs.log` to the second.
+
+**Check:** when a card's `updated_at` coincides with a restart, or whenever a
+card is in a gate column, call `list_task_sessions_kandev` and look for a
+session *newer than the transition*. The charter already says a column change
+is not an independent gate receipt; this is the concrete mechanism that makes
+it false.
+
+**Recovery:** `spawn_session_kandev` onto the card with the gate's own prompt
+(`@codex-dw-qa`, `@codex-dw-review`, …) plus the delivered head and what the
+gate must decide, then verify the session reaches `RUNNING` from live session
+state — not from the spawn call's return value.
+
+Related: grep the backend log for `startup failed session cleanup`; it marks
+restarts and lists the sessions pruned during them.
