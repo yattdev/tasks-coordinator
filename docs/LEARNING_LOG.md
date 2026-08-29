@@ -1373,3 +1373,56 @@ body, not just `pr checks`, before calling anything ready** — this is the same
 [[calling a PR review-ready when its remote trailed]], one layer up.
 
 Files: `docs/RUNBOOK.md`, `docs/LEARNING_LOG.md`.
+
+## 2026-08-29t — DEFERRED FINDINGS REGISTER: two P1s with no board task to hold them
+
+Recorded because they were **deliberately deferred, not dismissed**, and there is currently
+no card to receive them. Deferred findings with nowhere to live are how real defects get
+lost. If a Coordinator later gains permission to create board tasks, these are the scope.
+
+**Source:** PR kdlbs/kandev#3143 (`Fix workflow-sync GitHub polling starving API quota`),
+head `731ddc021c7be75a2798baaba08de5cd5305e759`, 2026-08-29. Both were confirmed real by
+the task agent against the code, replied to on their threads with the risk stated, and
+resolved as deferred follow-ups. Two contained fixes from the same review round **were**
+landed on that PR: exempting `/rate_limit` probes from `ObserveSuccess`, and clamping the
+oversized initial retry delay.
+
+### [P1] Legacy admission state splits across two principals for one identity
+
+`apps/backend/internal/github/service.go:297` — raised by `greptile-apps`.
+
+`NewService` wires the service-level legacy client **before identity is known**, keying it
+under the empty-login `workspace:legacy` fallback, while workspace-resolved legacy clients
+coordinate by authenticated login. The same upstream credential therefore holds **two
+independent admission slots**, so concurrent background requests bypass the serialization
+and pacing the subsystem exists to impose.
+
+**Cost of deferring:** principal-wide serialization is lost for the startup/global client
+path. **Why it is not a patch:** a safe fix needs identity acquisition and rebinding
+semantics — what happens to in-flight admissions when a client's identity resolves.
+
+### [P1] Synchronous poller lets one throttled principal stall every other
+
+`apps/backend/internal/workflowsync/service.go:248` — raised by `chatgpt-codex-connector`.
+
+`SyncDueConfigs` calls `syncWorkspace` **serially**, and admission can wait **while holding
+the workspace lock**. So when any due workspace shares a principal with an active retry
+window or exhausted reserve, the first blocked workspace prevents every later one —
+including unrelated GitHub **and GitLab** principals — from syncing for up to an hour.
+
+**Cost of deferring:** no isolation between principals during a long throttle window.
+**Why it is not a patch:** needs a nonblocking scheduled-admission contract or properly
+owned per-workspace scheduling. A timeout or a goroutine around the blocking call is the
+tempting shortcut and is not a fix.
+
+### The rule this is here to enforce
+
+**A deferral is only honest if the cost of deferring is written down somewhere that
+outlives the pull request.** The agent stated both costs in its review replies, which is
+correct — but review threads on a merged PR are not a register anyone consults. Escalating
+"I need permission to create a task" without recording the content would have made the
+finding contingent on that permission arriving. It is not contingent now.
+
+Related: [[no silent caps]] — a bounded scope must be logged, not implied.
+
+Files: `docs/LEARNING_LOG.md`.
