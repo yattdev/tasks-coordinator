@@ -358,3 +358,34 @@ confirmed environment behaviour, not speculation.
   live session state every cycle rather than waited on.
 
 Files: `docs/LEARNING_LOG.md`.
+
+## 2026-08-29 — false history from silent persistence failure
+
+Window: 2026-08-29T02:00Z–02:45Z, triggered by direct Human review corrections.
+
+- **Silent persistence failure manufactures false history.** A Coordinator session moved 13
+  cards Done→Blocked at 2026-08-28T02:05:52Z under its own
+  `[COORDINATOR DONE-INTEGRITY RECOVERY]` tag, then failed to persist because the state plan
+  had exceeded what `update_task_plan_kandev` can rewrite in one call. The next session found
+  13 unexplained cards, inferred an "operator sweep", built an escalation on that premise, and
+  asked the Human about it across several cycles. The Human corrected it: *"I did not move out
+  13 cards from Done, you did it."*
+  Rule: unexplained board state is FIRST a suspected persistence failure of your own. Compare
+  your last successful write timestamp against the board's change timestamps, and read the
+  move/handoff message on an affected card — it carries the actor's own tag — before
+  attributing anything to a human.
+- **A stale provider hold freezes the board.** A GitHub rate limit observed at 15:01Z was
+  carried ~11 hours without retest; when finally re-tested it showed 5000/5000 remaining on
+  both REST and GraphQL. Re-verify provider limits every cycle; a hold is valid only for the
+  cycle that observed it.
+- **Test the capability, not the summary command.** `gh auth status` reported `GH_TOKEN`
+  invalid while `gh api` REST calls returned real data with full authenticated quota, and the
+  `gh pr view` GraphQL path failed independently. Reporting "token invalid" from
+  `gh auth status` alone was wrong and was repeated from another task's environment-specific
+  claim without independent testing. Use `gh api` REST for provider verification and record
+  which surface was actually exercised.
+- **Do not relay a second-hand environment claim as verified fact.** The invalid-token report
+  originated in one task's environment; repeating it board-wide without testing turned a local
+  symptom into a false global degradation.
+
+Files: `PROMPT.md`, `docs/LEARNING_LOG.md`.
