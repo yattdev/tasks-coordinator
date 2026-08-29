@@ -1169,3 +1169,36 @@ Files: `docs/CAPABILITY_REGISTRY.md` (new G3, registry-version 2026-08-29h),
 `docs/RUNBOOK.md`, this log. `PROMPT.md` unchanged because its existing binding
 rule already requires autonomous broker routing and escalation of genuine terminal
 faults.
+## 2026-08-29m — the shared standup file collides across workspaces
+
+Window: 2026-08-29T11:05Z to 2026-08-29T11:15Z, during a `WAKE:STANDUP` on the
+Co-Up board.
+
+- **New, corrective:** `standups/standup-YYYY-MM-DD.md` carries no workspace
+  qualifier, while Coordinators are workspace-scoped peers each running their own
+  standup routine into the same shared clone. Today's file already existed and
+  described an entirely different board (52 cards, PRs #3048/#3136/#3143) — a peer's
+  report, not a re-run of mine. Following the routine literally ("update today's
+  file") would have destroyed it, and the five-file rotation could then have deleted
+  the evidence.
+- The existing rule anticipated only *same-workspace* duplicates and explicitly
+  declared cross-workspace Coordinators independent peers — which is true for wake
+  ownership and false for this one filename. The gap was in the seam between two
+  correct rules, not inside either.
+- Resolution: the dated file now carries one `## Workspace: <name> (<id>)` section
+  per workspace, appended never overwritten, with a header explaining why. Bound in
+  `PROMPT.md` and given a runbook procedure.
+- **Capability recorded:** `docker kandev workspace description-update <file>` exists
+  (verified via `docker kandev workspace`). This closes a gap I had been carrying for
+  three cycles — the `PROMPT.md` charter mirror was deferred because sending a 60 KB+
+  document inline risked a truncated description, which is worse than a stale one.
+  Registry entry F1 now names it. Another instance of the day's recurring lesson:
+  the capability existed and was simply undiscovered, and `docker kandev` with no
+  arguments does not list `workspace` either.
+
+Rejected as transient: board counts, the specific stalled task IDs, and the
+session-start incident (escalated to Support, not yet a durable rule — if the ACP
+start path proves to have a recurring failure mode it earns a playbook then).
+
+Files: `PROMPT.md`, `docs/RUNBOOK.md`, `docs/CAPABILITY_REGISTRY.md`
+(registry-version 2026-08-29h), this log.

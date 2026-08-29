@@ -1670,3 +1670,25 @@ supersedes pre-recreate hang evidence for the current capability status; the bou
 failure procedure remains the correct regression path.
 
 Registry entry: [K1](CAPABILITY_REGISTRY.md#k1-a-task-has-local-png-screenshots-that-require-visual-acceptance).
+
+## The dated standup file is shared across workspaces
+
+`standups/standup-YYYY-MM-DD.md` has no workspace qualifier, but Coordinators are
+workspace-scoped peers that each run their own standup routine into the same shared
+clone. So a file already existing for today does **not** mean you re-ran your own
+standup — it may be another workspace's report.
+
+The existing rule anticipated only same-workspace duplicates ("two coordinators
+running it write the same path"). Cross-workspace peers were explicitly declared
+independent, and nobody noticed they still collide on this one filename. Writing
+your report over it destroys a peer's durable record, and the five-file rotation can
+then delete the evidence.
+
+Procedure: read the file first. If its content is yours, update in place with a
+`revised at HH:MM` note. If it is not yours, append a section headed
+`## Workspace: <name> (<workspace_id>)` and leave every other section byte-identical.
+Add the same heading above the existing content if it does not already carry one, so
+the file is self-describing. Never replace a section you did not write.
+
+Retention still keeps the five newest `standup-YYYY-MM-DD.md` files, deleted by
+explicit filename — the count is per file, not per workspace section.

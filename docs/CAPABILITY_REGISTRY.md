@@ -191,7 +191,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 ### F1. `PROMPT.md` changed
 - **Trigger** Any commit touching `PROMPT.md`.
 - **Action** Mirror its **complete** current content into the live Coordinator task description, then **verify by comparing, not assuming**.
-- **Capability** `update_task_kandev` (description). Bump the `<!-- version: ... -->` stamp in the same change.
+- **Capability** `docker kandev workspace description-update <file>` — the practical route for a 60 KB+ charter, verified present 2026-08-29 (`docker kandev workspace` lists it). `update_task_kandev` also accepts a description but requires sending the whole document inline. Bump the `<!-- version: ... -->` stamp in the same change.
 - **Authority** Standing duty in the continuity checkpoint ([CONTINUITY](CONTINUITY.md)).
 - **Evidence** A byte comparison of the live description against `PROMPT.md`.
 - **Escalate to** Human — a failed mirror is a blocker, not a footnote, because running Coordinators are then on stale rules.

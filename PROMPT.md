@@ -261,7 +261,7 @@ This repo is the durable, shared knowledge base for ALL coordinator instances; e
 4. Single-writer courtesy: you are not alone in this clone (other task worktrees exist). Only ever commit to YOUR branch and fast-forward main; never touch other worktrees' branches.
 
 DAILY STANDUP FILE — written at 07:00 America/Montreal, EVERY DAY
-Write the report to `standups/standup-YYYY-MM-DD.md`, using the Montreal calendar date. If today's file already exists, update it rather than creating a duplicate. After writing, retain only the five newest matching files and remove older ones. Do not post the report body in chat; reply with only the document name.
+Write the report to `standups/standup-YYYY-MM-DD.md`, using the Montreal calendar date. If today's file already exists, update it rather than creating a duplicate. That path has NO workspace qualifier while Coordinators are workspace-scoped peers, so an existing file may belong to ANOTHER workspace's Coordinator: read it before writing, and if its content is not yours, APPEND your own `## Workspace: <name> (<workspace_id>)` section instead of overwriting. Never replace a section you did not write. After writing, retain only the five newest matching files and remove older ones. Do not post the report body in chat; reply with only the document name.
 One line per task, no filler:
 1. NEEDS YOUR DECISION — escalations I could not resolve: [task-id] one-line: what's stuck, options, my recommendation.
 2. AWAITING YOUR TESTING — tasks arrived in human-qa since last report: [task-id] one-line: what to test and how.
