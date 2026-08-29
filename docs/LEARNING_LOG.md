@@ -1142,3 +1142,65 @@ declines and reports the exact refusal is doing its job — treat that as signal
 friction, and check your own instruction first.
 
 Files: `docs/RUNBOOK.md`, `docs/LEARNING_LOG.md`.
+
+## 2026-08-29m — the board moves cards by itself, and a successful move call is not a moved card
+
+Two mechanics I did not know, found while a card kept "drifting" out of the lane I put
+it in. Both are properties of the board, not of any agent, and both cost me a wrong
+accusation before I checked.
+
+### 1. Six of the twelve lanes advance a card when its agent completes a turn
+
+Verified against `workflow_steps.events` for workflow `90f322ed`:
+
+| advances on turn completion | holds still |
+|---|---|
+| Spec, Work, Review, QA, PR, CI Fixup | Backlogs, Todo, **Blocked**, Human-QA, ToDeploy, Done |
+
+Every advancing lane also carries `on_enter: auto_start_agent`. That closes a loop: the
+card enters a lane, an agent starts, the agent finishes a turn, the card advances, an
+agent starts again. A card with a live agent walks itself forward through all six with
+nobody deciding anything. I first read this as an agent mis-routing its own card and
+said so; it was the workflow, and I had to retract.
+
+**The trap inside the trap:** two different event shapes do this. `move_to_next` and
+`move_to_step {step_id}`. I grepped only for `move_to_next`, concluded Work was a stable
+place to park a card, and told an agent so — Work advances to Review via `move_to_step`.
+Match on `on_turn_complete`, never on the specific verb.
+
+**Consequence worth knowing:** the chain terminates at Human-QA, which auto-starts but
+does not advance. So a drifting card cannot run away to Done — but it *will* land in a
+Human-owned column, announcing itself as ready for testing. A Draft PR with checks still
+in flight arriving there spends the operator's attention on nothing.
+
+**Where to park a card that must wait:** `Blocked` is the only lane that keeps an agent
+attached and does not move it. That is also what the column-ownership policy already
+prescribes for a task that cannot progress, so the mechanical answer and the policy
+answer agree.
+
+### 2. `move_task_kandev` returning 200 means *queued*, not *moved*
+
+A move requested while the target's session is mid-turn is deferred to the turn
+boundary. The call returns success, and the returned task JSON shows the **requested**
+`workflow_step_id` — so the response looks like proof of a move that has not happened.
+The real state:
+
+- `tasks.workflow_step_id` is unchanged, and `updated_at` does not advance
+- a row appears in `pending_moves` with `applied = 0` and the requested step
+
+I moved one card twice and read the unchanged row as "my move was rejected", when both
+calls had been accepted and queued. Usefully, the second request **superseded** the
+first rather than stacking — one pending row survived, the corrected one.
+
+So: never confirm a move from the tool response. Confirm from
+`tasks.workflow_step_id`, and if it disagrees, check `pending_moves` for an unapplied
+row before concluding anything failed.
+
+### The pattern
+
+Both of these are the same failure I logged in `2026-08-29l`: I treated an accepted
+request as a completed effect, and I treated a system behaviour as an agent's choice.
+Before recording a defect against an agent, establish that a human or an agent decided
+the thing at all — the board has its own opinions and acts on them.
+
+Files: `docs/RUNBOOK.md`, `docs/LEARNING_LOG.md`.

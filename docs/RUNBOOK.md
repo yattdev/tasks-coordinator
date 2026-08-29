@@ -1645,3 +1645,64 @@ supersedes pre-recreate hang evidence for the current capability status; the bou
 failure procedure remains the correct regression path.
 
 Registry entry: [K1](CAPABILITY_REGISTRY.md#k1-a-task-has-local-png-screenshots-that-require-visual-acceptance).
+
+## Board mechanics: cards advance themselves, and a move call only queues
+
+Two behaviours to check before you attribute a card's position to anyone's decision.
+
+### Which lanes advance a card when its agent completes a turn
+
+For workflow `90f322ed`, from `workflow_steps.events`:
+
+- **Advance on turn completion:** Spec, Work, Review, QA, PR, CI Fixup
+- **Hold still:** Backlogs, Todo, **Blocked**, Human-QA, ToDeploy, Done
+
+All six advancing lanes also auto-start an agent on entry, so a card with a live session
+walks forward through the whole chain unattended. **This is not agent mis-routing — do
+not record it as one.** The chain stops at Human-QA (auto-starts, does not advance), so
+a card cannot drift to Done; it drifts into a Human-owned column instead and falsely
+reads as ready for testing.
+
+Re-derive the map for any workflow rather than trusting the table above, and match on
+the event *trigger*, not the verb — advancement is expressed as **both** `move_to_next`
+and `move_to_step`, and grepping for only the first will tell you a lane is stable when
+it is not:
+
+```sh
+sqlite3 -noheader -separator ' | ' "file:/data/data/kandev.db?mode=ro" \
+  "SELECT position, name,
+          CASE WHEN events LIKE '%on_turn_complete%' THEN 'ADVANCES' ELSE 'stable' END,
+          CASE WHEN events LIKE '%auto_start_agent%' THEN 'auto-start' ELSE '-' END
+   FROM workflow_steps WHERE workflow_id='<workflow-uuid>' ORDER BY position;"
+```
+
+**To park a card that must wait** (CI in flight, an external dependency): use
+**Blocked**. It is the only lane that keeps the agent attached without moving the card,
+and it is what the column-ownership policy already requires for a task that cannot
+progress. Tell the agent explicitly to idle and not signal completion, and say what you
+will do when the wait ends — otherwise a parked card reads as an accusation.
+
+### Confirm a move from the database, never from the tool response
+
+`move_task_kandev` returns 200 and echoes the **requested** `workflow_step_id` even when
+the move has only been queued. A move requested while the target's session is mid-turn
+is deferred to the turn boundary. Confirm it landed:
+
+```sh
+sqlite3 -noheader -separator ' | ' "file:/data/data/kandev.db?mode=ro" \
+  "SELECT ws.name, t.updated_at FROM tasks t
+   JOIN workflow_steps ws ON ws.id=t.workflow_step_id WHERE t.id='<task-uuid>';"
+
+# if the lane disagrees, the move is queued rather than failed:
+sqlite3 -noheader -separator ' | ' "file:/data/data/kandev.db?mode=ro" \
+  "SELECT * FROM pending_moves WHERE task_id='<task-uuid>';"
+```
+
+An unapplied row has `applied = 0`. A second move request **supersedes** the first
+rather than stacking, so correcting a queued move is safe — issue the corrected move and
+verify one pending row survives. Do not conclude a move failed, and do not re-issue it
+repeatedly, until you have checked `pending_moves`.
+
+Note the schema: there are no `sessions` or `messages` tables in this database; session
+and conversation state live elsewhere. Use `list_task_sessions_kandev` and
+`get_task_conversation_kandev` for those.
