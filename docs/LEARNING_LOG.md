@@ -1426,3 +1426,63 @@ finding contingent on that permission arriving. It is not contingent now.
 Related: [[no silent caps]] — a bounded scope must be logged, not implied.
 
 Files: `docs/LEARNING_LOG.md`.
+
+## 2026-08-29u — nobody in the loop can re-run CI, so "flake or real defect?" is unanswerable
+
+A PR reached a state where every question was resolved except one, and that one could not
+be settled by anyone available.
+
+**The situation.** #3143 failed `E2E Shard 13/14` after a previous run failed
+`E2E Shard 9/14`. The agent had already proven the 9/14 failure was a **real** strict-mode
+assertion defect — an unscoped locator matching two elements — and fixed it, so "assume
+flake" was not open to us. For 13/14 it traced the root to `pr-status-badge.spec.ts:555`
+and ran the exact test **10/10 clean** with `--repeat-each=10 --retries=0`.
+
+**The decisive test is a re-run of the same job on the same commit.** Passes → flake.
+Fails identically → deterministic, and the environment/artifact hypothesis takes over.
+
+**Neither party can run it.**
+
+- Task agents get **HTTP 401** from `gh` without the injected token (D18).
+- The Coordinator gets `run <id> cannot be rerun; Must have admin rights to Repository`.
+
+I offered the re-run before checking my own permissions, and an agent waited on a
+capability I did not have. **Check that you can do a thing before offering it as the way
+out of someone else's blocker.**
+
+### What survives when the decisive test is unavailable
+
+Substitute evidence is worth gathering, and worth labelling as substitute:
+
+- **Sibling suites.** #3136 and #3137 ran the same E2E suite on the same repository with
+  **zero** shard failures, while #3143 failed two different shards in consecutive runs. A
+  general suite flake predicts the siblings would flake too.
+- **Its limits, stated rather than buried.** Different times, different runner load — not
+  a controlled comparison. And two *different* shards failing fits a single
+  branch-specific defect badly, since that would hit the same spec twice. Neither
+  hypothesis comes out clean.
+
+The agent's final classification was the right shape: **"unresolved CI-only, likely
+environment/load-dependent"**, explicitly noting it *cannot* prove a flake. That is a
+finding. "Flaky" would have been a guess wearing a finding's clothes.
+
+### The rule
+
+**A local pass after `make build` does not separate "flaky" from "CI artifacts differ".**
+Rebuilding before the local run confounds exactly the comparison you are making. Say so
+when reporting it.
+
+**And "retries reproduced the same failure" is evidence of determinism, not flakiness** —
+if CI fails the same way every attempt, that is the opposite of jitter. Watch for a report
+that contains both that sentence and a flakiness conclusion; they are in tension.
+
+### The consequence for the board
+
+The readiness gate requires green CI, so the PR cannot flip — **blocked on a capability
+gap, not on the work**. Nine threads closed, three P1s fixed, `mergeable: true`, and it
+sits behind one CI signal nobody present can interrogate. That distinction belongs in what
+the Human reads, so the card is not mistaken for an agent that stalled.
+
+Related: [[flipping draft to ready is itself a review trigger]].
+
+Files: `docs/LEARNING_LOG.md`.
