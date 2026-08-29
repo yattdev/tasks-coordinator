@@ -390,19 +390,34 @@ Window: 2026-08-29T02:00Z–02:45Z, triggered by direct Human review corrections
 
 Files: `PROMPT.md`, `docs/LEARNING_LOG.md`.
 
-## 2026-08-29b — platform update left every task worktree read-only
+## 2026-08-29b — CORRECTED: agent mount namespaces are private; never infer another agent's access
 
-- After a Kandev platform update, `/data/tasks/<task>/…` worktrees and the shared common
-  git dir `/data/home/Code/kandev-source/.git` were mounted `ro`, while only the Coordinator's
-  own worktree and `/data/home/Code/coordinator` remained `rw`.
-- Symptom is silent until an agent attempts a write: sessions sit `WAITING_FOR_INPUT` and the
-  backend log shows no errors, because nothing has tried to stage or commit yet. A board can
-  therefore look healthy while being globally unable to do any implementation work.
-- Detection: probe `git -C <worktree> add -A --dry-run` and `touch $(git rev-parse --git-dir)`
-  rather than waiting for agent failures. Verified conclusively when a task that had committed
-  successfully two hours earlier could no longer stage.
-- Coordinator response: hold new task dispatch and implementation direction while worktrees are
-  read-only — dispatching work only manufactures guaranteed failures — and escalate the exact
-  mount list. Do not wake parked agents into a read-only filesystem.
+**This entry originally claimed a platform update had left every task worktree read-only.
+That claim was WRONG and is retracted. Do not act on the earlier version.**
+
+- **Each agent has a PRIVATE mount namespace.** The Coordinator's mount table shows only its
+  own overrides. Another agent's task root can be `rw` inside that agent's namespace while
+  appearing `ro` from the Coordinator's. `findmnt`, `/proc/mounts`, and a `touch` probe run
+  from the Coordinator are therefore **not evidence about any other agent's access**.
+- What actually happened: the Coordinator probed sibling task worktrees from its own namespace,
+  saw `ro`, and escalated a board-wide read-only regression that did not exist. It then imposed
+  a dispatch hold, withheld an approved UX direction, and declined to start a requested task —
+  all on invalid evidence. An operator guard-rooted probe at
+  `/data/tasks/recover-missing-link_596r7wik/kandev-source` showed task root, repository, and
+  Git common directory all `rw`, `git add -A --dry-run` succeeding, and a real write
+  succeeding; the owning agent then confirmed the same from inside its own namespace.
+- **Rule: mount health is tested inside the target agent's namespace, never inferred from
+  another.** To check whether a task can write, ask that task (or a guard-rooted probe) to run
+  `git -C <worktree> add -A --dry-run` and report. Never conclude from the Coordinator's view.
+- Correct reading of a Coordinator-side `ro` observation: it means *the Coordinator* lacks
+  write access to that path — which may be a legitimate scope boundary — and says nothing about
+  the owning task.
+- Third instance in one day of the same failure mode: concluding a cause from evidence that
+  could not support it (the others being a self-inflicted 13-card sweep misattributed to the
+  operator, and a stale rate-limit hold). Before escalating an environment-wide claim, ask what
+  observation would distinguish the hypothesis from its alternatives, and whether the evidence
+  in hand actually does.
+- Still true and unaffected by namespaces: intermittent GitHub 403 `rate limit exceeded` while
+  `gh api rate_limit` reports full quota — a secondary rate limit, tracked separately.
 
 Files: `docs/LEARNING_LOG.md`.
