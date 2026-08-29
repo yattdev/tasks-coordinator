@@ -984,7 +984,7 @@ Files: `docs/CAPABILITY_REGISTRY.md` (new K1, registry-version 2026-08-29e),
 `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log. `PROMPT.md` unchanged because the
 existing binding registry-maintenance rule already covers the capability.
 
-## 2026-08-29j — independent post-recreate confirmation; two rules sharpened
+## 2026-08-29n — independent post-recreate confirmation; two rules sharpened
 
 Window: 2026-08-29T08:16Z to 2026-08-29T11:05Z (from the previous entry's knowledge
 commit to now). Support reported the KVM blocker cleared after a force-recreate and
@@ -1026,7 +1026,7 @@ Files: `docs/CAPABILITY_REGISTRY.md` (rule 7, registry-version 2026-08-29f),
 
 ## 2026-08-29k — verify the instrument before acting on it
 
-Addendum to `2026-08-29j`, same window.
+Addendum to `2026-08-29n`, same window.
 
 - A link check flagged a peer's registry link as broken. The link was correct; the
   **checker** was wrong — it stripped underscores from heading anchors, so
@@ -1169,7 +1169,7 @@ Files: `docs/CAPABILITY_REGISTRY.md` (new G3, registry-version 2026-08-29h),
 `docs/RUNBOOK.md`, this log. `PROMPT.md` unchanged because its existing binding
 rule already requires autonomous broker routing and escalation of genuine terminal
 faults.
-## 2026-08-29m — the shared standup file collides across workspaces
+## 2026-08-29p — the shared standup file collides across workspaces
 
 Window: 2026-08-29T11:05Z to 2026-08-29T11:15Z, during a `WAKE:STANDUP` on the
 Co-Up board.
