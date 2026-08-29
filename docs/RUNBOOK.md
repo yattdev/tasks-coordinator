@@ -1388,8 +1388,11 @@ Support identity (human-directed 2026-08-29):
 - Codex thread ID: `01a043b4-fe52-7020-94bb-de94e72f8a07` (a Codex thread, **not**
   a Kandev `taskId`/`sessionId` — `message_task_kandev` cannot target it)
 - Host working directory: `/home/ayattara/Code/kandev`
-- Host resume command:
-  `codex exec resume 01a043b4-fe52-7020-94bb-de94e72f8a07 "KANDEV SUPPORT REQUEST: <taskId> <sessionId> <worktree> <issue/evidence>"`
+- Host resume command (run from the host workspace, not from a container):
+
+      cd /home/ayattara/Code/kandev
+      codex exec resume 01a043b4-fe52-7020-94bb-de94e72f8a07 \
+        "KANDEV SUPPORT REQUEST: <request>"
 
 **Agents cannot deliver this themselves — tested 2026-08-29T06:52Z.** Running the
 documented command from inside an agent container fails:
@@ -1408,13 +1411,26 @@ contains only `kandev-agent-docker.sock`.
 claim a support queue or delivery mechanism exists. Until a reviewed support broker
 exists, the only route is to record the request in the board/task trail — the
 Coordinator plan for coordinator-level blockers, the owning task's trail otherwise —
-so the host-side agent or the operator can pick it up and run the command.
+so the host-side agent or the operator can pick it up and run the command. The thread ID
+is stable, but autonomous coordinator-to-support delivery needs a narrow reviewed
+message broker that does not yet exist; do not imply otherwise.
 
-Every request must carry: coordinator task ID; coordinator session ID; the affected
-task/session ID when applicable; worktree path; the exact error text or supporting
-evidence; the expected outcome; and whether the action is destructive or
-production-sensitive. Write the full command, ready to paste, so the operator does
-not have to assemble it.
+**Canonical request format (operator-supplied 2026-08-29).** Use these exact labels;
+an unlabelled one-line request is not the agreed shape:
+
+    KANDEV SUPPORT REQUEST
+    Coordinator task ID: <task-id>
+    Coordinator session ID: <session-id>
+    Workspace/worktree: <path>
+    Problem: <observed behavior>
+    Evidence: <errors, logs, commands>
+    Expected outcome: <desired behavior>
+    Security constraints: <anything that must remain isolated>
+
+Include the affected task/session ID inside `Problem` or `Evidence` when the blocker
+belongs to another card. State plainly in `Security constraints` whether the action is
+destructive or production-sensitive, and name anything that must stay isolated. Write
+the full command ready to paste so the operator does not have to assemble it.
 
 Useful and non-obvious: `/home/ayattara/Code/kandev` **is** readable from inside the
 container at its host path, so host paths quoted in a request can be verified before
