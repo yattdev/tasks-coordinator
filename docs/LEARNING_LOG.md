@@ -511,3 +511,41 @@ main could not fast-forward because `/data/home/Code/coordinator` is read-only
 (`unable to unlink old` for the four policy files). Main remained unchanged;
 the complete `PROMPT.md` mirror is intentionally pending the required
 fast-forward. Operator action is required; no filesystem workaround was used.
+
+## 2026-08-29d — One blocker label, three different faults: split it by the exact error string
+
+Four Blocked cards all carried "Git metadata is read-only". Re-probing each with
+`docker kandev workspace probe <full-task-uuid>` split them into three unrelated faults, and
+the deciding evidence was the **exact error text**, not the symptom class.
+
+| Error | Real fault | Right owner |
+| --- | --- | --- |
+| `missing Git worktree directory for <marker>` (guard, exit 78) | The repository's `.git/worktrees/` registry is absent | the worktree-admin recovery task |
+| `Unable to create …/index.lock: File exists` | Stale 0-byte lock, no process holding it | the task that owns the checkout |
+| `Unable to create …/index.lock: Read-only file system` | Genuinely unwritable mount | the filesystem-contract task |
+
+The last one no longer occurs anywhere on this board. The middle one had been misread as the
+last one for two days because both surface as "cannot create index.lock" and nobody compared
+the second half of the sentence. Three other cards had been pinned to the wrong owner entirely.
+
+- **Rule: when several cards share a blocker label, re-derive each one's blocker from a live
+  probe before carrying any of them forward.** A shared label is a hypothesis, not a finding.
+  Cards inherit each other's diagnosis silently, and a stale shared label freezes a whole class.
+- **Rule: compare the error string, not the failing operation.** `git add` failing proves
+  nothing about *why*. Two of these faults are one word apart in the same sentence.
+- A repository can lose its `worktrees/` directory *entirely* while `.git` stays healthy
+  (objects, refs, packed-refs, logs all intact). Recovery code that creates an entry inside
+  `worktrees/` must create the directory when it is absent, or it fails on exactly the case
+  that needs it. Task checkouts survive this — the content is intact, only the registration is
+  gone, so preserve and re-register rather than re-materializing.
+- A 0-byte `index.lock` with no holding process carries no content; removing it loses nothing
+  and Git recreates it. Verify both properties first, bind the approval to exact paths, and
+  require stop-and-report if either fails. A non-empty or held lock is a different situation.
+
+Also confirmed again, from the other direction: `gh api rate_limit` reported `core: 5000/5000`
+at the same instant real REST calls returned 403 "rate limit exceeded for user ID 79718216".
+The 403 **identifies the user**, which means the credential authenticates — so a companion
+"token is invalid" degradation, sourced only from `gh auth status`, was refuted and folded into
+the rate-limit record. Test the capability you need and record which surface you exercised.
+
+Files: `docs/LEARNING_LOG.md`.
