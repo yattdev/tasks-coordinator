@@ -2127,3 +2127,42 @@ verified and name the remaining hypotheses instead.
 
 Note also that `E2E Tests Passed` and `Merge E2E Reports` are aggregators; they fail
 because a shard did. One root cause, three red marks.
+
+## "main" is ambiguous in a fork setup — always name the remote
+
+This repository has two remotes and **two different mains**:
+
+```
+upstream/main   kdlbs/kandev     canonical
+origin/main     yattdev/kandev   the fork — can be far behind
+```
+
+Observed 2026-08-29: `origin/main` was **223 commits behind** `upstream/main`, and that gap was
+not cosmetic. `apps/backend/internal/github/service_pr_watch.go` was 1412 lines on the fork
+and 1514 upstream, with a call site at line 1024 that **does not compile on the fork**:
+
+```
+694bfd211 (origin/main)   line 1024: s.reconcileComparisonTargetFromSync(ctx, taskID, status.PR)
+                          -> golangci: 1024:43 undefined: taskID / 1024:51 undefined: status
+4d8763e4d (upstream/main) line 1024: inside appendChangedField(...) — identifiers not in scope,
+                          the call site was refactored away
+```
+
+**Consequences seen in one day:**
+- A clean worktree cut from `origin/main` failed the mandatory hooks and blocked a fix from
+  being committed at all — through **two** escalation passes — while ordinary task worktrees,
+  which are based on `upstream/main`, passed the same hooks without trouble.
+- Comparing a branch against `origin/main` suggested ~172 commits were off-mainline; against
+  `upstream/main` the real number was 12.
+
+**Rules:**
+- **Never write or read "main" unqualified.** Say `upstream/main` or `origin/main` in evidence,
+  in escalations, and in blocked records. A report that says only "main" is not checkable.
+- **Fetch before comparing.** A stale local remote-tracking ref produces the same class of
+  wrong answer as the wrong remote.
+- **When a hook or build fails on a "clean" tree but succeeds for everyone else, check the base
+  revision before the code.** The cheapest discriminator is `git merge-base --is-ancestor
+  <their-base> upstream/main` — if it returns true, their base is simply behind.
+- **Do not "repair" a defect that exists only on a stale base.** It is history, not a bug;
+  re-cut the tree from the canonical remote instead. And do not rewrite someone else's fork
+  main to fix the staleness — that is their branch to manage.
