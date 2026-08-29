@@ -301,6 +301,14 @@ sh -ceu '
 
 **The wider rule both of these produced:** *a runtime observation proves the present, not the deployment.* Confirm the persisted definition **and** re-verify after recreation before closing an environment degradation.
 
+**A1 outcome — `BLOCKED` twice, through an automatic second-pass escalation, and my diagnosis was refuted.** I had argued the guard was exiting early with `no agent command supplied`, reasoning from the script. Support disproved it: source builds `guard -- <ACP command>` and does not strip the executed argv; a guarded shell returned `guard-ready` and guarded `npx … codex-acp` stayed alive to a deliberate timeout, with neither emitting any `ERROR: kandev-agent-guard:` line. **The guard is not the failing component; the disconnect happens after launch.** Reading a script is not the same as observing the process — Correction #24.
+
+**One thing I raised was confirmed and fixed:** the utility executor retains child stderr but omits it from the returned error, which is why this had to be diagnosed by reading source at all. Support wrote a narrowly filtered patch returning only `ERROR: kandev-agent-guard:` lines and never arbitrary provider stderr, honouring the constraint.
+
+**That patch is uncommitted**, blocked by a mandatory hook failing on an *unrelated* typecheck (`service_pr_watch.go` undefined `taskID`/`status`). I checked: on `upstream/main` line 1024 sits inside `appendChangedField(changed []string, field string, isChanged bool)`, whose scope contains neither identifier, and three commits landed through the same hooks today from main-based worktrees. **So the blocker looks local to that checkout, not to main** — and Support's stated next action ("repair the unrelated undefined symbols") would mean editing a tree carrying substantial untracked human work (`slack/`, `voice/`, `debug/`, `system/logs/`, `logger/buffer/`, `loginpty/`, `process/`, `cli/src/`). Follow-up `bb2542e8-d356-488a-9a43-319f254fe1db` sent 17:02:15Z asking it to confirm that checkout's HEAD first and, if local, land the diagnostic from a **clean worktree based on main** instead of repairing anyone's work-in-progress.
+
+**Rule: when a fix is blocked by an unrelated failure in a dirty shared checkout, move the fix to a clean tree — do not repair the dirt.** Unpushed human work is worth more than the convenience of committing in place.
+
 ---
 
 ## H. Who owns a problem: Support vs project task vs Human
