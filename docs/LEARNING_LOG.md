@@ -549,3 +549,50 @@ The 403 **identifies the user**, which means the credential authenticates — so
 the rate-limit record. Test the capability you need and record which surface you exercised.
 
 Files: `docs/LEARNING_LOG.md`.
+
+## 2026-08-29e — Read the conversation, not the session row; inspect the tree before prescribing git
+
+Three Coordinator errors in one cycle, all the same shape: acting on a proxy for evidence instead
+of the evidence. Two were caught before harm, one was caught three minutes after issuing an
+unsafe instruction.
+
+- **A session row is not a report.** `WAITING_FOR_INPUT` with a freshly advanced `updated_at`
+  means the agent *finished a turn*, not that it swallowed the message. I read the row, concluded
+  the session was dead, recorded a platform degradation that did not exist, and spawned a second
+  agent onto a task that already had a working one — putting two agents in one worktree for forty
+  minutes, which is exactly the duplicate-agent hazard the charter forbids. The agent's reply had
+  been sitting in the conversation the whole time. **Before concluding a session is stuck, read
+  what it last said.**
+- **Never prescribe a git operation without inspecting the working tree.** I told an agent to
+  "integrate upstream/main with an ordinary merge". That worktree was already mid-merge:
+  `MERGE_HEAD` set, **5,404 staged files**, one unresolved conflict, nothing committed — the most
+  valuable uncommitted state on the board, present in no commit and no remote. A cleanup attempt
+  before merging would have destroyed it. Corrected within three minutes with an explicit
+  do-not-touch list (`merge --abort`, `reset`, `checkout -- .`, `stash`, `clean`), and the merge
+  landed safely. **Check for `MERGE_HEAD`, staged count, and conflicts before advising anything.**
+- **A "baseline compile error" claim must be checked against the base.** An agent reported
+  `service_pr_watch.go:1024` as an unrelated baseline failure. Had I accepted the label I would
+  have frozen board-wide dispatch. `upstream/main` was healthy; the file on disk was a half-merged
+  blend belonging to neither side, and the error dissolved when the merge committed. The agent
+  reported precisely enough for the check to be possible — that is what a good report buys.
+
+**The counterpart duty: supply proof the sandboxed agent cannot obtain.** An agent correctly
+refused to remove two approved stale `index.lock` files because it could not prove them unheld —
+`lsof` and `fuser` absent, 1,275 unreadable `/proc` descriptors. That refusal was right and should
+not be overridden. The Coordinator sees more of the host, so gathering the evidence is the
+Coordinator's job: no `git` process existed anywhere, which settles it, because only git creates
+an `index.lock`. That argument does not depend on descriptor readability, which is what had
+stopped the agent. Both files were 0 bytes at 37 and 26 hours old — git writes the new index into
+the lock before renaming, so a 0-byte lock that old means the writer died before writing anything
+and there is no partial state to lose. Re-approved with the evidence attached and the size check
+kept as the live gate; the agent removed it. **When an agent stops for want of proof, decide
+whether the proof is obtainable from where you stand — then obtain it and own the judgment.**
+
+**Provider note:** a GitHub secondary rate limit cleared *before* the reset timestamp its own 403
+advertised. A primary reset time does not govern a secondary throttle, so a conservative fallback
+must be an upper bound that a successful response can cut short. The root cause was ours: 122
+periodic workflow-sync failures in under four hours, 84 of them the same 403, six workspaces
+bursting in the same second with no backoff. The board spent two days treating a self-inflicted
+throttle as an external provider outage.
+
+Files: `docs/LEARNING_LOG.md`.
