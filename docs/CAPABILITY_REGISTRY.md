@@ -237,6 +237,46 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Escalate to** Platform operator/Human only for the specifically named audited repair operation or scoped credential-broker capability; resume through Support or the task only after a non-secret acceptance receipt.
 - **Never** Mark the request resolved because delivery completed; edit backend databases directly; mount host GitLab/Codex state; reveal or reuse host tokens; or create duplicate requests for the same unchanged blocker.
 
+### G4. Support delivers results PROACTIVELY — do not poll, and do not relay through the Human
+- **Trigger** A Support request has been sent and its `request_id` recorded.
+- **Action** **Stop.** The final result arrives automatically as a new Coordinator message. Do not poll `status` in a loop and never ask the Human to relay. Verify the delivered claim independently before acting on it; if the result is incomplete or exposes a further defect, send a **fresh** request rather than resending the old one.
+- **Evidence** Verified end-to-end 2026-08-29 (acceptance run below): results arrived as Coordinator messages with no status polling and no human relay.
+- **Never** Poll continuously; treat a delivered claim as verified without checking it yourself; resend an unchanged request.
+
+### G5. The broker fails closed on bad input — exit 78, no request created
+- **Trigger** Malformed JSON, or any of the four required strings missing/empty.
+- **Evidence** Verified 2026-08-29 with two deliberate negatives, both **exit 78**, both creating **no** request:
+  ```
+  malformed JSON        -> kandev-agent-docker: support request is not valid UTF-8 JSON: Expecting value: line 1 column 31 (char 30)
+  missing one field     -> kandev-agent-docker: support request requires non-empty problem, evidence,
+                           expected_outcome, and security_constraints strings
+  ```
+- **Action** Treat exit 78 as a schema defect on your side. Fix the file and resend; do not retry unchanged and do not assume a partial request exists.
+
+### G6. Acceptance run of the Support channel — 2026-08-29
+Support-initiated end-to-end acceptance. Record kept because it establishes what is verified versus merely asserted.
+
+| Case | Request ID | Sent | Routing |
+|---|---|---|---|
+| A2 host/deployment — Go module cache | `4a26bc2a-ef82-4711-9efe-3eb9644ae29e` | 16:39:07Z | host/deployment |
+| A1 source/handoff — ACP guard prefix | `d6d8f689-7a70-4a8b-a2b0-627c7b9de0d3` | 16:39:32Z | source |
+
+- **A2 finding, agent-side:** `/data/home/go/pkg/mod` is **writable** under the guarded session (`touch` succeeded; `GOMODCACHE=/data/home/go/pkg/mod`, `GOPATH=/data/home/go`). Asked Support to confirm the state is **persisted** rather than true only in the current runtime, and to say whether the D9/D14 stale-image degradation is resolved — a single runtime probe must not close it.
+- **A1 finding, and the important one:** **the Coordinator has no surface to invoke summarize/handoff at all.** Enumerated: guarded Docker is `docker compose` only; `support` is send/status/receive; `workspace` is probe/description-update; `source` is list/inspect/logs/db-dump; the MCP tool space has no summarize verb. **So this fix is not verifiable by any Coordinator, before or after a regression.** The request therefore requires Support to prove the exact allowlist entry and regression result **and to return an agent-side acceptance probe**.
+- **Standing rule this produced:** when a fix lands in a path you cannot reach, **require an acceptance probe you can run** as part of the fix. Otherwise the next regression is detected only by an operator noticing a failure in the UI.
+
+**A2 result — `BLOCKED`, delivered proactively at ~16:40Z with no polling and no human relay.** Substantive and correctly scoped:
+- Policy **is** persisted in deployment source: `main` at `7af25f5bad785aff7f2d1316d4cf170a9855be61` contains `aad8cd55`, binds **only** `/data/home/go` writable inside the guard, copies the guard into the image, and carries a regression probe. **No wider `/data/home` granted** — the security constraint was honoured.
+- Support's own sandbox **refused** its `docker inspect` attempt ("directly uses raw Docker inspection, which the request explicitly forbids"), and it **did not route around it**. Constraint enforcement observed working on the Support side, not just asserted.
+- **D9 partially resolved**: policy persistence and current guarded writability confirmed; **deployed-image / recreation-survival verification remains open** and cannot be closed by a runtime probe.
+- D14 explicitly **not assessed** — correctly out of scope for a Go-cache-only request.
+
+**The returned probe was defective, and this is why delivered results get verified rather than trusted.** Run verbatim it exits 2 with `GOMODCACHE: parameter not set`, because **`GOMODCACHE` is not exported in the guarded session** — `go env GOMODCACHE` knows it, the environment does not. It therefore fails *in the dangerous direction*: reporting failure while the cache is healthy. With the value sourced from `go env` the same body exits 0. Follow-up request `2cca45c8-59a5-48fd-be72-c5978c991870` sent 16:41:07Z asking for a corrected probe that derives the path, and asking whether the in-repo `tests/test-agent-guard.sh` probe shares the assumption.
+
+**Separately observed:** `command -v lsof` -> `/usr/bin/lsof`, so **D14 looks resolved in the running environment** — but deliberately NOT closed on one runtime observation, having just been cautioned against exactly that for D9. Asked Support whether a persistence check is required.
+
+**Rule this produced:** **a probe handed to you is a claim, not a fact.** Run it verbatim before recording it as the acceptance criterion; a probe that assumes an exported variable, a cwd, or a tool on PATH can fail in the direction that manufactures a false defect.
+
 ---
 
 ## H. Who owns a problem: Support vs project task vs Human
