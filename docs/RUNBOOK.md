@@ -1812,3 +1812,36 @@ cleared harmlessly). What is **not** established is whether issuing that move fi
 *resumes* a dormant session and fires the old row before superseding it. Do not test that
 on a Done card. If a live row must be cleared on a card that matters, escalate rather than
 experiment.
+
+## Readiness needs three reads, not one — and a missing PR link may mean a lost one
+
+**`gh pr checks` alone cannot tell you a PR is ready.** Observed 2026-08-29 across four
+PRs: all four had green CI, three had unresolved automated-review threads, and the fourth
+had none. Both signals must be read.
+
+```sh
+gh pr checks <n> -R <owner/repo> --json name,state     # roll-up: any state not SUCCESS/SKIPPED/NEUTRAL
+gh api graphql -f query='{ repository(owner:"O",name:"R"){ pullRequest(number:N){
+  reviewDecision bodyText
+  reviewThreads(first:100){ totalCount nodes{ isResolved path line
+    comments(first:1){nodes{author{login} body}} } } } } }'
+```
+
+Read all three: check roll-up, unresolved `reviewThreads`, and whether `bodyText` actually
+gives a reviewer an entry point. An automated reviewer's thread is not automatically a
+nit — one on 2026-08-29 correctly showed a security-critical branch was never reached by
+the test asserting it.
+
+**When a task shows no linked PR, confirm against the provider before recording "none".**
+`task_repositories.metadata` of `{}` looks identical whether a PR was never opened or the
+linkage was populated and later lost. Check directly:
+
+```sh
+gh pr list --repo <owner/repo> --head <branch> --state all \
+  --json number,state,isDraft,title,headRefOid
+```
+
+If a PR turns up, ask the task agent whether it was ever linked — its own history can
+distinguish a regression from an omission, and yours cannot. Note that an unlinked PR is
+invisible to board tooling: its CI cannot be resolved without manually mapping the branch
+to a provider repo.

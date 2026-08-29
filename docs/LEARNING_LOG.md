@@ -1334,3 +1334,42 @@ did not exist and blamed an agent for it; here a real system behaviour exists th
 have been blamed on nobody at all.
 
 Files: `docs/RUNBOOK.md`, `docs/LEARNING_LOG.md`.
+
+## 2026-08-29s — a task's PR can vanish from the board while staying open on the provider
+
+`63b40206` sat in Human-QA with `task_repositories.metadata` = `{}`, where sibling cards
+carry a full `comparison_target` naming PR number, head branch and target repo. I read
+that as "either no PR was opened, or one exists and was never linked."
+
+The task agent had the evidence that separates those: it had read a task relationship
+record on 2026-08-28 showing **PR #6 already linked**. So the linkage existed and was
+lost. That is a board regression, not an omission by the agent — and I could not have
+distinguished the two from my side, because the current state looks identical either way.
+
+**The lesson is about who holds which evidence.** Present board state cannot tell you
+whether a field was never populated or was populated and reverted. The agent's own
+history can. When a record looks merely incomplete, ask the owner whether it was ever
+complete before concluding it was never done.
+
+Consequences worth knowing:
+
+- **A missing linkage makes a task's CI invisible to the Coordinator.** I had to resolve
+  the branch to a provider repo by hand to discover #6 was open, Draft, head-matching and
+  green. Anyone auditing the card saw a Human-QA task with no pull request attached.
+- **Check the provider before recording "no PR exists."** `gh pr list --repo <owner/repo>
+  --head <branch> --state all` answers it directly and cheaply.
+
+### The same cycle, a sharper general point: green CI is not a clean review
+
+With the rate limit cleared I could finally read review state across the board. **Every
+PR had green CI. Not one was review-ready.** #3143 carried three unresolved automated
+threads, #3137 two, #3136 one — while `63b40206`'s #6 had zero threads, zero comments,
+and a 1,964-character body already ordering the reader through the diff.
+
+So the two signals diverged on every card, in both directions: three cards looked ready
+and were not; one looked unverified and was in better shape than any of them. Reading
+only the check roll-up would have got all four wrong. **Fetch `reviewThreads` and the
+body, not just `pr checks`, before calling anything ready** — this is the same failure as
+[[calling a PR review-ready when its remote trailed]], one layer up.
+
+Files: `docs/RUNBOOK.md`, `docs/LEARNING_LOG.md`.
