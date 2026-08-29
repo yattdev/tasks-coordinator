@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-08-29g -->
+<!-- registry-version: 2026-08-29h -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -228,6 +228,14 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Action** Put the affected task/session ID inside `problem` or `evidence`. Pass the file path relative to the **coordinator task root** (e.g. `coordinator/support-request.json`) or absolute — a path relative to your shell cwd is the common failure.
 - **Evidence** The broker attaches coordinator task ID, workspace/worktree, and request ID itself — do not duplicate them.
 - **Never** Send secrets or raw credentials in any field.
+
+### G3. Support returns a genuine terminal BLOCKED response
+- **Trigger** `status` is `complete` with a non-zero return code and `receive` begins `KANDEV_SUPPORT_STATUS: BLOCKED`.
+- **Action** Treat delivery as verified but the environment blocker as uncleared. Record the request ID, exact missing authority/capability, smallest next action, preservation receipt, and deterministic resume trigger; physically park the affected workflow task in Blocked. Do not resend the unchanged request.
+- **Capability boundary** As verified 2026-08-29, the reviewed Support worker cannot directly edit persistent canonical workspace-repository inventory when no audited repair operation exists, and cannot provision/reuse GitLab credentials without a reviewed task-scoped credential broker. These are missing platform capabilities, not permission to edit backend state or mount host credentials.
+- **Evidence** Full `receive` transcript, non-zero return code, no-mutation statement, and the named smallest next action.
+- **Escalate to** Platform operator/Human only for the specifically named audited repair operation or scoped credential-broker capability; resume through Support or the task only after a non-secret acceptance receipt.
+- **Never** Mark the request resolved because delivery completed; edit backend databases directly; mount host GitLab/Codex state; reveal or reuse host tokens; or create duplicate requests for the same unchanged blocker.
 
 ---
 

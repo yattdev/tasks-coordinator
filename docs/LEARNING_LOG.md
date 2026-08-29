@@ -1142,3 +1142,30 @@ declines and reports the exact refusal is doing its job — treat that as signal
 friction, and check your own instruction first.
 
 Files: `docs/RUNBOOK.md`, `docs/LEARNING_LOG.md`.
+
+## 2026-08-29m — Support delivery success is distinct from blocker resolution
+
+Window: 2026-08-29T11:05Z to 2026-08-29T11:09Z.
+
+- Two broker requests reached the autonomous Support worker and returned genuine
+  terminal `KANDEV_SUPPORT_STATUS: BLOCKED` responses. This is a third broker
+  outcome distinct from queue backpressure and resolved work: transport succeeded,
+  but the requested environment repair exceeded the reviewed capability surface.
+- Durable boundary: without an audited operation, Support must not repair
+  persistent canonical workspace-repository inventory through direct backend
+  edits. Without a reviewed task-scoped credential broker, it must not provision,
+  reuse, expose, or mount host GitLab credentials.
+- Coordinator action is therefore deterministic: preserve and physically park the
+  affected task, record the exact missing capability and smallest operator action,
+  and resume only on a non-secret acceptance receipt. Re-sending the unchanged
+  request cannot create authority and only adds queue noise.
+- This corrects a tempting but false inference that end-to-end broker delivery
+  means every host/environment blocker is automatically actionable by Support.
+
+Rejected as transient: task/session/request IDs, repository rows, MR numbers,
+commit hashes, provider timestamps, and specific command timeouts.
+
+Files: `docs/CAPABILITY_REGISTRY.md` (new G3, registry-version 2026-08-29h),
+`docs/RUNBOOK.md`, this log. `PROMPT.md` unchanged because its existing binding
+rule already requires autonomous broker routing and escalation of genuine terminal
+faults.

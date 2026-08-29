@@ -1469,6 +1469,31 @@ Two things that are easy to get wrong:
   arguments prints only the compose line and never mentions `support`; run
   `docker kandev support` with no arguments for its authoritative command list.
 
+#### When Support answers BLOCKED
+
+A genuine `KANDEV_SUPPORT_STATUS: BLOCKED` with a non-zero return code proves
+that broker delivery worked; it does **not** clear the task blocker. Read and
+persist the response's exact missing authority or capability and its smallest next
+action. Physically move the affected workflow task to Blocked with its preservation
+receipt and deterministic resume trigger, then stop retrying the unchanged request.
+
+Two verified boundaries matter:
+
+- Persistent canonical workspace-repository inventory is not safely repairable by
+  Support unless an audited repair operation exists. Do not substitute direct
+  SQLite edits or repository-row recreation; require a scoped operation that
+  validates IDs, backs up state, rematerializes only the affected record, and
+  proves a guarded session launches.
+- Support cannot provision, reuse, or expose host GitLab credentials when no
+  reviewed task-scoped credential broker exists. Require a revocable credential
+  with only the task's needed MR/API/upload scope and accept only non-secret
+  success metadata. Never mount host `glab` or Codex state.
+
+In both cases, route the missing platform capability to the platform operator or
+Human once, record the consequence, and resume atomically only after the named
+acceptance receipt. A second identical Support request cannot create missing
+authority and is queue noise.
+
 Verified fail-closed behaviour (2026-08-29T07:20Z): an unknown request ID returns
 `support request is unavailable`; an explicit file outside the coordinator task
 root returns `path is outside this agent task: <path>`; and a request missing any
