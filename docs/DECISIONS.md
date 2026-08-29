@@ -601,3 +601,26 @@ unique-state operations and security/trust-boundary changes remain Human-gated;
 the existing verified-redundant cleanup exception and full same-workspace
 approval policy still apply. Until the plugin is deployed, the task-based
 Coordinator remains the operational fallback and must obey its current scope.
+
+## Host environment blockers route through the dedicated Support thread (2026-08-29, human-directed)
+
+Missing tools or dependencies, permission and access failures, unavailable host
+capabilities, Android emulator or device support, and other host/container limits
+route to `Kandev Support — Codex`, thread
+`01a043b4-fe52-7020-94bb-de94e72f8a07`. Missing Kandev platform features remain
+board work and do not route through this support path.
+
+Agent containers cannot directly resume the host thread. A bounded validation
+using the documented resume command returned `thread/resume failed: no rollout
+found for thread id ... (code -32600)`; it did not deliver a request and did not
+create a queue. Until a reviewed support broker exists, the owning board/task
+trail must carry a complete paste-ready request containing the Coordinator task
+and session, affected task and session when applicable, worktree, exact evidence,
+expected outcome, and destructive/production-sensitivity classification. A
+host-side operator or Support agent runs the resume command. Coordinators must
+not target the thread with Kandev task messaging, claim direct delivery, expose
+host `~/.codex`, or retry unsupported workarounds.
+
+Rationale: this preserves host isolation while giving environment blockers a
+single named owner and a reproducible handoff instead of leaving workflow tasks
+stalled or cycling through ineffective retries.
