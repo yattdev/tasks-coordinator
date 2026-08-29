@@ -670,3 +670,29 @@ path and to spend the Human's attention on requests an agent could file itself.
 The general lesson is that "cannot" claims must name the exact route tested, and a
 guarded broker's advertised surface (`docker kandev` no-args omits `support`
 entirely) is not evidence of what it can do.
+
+## A queued support request is backpressure, not a stall (2026-08-29, verified)
+
+Delivery into the Kandev Support thread serialises on a single writer. The broker
+holds a request `queued` under contention, retries with capped exponential backoff,
+and reports `complete` only after Codex processes it. An end-to-end acceptance test
+on 2026-08-29 held `queued` for ~15.5 minutes and then returned `returncode: 0`
+with a genuine Support reply that echoed the coordinator task ID and broker request
+ID.
+
+This closes the earlier writer-conflict blocker, which was a fail-fast bug rather
+than a capability limit: requests returned `complete`/`returncode 1` in ~10s with
+`thread-store conflict ... already has an active writer`. Requests that failed under
+that behaviour were **not** retroactively requeued and stay terminally failed;
+check such an ID once, then send a fresh request.
+
+Operationally the Coordinator must therefore treat a long `queued` as success in
+progress: poll on a ~30s interval, never resend into the same serialised queue, and
+continue unblocked work instead of holding a cycle open. The general lesson is that
+a slow queue and a broken queue look identical at a single poll — the two are
+distinguished by whether the terminal state ever arrives, so the honest report while
+waiting is "queued, still retrying", never "complete" and never "stalled".
+
+Rationale: the previous fail-fast behaviour trained readers to interpret contention
+as a hard blocker needing operator intervention, which cost a human escalation for
+something the system resolves on its own within minutes.

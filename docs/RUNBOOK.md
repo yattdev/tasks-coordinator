@@ -1441,8 +1441,9 @@ Two things that are easy to get wrong:
   `docker kandev support` with no arguments for its authoritative command list.
 
 Verified fail-closed behaviour (2026-08-29T07:20Z): an unknown request ID returns
-`support request is unavailable`; a file outside the coordinator task root returns
-`path is outside this agent task`; a request missing any required field is refused
+`support request is unavailable`; a file outside the coordinator task root fails to resolve
+(`path is unavailable: ... No such file or directory`, because paths are mapped
+into the task root); a request missing any required field is refused
 by name. Requests are cheap to retry, but a repeated identical failure is a fault
 to escalate, not something to retry in a loop. Do not claim delivery succeeded when
 `returncode` is non-zero.
@@ -1464,32 +1465,38 @@ behalf, so host Codex state stays unmounted.
 Never mount or expose host `~/.codex` into an agent as a workaround, and never
 claim a delivery mechanism exists that you have not exercised.
 
-### Known live blocker: `already has an active writer` (2026-08-29T07:20Z)
+### Writer contention is backpressure — expect a long `queued`, not a failure
 
-`send`, `status`, and `receive` all work, but delivery into the support thread
-currently fails, returning `status: complete, returncode: 1` with:
+Delivery into the support thread serialises on a single writer. When Support is
+busy the broker holds the request `queued` and retries with capped exponential
+backoff; it reports `complete` only once Codex has actually processed it.
+Verified 2026-08-29T07:42Z: a request stayed `queued` for **~15.5 minutes**
+(07:26:15 → 07:42:01) and then completed with `returncode: 0` and a real reply.
 
-    ERROR codex_core::session: Failed to create session: thread-store conflict:
-    thread 01a043b4-... already has an active writer
-    Error: thread/resume: thread/resume failed: ... (code -32600)
+So: **a long `queued` is the system working.** Poll patiently on a ~30s interval
+and do not resend — a duplicate request just adds another item to the same
+serialised queue. Budget minutes, not seconds, and carry on with unblocked work
+while you wait rather than blocking a cycle on it.
 
-Three attempts, including spaced retries, failed identically, so it is not
-transient. This is a **different** failure from the container-side
-`no rollout found` above, and the two must not be conflated because their remedies
-are opposite:
+Superseded failure mode (fixed 2026-08-29): requests used to fail fast, returning
+`status: complete, returncode: 1` within ~10s with
+`thread-store conflict: ... already has an active writer (code -32600)` in
+`receive`. If you ever see that again, the retry handling has regressed — report it
+with the request ID rather than retrying in a loop.
 
-- `no rollout found` → wrong route; use the broker.
-- `already has an active writer` → right route; the broker reached the host and
-  found the thread, but another writer holds it (typically a live interactive Codex
-  session). Resolution is host-side: release the active writer on that thread.
+**Requests that failed under the old behaviour were NOT requeued.** They still read
+`complete` / `returncode 1` forever. Check an old ID once, then abandon it and send
+a fresh request; do not wait for it to self-heal.
 
-`send` still records the request while the lock holds; re-`receive` after it
-clears. If it persists, escalate to the operator with the request IDs, the exact
-stderr, your Coordinator task ID, session ID, and worktree path, and state plainly
-that the broker transport itself is healthy.
+### Reading the response
 
-A related host-side warning may accompany it and is not itself the blocker:
-`failed to load models cache: missing field supports_parallel_tool_calls`.
+`receive` returns the **full Codex transcript**, not just the answer: a header
+(version, workdir, model, sandbox, session id), the rendered request, the reply,
+and a token count. The actionable content is the assistant turn at the end.
+
+The broker composes the prompt itself and attaches the coordinator task ID,
+workspace/worktree, and broker request ID — confirmed present in the delivered
+transcript — which is why those fields must not be duplicated into your JSON.
 
 Useful and non-obvious: `/home/ayattara/Code/kandev` **is** readable from inside the
 container at its host path, so host paths quoted in a request can be verified before

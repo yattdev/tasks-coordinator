@@ -725,3 +725,39 @@ Rejected as transient: request IDs, session and token values, timestamps, and th
 fault.
 
 Files: `PROMPT.md`, `README.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
+
+## 2026-08-29d — Support channel verified end to end; queued means backpressure
+
+Window: 2026-08-29T07:25Z to 2026-08-29T07:45Z. Human-directed retest after
+writer-conflict retry handling was deployed.
+
+- The autonomous Support channel now works end to end. All five acceptance
+  criteria passed: `send` exit 0; a busy thread left the request `queued` rather
+  than failing fast; status reached `complete` with `returncode: 0`; `receive`
+  exit 0 returned a genuine Support reply echoing the coordinator task ID and
+  broker request ID; and unknown IDs, out-of-root paths, missing fields, and
+  malformed JSON all still fail closed with exit 78.
+- Durable operational rule: a long `queued` is the system working, not a stall.
+  Contention serialises on one writer; the broker retries with capped backoff and
+  reports `complete` only after Codex processes the request. Observed ~15.5 minutes
+  queued before success. Poll ~30s, never resend into the same queue, keep working.
+- A slow queue and a broken queue are indistinguishable at a single poll. They are
+  told apart only by whether a terminal state arrives, so the honest interim report
+  is "queued, still retrying" — never "complete", never "stalled".
+- Corrective detail: requests that failed under the old fail-fast behaviour were
+  NOT retroactively requeued, contrary to expectation. They stay
+  `complete`/`returncode 1` permanently. Check once, then send fresh.
+- Corrected a documented error string: an out-of-root path returns
+  `path is unavailable: ... No such file or directory` (paths are mapped into the
+  task root), not `path is outside this agent task`.
+- Recorded that `receive` returns the full Codex transcript — header, rendered
+  request, reply, token count — and that the broker composes the prompt and
+  attaches task/workspace/request identity itself, so those fields must not be
+  duplicated into the request JSON.
+
+Rejected as transient: request IDs, host session ID, model name, token counts, and
+exact timestamps beyond the one duration that makes the polling budget concrete.
+
+Files: `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log. `PROMPT.md` unchanged —
+the binding rule already routes Support through the broker; polling cadence is
+operational detail, so no charter mirror is triggered.
