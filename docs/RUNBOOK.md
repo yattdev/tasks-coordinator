@@ -2641,3 +2641,49 @@ rather than quietly skipping it.
 own coordinator knowledge base seven commits ahead of its remote — every
 learning entry written that day sitting on one disk. Fast-forward push, no
 force. The discipline you apply to the board applies to you.
+
+## "Not contained in the merged PR" is not the same as "at risk"
+
+Incident 2026-08-29 (Correction 31). `dabb2da9-9d6e-4767-b2be-be8b214f73d8`
+reported: *"The fix is not contained in merged PR #2610: its unique source/E2E
+changes remain on the clean shared branch."* Read quickly, that is a work-loss
+alarm. It is not.
+
+Its commits `e63b89fb4`, `7efa97195`, `86e474037` are genuinely **not ancestors
+of canonical main** — so the statement is true. But all three are contained in
+`origin/feature/rich-hover-previews-279`. Nothing can be lost. What exists is a
+**merge gap**: a fix that lives on a remote branch and never landed.
+
+The two are handled completely differently:
+
+| | preservation gap | merge gap |
+|---|---|---|
+| test | `git branch -r --contains <sha>` empty | non-empty, but not in `main` |
+| urgency | act now — one disk | ordinary backlog |
+| action | additive `backup/` ref | a merge/PR decision, usually a human's |
+
+Check containment before escalating language:
+
+```sh
+git branch -r --contains <sha>                 # any remote ref at all?
+git merge-base --is-ancestor <sha> <main-sha>  # specifically on main?
+```
+
+Empty first answer = preservation. Non-empty first, false second = merge gap.
+
+### The wider failure this exposed
+
+Both of that card's ledger entries were wrong because I had summarised it rather
+than read it. My record said *"pure bug report — no worktree, branch or PR, and
+none expected."* It has a worktree, a branch shared with another card, and a
+merged PR. A neighbouring card, `ddd00410`, was recorded as *"needs an owner"*
+when it was deliberately created with `start_agent: false` because its subject
+is the **live production database** — a designed safety hold, and dispatching an
+agent to it would have been exactly the destructive action the hold exists to
+prevent.
+
+What surfaced both was the rule that no ledger entry may carry a vague next
+action. "Needs an owner" and "none expected" are not next actions; they are
+placeholders that survive review because they read like conclusions. **Audit for
+weak wording in your own records, and re-read the card rather than re-reading
+your summary of it.**
