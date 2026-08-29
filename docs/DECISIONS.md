@@ -815,3 +815,45 @@ profile after spawning.
 
 Related: `docs/RUNBOOK.md` "A hung primary session is not always the end — check for a live
 sibling session"; `docs/LEARNING_LOG.md` 2026-08-29.
+
+## Session handoff summarization is blocked upstream, and must not be unblocked locally (2026-08-29, Support-verified)
+
+**Symptom.** Triggering "Summarize" — the session handoff to another agent — fails
+immediately for every agent:
+
+```
+Summarize failed
+failed to execute prompt: command prefix "/usr/local/bin/kandev-agent-guard" is not an allowed ACP command
+```
+
+**Cause, confirmed by Kandev Support against the live host.** `scripts/enforce-agent-guard.sh`
+persistently writes every agent profile and session `command_prefix` as
+`/usr/local/bin/kandev-agent-guard --`. The ACP **summarize executor** validates that prefix
+against an allow-list and rejects it before spawning the agent. **Ordinary session launch is
+unaffected because it does not traverse that ACP prompt-execution allow-list** — which is why
+agents run normally while only handoff summarization fails.
+
+**There is no local fix, and the obvious one is a security regression.** The deployment layer
+exposes no allow-list configuration, and reverting a profile to the underlying agent command
+would take the guard out of the execution path. The guard is the authoritative filesystem
+boundary: it exposes only the task root and the backlink-verified common `.git` read-write and
+keeps sibling tasks and unrelated repositories read-only. **Do not "fix" summarize by removing,
+bypassing, or disabling the guard prefix.** That converts a broken feature into a sandbox escape.
+
+**The required repair is an upstream Kandev ACP change:** recognise this exact guard prefix,
+strip only the guard wrapper for allow-list evaluation, then validate the remaining underlying
+agent command with the existing policy. It must **not** accept arbitrary wrapper prefixes.
+Regression tests are wanted for summarize/handoff and for every ACP prompt-execution path
+sharing that validator. Only after the change lands, is built from the approved upstream ref,
+and handoff acceptance passes **under the guard** should the board's continuity status change.
+
+**Why this matters beyond one feature.** Handoff summarization is how a session passes context
+to a successor. On 2026-08-29 two agent primary sessions hung — frozen `RUNNING` with no
+worktree writes for 173 and 145 minutes — and were recovered by messaging a live sibling
+session and by spawning a replacement. Both replacements started **cold**. Until this is fixed,
+assume any continuity procedure that relies on generated handoff summaries is unavailable, and
+carry context explicitly in the task plan and the spawn/wake prompt instead.
+
+Related: `docs/RUNBOOK.md` "A hung primary session is not always the end"; the escalation route
+in "Escalating an environment blocker to Kandev Support"; broker request
+`0048c56c-effd-41b0-a630-be7f5bc22307`.
