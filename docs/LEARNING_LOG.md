@@ -596,3 +596,41 @@ bursting in the same second with no backoff. The board spent two days treating a
 throttle as an external provider outage.
 
 Files: `docs/LEARNING_LOG.md`.
+
+## 2026-08-29f — An agent's memory of intent is not evidence of repository state
+
+Within thirty minutes, three task agents reported work as uncommitted or unresolved that their
+own repository showed as committed or already gone. Each was reporting from its plan and notes
+rather than reading `git log`, `git status`, or the filesystem.
+
+| Task | Claimed | Actual |
+| --- | --- | --- |
+| `1f8d4dc8-83ac-44d6-9fbd-b34bd46e044e` | "executor admission in progress, no SHA yet" | `7aca62dbf` committed on merge `f59ecf081`; tree clean; 4 ahead / 0 behind |
+| `b74833e7-a05f-4cdf-81cf-db5b4c02f368` | "both locks still exist and are zero bytes" | both absent; no `index.lock` anywhere under the registry; probe `git_add_dry_run=ok` |
+| `23a62467-37e9-4113-b374-b44003abc0f3` | "validator uncommitted, ADR outstanding, no SHA" | `dc4149c1d` and `15adf4b1e` committed; tree completely clean |
+
+Two of the three also contradicted their *own* earlier message. `b74833e7` had already written "the
+dry-run now passes after its stale lock was removed" before reporting the locks as still present.
+
+- **Verify a status claim against the repository before acting on it.** Every one of these would
+  have cost something: re-implementing committed work, re-issuing an instruction already carried
+  out, or — in `b74833e7`'s case — requesting a new host capability to solve a problem that no
+  longer existed.
+- **This is the same failure mode as reading a session row instead of the conversation** (entry
+  2026-08-29e). It is not agent-specific; it is what happens when any actor treats its own notes
+  as the source of truth. The Coordinator is not exempt — that entry records the Coordinator doing
+  exactly this and spawning a duplicate agent as a result.
+- **When two reports from the same agent disagree, neither is evidence.** Go to the filesystem.
+- Correct the record with exact SHAs and paths rather than a general "please re-check". Naming
+  `dc4149c1d` and `15adf4b1e` ends the ambiguity; "your work may already be committed" does not.
+
+**Counterpart, and the reason this is not just an agent failing:** the same cycle produced a case
+where an agent's refusal to trust its own incomplete evidence was exactly right. It would not
+delete an approved stale lock because it could not prove zero holders — `lsof` and `fuser` absent,
+1,275 unreadable `/proc` descriptors. Overriding that would have been wrong. The Coordinator could
+see the whole host and establish that no `git` process existed anywhere, which settles it because
+only git creates an `index.lock` — an argument that does not depend on descriptor readability.
+**Distinguish an agent reporting stale notes from an agent correctly refusing to over-claim. The
+first needs correcting; the second needs evidence it cannot obtain from where it stands.**
+
+Files: `docs/LEARNING_LOG.md`.
