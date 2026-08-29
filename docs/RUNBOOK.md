@@ -1385,6 +1385,33 @@ do not fight the API repeatedly.
 Cycle logs on the task grow; have the coordinator roll up old logs into a
 weekly summary comment (or do it manually) to keep its context lean.
 
+## Mirroring PROMPT.md into the live task description
+
+The charter requires the Coordinator task description to carry the complete current
+`PROMPT.md`, because it is the second bootstrap path for a replacement session that
+has not read the repository. There is a broker command for this — **do not
+hand-transcribe the file through `update_task_kandev`**, which risks silent drift in
+a 64 KB policy document.
+
+From the materialized Coordinator task worktree:
+
+    docker kandev workspace description-update "$PWD/PROMPT.md"
+
+It accepts only a UTF-8 regular file inside the caller's own coordinator task root,
+updates only that coordinator task through the normal backend API, and mints and
+revokes a short-lived token internally — no API credential is returned to the agent
+and it cannot touch another task or workspace. It returns the byte count, a SHA-256
+and a `changed` flag:
+
+    {"task_id":"…","source":"…/PROMPT.md","bytes":64483,"sha256":"4bd70fad…","changed":true}
+
+Verify afterwards rather than trusting the receipt: read the description back and
+diff it against `PROMPT.md`. Run this after **every** `PROMPT.md` change.
+
+Background: the local API is not a substitute — `PATCH http://localhost:38429/api/v1/tasks/<id>`
+returns 401 from inside an agent container even with `KANDEV_FEATURES_AUTH=false`.
+Do not go looking for a credential to work around that; use the broker.
+
 ## Escalating an environment blocker to Kandev Support (host Codex agent)
 
 Scope: host/container environment problems only — missing tools or dependencies,

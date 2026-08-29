@@ -1049,3 +1049,96 @@ Addendum to `2026-08-29j`, same window.
 
 Files: `docs/CAPABILITY_REGISTRY.md` (maintenance rule 5, registry-version
 2026-08-29g), this log.
+
+## 2026-08-29l — delivery is not the same as sending; and three concrete traps
+
+Long Coordinator session on the Kandev workspace board. Recording what other
+coordinator worktrees cannot discover for themselves.
+
+### The charter mirror has a broker command — stop hand-copying
+
+`docker kandev workspace description-update "$PWD/PROMPT.md"` updates the live task
+description from a file, byte-exactly, with a returned SHA-256. Full procedure now in
+`docs/RUNBOOK.md`. I had deferred the mirror across three cycles because the only
+route I knew was retyping 64 KB through `update_task_kandev`, and a silently drifted
+charter is worse than a visibly stale one. The command existed the whole time; I found
+it by asking Kandev Support. **When a duty looks disproportionately expensive, ask
+whether the expensive route is the only one before deferring it again.**
+
+### A send receipt proves queue persistence, not delivery
+
+Kandev's `queued_messages` table held **100 undelivered rows**, including twelve
+addressed to my own coordinator session and one queued 07:16:54Z that never surfaced.
+Kandev Support's verdict: *"a stuck or unserviced delivery path — not normal
+short-lived backlog behavior."* Operating rules that follow:
+
+- `sent` and `queued` from `message_task_kandev` mean the message was persisted. They
+  do **not** mean the agent received it.
+- Do not assume a `WAITING_FOR_INPUT` session is proactively woken; treat delivery as
+  needing an external turn trigger until the dispatcher is verified.
+- **This reframes "stale agents".** Four agents in one session reported state their own
+  repositories contradicted, asked approval for work already committed, and requested
+  actions already completed. I initially recorded that as agent carelessness. It is
+  not: a platform that delivers instructions late will systematically produce agents
+  that act, then report remembered state, then receive answers to questions they have
+  already resolved. Verify against the repository, and do not attribute to the agent
+  what the transport caused.
+
+### Three traps worth knowing before you hit them
+
+**1. `pgrep` substring matching against a Coordinator's own argv.** A validated
+Coordinator's `bwrap` command line lists *every* task path in its workspace — 110 of
+them here. So `pgrep -a bwrap | grep <task-dir>` matches the Coordinator itself and
+reports a live agent in a worktree that has none. I hit this twice, once concluding I
+had killed processes that were never signalled. Enumerate `--chdir` instead:
+`for p in $(pgrep bwrap); do tr '\0' ' ' </proc/$p/cmdline | grep -o '\-\-chdir [^ ]*'; done`.
+This is the same family as the `pgrep -c -f qemu-system` self-count in `2026-08-29j`.
+
+**2. One comparison worktree is not evidence that untracked files are unique.** Auditing
+a Done card, five untracked files appeared in its worktree and not in the one other
+worktree I checked — which reads exactly like unpushed deliverable work, and nearly
+made me recover a correctly-completed card. Widening the check: the same paths exist in
+**43 worktrees**, share an identical bulk mtime, and are tracked in repository history.
+They are materialization artifacts. Test across many worktrees, compare mtimes, and run
+`git log --all -- <path>` before calling untracked content unique.
+
+**3. Distinguishing a shared CI failure from a branch-owned one takes one query.** When a
+check fails on a pull request, look at whether the *same named check* is failing on
+other open pull requests from unrelated branches. Red on several → shared class, route
+it to one owner. Red on one and green on another → branch-owned, hand it back. Applied
+twice in one session: seven `parent directory cannot be accessed` failures turned out
+shared across three tasks, while a `Run Backend Tests` failure was branch-owned because
+the same check passed elsewhere.
+
+### Worktree admin-directory collisions exist in the wild, and the obvious repair destroys work
+
+Two independent cases where a task's `.git` marker resolved to a `worktrees/<id>` entry
+whose `gitdir` backlink named **a different task's checkout**. Rewriting that backlink
+to match the marker — the one-line fix it looks like — hands the administrative
+directory, index and HEAD to the wrong task. In these two cases the rightful owners held
+28 and 8 unpublished commits.
+
+- Refuse when a marker resolves to an admin directory whose backlink names a different
+  checkout. Report expected and actual, and resolve only by **allocating a new entry**,
+  never by reassigning an existing one.
+- The owning task is discoverable, but not from the filesystem:
+  `task_environment_repos.worktree_path` maps a checkout to its task, `worktree_branch`
+  and status. Use it to name the owner in the refusal rather than guessing.
+- Related: a checkout can lose its branch refs **locally and on the remote**, with no
+  dangling objects and no reflog. Then no faithful `HEAD` exists and reconstruction is
+  impossible; content-only preservation is the honest outcome. Verify remote absence
+  with a control branch that *does* resolve — a bare 404 can also mean a permissions
+  problem.
+
+### The pattern under all of it
+
+Twelve corrections to my own conclusions in one session, every one traceable to
+prescribing or concluding before inspecting: a `git merge` prescribed into a tree that
+was already mid-merge with 5,404 staged files; a push approved onto a branch whose
+histories had diverged, where the natural next step is a force-push over 286 commits; a
+`read-tree` recommended against a branch with no commit behind it. **In three cases an
+agent's refusal to follow my instruction is what prevented the harm.** An agent that
+declines and reports the exact refusal is doing its job — treat that as signal, not
+friction, and check your own instruction first.
+
+Files: `docs/RUNBOOK.md`, `docs/LEARNING_LOG.md`.
