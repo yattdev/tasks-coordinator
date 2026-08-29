@@ -124,12 +124,36 @@ its own namespace, saw `ro`, and escalated a board-wide read-only regression tha
 exist. It imposed a dispatch hold, withheld an approved UX direction, and declined to start a
 requested task — all on invalid evidence.
 
-## 7. Open implementation items
+## 7. Implementation status — validated 2026-08-29T05:0xZ
 
-1. Per-task writability probe (§6) — without it §6 is unfollowable.
-2. Attested Coordinator validation (§1).
-3. Audit log for Coordinator writes outside its own task root (§3).
-4. Per-worktree admin scoping for ordinary tasks (§2) — currently the whole common `.git`.
-5. Coordinator workspace-wide rw (§3) — not yet present in the Coordinator's namespace; it
-   currently has read access to sibling task roots but not write.
+Independently revalidated with reversible write probes from coordinator session
+`2b3b715c-8dff-43b6-af81-5d0f1f94f246`. See `docs/LEARNING_LOG.md` 2026-08-29c for evidence.
 
+1. Per-task writability probe (§6) — **DONE.** `docker kandev workspace probe <task-uuid>`.
+2. Attested Coordinator validation (§1) — **DONE.** Exported task/session pair matched against
+   `kandev.db`; workspace derived, never accepted from the agent. Partial or mismatched IDs fail
+   closed to ordinary scope. Rechecked every 15s; revocation emits `scope_revoked`.
+3. Audit log for Coordinator writes outside its own task root (§3 condition 1) — **PARTIAL.**
+   `/data/logs/coordinator-workspace-audit.jsonl` records scope *grants* (principal, session,
+   workspace, cwd, full rw scope, timestamp). It does **not** record individual writes, so the
+   control §3 relies on to make a mistaken Coordinator detectable is not yet in place.
+4. Per-worktree admin scoping for ordinary tasks (§2) — **DONE.** Verified against a live
+   ordinary task's guard argv: common `.git` bound rw, `worktrees` registry bound ro, only that
+   task's own admin entry rebound rw.
+5. Coordinator workspace-wide rw (§3) — **DONE.** 118 granted paths (110 task roots + 8
+   registered checkouts), all write-probed. Parents `/data/home/Code`, `/data/home`,
+   `/data/tasks` remain ro; other workspaces' task roots and managed repo roots are denied.
+
+### Open defects
+
+- **The coordinator repo grant shadows the §2 sibling-admin overlay.** `--bind
+  /data/home/Code/<repo>` is applied after `--ro-bind <repo>/.git/worktrees`, so for a validated
+  Coordinator the overlay is inert and every sibling worktree admin directory is writable. Fix
+  by ordering the coordinator repo binds before the worktree overlay, or by implementing item 3.
+- **`/data/home/go` is absent from the support-path allowlist**, so default `GOMODCACHE` is
+  read-only while every other language cache is writable (degradation D9).
+- **Broker tokens are passed in argv** and are readable from `/proc/<pid>/cmdline` by any
+  same-UID process, including tokens belonging to other workspaces' agents. Token plus matching
+  cwd is the whole authorization.
+- **`/data/data/kandev.db` is readable by every agent**, exposing cross-workspace metadata
+  outside the broker. Read-only, but outside §4's intent.

@@ -421,3 +421,63 @@ That claim was WRONG and is retracted. Do not act on the earlier version.**
   `gh api rate_limit` reports full quota — a secondary rate limit, tracked separately.
 
 Files: `docs/LEARNING_LOG.md`.
+
+## 2026-08-29c — Filesystem & Docker contract independently validated PASS after the live-attestation fix
+
+Rerun of the agreed contract (`docs/FILESYSTEM_DOCKER_CONTRACT.md`) from coordinator session
+`2b3b715c-8dff-43b6-af81-5d0f1f94f246`, with real reversible write probes rather than the
+read-only/audit inspection the previous attempt was limited to. All six requested checks pass.
+Every §7 open implementation item is now delivered except the per-write audit (see below).
+
+- **Guard-rooted per-task probe now exists** — `docker kandev workspace probe <task-uuid>`
+  runs `kandev-agent-guard` fresh in the *target* task's namespace and returns task root, all
+  relevant mount options, `task_write=ok`, and `git_add_dry_run=ok`. This is the mechanism
+  §6 demanded; the Coordinator no longer has to ask the owning agent or guess from its own view.
+  Cross-workspace target UUIDs are refused (`target task has no active task-scoped workspace`).
+- **Coordinator elevation is attested, not asserted.** The guard matches the exported
+  `KANDEV_TASK_ID`/`KANDEV_SESSION_ID` pair against `kandev.db` and derives the workspace from
+  the matching row; when no IDs are exported it requires the sole active executor launch at the
+  exact task root. A mismatched pair fails closed to ordinary task scope — observed directly:
+  a guard invocation with cwd in another task's checkout, carrying this session's IDs, received
+  ordinary scope with no workspace elevation. Eligibility is rechecked every 15s and revocation
+  emits `scope_revoked` and SIGTERMs the child.
+- **ACP stdin is preserved.** The recheck supervisor launches the guarded child as
+  `"${run_guarded[@]}" <&0 &`, so the JSON-RPC channel survives. This session ran the entire
+  validation without the stdin death that ended session `2a9451a6-eab5-4349-9adf-55a58f925086`.
+- **Ordinary-task sibling isolation is real and verifiable from outside a namespace.**
+  `pgrep -a bwrap` exposes every live guarded agent's full argv. A running task in another
+  workspace showed exactly `--bind <repo>/.git`, `--ro-bind <repo>/.git/worktrees`,
+  `--bind <repo>/.git/worktrees/<its own entry>` and **no** repo-parent bind. This is a
+  legitimate way to verify another agent's scope without violating the namespace rule — read
+  the argv the guard was launched with, not your own mount table.
+
+**Finding — the Coordinator's repo grant shadows the sibling-admin overlay.** Coordinator scope
+adds `--bind /data/home/Code/<repo>` for each registered checkout *after* the git-marker loop
+has already applied the `--ro-bind …/.git/worktrees` overlay. bwrap mounts in order, so the
+later parent bind hides it. Confirmed by mount ordering and by writing into a sibling admin dir.
+Consequence: the Coordinator can corrupt the index/HEAD of all 118 sibling `coordinator`
+worktrees and all 42 `kandev-source` worktrees — including the preserved unpushed-work
+checkouts. This is within §3's grant, but §3's compensating control (condition 1: audit every
+Coordinator write outside its own task root, with path and operation) is **not implemented**.
+`/data/logs/coordinator-workspace-audit.jsonl` records scope *grants*, not writes. Either
+implement per-write auditing or apply the coordinator repo binds before the worktree overlay so
+the overlay survives.
+
+**Finding — Go module cache is the one language cache the guard does not make writable.** The
+support-path allowlist covers `.cargo`, `.gem`, `.npm`, `.local`, `.cache`, `.bundle`,
+`.composer`, `.rustup` but not `/data/home/go`. Default `GOMODCACHE=/data/home/go/pkg/mod` is
+read-only, so Go hooks fail unless a task sets a task-local cache. This is D9 and it persists.
+
+**Finding — same-UID readability weakens two boundaries.** `/data/data/kandev.db` is readable
+(mode 644 on a read-only mount): metadata for all 8 workspaces, 161 tasks outside this one, is
+queryable without the broker. Separately, `KANDEV_AGENT_DOCKER_TOKEN` for every live agent —
+including agents in other workspaces — is visible in `/proc/<pid>/cmdline`, and that token plus
+a cwd inside the matching task root is the entire broker authorization. A cross-workspace
+Compose-scope escalation is therefore plausible. **Not attempted** — exercising it is the
+security/trust-boundary class the charter reserves for the Human. Pass tokens by fd or env, not
+argv, and consider a per-workspace DB view.
+
+Also cleared this cycle: D4 (shared knowledge base is `rw` again) and D5 (main checkout and
+`feature/coordinator-long-liv-802` both at `98117b8`, zero divergence — nothing stranded).
+
+Files: `docs/LEARNING_LOG.md`, `docs/FILESYSTEM_DOCKER_CONTRACT.md`.
