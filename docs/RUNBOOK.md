@@ -2080,13 +2080,36 @@ git fetch upstream 'refs/pull/<n>/merge:refs/remotes/pr<n>merge'
 git show refs/remotes/pr<n>merge:<spec-path> | sed -n '<line>p'
 ```
 
-### What to do with it
+### What this does and does not establish
 
-**This is one shared defect, not one per PR.** Treat it the way the charter treats a shared
-push or credential wall: escalate a single fix, do not let each task work around it. Do not
-ask an agent to "fix" a test its branch does not contain, and do not accept a retry or a
-sleep added to make a merge-ref failure go green — that hides a defect belonging to `main`
-behind an unrelated branch.
+**Establishes:** the failing test is not in the PR branch, so **no edit to that branch can
+fix it**, and a local run of a same-prefix test on the branch cannot confirm or refute the
+CI failure. Both of those hold regardless of cause.
+
+**Does NOT establish that `main` is broken.** Check before claiming it — on 2026-08-29 the
+push-triggered `E2E Tests` run on `main` at that exact SHA **passed**:
+
+```sh
+gh run list -R <owner>/<repo> --workflow e2e-tests.yml --branch main --limit 5   --json conclusion,createdAt,headSha
+```
+
+If main's own run is green on the same content, the failure belongs to the **merge-ref
+combination** — branch plus base — or is intermittent under PR-run conditions. Those are
+different diagnoses with different owners, and the evidence above does not choose between
+them.
+
+**So the live hypotheses, none of them yet established, are:**
+1. a genuine interaction — the branch changes behaviour the base-side test asserts;
+2. intermittency that a single green push run does not disprove;
+3. an environment difference between push runs and PR runs.
+
+**Where a branch's diff is plausibly connected to the failing assertion, hypothesis 1
+deserves ruling out before the task is told the failure is not its concern.**
+
+**Disposition:** do not ask an agent to fix a test its branch does not contain, and do not
+accept a retry or a sleep added to make a merge-ref failure go green. But do not escalate
+"the base is broken" until a base-only run has actually been shown red — say what is
+verified and name the remaining hypotheses instead.
 
 Note also that `E2E Tests Passed` and `Merge E2E Reports` are aggregators; they fail
 because a shard did. One root cause, three red marks.
