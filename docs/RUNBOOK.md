@@ -2569,3 +2569,61 @@ not `kandev-source`. It said so plainly and declined to remove behavior it could
 not verify against, which was correct. If you have the read access and they do
 not, paste the verbatim diff rather than paraphrasing it. A paraphrase is how
 the error above reached them in the first place.
+
+## "Clean tree" is not "preserved" — sweep every worktree, do not trust the ledger's prose
+
+Incident 2026-08-29 (Correction 30). Having preserved five cards, I wrote in the
+ledger and reported: *"No known card still has commits in no remote ref."* That
+claim came from re-reading my own ledger categories, not from a sweep.
+
+One cycle later an actual sweep found **four more**, three of them reachable:
+
+| card | branch | at risk |
+|---|---|---|
+| `957da1cb-063b-4c2e-b406-6d04ad158fb9` | `feature/reuse-workspace-for-c69` | 31 commits |
+| `51781b28-0580-48e7-ac31-a732b07e3ddb` | `feature/require-auth-for-plu-67e` | 16 commits |
+| `6a5a2f73-87e1-4c08-a983-64f2456c3633` | `feature/executor-containers-nll` | 9 commits, **no upstream at all** |
+| `9e67c426-1300-46ef-a00f-e5603791212d` | `feature/create-a-plugin-that-kch` | 41 commits — **unreachable, armed queued moves** |
+
+My ledger described the first three as "clean `9ca3137…`", "23 blobs durable",
+and "#2937 owner". Every one of those notes is true and none of them is about
+containment. **"Clean" describes the working tree. It says nothing about whether
+the commits exist anywhere but this disk** — indeed a clean tree is the *easiest*
+place to lose work, because nothing looks wrong.
+
+### Sweep, don't recall
+
+```sh
+# every distinct worktree on the board, not just the ones you remember
+for W in <each workspace_path>; do
+  git -C "$W" fetch -q origin
+  H=$(git -C "$W" rev-parse HEAD)
+  [ "$(git -C "$W" branch -r --contains "$H" | wc -l)" -eq 0 ] && echo "UNCONTAINED $W $H"
+done
+```
+
+Then filter the false positives before acting — the raw sweep is noisy:
+
+- **A shared human checkout** appearing as several cards' `workspace_path`
+  (here `/data/home/Code/kandev-source`, protected WIP) is nobody's deliverable.
+- **A repo whose remote you have not fetched** reports `--contains` = 0 falsely.
+  Fetch first, always.
+- **Your own coordinator worktree** may legitimately have no upstream branch.
+
+What survives filtering is real. Confirm with `@{u}..HEAD` where an upstream
+exists, and note that *absence* of an upstream is the worst sign, not a benign
+one — `6a5a2f73` had no baseline to measure against because nothing of it had
+ever been pushed.
+
+### Two structural findings
+
+**A card can be unreachable.** `9e67c426` carries two live armed queued moves,
+so messaging it to request a backup push would fire a board move. Its 41
+commits stay exposed until the armed rows are cleared. Preservation and
+messaging safety can conflict; record the card as *known-exposed-and-unreachable*
+rather than quietly skipping it.
+
+**Check your own repository too.** While preserving eight cards' work I found my
+own coordinator knowledge base seven commits ahead of its remote — every
+learning entry written that day sitting on one disk. Fast-forward push, no
+force. The discipline you apply to the board applies to you.
