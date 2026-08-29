@@ -315,3 +315,46 @@ the available Coordinator cycle logs and direct Human corrections through
   runtime ports, and the latest Redmine recovery receipt.
 
 Files: `docs/DECISIONS.md` and `docs/LEARNING_LOG.md`.
+
+## 2026-08-28d — task creation, briefing, and environment constraints
+
+Window: 2026-08-28T15:00Z through 2026-08-29T00:15Z, derived from this session's
+cycle logs. All four lessons are incident-derived from Coordinator errors or
+confirmed environment behaviour, not speculation.
+
+- **Pass `repository_id`, never `repository_url`, when creating a task in an
+  existing workspace.** A URL can resolve to a *second* repository record whose
+  materialization path the agent guard refuses, so the task cannot boot at all:
+  `ERROR: kandev-agent-guard: Git common directory is outside an approved Code
+  repository`. Census `repository_id` across the board first and reuse the
+  dominant one — on this board 40 of 51 tasks shared a single record while the
+  mistaken task got an outlier. Diagnose this as a Coordinator error; it is not
+  an operator registration request and not a guard defect.
+- **Create platform-bug tasks into Spec, not Work.** A detailed brief in the task
+  description is NOT a plan artifact. A Work agent will correctly refuse
+  (`WORK_INCOMPLETE`) because the Work step requires a current approved plan and
+  forbids implementing from a guessed one — and the workflow may then
+  auto-advance the empty card into Review, where there is no plan, diff, or PR to
+  review. Route through Spec, let the Spec agent produce a real file map by
+  inspecting the repository, then own the Todo → Work handoff.
+- **Never cite a Coordinator-repository path as if it lived in the task's
+  repository.** Briefing an agent to "read `docs/RUNBOOK.md`" sent a Spec agent
+  hunting through `kdlbs/kandev` for a file that only exists in the Coordinator's
+  own repo; it correctly reported the absence, refused to invent replacement
+  prose, and carried a spurious risk entry into its plan. Quote the binding
+  constraints inline in the brief instead of citing a path the agent cannot see.
+- **A read-only default `GOMODCACHE` breaks Go commit hooks; task-local caches
+  are the workaround.** Use `env GOMODCACHE=/tmp/<task-slug>-gomodcache
+  GOCACHE=/tmp/<task-slug>-gocache` on every Go invocation, with a task-unique
+  path to avoid cross-task collisions. Confirmed independently on two tasks. Part
+  of a broader pattern: read-only mounts recur in this environment — the shared
+  coordinator checkout at `/data/home/Code/coordinator` is mounted
+  `ro,nosuid,nodev` as well — so suspect the mount before suspecting the code
+  when an unexpected "read-only file system" error appears.
+- **Stale `RUNNING` sessions settle on their own via orchestrator idle reclaim**
+  (`idle reclaim: provider runtime released; row preserved for resume`). A
+  cleanup-safety hold keyed on "a session is still RUNNING" therefore clears
+  without the stale-session repair task landing, and must be re-verified from
+  live session state every cycle rather than waited on.
+
+Files: `docs/LEARNING_LOG.md`.
