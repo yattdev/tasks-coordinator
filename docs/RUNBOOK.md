@@ -2033,3 +2033,60 @@ shard green without a diagnosis** — it buries the signal for every other branc
 
 **And the aggregators are noise.** `E2E Tests Passed` and `Merge E2E Reports` fail because
 a shard did. One root cause, three red marks — diagnose the shard, ignore the other two.
+
+## CI runs the MERGE REF, not the PR head — a failing test may exist on no branch you can see
+
+GitHub Actions on a pull request executes `refs/pull/<n>/merge`: the head **merged into the
+base**. So CI can run test content that is **not in the PR branch at all**, arriving from
+`main`. When that content is broken, every open PR fails on it simultaneously and none of
+them own it.
+
+**Verified 2026-08-29.** Three PRs each failed a single, different E2E shard. The failing
+test on #3137 was `renders readable task PR summary and compact trailing actions` at
+`pr-status-badge.spec.ts:714`, asserting `PR #2967`:
+
+```
+branch 7c5387f3c   (recover-missing-link)  long-titled test present: 0
+branch fdc0136a9   (fix-workflow-sync)     long-titled test present: 0
+branch 9f86eccaf   (fix-repositories-acc)  long-titled test present: 0
+upstream/main                              long-titled test present: 1
+merge ref 22bd3d6e9 (= pulls/3137.merge_commit_sha)  present: 1
+```
+
+**The test that failed exists on none of the three branches.** It comes from `main` through
+the merge ref.
+
+### Why this defeats the usual local reproduction
+
+An agent reproducing "the failing test" on its own branch runs a **different test of the
+same name prefix**. On these branches line 555 is `renders readable task PR summary`; on
+main it is `renders readable task PR summary and compact trailing actions`. A
+`--grep "renders readable task PR summary"` matches the short one locally and the long one
+in CI. **10/10 local passes then prove nothing about the CI failure** — they exercised
+other code. That is not flakiness and not a stale artifact; it is a content mismatch.
+
+### How to check it, cheaply
+
+```sh
+# what CI actually ran
+gh api repos/<owner>/<repo>/pulls/<n> --jq '.head.sha, .merge_commit_sha'
+
+# does the failing test even exist on the branch?
+git show <head>:<spec-path> | grep -c '<failing test title>'
+git show upstream/main:<spec-path> | grep -c '<failing test title>'
+
+# fetch and inspect the merge ref itself
+git fetch upstream 'refs/pull/<n>/merge:refs/remotes/pr<n>merge'
+git show refs/remotes/pr<n>merge:<spec-path> | sed -n '<line>p'
+```
+
+### What to do with it
+
+**This is one shared defect, not one per PR.** Treat it the way the charter treats a shared
+push or credential wall: escalate a single fix, do not let each task work around it. Do not
+ask an agent to "fix" a test its branch does not contain, and do not accept a retry or a
+sleep added to make a merge-ref failure go green — that hides a defect belonging to `main`
+behind an unrelated branch.
+
+Note also that `E2E Tests Passed` and `Merge E2E Reports` are aggregators; they fail
+because a shard did. One root cause, three red marks.
