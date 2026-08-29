@@ -2960,3 +2960,40 @@ state — not from the spawn call's return value.
 
 Related: grep the backend log for `startup failed session cleanup`; it marks
 restarts and lists the sessions pruned during them.
+
+---
+
+## `create_task_kandev` wants `repository_id`, not the `repositories[].id`
+
+Cost a failed call on 2026-08-29. A task's `repositories[]` entry carries **two**
+UUIDs and they are not interchangeable:
+
+```json
+{
+  "id": "1f63b0c4-892d-44ea-a30c-f2a0300298bb",          // task<->repo association row
+  "repository_id": "9facd69b-ac69-45cf-81d1-de520c6fb570", // the actual repository
+  "task_id": "584997a4-...", "base_branch": "main"
+}
+```
+
+`id` is the join row. `repository_id` is the repository. Passing `id` to
+`create_task_kandev` fails with a bare `backend error [INTERNAL_ERROR]: Failed
+to create task`, whose real cause only appears in `/data/logs/backend-logs.log`:
+
+```
+ERROR failed to create task {"component": "mcp-handlers",
+  "error": "looking up repository \"1f63b0c4-...\": repository not found"}
+```
+
+The MCP error text names neither the field nor the bad value, so this is
+unreadable from the tool result alone — go to the backend log, as the FAILED-task
+playbook already requires.
+
+Two habits that catch it:
+
+- When projecting `repositories[]` for inspection, print `repository_id`
+  explicitly. A filter like `{k:v for k,v in r.items() if k in ('name','id',…)}`
+  silently keeps the join id and drops the one you need.
+- Cross-check against the plan. The correct id was already recorded there from an
+  earlier cycle; the ledger disagreed with the value I had just extracted, and the
+  ledger was right.
