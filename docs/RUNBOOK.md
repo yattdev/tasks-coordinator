@@ -1000,9 +1000,23 @@ it in a way that reads as BLOCKED, not as a status line.
 
 ## Blocked is an action queue, not a parking lot
 
-Moving a task to Blocked is the start of a recovery workflow, not its outcome.
-In the same cycle, assign the blocker owner, take the narrowest safe action, and
-record the expected receipt plus next-check trigger in the follow-up ledger.
+Backlogs and ToDeploy are Human-managed holding columns, and Human-QA waits for
+Human review/testing. In every other workflow column, a task that cannot make
+forward progress belongs to the Coordinator. Move it to the physical Blocked
+column in the same cycle; a prose classification or stopped session in an
+active lane is not sufficient. Moving a task to Blocked starts recovery—it does
+not complete the cycle's action.
+
+At the move, mark the task HIGH PRIORITY with the native priority control when
+available. If the available schema cannot set priority, use the documented
+`[COORDINATOR FLAG]` convention and the live ledger; record that native priority
+is degraded instead of claiming it changed. Write one complete blocked record:
+previous actionable step, exact blocker, blocker owner, preservation receipt,
+the immediate removal action, expected evidence, deterministic next-check
+trigger, and fallback. Preserve branches, commits, worktrees, artifacts, data,
+and useful reproductions.
+
+Take the narrowest safe removal action in that same cycle:
 
 - If the Coordinator can decide or approve the action, do it now and verify the
   responsible session starts.
@@ -1016,9 +1030,19 @@ record the expected receipt plus next-check trigger in the follow-up ledger.
 
 Every cycle rechecks every Blocked trigger. An unchanged blocker suppresses a
 duplicate ping, not the inspection or ledger update. When the trigger clears,
-resume/move the task and verify the receiving session in the same cycle. A card
-that was merely moved aside, with no executing owner and no surfaced Human ask,
-is a Coordinator failure.
+atomically move the task back to its recorded actionable step, resume or create
+the responsible session as appropriate, and verify the physical step, task
+state, new session ID, effective profile, and RUNNING/progress receipt in the
+same cycle. If any part fails, keep or return it to Blocked with the new exact
+blocker; never leave a falsely resumed card in an active lane.
+
+A task-specific Human hands-off instruction remains a safety boundary even
+when the global column rule would move the card. Attempt no task read, message,
+move, or nudge beyond the directive's exact scope. Record the attempted
+workflow correction, the exact policy/tool denial, current column, preservation
+receipt, Human owner, and deterministic authorization trigger; never bypass the
+guard. A card merely moved aside, with no executing owner and no surfaced Human
+ask when one is required, is a Coordinator failure.
 
 ## Inherited vs owned failure — bisect before you assign
 

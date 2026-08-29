@@ -238,6 +238,24 @@ active recovery step. Work is never discarded on a claim of supersession without
 ancestry or scenario-level equivalence evidence. This recovery is a safety action,
 not a claim that the operator's Done move was generally wrong.
 
+## Physical Blocked owns stopped active work (2026-08-29, human-directed)
+
+Backlogs and ToDeploy are Human-managed holding columns; Human-QA waits for
+Human review/testing. Every other column is Coordinator-supervised. When a task
+there is expected to progress but cannot, the Coordinator moves it to
+physical Blocked in the same cycle, marks it HIGH PRIORITY, records preservation
+and a concrete removal action, and rechecks it every cycle. Blocked is an active
+recovery queue, never an optional label or parking place; clearing the trigger
+requires an atomic return to the recorded actionable step plus verified session
+startup.
+
+This supersedes older scope language that left unrelated Todo or stopped active
+cards Human-owned, or allowed a task to remain stopped outside physical Blocked.
+It does not override a task-specific Human hands-off directive, the strict
+ToDeploy boundary, Human-QA ownership, or the Done terminal-integrity gate. A
+hands-off conflict is recorded with its exact denial and Human authorization
+trigger, never bypassed.
+
 ## Done is destructive cleanup, not "closed" or merely complete (2026-08-27, human-directed)
 
 The workflow columns represent distinct lifecycle states. Active delivery lanes
