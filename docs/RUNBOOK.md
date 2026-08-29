@@ -1374,3 +1374,50 @@ do not fight the API repeatedly.
 ## Weekly hygiene
 Cycle logs on the task grow; have the coordinator roll up old logs into a
 weekly summary comment (or do it manually) to keep its context lean.
+
+## Escalating an environment blocker to Kandev Support (host Codex agent)
+
+Scope: host/container environment problems only — missing tools or dependencies,
+permission/access failures, unavailable host capabilities, missing Android
+emulator/device support, and similar limits that stop a task proceeding. **Not**
+for missing Kandev product features; those are board tasks.
+
+Support identity (human-directed 2026-08-29):
+
+- Name: `Kandev Support — Codex`
+- Codex thread ID: `01a043b4-fe52-7020-94bb-de94e72f8a07` (a Codex thread, **not**
+  a Kandev `taskId`/`sessionId` — `message_task_kandev` cannot target it)
+- Host working directory: `/home/ayattara/Code/kandev`
+- Host resume command:
+  `codex exec resume 01a043b4-fe52-7020-94bb-de94e72f8a07 "KANDEV SUPPORT REQUEST: <taskId> <sessionId> <worktree> <issue/evidence>"`
+
+**Agents cannot deliver this themselves — tested 2026-08-29T06:52Z.** Running the
+documented command from inside an agent container fails:
+
+    Error: thread/resume: thread/resume failed: no rollout found for
+    thread id 01a043b4-fe52-7020-94bb-de94e72f8a07 (code -32600)
+
+The `codex` CLI is present (`/data/.npm-global/bin/codex`) and authenticated — the
+structured JSON-RPC `-32600` proves the call was made — but the thread's rollout
+state is not container-visible. `find`/`grep` over `/data/home/.codex` shows no
+trace of that thread ID. This is intentional: host Codex state is deliberately not
+mounted into agent containers. There is no support broker socket either; `/run`
+contains only `kandev-agent-docker.sock`.
+
+**Do not** mount or expose host `~/.codex` into an agent as a workaround, and do not
+claim a support queue or delivery mechanism exists. Until a reviewed support broker
+exists, the only route is to record the request in the board/task trail — the
+Coordinator plan for coordinator-level blockers, the owning task's trail otherwise —
+so the host-side agent or the operator can pick it up and run the command.
+
+Every request must carry: coordinator task ID; coordinator session ID; the affected
+task/session ID when applicable; worktree path; the exact error text or supporting
+evidence; the expected outcome; and whether the action is destructive or
+production-sensitive. Write the full command, ready to paste, so the operator does
+not have to assemble it.
+
+Useful and non-obvious: `/home/ayattara/Code/kandev` **is** readable from inside the
+container at its host path, so host paths quoted in a request can be verified before
+sending even though host Codex state cannot.
+
+Files: `docs/RUNBOOK.md`.
