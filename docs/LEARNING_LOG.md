@@ -872,3 +872,45 @@ Rejected as transient: AVD names, request IDs, and device serials.
 Files: `docs/CAPABILITY_REGISTRY.md` (E1 rewritten, registry-version 2026-08-29b),
 `docs/RUNBOOK.md` (new procedure), this log. `PROMPT.md` unchanged — no charter
 mirror triggered.
+
+## 2026-08-29h — Android UI-QA is VERIFIED BLOCKED; a capability claim must name what was executed
+
+Window: 2026-08-29T08:10Z to 2026-08-29T08:20Z. Support reported the KVM blocker
+cleared and Android UI-QA verified end to end; independent execution contradicted
+it, and Support then retracted.
+
+- **Final status: VERIFIED BLOCKED.** `/dev/kvm` is present as
+  `crw-rw---- nobody:nogroup`, but that is unmapped host ownership inside the
+  container user namespace, so apparent `nogroup` membership grants nothing:
+  `os.access` False for R_OK/W_OK, `os.open(O_RDWR)` raises `EPERM`, and
+  `emulator -avd <avd> -no-window` dies at
+  `ProbeKVM: This user doesn't have permissions to use KVM (/dev/kvm)` with no
+  surviving `qemu-system` process and an empty `adb devices`. Group/`KVM_GID` fixes
+  cannot repair an unmapped device ID. Physical-device QA remains unsupported.
+  Unblocking needs an owning infrastructure change (a reviewed workspace-scoped KVM
+  broker, or a safe device-identity mapping) — neither exists, so do not retry each
+  cycle and do not seek a privilege workaround.
+- **The durable lesson, now a registry maintenance rule: a capability claim must
+  name what was executed.** Three claims about the same capability were made in one
+  day and the first two were wrong in opposite directions. A knowledge-base search
+  concluded "no capability exists" — accurate search, wrong conclusion, because the
+  capability was undocumented. A configuration inspection then concluded "verified
+  end to end" — accurate inspection, wrong conclusion, because configuration is not
+  execution. Only launching the emulator settled it.
+- Adopted four honest statuses so the distinction cannot collapse again: VERIFIED
+  WORKING (executed here, with evidence), VERIFIED BLOCKED (executed here, failed,
+  with the exact error), UNVERIFIED (not executed in this context), NOT PROVISIONED
+  (deliberately absent by design).
+- **A verification performed in a different execution context does not transfer.**
+  Support's check and the Coordinator task session were different contexts; the
+  capability was present and configured in both and usable in neither. Always state
+  which context was tested.
+- Process note: a peer report — even an authoritative one carrying an explicit
+  "verified end to end" — is evidence to check, not a fact to publish. Recording
+  Support's claim as instructed would have put a false VERIFIED WORKING into shared
+  knowledge that every Coordinator would then have trusted.
+
+Rejected as transient: request IDs, AVD names, emulator build number, and image paths.
+
+Files: `docs/CAPABILITY_REGISTRY.md` (E1 rewritten, maintenance rules 6-7 added,
+registry-version 2026-08-29c), `docs/RUNBOOK.md`, this log. `PROMPT.md` unchanged.

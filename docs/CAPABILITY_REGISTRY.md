@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-08-29b -->
+<!-- registry-version: 2026-08-29c -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -178,15 +178,13 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 ## E. Android UI-QA / emulator
 
 ### E1. A task needs an Android emulator or on-device UI-QA
+- **Status** **VERIFIED BLOCKED — `/dev/kvm` is inaccessible in the guarded container/user namespace.** Headless AVD UI-QA cannot run today. Physical-device UI-QA is separately unsupported (USB/ADB passthrough intentionally absent).
 - **Trigger** Mobile task requires emulator execution or on-device UI verification.
-- **Action** **Available conditionally — headless AVD only.** Use the guarded wrappers; do not attempt a raw or host path. Physical-device UI-QA is **not provisioned** (USB/ADB host passthrough is intentionally absent) — scope such acceptance criteria to a headless AVD or to code-only evidence.
-- **Capability** Guarded `emulator` and `adb` wrappers (`/usr/local/bin`), plus a read-only host Android SDK and AVD catalogue (`emulator -list-avds`). Agent-local adb state uses port **5038**. The wrapper enforces headless, read-only, no-snapshot operation and stages only disposable AVD metadata under `/data/home/.android`.
-- **Authority** Coordinator/task-agent usable within the guarded path. This is a constrained wrapper plus filesystem guard, **not** a workspace-scoped broker RPC — a broker-only design would need a separate reviewed implementation.
-- **Evidence** Select your emulator serial explicitly and **shut the emulator down afterward**. The SDK's installed API level and system image determine which AVD can run; Kandev imposes no fixed API level.
-- **Known blocker (verified 2026-08-29)** An x86_64 AVD needs usable KVM acceleration, and `/dev/kvm` is currently `crw-rw---- nobody:nogroup` — not readable or writable by the agent user, so emulator start fails. Support classifies this as a **host/container mapping issue to repair, not a permanent limitation**. Report it via [G1](#g1-an-environment-blocker-stops-a-task) with the exact permission error; do not record Android as unsupported.
-- **Escalate to** [Kandev Support](#g1-an-environment-blocker-stops-a-task) for the KVM authorization repair or any SDK/system-image gap; the Human only if funding or physical hardware is the question.
-- **Never** Request `/dev/dri`, X11, Wayland, USB, raw Docker, or a host adb server — their absence is deliberate. Never claim physical-device capability. Never report a mobile UI acceptance criterion as satisfied without a real emulator run, and never stage a display-only fixture that makes a broken path look demonstrable.
-- **Related** For code-only mobile work the ordinary rule still applies: do not manufacture a runtime — declare `TEST_RUNTIME=NONE` with a reason and hand over named automated coverage ([Human-QA gate](RUNBOOK.md#human-qa-runtime-provisioning-is-an-acceptance-gate)).
+- **Action** Do not attempt an emulator run and do not promise on-device evidence. Record the criterion as blocked on infrastructure, keep the task out of any lane that claims UI acceptance passed, and escalate once via [G1](#g1-an-environment-blocker-stops-a-task) if a fresh task needs it.
+- **Capability (present but non-functional)** Guarded `emulator` and `adb` wrappers at `/usr/local/bin`; read-only host SDK; `emulator -list-avds` returns a populated catalogue; `adb` daemon starts on port **5038**. A guarded task session invoking `/usr/local/bin/emulator` directly IS the intended path — there is no Coordinator-only guard entrypoint and no workspace-scoped KVM/ADB broker operation.
+- **Evidence of the block (verified 2026-08-29)** `/dev/kvm` exists as `crw-rw---- nobody:nogroup`, but that ownership is **unmapped host ownership inside the container user namespace**, so apparent membership in `nogroup` grants nothing: `os.access` is False for R_OK/W_OK and `os.open('/dev/kvm', O_RDWR)` raises `EPERM`. `emulator -avd <avd> -no-window` logs `ProbeKVM: This user doesn't have permissions to use KVM (/dev/kvm)`, no `qemu-system` process survives, `adb devices` stays empty. `KVM_GID`/group fixes cannot repair an unmapped device ID, and no runtime task authorization can grant it safely.
+- **What would unblock it** An owning infrastructure change: a reviewed workspace-scoped KVM emulator broker, or a safe host/container device-identity mapping that makes `/dev/kvm` openable **without** widening filesystem, Docker, USB, or display access. Neither exists today.
+- **Never** Request `/dev/dri`, X11, Wayland, USB, raw Docker, a host adb server, or any privilege-escalation workaround — their absence is deliberate. Never claim physical-device capability. **Never substitute code-only evidence for an on-device acceptance criterion** — for genuinely code-only mobile work the ordinary `TEST_RUNTIME=NONE` path still applies ([Human-QA gate](RUNBOOK.md#human-qa-runtime-provisioning-is-an-acceptance-gate)), but that is not a stand-in for on-device QA.
 
 ## F. Description / prompt synchronization
 
@@ -317,3 +315,5 @@ Rules:
 3. A contradiction with a linked document is a defect. Fix both sides in one change; never leave two live rules disagreeing.
 4. Record known gaps and conditional capabilities explicitly (see [E1](#e1-a-task-needs-an-android-emulator-or-on-device-ui-qa)) rather than omitting the situation — an absent entry reads as "no guidance", a recorded gap reads as "verified absent".
 5. Verify every added link resolves before committing.
+6. **A capability claim must name what was executed.** Record a status as working only after running the capability in the context that will actually use it, and state the command and its observable result. Neither absence of documentation nor presence of configuration is evidence: on 2026-08-29 an exhaustive knowledge-base search wrongly concluded Android was unsupported, and a configuration inspection then wrongly reported it verified end to end — only an actual emulator launch settled it. Use the four honest statuses: **VERIFIED WORKING** (executed here, with evidence), **VERIFIED BLOCKED** (executed here, failed, with the exact error), **UNVERIFIED** (not executed in this context), and **NOT PROVISIONED** (deliberately absent by design).
+7. A verification performed in a different execution context does not transfer. Say which context was tested; a capability can be present, configured, and still unusable where it is needed.

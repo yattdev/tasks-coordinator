@@ -1524,37 +1524,43 @@ sending even though host Codex state cannot.
 
 ## Android UI-QA through the guarded emulator/adb wrappers
 
-Android UI-QA is available **conditionally: headless AVD only**. Physical-device
-UI-QA is not provisioned — USB/ADB host passthrough is intentionally absent, so a
-device-only acceptance criterion must be rescoped, not worked around.
+**Status 2026-08-29: VERIFIED BLOCKED.** Headless AVD UI-QA cannot run — `/dev/kvm`
+is inaccessible in the guarded container/user namespace. Physical-device UI-QA is
+separately unsupported; USB/ADB host passthrough is intentionally absent.
 
-What exists (verified 2026-08-29):
+The surface exists and looks healthy, which is why this needs writing down:
 
 - Guarded `emulator` and `adb` wrappers on `PATH` at `/usr/local/bin`.
-- A read-only host Android SDK and AVD catalogue — `emulator -list-avds` is the
-  authoritative inventory; never guess an AVD name.
-- Only `/dev/kvm` is passed into the guarded session. No `/dev/dri`, X11, Wayland,
-  USB, raw Docker, or host adb server.
-- Agent-local adb state on port **5038**, with disposable AVD metadata staged under
-  `/data/home/.android`.
-- The wrapper enforces headless, read-only, no-snapshot operation.
+- A read-only host Android SDK; `emulator -list-avds` returns a populated catalogue.
+- `adb` starts an agent-local daemon on port **5038**.
 
-Procedure: list AVDs, start one headless, **select your emulator serial explicitly**
-(never assume a default when several may run), do the UI-QA work, then **shut the
-emulator down**. Leaving one running strands host resources for every other agent.
-The SDK's installed API level and system image determine which AVD can run; Kandev
-imposes no fixed API level.
+None of that implies a runnable emulator. A guarded task session invoking
+`/usr/local/bin/emulator` directly is the intended path — there is no
+Coordinator-only guard entrypoint and no workspace-scoped KVM/ADB broker operation.
 
-**Current blocker — KVM authorization.** An x86_64 AVD needs usable KVM
-acceleration, and `/dev/kvm` is presently `crw-rw---- nobody:nogroup`: not readable
-or writable by the agent user, so emulator start fails. Kandev Support classifies
-this as a host/container mapping issue **to repair, not a permanent product
-limitation**. Report it through the Support broker with the exact permission error;
-do not record Android as unsupported and do not seek a privilege workaround.
+**The block.** `/dev/kvm` is present as `crw-rw---- nobody:nogroup`, but that is
+*unmapped host ownership inside the container user namespace*, not a real group you
+belong to. Apparent membership in `nogroup` grants nothing:
 
-Note the shape of this capability: it is a constrained wrapper plus filesystem
-guard, **not** a workspace-scoped broker RPC like `docker kandev source`. A
-broker-only design would require a separate reviewed implementation, so do not
-assume broker-style validation semantics apply here.
+    os.access('/dev/kvm', R_OK|W_OK) -> False
+    os.open('/dev/kvm', O_RDWR)      -> [Errno 13] Permission denied
+    emulator -avd <avd> -no-window   -> ProbeKVM: This user doesn't have
+                                        permissions to use KVM (/dev/kvm)
+                                        The KVM line in /etc/group is: [LINE_NOT_FOUND]
+
+No `qemu-system` process survives, `adb devices` stays empty, and
+`adb -s emulator-5554 shell getprop sys.boot_completed` reports the device is not
+found. A `KVM_GID` or group-membership fix cannot repair an unmapped device ID, and
+no runtime task authorization can grant that access safely.
+
+**Unblocking requires an owning infrastructure change** — a reviewed
+workspace-scoped KVM emulator broker, or a safe host/container device-identity
+mapping that makes `/dev/kvm` openable without widening filesystem, Docker, USB, or
+display access. Neither exists today, so do not retry the emulator each cycle and
+do not seek a privilege workaround.
+
+Do **not** substitute code-only evidence for an on-device acceptance criterion.
+Genuinely code-only mobile work still uses the ordinary `TEST_RUNTIME=NONE` path;
+that is not a stand-in for UI-QA that a criterion actually requires.
 
 Registry entry: [E1](CAPABILITY_REGISTRY.md#e1-a-task-needs-an-android-emulator-or-on-device-ui-qa).
