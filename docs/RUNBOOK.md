@@ -1392,80 +1392,105 @@ permission/access failures, unavailable host capabilities, missing Android
 emulator/device support, and similar limits that stop a task proceeding. **Not**
 for missing Kandev product features; those are board tasks.
 
-Support identity (human-directed 2026-08-29):
+Support identity: `Kandev Support — Codex`, stable thread
+`01a043b4-fe52-7020-94bb-de94e72f8a07`, host working directory
+`/home/ayattara/Code/kandev`.
 
-- Name: `Kandev Support — Codex`
-- Codex thread ID: `01a043b4-fe52-7020-94bb-de94e72f8a07` (a Codex thread, **not**
-  a Kandev `taskId`/`sessionId` — `message_task_kandev` cannot target it)
-- Host working directory: `/home/ayattara/Code/kandev`
-- Host resume command (run from the host workspace, not from a container):
+### The canonical route is the broker — send it yourself
 
-      cd /home/ayattara/Code/kandev
-      codex exec resume 01a043b4-fe52-7020-94bb-de94e72f8a07 \
-        "KANDEV SUPPORT REQUEST: <request>"
-
-**THE CANONICAL ROUTE IS THE BROKER — use it, never `codex exec resume` directly.**
-A validated coordinator contacts Support through three guarded commands:
+**Use the broker, never `codex exec resume` directly**, and do **not** ask the
+Human to relay a routine support request. A validated Coordinator contacts Support
+through three guarded commands:
 
     docker kandev support send <request.json>
     docker kandev support status <request-id>
     docker kandev support receive <request-id>
 
-`send` takes a regular JSON file (not a symlink, <=128 KB) resolved **inside the
-coordinator task root**, so pass a path relative to it, e.g.
-`coordinator/support-request.json`. It returns `{"request_id": "...", "status":
-"queued"}`. Poll `status` until it reports `complete`, then `receive` the answer.
-
-Required schema — all four fields must be non-empty strings, or the broker refuses:
+Required schema — all four fields must be non-empty strings, or the broker refuses
+the request by name:
 
     {
-      "problem": "<observed behavior>",
-      "evidence": "<errors, logs, commands>",
+      "problem": "<observed behavior / what is blocked>",
+      "evidence": "<exact errors, logs, commands, paths, IDs>",
       "expected_outcome": "<desired behavior>",
-      "security_constraints": "<anything that must remain isolated>"
+      "security_constraints": "<anything that must remain isolated, e.g. do not
+       expose host ~/.codex, the Docker socket, credentials, or general host
+       command execution>"
     }
 
-The broker attaches the coordinator task ID, workspace ID and name, worktree and
+`send` takes a regular JSON file (not a symlink, <=128 KB) resolved **inside the
+coordinator task root**, so pass a path relative to that root — e.g.
+`coordinator/support-request.json` — or an absolute path. A path relative to your
+shell's cwd is the common trap: a file created in `coordinator/` and sent as
+`support-request.json` resolves to `/data/tasks/<task-dir>/support-request.json`
+and fails with `path is unavailable: ... No such file or directory`.
+
+`send` returns `{"request_id": "...", "status": "queued"}`. Poll `status`
+adaptively — requests have completed in ~10-15s — then `receive` the answer.
+
+The broker attaches the coordinator task ID, workspace ID and name, worktree, and
 timestamp itself, so do not duplicate them; put the affected task/session ID inside
 `problem` or `evidence`.
+
+Two things that are easy to get wrong:
+
+- **`complete` does not mean success.** It means the host-side run finished. Check
+  `returncode`, then always read `receive` for the actual result.
+- **The capability is invisible in the top-level help.** `docker kandev` with no
+  arguments prints only the compose line and never mentions `support`; run
+  `docker kandev support` with no arguments for its authoritative command list.
 
 Verified fail-closed behaviour (2026-08-29T07:20Z): an unknown request ID returns
 `support request is unavailable`; a file outside the coordinator task root returns
 `path is outside this agent task`; a request missing any required field is refused
-by name. Do not ask the Human to relay routine support requests — this route is
-autonomous.
-
-**Known live blocker (2026-08-29T07:20Z):** `send`, `status` and `receive` all work,
-but delivery into the support thread currently fails with
-`thread-store conflict: thread 01a043b4-... already has an active writer (code -32600)`,
-returning `status: complete, returncode: 1`. Three attempts, including one after a
-pause, failed identically, so it is not transient. This is a **different** failure from
-the earlier container-side `no rollout found`: the broker reaches the thread, but
-another writer holds it. Resolution is host-side — release the active writer on that
-thread. Until then, `send` still records the request; re-`receive` after the lock clears.
-
-Do **not** mount or expose host `~/.codex`, and do not claim delivery succeeded when
+by name. Requests are cheap to retry, but a repeated identical failure is a fault
+to escalate, not something to retry in a loop. Do not claim delivery succeeded when
 `returncode` is non-zero.
 
-**Canonical request format (operator-supplied 2026-08-29).** Use these exact labels;
-an unlabelled one-line request is not the agreed shape:
+### Why `codex exec resume` cannot be used from a container
 
-    KANDEV SUPPORT REQUEST
-    Coordinator task ID: <task-id>
-    Coordinator session ID: <session-id>
-    Workspace/worktree: <path>
-    Problem: <observed behavior>
-    Evidence: <errors, logs, commands>
-    Expected outcome: <desired behavior>
-    Security constraints: <anything that must remain isolated>
+Running the documented resume command directly inside an agent container fails:
 
-Include the affected task/session ID inside `Problem` or `Evidence` when the blocker
-belongs to another card. State plainly in `Security constraints` whether the action is
-destructive or production-sensitive, and name anything that must stay isolated. Write
-the full command ready to paste so the operator does not have to assemble it.
+    Error: thread/resume: thread/resume failed: no rollout found for
+    thread id 01a043b4-fe52-7020-94bb-de94e72f8a07 (code -32600)
+
+The `codex` CLI is present (`/data/.npm-global/bin/codex`) and authenticated — the
+structured `-32600` proves the call was made — but the thread's rollout state is
+not container-visible, by design. Independently reproduced from two Coordinator
+worktrees on 2026-08-29; treat it as settled and do not re-probe it. The broker
+above exists precisely to bridge this gap: it runs the resume host-side on your
+behalf, so host Codex state stays unmounted.
+
+Never mount or expose host `~/.codex` into an agent as a workaround, and never
+claim a delivery mechanism exists that you have not exercised.
+
+### Known live blocker: `already has an active writer` (2026-08-29T07:20Z)
+
+`send`, `status`, and `receive` all work, but delivery into the support thread
+currently fails, returning `status: complete, returncode: 1` with:
+
+    ERROR codex_core::session: Failed to create session: thread-store conflict:
+    thread 01a043b4-... already has an active writer
+    Error: thread/resume: thread/resume failed: ... (code -32600)
+
+Three attempts, including spaced retries, failed identically, so it is not
+transient. This is a **different** failure from the container-side
+`no rollout found` above, and the two must not be conflated because their remedies
+are opposite:
+
+- `no rollout found` → wrong route; use the broker.
+- `already has an active writer` → right route; the broker reached the host and
+  found the thread, but another writer holds it (typically a live interactive Codex
+  session). Resolution is host-side: release the active writer on that thread.
+
+`send` still records the request while the lock holds; re-`receive` after it
+clears. If it persists, escalate to the operator with the request IDs, the exact
+stderr, your Coordinator task ID, session ID, and worktree path, and state plainly
+that the broker transport itself is healthy.
+
+A related host-side warning may accompany it and is not itself the blocker:
+`failed to load models cache: missing field supports_parallel_tool_calls`.
 
 Useful and non-obvious: `/home/ayattara/Code/kandev` **is** readable from inside the
 container at its host path, so host paths quoted in a request can be verified before
 sending even though host Codex state cannot.
-
-Files: `docs/RUNBOOK.md`.

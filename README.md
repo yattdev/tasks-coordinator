@@ -49,12 +49,13 @@ worktree, never the shared main checkout. See
 ## Environment blockers
 
 Host/container limits — missing tools or dependencies, permission failures,
-unavailable host capabilities, absent Android emulator/device support — go to the
-host `Kandev Support — Codex` agent, not to repeated workarounds. Missing kandev
-*product* features remain ordinary board tasks. Agents cannot deliver a support
-request themselves, so it is recorded in the board/task trail with a ready-to-paste
-host command. See
-[docs/RUNBOOK.md](docs/RUNBOOK.md#escalating-an-environment-blocker-to-kandev-support-host-codex-agent).
+unavailable host capabilities, absent Android emulator/device support — go to
+`Kandev Support — Codex`. Missing kandev *product* features remain ordinary board
+tasks. Coordinators contact Support **autonomously** through the reviewed broker
+(`docker kandev support send|status|receive`) rather than asking the human to
+relay, and never via `codex exec resume`, which cannot work from a container. See
+[docs/RUNBOOK.md](docs/RUNBOOK.md#escalating-an-environment-blocker-to-kandev-support-host-codex-agent)
+for the request schema, the three commands, and the known host-side faults.
 
 ## Routine protocol
 

@@ -684,3 +684,44 @@ were dropped on rebase — no learning was discarded, and the originals remain o
 `main` under their authors' commits (`67d9e9e`, `6fc33f7`, `66dbfd6`, `c1446b5`).
 
 Files: `PROMPT.md`, `README.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, and this log.
+
+## 2026-08-29c — Kandev Support broker is the canonical autonomous route (corrective)
+
+Window: 2026-08-29T07:00Z to 2026-08-29T07:25Z. Human-directed acceptance test of
+the autonomous Support contact channel.
+
+Corrective lesson — this **supersedes** `2026-08-29b` and the peer policy landed in
+`fd65560`/`fa743df`, which recorded that agent containers cannot reach Support and
+must leave a paste-ready request in the board trail:
+
+- A reviewed broker route exists and works: `docker kandev support send|status|
+  receive`. Acceptance test confirmed the full transport — `send` returned a
+  request ID and `queued`, `status` reached `complete` in ~10-15s, `receive`
+  returned genuine host-side stdout/stderr. Coordinators contact Support
+  themselves; the board-trail handoff is now only the fallback when the broker is
+  unavailable.
+- The earlier "cannot deliver" finding was sound about `codex exec resume`
+  specifically (`no rollout found`, host state unmounted, still true and still
+  not worth re-probing) but wrong to generalise into "no route exists". A "cannot"
+  claim must name the exact route tested.
+- Two failure modes must not be conflated: `no rollout found` = wrong route, use
+  the broker; `thread-store conflict: already has an active writer` = right route,
+  host-side contention needing operator release.
+- Reinforces the 2026-08-29b capability-discovery lesson from a second angle:
+  `docker kandev` with no arguments advertises only compose and omits `support`
+  entirely, while `docker kandev support` lists it. A guarded broker's advertised
+  surface is not evidence of what it can do.
+- Operational trap worth recording: `send` resolves a relative path against the
+  task root (`/data/tasks/<task-dir>/`), not the shell cwd, so a request file
+  written in the `coordinator/` subdirectory needs an absolute path.
+
+Not resolved this cycle: three spaced attempts all returned
+`already has an active writer` on the support thread, so no Support reply was
+received. Transport is healthy; the thread lock is operator-side and is being
+escalated with request IDs and exact stderr.
+
+Rejected as transient: request IDs, session and token values, timestamps, and the
+`supports_parallel_tool_calls` host warning that accompanied but did not cause the
+fault.
+
+Files: `PROMPT.md`, `README.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.

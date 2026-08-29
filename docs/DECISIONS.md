@@ -637,3 +637,36 @@ Corollary on capability discovery: a guarded broker may under-report itself.
 Establish capability by running the specific documented operation, not by reading
 top-level help — otherwise a working authorized path is mistaken for a missing
 one, producing exactly the needless escalation this decision exists to prevent.
+
+## Kandev Support is contacted autonomously through the broker (2026-08-29, supersedes the board-trail relay)
+
+**Supersedes** the 2026-08-29 decision above stating that agent containers cannot
+deliver to the Support thread and must leave a paste-ready request in the board
+trail for a human to run. That conclusion was drawn from testing only
+`codex exec resume`, which fails from a container with `no rollout found for
+thread id ... (-32600)` because host Codex rollout state is deliberately not
+mounted. It generalised one blocked route into "no route exists".
+
+A reviewed broker route does exist: `docker kandev support send|status|receive`.
+An acceptance test on 2026-08-29 confirmed the transport end to end — `send`
+returned a request ID and `queued`, `status` reached `complete` in ~10-15s, and
+`receive` returned the genuine host-side stdout/stderr of the resume attempt. The
+broker runs the resume host-side, which is exactly why host Codex state can stay
+unmounted. Coordinators therefore contact Support themselves and must not ask the
+Human to relay routine requests.
+
+The board-trail handoff remains the correct fallback only when the broker itself
+is unavailable — not as the default.
+
+Two failure modes must not be conflated, because they have opposite remedies:
+`no rollout found` means the wrong route was used (switch to the broker), while
+`thread-store conflict: ... already has an active writer` means the broker worked,
+reached the host, and found another writer holding the thread — an operator-side
+release, and a genuine escalation once it persists across spaced retries.
+
+Rationale: a capability wrongly recorded as impossible is more costly than one
+merely undocumented — it teaches every future session to route around a working
+path and to spend the Human's attention on requests an agent could file itself.
+The general lesson is that "cannot" claims must name the exact route tested, and a
+guarded broker's advertised surface (`docker kandev` no-args omits `support`
+entirely) is not evidence of what it can do.
