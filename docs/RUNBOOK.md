@@ -1947,3 +1947,43 @@ drift, not lost work.
 
 Also search main for the squash itself — `git log <main> --grep='#<pr-number>'` — since a
 squash commit usually keeps the PR number in its subject.
+
+## A hung primary session is not always the end — check for a live sibling session
+
+When a task's primary session hangs, messages to the task queue behind it forever, and
+both remedies (`delivery_mode="interrupt"`, `stop_task_kandev`) are **direct-parent only**.
+But `message_task_kandev` takes an optional **`session_id`**, and a task often has other
+sessions from earlier phases. **A non-primary session in `WAITING_FOR_INPUT` can receive.**
+
+```sh
+# list every session and its state
+#   mcp: list_task_sessions_kandev { task_id }
+# then message a live non-primary one explicitly:
+#   mcp: message_task_kandev { task_id, session_id: "<live non-primary>", prompt }
+```
+
+Delivery status tells you whether it worked: **`sent`** means it reached a live session;
+**`queued`** means you hit something running. Verified 2026-08-29 on `1f8d4dc8`, whose
+primary had been frozen 173 minutes with four queued messages — a `WAITING_FOR_INPUT`
+sibling accepted immediately.
+
+**It does not always exist.** The sibling task `23a62467` had only the hung primary plus
+two `COMPLETED` sessions; terminal sessions cannot accept messages, so that card stayed
+unreachable. Check before assuming either way.
+
+**Before waking a sibling, confirm the worktree is safe to touch:**
+
+```sh
+git -C <worktree> status --porcelain | wc -l      # 0
+git -C <worktree> rev-list --count @{u}..HEAD     # 0
+```
+
+If the tree is clean and pushed, the worst case is duplicated effort rather than lost work
+should the primary un-hang. **Tell the woken session that the primary may resume**, and ask
+it to stop and report rather than race — two agents on one worktree cost this board about
+forty minutes earlier the same day.
+
+**This is not the same as `spawn_session_kandev`.** You are messaging a session that
+already exists, not creating a second agent. Spawning remains the wrong reach: its own
+guidance restricts it to explicit user request, and it is what produces the two-agents
+problem rather than merely risking it.
