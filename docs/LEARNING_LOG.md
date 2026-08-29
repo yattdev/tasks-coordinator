@@ -1245,11 +1245,19 @@ boundary. The call returns success, and the returned task JSON shows the **reque
 The real state:
 
 - `tasks.workflow_step_id` is unchanged, and `updated_at` does not advance
-- a row appears in `pending_moves` with `applied = 0` and the requested step
+- a row appears in `pending_moves` carrying the requested `workflow_step_id`
 
-I moved one card twice and read the unchanged row as "my move was rejected", when both
-calls had been accepted and queued. Usefully, the second request **superseded** the
-first rather than stacking — one pending row survived, the corrected one.
+The row's **presence is the signal** — there is no `applied` flag, and the row is
+removed once the move lands. `pending_moves.session_id` is `UNIQUE`, one pending move
+per session, which is why a second request **supersedes** the first rather than
+stacking: I moved one card twice and the corrected destination replaced the wrong one.
+
+Watch the column order when reading the raw row — `step_position` sits where an
+`applied` flag would plausibly go, and I misread its `0` as exactly that before checking
+`.schema`. Read the schema before naming a column you have only seen positionally.
+
+I also read the unchanged task row as "my move was rejected", when both calls had in
+fact been accepted.
 
 So: never confirm a move from the tool response. Confirm from
 `tasks.workflow_step_id`, and if it disagrees, check `pending_moves` for an unapplied

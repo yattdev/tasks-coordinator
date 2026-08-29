@@ -1744,10 +1744,16 @@ sqlite3 -noheader -separator ' | ' "file:/data/data/kandev.db?mode=ro" \
   "SELECT * FROM pending_moves WHERE task_id='<task-uuid>';"
 ```
 
-An unapplied row has `applied = 0`. A second move request **supersedes** the first
-rather than stacking, so correcting a queued move is safe — issue the corrected move and
-verify one pending row survives. Do not conclude a move failed, and do not re-issue it
-repeatedly, until you have checked `pending_moves`.
+**The row's presence means the move is still queued** — there is no `applied` column,
+and the row is deleted once the move lands. `session_id` is `UNIQUE`, so a second move
+request **supersedes** the first rather than stacking; correcting a queued move is safe.
+Issue the corrected move and verify exactly one pending row survives, naming the
+destination you want. Do not conclude a move failed, and do not re-issue it repeatedly,
+until you have checked `pending_moves`.
+
+Columns are `id, session_id, task_id, workflow_id, workflow_step_id, step_position,
+queued_at, actor, sender_session_id, move_id` — note `step_position`, which is easy to
+misread as an applied/status flag when scanning a row positionally.
 
 Note the schema: there are no `sessions` or `messages` tables in this database; session
 and conversation state live elsewhere. Use `list_task_sessions_kandev` and
