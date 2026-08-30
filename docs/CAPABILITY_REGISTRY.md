@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-08-30d -->
+<!-- registry-version: 2026-08-30e -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -364,9 +364,9 @@ sh -ceu '
 
 ### G8. Task-shell commands run but no output or completion arrives
 - **Trigger** Even bounded `true`, `pwd`, or `git status` appears to start in a live task terminal but produces no output or completion.
-- **Action** Preserve the task session and worktree, then ask Kandev Support for one disposable task-scoped terminal probe using the normal two-resize PTY protocol. The first resize starts the deferred shell; the subsequent resize establishes output wiring. This diagnoses the bridge only. Require Support to repair or expose the same sequence through the ordinary agent execution client, then verify an agent-issued non-TTY command and agent-issued TTY `true`, `pwd`, and `git status` before resuming the task.
+- **Action** Preserve the task session and worktree, then ask Kandev Support for one disposable task-scoped terminal probe using the normal two-resize PTY protocol. The first resize starts the deferred shell; the subsequent resize establishes output wiring. This diagnoses the bridge only. Require Support to repair or expose the same sequence through the ordinary agent execution client, then verify an agent-issued non-TTY command and a distinctly agent-tool-allocated TTY before resuming the task. The TTY receipt must retain the tool's TTY/PTY selection and pass `test -t 0`, `test -t 1`, `stty`, `true`, `pwd`, and `git status`; a command merely labelled “TTY” or an inner `script`/`ssh -t` PTY is not evidence.
 - **Capability** [Recover a task shell whose PTY output was never wired](RUNBOOK.md#recover-a-task-shell-whose-pty-output-was-never-wired).
-- **Evidence** Support request `c0e1a9e7-bf39-49de-aa67-6d9a528aba2e` verified the disposable two-resize path, but the same task's ordinary agent path immediately hung again. That receipt is diagnostic, not an unblock receipt. Follow-up `7a320cbf-e310-4b70-8b43-322ce8b931a5` owns the real agent-path repair.
+- **Evidence** Support request `c0e1a9e7-bf39-49de-aa67-6d9a528aba2e` verified the disposable two-resize path, but the same task's ordinary agent path immediately hung again. Request `c97b3b47-febd-439b-a324-f29550413dd4` then deployed local commit `6fcc88f689dae9797dd131229167a98d0e955d43`, disabling Codex `unified_exec` only for `@agentclientprotocol/codex-acp`; independent session `c1ef931d-c98b-4af8-bd24-87352cf4da05` proved non-TTY output/completion with exit 0. Its second call was stored only as another normalized `shell_exec` and made no terminal assertion, so exact TTY acceptance remains open under Support request `aaad659d-a9af-474e-bbb9-92a857665ab2`.
 - **Never** Restart or replace the live task session, edit repository state, treat buffered-output absence as a command failure, leave the disposable Support terminal behind, or unblock from a Support-driven probe alone.
 
 ---

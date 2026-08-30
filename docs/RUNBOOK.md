@@ -1680,8 +1680,12 @@ Treat existing dirty or untracked files as observed task state, never cleanup ta
 That disposable result diagnoses the bridge; it does **not** clear the task blocker.
 Support can drive the second resize manually while the real agent execution client still
 omits it. Before unblocking, require an ordinary agent-issued non-TTY command and an
-ordinary agent-issued TTY `true`, `pwd`, and `git status` to deliver output and complete
-through the agent's own tool path. If only the Support probe passes, keep the task
+ordinary agent-tool-allocated TTY to deliver output and complete through the agent's own
+tool path. Preserve the raw/durable TTY selection and prove the terminal with
+`test -t 0`, `test -t 1`, and `stty` before `true`, `pwd`, and `git status`. A command
+merely labelled “TTY”, or one that allocates its own inner PTY with `script`, `ssh -t`,
+or an equivalent wrapper, does not prove the agent execution client requested a TTY.
+If only the Support probe passes, keep the task
 physically Blocked and send one fresh request to repair the real client/bridge path; do
 not duplicate the diagnostic request or create a replacement implementation session.
 
@@ -1692,6 +1696,18 @@ exact task worktree and the disposable terminal was removed, but the resumed age
 non-TTY and TTY probes both hung again. The task was immediately returned to Blocked;
 follow-up Support request `7a320cbf-e310-4b70-8b43-322ce8b931a5` owns the real-path
 repair. No repository, PR, QA runtime, port, or diagnostic artifact changed.
+
+Follow-up `c97b3b47-febd-439b-a324-f29550413dd4` found a second, independent
+ordinary-agent failure: Codex CLI `unified_exec` deferred a completed command result past
+the bounded diagnostic window. Deployment commit
+`6fcc88f689dae9797dd131229167a98d0e955d43` disables that feature only when the guard
+launches `@agentclientprotocol/codex-acp`, preserves the rest of `CODEX_CONFIG`, and adds
+guard regression coverage. Independent readback of fresh real-agent session
+`c1ef931d-c98b-4af8-bd24-87352cf4da05` proves non-TTY output, empty stderr, and exit 0
+at the preserved task head. Do not overstate that receipt: its purported TTY call was
+stored as the same normalized `shell_exec` kind and did not assert a terminal. Request
+`aaad659d-a9af-474e-bbb9-92a857665ab2` owns the remaining exact-TTY check. The task stays
+Blocked on its separate EnsureAgentConversation dependency regardless of this bridge fix.
 
 ## Verify task-scoped Compose isolation from a guarded task session
 

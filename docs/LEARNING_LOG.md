@@ -1578,3 +1578,27 @@ remain reachable through the base. That upstream design is tracked by task
 `37eca47b-cf05-47ee-b143-39408edbeed1`.
 
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, this log.
+
+## 2026-08-30d — a command labelled TTY is not TTY evidence
+
+Support repaired real Codex ACP command-result delivery by deploying
+`6fcc88f689dae9797dd131229167a98d0e955d43`: the guard now preserves existing
+`CODEX_CONFIG` while setting `features.unified_exec=false` only for
+`@agentclientprotocol/codex-acp`. Fresh agent session
+`c1ef931d-c98b-4af8-bd24-87352cf4da05` independently proved the important half:
+non-TTY output and completion arrived immediately with empty stderr and exit 0 from
+the exact protected worktree/head.
+
+The same receipt called a second command “TTY”, but durable metadata stored both calls
+as the same normalized `shell_exec` kind. The command did not run `test -t` or `stty`,
+and no retained tool input showed a TTY/PTY selection. The label described intent, not
+transport. Exact TTY acceptance therefore stayed open instead of being inferred from
+ordinary output.
+
+The reusable test is three-part: retain evidence that the agent tool itself requested
+a TTY, assert `test -t 0` and `test -t 1`, and run `stty` before the functional command.
+Do not accept an inner `script`, `ssh -t`, or similar self-allocated PTY because that
+bypasses the layer under test. One evidence-bearing Support follow-up owns the check;
+the task and its preserved work remain parked meanwhile.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.

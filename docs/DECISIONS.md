@@ -928,3 +928,23 @@ snapshot. One item or a tightly coupled decision set stays with the primary.
 Queue pressure is now only an operational symptom. It is never the trigger for
 parallelism and never permission for SQL, broad cancellation, or removing an
 unreviewed entry.
+
+## ACP command delivery may need a provider-scoped deployment override (2026-08-30, Support-verified)
+
+The ordinary Codex ACP path can complete a command yet defer its result beyond a
+short diagnostic window when Codex CLI `unified_exec` is enabled. This is distinct
+from the browser/task-shell two-resize PTY wiring issue: the worktree, guard policy,
+and command itself can all be healthy while the model receives no completion payload.
+
+The accepted local remediation is provider-scoped, not a sandbox relaxation.
+Deployment commit `6fcc88f689dae9797dd131229167a98d0e955d43` preserves the full guard,
+attestation, Git checks, Docker-token policy, and all existing `CODEX_CONFIG` keys,
+while forcing `features.unified_exec=false` only for the guarded
+`@agentclientprotocol/codex-acp` launcher. A fresh real-agent non-TTY command then
+returned complete stdout, empty stderr, and exit 0.
+
+Terminal claims remain fail-closed. Calling a second ordinary `shell_exec` “TTY” is
+not evidence that a TTY was requested or allocated. Durable acceptance requires the
+agent tool's TTY/PTY selection plus successful `test -t 0`, `test -t 1`, and `stty`;
+an inner `script` or `ssh -t` wrapper proves only that the command allocated its own
+PTY. Support request `aaad659d-a9af-474e-bbb9-92a857665ab2` owns that remaining check.
