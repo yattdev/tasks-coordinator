@@ -937,7 +937,8 @@ from the browser/task-shell two-resize PTY wiring issue: the worktree, guard pol
 and command itself can all be healthy while the model receives no completion payload.
 
 The accepted local remediation is provider-scoped, not a sandbox relaxation.
-Deployment commit `6fcc88f689dae9797dd131229167a98d0e955d43` preserves the full guard,
+Deployment-only `yattdev/kandev-service` `main` commit
+`6fcc88f689dae9797dd131229167a98d0e955d43` (not public `kdlbs/kandev` source) preserves the full guard,
 attestation, Git checks, Docker-token policy, and all existing `CODEX_CONFIG` keys,
 while forcing `features.unified_exec=false` only for the guarded
 `@agentclientprotocol/codex-acp` launcher. A fresh real-agent non-TTY command then

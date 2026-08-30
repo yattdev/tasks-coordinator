@@ -1699,8 +1699,9 @@ repair. No repository, PR, QA runtime, port, or diagnostic artifact changed.
 
 Follow-up `c97b3b47-febd-439b-a324-f29550413dd4` found a second, independent
 ordinary-agent failure: Codex CLI `unified_exec` deferred a completed command result past
-the bounded diagnostic window. Deployment commit
-`6fcc88f689dae9797dd131229167a98d0e955d43` disables that feature only when the guard
+the bounded diagnostic window. Deployment-only `yattdev/kandev-service` `main` commit
+`6fcc88f689dae9797dd131229167a98d0e955d43` (not a public `kdlbs/kandev` source commit)
+disables that feature only when the guard
 launches `@agentclientprotocol/codex-acp`, preserves the rest of `CODEX_CONFIG`, and adds
 guard regression coverage. Independent readback of fresh real-agent session
 `c1ef931d-c98b-4af8-bd24-87352cf4da05` proves non-TTY output, empty stderr, and exit 0

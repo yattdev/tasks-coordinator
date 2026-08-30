@@ -1581,8 +1581,9 @@ Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, this log.
 
 ## 2026-08-30d — a command labelled TTY is not TTY evidence
 
-Support repaired real Codex ACP command-result delivery by deploying
-`6fcc88f689dae9797dd131229167a98d0e955d43`: the guard now preserves existing
+Support repaired real Codex ACP command-result delivery with deployment-only
+`yattdev/kandev-service` `main` commit `6fcc88f689dae9797dd131229167a98d0e955d43`
+(not a public `kdlbs/kandev` source commit): the guard now preserves existing
 `CODEX_CONFIG` while setting `features.unified_exec=false` only for
 `@agentclientprotocol/codex-acp`. Fresh agent session
 `c1ef931d-c98b-4af8-bd24-87352cf4da05` independently proved the important half:
