@@ -1043,3 +1043,27 @@ scoped sudoers entry. This is a genuine trust-boundary handoff, so the Coordinat
 the operator once to run the exact installer; it neither repeats Support nor treats the
 untested installation as complete. Afterward, Support—not the Coordinator—uses the
 helper for one exact cleanup and the Coordinator independently verifies the receipt.
+
+## Delayed task reports never override newer live state (2026-08-30)
+
+Task messages can be delivered after a later push, workflow transition, or gate session
+has already materialized. The report may have been accurate when authored while being
+unsafe as an instruction when consumed. Conversation order and the apparent freshness of
+the prose therefore do not establish current state.
+
+The Coordinator treats each report as a timestamped receipt and compares its exact lane,
+head, session, and provider identities with live readback before acting. A newer live
+receipt supersedes an older message without erasing it from history. This prevents stale
+reports from moving cards backward, launching duplicate Review/QA sessions, or applying
+provider mutations to a superseded head.
+
+## PR screenshot evidence must render where reviewers inspect it (2026-08-30, human-directed)
+
+For UI-visible work, a task-local capture or ordinary Markdown hyperlink is not the same
+as providing screenshots on the PR/MR. Still-image evidence must render inline in the
+review surface from a stable, reviewer-accessible URL, with enough labeling to identify
+the demonstrated state. The Coordinator verifies the final URL returns image content.
+
+This sharpens, but does not replace, the existing prohibition on screenshot-only code
+commits. If the provider cannot host or reference the evidence through an approved path,
+the PR remains draft and the local capture is preserved until publication is possible.

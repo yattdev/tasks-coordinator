@@ -1604,6 +1604,36 @@ the task and its preserved work remain parked meanwhile.
 
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
 
+## 2026-08-30j — delayed task reports are receipts, not live state
+
+Several task messages accurately described the session census at the time they were
+written but arrived after the Coordinator had already started a newer exact-head gate
+session. Acting on the delayed claim would have launched duplicate Review/QA work or
+misreported the board as stalled.
+
+The reusable correction is to bind every inbound report to its creation time, lane,
+canonical PR/MR head, and session IDs, then compare those claims with live task,
+provider, and complete-session readback before acting. A newer live receipt supersedes
+the delayed report without invalidating its historical value. Conversation arrival
+order alone is not a source of truth.
+
+Files: `PROMPT.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
+
+## 2026-08-30k — screenshot evidence must render inline on the review surface
+
+A board-wide visual-evidence audit found UI-visible PRs whose captures existed locally
+or were linked as ordinary Markdown URLs but did not render as screenshots where the
+reviewer inspects the change. The Human explicitly required screenshots on PRs whenever
+UI changes are present.
+
+The durable gate now requires still images to render inline in the PR/MR body from a
+stable reviewer-accessible URL, with descriptive labeling and a final image-content
+check. This does not authorize an evidence-only code commit: when approved provider
+publication is unavailable, preserve the sanitized local capture and keep the PR draft
+until it can be attached correctly.
+
+Files: `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
+
 ## 2026-08-30i — a reviewed root helper still needs an explicit first-install handoff
 
 Capability-repair request `35011026-3fb4-4daa-bb2b-12a1facc2d5b` did not merely restate

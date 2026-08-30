@@ -411,7 +411,10 @@ Before marking ready, bind the evidence to the canonical URL and exact head:
    reviews, checks, and mergeability after the last push or base update.
 5. Visual changes include sanitized reviewer-facing screenshots or recordings of
    the meaningful before/after or state variants. Include responsive, theme, or
-   error/loading states when those materially changed.
+   error/loading states when those materially changed. Still images must render
+   inline in the PR/MR body with descriptive alt text or captions and a stable,
+   reviewer-accessible URL; an ordinary hyperlink or task-local path does not
+   satisfy screenshot evidence. Verify the published URL returns image content.
 6. No acceptance criterion still requires human testing, external hardware or
    account access, security/product approval, or another human-only decision.
    If one does, keep the draft and surface the exact handoff through the visible
@@ -440,6 +443,32 @@ authentication, browser-session requirements, or rate limits block attachment:
 - do not treat the provider outage as a branch failure or manufacture a code
   change; retry the attachment only after provider access recovers, then refresh
   the body/checks/threads and run the normal draft-readiness gate.
+
+## A task message can arrive after its evidence has already been superseded
+
+Task messages are timestamped evidence events, not authoritative snapshots of
+the current card or provider. A message may truthfully report an older head,
+lane, session census, or gate result after a newer push, transition, or session
+has already materialized.
+
+Before acting on a report that would cause a move, wake, duplicate session, PR
+mutation, or readiness claim:
+
+1. Record the message creation time and every claimed identity: task, workflow
+   step, canonical PR/MR, exact head, session ID/profile, and gate result.
+2. Read the live task lane and pending actions, the complete task session list,
+   and current provider head/state. Include the conversation tail so a newer
+   receipt is not mistaken for an unrelated event.
+3. If live state is newer or identity differs, mark the report superseded in the
+   cycle log. Preserve it as history, but do not route, move, ping, resolve, or
+   spawn from it. When the task agent would otherwise act on the stale premise,
+   send one correction containing the newer exact receipt.
+4. If the report is still current, continue through the ordinary exact-head and
+   workflow gate. A report's late arrival alone is not a failure and does not
+   justify repeating completed work.
+
+The newest message is not automatically the newest evidence: compare timestamps
+and exact identities to source-of-truth readback, not conversation order alone.
 
 ## A large task plan is append-only BY HAND, not by tool
 `update_task_plan_kandev` and `create_task_plan_kandev` take FULL CONTENT — every
