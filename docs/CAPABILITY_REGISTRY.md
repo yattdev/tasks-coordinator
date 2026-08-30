@@ -357,10 +357,10 @@ sh -ceu '
 
 ### G8. Task-shell commands run but no output or completion arrives
 - **Trigger** Even bounded `true`, `pwd`, or `git status` appears to start in a live task terminal but produces no output or completion.
-- **Action** Preserve the task session and worktree, then ask Kandev Support for one disposable task-scoped terminal probe using the normal two-resize PTY protocol. The first resize starts the deferred shell; the subsequent resize establishes output wiring. Require exit codes, exact working directory, tree status, disposable-terminal removal, and a final shell census before resuming the task.
+- **Action** Preserve the task session and worktree, then ask Kandev Support for one disposable task-scoped terminal probe using the normal two-resize PTY protocol. The first resize starts the deferred shell; the subsequent resize establishes output wiring. This diagnoses the bridge only. Require Support to repair or expose the same sequence through the ordinary agent execution client, then verify an agent-issued non-TTY command and agent-issued TTY `true`, `pwd`, and `git status` before resuming the task.
 - **Capability** [Recover a task shell whose PTY output was never wired](RUNBOOK.md#recover-a-task-shell-whose-pty-output-was-never-wired).
-- **Evidence** Support request `c0e1a9e7-bf39-49de-aa67-6d9a528aba2e` verified `true`, `pwd`, and `git status` at exit 0 in task `3ec598a8-b49d-4d5f-9bf3-52b0d611cd32`; the disposable terminal was removed and the pre-existing ordinary terminal remained.
-- **Never** Restart or replace the live task session, edit repository state, treat buffered-output absence as a command failure, or leave the disposable Support terminal behind.
+- **Evidence** Support request `c0e1a9e7-bf39-49de-aa67-6d9a528aba2e` verified the disposable two-resize path, but the same task's ordinary agent path immediately hung again. That receipt is diagnostic, not an unblock receipt. Follow-up `7a320cbf-e310-4b70-8b43-322ce8b931a5` owns the real agent-path repair.
+- **Never** Restart or replace the live task session, edit repository state, treat buffered-output absence as a command failure, leave the disposable Support terminal behind, or unblock from a Support-driven probe alone.
 
 ---
 

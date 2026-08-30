@@ -1677,17 +1677,21 @@ the normal two-resize sequence. The bounded probe must run `true`, `pwd`, and
 disposable terminal and prove the final shell census contains the pre-existing terminal.
 Treat existing dirty or untracked files as observed task state, never cleanup targets.
 
-If the three commands complete through that path, the environment blocker is cleared:
-resume the preserved task with its original work receipt and tell its agent to use the
-normal two-resize protocol. If they still fail, keep the task physically Blocked and send
-one fresh evidence-bearing Support request; do not duplicate the original request or
-create a replacement implementation session.
+That disposable result diagnoses the bridge; it does **not** clear the task blocker.
+Support can drive the second resize manually while the real agent execution client still
+omits it. Before unblocking, require an ordinary agent-issued non-TTY command and an
+ordinary agent-issued TTY `true`, `pwd`, and `git status` to deliver output and complete
+through the agent's own tool path. If only the Support probe passes, keep the task
+physically Blocked and send one fresh request to repair the real client/bridge path; do
+not duplicate the diagnostic request or create a replacement implementation session.
 
 Verified 2026-08-30 by Support request
 `c0e1a9e7-bf39-49de-aa67-6d9a528aba2e` for task
 `3ec598a8-b49d-4d5f-9bf3-52b0d611cd32`: all three commands returned exit 0 from the
-exact task worktree, the disposable terminal was removed, and no repository, PR, QA
-runtime, port, board state, or diagnostic artifact changed.
+exact task worktree and the disposable terminal was removed, but the resumed agent's
+non-TTY and TTY probes both hung again. The task was immediately returned to Blocked;
+follow-up Support request `7a320cbf-e310-4b70-8b43-322ce8b931a5` owns the real-path
+repair. No repository, PR, QA runtime, port, or diagnostic artifact changed.
 
 ## Verify task-scoped Compose isolation from a guarded task session
 
