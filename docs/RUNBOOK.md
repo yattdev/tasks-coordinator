@@ -2827,6 +2827,21 @@ Tags carry `owner`, `agent` and `human` fields, so agent-applied tags stay
 distinguishable from the operator's, and `remove_tag` only removes *this
 agent's* application — an agent cannot strip a human's tag.
 
+### Write tooltip notes as concise action/reason copy
+
+The bot icon already communicates that a tag was applied by an agent. Do not
+repeat provenance in the tooltip with wording such as “applied by agent.” The
+application `note` should be one concise, task-specific sentence:
+
+- action tags: state the exact action and why it is needed;
+- waiting/state tags: state the exact dependency or deterministic resume trigger;
+- include a canonical PR URL when the action concerns a pull request;
+- remove stale instructions as soon as the task's required action changes.
+
+Prefer “Test profile selection, save, and reload on the supplied runtime” over
+“Applied by agent: this task needs testing.” Keep the copy consistent and
+focused; provenance belongs to the icon/application metadata, not the note.
+
 The live release still accepts unknown task UUIDs as inert workspace keys.
 https://github.com/yattdev/kandev-plugin-tags/pull/13 bounds admission of new
 task keys at the 200-task cap; do not describe that separate protection as
