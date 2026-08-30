@@ -81,6 +81,22 @@ not a reason to hold Review: PR and CI Fixup own CI evidence. This keeps each
 stage accountable for its own contract and prevents both skipped gates and
 Review becoming a catch-all waiting room.
 
+## Required gate routing is explicit, not positional (2026-08-30, incident-derived)
+
+A completed gate must be routed to the next *required* owner, not assumed to
+advance to the next board column. In the Daily workflow, CI Fixup's configured
+`move_to_next` destination is Human-QA. When a new head still requires an
+independent Review and QA, signaling CI Fixup complete therefore skips those
+gates even though the signal itself succeeds.
+
+The Coordinator resolves the intended destination from the current delivery
+contract and moves explicitly to Review with an immutable-head handoff. If a
+stale RUNNING sibling prevents the administrative move, the active task session
+is directed to perform that exact self-move; the resulting physical column and
+new running session are read back. Any accidental Human-QA landing is corrected
+before asking the author to test. The same rule applies to every workflow step:
+column order is presentation, while required gate ownership is policy.
+
 ## Stale RUNNING recovery is session-scoped, never database-scoped (2026-08-21)
 
 A RUNNING row without a live process, output, or advancing timestamp is stale
