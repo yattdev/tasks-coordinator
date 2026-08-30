@@ -84,6 +84,13 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Authority** Coordinator-owned. A task-specific Human hands-off directive is a hard boundary — report the exact denial.
 - **Never** Use Blocked as parking; never leave a Blocked card without owner and next trigger.
 
+### B3a. Task moved or its next action changed
+- **Trigger** Every requested/applied task move, or any owner/next-action change that makes the current agent tag stale.
+- **Action** In the same cycle, verify the physical lane, read targeted tags, remove stale/incompatible agent applications, apply the tag matching the actual owner/next action with a concise hover note, then verify targeted tag readback. A queued move keeps a recorded pending tag reconciliation until the destination applies.
+- **Capability** `move_task_kandev`; Tags plugin targeted `list_tags`, `add_tag`, and `remove_tag`; [reconcile the agent tag with every completed move](RUNBOOK.md#reconcile-the-agent-tag-with-every-completed-move).
+- **Evidence** Physical workflow step plus exact task-scoped tag ID/name/note readback.
+- **Never** Leave the prior lane's instruction on a moved card, infer a tag solely from the lane name, alter human tags, or violate the ToDeploy ownership boundary.
+
 ### B4. Flagging / unflagging
 - **Trigger** A genuine blocker, anomaly, or frozen loop.
 - **Action** Comment whose first line is exactly `[COORDINATOR FLAG] <reason>` (or `[COORDINATOR UNFLAG] <resolution>`); `[COORDINATOR FLAG][URGENT]` on this task for urgent human escalation.

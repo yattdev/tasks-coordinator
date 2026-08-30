@@ -1905,6 +1905,27 @@ Columns are `id, session_id, task_id, workflow_id, workflow_step_id, step_positi
 queued_at, actor, sender_session_id, move_id` — note `step_position`, which is easy to
 misread as an applied/status flag when scanning a row positionally.
 
+### Reconcile the agent tag with every completed move
+
+A lane and its agent tag are two views of the same next action. Treat them as one
+Coordinator mutation sequence:
+
+1. request the move and verify the physical destination (or record the live pending move);
+2. read the target task's current agent tags;
+3. remove stale or incompatible agent applications;
+4. apply the tag matching the destination owner/next action and write one concise
+   action/reason or deterministic resume-trigger note;
+5. read the target task's tags again and verify the exact tag ID and note.
+
+Examples: active delegated work uses `agent`; an operator-owned merge of a green
+`yattdev/*` PR uses `you merge` with the canonical URL; Human-QA uses `needs-test`
+with the exact test; dependency parking uses `waiting` with the resume trigger. Do
+not infer the tag from the lane name alone—derive it from the actual owner and next
+action. A move is not fully reconciled until both the physical lane and targeted tag
+readback agree. Respect the ToDeploy ownership boundary. If targeted tagging is
+temporarily unavailable, record the exact degradation and repair owner/trigger; do
+not silently leave the old instruction in place.
+
 ## ⚠️ Check `pending_moves` before messaging any task — a stale queued move fires on resume
 
 A queued move has **no TTL**. It sits in `pending_moves` until the session it is keyed to
