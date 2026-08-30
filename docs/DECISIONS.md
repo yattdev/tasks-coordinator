@@ -947,7 +947,12 @@ Terminal claims remain fail-closed. Calling a second ordinary `shell_exec` “TT
 not evidence that a TTY was requested or allocated. Durable acceptance requires the
 agent tool's TTY/PTY selection plus successful `test -t 0`, `test -t 1`, and `stty`;
 an inner `script` or `ssh -t` wrapper proves only that the command allocated its own
-PTY. Support request `aaad659d-a9af-474e-bbb9-92a857665ab2` owns that remaining check.
+PTY. Support request `aaad659d-a9af-474e-bbb9-92a857665ab2` proved why that check cannot
+pass through the current ordinary agent tool: App Server accepts client-side
+`command/exec tty:true`, but the model-facing Codex ACP `commandExecution` event has no
+TTY field, a Support-issued call would test the wrong principal, and `process/spawn` is
+outside the Codex sandbox. Platform task `46945aff-382a-41a4-9f35-bd5c2806911e` owns a
+model-callable, guard-preserving TTY tool and its durable exact-TTY acceptance.
 
 ## Pending-move cancellation must be exact and transactional (2026-08-30, Support-verified)
 

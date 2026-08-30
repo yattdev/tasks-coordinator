@@ -1706,8 +1706,17 @@ guard regression coverage. Independent readback of fresh real-agent session
 `c1ef931d-c98b-4af8-bd24-87352cf4da05` proves non-TTY output, empty stderr, and exit 0
 at the preserved task head. Do not overstate that receipt: its purported TTY call was
 stored as the same normalized `shell_exec` kind and did not assert a terminal. Request
-`aaad659d-a9af-474e-bbb9-92a857665ab2` owns the remaining exact-TTY check. The task stays
+`aaad659d-a9af-474e-bbb9-92a857665ab2` owned the remaining exact-TTY check. The task stays
 Blocked on its separate EnsureAgentConversation dependency regardless of this bridge fix.
+
+That final check returned a terminal `BLOCKED` result because the ordinary model-facing
+Codex ACP `commandExecution` event has no TTY selector. App Server does expose
+client-side `command/exec` with `tty:true`, but Support invoking it would prove a
+Support-issued command, not an agent-issued one; `process/spawn` is also outside the
+Codex sandbox. Do not repeat the diagnostic after that capability boundary is proven.
+Create one canonical platform task for a model-callable, guard-preserving TTY tool and
+require durable `tty:true` dispatch plus `test -t 0`, `test -t 1`, and `stty` acceptance.
+Task `46945aff-382a-41a4-9f35-bd5c2806911e` owns that capability.
 
 ## Verify task-scoped Compose isolation from a guarded task session
 

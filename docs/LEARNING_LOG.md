@@ -1623,3 +1623,21 @@ lands, a dormant-session armed row makes the task message-unsafe: do not nudge i
 it experimentally, use raw SQL, or broaden cancellation merely to make progress.
 
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
+
+## 2026-08-30f — ordinary Codex ACP cannot currently request a TTY
+
+Support request `aaad659d-a9af-474e-bbb9-92a857665ab2` separated an absent capability
+from a broken transport. App Server has a client-side `command/exec` request with
+`tty:true`, but the ordinary model-facing Codex ACP `commandExecution` event carries no
+TTY field. Having Support call App Server directly would prove a Support-issued command,
+not an agent-issued one, while `process/spawn` is unavailable inside the Codex sandbox.
+
+Once this boundary is established, repeating the same Support diagnostic cannot produce
+valid acceptance. The next action is a single canonical platform capability task, not
+another resume or a wrapper that allocates its own inner PTY. Task
+`46945aff-382a-41a4-9f35-bd5c2806911e` owns a model-callable, guard-preserving TTY tool.
+Its acceptance must retain durable evidence that the model requested `tty:true`, then
+pass `test -t 0`, `test -t 1`, `stty`, and the bounded functional commands through the
+ordinary agent path.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
