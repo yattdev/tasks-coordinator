@@ -1604,6 +1604,22 @@ the task and its preserved work remain parked meanwhile.
 
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
 
+## 2026-08-30l — direct-to-Work creation must publish the plan before launch
+
+Two replacement repair tasks were created directly in Work with detailed
+implementation briefs, but their first sessions correctly reported that no saved
+approved plan existed. The Coordinator then had to persist plans and resume them;
+earlier zero-work launch attempts in the same failure family had already become
+terminal duplicates.
+
+The reusable invariant is ordering, not briefing length. For a direct Work task,
+create without starting the agent, save and read back the approved plan, then launch
+and verify the Work session. If that ordering is unavailable, start the task in Spec.
+Never use `start_agent=true` for direct Work and rely on a later plan backfill: the
+first Work turn is entitled to refuse before the plan write wins the race.
+
+Files: `PROMPT.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
+
 ## 2026-08-30j — delayed task reports are receipts, not live state
 
 Several task messages accurately described the session census at the time they were

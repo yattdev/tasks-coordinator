@@ -248,6 +248,14 @@ blast-radius argument still holds — it is now answered by verification quality
 not by arithmetic. Full procedure in RUNBOOK, "Task creation is unlimited — the
 gate is viability, not volume".
 
+Direct-to-Work creation is additionally a two-phase operation. A detailed task
+description proves briefing quality but is not the workflow's saved approved
+plan. The Coordinator creates the Work card without starting its agent, saves
+and reads back that plan, and only then launches and verifies the Work session;
+when the platform cannot preserve that ordering, the task starts in Spec. This
+prevents a correct fail-closed Work agent from becoming a zero-work duplicate
+merely because its plan was backfilled after launch.
+
 Human-directed exception (2026-08-19): the Coordinator may move a task to Done
 when its trail proves it is abandoned, obsolete, or superseded, no further
 implementation is authorized, and it has no open PR or subtask. The resolution

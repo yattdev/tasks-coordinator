@@ -1045,6 +1045,13 @@ d5e71c58 was created 05:05 on 2026-08-17 and sat idle over seven hours.
 If you create a task at Work, verify within one cycle that it actually produced
 an agent message — do not assume creation means running.
 
+Prevent this with a two-phase direct-Work launch: create the card with its agent
+stopped, save and read back the approved plan, then start the Work session and
+verify it is running. If the available creation path cannot keep the agent
+stopped until the plan exists, create the card in Spec instead. Do not use
+`start_agent=true` for direct Work and race to backfill the plan; the first Work
+turn is entitled to fail closed before that write arrives.
+
 ## Two coordinators escalating the same issue: name actions, not letters
 When more than one coordinator writes to the human about the same decision, do
 NOT label options A/B/C — the instances will number them differently and the
