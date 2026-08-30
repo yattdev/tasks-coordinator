@@ -948,3 +948,25 @@ not evidence that a TTY was requested or allocated. Durable acceptance requires 
 agent tool's TTY/PTY selection plus successful `test -t 0`, `test -t 1`, and `stty`;
 an inner `script` or `ssh -t` wrapper proves only that the command allocated its own
 PTY. Support request `aaad659d-a9af-474e-bbb9-92a857665ab2` owns that remaining check.
+
+## Pending-move cancellation must be exact and transactional (2026-08-30, Support-verified)
+
+A read-only preflight cannot make session-keyed `TakePendingMove(sessionID)` safe for
+administrative cancellation. Between the read and consume, another writer can replace
+the row for that unique session; the consumer would then remove a different move while
+believing it had cancelled the inspected one. This violates fail-closed semantics on
+the very task state the operation is meant to protect.
+
+The minimum safe contract atomically matches the row ID, keyed session ID, task ID,
+move ID, workflow ID, expected current step, and queued target step before deletion.
+Every mismatch and concurrent replacement leaves state unchanged, and the result is
+audited without leaking cross-workspace identity. Ordinary agents retain their existing
+self-only authority; a designated Coordinator or reviewed Support principal receives
+only same-workspace exact cancellation.
+
+Support request `4571adf2-7d99-461b-835c-3a172cab8ef2` proved the current service lacks
+this operation and made no state change. TTL/orphan task
+`b2da5061-07a3-46e6-ab48-3881929ac9a5` prevents later stale replay but does not satisfy
+fresh exact cancellation. Platform Spec `7056a702-a3c3-4fe8-8535-c6b8d340ef6a` owns the
+new capability. Until it lands, live armed rows on dormant sessions remain message-unsafe;
+raw SQL, broad cancellation, and no-op retarget experiments are prohibited.

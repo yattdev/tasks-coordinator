@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-08-30e -->
+<!-- registry-version: 2026-08-30f -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -90,6 +90,13 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Capability** `move_task_kandev`; Tags plugin targeted `list_tags`, `add_tag`, and `remove_tag`; [reconcile the agent tag with every completed move](RUNBOOK.md#reconcile-the-agent-tag-with-every-completed-move).
 - **Evidence** Physical workflow step plus exact task-scoped tag ID/name/note readback.
 - **Never** Leave the prior lane's instruction on a moved card, infer a tag solely from the lane name, alter human tags, or violate the ToDeploy ownership boundary.
+
+### B3b. A live armed pending move makes a task message-unsafe
+- **Trigger** `pending_moves` contains a row whose target differs from the current lane and whose keyed task session is present and `WAITING_FOR_INPUT`.
+- **Action** Do not message, wake, or move the task. Preserve the row and task, record every exact predicate, and use only an atomic exact-match cancellation capability that validates row ID, session ID, task ID, move ID, workflow, expected current step, and queued target in one transaction. Until that exists, keep the task message-unsafe and route the capability to platform task `7056a702-a3c3-4fe8-8535-c6b8d340ef6a`.
+- **Capability** Read-only `pending_moves` census plus `list_task_sessions_kandev`; exact cancellation is **not currently available**. Support request `4571adf2-7d99-461b-835c-3a172cab8ef2` proved session-keyed `TakePendingMove` cannot fail closed across all predicates.
+- **Evidence** Exact before/after row and lane readback, unchanged unrelated rows, unchanged task/session/tag state, and structured audit identity.
+- **Never** Use raw SQL, broad queue cancellation, a separate preflight followed by `TakePendingMove`, or a no-op move on a dormant keyed session whose resume ordering is unproved.
 
 ### B4. Flagging / unflagging
 - **Trigger** A genuine blocker, anomaly, or frozen loop.

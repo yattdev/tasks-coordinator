@@ -1602,3 +1602,24 @@ bypasses the layer under test. One evidence-bearing Support follow-up owns the c
 the task and its preserved work remain parked meanwhile.
 
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
+
+## 2026-08-30e — exact cancellation cannot be built from preflight plus consume
+
+Support request `4571adf2-7d99-461b-835c-3a172cab8ef2` audited the only supplied service
+primitive for a fresh armed `pending_moves` row: `TakePendingMove(sessionID)`. It cannot
+accept or atomically verify the inspected row ID, task, move, current lane, and queued
+target. Reading those first does not help; another writer can replace the session-unique
+row between the read and consume, and the consumer then deletes the replacement.
+
+The lesson is broader than this table: a race-sensitive destructive operation is not
+made fail-closed by adding a careful preflight. Every identity and state predicate that
+defines the authorized target must participate in the same transaction as the mutation.
+For pending moves that means row, keyed session, task, move, workflow, current step, and
+target step, plus one-success concurrency and unchanged state on every mismatch.
+
+The existing TTL/orphan repair prevents old replay but cannot safely clear a fresh row.
+Platform Spec `7056a702-a3c3-4fe8-8535-c6b8d340ef6a` owns the exact operation. Until it
+lands, a dormant-session armed row makes the task message-unsafe: do not nudge it, retarget
+it experimentally, use raw SQL, or broaden cancellation merely to make progress.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.

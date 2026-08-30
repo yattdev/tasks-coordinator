@@ -1913,9 +1913,11 @@ sqlite3 -noheader -separator ' | ' "file:/data/data/kandev.db?mode=ro" \
 and the row is deleted once the move lands. `session_id` is `UNIQUE`, so a second move
 request **supersedes** the first in place rather than stacking.
 
-**To cancel a queued move you should not have issued:** submit a move to the lane the
-card is already in. The pending row retargets to that no-op, same row id, and the
-unwanted destination is gone. Verify by re-reading `pending_moves`.
+**Do not generalise the no-op retarget trick.** Submitting a move to the lane the card
+already occupies did retarget and harmlessly clear a row when the keyed session was
+already active. It is not proved safe for a dormant `WAITING_FOR_INPUT` session: the
+request may resume the session and fire the old target before supersession. Treat that
+case as message-unsafe and use only an atomic exact-match cancellation operation.
 
 Columns are `id, session_id, task_id, workflow_id, workflow_step_id, step_position,
 queued_at, actor, sender_session_id, move_id` — note `step_position`, which is easy to
@@ -1988,8 +1990,14 @@ issue a move for a task whose session is the keyed one (verified 2026-08-29: re-
 move to the card's current lane retargeted the row in place, same row id, and it then
 cleared harmlessly). What is **not** established is whether issuing that move first
 *resumes* a dormant session and fires the old row before superseding it. Do not test that
-on a Done card. If a live row must be cleared on a card that matters, escalate rather than
-experiment.
+on a Done or Human-QA card. If a live row must be cleared on a card that matters, preserve
+it and use only an operation that atomically matches row ID, keyed session ID, task ID,
+move ID, workflow ID, expected current step, and expected target step before consuming.
+A separate read followed by session-keyed `TakePendingMove` is racy: a replacement row
+can be consumed after the preflight. Support request
+`4571adf2-7d99-461b-835c-3a172cab8ef2` confirmed no such exact operation exists today;
+platform task `7056a702-a3c3-4fe8-8535-c6b8d340ef6a` owns it. Never substitute raw SQL
+or broad cancellation.
 
 ## Readiness needs three reads, not one — and a missing PR link may mean a lost one
 
