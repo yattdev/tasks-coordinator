@@ -1018,3 +1018,12 @@ Requests `c6997ee9-0130-4567-9e79-6988c157cd05` and
 `fd3c8c3f-cf63-4d59-a1d8-b63b24a07644` established this boundary without signaling any
 process for task `04802c8a-aad9-4d18-bdca-fa593c2e0b9a`. Request
 `35011026-3fb4-4daa-bb2b-12a1facc2d5b` owns the distinct capability repair.
+
+That repair is now concrete: deployment commit
+`5f4fabf1618b0316b7aec2bbea63e76d48bb227f` adds a root-only, predicate-complete helper,
+installer, audit contract, and three passing tests. The reviewed Support worker cannot
+perform the first install because it writes `/usr/local/libexec`, `/etc`, and a narrowly
+scoped sudoers entry. This is a genuine trust-boundary handoff, so the Coordinator asks
+the operator once to run the exact installer; it neither repeats Support nor treats the
+untested installation as complete. Afterward, Support—not the Coordinator—uses the
+helper for one exact cleanup and the Coordinator independently verifies the receipt.

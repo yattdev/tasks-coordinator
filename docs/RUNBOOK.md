@@ -1729,7 +1729,30 @@ Verified boundary: requests `c6997ee9-0130-4567-9e79-6988c157cd05` and
 `fd3c8c3f-cf63-4d59-a1d8-b63b24a07644` could enumerate the exact service groups for
 task `04802c8a-aad9-4d18-bdca-fa593c2e0b9a`, but could not read guarded host CWD links
 or obtain non-interactive host privilege, so no `SIGKILL` was sent. Capability-repair
-request `35011026-3fb4-4daa-bb2b-12a1facc2d5b` is the one evidence-bearing next action.
+request `35011026-3fb4-4daa-bb2b-12a1facc2d5b` produced reviewed deployment commit
+`5f4fabf1618b0316b7aec2bbea63e76d48bb227f`. The helper and three predicate tests are
+present, but the first installation changes root-owned host policy and therefore remains
+an operator action:
+
+```bash
+sudo bash /home/ayattara/Code/kandev/scripts/install-support-process-cleanup.sh ayattara
+```
+
+Before asking, independently verify the deployment checkout is exactly at or contains
+that commit, `bash -n` passes for the installer, the predicate test file passes, the
+authorized target processes and excluded guarded agent retain their exact identities,
+the task has no pending move, and the clean head/artifact hashes are unchanged. Surface
+the ask once with the affected task's canonical PR URL and the consequence of deferral.
+
+After installation, do not invoke the root helper directly from the Coordinator. Send
+one fresh Support request containing every previously authorized predicate and exclusion,
+then verify the structured receipt against the live process census and every preserved
+task/repository/artifact/provider invariant. The installer creates only these reviewed
+root-owned artifacts: `/usr/local/libexec/kandev-support-process-cleanup`,
+`/etc/kandev-support-process-cleanup.json`, and
+`/etc/sudoers.d/kandev-support-process-cleanup`; rollback is an operator-only removal of
+those exact three files followed by `visudo -c`. Never improvise a broader uninstall or
+grant the Coordinator raw sudo/process authority.
 
 ## Recover a task shell whose PTY output was never wired
 

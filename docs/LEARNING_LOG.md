@@ -1604,6 +1604,28 @@ the task and its preserved work remain parked meanwhile.
 
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
 
+## 2026-08-30i — a reviewed root helper still needs an explicit first-install handoff
+
+Capability-repair request `35011026-3fb4-4daa-bb2b-12a1facc2d5b` did not merely restate
+the missing authority. It produced deployment commit
+`5f4fabf1618b0316b7aec2bbea63e76d48bb227f`: a fail-closed host helper, audited installer,
+and three predicate tests. Support correctly stopped at the remaining boundary because
+the first install writes root-owned executable, configuration, audit, and sudoers state.
+
+The reusable sequence is now precise: verify the commit and installer locally; rerun its
+non-root syntax and predicate tests; re-read every authorized process/group and excluded
+agent; confirm lane, sessions, pending rows, clean head, and artifacts; then make one
+operator ask with the exact install command. Installation is not cleanup and does not
+prove resolution. Once installed, send one fresh predicate-complete Support request and
+independently verify the structured before/after receipt. Do not expose the helper as raw
+agent authority, repeatedly ask Support to install it, or silently treat a committed
+artifact as deployed capability.
+
+Evidence: task `04802c8a-aad9-4d18-bdca-fa593c2e0b9a`, merged PR
+`https://github.com/kdlbs/kandev/pull/3151`, and the deployment commit above.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
+
 ## 2026-08-30g — an orphan process is a resource leak, not evidence to reopen Done
 
 Two ACP/Bubblewrap trees remained alive after their terminal task worktrees had already
