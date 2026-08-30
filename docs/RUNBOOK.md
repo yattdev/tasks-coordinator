@@ -1662,6 +1662,33 @@ confirmed that both receipts complete acceptance with no platform change. When t
 closure matches the independently recorded evidence, close the follow-up ledger and do
 not send another request merely to acknowledge it.
 
+## Recover a task shell whose PTY output was never wired
+
+A live task terminal can look completely hung even while its command is running. The
+shell bridge defers PTY creation until the first resize. That resize starts the process,
+but output wiring is established only on a subsequent resize. A client that sends only
+the initial resize can therefore leave `true`, `pwd`, and `git status` apparently
+unfinished with their output buffered.
+
+Do not restart the task session or mutate its repository to diagnose this. Preserve the
+ordinary terminal and ask Kandev Support for one disposable, task-scoped terminal using
+the normal two-resize sequence. The bounded probe must run `true`, `pwd`, and
+`git status`, record every exit code and the exact worktree path, then remove only the
+disposable terminal and prove the final shell census contains the pre-existing terminal.
+Treat existing dirty or untracked files as observed task state, never cleanup targets.
+
+If the three commands complete through that path, the environment blocker is cleared:
+resume the preserved task with its original work receipt and tell its agent to use the
+normal two-resize protocol. If they still fail, keep the task physically Blocked and send
+one fresh evidence-bearing Support request; do not duplicate the original request or
+create a replacement implementation session.
+
+Verified 2026-08-30 by Support request
+`c0e1a9e7-bf39-49de-aa67-6d9a528aba2e` for task
+`3ec598a8-b49d-4d5f-9bf3-52b0d611cd32`: all three commands returned exit 0 from the
+exact task worktree, the disposable terminal was removed, and no repository, PR, QA
+runtime, port, board state, or diagnostic artifact changed.
+
 ## Verify task-scoped Compose isolation from a guarded task session
 
 Use a disposable directory under the current task root. Define a minimal service with a

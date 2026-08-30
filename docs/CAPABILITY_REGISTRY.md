@@ -355,6 +355,13 @@ sh -ceu '
 - **Evidence** HTTP install/readback status; exact live version, install path, status, auto-update, restart/error fields; and one real invocation of the newly registered schema from an existing session. Verified for Tags v0.14.0 by Support request `76d7e219-5e06-44f7-aae7-3ba8613f641e`: install 201, readback 200, active at `/data/plugins/kandev-plugin-tags/0.14.0`, and live `list_tags(task_id=...)` succeeded.
 - **Never** Edit plugin YAML, database rows, or extracted installation files; never reload unrelated plugins or restart the whole application solely to refresh a compatible tool catalog.
 
+### G8. Task-shell commands run but no output or completion arrives
+- **Trigger** Even bounded `true`, `pwd`, or `git status` appears to start in a live task terminal but produces no output or completion.
+- **Action** Preserve the task session and worktree, then ask Kandev Support for one disposable task-scoped terminal probe using the normal two-resize PTY protocol. The first resize starts the deferred shell; the subsequent resize establishes output wiring. Require exit codes, exact working directory, tree status, disposable-terminal removal, and a final shell census before resuming the task.
+- **Capability** [Recover a task shell whose PTY output was never wired](RUNBOOK.md#recover-a-task-shell-whose-pty-output-was-never-wired).
+- **Evidence** Support request `c0e1a9e7-bf39-49de-aa67-6d9a528aba2e` verified `true`, `pwd`, and `git status` at exit 0 in task `3ec598a8-b49d-4d5f-9bf3-52b0d611cd32`; the disposable terminal was removed and the pre-existing ordinary terminal remained.
+- **Never** Restart or replace the live task session, edit repository state, treat buffered-output absence as a command failure, or leave the disposable Support terminal behind.
+
 ---
 
 ## H. Who owns a problem: Support vs project task vs Human
