@@ -976,3 +976,25 @@ this operation and made no state change. TTL/orphan task
 fresh exact cancellation. Platform Spec `7056a702-a3c3-4fe8-8535-c6b8d340ef6a` owns the
 new capability. Until it lands, live armed rows on dormant sessions remain message-unsafe;
 raw SQL, broad cancellation, and no-op retarget experiments are prohibited.
+
+## Terminal orphan processes are lifecycle cleanup, not task recovery (2026-08-30, Support-verified)
+
+A process tree whose current directory points at an already-removed task worktree does
+not by itself prove unique task state exists or justify reopening a Done task. When all
+task sessions are non-active, the exact worktree and Git registration are absent, and
+the accepted/merge commits remain durable, the remaining process is a terminal resource
+leak. Waking or messaging the task adds risk—especially from armed pending moves—without
+restoring a supported lifecycle owner.
+
+The preferred action remains a supported Kandev session/execution stop. When no tracked
+execution exists, the reviewed Support worker may use a narrowly scoped fallback: prove
+the exact PID, parent chain, deleted task-worktree current directory, and isolated
+process-group membership, then send `SIGTERM` only to those groups and verify the full
+terminal-integrity receipt afterward. Broad name-based kills, container stops, and
+unjustified `SIGKILL` remain prohibited.
+
+Support request `9f8dd8b8-2969-4499-9d02-eb9c63aff5cf` established this boundary for
+tasks `23a62467-37e9-4113-b374-b44003abc0f3` and
+`21c1a39a-cd3e-441b-9f7e-9ab40421d1c5`: all six exact processes exited after bounded
+group-scoped `SIGTERM`, both tasks retained zero active sessions, their worktrees and
+registrations stayed absent, and the accepted/merge commit objects remained present.

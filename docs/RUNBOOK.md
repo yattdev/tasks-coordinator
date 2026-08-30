@@ -1662,6 +1662,38 @@ confirmed that both receipts complete acceptance with no platform change. When t
 closure matches the independently recorded evidence, close the follow-up ledger and do
 not send another request merely to acknowledge it.
 
+## Stop an untracked terminal ACP process without reopening or waking the Done task
+
+An ACP/Bubblewrap process can outlive the task session and even the task worktree. If
+the task has no `RUNNING` or `STARTING` session, the worktree is already absent, and
+Kandev has no lifecycle-tracked execution to stop, messaging or waking the Done task is
+the wrong recovery: it can fire pending moves and does not own the orphan anymore.
+
+Route the cleanup to Kandev Support with exact task IDs, worktree paths, root PIDs, and
+the preservation receipt. Support must first try the supported session/execution stop.
+If there is no tracked target, require all of the following before a signal:
+
+1. Each root and descendant is bound to the named task by its parent chain and deleted
+   task-worktree current directory.
+2. The task still has zero active sessions and no tracked execution that can be stopped.
+3. Each target process group is enumerated exactly and contains no unrelated process.
+4. Send `SIGTERM` only. Wait a bounded grace interval and re-read exact PID identity;
+   do not jump from an ignored root-only signal to `SIGKILL` or a broad name match.
+5. If a root owns a separate child process group, signal only those independently
+   verified groups. Stop if membership or ownership changed.
+
+Acceptance is not merely “the process exited.” Independently verify every named root
+and descendant is absent, both task session counts remain zero, exact worktrees and Git
+registrations stay absent, intended local-branch disposition is unchanged, and the
+accepted/merge commits remain durable. Provider reads are optional for this cleanup;
+local commit-object proof plus the existing merged receipt is sufficient when GitHub is
+rate-limited. Do not send a follow-up Support request when this receipt passes.
+
+Support request `9f8dd8b8-2969-4499-9d02-eb9c63aff5cf` verified this fallback on exact
+roots `746469` and `747005`: root-only `SIGTERM` was ignored, four exact isolated process
+groups received `SIGTERM`, all six named PIDs exited within the bounded wait, no
+`SIGKILL` was used, and the two Done tasks remained terminal-safe.
+
 ## Recover a task shell whose PTY output was never wired
 
 A live task terminal can look completely hung even while its command is running. The

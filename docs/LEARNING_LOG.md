@@ -1604,6 +1604,27 @@ the task and its preserved work remain parked meanwhile.
 
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
 
+## 2026-08-30g — an orphan process is a resource leak, not evidence to reopen Done
+
+Two ACP/Bubblewrap trees remained alive after their terminal task worktrees had already
+been safely removed. Both tasks had zero active sessions and no lifecycle-tracked
+execution, so waking them would not have supplied a legitimate stop target and could
+have fired unrelated queued task state.
+
+Support request `9f8dd8b8-2969-4499-9d02-eb9c63aff5cf` proved the narrow fallback:
+bind every PID and process group to the exact deleted task-worktree CWD, attempt the
+supported lifecycle stop first, then use bounded group-scoped `SIGTERM` only when no
+tracked execution exists. Root-only termination was ignored; the four exact isolated
+groups exited after `SIGTERM`, with no `SIGKILL` and no unrelated mutation.
+
+The reusable acceptance gate includes more than process absence: task sessions remain
+non-active, worktrees/registrations and intended local branches retain their prior
+disposition, and accepted/merge commit objects remain durable. A terminal orphan is a
+resource-disposition defect, not proof of lost work or a reason to recover the card out
+of Done.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
+
 ## 2026-08-30e — exact cancellation cannot be built from preflight plus consume
 
 Support request `4571adf2-7d99-461b-835c-3a172cab8ef2` audited the only supplied service
