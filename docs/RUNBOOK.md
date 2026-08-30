@@ -3199,3 +3199,92 @@ for the intended title, or look for a task with no `task_repositories` row.
 Schema-level validation failures (e.g. a title over 60 chars) are clean and
 create nothing — the partial commit is specific to the handler's post-insert
 resolution path.
+
+---
+
+## Preserving a card's work never requires messaging the card
+
+Operator correction, 2026-08-30. I had reported task
+`9e67c426-1300-46ef-a00f-e5603791212d`'s 41 unpushed commits as *unpreservable*,
+because the card carries armed queued moves and any message I send fires a board
+move. The operator's reply was one line: **"You can push."**
+
+They were right, and the error is worth naming precisely: **armed queued moves
+block MESSAGING a card. They do not block git operations on its worktree.**
+Pushing an additive `backup/` ref touches the remote and the object store —
+never the task, never a session, never `pending_moves`. I already had this
+mechanism and had used it nine times for other cards. I tangled two unrelated
+constraints and escalated a non-blocker as a data-loss risk.
+
+**Rule: when unique work is at risk, preserve it first and independently of
+whatever is blocking the card.** Preservation is a git action. Direction is a
+board action. Only the second one is gated.
+
+### `git log --not --remotes` with no positive rev is a FALSE NEGATIVE
+
+While checking containment I ran:
+
+```sh
+git log --oneline --not --remotes | wc -l    # -> 0   WRONG, reads as "all preserved"
+```
+
+With no positive revision, there is nothing to exclude *from*, so it prints
+nothing regardless of the true state. The correct form names the tip:
+
+```sh
+git rev-list --count HEAD --not --remotes    # -> 41  the truth
+git for-each-ref --contains HEAD refs/remotes/   # -> empty: no remote ref has it
+```
+
+Cross-check with `ls-remote` against the real remote, never a local
+remote-tracking ref, which can be stale.
+
+### Snapshotting untracked files without touching the worktree
+
+Untracked files live in no commit, so a branch push does not save them. Capture
+them with a **temporary index**, leaving the task's worktree, index, and branch
+untouched:
+
+```sh
+export GIT_INDEX_FILE=/tmp/snap_idx
+git -C "$WT" read-tree HEAD
+git -C "$WT" status --porcelain | awk '$1=="??"{print $2}' > /tmp/u.txt
+( cd "$WT" && xargs -a /tmp/u.txt git add -f -- )
+tree=$(git -C "$WT" write-tree)
+commit=$(git -C "$WT" commit-tree "$tree" -p HEAD -m "backup: untracked ...")
+unset GIT_INDEX_FILE
+git -C "$WT" push origin "$commit:refs/heads/backup/<slug>-untracked-1"
+```
+
+### An orphaned worktree can still be preserved through its parent repo
+
+When a linked worktree loses its admin directory
+(`.git/worktrees/<name>` gone), every git command inside it fails with
+`fatal: not a git repository` — the task cannot commit, push, or even diff.
+The content is still on disk, so drive git from the PARENT repository with the
+worktree as work-tree:
+
+```sh
+export GIT_DIR="$PARENT/.git" GIT_WORK_TREE="$ORPHAN" GIT_INDEX_FILE=/tmp/o_idx
+git read-tree <remote-branch> && git add -A
+commit=$(git commit-tree $(git write-tree) -p <remote-branch-head> -m "backup: ...")
+git update-ref refs/heads/backup/<slug>-orphaned-1 "$commit"   # anchor BEFORE pushing
+```
+
+**Anchor the commit in a local ref before attempting the push.** A
+`commit-tree` result is unreferenced and can be garbage-collected; if the push
+fails you would lose it. Mine did fail on the first try.
+
+### A credential lease is SSH-scoped
+
+The push failed with `git repository does not match any credential lease scope`
+and then `could not read Username for 'https://github.com/...'`, because that
+repo's `origin` was configured over **HTTPS**. Pushing to the explicit SSH URL
+succeeded immediately:
+
+```sh
+git push git@github.com:<owner>/<repo>.git "$commit:refs/heads/backup/..."
+```
+
+Check `git remote -v` when a push is refused on credentials. An HTTPS-configured
+remote is not a permission denial — it is the wrong transport.
