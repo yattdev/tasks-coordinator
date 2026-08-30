@@ -1625,6 +1625,33 @@ of Done.
 
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
 
+## 2026-08-30h — stronger process signals need atomic host-side ownership proof
+
+Five residual backend/Vite service groups survived repeated exact `SIGTERM` attempts
+after QA, while the enclosing guarded agent and Human-QA card correctly remained live.
+The guarded worker could enumerate stable PID, parent, PGID, SID, and membership data,
+but could not read the host CWD links; reviewed Support also lacked non-interactive host
+authority. Two escalated requests correctly sent no `SIGKILL`.
+
+The reusable correction is that visible process topology is necessary but insufficient
+for a stronger destructive signal. Task-root CWD ownership, complete group membership,
+and excluded-agent identity must be revalidated atomically by the same least-privilege
+host operation that signals the exact groups, and every mismatch must fail closed.
+
+An unchanged kill request is not the next escalation. Send one distinct capability-repair
+request for that audited host primitive and await its proactive result without polling.
+If the capability itself is terminally blocked, preserve the processes and make one
+operator/Human escalation with exact predicates; never expose transferable host authority
+or broaden the target. The task lane, sessions, repository, and QA artifacts remain
+independent invariants throughout this cleanup.
+
+Evidence: Support requests `c6997ee9-0130-4567-9e79-6988c157cd05` and
+`fd3c8c3f-cf63-4d59-a1d8-b63b24a07644`; capability-repair request
+`35011026-3fb4-4daa-bb2b-12a1facc2d5b`; task
+`04802c8a-aad9-4d18-bdca-fa593c2e0b9a`.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
+
 ## 2026-08-30e — exact cancellation cannot be built from preflight plus consume
 
 Support request `4571adf2-7d99-461b-835c-3a172cab8ef2` audited the only supplied service

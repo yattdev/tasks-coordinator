@@ -998,3 +998,23 @@ tasks `23a62467-37e9-4113-b374-b44003abc0f3` and
 `21c1a39a-cd3e-441b-9f7e-9ab40421d1c5`: all six exact processes exited after bounded
 group-scoped `SIGTERM`, both tasks retained zero active sessions, their worktrees and
 registrations stayed absent, and the accepted/merge commit objects remained present.
+
+## Strong process cleanup requires atomic host ownership proof (2026-08-30)
+
+PID, parent, process-group, and session topology can identify a plausible residual task
+service, but it cannot prove task-root ownership strongly enough for `SIGKILL`. PID reuse,
+group membership drift, and an unrelated process joining the group are all destructive
+failure modes. The ownership predicate must therefore be revalidated with host authority
+in the same reviewed operation that signals the exact group.
+
+When guard policy prevents `/proc/<pid>/cwd` reads and Support lacks non-interactive host
+authority, the Coordinator preserves the processes and task state. Repeating the same
+kill request is not escalation. The one safe next action is a separate capability-repair
+request for a least-privilege, predicate-complete, fail-closed host operation with a
+structured receipt. If that repair is also terminally blocked, the remaining trust-boundary
+operation belongs to the operator/Human once, with the exact predicates and exclusions.
+
+Requests `c6997ee9-0130-4567-9e79-6988c157cd05` and
+`fd3c8c3f-cf63-4d59-a1d8-b63b24a07644` established this boundary without signaling any
+process for task `04802c8a-aad9-4d18-bdca-fa593c2e0b9a`. Request
+`35011026-3fb4-4daa-bb2b-12a1facc2d5b` owns the distinct capability repair.

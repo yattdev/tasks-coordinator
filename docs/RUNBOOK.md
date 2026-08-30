@@ -1694,6 +1694,43 @@ roots `746469` and `747005`: root-only `SIGTERM` was ignored, four exact isolate
 groups received `SIGTERM`, all six named PIDs exited within the bounded wait, no
 `SIGKILL` was used, and the two Done tasks remained terminal-safe.
 
+## Stop residual task services when guarded CWD proof is unavailable
+
+Residual backend or Vite services can survive a completed QA launcher while the task
+itself remains correctly parked for Human testing. Treat this as ancillary resource
+cleanup, not permission to move the card, wake the task, stop its guarded agent, or
+alter repository and test artifacts.
+
+Before any signal, bind the target with the complete visible receipt: task and workspace
+IDs, exact task root, PID, parent, process group, session, state, every group member,
+and every explicitly excluded agent PID/group. Re-read the task lane, session and pending
+state, clean head, and artifact sizes/hashes. If a guarded process cannot read the host
+`/proc/<pid>/cwd`, visible topology is not a substitute for task-root ownership.
+
+After bounded exact `SIGTERM` attempts fail, do not keep resending stronger kill
+requests. Send one distinct capability-repair request asking reviewed Support to add or
+use a least-privilege host operation that atomically:
+
+1. accepts every identity and exclusion predicate in the authorization;
+2. validates task-root CWD ownership and complete group membership with host authority;
+3. aborts without signaling on any mismatch, reuse, joining process, or missing proof;
+4. signals only the exact validated groups; and
+5. returns structured evidence without commands, environments, credentials, sockets, or
+   transferable host authority.
+
+Acceptance requires every authorized PID and group member absent, the excluded guarded
+agent still present, and task lane, sessions, pending actions, tags, worktree/head,
+artifacts, branches, PR, and provider state unchanged. If the capability-repair request
+is terminally `BLOCKED`, persist that exact boundary and make one visible operator/Human
+escalation for the predicate-complete reviewed host operation. Preserve the services in
+place meanwhile; do not poll Support or send a third equivalent request.
+
+Verified boundary: requests `c6997ee9-0130-4567-9e79-6988c157cd05` and
+`fd3c8c3f-cf63-4d59-a1d8-b63b24a07644` could enumerate the exact service groups for
+task `04802c8a-aad9-4d18-bdca-fa593c2e0b9a`, but could not read guarded host CWD links
+or obtain non-interactive host privilege, so no `SIGKILL` was sent. Capability-repair
+request `35011026-3fb4-4daa-bb2b-12a1facc2d5b` is the one evidence-bearing next action.
+
 ## Recover a task shell whose PTY output was never wired
 
 A live task terminal can look completely hung even while its command is running. The
