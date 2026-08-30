@@ -3288,3 +3288,60 @@ git push git@github.com:<owner>/<repo>.git "$commit:refs/heads/backup/..."
 
 Check `git remote -v` when a push is refused on credentials. An HTTPS-configured
 remote is not a permission denial — it is the wrong transport.
+
+---
+
+## REST core and GraphQL are separate rate-limit buckets
+
+2026-08-30. A task agent reported PR creation blocked: `gh pr create` failed with
+`GraphQL: API rate limit already exceeded for user ID 79718216`, and it armed a
+retry for a reset it estimated at ~00:30Z. At that same moment my own REST calls
+were working fine with ~2500 requests remaining.
+
+Both are true. GitHub meters `core` (REST) and `graphql` independently, and
+`gh pr create` goes through **GraphQL**. So a GraphQL exhaustion does not block
+REST, and vice versa.
+
+**When a `gh` subcommand is rate-limited, try the REST equivalent before waiting.**
+Creating a pull request over REST bypasses the GraphQL bucket entirely:
+
+```sh
+python3 -c "import json,io; json.dump({'title':...,'head':'owner:branch',
+  'base':'main','draft':True,'body':io.open('body.md').read()},
+  io.open('/tmp/pr.json','w'))"
+gh api -X POST repos/<owner>/<repo>/pulls --input /tmp/pr.json
+```
+
+REST also fails *safely* on a duplicate, which is how I discovered the agent's
+retry had already succeeded:
+
+```
+422 Validation Failed — "A pull request already exists for owner:branch."
+```
+
+That is a much better outcome than creating a second PR. **Always attempt the
+create rather than assuming; let the 422 tell you.** Then find the existing one:
+
+```sh
+gh api 'repos/<owner>/<repo>/pulls?head=<owner>:<branch>&state=all' --jq '.[].number'
+```
+
+### Related: two `gh` commands that lie about limits
+
+- **`gh api rate_limit`** reports a pristine quota while enforced calls 403.
+  Confirmed four times on this host; at 23:33Z it said `remaining: 5000, used: 0`
+  during an active block. **Only trust `X-RateLimit-Reset` from a FAILING call's
+  response headers.** An agent that trusted `rate_limit` armed its retry ~50
+  minutes late, and because a `WAITING_FOR_INPUT` session never self-wakes, it
+  would have sat there indefinitely.
+- **`gh auth status`** reports a rate-limited token as *invalid*. Independently
+  confirmed by a task agent the same night. Verify provider state with a real
+  `gh api` REST call, never a summary command.
+
+### A parked session does not honour its own deadline
+
+Worth stating separately because it is the part that actually costs time: when an
+agent says "retry armed for <time>", that intent lives inside a session that is
+about to park. Nothing wakes it at that time. **If a task is parked pending a
+deadline, the Coordinator owns waking it** — record the trigger in the follow-up
+ledger and nudge when it elapses.
