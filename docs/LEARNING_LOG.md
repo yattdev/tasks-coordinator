@@ -1758,3 +1758,42 @@ pass `test -t 0`, `test -t 1`, `stty`, and the bounded functional commands throu
 ordinary agent path.
 
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
+
+## 2026-08-30m — Support delivery is proactive, not poll-driven
+
+Multiple Support results arrived directly as Coordinator messages while older shared
+instructions still told every session to poll `status` and `receive`. That contradiction
+could duplicate work and hold an orchestration cycle open for a result the platform was
+already going to push.
+
+The durable rule is now one-way: send once, persist the request ID, continue other work,
+and await the proactive result. Active-writer contention is internal broker backpressure.
+The diagnostic surfaces remain only for an explicitly requested bounded test of them.
+
+## 2026-08-30n — authenticated operations need explicit credential-bootstrap authority
+
+An authenticated product action and the credential used to reach it are separate grants.
+Requests that authorized exact queue removal or one plugin install but prohibited every
+SQL mutation also prohibited Support's only available temporary-token bootstrap, so
+BLOCKED was the correct outcome.
+
+Do not write mutually impossible constraints. Use a temporary token only when the
+Human/user expressly authorizes that exact mint/revoke lifecycle; bind it to the named
+operations, expose no token, and require a non-secret `0 → 1 → 0` receipt. Otherwise
+require a preissued credential and stop after the precise BLOCKED response.
+
+## 2026-08-30o — failed-session queues recover through one exact read
+
+A failed Coordinator session retained unread messages that ordinary conversation reads
+could not recover. One exact authenticated queue read succeeded, but its response exceeded
+the transport budget; complete bodies were therefore paginated into restricted,
+task-readable files with per-page hashes and a canonical manifest digest.
+
+The replacement primary verified ownership, modes, byte counts, hashes, one-read and
+token-lifecycle receipts, then reconciled all entries FIFO against newer live state. No
+source queue mutation occurred. After every disposition was durable, only the temporary
+recovery pages were deleted. This makes continuity robust without replaying stale work or
+turning a read request into queue-removal authority.
+
+Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, this log.

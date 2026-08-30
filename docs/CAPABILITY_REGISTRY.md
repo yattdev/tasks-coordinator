@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-08-30i -->
+<!-- registry-version: 2026-08-30j -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -60,6 +60,14 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Authority** Human-authorized queue triage; the primary retains all mutation and reporting responsibility.
 - **Evidence** Before/after ordered IDs and counts, helper receipts, primary action receipts, and exact removal results. Verified 2026-08-30 by Support request `fad11a89-27bb-415b-8554-7097f225a09d`: 15/15 exact entries removed one-by-one, none missing, final count 0.
 - **Never** Use SQL or broad cancellation; never remove an unreviewed, durable, or newly arrived row. Helper triage does not itself drain the product queue, and queue capacity is not the trigger for delegation.
+
+### A6. Recovering unread messages from a failed Coordinator session
+- **Trigger** A Coordinator session is terminal/failed while its private queue may still contain unprocessed entries, and the replacement primary must continue without replaying handled work.
+- **Action** Bind to the exact task, failed session, and live replacement primary; perform one authenticated `message.queue.get`; write complete bodies only to bounded UTF-8 pages under a task-owned mode-0700 directory with mode-0600 files and a hashed manifest; then reconcile every entry FIFO against the live plan, board, sessions, and provider state. Preserve the source queue. Delete only the request-owned recovery pages after all dispositions are durable.
+- **Capability** Direct authenticated WebSocket surface when available; otherwise one narrowly scoped Kandev Support request. Procedure: [failed-session queue recovery](RUNBOOK.md#recover-unread-messages-from-a-failed-coordinator-session).
+- **Authority** Explicit failed-session recovery request. A temporary authentication-token lifecycle is a separate security-sensitive authority and must be expressly granted or replaced by a preissued credential.
+- **Evidence** Exact task/session identities; entry count and ordered IDs; canonical entry digest; per-page byte counts/hashes; readable ownership/modes; one API read; temporary token count returning `0 → 1 → 0` when authorized; and `queue_mutated=false`.
+- **Never** Read the queue through SQL, dump unrelated messages or attachments, print bodies into broad logs, replay from arrival order alone, mutate/remove the source queue, or leave restricted recovery copies after durable reconciliation.
 
 ---
 
@@ -258,6 +266,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 ### G2. Composing the request
 - **Action** Put the affected task/session ID inside `problem` or `evidence`. Pass the file path relative to the **coordinator task root** (e.g. `coordinator/support-request.json`) or absolute — a path relative to your shell cwd is the common failure.
 - **Evidence** The broker attaches coordinator task ID, workspace/worktree, and request ID itself — do not duplicate them.
+- **Authentication boundary** An authenticated API operation and the credential used to reach it are separate authorities. Do not demand an authenticated action while prohibiting the only available credential bootstrap. If the Human/user expressly authorizes a narrowly scoped temporary `auth_api_tokens` mint/revoke, name the exact operation and require a non-secret `0 → 1 → 0` receipt; otherwise require a preissued credential and expect a precise BLOCKED result. Authorization for the product action alone does not imply authorization to mint a token.
 - **Never** Send secrets or raw credentials in any field.
 
 ### G3. Support returns a genuine terminal BLOCKED response
@@ -437,9 +446,10 @@ Production, protected/release branch, cost, and external-communication **labels*
 
 ### J1. Support request states
 - `queued` — waiting its turn. `processing` — worker picked it up. `complete` — the run finished.
-- **`complete` does not mean success.** Check `returncode`, then always read `receive`.
+- **`complete` does not mean success.** In an explicitly authorized one-shot diagnostic,
+  check `returncode` and call `receive` once. Normal operation waits for the pushed result.
 - Delivery is serialised, restart-safe, oldest-first. Latency is **seconds** on a clear queue and **minutes** while earlier requests drain. A long `queued` is the system working.
-- **Action** Poll with adaptive backoff (seconds early, widening to ~30s). Never resend — a duplicate only adds another item to the same ordered queue.
+- **Action** Persist the request ID and continue other work. The terminal result is pushed as a Coordinator message; do not poll `status`/`receive` or resend. Use those diagnostic surfaces only when an explicit acceptance request requires a bounded one-shot check of them.
 
 ### J2. Non-zero `returncode`
 - **Action** Read `receive` for the real cause before concluding anything. Do not claim delivery succeeded.

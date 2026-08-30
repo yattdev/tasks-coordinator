@@ -1517,12 +1517,13 @@ Support identity: `Kandev Support — Codex`, stable thread
 ### The canonical route is the broker — send it yourself
 
 **Use the broker, never `codex exec resume` directly**, and do **not** ask the
-Human to relay a routine support request. A validated Coordinator contacts Support
-through three guarded commands:
+Human to relay a routine support request. A validated Coordinator sends through the
+guarded broker:
 
     docker kandev support send <request.json>
-    docker kandev support status <request-id>
-    docker kandev support receive <request-id>
+
+`status` and `receive` remain bounded diagnostic surfaces, but normal terminal results
+arrive proactively as Coordinator messages. Do not poll them during ordinary work.
 
 Required schema — all four fields must be non-empty strings, or the broker refuses
 the request by name:
@@ -1543,10 +1544,11 @@ shell's cwd is the common trap: a file created in `coordinator/` and sent as
 `support-request.json` resolves to `/data/tasks/<task-dir>/support-request.json`
 and fails with `path is unavailable: ... No such file or directory`.
 
-`send` returns `{"request_id": "...", "status": "queued"}`. Poll `status`
-adaptively with capped exponential backoff, then `receive` the answer. A busy
-Support thread can keep a request queued for minutes; keep the same request ID and
-never create a duplicate merely because it remains queued.
+`send` returns `{"request_id": "...", "status": "queued"}`. Persist that ID and
+continue other work. The worker handles contention and pushes the terminal result as a
+new Coordinator message. Never create a duplicate merely because the result has not yet
+arrived, and do not poll `status`/`receive` unless an explicit acceptance request asks
+for one bounded diagnostic of those surfaces.
 
 The broker attaches the coordinator task ID, workspace ID and name, worktree, and
 timestamp itself, so do not duplicate them; put the affected task/session ID inside
@@ -1554,8 +1556,16 @@ timestamp itself, so do not duplicate them; put the affected task/session ID ins
 
 Two things that are easy to get wrong:
 
-- **`complete` does not mean success.** It means the host-side run finished. Check
-  `returncode`, then always read `receive` for the actual result.
+- **`complete` does not mean success.** If an explicit bounded diagnostic observes it,
+  check `returncode` and call `receive` once for the actual result. Normal operation
+  waits for the pushed result message instead.
+- **Authentication bootstrap is separate authority.** An authenticated endpoint may
+  require a preissued credential or a temporary `auth_api_tokens` mint/revoke. Do not
+  pair "perform the authenticated action" with "no SQL mutation" when that token row is
+  the only available bootstrap. Use a temporary token only when the Human/user expressly
+  authorizes that exact lifecycle, scope it to the named operation, expose no secret, and
+  require the row count to return `0 → 1 → 0`; otherwise require a preissued credential
+  and accept a precise BLOCKED result.
 - **The capability is invisible in the top-level help.** `docker kandev` with no
   arguments prints only the compose line and never mentions `support`; run
   `docker kandev support` with no arguments for its authoritative command list.
@@ -1628,10 +1638,9 @@ Latency spans two regimes, and neither generalises alone:
   `queued` for roughly twelve to sixteen minutes before completing with
   `returncode: 0` and a real reply.
 
-So poll with adaptive backoff (a few seconds early, widening to ~30s) and treat a
-long `queued` as the system working, not a stall. Never resend: a duplicate only
-adds another item to the same ordered queue. Carry on with unblocked work rather
-than holding a cycle open.
+Treat a delayed result as internal queueing, not a stall. Persist the request ID,
+carry on with unblocked work, and await proactive delivery. Never resend: a duplicate
+only adds another item to the same ordered queue.
 
 Superseded failure mode (fixed 2026-08-29): requests used to fail fast, returning
 `status: complete, returncode: 1` within ~10s with
@@ -1641,10 +1650,10 @@ Support now delivers on a dedicated worker-owned thread. If that conflict ever
 reappears, the isolation has regressed — report it with the request ID rather than
 retrying in a loop.
 
-Requests that failed under the old behavior were requeued during deployment.
-Check a previous request ID before sending a replacement. If it is queued, keep
-polling it; if it is complete, receive it and inspect its return code and response.
-Only send a fresh request when no usable previous ID exists.
+Requests that failed under the old behavior were requeued during deployment. For one
+of those historical IDs only, a single bounded `status`/`receive` diagnostic is valid
+when no proactive result exists; do not poll it. Send a fresh request only after that
+one-shot check proves the old request terminal and unusable.
 
 ### Reading the response
 
@@ -1667,10 +1676,10 @@ sending even though host Codex state cannot.
 
 ### Proactive result delivery and a Support-side execution boundary
 
-Support results can arrive automatically as new Coordinator messages, with no Human
-relay and no `status`/`receive` polling. When an acceptance request explicitly tests
-that delivery mode, record the request ID and wait for the message; polling would
-invalidate the test.
+Support results arrive automatically as new Coordinator messages, with no Human relay
+and no `status`/`receive` polling. Record the request ID and wait for the message. When
+an acceptance request explicitly tests that delivery mode, polling would also invalidate
+the test.
 
 A proactive `KANDEV_SUPPORT_STATUS: BLOCKED` proves transport worked, not necessarily
 that the requested capability is unavailable. Support may be unable to enter the named
@@ -2246,6 +2255,43 @@ IDs exactly, none were missing, and the post-removal queue was empty. A later
 read-only census again returned 0. Helper triage does not itself drain the queue.
 This receipt proved the mechanism; the human correction is to use it proactively,
 not only after the queue is full.
+
+## Recover unread messages from a failed Coordinator session
+
+A failed or superseded Coordinator session can retain a private queue that ordinary
+conversation reads do not expose. Recover it only when the Human/user explicitly asks
+the replacement primary to continue that session's unprocessed work.
+
+1. Resolve the exact Coordinator task/workspace, failed session, and live replacement
+   primary. Fail closed if the old session is not terminal or either session belongs to
+   another task/workspace.
+2. Use one authenticated `message.queue.get` for the exact failed session. Prefer the
+   direct authenticated surface; otherwise send one Support request. Never read queue
+   rows through SQL.
+3. If the response can exceed transport limits, stream complete UTF-8 bodies into
+   bounded pages under the Coordinator task root. The directory is mode `0700`, files
+   are mode `0600`, and ownership must let the task user read them. Exclude attachments
+   unless separately authorized.
+4. Write a manifest containing ordered entry IDs, page paths, byte counts, SHA-256
+   hashes, a canonical digest over the projected entries, API-read count, token lifecycle,
+   and `queue_mutated=false`. Never put a credential in the artifact.
+5. Re-read every page as the task user, verify all hashes and the canonical digest, then
+   reconstruct entries in API order. A root-owned unreadable artifact is incomplete even
+   when its hashes are correct; repair ownership only, then verify bytes did not change.
+6. Process entries FIFO, but treat each as a timestamped receipt: compare it with the
+   current plan, live board/session state, and provider identity. Record handled,
+   superseded, coalesced, or actionable. Do not replay a stale instruction merely because
+   it remained queued.
+7. Persist every disposition and any resulting action. The recovery read does not
+   authorize queue removal or other mutation; leave the failed session's source queue
+   unchanged unless a separate exact-ID removal grant exists.
+8. After every disposition is durable, delete only the request-owned manifest/pages and
+   their now-empty directory. Verify absence and preserve the parent task directory.
+
+Verified 2026-08-30 on a 14-entry failed-session queue: one authenticated read produced
+ten restricted pages whose byte counts, hashes, and canonical digest matched; temporary
+token rows returned `0 → 1 → 0`; all entries reconciled FIFO without queue mutation; and
+the request-owned pages were removed after their dispositions were persisted.
 
 ## Flipping Draft→ready is itself a review trigger — readiness is not terminal
 

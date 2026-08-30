@@ -1075,3 +1075,42 @@ the demonstrated state. The Coordinator verifies the final URL returns image con
 This sharpens, but does not replace, the existing prohibition on screenshot-only code
 commits. If the provider cannot host or reference the evidence through an approved path,
 the PR remains draft and the local capture is preserved until publication is possible.
+
+## Support results are push-delivered; Coordinator polling is superseded (2026-08-30)
+
+The reviewed broker now delivers terminal Support results proactively as Coordinator
+messages. Earlier guidance to poll `status` with adaptive backoff and then call `receive`
+is therefore superseded for ordinary operation. After `send`, the Coordinator persists
+the request ID, continues other work, and waits for the pushed result. Internal
+active-writer contention remains broker-owned backpressure; resending or polling only
+adds load and risks duplicate work. `status`/`receive` remain available solely for an
+explicit bounded diagnostic that names those surfaces.
+
+## Authenticated Support actions separate product authority from credential authority (2026-08-30)
+
+Several exact queue-removal and plugin-install requests asked Support to call an
+authenticated endpoint while also forbidding SQL mutation. The only available Support
+bootstrap was a temporary `auth_api_tokens` insert/revoke, so the requests were correctly
+BLOCKED even though the desired product operation itself was authorized.
+
+These are two distinct grants. Authorization to remove an exact queue entry, install one
+verified package, or read one failed-session queue does not imply authority to mint a
+credential. If the Human/user expressly authorizes the narrow temporary-token lifecycle,
+the request binds it to exact operations, exposes no token, and requires a `0 → 1 → 0`
+receipt. Without that grant, the request requires a preissued credential and treats the
+resulting precise BLOCKED response as terminal rather than retrying contradictory text.
+
+## Failed-session queue recovery is exact, paginated, and non-mutating (2026-08-30)
+
+Conversation history does not expose a failed session's unread private queue. Continuity
+therefore uses one authenticated `message.queue.get` bound to the exact failed session,
+not SQL or broad database access. Complete bodies are paginated into restricted,
+task-readable files with a hashed manifest so transport limits cannot truncate the
+evidence silently. The replacement primary reconstructs API order, reconciles each entry
+against newer live state, and persists every disposition before deleting only the
+temporary recovery copies.
+
+The read neither removes source rows nor authorizes the recovered instructions. This
+separation preserves auditability: a stale message can be marked superseded without
+replay, a current message can be acted on through ordinary safety gates, and the failed
+session's queue remains unchanged unless a distinct exact-ID removal grant exists.
