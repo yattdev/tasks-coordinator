@@ -303,6 +303,46 @@ approval, preserve the task and attach the reproduction to the existing
 grant-management platform task; do not repeatedly send the Human to individual
 task conversations.
 
+## Prune only fully integrated orphaned local worktree branches
+
+`git worktree remove` and `git worktree prune` remove worktree registrations;
+they do not remove the associated local branch. Kandev also deliberately calls
+several cleanup paths with `removeBranch=false` so an archived task cannot lose
+local-only work. Treat the resulting refs as preserved work until each exact
+candidate independently proves redundant.
+
+For an explicitly authorized repository-local cleanup:
+
+1. Record the intended base ref and its object ID. Enumerate local refs with
+   `git for-each-ref`, using an exact allow-list rule appropriate to the
+   repository; never pass a glob to a destructive command.
+2. Enumerate branches from `git worktree list --porcelain`. A candidate is the
+   set difference between the exact local-ref set and this live branch set.
+3. For every candidate, require `git merge-base --is-ancestor <candidate>
+   <intended-base>` to succeed. Any failed or indeterminate probe preserves the
+   ref. Re-check worktree membership immediately before deletion; Git's own
+   checked-out-branch refusal remains a second guard.
+4. Delete one explicit local ref at a time with `git branch -d -- <branch>`.
+   Never use `-D`, delete a remote ref, or touch the base, protected, feature,
+   backup, or unrelated branch classes.
+5. Re-enumerate. Require zero eligible orphan candidates, every live worktree
+   branch still resolving, the base object ID unchanged, and remote/protected
+   inventories unchanged. Preserve unrelated dirty/untracked files.
+
+Record the pre/post counts, a digest of the sorted candidate list, retained
+counts and reasons, and every failed deletion. A count mismatch from an approved
+baseline stops the mutation rather than broadening it.
+
+This is not a generic archive cleanup policy. Removing a branch that exists
+neither locally nor remotely currently makes Kandev's unarchive/recreate path
+report it unrecoverable, even when its commits are reachable from a base branch.
+Upstream must first define the recovery source of truth and prove unique work is
+preserved. Incident receipt 2026-08-30: the Coordinator repository had 431 exact
+`main-[0-9a-z][0-9a-z][0-9a-z]` refs; 168 absent-live and fully-main-contained
+refs were deleted non-forcibly, leaving 263/263 live and zero candidates. The
+upstream lifecycle fix is tracked by task
+`37eca47b-cf05-47ee-b143-39408edbeed1`.
+
 Before classifying CI or review readiness:
 
 1. Resolve the task's deliverable repository and remotes.

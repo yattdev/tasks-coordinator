@@ -151,6 +151,13 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Action** `git rebase main` before editing; commit small; `git -C /data/home/Code/coordinator merge --ff-only <your-branch>`; push. On conflict, hand-merge and preserve both sides.
 - **Never** Force-push, `reset --hard`, rewrite published history, merge-commit onto main, or touch another worktree's branch. To rescue a stranded peer branch, cherry-pick onto YOUR branch.
 
+### C5. Pruning redundant local worktree branches
+- **Trigger** Local worktree-generated branches remain after their worktree registrations have been removed.
+- **Action** Follow [Prune only fully integrated orphaned local worktree branches](RUNBOOK.md#prune-only-fully-integrated-orphaned-local-worktree-branches): enumerate exact local refs and live worktree branches, require every candidate to be absent from the live set and contained in the intended base, then use non-force deletion on each explicit ref.
+- **Authority** Only a bounded, explicitly authorized repository-local cleanup. A branch with unique commits, ambiguous ownership/base, an active worktree, or a failed probe is preserved.
+- **Evidence** Pre/post ref counts, candidate-list digest, zero unmerged candidates, every live branch still resolving, and unchanged base/remote/protected ref inventories.
+- **Never** A destructive glob, `branch -D`, remote deletion, inference from a name alone, or generic automatic pruning that can break archive/unarchive recovery.
+
 ---
 
 ## D. Docker: task Compose vs Coordinator source broker

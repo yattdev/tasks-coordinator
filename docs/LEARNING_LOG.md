@@ -1519,3 +1519,31 @@ loop: once Support's closure agrees with the independently captured evidence, pe
 receipt and stop—an acknowledgement-only Support request would be a duplicate.
 
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, this log.
+
+## 2026-08-30a — a pruned worktree does not imply a disposable branch
+
+The Coordinator repository accumulated 431 local branches matching its exact
+`main-[0-9a-z][0-9a-z][0-9a-z]` worktree naming rule. Comparing that set with
+`git worktree list --porcelain` found 168 refs with no live worktree; all 168
+were ancestors of `main`. After a fresh per-ref worktree and ancestry check,
+non-force deletion removed exactly those 168 and left 263/263 live branches,
+zero missing live refs, and unchanged base, remote, feature, and backup refs.
+
+The recurrence is not Git corruption or local deployment customization. On
+canonical `kdlbs/kandev` upstream/main `4d8763e4de852701f22345c7ac115ffdfac30664`,
+several terminal/handoff/automation paths intentionally call worktree removal
+with `removeBranch=false`. That protects local-only unpublished commits, but Git
+worktree removal then leaves the branch indefinitely. The platform comment that
+operators use branch-cleanup tooling does not itself bound the accumulation.
+
+The safe lesson is two-sided: absent from `git worktree list` is necessary but
+not sufficient for deletion, while retaining every absent ref forever is not a
+cleanup policy. A bounded repository-local cleanup needs an exact name allow
+list, live-worktree set subtraction, containment in a verified base, explicit
+non-force deletion, and post-delete ref/worktree invariants. A generic platform
+fix must additionally preserve archive/unarchive recovery: current recreation
+treats a branch missing locally and remotely as unrecoverable even if its commits
+remain reachable through the base. That upstream design is tracked by task
+`37eca47b-cf05-47ee-b143-39408edbeed1`.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, this log.
