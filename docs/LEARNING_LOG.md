@@ -1486,6 +1486,20 @@ the Human reads, so the card is not mistaken for an agent that stalled.
 
 Related: [[flipping draft to ready is itself a review trigger]].
 
+## 2026-08-30b — draft-to-ready can create a new check gate
+
+PR #3143 was fully green while draft. Immediately after the mechanical ready
+transition, GitHub created a new `pull_request` review check on the unchanged head.
+The Coordinator posted the maintainer notification before refreshing that
+post-transition check set; the new job finished green shortly afterward, but the
+ordering was still wrong.
+
+The durable rule is: treat draft-to-ready as a provider state change that can create
+new required work. Observe `isDraft=false`, refresh exact-head checks, threads, and
+mergeability, wait for every newly triggered required job to become terminal green,
+and only then notify the reviewer. A green draft-era census cannot prove the
+post-ready PR is ready.
+
 Files: `docs/LEARNING_LOG.md`.
 
 ## 2026-08-29v — proactive Support delivery plus guarded-session acceptance

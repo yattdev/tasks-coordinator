@@ -418,11 +418,15 @@ Before marking ready, bind the evidence to the canonical URL and exact head:
    ask channel. Automated evidence may close code-only work; screenshots do not
    waive an explicitly required human acceptance check.
 
-After the transition, verify `isDraft=false`, canonical head unchanged, current
-CI/thread counts, and record the provider URL. Marking ready invites review; it
-does not authorize merge, rebase, deployment, or workflow-stage skipping. A later
-head/base change invalidates the snapshot; have the task agent re-run the gate and
-re-draft if the new work is incomplete or introduces a human-only acceptance need.
+After the transition, verify `isDraft=false`, canonical head unchanged, and refresh
+CI/thread/mergeability evidence. The transition can itself start `pull_request`
+workflows that did not exist while the PR was draft, so wait for every newly
+triggered required job to become terminal green before notifying the reviewer and
+recording the provider receipt. The draft-era check snapshot is not sufficient.
+Marking ready invites review; it does not authorize merge, rebase, deployment, or
+workflow-stage skipping. A later head/base change invalidates the snapshot; have
+the task agent re-run the gate and re-draft if the new work is incomplete or
+introduces a human-only acceptance need.
 
 Local screenshot capture is acceptance evidence for the task agent, but it is
 not reviewer-facing until the reviewer can open it from the PR/MR. If provider
