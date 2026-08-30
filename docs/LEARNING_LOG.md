@@ -1502,6 +1502,23 @@ post-ready PR is ready.
 
 Files: `docs/LEARNING_LOG.md`.
 
+## 2026-08-30c — parallel queue triage must begin before pressure
+
+The first successful queue split used two read-only helpers only after the
+Coordinator had reached 15/15 messages. The mechanism worked, but the timing was
+reactive. The operator corrected it: on every turn, census the current session
+queue and use up to two helpers whenever two or more independent items exist.
+
+Efficiency without conflicts comes from the assignment boundary: one immutable
+snapshot, disjoint full task UUID/dependency families, read-only helpers, and one
+primary that deduplicates evidence and serializes every task/provider/repository/
+queue/plan mutation after a fresh live-state and `pending_moves` check. A new
+arrival is not injected into a running slice. Capacity is not the delegation
+trigger; it is the failure mode proactive triage prevents.
+
+Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, this log.
+
 ## 2026-08-29v — proactive Support delivery plus guarded-session acceptance
 
 Two environment acceptance requests produced an important split in evidence ownership.

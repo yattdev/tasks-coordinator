@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-08-30c -->
+<!-- registry-version: 2026-08-30d -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -48,18 +48,18 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Never** Let the Human have to ask "what is going on with this task".
 
 ### A4. Delegating bounded evidence gathering
-- **Trigger** Burst of inbound messages or parallelizable read-only evidence work.
-- **Action** At most ~2 concurrent helpers, disjoint named slices, explicit stop conditions, read-only by default.
+- **Trigger** Every turn with at least two independent inbound messages or parallelizable evidence requests.
+- **Action** Proactively start at most ~2 concurrent helpers from one ordered snapshot. Partition by full task UUID and dependency/PR family; give disjoint named slices and stop conditions; keep helpers read-only. The primary deduplicates receipts and serializes all mutations.
 - **Authority** Coordinator-decidable; the primary keeps all accountability. High-risk, destructive, credential, integration/history, human-escalation, and Done cleanup decisions stay with the primary.
 - **Evidence** Helper session IDs plus their evidence recorded in the cycle log.
-- **Never** Leave helpers polling between wakes; never let a helper produce human-facing reports or mutate without one explicitly granted action.
+- **Never** Wait for queue pressure before parallelizing independent work. Never assign one task/shared decision to two slices, leave helpers polling between wakes, let a helper produce human-facing reports, or allow parallel mutations.
 
-### A5. The Coordinator message queue is at or near capacity
-- **Trigger** The current Coordinator session has a burst of ordinary queued messages or reaches its 15-entry limit.
-- **Action** Snapshot the ordered queue, give at most two read-only helpers disjoint slices, then let the primary verify and act on every result. After durable state is updated, remove only exact reviewed entry IDs with authenticated `message.queue.remove`; use Kandev Support when the Coordinator has no direct authenticated queue surface.
+### A5. Processing and draining the Coordinator message queue
+- **Trigger** Every turn; act before the queue approaches its 15-entry limit.
+- **Action** Census the queue, proactively parallelize independent entries under A4, then let the primary verify and act on every result. After durable state is updated, remove only exact reviewed entry IDs with authenticated `message.queue.remove`; use Kandev Support when the Coordinator has no direct authenticated queue surface.
 - **Authority** Human-authorized queue triage; the primary retains all mutation and reporting responsibility.
 - **Evidence** Before/after ordered IDs and counts, helper receipts, primary action receipts, and exact removal results. Verified 2026-08-30 by Support request `fad11a89-27bb-415b-8554-7097f225a09d`: 15/15 exact entries removed one-by-one, none missing, final count 0.
-- **Never** Use SQL or broad cancellation; never remove an unreviewed, durable, or newly arrived row. Helper triage does not itself drain the product queue.
+- **Never** Use SQL or broad cancellation; never remove an unreviewed, durable, or newly arrived row. Helper triage does not itself drain the product queue, and queue capacity is not the trigger for delegation.
 
 ---
 

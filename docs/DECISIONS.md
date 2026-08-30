@@ -911,3 +911,20 @@ and concludes the card can be dropped.
 
 Its commits are preserved at `origin/backup/make-managed-task-wo-sgn-local-1`
 = `4696708551325ccde07ea0f928f0c48d699ab5a6`.
+
+## 2026-08-30 — Parallel queue management is the default, not a capacity response
+
+The Coordinator previously used helpers only after its 15-entry queue filled.
+That made delegation reactive and allowed serial processing to become the
+bottleneck. The operator corrected the policy: every turn starts with a queue
+census, and two or more independent items are triaged concurrently by default.
+
+Conflict prevention is structural. Assign helpers from one immutable ordered
+snapshot; partition by full task UUID and dependency/PR family; keep helpers
+read-only; and let the primary deduplicate receipts, recheck live state and
+`pending_moves`, then serialize every mutation. New arrivals wait for the next
+snapshot. One item or a tightly coupled decision set stays with the primary.
+
+Queue pressure is now only an operational symptom. It is never the trigger for
+parallelism and never permission for SQL, broad cancellation, or removing an
+unreviewed entry.

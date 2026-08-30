@@ -2001,21 +2001,28 @@ engineer around. Record it with the three pieces of evidence above, classify the
 the record that the agent's silence is a platform symptom and not a performance judgement —
 the queued messages prove it never had the chance to respond.
 
-## Drain a full Coordinator queue without losing messages
+## Process the Coordinator queue proactively and drain it safely
 
-The session queue has a hard capacity of 15. A queue at capacity prevents later
-task reports from arriving, but that is not permission to discard it wholesale.
+The session queue has a hard capacity of 15. Parallel management starts before
+pressure: on every turn, census the queue after bootstrap. When at least two
+independent messages exist, start up to two read-only helpers from one immutable
+ordered snapshot. Keep a single message or a tightly coupled decision set with
+the primary.
 
 1. Capture the ordered entry IDs and contents before acting.
-2. Split a burst into at most two disjoint, read-only helper slices. Helpers
-   classify and return evidence; the primary independently verifies conclusions,
-   performs every mutation, and persists the resulting obligations.
-3. Separate ordinary handled messages from durable or newly arrived entries.
-4. Remove only reviewed ordinary IDs, one at a time, through authenticated
+2. Partition by full task UUID and dependency/PR family. No task, PR, dependency,
+   or shared decision may appear in two slices. New arrivals remain primary-owned
+   until the next snapshot.
+3. Helpers only classify and return evidence. They do not mutate tasks, provider
+   state, worktrees, the shared Coordinator repository, queue, or plan. The primary
+   deduplicates their receipts, rechecks live state and `pending_moves`, and then
+   serializes every mutation. Overlap discovered later becomes one primary action.
+4. Separate ordinary handled messages from durable or newly arrived entries.
+5. Remove only reviewed ordinary IDs, one at a time, through authenticated
    `message.queue.remove` (`session_id` plus exact `entry_id`). If the Coordinator
    cannot call that authenticated WebSocket surface, route the exact list through
    Kandev Support. Never use SQL or broad cancellation.
-5. Re-read the ordered queue. The receipt must name before/after counts, removed
+6. Re-read the ordered queue. The receipt must name before/after counts, removed
    IDs, missing IDs, and anything intentionally retained.
 
 Verified 2026-08-30 for Coordinator session
@@ -2023,6 +2030,8 @@ Verified 2026-08-30 for Coordinator session
 Support request `fad11a89-27bb-415b-8554-7097f225a09d` removed all 15 supplied
 IDs exactly, none were missing, and the post-removal queue was empty. A later
 read-only census again returned 0. Helper triage does not itself drain the queue.
+This receipt proved the mechanism; the human correction is to use it proactively,
+not only after the queue is full.
 
 ## Flipping Draft→ready is itself a review trigger — readiness is not terminal
 
