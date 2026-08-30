@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-08-30b -->
+<!-- registry-version: 2026-08-30c -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -53,6 +53,13 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Authority** Coordinator-decidable; the primary keeps all accountability. High-risk, destructive, credential, integration/history, human-escalation, and Done cleanup decisions stay with the primary.
 - **Evidence** Helper session IDs plus their evidence recorded in the cycle log.
 - **Never** Leave helpers polling between wakes; never let a helper produce human-facing reports or mutate without one explicitly granted action.
+
+### A5. The Coordinator message queue is at or near capacity
+- **Trigger** The current Coordinator session has a burst of ordinary queued messages or reaches its 15-entry limit.
+- **Action** Snapshot the ordered queue, give at most two read-only helpers disjoint slices, then let the primary verify and act on every result. After durable state is updated, remove only exact reviewed entry IDs with authenticated `message.queue.remove`; use Kandev Support when the Coordinator has no direct authenticated queue surface.
+- **Authority** Human-authorized queue triage; the primary retains all mutation and reporting responsibility.
+- **Evidence** Before/after ordered IDs and counts, helper receipts, primary action receipts, and exact removal results. Verified 2026-08-30 by Support request `fad11a89-27bb-415b-8554-7097f225a09d`: 15/15 exact entries removed one-by-one, none missing, final count 0.
+- **Never** Use SQL or broad cancellation; never remove an unreviewed, durable, or newly arrived row. Helper triage does not itself drain the product queue.
 
 ---
 
@@ -340,6 +347,13 @@ sh -ceu '
 **That patch is uncommitted**, blocked by a mandatory hook failing on an *unrelated* typecheck (`service_pr_watch.go` undefined `taskID`/`status`). I checked: on `upstream/main` line 1024 sits inside `appendChangedField(changed []string, field string, isChanged bool)`, whose scope contains neither identifier, and three commits landed through the same hooks today from main-based worktrees. **So the blocker looks local to that checkout, not to main** — and Support's stated next action ("repair the unrelated undefined symbols") would mean editing a tree carrying substantial untracked human work (`slack/`, `voice/`, `debug/`, `system/logs/`, `logger/buffer/`, `loginpty/`, `process/`, `cli/src/`). Follow-up `bb2542e8-d356-488a-9a43-319f254fe1db` sent 17:02:15Z asking it to confirm that checkout's HEAD first and, if local, land the diagnostic from a **clean worktree based on main** instead of repairing anyone's work-in-progress.
 
 **Rule: when a fix is blocked by an unrelated failure in a dirty shared checkout, move the fix to a clean tree — do not repair the dirt.** Unpushed human work is worth more than the convenience of committing in place.
+
+### G7. A published plugin release is newer than the marketplace index
+- **Trigger** A plugin release exists, but Settings/manual auto-update cannot discover it because the marketplace index still advertises the installed version.
+- **Action** Verify the release artifact and version, then ask Kandev Support to use authenticated `POST /api/plugins/install` for that one published archive. Do not restart Kandev when the backend can refresh the live tool catalog.
+- **Capability** [Update a live plugin when discovery is stale](RUNBOOK.md#update-a-live-plugin-when-the-marketplace-index-is-stale).
+- **Evidence** HTTP install/readback status; exact live version, install path, status, auto-update, restart/error fields; and one real invocation of the newly registered schema from an existing session. Verified for Tags v0.14.0 by Support request `76d7e219-5e06-44f7-aae7-3ba8613f641e`: install 201, readback 200, active at `/data/plugins/kandev-plugin-tags/0.14.0`, and live `list_tags(task_id=...)` succeeded.
+- **Never** Edit plugin YAML, database rows, or extracted installation files; never reload unrelated plugins or restart the whole application solely to refresh a compatible tool catalog.
 
 ---
 

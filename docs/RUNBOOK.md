@@ -2001,6 +2001,29 @@ engineer around. Record it with the three pieces of evidence above, classify the
 the record that the agent's silence is a platform symptom and not a performance judgement —
 the queued messages prove it never had the chance to respond.
 
+## Drain a full Coordinator queue without losing messages
+
+The session queue has a hard capacity of 15. A queue at capacity prevents later
+task reports from arriving, but that is not permission to discard it wholesale.
+
+1. Capture the ordered entry IDs and contents before acting.
+2. Split a burst into at most two disjoint, read-only helper slices. Helpers
+   classify and return evidence; the primary independently verifies conclusions,
+   performs every mutation, and persists the resulting obligations.
+3. Separate ordinary handled messages from durable or newly arrived entries.
+4. Remove only reviewed ordinary IDs, one at a time, through authenticated
+   `message.queue.remove` (`session_id` plus exact `entry_id`). If the Coordinator
+   cannot call that authenticated WebSocket surface, route the exact list through
+   Kandev Support. Never use SQL or broad cancellation.
+5. Re-read the ordered queue. The receipt must name before/after counts, removed
+   IDs, missing IDs, and anything intentionally retained.
+
+Verified 2026-08-30 for Coordinator session
+`330609a3-ea23-4674-8c0b-9b572f9c0da7`: two helpers triaged disjoint slices;
+Support request `fad11a89-27bb-415b-8554-7097f225a09d` removed all 15 supplied
+IDs exactly, none were missing, and the post-removal queue was empty. A later
+read-only census again returned 0. Helper triage does not itself drain the queue.
+
 ## Flipping Draft→ready is itself a review trigger — readiness is not terminal
 
 Some reviewers are suppressed while a pull request is Draft and fire on the transition to
@@ -2732,30 +2755,24 @@ placeholders that survive review because they read like conclusions. **Audit for
 weak wording in your own records, and re-read the card rather than re-reading
 your summary of it.**
 
-## Agent tags are self-scoped — to tag another card, delegate to that card
+## Agent tags can target another card after Tags v0.14.0
 
-Verified live 2026-08-29T22:08Z by a full round trip (`create_tag` → `add_tag`
-→ `list_tags` → `delete_tag`, catalog left empty afterwards). The tags plugin
-exposes six agent tools and they all work:
+The live Tags v0.14.0 registration exposes six agent tools:
 
 ```
 list_tags · create_tag · add_tag · remove_tag · update_tag · delete_tag
 ```
 
-**None of them takes a task ID.** Every one is scoped to *the current task* —
-the card the calling agent runs inside. `add_tag` accepts only `tag_id` and
-`note`. So a Coordinator can label the single card that needs labelling least,
-and no other.
+`add_tag`, `remove_tag`, and `list_tags` accept an optional `task_id`. Omitting it
+preserves the old behavior and targets the caller's own task. Supplying it targets
+another task in the same workspace; workspace-scoped state makes cross-workspace
+access unreachable. Catalog tools (`create_tag`, `update_tag`, `delete_tag`)
+remain workspace-wide and do not take a target task.
 
-### The workaround (operator-directed 2026-08-29)
-
-**To tag a card, delegate to that card.** Message the task and state exactly
-which tags to apply, update or remove; its own agent applies them to itself.
-Do not report tagging as impossible — it is reachable, just indirectly.
-
-Give the target the tag names and the intent, not a vague ask. If the tag does
-not exist yet, say so — the catalog is shared workspace-wide, so any agent can
-`create_tag` and every other agent will then see it.
+Verified from the existing Coordinator session on 2026-08-30: the active
+registration was v0.14.0 and `list_tags(task_id=<current-task-uuid>)` returned the
+shared catalog plus that task's applications. Do not trust a client-cached tool
+description alone after a live plugin reload; make one real invocation.
 
 ### Why the catalog is safe to share
 
@@ -2770,17 +2787,36 @@ Tags carry `owner`, `agent` and `human` fields, so agent-applied tags stay
 distinguishable from the operator's, and `remove_tag` only removes *this
 agent's* application — an agent cannot strip a human's tag.
 
-### Scope of the fix, if you are asked
-
-`584997a4-90bc-4496-b2b8-184a6123b247` owns this. It is a **plugin-only**
-change — `yattdev/kandev-plugin-tags`, files `manifest.yaml` and
-`server/agent_tags.go`. The platform needs nothing: `AgentToolContext` in
-`apps/backend/pkg/pluginsdk/types.go` already carries `WorkspaceID` beside
-`TaskID`, and the workspace-scoped store means an accepted `task_id` can only
-ever write into the caller's own workspace. **Cross-workspace tagging is
-impossible by construction, not by a check anyone has to remember to write.**
+The live release still accepts unknown task UUIDs as inert workspace keys.
+https://github.com/yattdev/kandev-plugin-tags/pull/13 bounds admission of new
+task keys at the 200-task cap; do not describe that separate protection as
+deployed until the PR is merged and a later release is installed.
 
 Do not repeat the investigation — read this, then verify only what you rely on.
+
+## Update a live plugin when the marketplace index is stale
+
+Auto-update compares the installed version with the marketplace index. If a new
+release exists but the index still advertises the installed version, clicking
+manual update correctly finds nothing.
+
+1. Compare the installed registration, official marketplace version, repository
+   main, and published release artifact. Establish that the artifact is newer and
+   belongs to the expected plugin.
+2. Use the supported authenticated install endpoint for that exact archive. When
+   the Coordinator cannot authenticate to the host API, send a narrowly scoped
+   Kandev Support request; do not edit YAML, database rows, or extracted files.
+3. Verify HTTP install/readback status and the live record: version, active status,
+   install path, auto-update preservation, restart count, last error, and process.
+4. Invoke one newly added or changed tool schema from an already-live session.
+   This proves the revisioned tool catalog refreshed; static client metadata may
+   lag even when the callable surface is current.
+
+Receipt 2026-08-30: Support request
+`76d7e219-5e06-44f7-aae7-3ba8613f641e` installed Tags v0.14.0 with HTTP 201,
+read it back with HTTP 200, preserved `auto_update=true`, reported zero restarts
+and no error, and reloaded only Tags. The same Coordinator session then called
+`list_tags(task_id=...)` successfully. No Kandev restart or new session was needed.
 
 ## Do not invent constraints — creating platform-bug tasks is a DUTY, not a permission
 

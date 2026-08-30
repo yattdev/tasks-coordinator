@@ -105,6 +105,16 @@ restart because no container carried a restart policy. Host-local curls to the
 LAN IP prove the BIND, not the firewall — ask the operator to confirm one URL
 from another machine and keep that caveat until they do.
 
+The runtime must also survive the task agent parking. A server started inside a
+foreground interactive command can disappear as soon as that command/session is
+reclaimed even though the feature test just passed. Start a persistent Human-QA
+runtime with the task's documented detached/container lifecycle, let the agent
+return to `WAITING_FOR_INPUT`, and then probe localhost and the LAN URL again from
+the receiving Coordinator session. A pre-park 200 or process report alone is not
+a durable handoff. On 2026-08-30 the Notes picker flow passed, but its first
+runtime vanished after parking; the replacement detached process was accepted
+only after both `/health` endpoints returned 200 post-park.
+
 ## Identify which component a control belongs to before filing a defect
 
 A "disabled control" report is not a defect until you confirm WHICH control it is.
