@@ -596,6 +596,31 @@ and pending move together. For a Coordinator-owned approved Todo task, perform
 Todo→Work with the implementation handoff first and verify the Work on-entry
 session starts; do not treat a resumed Spec/old session as equivalent.
 
+## Settle an auto-start-lane move before spawning an extra owner
+
+A manual move into a lane with on-entry auto-start is a lifecycle request, not a
+stable ownership receipt. Source-session completion may still finish the move,
+restart an old writer, or advance the card again. Spawning a gate session during
+that interval can leave two active owners.
+
+1. After requesting the move, read the task's authoritative lifecycle state and
+   complete session census. Do not add a gate session while
+   `manual_move_lifecycle_pending` is present/incomplete or related source-session
+   completion is still settling.
+2. Re-read the physical lane after settlement. Require it to remain the intended
+   lane on that fresh read, and require every prior writer session to be terminal
+   or explicitly parked/non-writing.
+3. If an old authoring session restarts or the lane advances, stop adding owners.
+   Halt or park stale writers only within existing authority, reconcile the actual
+   lane and lifecycle, then repeat the settlement checks.
+4. Only after that barrier, create or accept exactly one intended new owner and
+   verify that session RUNNING with the correct profile/head. Re-read the lane and
+   full session census once more.
+
+The move response and a single lane read are insufficient evidence. The receipt
+is: pending lifecycle absent/completed, physical lane stable after a fresh read,
+all prior writers terminal/parked, and exactly one intended new owner RUNNING.
+
 ## A column move did not create an independent reviewer
 
 Review and QA are evidence gates, not labels. A manual move can leave the

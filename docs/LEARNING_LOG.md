@@ -1966,3 +1966,19 @@ results proactively after one `send`. Dependency reads are also registered expli
 viewpoint-relative so edge changes verify both endpoints.
 
 Files: `README.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, this log.
+
+## 2026-08-31z — auto-start lane moves need a lifecycle-settlement barrier
+
+A manual move into an auto-start lane can return successfully before its move
+lifecycle and the source session's completion have settled. During that window an
+old writer can restart, the lane can advance again, and an eagerly spawned gate
+session can create duplicate active ownership.
+
+The durable barrier is a fresh, complete read: the pending move lifecycle is
+absent or complete, the physical lane remains stable, every prior writer is
+terminal or explicitly parked, and exactly one intended new owner is RUNNING. If
+the old authoring session restarts or the lane changes, halt new fan-out,
+reconcile within existing authority, and establish exactly one fresh owner only
+after settlement. A move response or one lane read is not a stable handoff.
+
+Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, this log.

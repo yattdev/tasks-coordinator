@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-08-31m -->
+<!-- registry-version: 2026-08-31n -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -119,6 +119,12 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Capability** Native related-task read plus exact dependency add/remove; [relation projection procedure](RUNBOOK.md#cross-task-delegation-edges-belong-on-the-dependent-not-the-prerequisite).
 - **Evidence** Both endpoint IDs and their before/after `blockers` and `blocked_by` projections.
 - **Never** Infer edge direction from one projection, or repeat/remove a correct edge because `blocked_by` was mistaken for prerequisites.
+
+### B3e. An auto-start-lane move is still settling
+- **Trigger** A manual move targets an auto-start lane while `manual_move_lifecycle_pending` or related source-session completion is unsettled.
+- **Action** Wait for lifecycle settlement and a stable fresh lane plus complete session census; park or halt stale writers as authorized, then create exactly one intended owner.
+- **Evidence** Pending lifecycle absent/completed, unchanged physical lane on a fresh read, all prior writer sessions terminal/parked, and exactly one intended new owner RUNNING; [settlement procedure](RUNBOOK.md#settle-an-auto-start-lane-move-before-spawning-an-extra-owner).
+- **Never** Treat the move response or one lane read as settlement, spawn a second gate owner during the lifecycle window, or ignore a restarted authoring session/later lane advance.
 
 ### B4. Flagging / unflagging
 - **Trigger** A genuine blocker, anomaly, or frozen loop.
