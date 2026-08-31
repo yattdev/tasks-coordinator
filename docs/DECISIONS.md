@@ -1266,6 +1266,14 @@ serializes every mutation after reconciling receipts. Independent messages are p
 serially only when real helper/profile/tool capacity, a dependency or conflict, or bounded
 startup cost requires it, and that reason is recorded.
 
+Human-facing status has a separate freshness barrier. Helper reports are timestamped
+evidence, not a final board snapshot. After parallel work returns and immediately before
+replying, the Coordinator re-reads the live lane and complete session census for every
+mentioned task, plus provider state when the claim depends on it. A task that advanced
+during the audit is reported from the newer live state and the helper receipt is retained
+only as superseded history. Parallelism reduces latency; the final live reconciliation
+prevents that speedup from producing a late, already-wrong answer.
+
 ## Static logical-backup delivery is narrow source access, not general file copy (2026-08-31)
 
 A task may need an existing logical backup while its registered source database container
