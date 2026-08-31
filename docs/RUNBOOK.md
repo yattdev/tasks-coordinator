@@ -91,12 +91,27 @@ Use progressive disclosure:
 4. `docker kandev source db-dump <listed-container> --target-task <full-uuid> --name <descriptive>.sql`
    only when task data is genuinely required and the target is active in the
    same workspace. Do not target a protected non-Coordinator ToDeploy task.
+5. If the registered source database is stopped and the task explicitly needs
+   the existing logical backup, use `docker kandev source static-backup
+   /data/home/Code/<repo>/last_db.sql --target-task <full-uuid> --name
+   <descriptive>.sql`. This is not general host-file copy: only the exact regular
+   `last_db.sql` directly under a registered same-workspace source root is
+   accepted. Symlinks, non-regular files, arbitrary paths, cross-workspace or
+   inactive targets, and pre-existing destination names fail closed. Delivery is
+   atomic into the task inbox with mode-0700 directory/mode-0600 file.
 
-For every dump, record the broker's exact inbox path, byte count, and SHA-256.
+For every delivered dump or static backup, record the broker's exact inbox path,
+byte count, and SHA-256.
 Send those values to the target task and direct it to verify the hash, import
 only into its isolated Compose database, test, and delete the dump promptly.
 Credentials stay inside the broker; dumps remain sensitive because same-UID
 read confidentiality is not complete. Every request and result is audited.
+
+Verified reference: deployment commit
+`00d6a632e4d4c7f60190a41768ca17cf972c0f22` added `static-backup`, passed the
+full deployment suite plus positive/arbitrary-path/symlink/cross-workspace
+coverage, and delivered a 1,614,696,474-byte task backup with exact SHA-256
+`1fcb706ca86f742f0144418f0ee8ff9d17f1ef425f20ab5ebdf796a45a52a6c6`.
 
 Treat delivery, import, and restore acceptance as three separate receipts:
 

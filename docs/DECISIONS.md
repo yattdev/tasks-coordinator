@@ -1263,6 +1263,20 @@ serializes every mutation after reconciling receipts. Independent messages are p
 serially only when real helper/profile/tool capacity, a dependency or conflict, or bounded
 startup cost requires it, and that reason is recorded.
 
+## Static logical-backup delivery is narrow source access, not general file copy (2026-08-31)
+
+A task may need an existing logical backup while its registered source database container
+is stopped. Requiring a live-container dump in that case leaves no authorized path, while
+granting arbitrary host-file copy would cross the source-access trust boundary.
+
+The reviewed fallback accepts only an exact regular `last_db.sql` directly under a
+registered same-workspace source root, rejects symlinks and path generalization, validates
+an active same-workspace target, and atomically creates a new task-inbox artifact. It
+returns only path, byte count, and SHA-256. The task still owns hash verification,
+unsuppressed isolated import, schema/aggregate checks, feature testing, and prompt artifact
+deletion. Deployment commit `00d6a632e4d4c7f60190a41768ca17cf972c0f22`
+implements and regression-tests this boundary.
+
 ## Gate-owned fixes require a new independent gate (2026-08-31)
 
 Review and QA verdicts are evidence about an immutable head and an independent evaluator.
