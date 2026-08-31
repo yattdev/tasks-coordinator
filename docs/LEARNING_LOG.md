@@ -1889,3 +1889,18 @@ Human-operated surface and named exact-head automation already exercises the tar
 plane; state both the plane and evidence in the handoff.
 
 Files: `docs/RUNBOOK.md`, `docs/QA_INSTANCES.md`, `docs/DECISIONS.md`, this log.
+
+## 2026-08-31u — Compose overrides need a narrow deployment-owned transport
+
+A task's tracked Compose file already accepted isolated database and web ports, but the
+guarded client discarded the command-scoped values before Compose interpolation. The
+mandatory pre-push hook consequently used shared defaults and collided with an occupied
+host port. Ownership mattered: the installed client/broker belonged to the deployment
+repository, so patching upstream product source would have changed the wrong plane.
+
+The persistent repair forwards only `COMPOSE_PROJECT_NAME`, `DB_PORT`, and `WEB_PORT`,
+validates names and port ranges, and keeps every unrelated environment value excluded.
+Independent guarded acceptance must cover valid rendering, sentinel non-disclosure,
+invalid-value rejection, raw-Docker denial, and cleanup before a blocked task resumes.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.

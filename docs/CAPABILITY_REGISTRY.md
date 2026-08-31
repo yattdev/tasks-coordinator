@@ -204,6 +204,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Capability** Task-scoped `docker compose` only, inside its own task scope.
 - **Authority** The task's own. The Coordinator directs; it does not run the task's runtime for it.
 - **Evidence (verified 2026-08-29)** A disposable Alpine Compose service started and its in-volume ready marker was readable; `docker inspect`, `docker exec`, and `docker stop` against an unrelated name each exited 78 with `guarded Docker access supports 'docker compose' only`. The disposable container, network, volume, file, and directory were removed.
+- **Command-scoped interpolation (verified 2026-08-31)** The guard forwards only `COMPOSE_PROJECT_NAME`, `DB_PORT`, and `WEB_PORT` into Compose interpolation. Valid values rendered exact isolated ports `13306`/`18080`; an unrelated sentinel remained absent, an out-of-range port failed closed with exit 78, and direct `docker ps` remained denied with exit 78. Deployment repair: `yattdev/kandev-service` commit `984a27fbdc8124d751bfdde3b8e67f2459c78595`; this is deployment policy, not an upstream `kdlbs/kandev` source change.
 - **Never** Raw daemon or socket access, another Docker binary, bind mounts outside the task root, or an unrelated container. If a read-only direct probe unexpectedly succeeds, stop the negative test before issuing a mutating command and report the boundary regression.
 
 ### D2. The Coordinator needs workspace container data

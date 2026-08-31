@@ -1901,6 +1901,17 @@ named volume, start it through `docker compose up -d`, and prove
 `docker compose exec -T <service> test -f <marker>` succeeds. Record the generated
 project/container identity so the positive evidence is unambiguously task-owned.
 
+The guarded client intentionally forwards only three command-scoped interpolation
+variables: `COMPOSE_PROJECT_NAME`, `DB_PORT`, and `WEB_PORT`. Use them when a task's
+tracked Compose file already supports isolated project and host-port overrides. The
+broker validates project-name syntax and decimal ports in `1..65535`; every other
+environment key stays outside the broker subprocess. Before a hook-backed publication,
+run `docker compose config` once and verify the rendered project and published ports,
+then let the single ordinary `git push` invoke the mandatory hook. Do not run the hook
+separately or bypass it. A valid override that still renders the default port, an
+accepted invalid port, or a leaked sentinel is a deployment-guard regression for one
+deduplicated Kandev Support incident.
+
 Then test the negative boundary sequentially:
 
     docker inspect <unrelated-name>

@@ -1218,3 +1218,18 @@ not make executor-container behavior irrelevant, and an executor-only change doe
 justify manufacturing a second control-plane runtime. `TEST_RUNTIME=NONE` is correct
 when there is no persistent Human-operated surface and exact-head automated evidence
 exercises the target plane.
+
+## Compose interpolation uses a narrow deployment-owned environment channel (2026-08-31)
+
+Task-scoped Compose originally stripped every command-scoped environment override. A
+repository that already interpolated isolated database and web ports therefore fell
+back to shared defaults, and its mandatory pre-push hook collided with an occupied host
+port. The defect was not in upstream `kdlbs/kandev`; the installed client and broker are
+owned by the deployment-only `yattdev/kandev-service` repository.
+
+The durable boundary forwards exactly `COMPOSE_PROJECT_NAME`, `DB_PORT`, and `WEB_PORT`.
+Project names are syntax-checked, ports must be decimal values in `1..65535`, and every
+other key remains excluded. Independent guarded acceptance proved exact valid rendering,
+sentinel non-disclosure, invalid-port rejection, and unchanged raw-Docker denial. This
+preserves task isolation while allowing tracked Compose files and mandatory hooks to use
+collision-free task ports; it does not authorize arbitrary environment transport.
