@@ -1250,6 +1250,19 @@ after that task-side acceptance passes and the remote/local preservation receipt
 the earlier attempt did not publish. Deployment commit
 `f6fece0e7bdc84f459c59af0236672afc8b36f46` implements and regression-tests this rule.
 
+## Independent queued work uses all safe parallel capacity (2026-08-31)
+
+Queued Coordinator messages are latency-sensitive and independent task families do not
+benefit from serial inspection. The earlier default of roughly two helpers was a
+conservative operating limit, not a safety boundary, and could leave safe capacity idle.
+
+The Coordinator now fills every safely available helper slot from one frozen ordered
+snapshot when two or more independent slices exist. Task, PR, dependency, and shared-state
+overlap still force one owner; helpers remain read-only by default; and the primary still
+serializes every mutation after reconciling receipts. Independent messages are processed
+serially only when real helper/profile/tool capacity, a dependency or conflict, or bounded
+startup cost requires it, and that reason is recorded.
+
 ## Gate-owned fixes require a new independent gate (2026-08-31)
 
 Review and QA verdicts are evidence about an immutable head and an independent evaluator.

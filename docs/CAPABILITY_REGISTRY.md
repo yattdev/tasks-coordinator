@@ -49,7 +49,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 
 ### A4. Delegating bounded evidence gathering
 - **Trigger** Every turn with at least two independent inbound messages or parallelizable evidence requests.
-- **Action** Proactively start at most ~2 concurrent helpers from one ordered snapshot. Partition by full task UUID and dependency/PR family; give disjoint named slices and stop conditions; keep helpers read-only. The primary deduplicates receipts and serializes all mutations.
+- **Action** Proactively fill all safely available helper capacity from one ordered snapshot. Partition by full task UUID and dependency/PR family; give disjoint named slices and stop conditions; keep helpers read-only. The primary deduplicates receipts and serializes all mutations. Process independent queued work serially only when capacity, conflicts, dependencies, or bounded startup cost require it, and record that reason.
 - **Authority** Coordinator-decidable; the primary keeps all accountability. High-risk, destructive, credential, integration/history, human-escalation, and Done cleanup decisions stay with the primary.
 - **Evidence** Helper session IDs plus their evidence recorded in the cycle log.
 - **Never** Wait for queue pressure before parallelizing independent work. Never assign one task/shared decision to two slices, leave helpers polling between wakes, let a helper produce human-facing reports, or allow parallel mutations.

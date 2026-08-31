@@ -2352,9 +2352,11 @@ the queued messages prove it never had the chance to respond.
 
 The session queue has a hard capacity of 15. Parallel management starts before
 pressure: on every turn, census the queue after bootstrap. When at least two
-independent messages exist, start up to two read-only helpers from one immutable
-ordered snapshot. Keep a single message or a tightly coupled decision set with
-the primary.
+independent messages exist, fill all safely available helper capacity from one
+immutable ordered snapshot. Keep a single message or a tightly coupled decision
+set with the primary. Do not impose an arbitrary two-helper ceiling: capacity,
+conflict-free ownership, dependencies, and bounded startup cost are the limits.
+When independent work is handled serially, record which limit required it.
 
 1. Capture the ordered entry IDs and contents before acting.
 2. Partition by full task UUID and dependency/PR family. No task, PR, dependency,
