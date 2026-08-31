@@ -1228,11 +1228,14 @@ port. The defect was not in upstream `kdlbs/kandev`; the installed client and br
 owned by the deployment-only `yattdev/kandev-service` repository.
 
 The durable boundary forwards exactly `COMPOSE_PROJECT_NAME`, `DB_PORT`, and `WEB_PORT`.
-Project names are syntax-checked, ports must be decimal values in `1..65535`, and every
-other key remains excluded. Independent guarded acceptance proved exact valid rendering,
-sentinel non-disclosure, invalid-port rejection, and unchanged raw-Docker denial. This
-preserves task isolation while allowing tracked Compose files and mandatory hooks to use
-collision-free task ports; it does not authorize arbitrary environment transport.
+Ports must be decimal values in `1..65535`, and every other key remains excluded.
+Forwarding the project variable does not delegate project selection: the broker-derived
+`kd_<task-hash>` identity remains authoritative, so an arbitrary caller value resolving
+to that identity is expected and must not block publication. Independent guarded
+acceptance proved exact valid rendering, sentinel non-disclosure, invalid-port rejection,
+and unchanged raw-Docker denial. This preserves task isolation while allowing tracked
+Compose files and mandatory hooks to use collision-free task ports; it does not authorize
+arbitrary environment transport or project ownership.
 
 ## Guarded long-output delivery is part of command correctness (2026-08-31)
 

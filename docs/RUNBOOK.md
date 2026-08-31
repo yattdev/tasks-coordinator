@@ -1973,13 +1973,16 @@ project/container identity so the positive evidence is unambiguously task-owned.
 The guarded client intentionally forwards only three command-scoped interpolation
 variables: `COMPOSE_PROJECT_NAME`, `DB_PORT`, and `WEB_PORT`. Use them when a task's
 tracked Compose file already supports isolated project and host-port overrides. The
-broker validates project-name syntax and decimal ports in `1..65535`; every other
-environment key stays outside the broker subprocess. Before a hook-backed publication,
-run `docker compose config` once and verify the rendered project and published ports,
-then let the single ordinary `git push` invoke the mandatory hook. Do not run the hook
-separately or bypass it. A valid override that still renders the default port, an
-accepted invalid port, or a leaked sentinel is a deployment-guard regression for one
-deduplicated Kandev Support incident.
+broker validates decimal ports in `1..65535`; every other environment key stays outside
+the broker subprocess. Project identity remains broker-derived: use the rendered
+`kd_<task-hash>` value as authoritative, and never require or attempt an arbitrary
+human-selected project name. Before a hook-backed publication, run `docker compose
+config` once and verify the derived project and published ports, then let the single
+ordinary `git push` invoke the mandatory hook. Do not run the hook separately or bypass
+it. A valid port override that still renders the default port, an accepted invalid port,
+or a leaked sentinel is a deployment-guard regression for one deduplicated Kandev
+Support incident. A requested arbitrary project name resolving to the derived task
+identity is expected isolation behavior, not a regression.
 
 When a long guarded Compose command finishes its inner work but the client reports
 `BlockingIOError: [Errno 11] write could not complete without blocking`, do not retry the
