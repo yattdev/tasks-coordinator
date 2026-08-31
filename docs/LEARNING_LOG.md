@@ -1904,3 +1904,31 @@ Independent guarded acceptance must cover valid rendering, sentinel non-disclosu
 invalid-value rejection, raw-Docker denial, and cleanup before a blocked task resumes.
 
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
+
+## 2026-08-31v — a gate agent cannot certify its own fix
+
+A QA turn found a real in-scope defect, added a regression, pushed the correction, and
+reported `QA_RESULT = PASSED` while also routing back to Review. The fix and local tests
+were valid, but the verdict was not: the successor head had been authored by the gate
+turn and had not received independent Review or QA.
+
+The durable rule binds every gate receipt to an immutable head and an independent turn.
+A gate-owned change is implementation evidence. It withdraws PASS/readiness for the new
+head, routes through fresh Review, and reruns QA when QA still applies. Changed-tree
+backward routing is expected and must not be bypassed as a workflow replay.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
+
+## 2026-08-31w — a proposal cannot approve itself
+
+A detailed linked architecture issue contained a recommendation, rationale, boundary
+mapping, and decision record, but every word was authored by the contributor and no
+maintainer had responded. Treating the link as “architecture discussion complete” would
+have converted self-documentation into external approval.
+
+The general rule is principal-bound: when repository policy requires maintainer or
+architecture approval, require a substantive response from that named authority and
+record its author, URL, timestamp, and answered scope. Board-level Coordinator authority
+does not impersonate an upstream maintainer or waive the repository's policy gate.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.

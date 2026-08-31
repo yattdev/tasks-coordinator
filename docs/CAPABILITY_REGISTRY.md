@@ -131,8 +131,8 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Trigger** Any open draft.
 - **Action** Treat draft as routine provider metadata, not a defect or approval question. Evaluate the readiness gate before routing to Review; direct the TASK AGENT to make a qualified PR ready. Only a credential-blocked *mechanical* draft→ready is the Coordinator's to perform, after independently verifying the full receipt. Strict universal order: execute ready transition → verify provider readback is non-draft at the unchanged head → refresh and settle post-ready gates → only then request or notify the reviewer.
 - **Capability** [Turn a draft PR/MR ready through its task agent](RUNBOOK.md#turn-a-draft-prmr-ready-through-its-task-agent).
-- **Evidence** Canonical PR URL + exact clean pushed upstream-matched head; fresh exact-head CI census before and after the ready transition (including any newly triggered `pull_request` jobs); zero unresolved threads; visual evidence for visual changes.
-- **Never** Ask for confirmation merely because the PR is draft, report draft status itself as a blocker/defect, or send any review request/mention/assignment/notification while provider state is draft. Never notify from the draft-era check snapshot: marking ready can start new required workflows. Never merge, rebase, deploy, treat ready-for-review as acceptance, or become the implementer.
+- **Evidence** Canonical PR URL + exact clean pushed upstream-matched head; fresh exact-head CI census before and after the ready transition (including any newly triggered `pull_request` jobs); zero unresolved threads; visual evidence for visual changes. A repository-policy gate requiring maintainer or architecture approval needs a substantive response authored by that named authority; the contributor's own issue, PR body, checklist, or recommendation is only a proposal.
+- **Never** Ask for confirmation merely because the PR is draft, report draft status itself as a blocker/defect, or send any review request/mention/assignment/notification while provider state is draft. Never count a self-authored proposal as external approval. Never notify from the draft-era check snapshot: marking ready can start new required workflows. Never merge, rebase, deploy, treat ready-for-review as acceptance, or become the implementer.
 
 ### B7. PR/MR identity
 - **Trigger** Any use of checks, reviews, or mergeability as evidence.
@@ -150,6 +150,13 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Action** Diagnose task, all sessions, conversation, pending queue, workspace loading, backend error, then take exactly one matching action. RUNNING → leave alone. Terminal/unconsumed → one fresh session with the original handoff. Workspace-start failure → route to its repair owner.
 - **Capability** [Follow up on delegated requests](RUNBOOK.md#follow-up-on-delegated-requests-and-rate-limited-sessions).
 - **Never** Treat `sent`, `queued`, or `WAITING_FOR_INPUT` as completion; never resend because transport returned success.
+
+### B9a. A Review or QA gate changes the deliverable
+- **Trigger** A gate agent edits, commits, or pushes code, tests, documentation, generated artifacts, or other reviewable deliverable content while evaluating it.
+- **Action** Preserve the finding and fix as implementation evidence, withdraw the gate PASS for the new head, route through fresh independent Review, then rerun QA when QA still applies. Bind every later receipt to the successor head and a different independent gate turn.
+- **Capability** [A Review or QA gate changed the deliverable it was auditing](RUNBOOK.md#a-review-or-qa-gate-changed-the-deliverable-it-was-auditing).
+- **Evidence** Exact pre-fix and successor heads, additive pushed fix, focused validation, physical lane readback, and fresh independent session/profile/head receipt.
+- **Never** Let the same gate turn author a fix and certify its own successor head, or label local post-fix checks as final Review/QA PASS.
 
 ### B10. Done-column integrity
 - **Trigger** Every cycle; deeply for new/changed/unreceipted/suspicious Done tasks.

@@ -589,6 +589,60 @@ direct parent may stop that turn. The direct parent then starts a fresh gate
 session and returns its ID plus a PASS/BLOCKER receipt. Never infer independence
 from the workflow column alone.
 
+## A Review or QA gate changed the deliverable it was auditing
+
+A gate result is evidence about one immutable head. If the Review or QA agent
+changes any reviewable deliverable while evaluating it, the successor head has
+not passed that gate: the same turn became an author for the fix and cannot be
+its own independent reviewer.
+
+Handle a gate-owned fix as implementation, even when it is narrow and all local
+tests pass:
+
+1. Record the finding, pre-fix head, changed paths, successor head, and focused
+   validation. Push additively without rewriting published history.
+2. Withdraw any PASS/readiness claim for the successor head. Use wording such as
+   `finding fixed; fresh Review required`, not `QA passed`.
+3. Route the task to the narrowest prior gate required by the workflow and
+   reconcile its agent tag. For a QA change, this is normally fresh Review
+   first, followed by fresh QA when QA still applies.
+4. Verify a fresh independent session ID/profile audits the exact successor
+   head. Re-run exact-head CI and thread checks after the push.
+5. Only the fresh independent turn may return PASS for that head. Local tests
+   from the fixing turn remain useful implementation evidence, not independent
+   gate evidence.
+
+This is distinct from an unchanged-tree pending-move replay: changed tree means
+the backward gate transition is expected. Never forward-move around it merely
+because the fix came from a gate agent.
+
+## A linked proposal is not external approval
+
+Some repositories require a maintainer discussion, architecture decision, or
+other named external authority before a PR may become ready. A link proves that
+the issue or document exists; it does not prove the required discussion or
+decision occurred. The contributor's own issue body, PR checklist, recommendation,
+or “decision record” remains a proposal even when it is detailed and technically
+sound.
+
+For every such gate:
+
+1. Identify the approving principal from repository policy, ownership, or the
+   explicit review requirement.
+2. Read the full discussion without truncation and record the authoritative
+   response author, timestamp, URL, and the concrete questions it answers.
+3. Require a substantive response from that principal. A reaction, link-only
+   comment, bot echo, or contributor-authored summary is insufficient.
+4. Bind the approval to the current scope/head. If later changes materially alter
+   the approved boundary, obtain renewed discussion before readiness.
+5. Keep the PR draft and record the exact missing authority evidence while the
+   response is absent. Do not convert the Coordinator's board approval authority
+   into a claim that an upstream repository maintainer approved its architecture.
+
+Board authorization and external repository approval are different domains:
+the Coordinator can direct ordinary same-workspace work, but it cannot impersonate
+the named upstream decision-maker or waive that repository's policy gate.
+
 ## Review evidence exists, but the task has not traversed the gate
 
 An independent audit performed while a task is still physically in Work is

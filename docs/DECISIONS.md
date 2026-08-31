@@ -1233,3 +1233,29 @@ other key remains excluded. Independent guarded acceptance proved exact valid re
 sentinel non-disclosure, invalid-port rejection, and unchanged raw-Docker denial. This
 preserves task isolation while allowing tracked Compose files and mandatory hooks to use
 collision-free task ports; it does not authorize arbitrary environment transport.
+
+## Gate-owned fixes require a new independent gate (2026-08-31)
+
+Review and QA verdicts are evidence about an immutable head and an independent evaluator.
+When a gate agent changes the reviewable deliverable, the successor head lacks a valid
+independent verdict: the gate turn became an author, and every prior exact-head receipt
+was invalidated by the push. Focused post-fix tests remain implementation evidence but
+cannot substitute for an independent PASS.
+
+The task therefore returns to fresh independent Review and then fresh QA when QA still
+applies. This is the expected changed-tree re-review path, not a routing defect. The rule
+prevents a narrow gate-owned correction from silently collapsing authoring, review, and
+QA into one self-certifying turn.
+
+## External approval evidence is principal-bound (2026-08-31)
+
+A repository policy that requires maintainer discussion or architecture approval names
+an authority domain outside ordinary board coordination. A contributor-authored issue,
+PR body, checklist, recommendation, or local decision record proves a proposal exists;
+it does not prove that the named authority reviewed or approved it.
+
+The readiness gate requires a substantive response authored by the approving principal,
+with a durable URL, timestamp, and scope/questions answered. The Coordinator remains the
+approval principal for ordinary same-workspace actions, but that grant cannot impersonate
+an upstream maintainer or waive an external repository's policy. Material scope changes
+after the response require renewed evidence.
