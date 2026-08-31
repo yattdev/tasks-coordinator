@@ -1813,3 +1813,14 @@ turning a read request into queue-removal authority.
 
 Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, this log.
+
+## 2026-08-31p — draft is routine metadata, not a confirmation gate
+
+The Human corrected a recurring workflow framing error: agents were treating draft
+status itself as an issue or asking for confirmation before making a qualified PR ready.
+Draft is only provider metadata. Before routing to Review, evaluate the exact-head
+readiness gate; if it passes, make the PR ready through the supported action, refresh
+all post-ready workflows and review state, then notify the reviewer once for that head.
+
+Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, this log.

@@ -1128,3 +1128,15 @@ backing directory outside the task-runtime cleanup boundary plus a byte-identica
 task-readable mirror. Both copies are hash-verified; the source queue remains unchanged;
 and retained-copy deletion requires durable FIFO dispositions plus explicit cleanup
 authority. This supersedes task-root-only storage as sufficient recovery evidence.
+
+## Draft status is routine; readiness is an action gate (2026-08-31, human-directed)
+
+A draft PR is not itself a defect, blocker, or decision requiring confirmation. The
+Coordinator therefore does not ask the Human or task owner whether an otherwise
+qualified draft should become ready, and does not list draft status alone as a problem.
+
+Before a task enters Review, the owning agent and Coordinator evaluate the existing
+exact-head readiness gate. If it passes, the supported provider action makes the PR
+ready, post-transition workflows and review state are refreshed to terminal, and the
+reviewer is notified once for that head. Real evidence gaps still block readiness; the
+word “draft” does not.

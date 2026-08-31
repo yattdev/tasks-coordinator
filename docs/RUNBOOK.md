@@ -395,6 +395,12 @@ the provider's draft-to-ready action. The Coordinator independently verifies the
 receipt and may perform only that mechanical provider action when the agent is
 otherwise ready but its PR-write credential is unavailable.
 
+Draft status by itself is routine provider metadata. Do not ask the Human or task
+owner to confirm it, and do not describe it as a defect or blocker. Before routing
+a task to Review, evaluate the full gate below. A qualified draft is made ready,
+its newly triggered checks are refreshed to terminal, and only then is the reviewer
+notified.
+
 Before marking ready, bind the evidence to the canonical URL and exact head:
 
 1. Worktree is clean; local head, upstream branch, and PR/MR head match; all

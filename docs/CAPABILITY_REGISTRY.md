@@ -122,10 +122,10 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 
 ### B6. Open draft PR/MR in monitored scope
 - **Trigger** Any open draft.
-- **Action** Evaluate the readiness gate; direct the TASK AGENT to make it ready. Only a credential-blocked *mechanical* draft→ready is the Coordinator's to perform, after independently verifying the full receipt.
+- **Action** Treat draft as routine provider metadata, not a defect or approval question. Evaluate the readiness gate before routing to Review; direct the TASK AGENT to make a qualified PR ready. Only a credential-blocked *mechanical* draft→ready is the Coordinator's to perform, after independently verifying the full receipt. Refresh post-ready gates, then notify the reviewer.
 - **Capability** [Turn a draft PR/MR ready through its task agent](RUNBOOK.md#turn-a-draft-prmr-ready-through-its-task-agent).
 - **Evidence** Canonical PR URL + exact clean pushed upstream-matched head; fresh exact-head CI census before and after the ready transition (including any newly triggered `pull_request` jobs); zero unresolved threads; visual evidence for visual changes.
-- **Never** Notify from the draft-era check snapshot: marking ready can start new required workflows. Never merge, rebase, deploy, treat ready-for-review as acceptance, or become the implementer.
+- **Never** Ask for confirmation merely because the PR is draft, report draft status itself as a blocker/defect, or notify from the draft-era check snapshot: marking ready can start new required workflows. Never merge, rebase, deploy, treat ready-for-review as acceptance, or become the implementer.
 
 ### B7. PR/MR identity
 - **Trigger** Any use of checks, reviews, or mergeability as evidence.
