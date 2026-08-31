@@ -1163,3 +1163,24 @@ physical lane, complete session IDs/states/`updated_at`, and read time. Any rele
 lane/session change before contact expires the result and requires a new exact-scope
 read. This is deliberately conservative until task contact and exact pending-transition
 handling share one atomic domain operation.
+
+## Kandev Support is incident-only, not a coordination dependency (2026-08-31, human-directed)
+
+Repeated Support requests expanded from genuine host recovery into routine
+`pending_moves` reads before ordinary messages, moves, and wake replies. Each request was
+read-only and narrowly scoped, but the repetition was not proportionate: it turned a
+reviewed escalation path into a dependency of normal board coordination.
+
+The Human confirmed that Support remains authorized when a genuine platform issue cannot
+be resolved through normal tools, a bounded retry, or documented fallbacks, and corrected
+the excessive frequency. Support is now one deduplicated request per root platform/host
+incident, with exact tasks batched where useful. It is not a routine metadata proxy and
+session activity alone does not justify another request.
+
+When direct pending-move inspection is unavailable, ordinary stable same-lane contact
+uses live lane plus complete session-census evidence and immediate post-action
+verification. Support is reserved for concrete high-risk evidence such as a known row,
+an unexplained transition, inconsistent projections, corrupted workflow state, or danger
+to Done, Blocked, or unique state. This supersedes the per-contact application of the
+point-in-time preflight rule while retaining that rule whenever a direct preflight is
+actually available.

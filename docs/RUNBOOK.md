@@ -1519,10 +1519,28 @@ Do not go looking for a credential to work around that; use the broker.
 
 ## Escalating an environment blocker to Kandev Support (host Codex agent)
 
-Scope: host/container environment problems only — missing tools or dependencies,
-permission/access failures, unavailable host capabilities, missing Android
-emulator/device support, and similar limits that stop a task proceeding. **Not**
-for missing Kandev product features; those are board tasks.
+Scope: genuine unresolved platform/host incidents only — missing tools or
+dependencies, permission/access failures, unavailable host capabilities,
+corrupted mounts or persistent state, and similar limits that stop safe progress
+after normal task tools, one bounded retry, and documented fallbacks have been
+exhausted. **Not** for routine metadata reads, task messages or moves, CI/review
+work, wake replies, Coordinator-decidable questions, or missing Kandev product
+features; those stay in ordinary board coordination.
+
+Support is incident-based, not action-based. Give each root incident a stable
+deduplication key, search the live plan for an open request with that key, and
+send at most one unchanged request. Aggregate exact affected tasks when doing so
+preserves scope and reduces round trips. A target session changing state does
+not create a new incident by itself.
+
+In particular, do not use Support as a per-contact `pending_moves` query proxy.
+When no direct task-scoped pending-move capability exists, reserve one Support
+incident for concrete high-risk evidence: a known/prior row, unexplained lane
+transition, inconsistent projections, corrupted workflow state, or a proposed
+action that could endanger Done, Blocked, or unique state and cannot safely be
+deferred. For stable same-lane coordination without such evidence, inspect the
+live lane and complete session census, act narrowly, verify immediately, and log
+the missing direct capability once.
 
 Support identity: `Kandev Support — Codex`, stable thread
 `01a043b4-fe52-7020-94bb-de94e72f8a07`, host working directory

@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-08-30j -->
+<!-- registry-version: 2026-08-31k -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -256,9 +256,9 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 
 ## G. Contacting autonomous Kandev Support
 
-### G1. An environment blocker stops a task
-- **Trigger** Missing tool/dependency, permission or access failure, unavailable host capability, absent emulator/device support, or a similar host/container limit.
-- **Action** Contact Support **yourself**, autonomously. Write a JSON request with four non-empty strings: `problem`, `evidence`, `expected_outcome`, `security_constraints`.
+### G1. A genuine unresolved platform/host incident stops safe progress
+- **Trigger** A concrete platform/host failure remains after normal task tools, one bounded retry, and documented safe fallbacks: for example a missing dependency, permission/access failure, unavailable host capability, corrupted mount/persistent state, or absent emulator/device support.
+- **Action** Deduplicate by root incident, aggregate exact affected tasks where useful, then contact Support **yourself** once. Write a JSON request with four non-empty strings: `problem`, `evidence`, `expected_outcome`, `security_constraints`.
 - **Capability**
   ```
   docker kandev support send <request.json>      # -> {"request_id": "...", "status": "queued"}
@@ -266,9 +266,9 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
   docker kandev support receive <request-id>     # -> full host-side Codex transcript
   ```
   Full procedure, schema, and gotchas: [Escalating an environment blocker](RUNBOOK.md#escalating-an-environment-blocker-to-kandev-support-host-codex-agent).
-- **Authority** Standing. No Human relay for a routine request.
+- **Authority** Standing for a qualifying unresolved incident. No Human relay is required.
 - **Evidence** `returncode: 0` plus a genuine assistant reply in `receive`.
-- **Never** Use `codex exec resume` directly (it cannot work from a container); ask the Human to relay; target the support thread as a Kandev task/session; expose host `~/.codex`; or claim a delivery mechanism you have not exercised.
+- **Never** Use Support for routine metadata/preflight reads, ordinary messages or moves, CI/review work, wake replies, missing product features, or Coordinator-decidable questions; create one request per contact/session-state change; use `codex exec resume` directly; ask the Human to relay; target the support thread as a Kandev task/session; expose host `~/.codex`; or claim a delivery mechanism you have not exercised.
 
 ### G2. Composing the request
 - **Action** Put the affected task/session ID inside `problem` or `evidence`. Pass the file path relative to the **coordinator task root** (e.g. `coordinator/support-request.json`) or absolute — a path relative to your shell cwd is the common failure.

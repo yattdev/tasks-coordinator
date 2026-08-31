@@ -1839,3 +1839,21 @@ fields never replace the authoritative row read.
 
 Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, this log.
+
+## 2026-08-31r — Support is one request per unresolved platform incident
+
+The Human identified that Support traffic had become excessive. The Coordinator was
+opening a new read-only `pending_moves` request before many routine task contacts because
+the direct capability was unavailable and earlier point-in-time results expired after
+session activity. Those requests were safe individually but not operationally relevant
+as separate escalations.
+
+Support is now incident-based and deduplicated: exhaust normal tools, one bounded retry,
+and documented fallbacks; then send one request for a genuine unresolved platform/host
+root cause, batching exact tasks where useful. Routine messages, moves, wake replies,
+CI/review work, and metadata reads do not qualify. Without direct pending-move access,
+stable same-lane coordination uses a complete live session census and immediate
+verification; only concrete high-risk state evidence merits Support.
+
+Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, this log.
