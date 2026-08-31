@@ -2390,6 +2390,14 @@ set with the primary. Do not impose an arbitrary two-helper ceiling: capacity,
 conflict-free ownership, dependencies, and bounded startup cost are the limits.
 When independent work is handled serially, record which limit required it.
 
+Human clarification 2026-08-31: “manage queue messages in parallel” means spawn
+multiple sub-agents/helpers with disjoint queue-family slices in the same turn.
+Concurrent tool calls, Promise batching, or fast serial processing by the primary
+do not satisfy this requirement. With at least two independent families and two
+available helper slots, start multiple helpers immediately and keep at most one
+slice with the primary. If that cannot happen, name the concrete capacity,
+dependency, or conflict reason in the cycle log.
+
 1. Capture the ordered entry IDs and contents before acting.
 2. Partition by full task UUID and dependency/PR family. No task, PR, dependency,
    or shared decision may appear in two slices. New arrivals remain primary-owned
