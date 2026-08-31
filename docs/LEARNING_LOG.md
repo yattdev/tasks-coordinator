@@ -1506,9 +1506,9 @@ Files: `docs/LEARNING_LOG.md`.
 
 The first successful queue split used two read-only helpers only after the
 Coordinator had reached 15/15 messages. The mechanism worked, but the timing was
-reactive. The operator corrected it: on every turn, census the current session
-queue and fill all safely available helper capacity whenever two or more independent
-items exist.
+reactive, and that historical two-helper ceiling is superseded. The operator
+corrected it: on every turn, census the current session queue and fill all safely
+available helper capacity whenever two or more independent items exist.
 
 Efficiency without conflicts comes from the assignment boundary: one immutable
 snapshot, disjoint full task UUID/dependency families, read-only helpers, and one
