@@ -401,6 +401,14 @@ a task to Review, evaluate the full gate below. A qualified draft is made ready,
 its newly triggered checks are refreshed to terminal, and only then is the reviewer
 notified.
 
+This sequence is universal and non-commutative for every PR and MR: execute the
+supported ready-for-review transition; read the canonical provider state back and
+prove `isDraft=false` at the unchanged exact head; refresh and settle the post-ready
+checks, threads, and mergeability; only then send a review request, reviewer
+assignment, mention, or notification. A draft reviewer request is not a harmless
+early nudge—it may not be delivered. If any earlier step fails, stop before contact
+and repair or record that exact readiness/provider blocker.
+
 Before marking ready, bind the evidence to the canonical URL and exact head:
 
 1. Worktree is clean; local head, upstream branch, and PR/MR head match; all

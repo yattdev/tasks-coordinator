@@ -1140,3 +1140,13 @@ exact-head readiness gate. If it passes, the supported provider action makes the
 ready, post-transition workflows and review state are refreshed to terminal, and the
 reviewer is notified once for that head. Real evidence gaps still block readiness; the
 word “draft” does not.
+
+## Reviewer requests require verified ready state (2026-08-31, human-directed)
+
+For every repository, PR, MR, reviewer, and Review routing path, reviewer contact has
+one strict ordering: execute the supported draft-to-ready transition, verify provider
+readback is non-draft at the unchanged exact head, refresh and settle post-ready gates,
+then request or notify the reviewer. No request, assignment, mention, or notification
+is sent while provider state remains draft because draft review notifications may not
+reach the reviewer. Failure to transition or verify ready state is a readiness/provider
+blocker to repair, never permission to notify early.
