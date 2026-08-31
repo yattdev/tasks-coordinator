@@ -1433,6 +1433,12 @@ criterion "delegated" only in prose is not mechanically enforced:
 dependent, or track the delegation explicitly in coordinator state and the report;
 do not assume a prose handoff is visible on the board.
 
+The read projection names the two directions from the queried task's viewpoint:
+`blockers` are its prerequisites, while `blocked_by` are downstream tasks that
+depend on it. Therefore A showing `blockers=[]` and `blocked_by=[B]`, paired with B
+showing `blockers=[A]`, proves the correctly oriented edge B depends on A; do not
+"repair" that healthy projection by removing it again.
+
 
 ## Verify a resumed Human-QA task stayed inside the phase boundary
 

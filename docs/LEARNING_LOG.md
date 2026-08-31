@@ -1932,3 +1932,18 @@ record its author, URL, timestamp, and answered scope. Board-level Coordinator a
 does not impersonate an upstream maintainer or waive the repository's policy gate.
 
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
+
+## 2026-08-31x — dependency relation fields are viewpoint-relative
+
+An edge-correction receipt appeared to disagree with `list_related_tasks_kandev`
+because the read projection's `blocked_by` field was mistaken for the queried task's
+prerequisites. Source verification showed the inverse: `blockers` are prerequisites of
+the queried task, while `blocked_by` are its downstream dependents. The mutation receipt
+and both read projections were therefore consistent, and an idempotent removal retry was
+unnecessary but harmless.
+
+Read both task projections and interpret each field from the queried task's viewpoint
+before changing an edge. This prevents a correctly oriented dependency from being
+misclassified as a persistence defect or removed in the wrong direction.
+
+Files: `docs/RUNBOOK.md`, this log.
