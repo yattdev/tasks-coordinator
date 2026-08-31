@@ -1966,6 +1966,18 @@ separately or bypass it. A valid override that still renders the default port, a
 accepted invalid port, or a leaked sentinel is a deployment-guard regression for one
 deduplicated Kandev Support incident.
 
+When a long guarded Compose command finishes its inner work but the client reports
+`BlockingIOError: [Errno 11] write could not complete without blocking`, do not retry the
+hook or push. Preserve the exact output and remote-head receipt, then route one
+deduplicated deployment Support incident. After repair, accept the capability from the
+preserved task worktree with a bounded multi-megabyte stream whose inner command exits a
+deliberate non-zero status; require the outer guarded command to return that exact status
+without `BlockingIOError`. Recheck that `/var/run/docker.sock` is absent and a direct
+`docker ps` still fails closed. Only after those checks may one newly authorized ordinary
+push run. Deployment commit `f6fece0e7bdc84f459c59af0236672afc8b36f46` is the verified
+reference implementation: it retries nonblocking `EAGAIN` writes until both output
+streams drain while preserving the inner Compose return code.
+
 Then test the negative boundary sequentially:
 
     docker inspect <unrelated-name>

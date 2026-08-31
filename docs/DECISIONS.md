@@ -1234,6 +1234,22 @@ sentinel non-disclosure, invalid-port rejection, and unchanged raw-Docker denial
 preserves task isolation while allowing tracked Compose files and mandatory hooks to use
 collision-free task ports; it does not authorize arbitrary environment transport.
 
+## Guarded long-output delivery is part of command correctness (2026-08-31)
+
+A guarded Compose command can complete its inner test suite successfully yet still fail
+the enclosing hook when the client writes a large response to a nonblocking terminal and
+treats `EAGAIN` as fatal. The resulting Git failure is not evidence that tests or the
+remote rejected the change; retrying the push repeats expensive work and can obscure the
+actual platform defect.
+
+The durable boundary is that the guarded client must drain stdout and stderr completely,
+retry nonblocking writes after writability, and return the inner Compose exit status.
+Acceptance therefore uses a deliberately large stream plus a deliberate non-zero inner
+exit and separately rechecks raw-Docker denial. A task may resume one ordinary push only
+after that task-side acceptance passes and the remote/local preservation receipt proves
+the earlier attempt did not publish. Deployment commit
+`f6fece0e7bdc84f459c59af0236672afc8b36f46` implements and regression-tests this rule.
+
 ## Gate-owned fixes require a new independent gate (2026-08-31)
 
 Review and QA verdicts are evidence about an immutable head and an independent evaluator.
