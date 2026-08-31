@@ -1507,7 +1507,8 @@ Files: `docs/LEARNING_LOG.md`.
 The first successful queue split used two read-only helpers only after the
 Coordinator had reached 15/15 messages. The mechanism worked, but the timing was
 reactive. The operator corrected it: on every turn, census the current session
-queue and use up to two helpers whenever two or more independent items exist.
+queue and fill all safely available helper capacity whenever two or more independent
+items exist.
 
 Efficiency without conflicts comes from the assignment boundary: one immutable
 snapshot, disjoint full task UUID/dependency families, read-only helpers, and one
@@ -1947,3 +1948,21 @@ before changing an edge. This prevents a correctly oriented dependency from bein
 misclassified as a persistence defect or removed in the wrong direction.
 
 Files: `docs/RUNBOOK.md`, this log.
+
+## 2026-08-31y — replacement and parallel evidence need readback barriers
+
+A successful full-content plan update once concealed a truncated replacement until a
+prior read receipt restored it. The durable rule is transactional in practice: retain
+the exact full pre-write plan, read the result back immediately, verify identity,
+anchors, and completeness, and restore the exact prior content on any mismatch. Never
+reconstruct lost normative state from memory.
+
+The same audit found several operational documents lagging behind binding policy. Queue
+helpers now feed a fresh live task/session/provider read before any action or human-facing
+result; missing queue-removal capability leaves rows intact instead of delegating one-off
+removal to Support; guarded same-workspace recovery may replace a proven stale,
+non-consuming session without creating concurrent writers; and Support normally delivers
+results proactively after one `send`. Dependency reads are also registered explicitly as
+viewpoint-relative so edge changes verify both endpoints.
+
+Files: `README.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, this log.

@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-08-31l -->
+<!-- registry-version: 2026-08-31m -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -49,14 +49,14 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 
 ### A4. Delegating bounded evidence gathering
 - **Trigger** Every turn with at least two independent inbound messages or parallelizable evidence requests.
-- **Action** Proactively fill all safely available helper capacity from one ordered snapshot. Partition by full task UUID and dependency/PR family; give disjoint named slices and stop conditions; keep helpers read-only. The primary deduplicates receipts and serializes all mutations. Process independent queued work serially only when capacity, conflicts, dependencies, or bounded startup cost require it, and record that reason.
+- **Action** Proactively fill all safely available helper capacity from one ordered snapshot. Partition by full task UUID and dependency/PR family; give disjoint named slices and stop conditions; keep helpers read-only. The primary deduplicates receipts and serializes all mutations. Before a human-facing result or action, it re-reads every mentioned task's live lane and complete session census, plus provider state when relevant. Process independent queued work serially only when capacity, conflicts, dependencies, or bounded startup cost require it, and record that reason.
 - **Authority** Coordinator-decidable; the primary keeps all accountability. High-risk, destructive, credential, integration/history, human-escalation, and Done cleanup decisions stay with the primary.
-- **Evidence** Helper session IDs plus their evidence recorded in the cycle log.
+- **Evidence** Helper session IDs and timestamped evidence, followed by the primary's fresh live-state/provider readback, recorded in the cycle log.
 - **Never** Wait for queue pressure before parallelizing independent work. Never assign one task/shared decision to two slices, leave helpers polling between wakes, let a helper produce human-facing reports, or allow parallel mutations.
 
 ### A5. Processing and draining the Coordinator message queue
 - **Trigger** Every turn; act before the queue approaches its 15-entry limit.
-- **Action** Census the queue, proactively parallelize independent entries under A4, then let the primary verify and act on every result. After durable state is updated, remove only exact reviewed entry IDs with a direct guarded `message.queue.remove`. If that reusable surface is absent, leave the rows intact and submit at most one platform-capability enhancement request; never ask Support to remove entries individually.
+- **Action** Census the queue, proactively parallelize independent entries under A4, then let the primary refresh live task/session/provider state before verifying and acting on every result. After durable state is updated, remove only exact reviewed entry IDs with a direct guarded `message.queue.remove`. If that reusable surface is absent, leave the rows intact and submit at most one platform-capability enhancement request; never ask Support to remove entries individually.
 - **Authority** Human-authorized queue triage; the primary retains all mutation and reporting responsibility.
 - **Evidence** Before/after ordered IDs and counts, helper receipts, primary action receipts, and exact removal results. Verified 2026-08-30 by Support request `fad11a89-27bb-415b-8554-7097f225a09d`: 15/15 exact entries removed one-by-one, none missing, final count 0.
 - **Never** Use SQL or broad cancellation; never remove an unreviewed, durable, or newly arrived row. Helper triage does not itself drain the product queue, and queue capacity is not the trigger for delegation.
@@ -112,6 +112,13 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Capability** Read-only workflow-scoped `pending_moves` census plus `list_task_sessions_kandev`; [point-in-time preflight procedure](RUNBOOK.md#pending-move-preflight).
 - **Evidence** Authoritative row count read after the latest relevant lane/session transition and immediately before the intended contact; exact session IDs/states/`updated_at` recorded alongside it.
 - **Never** Reuse an older zero result after task/session activity, treat null task/session pending-action projections as authoritative, or broaden the query beyond the exact workspace/workflow/task scope.
+
+### B3d. Dependency relation projections are viewpoint-relative
+- **Trigger** Reading, adding, or removing a task dependency.
+- **Action** Interpret the queried task's `blockers` as its prerequisites and its `blocked_by` as downstream dependents. Read both endpoint task projections before mutation and verify both afterward.
+- **Capability** Native related-task read plus exact dependency add/remove; [relation projection procedure](RUNBOOK.md#cross-task-delegation-edges-belong-on-the-dependent-not-the-prerequisite).
+- **Evidence** Both endpoint IDs and their before/after `blockers` and `blocked_by` projections.
+- **Never** Infer edge direction from one projection, or repeat/remove a correct edge because `blocked_by` was mistaken for prerequisites.
 
 ### B4. Flagging / unflagging
 - **Trigger** A genuine blocker, anomaly, or frozen loop.
@@ -271,12 +278,13 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Capability**
   ```
   docker kandev support send <request.json>      # -> {"request_id": "...", "status": "queued"}
-  docker kandev support status <request-id>      # -> queued | processing | complete (+ returncode)
-  docker kandev support receive <request-id>     # -> full host-side Codex transcript
   ```
+  Persist the request ID and await the pushed Coordinator result. `status` and
+  `receive` are bounded diagnostics only when an explicit one-shot diagnostic is
+  authorized; they are not the normal delivery path.
   Full procedure, schema, and gotchas: [Escalating an environment blocker](RUNBOOK.md#escalating-an-environment-blocker-to-kandev-support-host-codex-agent).
 - **Authority** Standing for a qualifying unresolved incident. No Human relay is required.
-- **Evidence** `returncode: 0` plus a genuine assistant reply in `receive`.
+- **Evidence** Request ID plus a pushed Coordinator result, followed by independent verification of its claims.
 - **Never** Use Support as a message relay, registry/database reader, metadata/preflight service, provider poller, CI/review worker, or executor of Coordinator-decidable operations; ask for one-off `pending_moves` rows; create one request per contact/session-state change; use `codex exec resume` directly; ask the Human to relay; target the support thread as a Kandev task/session; expose host `~/.codex`; or claim a delivery mechanism you have not exercised.
 
 ### G2. Composing the request
@@ -286,10 +294,10 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Never** Send secrets or raw credentials in any field.
 
 ### G3. Support returns a genuine terminal BLOCKED response
-- **Trigger** `status` is `complete` with a non-zero return code and `receive` begins `KANDEV_SUPPORT_STATUS: BLOCKED`.
+- **Trigger** The pushed Support result begins `KANDEV_SUPPORT_STATUS: BLOCKED`. An explicitly authorized bounded diagnostic may instead establish this with terminal non-zero status plus the matching received transcript.
 - **Action** Treat delivery as verified but the environment blocker as uncleared. Record the request ID, exact missing authority/capability, smallest next action, preservation receipt, and deterministic resume trigger; physically park the affected workflow task in Blocked. Do not resend the unchanged request.
 - **Capability boundary** As verified 2026-08-29, the reviewed Support worker cannot directly edit persistent canonical workspace-repository inventory when no audited repair operation exists, and cannot provision/reuse GitLab credentials without a reviewed task-scoped credential broker. These are missing platform capabilities, not permission to edit backend state or mount host credentials.
-- **Evidence** Full `receive` transcript, non-zero return code, no-mutation statement, and the named smallest next action.
+- **Evidence** Complete pushed result (or explicitly authorized diagnostic transcript), no-mutation statement, and the named smallest next action.
 - **Escalate to** Platform operator/Human only for the specifically named audited repair operation or scoped credential-broker capability; resume through Support or the task only after a non-secret acceptance receipt.
 - **Never** Mark the request resolved because delivery completed; edit backend databases directly; mount host GitLab/Codex state; reveal or reuse host tokens; or create duplicate requests for the same unchanged blocker.
 

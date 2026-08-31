@@ -52,11 +52,13 @@ worktree, never the shared main checkout. See
 Host/container limits — missing tools or dependencies, permission failures,
 unavailable host capabilities, absent Android emulator/device support — go to
 `Kandev Support — Codex`. Missing kandev *product* features remain ordinary board
-tasks. Coordinators contact Support **autonomously** through the reviewed broker
-(`docker kandev support send|status|receive`) rather than asking the human to
-relay, and never via `codex exec resume`, which cannot work from a container. See
+tasks. Coordinators contact Support **autonomously** through the reviewed broker with
+`docker kandev support send <request.json>`, persist the request ID, and await the
+pushed Coordinator result rather than asking the human to relay. `status` and
+`receive` are bounded diagnostics only when explicitly authorized, never the normal
+delivery path. Do not use `codex exec resume`, which cannot work from a container. See
 [docs/RUNBOOK.md](docs/RUNBOOK.md#escalating-an-environment-blocker-to-kandev-support-host-codex-agent)
-for the request schema, the three commands, and the known host-side faults.
+for the request schema, delivery contract, and known host-side faults.
 
 ## Routine protocol
 

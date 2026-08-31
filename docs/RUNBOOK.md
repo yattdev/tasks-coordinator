@@ -513,6 +513,14 @@ guarantee. That is harmless for a plan you authored and can re-derive. It is
 dangerous once a plan holds material that cannot be regenerated: verbatim source
 comments, transcribed requirements, exact quotes, anything whose value is that it
 is a faithful copy.
+
+Even for a rewritable plan, replacement is not complete when the write call returns
+success. Retain the exact full pre-write read and its byte count or digest. Immediately
+read the plan back and verify its task identity, expected section anchors, and complete
+size/content. If anything is missing, truncated, or belongs to another task, stop all
+dependent work, restore the exact prior plan, and verify that restoration by readback.
+Never reconstruct missing normative text from memory or a partial receipt.
+
 Observed 2026-08-19 on `3c2a0d34`: a 692-line plan held the only verbatim
 transcription of 39 source comments. Appending one acceptance criterion would
 have meant regenerating all 39 through the model. The agent refused; a previous
@@ -2327,7 +2335,7 @@ distinguish a regression from an omission, and yours cannot. Note that an unlink
 invisible to board tooling: its CI cannot be resolved without manually mapping the branch
 to a provider repo.
 
-## `queued` vs `sent` tells you the target's session state — and a hung session is unreachable
+## `queued` vs `sent` tells you the target's session state — recover a hung session safely
 
 `message_task_kandev` returns `sent` when the target session can accept immediately and
 **`queued` when it is running** — the message waits for the turn boundary, exactly like
@@ -2352,25 +2360,25 @@ was not ignoring anything — it could not receive.
 
 ### What a Coordinator can and cannot do about it
 
-**Both remedies are parent-gated and unavailable for a task you did not spawn:**
+Interrupt and stop remain parent-gated for a task you did not spawn:
 
 - `message_task_kandev` with `delivery_mode="interrupt"` → `FORBIDDEN: delivery_mode="interrupt" is only allowed when the sender is the target task's direct parent`
 - `stop_task_kandev` → same restriction; "only its direct parent may call this halt-only tool"
 
-Both fail loudly rather than silently queueing, so **attempting the interrupt is safe** and
-is the correct first move once you have verified nothing is at risk.
+Both fail loudly rather than silently queueing, so attempting the interrupt is a safe
+first move after proving nothing is at risk. The binding Coordinator charter separately
+authorizes guarded same-workspace session recovery when workflow/session coordination
+requires it, including for a non-child task. Before spawning, re-read `pending_moves`, the
+complete session census, worktree status, unpublished commits, and active processes. Start
+a replacement only when the prior session is demonstrably stale/non-consuming and the
+preservation receipt is exact. Give the new session that receipt and a bounded handoff,
+then verify it is RUNNING and producing output.
 
-`spawn_session_kandev` is not parent-gated, but **do not reach for it here.** Its own
-guidance restricts it to cases where the user explicitly asks or a workflow requires
-session coordination, and putting a second agent on a worktree already owned by another is
-how two agents ended up sharing one checkout for ~40 minutes earlier in this session. A
-hung session is not a dead one; it may resume.
-
-**So a hung session on a task you do not parent is a genuine escalation**, not something to
-engineer around. Record it with the three pieces of evidence above, classify the task
-`stalled` rather than `waiting`, and put it to the Human with the restart options. Note in
-the record that the agent's silence is a platform symptom and not a performance judgement —
-the queued messages prove it never had the chance to respond.
+Never place two writers in the same worktree. If the old session still owns a live writer,
+the worktree is not safely preserved, or the replacement cannot be constrained to
+coordination/read-only recovery, do not spawn. Record the evidence, classify the task
+`stalled`, and escalate the precise missing recovery authority or platform defect. The
+queued messages still prove the silence is a platform symptom, not a performance judgement.
 
 ## Process the Coordinator queue proactively and drain it safely
 
@@ -2390,12 +2398,16 @@ When independent work is handled serially, record which limit required it.
    state, worktrees, the shared Coordinator repository, queue, or plan. The primary
    deduplicates their receipts, rechecks live state and `pending_moves`, and then
    serializes every mutation. Overlap discovered later becomes one primary action.
-4. Separate ordinary handled messages from durable or newly arrived entries.
-5. Remove only reviewed ordinary IDs, one at a time, through authenticated
+4. Before any human-facing status or action, re-read the live lane and complete session
+   census for every mentioned task, plus current provider state when the claim depends on
+   it. Supersede any helper receipt whose identity or timestamp is no longer current.
+5. Separate ordinary handled messages from durable or newly arrived entries.
+6. Remove only reviewed ordinary IDs, one at a time, through authenticated
    `message.queue.remove` (`session_id` plus exact `entry_id`). If the Coordinator
-   cannot call that authenticated WebSocket surface, route the exact list through
-   Kandev Support. Never use SQL or broad cancellation.
-6. Re-read the ordered queue. The receipt must name before/after counts, removed
+   cannot call that authenticated WebSocket surface, leave the rows intact and submit at
+   most one request for a reusable guarded capability. Never ask Support to remove
+   one-off IDs, and never use SQL or broad cancellation.
+7. Re-read the ordered queue. The receipt must name before/after counts, removed
    IDs, missing IDs, and anything intentionally retained.
 
 Verified 2026-08-30 for Coordinator session
