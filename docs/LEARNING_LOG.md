@@ -1824,3 +1824,18 @@ all post-ready workflows and review state, then notify the reviewer once for tha
 
 Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, this log.
+
+## 2026-08-31q — a zero pending-move preflight expires after target activity
+
+A workflow-scoped Support census correctly returned zero rows, but the target task's
+primary session ran afterward. Reusing the earlier result for a later corrective message
+would have treated a timestamped observation as durable permission even though the
+session turn could have consumed, replaced, or created pending-transition state.
+
+The durable gate now binds a zero result to exact task/workflow identity, physical lane,
+complete session IDs/states/`updated_at`, and read time. Any relevant lane/session
+change before contact requires a fresh exact-scope census. Null pending-action projection
+fields never replace the authoritative row read.
+
+Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, this log.

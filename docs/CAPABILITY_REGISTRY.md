@@ -106,6 +106,13 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Evidence** Exact before/after row and lane readback, unchanged unrelated rows, unchanged task/session/tag state, and structured audit identity.
 - **Never** Use raw SQL, broad queue cancellation, a separate preflight followed by `TakePendingMove`, or a no-op move on a dormant keyed session whose resume ordering is unproved.
 
+### B3c. A zero pending-move preflight expires when the target changes
+- **Trigger** A read-only exact-task/workflow census reports zero rows before a planned message, wake, or move.
+- **Action** Bind the result to its read time, exact task/workflow, physical lane, and complete task-session census. Use it only while those observations remain unchanged. If the lane or any target session state/`updated_at` changes before contact, obtain a fresh exact-scope census.
+- **Capability** Read-only workflow-scoped `pending_moves` census plus `list_task_sessions_kandev`; [point-in-time preflight procedure](RUNBOOK.md#pending-move-preflight).
+- **Evidence** Authoritative row count read after the latest relevant lane/session transition and immediately before the intended contact; exact session IDs/states/`updated_at` recorded alongside it.
+- **Never** Reuse an older zero result after task/session activity, treat null task/session pending-action projections as authoritative, or broaden the query beyond the exact workspace/workflow/task scope.
+
 ### B4. Flagging / unflagging
 - **Trigger** A genuine blocker, anomaly, or frozen loop.
 - **Action** Comment whose first line is exactly `[COORDINATOR FLAG] <reason>` (or `[COORDINATOR UNFLAG] <resolution>`); `[COORDINATOR FLAG][URGENT]` on this task for urgent human escalation.

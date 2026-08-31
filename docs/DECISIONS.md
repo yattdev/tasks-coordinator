@@ -1150,3 +1150,16 @@ then request or notify the reviewer. No request, assignment, mention, or notific
 is sent while provider state remains draft because draft review notifications may not
 reach the reviewer. Failure to transition or verify ready state is a readiness/provider
 blocker to repair, never permission to notify early.
+
+## Pending-move preflights are point-in-time gates (2026-08-31)
+
+A zero-row `pending_moves` read proves only that no matching row existed at that
+observation. It is not durable authorization to contact the task later: a subsequent
+lane transition or target-session turn can consume, replace, or create the state that
+makes contact unsafe, while null projection fields still look unchanged.
+
+The Coordinator therefore binds every zero result to the exact workspace/workflow/task,
+physical lane, complete session IDs/states/`updated_at`, and read time. Any relevant
+lane/session change before contact expires the result and requires a new exact-scope
+read. This is deliberately conservative until task contact and exact pending-transition
+handling share one atomic domain operation.

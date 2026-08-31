@@ -2105,6 +2105,8 @@ readback agree. Respect the ToDeploy ownership boundary. If targeted tagging is
 temporarily unavailable, record the exact degradation and repair owner/trigger; do
 not silently leave the old instruction in place.
 
+<a id="pending-move-preflight"></a>
+
 ## ⚠️ Check `pending_moves` before messaging any task — a stale queued move fires on resume
 
 A queued move has **no TTL**. It sits in `pending_moves` until the session it is keyed to
@@ -2135,6 +2137,13 @@ LEFT JOIN workflow_steps cur ON cur.id=t.workflow_step_id
 LEFT JOIN workflow_steps tgt ON tgt.id=pm.workflow_step_id
 ORDER BY pm.queued_at;"
 ```
+
+Treat a zero result as a point-in-time gate, not durable authorization. Record the
+read time, exact task/workflow, physical lane, and complete session census. If the
+lane or any target session's state/`updated_at` changes before the intended contact,
+the earlier zero is stale: repeat the exact-scope census. A null `task_pending_action`
+or `primary_session_pending_action` projection is only a convenience field and does
+not replace the authoritative row read.
 
 A row whose `queued_target` differs from `current_lane` is an armed move. Then classify
 it — cross-reference `pm.session_id` against `list_task_sessions_kandev` for that task:
