@@ -1100,7 +1100,7 @@ the request binds it to exact operations, exposes no token, and requires a `0 â†
 receipt. Without that grant, the request requires a preissued credential and treats the
 resulting precise BLOCKED response as terminal rather than retrying contradictory text.
 
-## Failed-session queue recovery is exact, paginated, and non-mutating (2026-08-30)
+## Failed-session queue recovery is exact, paginated, and non-mutating (2026-08-30; Support-operated path superseded 2026-08-31)
 
 Conversation history does not expose a failed session's unread private queue. Continuity
 therefore uses one authenticated `message.queue.get` bound to the exact failed session,
@@ -1115,7 +1115,11 @@ separation preserves auditability: a stale message can be marked superseded with
 replay, a current message can be acted on through ordinary safety gates, and the failed
 session's queue remains unchanged unless a distinct exact-ID removal grant exists.
 
-## Failed-session recovery requires retention outside task-runtime cleanup (2026-08-31)
+The exact authenticated recovery format remains valid only through a direct reusable
+guarded Coordinator/platform surface. The Human's later Support-boundary clarification
+supersedes using Support to perform the read or relay its artifact.
+
+## Failed-session recovery requires retention outside task-runtime cleanup (2026-08-31; one-off Support artifact path superseded)
 
 The first verified recovery artifact was readable and hash-valid under the task root,
 but task-runtime cleanup removed it before the replacement Coordinator could reconcile
@@ -1123,11 +1127,12 @@ the bodies. Readability and integrity therefore did not prove retention. Repeati
 queue read without changing the storage boundary would reproduce the same continuity
 failure.
 
-When cleanup can outlive the Support turn, recovery now uses a Support-managed retained
-backing directory outside the task-runtime cleanup boundary plus a byte-identical,
-task-readable mirror. Both copies are hash-verified; the source queue remains unchanged;
-and retained-copy deletion requires durable FIFO dispositions plus explicit cleanup
-authority. This supersedes task-root-only storage as sufficient recovery evidence.
+When cleanup can outlive recovery, the reusable platform recovery capability must provide
+a retained backing directory outside the task-runtime cleanup boundary plus a
+byte-identical, task-readable mirror. Both copies are hash-verified; the source queue
+remains unchanged; and retained-copy deletion requires durable FIFO dispositions plus
+explicit cleanup authority. Support may provision or repair that capability, but the
+Human's later clarification supersedes asking Support to create a one-off artifact.
 
 ## Draft status is routine; readiness is an action gate (2026-08-31, human-directed)
 
@@ -1179,8 +1184,23 @@ session activity alone does not justify another request.
 
 When direct pending-move inspection is unavailable, ordinary stable same-lane contact
 uses live lane plus complete session-census evidence and immediate post-action
-verification. Support is reserved for concrete high-risk evidence such as a known row,
-an unexplained transition, inconsistent projections, corrupted workflow state, or danger
-to Done, Blocked, or unique state. This supersedes the per-contact application of the
+verification. If concrete evidence makes contact unsafe, the contact is deferred and one
+platform enhancement may be requested to add a reusable guarded capability. Support does
+not perform the one-off lookup. This supersedes the per-contact application of the
 point-in-time preflight rule while retaining that rule whenever a direct preflight is
 actually available.
+
+## Support repairs or provisions the platform; it is not an operations relay (2026-08-31, human-directed)
+
+The Human clarified the boundary further: Support exists for things task agents and the
+Coordinator cannot do themselves. That includes repairing an unresumable/dead task
+session or damaged task environment and provisioning external host capabilities such as
+an Android emulator, required package, permission, mount, runtime, or guarded platform
+operation.
+
+Support must change or restore the platform capability. It must not become a message
+relay, database/registry reader, metadata service, provider poller, CI/review worker, or
+operator for routine Coordinator actions. A capability gap may justify one enhancement
+request whose result is reusable; it never justifies repeated Support execution of the
+missing operation. This clarification removes the earlier high-risk one-off lookup
+exception.

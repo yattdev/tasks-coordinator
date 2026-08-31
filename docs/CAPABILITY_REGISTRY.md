@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-08-31k -->
+<!-- registry-version: 2026-08-31l -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -56,15 +56,15 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 
 ### A5. Processing and draining the Coordinator message queue
 - **Trigger** Every turn; act before the queue approaches its 15-entry limit.
-- **Action** Census the queue, proactively parallelize independent entries under A4, then let the primary verify and act on every result. After durable state is updated, remove only exact reviewed entry IDs with authenticated `message.queue.remove`; use Kandev Support when the Coordinator has no direct authenticated queue surface.
+- **Action** Census the queue, proactively parallelize independent entries under A4, then let the primary verify and act on every result. After durable state is updated, remove only exact reviewed entry IDs with a direct guarded `message.queue.remove`. If that reusable surface is absent, leave the rows intact and submit at most one platform-capability enhancement request; never ask Support to remove entries individually.
 - **Authority** Human-authorized queue triage; the primary retains all mutation and reporting responsibility.
 - **Evidence** Before/after ordered IDs and counts, helper receipts, primary action receipts, and exact removal results. Verified 2026-08-30 by Support request `fad11a89-27bb-415b-8554-7097f225a09d`: 15/15 exact entries removed one-by-one, none missing, final count 0.
 - **Never** Use SQL or broad cancellation; never remove an unreviewed, durable, or newly arrived row. Helper triage does not itself drain the product queue, and queue capacity is not the trigger for delegation.
 
 ### A6. Recovering unread messages from a failed Coordinator session
 - **Trigger** A Coordinator session is terminal/failed while its private queue may still contain unprocessed entries, and the replacement primary must continue without replaying handled work.
-- **Action** Bind to the exact task, failed session, and live replacement primary; perform one authenticated `message.queue.get`; write complete bodies only to bounded UTF-8 pages with mode `0600` and a hashed manifest. When task-runtime cleanup can remove task-root files before reconciliation, require a Support-managed retained backing directory outside that cleanup boundary plus a task-readable mode-`0700` mirror. Reconcile every entry FIFO against the live plan, board, sessions, and provider state. Preserve the source queue. Delete only request-owned recovery copies after all dispositions are durable and the retained copy's cleanup is separately authorized.
-- **Capability** Direct authenticated WebSocket surface when available; otherwise one narrowly scoped Kandev Support request. Procedure: [failed-session queue recovery](RUNBOOK.md#recover-unread-messages-from-a-failed-coordinator-session).
+- **Action** Bind to the exact task, failed session, and live replacement primary; use a direct guarded authenticated `message.queue.get`; write complete bodies only to bounded UTF-8 pages with mode `0600` and a hashed manifest. When task-runtime cleanup can remove task-root files before reconciliation, require a platform-managed retained backing directory outside that cleanup boundary plus a task-readable mode-`0700` mirror. Reconcile every entry FIFO against the live plan, board, sessions, and provider state. Preserve the source queue. Delete only request-owned recovery copies after all dispositions are durable and cleanup is separately authorized. If the direct surface or durable retention capability is absent, ask Support to repair/provision that reusable capability, not to read or relay the queue.
+- **Capability** Direct guarded authenticated WebSocket/recovery surface only. Procedure: [failed-session queue recovery](RUNBOOK.md#recover-unread-messages-from-a-failed-coordinator-session).
 - **Authority** Explicit failed-session recovery request. A temporary authentication-token lifecycle is a separate security-sensitive authority and must be expressly granted or replaced by a preissued credential.
 - **Evidence** Exact task/session identities; entry count and ordered IDs; canonical entry digest; per-page byte counts/hashes; byte-identical retained backing and task mirror when both are required; readable ownership/modes; one API read; temporary token count returning `0 → 1 → 0` when authorized; and `queue_mutated=false`.
 - **Never** Read the queue through SQL, dump unrelated messages or attachments, print bodies into broad logs, replay from arrival order alone, mutate/remove the source queue, rely on an ephemeral task-root-only copy when cleanup can erase it, or leave restricted recovery copies after their durable dispositions and cleanup authorization are complete.
@@ -256,9 +256,9 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 
 ## G. Contacting autonomous Kandev Support
 
-### G1. A genuine unresolved platform/host incident stops safe progress
-- **Trigger** A concrete platform/host failure remains after normal task tools, one bounded retry, and documented safe fallbacks: for example a missing dependency, permission/access failure, unavailable host capability, corrupted mount/persistent state, or absent emulator/device support.
-- **Action** Deduplicate by root incident, aggregate exact affected tasks where useful, then contact Support **yourself** once. Write a JSON request with four non-empty strings: `problem`, `evidence`, `expected_outcome`, `security_constraints`.
+### G1. Platform repair or reusable capability provisioning is required
+- **Trigger** Normal task tools, one bounded retry, and documented fallbacks cannot repair an unresumable/dead task session, damaged task environment, host/container permission or mount failure, or provision a missing external package, Android emulator, or guarded platform capability.
+- **Action** Deduplicate by root incident and contact Support **yourself** once. The requested outcome must repair the platform or provide a reusable guarded capability, not perform a one-off operation on the Coordinator's behalf. Write four non-empty strings: `problem`, `evidence`, `expected_outcome`, `security_constraints`.
 - **Capability**
   ```
   docker kandev support send <request.json>      # -> {"request_id": "...", "status": "queued"}
@@ -268,7 +268,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
   Full procedure, schema, and gotchas: [Escalating an environment blocker](RUNBOOK.md#escalating-an-environment-blocker-to-kandev-support-host-codex-agent).
 - **Authority** Standing for a qualifying unresolved incident. No Human relay is required.
 - **Evidence** `returncode: 0` plus a genuine assistant reply in `receive`.
-- **Never** Use Support for routine metadata/preflight reads, ordinary messages or moves, CI/review work, wake replies, missing product features, or Coordinator-decidable questions; create one request per contact/session-state change; use `codex exec resume` directly; ask the Human to relay; target the support thread as a Kandev task/session; expose host `~/.codex`; or claim a delivery mechanism you have not exercised.
+- **Never** Use Support as a message relay, registry/database reader, metadata/preflight service, provider poller, CI/review worker, or executor of Coordinator-decidable operations; ask for one-off `pending_moves` rows; create one request per contact/session-state change; use `codex exec resume` directly; ask the Human to relay; target the support thread as a Kandev task/session; expose host `~/.codex`; or claim a delivery mechanism you have not exercised.
 
 ### G2. Composing the request
 - **Action** Put the affected task/session ID inside `problem` or `evidence`. Pass the file path relative to the **coordinator task root** (e.g. `coordinator/support-request.json`) or absolute — a path relative to your shell cwd is the common failure.

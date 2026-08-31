@@ -1853,7 +1853,24 @@ and documented fallbacks; then send one request for a genuine unresolved platfor
 root cause, batching exact tasks where useful. Routine messages, moves, wake replies,
 CI/review work, and metadata reads do not qualify. Without direct pending-move access,
 stable same-lane coordination uses a complete live session census and immediate
-verification; only concrete high-risk state evidence merits Support.
+verification. Concrete risk may justify one request to add or restore a reusable
+guarded platform capability, never a one-off Support lookup.
+
+Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, this log.
+
+## 2026-08-31s — Support repairs capabilities; it never relays operations
+
+The Human sharpened the Support boundary after the first frequency correction. Support
+is for platform repairs and external capabilities unavailable to task agents: dead or
+unresumable sessions, damaged task environments, host/container failures, missing
+packages, Android emulators, and comparable guarded platform provisioning.
+
+It is not a message relay, registry/database reader, metadata lookup service, provider
+poller, or routine operator. If a missing direct capability matters, ask once for the
+platform to provide a reusable guarded capability; never ask Support to execute each
+instance of the missing operation. The prior high-risk one-off lookup exception is
+removed.
 
 Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, this log.

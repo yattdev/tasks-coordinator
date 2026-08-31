@@ -1519,13 +1519,13 @@ Do not go looking for a credential to work around that; use the broker.
 
 ## Escalating an environment blocker to Kandev Support (host Codex agent)
 
-Scope: genuine unresolved platform/host incidents only — missing tools or
-dependencies, permission/access failures, unavailable host capabilities,
-corrupted mounts or persistent state, and similar limits that stop safe progress
-after normal task tools, one bounded retry, and documented fallbacks have been
-exhausted. **Not** for routine metadata reads, task messages or moves, CI/review
-work, wake replies, Coordinator-decidable questions, or missing Kandev product
-features; those stay in ordinary board coordination.
+Scope: platform repair or reusable platform-capability provisioning that the
+Coordinator/task agent cannot perform after normal tools, one bounded retry, and
+documented fallbacks fail. Examples include an unresumable or dead task session,
+a damaged task environment, host/container permission or mount failure, and a
+missing external package, Android emulator, or guarded platform capability.
+**Not** for routine metadata reads, registry/database lookups, task-message
+relay, task moves, CI/review work, wake replies, or Coordinator-decidable work.
 
 Support is incident-based, not action-based. Give each root incident a stable
 deduplication key, search the live plan for an open request with that key, and
@@ -1533,14 +1533,13 @@ send at most one unchanged request. Aggregate exact affected tasks when doing so
 preserves scope and reduces round trips. A target session changing state does
 not create a new incident by itself.
 
-In particular, do not use Support as a per-contact `pending_moves` query proxy.
-When no direct task-scoped pending-move capability exists, reserve one Support
-incident for concrete high-risk evidence: a known/prior row, unexplained lane
-transition, inconsistent projections, corrupted workflow state, or a proposed
-action that could endanger Done, Blocked, or unique state and cannot safely be
-deferred. For stable same-lane coordination without such evidence, inspect the
-live lane and complete session census, act narrowly, verify immediately, and log
-the missing direct capability once.
+Support repairs/provisions the platform; it does not operate the platform on the
+Coordinator's behalf. Never ask it to return `pending_moves`, inspect a registry,
+relay a message, poll a provider, or perform another recurring data-plane action.
+If a missing direct capability creates real risk, defer the unsafe contact and
+submit at most one enhancement request to add or restore a reusable guarded
+Coordinator capability. Stable same-lane coordination instead uses the live lane,
+complete session census, narrow action, and immediate verification.
 
 Support identity: `Kandev Support — Codex`, stable thread
 `01a043b4-fe52-7020-94bb-de94e72f8a07`, host working directory
@@ -2306,14 +2305,17 @@ the replacement primary to continue that session's unprocessed work.
 1. Resolve the exact Coordinator task/workspace, failed session, and live replacement
    primary. Fail closed if the old session is not terminal or either session belongs to
    another task/workspace.
-2. Use one authenticated `message.queue.get` for the exact failed session. Prefer the
-   direct authenticated surface; otherwise send one Support request. Never read queue
-   rows through SQL.
+2. Use one direct guarded authenticated `message.queue.get` for the exact failed
+   session. Never ask Support to perform the read and never read queue rows through SQL.
+   If the surface is missing, ask Support once to repair/provision resumable-session or
+   reusable guarded recovery capability, then stop until that capability exists.
 3. If the response can exceed transport limits, stream complete UTF-8 bodies into
    bounded pages. The directory is mode `0700`, files are mode `0600`, and ownership
    must let the task user read them. If task-runtime cleanup can remove task-root files
-   before FIFO reconciliation finishes, create a Support-managed retained backing
+   before FIFO reconciliation finishes, use a platform-managed retained backing
    directory outside that cleanup boundary and a byte-identical task-root mirror.
+   Support may provision/repair that reusable retention capability but must not create
+   and relay a one-off recovery artifact.
    Exclude attachments unless separately authorized.
 4. Write a manifest containing ordered entry IDs, page paths, byte counts, SHA-256
    hashes, a canonical digest over the projected entries, API-read count, token lifecycle,
