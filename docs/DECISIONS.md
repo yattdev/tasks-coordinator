@@ -1114,3 +1114,17 @@ The read neither removes source rows nor authorizes the recovered instructions. 
 separation preserves auditability: a stale message can be marked superseded without
 replay, a current message can be acted on through ordinary safety gates, and the failed
 session's queue remains unchanged unless a distinct exact-ID removal grant exists.
+
+## Failed-session recovery requires retention outside task-runtime cleanup (2026-08-31)
+
+The first verified recovery artifact was readable and hash-valid under the task root,
+but task-runtime cleanup removed it before the replacement Coordinator could reconcile
+the bodies. Readability and integrity therefore did not prove retention. Repeating the
+queue read without changing the storage boundary would reproduce the same continuity
+failure.
+
+When cleanup can outlive the Support turn, recovery now uses a Support-managed retained
+backing directory outside the task-runtime cleanup boundary plus a byte-identical,
+task-readable mirror. Both copies are hash-verified; the source queue remains unchanged;
+and retained-copy deletion requires durable FIFO dispositions plus explicit cleanup
+authority. This supersedes task-root-only storage as sufficient recovery evidence.

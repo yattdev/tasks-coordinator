@@ -1519,6 +1519,22 @@ trigger; it is the failure mode proactive triage prevents.
 Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, this log.
 
+## 2026-08-31a — task-readable recovery files are not necessarily durable
+
+A failed-session queue recovery produced valid mode-0600 pages under a task-owned
+mode-0700 directory, but task-runtime cleanup removed the complete artifact before FIFO
+reconciliation. Ownership, readability, and matching hashes proved the bytes at one
+instant; they did not prove the storage lifetime covered the handoff.
+
+The replacement recovery retained one Support-managed backing outside task-runtime
+cleanup and exposed a byte-identical task mirror. The Coordinator verified all ten page
+hashes, the manifest, the canonical 14-entry digest, and processed every entry FIFO while
+leaving the source queue untouched. Future large recovery reads require that retained
+boundary whenever task cleanup can race consumption; cleanup of the retained copy is a
+separate exact authorization after dispositions are durable.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
+
 ## 2026-08-29v — proactive Support delivery plus guarded-session acceptance
 
 Two environment acceptance requests produced an important split in evidence ownership.

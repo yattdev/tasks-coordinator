@@ -2269,15 +2269,19 @@ the replacement primary to continue that session's unprocessed work.
    direct authenticated surface; otherwise send one Support request. Never read queue
    rows through SQL.
 3. If the response can exceed transport limits, stream complete UTF-8 bodies into
-   bounded pages under the Coordinator task root. The directory is mode `0700`, files
-   are mode `0600`, and ownership must let the task user read them. Exclude attachments
-   unless separately authorized.
+   bounded pages. The directory is mode `0700`, files are mode `0600`, and ownership
+   must let the task user read them. If task-runtime cleanup can remove task-root files
+   before FIFO reconciliation finishes, create a Support-managed retained backing
+   directory outside that cleanup boundary and a byte-identical task-root mirror.
+   Exclude attachments unless separately authorized.
 4. Write a manifest containing ordered entry IDs, page paths, byte counts, SHA-256
    hashes, a canonical digest over the projected entries, API-read count, token lifecycle,
    and `queue_mutated=false`. Never put a credential in the artifact.
 5. Re-read every page as the task user, verify all hashes and the canonical digest, then
-   reconstruct entries in API order. A root-owned unreadable artifact is incomplete even
-   when its hashes are correct; repair ownership only, then verify bytes did not change.
+   reconstruct entries in API order. When backing and mirror both exist, verify their
+   manifest and page bytes are identical. A root-owned unreadable artifact is incomplete
+   even when its hashes are correct; repair ownership only, then verify bytes did not
+   change.
 6. Process entries FIFO, but treat each as a timestamped receipt: compare it with the
    current plan, live board/session state, and provider identity. Record handled,
    superseded, coalesced, or actionable. Do not replay a stale instruction merely because
@@ -2285,13 +2289,17 @@ the replacement primary to continue that session's unprocessed work.
 7. Persist every disposition and any resulting action. The recovery read does not
    authorize queue removal or other mutation; leave the failed session's source queue
    unchanged unless a separate exact-ID removal grant exists.
-8. After every disposition is durable, delete only the request-owned manifest/pages and
-   their now-empty directory. Verify absence and preserve the parent task directory.
+8. After every disposition is durable and cleanup of the retained copy is explicitly
+   authorized, delete only the request-owned manifest/pages and their now-empty
+   directories. Verify absence and preserve the parent task directory. Until then,
+   retain both copies and record their exact paths and hashes in the live handoff.
 
 Verified 2026-08-30 on a 14-entry failed-session queue: one authenticated read produced
 ten restricted pages whose byte counts, hashes, and canonical digest matched; temporary
-token rows returned `0 → 1 → 0`; all entries reconciled FIFO without queue mutation; and
-the request-owned pages were removed after their dispositions were persisted.
+token rows returned `0 → 1 → 0`; and all entries reconciled FIFO without queue mutation.
+The first task-root-only copy was removed by runtime cleanup before consumption. The
+successful replacement used a retained Support backing plus a byte-identical task mirror,
+which survived through durable FIFO disposition. Do not treat task-readable as durable.
 
 ## Flipping Draft→ready is itself a review trigger — readiness is not terminal
 
