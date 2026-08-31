@@ -1204,3 +1204,17 @@ operator for routine Coordinator actions. A capability gap may justify one enhan
 request whose result is reusable; it never justifies repeated Support execution of the
 missing operation. This clarification removes the earlier high-risk one-off lookup
 exception.
+
+## QA targets runtime planes, not deployment labels (2026-08-31)
+
+A Human correctly questioned whether an executor-container feature mattered when Kandev
+itself was deployed from a Docker image. The deployment label alone was ambiguous:
+the published Kandev container is the control plane, while the feature changed the Local
+Docker task containers that control plane creates.
+
+The durable decision is to trace each feature to its actual runtime plane before
+provisioning QA. Exercise the changed plane directly. A containerized control plane does
+not make executor-container behavior irrelevant, and an executor-only change does not
+justify manufacturing a second control-plane runtime. `TEST_RUNTIME=NONE` is correct
+when there is no persistent Human-operated surface and exact-head automated evidence
+exercises the target plane.

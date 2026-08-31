@@ -74,6 +74,30 @@ would have written to the external system unprompted. Before handing over, audit
 integration toggles, write-back switches, configured endpoints and credentials,
 and disable anything pointing at a real system. State what you disabled.
 
+## Identify the runtime plane before provisioning
+
+Containerized deployment has more than one plane. The published Kandev image is
+the control plane; Local Docker executor task containers are workload artifacts
+created by that control plane. A change to task-container creation, `HostConfig`,
+security options, mounts, or executor-profile handling can be fully relevant when
+Kandev itself runs in Docker without changing the control-plane container.
+
+Before requiring a Human-QA runtime:
+
+1. Trace the changed code to the component it configures or creates.
+2. Name the target plane: control plane, executor task container, browser/client,
+   or external service.
+3. Exercise that plane directly. For an executor-container-only change, use
+   named real-Docker integration/E2E coverage or a task-container creation probe;
+   do not substitute a second control-plane instance.
+4. Use `TEST_RUNTIME=NONE` when the Human has no persistent application surface
+   to operate and the target plane is already covered by exact-head automated
+   evidence. State the target plane and the named coverage in the handoff.
+
+Do not declare a feature irrelevant merely because the control plane is already
+containerized, and do not manufacture a display-only runtime that cannot reach
+the changed path.
+
 ## When the image cannot exercise the feature, say so
 
 QA images routinely lack runtime capabilities: no `git` binary, no configured

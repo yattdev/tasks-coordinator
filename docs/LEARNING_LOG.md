@@ -1874,3 +1874,18 @@ removed.
 
 Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, this log.
+
+## 2026-08-31t — QA the runtime plane, not the deployment label
+
+A Dockerized Kandev deployment exposed an ambiguity: the published Kandev image is the
+control plane, while some features change only the Local Docker executor task containers
+that it creates. Treating “Kandev runs in Docker” as a single runtime either makes a
+relevant executor feature look irrelevant or produces a second control-plane instance
+that cannot exercise the changed path.
+
+The durable procedure now traces the changed code to its target plane before provisioning
+QA. Test that plane directly. Use `TEST_RUNTIME=NONE` when there is no persistent
+Human-operated surface and named exact-head automation already exercises the target
+plane; state both the plane and evidence in the handoff.
+
+Files: `docs/RUNBOOK.md`, `docs/QA_INSTANCES.md`, `docs/DECISIONS.md`, this log.

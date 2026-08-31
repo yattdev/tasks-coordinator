@@ -5,6 +5,13 @@
 Fixture-vs-copy decision, hard prohibitions, credential handoff and image
 capability limits live in [QA_INSTANCES.md](QA_INSTANCES.md).
 
+Before provisioning anything, identify the feature's runtime plane. A Kandev
+control plane running in Docker is not the same artifact as the Local Docker
+executor containers it creates. Follow the target-plane check in
+[QA_INSTANCES.md](QA_INSTANCES.md#identify-the-runtime-plane-before-provisioning);
+test the component whose behavior changes, and do not manufacture a control-plane
+instance for an executor-container-only feature.
+
 For every Human-QA task that needs an application runtime, create a separate
 Docker instance from the exact tested head and stop that task's older test
 instance first. Publish and verify a `0.0.0.0` binding through the machine's
