@@ -1982,3 +1982,18 @@ reconcile within existing authority, and establish exactly one fresh owner only
 after settlement. A move response or one lane read is not a stable handoff.
 
 Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, this log.
+
+## 2026-09-01a — prevention and audit are separate destructive-boundary gates
+
+A deployment repair correctly bound explicit guarded Compose projects to the exact task
+root and clone. Independent synthetic acceptance proved a sibling could not destroy the
+protected project and that protected volume data survived disposable teardown.
+
+The same run exposed a separate incomplete criterion: ownership-denied destructive
+requests returned exit 78 before the audit function ran, while allowed events had no
+audit/correlation ID or explicit ownership decision. A passing isolation regression
+proves prevention, not accountable authorization. Preserve that passing evidence, keep
+the general destructive hold, and open one narrow Support follow-up for the audit gap
+instead of rejecting or duplicating the core repair.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.

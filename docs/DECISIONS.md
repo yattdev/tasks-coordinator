@@ -1335,3 +1335,18 @@ Non-destructive config inspection may continue. The damaged task remains preserv
 synthetic protected-resource survival validates the guard; storage recovery is a separate
 incident, and a baseline reseed must never be described as recovery of uncertain final
 state.
+
+**2026-09-01 acceptance and remaining boundary.** Deployment commit
+`991a67c4e274a5cf171536ec1ceabdcabf44f89c` passed independent guarded acceptance:
+an explicit `kd_` project was bound to each exact clone, a sibling protected-name
+`down` failed exit 78, disposable destruction preserved the protected volume sentinel,
+raw Docker remained denied, the socket was absent, and all synthetic runtime/files were
+removed. The isolation defect is therefore repaired in the active deployment.
+
+The approved audit criterion is still open. Ownership/model denials occur before the
+current audit call, so a rejected destructive request has no audit record; allowed
+records lack an audit ID, ownership decision, requested/resolved distinction, and caller
+correlation. Passing prevention does not waive accountable destructive authorization.
+Support follow-up `d9094d17-0741-49ee-bb3c-579812889542` owns that deployment-local
+gap. Keep the general sibling/disposable destructive hold until its audit behavior is
+deployed and independently verified.

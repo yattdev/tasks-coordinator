@@ -2004,16 +2004,17 @@ Task `46945aff-382a-41a4-9f35-bd5c2806911e` owns that capability.
 
 ## Verify task-scoped Compose isolation from a guarded task session
 
-**Temporary destructive-operation hold (incident 2026-08-31):** the installed
-deployment-local broker derives one task-root project and can map a disposable sibling
-directory back to the registered main project. A cleanup intended for
-`kd_task8402_qa5db6` therefore selected `kd_35e64fd0f98732f2` and removed its
-web/DB/network plus a unique-or-uncertain MariaDB volume. Until Support request
-`a9328e69-e01d-4d8e-8cbc-d18e41c3cdcd` is resolved, deployed, and task-side verified,
-do not run `down`, `rm`, `kill`, `--volumes`, or another destructive/mutating
-Compose cleanup from a disposable or sibling project directory. Non-destructive
-`docker compose config` remains available for interpolation evidence. Preserve any
-existing reproduction; do not try to prove isolation against the damaged task.
+**Temporary destructive-operation hold (incident 2026-08-31, narrowed
+2026-09-01):** deployment repair
+`991a67c4e274a5cf171536ec1ceabdcabf44f89c` now binds an explicit guarded
+`kd_` project to the authenticated task root and exact clone working directory.
+Coordinator acceptance proved a sibling protected-name cleanup fails exit 78 and
+disposable cleanup preserves a protected sentinel. The general destructive hold
+nevertheless remains until Support follow-up
+`d9094d17-0741-49ee-bb3c-579812889542` completes the required allow/deny audit and
+caller correlation contract. Non-destructive `docker compose config` remains
+available. A bounded synthetic acceptance fixture may exercise exact bound identities;
+never test against the damaged task or treat baseline reconstruction as recovery.
 
 After the repair is deployed, use two disposable synthetic directories under the current
 task root. Define a protected service with sentinel data and a separate disposable
@@ -2064,6 +2065,15 @@ regression through Kandev Support. Do not try another Docker binary or socket.
 Finish with `docker compose down -v --remove-orphans` from the exact disposable
 directory, remove only the files/directories created by the probe, and verify no task
 resource or repository change remains.
+
+**Audit gate.** Read the deployment-owned audit tail for the exact synthetic task root,
+project directories, and project names. Every destructive allow or deny decision must
+have a unique audit ID, requested and resolved project, canonical project directory,
+authenticated task scope, command class, ownership decision, and allow/deny result,
+flushed before Docker can run. The guarded caller must return the same audit ID and
+resolved project. A denial that exits 78 without an audit event, or an allowed command
+with only an uncorrelated `attempt/ok` pair, is an incomplete repair: preserve the
+passing isolation evidence and send one fresh Support request for the audit defect.
 
 ## Android UI-QA through the guarded emulator/adb wrappers
 
