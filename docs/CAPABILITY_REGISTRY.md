@@ -253,6 +253,14 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Escalate to** One visible Human data-provision request only when no safe existing artifact, broker source, repository fixture, or seeder can satisfy the scenario. Kandev Support is used only if the delivery capability itself is broken, never to fetch routine data.
 - **Never** Invent mock data while a catalog request is pending; commit raw dumps/secrets; reuse or mutate shared/main data; cross workspaces; accept a delivery hash as proof of import; overlay-retry a partial restore; refresh solely because the task entered Human-QA; or make the Human manually resend the same fixture to each task.
 
+### D5. A Human-QA task carries a Human-owned `tested` tag
+- **Trigger** A card in Human-QA has a Human-owned tag whose name normalizes case-insensitively to `tested`.
+- **Action** Read all Human-owned tags before acting. With `tested` alone, preserve the card exactly and take no action. With both `tested` and Human-owned `peer-review`, keep the card in Human-QA and start at most one independent read-only peer reviewer against the exact tested head. If the combination is ambiguous, preserve state and ask/record the intended reason before mutation.
+- **Capability** Task/tag/session readback plus an independent read-only Review session when explicitly selected by the tag pair.
+- **Authority** The Human owns adding/removing `tested` and the tag's meaning. Agent-owned tags cannot override it.
+- **Evidence** Full Human-tag readback, unchanged Human-QA lane and exact tested head/runtime/provider state, reviewer session ID and read-only result when requested, and no writer or lifecycle mutation.
+- **Never** Move the task; remove/add the Human tag; edit files; change runtime/data, commits, branch, or PR/MR state; rerun Human-QA; create a QA writer; or infer that `tested` alone asks for workflow advancement.
+
 ---
 
 ## E. Android UI-QA / emulator

@@ -1400,3 +1400,18 @@ exact-head QA runtime.
 Production breadth is not the default. The fixture-fit decision in
 `QA_INSTANCES.md` still applies, and brokered production-like exports retain all
 same-workspace, sanitization, isolation and short-lifetime constraints.
+
+## Human-owned `tested` tags are a preservation boundary (2026-09-01, human-directed)
+
+A Human-QA card tagged `tested` has already crossed the Human's test boundary;
+the tag is not an instruction to advance workflow or modify the implementation.
+The Human owns adding and removing it, and all Human-owned tags must be read as
+one intent before action.
+
+Accordingly, `tested` alone means preserve and do nothing. The combination
+`tested` plus Human-owned `peer-review` authorizes only one independent
+read-only review of the exact tested head while the card remains in Human-QA.
+It does not authorize edits, runtime/data changes, a QA rerun, provider-state
+changes, or a lane move. Ambiguity is resolved before mutation. This prevents
+automation from destroying the tested state or surprising the Human with
+unrequested file and lifecycle changes.

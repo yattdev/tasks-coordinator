@@ -2075,3 +2075,17 @@ The existing fixture-fit rule still prevents defaulting to production breadth.
 
 Files: `PROMPT.md`, `projects/`, `docs/CAPABILITY_REGISTRY.md`,
 `docs/RUNBOOK.md`, `docs/QA_INSTANCES.md`, `docs/DECISIONS.md`, this log.
+
+## 2026-09-01f — Human `tested` tags mean preserve first
+
+Treating `tested` as a generic signal to move a Human-QA task into Review was a
+coordination error. Human-owned tags express the Human's reason for holding the
+card and must be interpreted together before any action. `tested` alone is
+hands-off. `tested` plus Human-owned `peer-review` calls for one independent
+read-only exact-head reviewer while the card stays in Human-QA; it never grants
+authority to edit files, alter runtime/data/provider state, rerun QA, or move
+the card. Agent tags remain useful routing hints only inside Human-owned
+boundaries.
+
+Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, this log.

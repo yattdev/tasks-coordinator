@@ -189,6 +189,26 @@ overlay executed only against the task destination. Record its hash separately.
 Do not silently mutate the golden artifact, and do not let each task invent a
 different ad-hoc mock dataset.
 
+## Respect Human-owned tested and peer-review tags in Human-QA
+
+Before any Human-QA action, read the complete tag set and distinguish
+Human-owned from agent-owned tags. Normalize tag names case-insensitively. The
+Human alone controls `tested`.
+
+1. If `tested` is present without a Human-owned `peer-review`, leave the card,
+   exact head, runtime/data, provider state, lane, and sessions untouched.
+2. If both Human-owned `tested` and `peer-review` are present, verify the exact
+   tested head and complete session census, keep the task in Human-QA, and start
+   no more than one independent read-only reviewer. Its handoff explicitly
+   forbids edits, runtime/data changes, commits, branch/provider mutations,
+   Human-QA reruns, and QA writers.
+3. Record the reviewer session/result and re-read the lane, tags, head, and
+   sessions. A Review result is evidence for the Human; it is not authority to
+   move the card or change readiness.
+4. If tags conflict or their reason is unclear, preserve everything and ask or
+   record the precise ambiguity before acting. Agent tags never override Human
+   tags.
+
 ## Local ignores in a LINKED WORKTREE go in the common dir
 Task worktrees on this board are linked worktrees: `.git` is a FILE, not a
 directory. Two consequences that cost real time on 2026-08-19 (`3c2a0d34`):

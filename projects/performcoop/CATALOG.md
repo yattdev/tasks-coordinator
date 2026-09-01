@@ -7,5 +7,13 @@ Project slots: `performcoop` (repository
 `pc-mobile` (repository `3cb0b634-8e42-41b5-bbfe-aca39b66246e`,
 `/data/home/Code/pc-mobile`).
 
-Owner fixture/recipe status: awaiting provisioning into the corresponding
-project `artifacts/` directory and manifest.
+Reconciled: `2026-09-01` from live workspace repository inventory. These are
+the only two registered application project slots; no duplicate alias was
+created.
+
+- `performcoop`: a broad sanitized catalog fixture and reviewed load/start
+  recipes remain owner-provisioned inputs. Repository seed fixtures and the
+  guarded same-workspace source broker are scenario-specific candidates.
+- `pc-mobile`: no mobile-owned reusable database is required for the offline
+  mock flavor. Local integration reuses the compatible `performcoop` backend
+  fixture; a reviewed secret-free start recipe is still required.
