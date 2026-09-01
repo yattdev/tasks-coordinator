@@ -1274,6 +1274,22 @@ during the audit is reported from the newer live state and the helper receipt is
 only as superseded history. Parallelism reduces latency; the final live reconciliation
 prevents that speedup from producing a late, already-wrong answer.
 
+## Queue triage and FIFO disposition are separate capabilities (2026-09-01)
+
+Parallel helpers can classify independent message families and return evidence sooner,
+but they do not claim, acknowledge, remove, or free the primary session's persisted FIFO
+rows. Therefore a helper receipt proves only analysis completion. The Coordinator may say
+surfaced evidence was reconciled, but may not say the product queue was drained without an
+authenticated exact-entry before/after receipt.
+
+Repeated routine wakes are a special, narrow deduplication class. Only identical pending
+routine payloads for the same Coordinator target may coalesce, and one effective wake must
+remain. Human input, task or peer reports, messages with distinct bodies, and messages that
+merely share a task/dependency family always remain distinct. Canonical Kandev task
+`ca015838-e5cf-4294-b3bb-9c50576a5fe6` owns the guarded platform implementation; its
+acceptance requires immutable row identity, idempotent concurrent disposition, FIFO and
+restart durability, authorization boundaries, and observable before/after outcomes.
+
 ## Static logical-backup delivery is narrow source access, not general file copy (2026-08-31)
 
 A task may need an existing logical backup while its registered source database container

@@ -2058,6 +2058,28 @@ guarded queue-claim/coalescing surface to the Kandev Coordinator.
 Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, this log.
 
+## 2026-09-01g — helper parallelism is not queue disposition
+
+A capability exchange with canonical Kandev Coordinator task
+`a68df3ae-aaf5-4591-a46d-9d73db62e46d` confirmed a useful boundary: helpers can reduce
+the time to classify independent evidence, but they cannot claim or release the primary
+session's persisted FIFO rows. Same-host telemetry showed identical routine wakes at
+distinct queue positions. The canonical Coordinator created one deduplicated repair owner,
+task `ca015838-e5cf-4294-b3bb-9c50576a5fe6`, and verified session
+`d83affb2-d391-4142-be8a-de12d98939c1` RUNNING.
+
+The learned operator rule is precise: call surfaced messages reconciled only after fresh
+live-state review, and call a queue drained only after an authenticated immutable-entry
+before/after disposition receipt. Storage/execution coalescing is permitted only for
+identical pending routine wakes to the same target while preserving one effective wake.
+Human input, task or peer reports, different bodies, and messages that merely share a
+family are never coalesced. The platform owner additionally requires concurrent
+idempotence, FIFO/restart durability, authorization denials, ordered counts, and per-entry
+outcomes.
+
+Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, this log.
+
 ## 2026-09-01e — realistic test data is a reusable workspace capability
 
 Per-task Human uploads and agent-invented mock datasets do not scale across a

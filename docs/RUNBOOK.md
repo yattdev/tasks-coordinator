@@ -2648,6 +2648,17 @@ read-only census again returned 0. Helper triage does not itself drain the queue
 This receipt proved the mechanism; the human correction is to use it proactively,
 not only after the queue is full.
 
+Current platform gap and owner, verified 2026-09-01: queue telemetry on two live
+Coordinators showed identical routine wakes occupying distinct FIFO positions. Read-only
+helpers shortened evidence collection but did not release any queue capacity. Canonical
+Kandev task `ca015838-e5cf-4294-b3bb-9c50576a5fe6` owns a guarded exact-entry
+census/claim/disposition API plus routine-wake coalescing; session
+`d83affb2-d391-4142-be8a-de12d98939c1` was verified RUNNING. Until that capability is
+deployed, never report a helper-triaged queue as drained and never infer removal from a
+handled conversation item. Coalesce at execution only when routine kind, target, and
+payload identity are exact, preserve one effective wake, and keep every Human message,
+task/peer report, and materially different routine payload distinct.
+
 ## Recover unread messages from a failed Coordinator session
 
 A failed or superseded Coordinator session can retain a private queue that ordinary
