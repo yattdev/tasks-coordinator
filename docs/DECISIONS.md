@@ -322,18 +322,22 @@ an explicit pre-move gate: verify merged identity, accepted head, no open
 replacement, no remaining dependency/session need, durable local work, and safe
 resource disposition before exposing a task to Done cleanup.
 
-## ToDeploy is strictly human-owned except for Coordinator-created tasks (2026-08-27, human-directed)
+## ToDeploy is strictly human-owned except for Coordinator-created tasks and agent-tag reconciliation (2026-08-27; clarified 2026-09-01, human-directed)
 
 While a task is physically in ToDeploy, the Coordinator does not perform
 task-specific reads, messages, flags, updates, moves, cleanup, archival, or
-resource inspection unless the Coordinator created that task. A board-wide
-inventory may incidentally expose the card's identity and column, but it does
-not authorize a deeper query. The human moves all other ToDeploy tasks to Done;
-the Coordinator may terminally verify and move only its own created tasks from
-ToDeploy to Done. This explicit ownership boundary supersedes older language
-that treated ToDeploy as monitored or allowed reading its transition for a
-future Done audit. Once a human-owned task reaches Done, its terminal audit uses
-the live Done record and durable provider/repository evidence.
+resource inspection unless the Coordinator created that task. The sole exception
+is targeted reconciliation of this agent's own card-tag applications and notes:
+the Coordinator may list tags, add/update/remove only its agent-owned applications,
+and verify tag readback so the card reflects the Human-owned next action. Human tag
+applications remain untouched, and the exception authorizes no other task read or
+mutation. A board-wide inventory may incidentally expose the card's identity and
+column, but it does not authorize a deeper query. The human moves all other ToDeploy
+tasks to Done; the Coordinator may terminally verify and move only its own created
+tasks from ToDeploy to Done. This explicit ownership boundary supersedes older
+language that treated ToDeploy as monitored or allowed reading its transition for a
+future Done audit. Once a human-owned task reaches Done, its terminal audit uses the
+live Done record and durable provider/repository evidence.
 
 ## One canonical charter with model-specific loaders (2026-08-24)
 

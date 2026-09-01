@@ -99,7 +99,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Action** In the same cycle, verify the physical lane, read targeted tags, remove stale/incompatible agent applications, apply the tag matching the actual owner/next action with a concise hover note, then verify targeted tag readback. A queued move keeps a recorded pending tag reconciliation until the destination applies.
 - **Capability** `move_task_kandev`; Tags plugin targeted `list_tags`, `add_tag`, and `remove_tag`; [reconcile the agent tag with every completed move](RUNBOOK.md#reconcile-the-agent-tag-with-every-completed-move).
 - **Evidence** Physical workflow step plus exact task-scoped tag ID/name/note readback.
-- **Never** Leave the prior lane's instruction on a moved card, infer a tag solely from the lane name, alter human tags, or violate the ToDeploy ownership boundary.
+- **Never** Leave the prior lane's instruction on a moved card, infer a tag solely from the lane name, or alter human tags. For ToDeploy, this agent's targeted tag applications and notes are the sole permitted task-specific surface; do not read or mutate task content, workflow state, sessions, PRs, or resources.
 
 ### B3b. A live armed pending move makes a task message-unsafe
 - **Trigger** `pending_moves` contains a row whose target differs from the current lane and whose keyed task session is present and `WAITING_FOR_INPUT`.
@@ -506,7 +506,7 @@ Production, protected/release branch, cost, and external-communication **labels*
 - **Merging**: NEVER, by any agent, under any circumstance, until the human changes this (2026-08-29). Green/clean/approved = ready for a HUMAN decision, not authorization. No auto-merge, no directing an agent to merge; the full-approval grant does not reach merges.
 - **Upstream `kdlbs/*` PR that is READY**: **Coordinator action, not a dead end** — post a mention of `@carlosflorencio` (maintainer, holds the merge) on the PR; add `@jcfs`/`@zeval` only when prior authorship on the touched paths shows they own that area. Readiness first (non-draft, green on current head, threads resolved). **Once per head**, recorded with PR number + head SHA; re-notify on a new push, never on an unchanged head. Agents are credential-blocked (D18), so the Coordinator posts it.
 - **Merge asks**: resolve `base.repo.full_name` (not the head). `yattdev/*` or `ayattara-sfl/*` → human can merge, goes in NEEDS YOUR DECISION. `kdlbs/*` or third-party → human CANNOT merge, goes in WATCH as awaiting the upstream maintainer.
-- **ToDeploy**: never move a task into it; never touch a task already in it unless this Coordinator created that task. A workflow-wide inventory may incidentally return its ID/title/column — issue no task-specific read or mutation.
+- **ToDeploy**: never move a task into it; never touch a task already in it unless this Coordinator created that task, except to list and reconcile this agent's own tag applications and notes through the targeted Tags plugin. Leave Human tag applications untouched. A workflow-wide inventory may incidentally return its ID/title/column; issue no other task-specific read or mutation.
 - **Backlogs / ToDeploy** are Human-managed holding columns; **Human-QA** waits for Human review.
 - **Cross-workspace**: no standing to move, message, flag, plan, or answer outside your workspace.
 - **Own card**: never modify this Coordinator task's own step or state.

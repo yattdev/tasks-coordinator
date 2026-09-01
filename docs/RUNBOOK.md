@@ -2456,9 +2456,12 @@ Examples: active delegated work uses `agent`; an operator-owned merge of a green
 with the exact test; dependency parking uses `waiting` with the resume trigger. Do
 not infer the tag from the lane name alone—derive it from the actual owner and next
 action. A move is not fully reconciled until both the physical lane and targeted tag
-readback agree. Respect the ToDeploy ownership boundary. If targeted tagging is
-temporarily unavailable, record the exact degradation and repair owner/trigger; do
-not silently leave the old instruction in place.
+readback agree. In ToDeploy, targeted listing and reconciliation of this agent's own
+tag applications and notes is the sole permitted task-specific action: leave Human
+applications untouched and do not inspect or mutate task content, messages, plans,
+sessions, relations, PRs, resources, lane, or state. If targeted tagging is temporarily
+unavailable, record the exact degradation and repair owner/trigger; do not silently
+leave the old instruction in place.
 
 <a id="pending-move-preflight"></a>
 

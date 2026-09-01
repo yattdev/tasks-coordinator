@@ -2143,3 +2143,15 @@ missing.
 
 Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/QA_INSTANCES.md`, `docs/DECISIONS.md`, this log.
+
+## 2026-09-01i — ToDeploy permits agent-tag reconciliation only
+
+ToDeploy remains a Human-owned, content-inaccessible holding lane. The one
+permitted task-specific operation is targeted reconciliation of this agent's own
+tag applications and concise notes so the card accurately shows the Human-owned
+next action. Listing tags for that purpose and verifying the result are allowed;
+messages, plans, sessions, relations, PRs, resources, lane/state changes, and all
+Human tag applications remain hands-off.
+
+Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, this log.
