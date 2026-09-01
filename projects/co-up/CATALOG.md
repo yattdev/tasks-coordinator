@@ -8,5 +8,14 @@ Project slots: `co-up` (repository aliases
 `coup-mobile`. The two Co-Up repository registrations share one application
 fixture manifest; record both source paths there rather than duplicating data.
 
-Owner fixture/recipe status: awaiting provisioning into the corresponding
-project `artifacts/` directory and manifest.
+Live reconciliation at 2026-09-01 04:24 UTC found the registered development
+MariaDB source `coup-db` (`mariadb:10.11`) available through the guarded source
+broker. The repository also contains several unvalidated SQL files and a
+`TestBaselineSeeder`/rollback pair. None is yet a reusable full fixture: the SQL
+files have no sanitization or provenance receipt, and the seeder is only a
+small overlay that requires a pre-existing cooperative named `Seed Coop A`.
+
+Owner fixture/recipe status: one sanitized immutable Co-Up fixture plus a
+reviewed load recipe is still required. Mobile has no standalone database; its
+integration scenarios consume the Co-Up backend fixture. Raw or unvalidated
+repository dumps are not catalog inputs.
