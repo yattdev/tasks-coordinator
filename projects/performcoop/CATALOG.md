@@ -11,9 +11,10 @@ Reconciled: `2026-09-01` from live workspace repository inventory. These are
 the only two registered application project slots; no duplicate alias was
 created.
 
-- `performcoop`: `AWAITING_FIXTURE`; the owner will place the declared
-  `db.sql`, load recipe and start recipe. No substitute or repeat request.
-- `pc-mobile`: `AWAITING_FIXTURE`; exact repository inspection proves no
-  standalone reusable SQL dump/load recipe is needed for its mock flavor, but
-  the owner-provided start recipe is still absent. No substitute or repeat
-  request.
+- `performcoop`: `READY`; private fixture
+  `performcoop-last-db-20260508-1fcb706c` and reviewed load/start recipes are
+  catalogued. The first clean isolated restore receipt remains required.
+- `pc-mobile`: `READY_LINKED_BACKEND`; it owns no standalone SQL fixture. A
+  mobile integration task consumes a verified task-owned Performcoop backend
+  created from the catalogued fixture, then points its networked development
+  flavor at that isolated URL.

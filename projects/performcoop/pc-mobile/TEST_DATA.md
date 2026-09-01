@@ -1,6 +1,6 @@
 # Test-data manifest: pc-mobile
 
-- Status: `AWAITING_FIXTURE`
+- Status: `READY_LINKED_BACKEND`
 - Workspace ID: `d35ace87-2aae-4e9c-9114-f9899af7f64b`
 - Repository: `3cb0b634-8e42-41b5-bbfe-aca39b66246e` (`/data/home/Code/pc-mobile`)
 - Mobile-owned database artifact/load recipe: `NOT_APPLICABLE`, verified from
@@ -10,18 +10,17 @@
   those inputs. No standalone reusable `db.sql` or `how-to-load.sh` is needed
   for this project slot. Live-backend testing uses the separately catalogued
   Performcoop service rather than a copied mobile SQL dump.
-- Expected reviewed secret-free recipe:
-  `projects/performcoop/pc-mobile/how-to-start.sh`
-- The recipe must name the supported mock/local variant, guarded emulator/ADB
-  procedure, required non-secret inputs and exact smoke/UI assertions. No
-  credentials or environment values may be embedded.
-- Provisioning decision: the owner will place the start recipe. Do not ask
-  again, invent alternate mock data, copy a live task/main database, or create a
-  substitute recipe.
-- Resume trigger: owner placement of
-  `projects/performcoop/pc-mobile/how-to-start.sh`. Then review it for secrets,
-  portability and correct mock/local variant; execute it in a clean isolated
-  task runtime; verify the declared guarded emulator/ADB smoke/UI assertions;
-  and complete this manifest before serving a task.
+- Linked backend fixture: use
+  `performcoop-last-db-20260508-1fcb706c` from the `performcoop` project slot.
+  The Coordinator provisions a task-owned Performcoop web/DB instance first,
+  verifies its `TEST_DATA_RECEIPT`, and gives the mobile task only that
+  task-owned backend URL plus disposable test credentials.
+- Mobile setup remains project/task-specific: select the networked development
+  flavor, point it at the isolated backend URL, start the guarded Android AVD,
+  and verify API reachability, login and the task feature path. Never point a
+  mobile test at the shared/main Performcoop service.
+- Refresh rule: reuse the linked backend receipt while its fixture hash,
+  engine, exact backend head and scenario remain valid. A mobile workflow-step
+  change alone does not justify another dump/import.
 
 Never add secrets or raw dump content to this manifest.

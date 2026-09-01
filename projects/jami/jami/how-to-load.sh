@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+fixture=${FIXTURE:-"$script_dir/artifacts/jami_mysqldump_dev-ghost-v4.sql"}
+container=${MYSQL_CONTAINER:-}
+
+if [[ -z "$container" ]]; then
+  container=$(docker compose ps -q mysql)
+fi
+if [[ -z "$container" ]]; then
+  echo "Jami MySQL container is not running; start the task-owned Compose mysql service first." >&2
+  exit 1
+fi
+if [[ ! -f "$fixture" ]]; then
+  echo "Fixture is unavailable: $fixture" >&2
+  exit 1
+fi
+
+docker exec -i "$container" sh -eu -c '
+  : "${MYSQL_USER:?MYSQL_USER is unavailable in the DB container}"
+  : "${MYSQL_PASSWORD:?MYSQL_PASSWORD is unavailable in the DB container}"
+  : "${MYSQL_DATABASE:?MYSQL_DATABASE is unavailable in the DB container}"
+  MYSQL_PWD="$MYSQL_PASSWORD" exec mysql --user="$MYSQL_USER" "$MYSQL_DATABASE"
+' < "$fixture"
