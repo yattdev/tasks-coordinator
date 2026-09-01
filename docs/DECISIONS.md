@@ -1343,10 +1343,13 @@ an explicit `kd_` project was bound to each exact clone, a sibling protected-nam
 raw Docker remained denied, the socket was absent, and all synthetic runtime/files were
 removed. The isolation defect is therefore repaired in the active deployment.
 
-The approved audit criterion is still open. Ownership/model denials occur before the
-current audit call, so a rejected destructive request has no audit record; allowed
-records lack an audit ID, ownership decision, requested/resolved distinction, and caller
-correlation. Passing prevention does not waive accountable destructive authorization.
-Support follow-up `d9094d17-0741-49ee-bb3c-579812889542` owns that deployment-local
-gap. Keep the general sibling/disposable destructive hold until its audit behavior is
-deployed and independently verified.
+**2026-09-01 audit closure.** Deployment repair
+`8d9a9446de8efa0894310b9d00196d7b26913ca0` moved ownership denial inside the durable
+pre-Docker audit path and correlates both allow and deny decisions to the caller. Support
+closure `a13de9b9-d617-431e-b875-a5cf9e087aca` verified 119/119 host tests and healthy
+deployment; independent Coordinator rerun verified the required identity fields, audit
+IDs `57f2d805-58e2-42e0-8ede-e18806bf0e0e` and
+`109d796f-b64f-4bf9-9734-1a725abf0116`, protected sentinel survival, raw-Docker denial,
+and complete fixture cleanup. The general hold is therefore lifted for an exact claimed
+project/directory whose destructive preflight returns the correlated audit receipt. A
+missing or mismatched receipt still fails closed.

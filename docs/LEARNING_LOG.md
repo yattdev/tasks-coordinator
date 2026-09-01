@@ -1997,3 +1997,19 @@ the general destructive hold, and open one narrow Support follow-up for the audi
 instead of rejecting or duplicating the core repair.
 
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
+
+## 2026-09-01b — a repaired security boundary closes only after host and caller receipts agree
+
+Support's host suite and service health prove the installed deployment is coherent, but
+the guarded principal still has to prove the behavior it depends on. The closure used
+both: Support verified 119/119 tests, HTTP 200, zero restarts, AppArmor, image, and
+installed hashes; the Coordinator independently verified exact-clone denial, protected
+sentinel survival, caller-visible audit IDs matching durable allow/deny records, raw
+Docker denial, socket absence, and complete synthetic cleanup.
+
+Once both receipts agree, lift only the temporary hold that the repaired invariant
+actually covers. Continue to fail closed on missing project-directory ownership or a
+missing/mismatched audit correlation, and keep damaged data recovery as a separate
+incident rather than calling a baseline reconstruction recovery.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.

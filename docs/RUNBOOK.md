@@ -2004,17 +2004,18 @@ Task `46945aff-382a-41a4-9f35-bd5c2806911e` owns that capability.
 
 ## Verify task-scoped Compose isolation from a guarded task session
 
-**Temporary destructive-operation hold (incident 2026-08-31, narrowed
-2026-09-01):** deployment repair
-`991a67c4e274a5cf171536ec1ceabdcabf44f89c` now binds an explicit guarded
-`kd_` project to the authenticated task root and exact clone working directory.
-Coordinator acceptance proved a sibling protected-name cleanup fails exit 78 and
-disposable cleanup preserves a protected sentinel. The general destructive hold
-nevertheless remains until Support follow-up
-`d9094d17-0741-49ee-bb3c-579812889542` completes the required allow/deny audit and
-caller correlation contract. Non-destructive `docker compose config` remains
-available. A bounded synthetic acceptance fixture may exercise exact bound identities;
-never test against the damaged task or treat baseline reconstruction as recovery.
+**Verified repair (2026-09-01):** deployment commits
+`991a67c4e274a5cf171536ec1ceabdcabf44f89c` and
+`8d9a9446de8efa0894310b9d00196d7b26913ca0` bind an explicit guarded `kd_`
+project to the authenticated task root and exact clone working directory, flush every
+destructive allow/deny ownership decision before Docker, and return the same unique
+audit ID and resolved project to the guarded caller. Support closure
+`a13de9b9-d617-431e-b875-a5cf9e087aca` verified the 119-test host suite and service
+health; independent Coordinator acceptance again proved sibling denial, protected
+sentinel survival, caller/audit correlation, raw-Docker denial, socket absence, and
+complete synthetic cleanup. The temporary general destructive hold is lifted only for
+an exact project/directory binding with this preflight receipt. Never test against the
+damaged task or treat baseline reconstruction as recovery.
 
 After the repair is deployed, use two disposable synthetic directories under the current
 task root. Define a protected service with sentinel data and a separate disposable
@@ -2027,9 +2028,8 @@ The guarded client intentionally forwards only three command-scoped interpolatio
 variables: `COMPOSE_PROJECT_NAME`, `DB_PORT`, and `WEB_PORT`. Use them when a task's
 tracked Compose file already supports isolated project and host-port overrides. The
 broker validates decimal ports in `1..65535`; every other environment key stays outside
-the broker subprocess. Before the pending repair, the rendered `kd_<task-hash>` value
-is evidence only for non-destructive interpolation, not proof of project-directory
-ownership. After the repair, require the broker's exact task + canonical project
+the broker subprocess. A rendered `kd_<task-hash>` value alone is not proof of
+project-directory ownership. Require the broker's exact task + canonical project
 directory + project binding and flushed preflight audit before any destructive command.
 Before a hook-backed publication, run `docker compose config` once and verify the
 resolved project and published ports, then let the single
@@ -2074,6 +2074,12 @@ flushed before Docker can run. The guarded caller must return the same audit ID 
 resolved project. A denial that exits 78 without an audit event, or an allowed command
 with only an uncorrelated `attempt/ok` pair, is an incomplete repair: preserve the
 passing isolation evidence and send one fresh Support request for the audit defect.
+
+Closure receipt: `kd_coord_a13_protected` rejected cross-clone destruction with exit 78
+and audit `57f2d805-58e2-42e0-8ede-e18806bf0e0e`; allowed disposable cleanup returned
+audit `109d796f-b64f-4bf9-9734-1a725abf0116`; both log records carried the required
+identity fields, the protected sentinel remained `protected-a13`, raw inspect exited 78,
+the socket was absent, and both synthetic projects and fixture files were removed.
 
 ## Android UI-QA through the guarded emulator/adb wrappers
 
