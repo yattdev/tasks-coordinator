@@ -189,6 +189,29 @@ overlay executed only against the task destination. Record its hash separately.
 Do not silently mutate the golden artifact, and do not let each task invent a
 different ad-hoc mock dataset.
 
+### Owner has already chosen catalog placement
+
+An owner statement that they will place the required `db.sql`,
+`how-to-load.sh`, or `how-to-start.sh` in a declared project slot is the complete
+provisioning decision. Record it once; do not raise another owner-data request.
+
+1. Ensure the declared project and ignored `artifacts/` directories exist.
+2. Keep the overall manifest status exactly `AWAITING_FIXTURE` while any
+   required file is absent. List every missing path literally.
+3. Do not create mock data, copy a live task/main database, invoke the source
+   broker as a substitute, or silently promote a repository fixture/seeder into
+   the promised catalog slot.
+4. Resume only when the owner places the files at those paths. Then verify raw
+   data is a regular file at mode 0600; record bytes and SHA-256; prove engine,
+   version and format compatibility plus sanitization; review recipes for
+   secrets and portability; import into a clean isolated destination; run the
+   declared schema/domain/login/feature assertions; and complete the manifest
+   before delivery.
+5. Mark an artifact or recipe `NOT_APPLICABLE` only after exact source/runtime
+   inspection proves the project creates or supplies that data through another
+   reviewed, reusable mechanism and needs no file of that class. Keep the
+   overall manifest `AWAITING_FIXTURE` if another required input is still absent.
+
 ## Respect Human-owned tested and peer-review tags in Human-QA
 
 Before any Human-QA action, read the complete tag set and distinguish

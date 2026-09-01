@@ -20,6 +20,15 @@ limitations—never secrets. All task-specific migrations, credentials, overlays
 and writes happen in the private destination, never in the immutable catalog
 artifact. See the [catalog delivery runbook](RUNBOOK.md#provide-reusable-project-test-data-through-the-coordinator-catalog).
 
+If the owner has already committed to place the catalog artifact/recipe, keep
+the manifest `AWAITING_FIXTURE` and preserve the empty slot. Do not turn the
+general synthetic-fixture preference below into permission to invent a mock,
+copy a live task/main database, use a brokered substitute, or ask the owner for
+the same decision again. Resume on exact-path placement and validate the file,
+recipe, clean isolated import and manifest before reuse. `NOT_APPLICABLE` is
+valid only with exact project evidence; another missing required input keeps the
+overall manifest `AWAITING_FIXTURE`.
+
 ## Fit the fixture to the feature — do not default to copying production
 
 Copying the live application database into a QA instance is the EXPENSIVE option

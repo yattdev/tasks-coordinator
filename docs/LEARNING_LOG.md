@@ -2089,3 +2089,18 @@ boundaries.
 
 Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, this log.
+
+## 2026-09-01g — owner placement is the catalog resume trigger
+
+After the owner commits to place catalog inputs, continuing to search for a
+substitute or asking again is not initiative; it violates the chosen data
+boundary. Keep the manifest `AWAITING_FIXTURE`, publish the exact missing paths,
+and leave the slot empty. Do not invent mocks or copy live task/main data.
+Resume only when the files appear, then validate mode, bytes/hash,
+compatibility, sanitization, recipe safety, clean isolated import, assertions,
+and manifest metadata. Use `NOT_APPLICABLE` only after exact project evidence,
+while keeping the overall status awaiting if some other required input is
+missing.
+
+Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/QA_INSTANCES.md`, `docs/DECISIONS.md`, this log.

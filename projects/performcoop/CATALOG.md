@@ -11,9 +11,9 @@ Reconciled: `2026-09-01` from live workspace repository inventory. These are
 the only two registered application project slots; no duplicate alias was
 created.
 
-- `performcoop`: a broad sanitized catalog fixture and reviewed load/start
-  recipes remain owner-provisioned inputs. Repository seed fixtures and the
-  guarded same-workspace source broker are scenario-specific candidates.
-- `pc-mobile`: no mobile-owned reusable database is required for the offline
-  mock flavor. Local integration reuses the compatible `performcoop` backend
-  fixture; a reviewed secret-free start recipe is still required.
+- `performcoop`: `AWAITING_FIXTURE`; the owner will place the declared
+  `db.sql`, load recipe and start recipe. No substitute or repeat request.
+- `pc-mobile`: `AWAITING_FIXTURE`; exact repository inspection proves no
+  standalone reusable SQL dump/load recipe is needed for its mock flavor, but
+  the owner-provided start recipe is still absent. No substitute or repeat
+  request.

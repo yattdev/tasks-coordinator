@@ -1401,6 +1401,18 @@ Production breadth is not the default. The fixture-fit decision in
 `QA_INSTANCES.md` still applies, and brokered production-like exports retain all
 same-workspace, sanitization, isolation and short-lifetime constraints.
 
+### An owner placement commitment closes the provisioning decision
+
+Once the owner says they will place the required artifact and recipes in the
+declared catalog directories, the Coordinator has no further decision to seek.
+The project remains `AWAITING_FIXTURE`; the owner is not asked again, and an
+agent must not fill the intentional gap with ad-hoc mocks, a live task/main
+database, or a fallback export. The deterministic resume event is exact-path
+placement. Validation then precedes any task delivery: permissions, immutable
+identity/hash, compatibility, sanitization, secret-free recipes, clean import,
+assertions, and manifest completeness. `NOT_APPLICABLE` is evidence-based, not
+a shortcut for a missing file.
+
 ## Human-owned `tested` tags are a preservation boundary (2026-09-01, human-directed)
 
 A Human-QA card tagged `tested` has already crossed the Human's test boundary;

@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-01b -->
+<!-- registry-version: 2026-09-01c -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -252,6 +252,13 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Evidence** `TEST_DATA_RECEIPT`: full task UUID, project/repository identity, fixture ID/version, source timestamp/class, bytes + SHA-256, destination DB/container/volume and engine version, clean-destination proof, importer exit/stderr, integrity/schema/domain counts, login + feature check, deletion/retention disposition, and exact-head runtime identity.
 - **Escalate to** One visible Human data-provision request only when no safe existing artifact, broker source, repository fixture, or seeder can satisfy the scenario. Kandev Support is used only if the delivery capability itself is broken, never to fetch routine data.
 - **Never** Invent mock data while a catalog request is pending; commit raw dumps/secrets; reuse or mutate shared/main data; cross workspaces; accept a delivery hash as proof of import; overlay-retry a partial restore; refresh solely because the task entered Human-QA; or make the Human manually resend the same fixture to each task.
+- **Owner-placement override** When the owner has already committed to place the
+  fixture/recipe in the declared slot, keep that manifest `AWAITING_FIXTURE` and
+  do not use the fallback source order or ask again. Resume only on exact-path
+  placement, then validate permissions, hash, compatibility, recipe safety,
+  isolated restore/assertions, and manifest metadata. `NOT_APPLICABLE` requires
+  exact repository/runtime proof that the project needs no reusable input of
+  that class.
 
 ### D5. A Human-QA task carries a Human-owned `tested` tag
 - **Trigger** A card in Human-QA has a Human-owned tag whose name normalizes case-insensitively to `tested`.
