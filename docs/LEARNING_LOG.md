@@ -2013,3 +2013,19 @@ missing/mismatched audit correlation, and keep damaged data recovery as a separa
 incident rather than calling a baseline reconstruction recovery.
 
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
+
+## 2026-09-01c — platform ownership is centralized without cross-workspace authority
+
+The Kandev workspace is now the canonical delivery board for shared Kandev
+platform bugs, features, improvements, reusable capabilities, and shared
+plugin/tooling/docs work found in any workspace. Peer Coordinators relay evidence or
+transfer an existing card here; this Coordinator then creates or adopts one local owner
+and supplies the complete lifecycle.
+
+The ownership handoff does not widen access. Peer reports remain timestamped evidence,
+and “moved” is not proof until live board data shows the task in this workspace/workflow.
+Verify viability and duplicates, preserve source provenance, and never inspect or mutate
+the source workspace, copy its state, or run implementations on both boards.
+
+Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, this log.

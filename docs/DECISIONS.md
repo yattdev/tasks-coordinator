@@ -1353,3 +1353,19 @@ IDs `57f2d805-58e2-42e0-8ede-e18806bf0e0e` and
 and complete fixture cleanup. The general hold is therefore lifted for an exact claimed
 project/directory whose destructive preflight returns the correlated audit receipt. A
 missing or mismatched receipt still fails closed.
+
+## Kandev platform delivery is centralized on the Kandev workspace board (2026-09-01, human-directed)
+
+The operator designated the Kandev workspace as the sole board owner for shared Kandev
+platform work, regardless of which workspace first discovers it. Peer Coordinators keep
+their workspace-scoped authority for local project work, but relay Kandev platform
+evidence here or transfer their existing platform card here and notify this Coordinator.
+
+Centralization prevents duplicate platform implementations, fragmented readiness state,
+and platform tasks being monitored by Coordinators that cannot see the canonical Kandev
+board family. It does not grant cross-workspace access. A relay remains timestamped
+evidence; a claimed transfer is accepted only after live workspace/workflow readback.
+This Coordinator verifies viability and duplicates, creates or adopts one local owner,
+records source provenance, and then supplies the same full lifecycle supervision as for
+every other task on this board. Project-specific defects with no reusable platform
+deliverable remain owned by the discovering workspace.

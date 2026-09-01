@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-08-31n -->
+<!-- registry-version: 2026-09-01a -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -438,6 +438,7 @@ sh -ceu '
 |---|---|---|
 | Host/container environment: missing tool or dependency, permission/access failure, unavailable host capability, emulator/device support | **Kandev Support** | [G1](#g1-an-environment-blocker-stops-a-task) |
 | A defect in the kandev **product** (routing, env prep, scheduling, session lifecycle, API — anything in `kdlbs/kandev`) | **Board task** | Create a platform-bug task with symptom, evidence, where to look, and a regression-test acceptance criterion (PLATFORM BUG DUTY). No per-cycle cap — create one card per verified defect, however many that is |
+| Kandev platform work reported by another workspace Coordinator | **This Kandev board** | Follow [H1](#h1-another-workspace-reports-or-transfers-kandev-platform-work): verify/dedupe the evidence, then create or adopt one task here and own its complete lifecycle |
 | A defect in a task's own work | **That task's agent** | Direct it; do not implement for it |
 | Destructive/irreversible on unique state, or security/trust-boundary | **Human** | `ask_user_question_kandev` with concrete options + recommendation |
 | Human testing, physical access, or information only the Human has | **Human** | Visible ask — but never present ordinary task approval as the blocker |
@@ -445,6 +446,15 @@ sh -ceu '
 
 Support fixes the environment. Support does not decide product behaviour, approve
 destructive actions, or substitute for the Human on trust-boundary calls.
+
+### H1. Another workspace reports or transfers Kandev platform work
+
+- **Trigger** A peer Coordinator reports a Kandev product/platform bug, feature, improvement, reusable capability, or shared Kandev plugin/tooling/docs need; or says an existing platform task was moved to this Kandev board.
+- **Action** Treat the report as timestamped evidence. Search this entire board, including Done and holding columns, for an existing owner. If no viable owner exists, verify the need against accessible repository/provider/log evidence and create one task here under the normal viability and plan-before-Work rules. If a card was transferred, wait until live board data proves its Kandev `workspace_id`/`workflow_id`, then audit its lane, complete sessions, lifecycle/pending state, plan, repository/PR identity, dependencies, and unique work before adopting it. Record the source workspace/task identity supplied by the peer and thereafter apply the full monitoring lifecycle.
+- **Capability** Peer `message_task_kandev` relay, or operator/platform task transfer followed by this Coordinator's ordinary same-workspace list/read/message/move/create/session/tag capabilities. [Runbook intake procedure](RUNBOOK.md#route-kandev-platform-work-discovered-in-another-workspace).
+- **Authority** Human-directed central ownership by Kandev workspace `2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd`. A peer report authorizes intake evaluation, not access to the peer workspace. Normal Coordinator authority begins only for the created Kandev-board task or after transfer is proven live here.
+- **Evidence** One canonical Kandev-board task ID; no duplicate owner; live workspace/workflow/lane/session/plan/provider census; source provenance in the trail; accepted follow-up ledger entry; and normal post-action readbacks. A message saying “moved” is not transfer proof.
+- **Never** Inspect or mutate the source-workspace task; ask Support or the Human to relay routine details; import credentials/data/worktrees/sessions; run implementations on both boards; adopt a stale peer lane/head/gate claim without refreshing it; or leave a transferred task unowned because another Coordinator originally created it.
 
 ---
 

@@ -1106,8 +1106,11 @@ OWN board down, which is how a Spec task on Performcoop got told to take its
 question to a coordinator in another workspace that could not even see it. Both
 errors came from the same missing question: WHICH BOARD IS MINE?
 The standby doctrine below applies ONLY to two coordinators contending for the
-SAME workspace. If your workspaces differ, you are both active, you owe each
-other nothing but courtesy, and standing down is itself the failure.
+SAME workspace. If your workspaces differ, you are both active, neither stands
+down, and neither mutates the other's board. The sole ownership-routing exception
+is shared Kandev platform work: the discovering peer relays its evidence or
+transfers the card to the Kandev board under the intake procedure below; that
+handoff never grants cross-workspace task access.
 Wake ownership is SINGLE-OWNER WITHIN ONE WORKSPACE (irrelevant across
 workspaces — each board's coordinator gets its own routines): exactly one
 coordinator per board is the target of that board's routines and owns its watch — the one the human directs, whose
@@ -1133,6 +1136,45 @@ workspace's routine ping AND produced a turn", not "its session state reads
 alive". Check the backend log for deliveries keyed by task and workspace over
 the last interval and for turn boundaries. Never infer duplicate targeting from
 two different workspace coordinators receiving similarly named routines.
+
+## Route Kandev platform work discovered in another workspace
+
+The Kandev workspace (`2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd`) is the sole
+delivery board for shared Kandev product/platform work. Other workspace
+Coordinators keep supervising their local project work, but platform bugs,
+features, improvements, reusable capabilities, and shared Kandev
+plugin/tooling/docs work are handed to this Coordinator in one of two ways:
+
+1. **Evidence relay.** Freeze the peer report as timestamped evidence: source
+   workspace/task identity when supplied, symptom, reproduction, logs or provider
+   URL/head, affected component, impact, and proposed acceptance criteria. Do not
+   attempt a task-specific source-workspace read. Search the complete Kandev board,
+   including Done, Backlogs, ToDeploy row identities, and known platform-owner
+   families. If an owner exists, attach the evidence to that local owner after a
+   fresh live barrier. Otherwise verify viability from accessible repository,
+   provider, or local platform evidence and create one Kandev-board task with the
+   normal symptom/evidence/where-to-look/regression-test contract.
+2. **Existing-card transfer.** Do not act on “I moved it” alone. Wait until
+   `list_tasks_kandev` proves the full task UUID now belongs to this exact
+   workspace and workflow. Then read its current plan, conversation, complete
+   session census, physical lane/state, lifecycle/pending projections,
+   dependencies, repositories/worktrees, and canonical PR/MR. Preserve unique
+   work and reconcile the tag/owner before any message or move. If the card has
+   not actually arrived, it remains out of scope; use the relayed evidence path
+   to establish the local owner rather than reaching across the boundary.
+
+After either path, this Coordinator owns the card without reduced service:
+Blocked recovery, delegation, exact-head Review/QA/CI, draft readiness,
+reviewer notification, provider-limit checks, Human-QA when applicable, and
+Done terminal integrity all apply. Record the intake disposition and source
+provenance in the Coordinator plan and follow-up ledger. Project-specific bugs
+that are not reusable Kandev platform work stay with the source workspace.
+
+This centralization changes ownership, not trust boundaries. Never copy secrets,
+data, worktrees, credentials, or sessions across workspaces; never ask Support to
+relay task details; never run duplicate implementations; and never treat a peer's
+old lane, head, check, review, or session claim as current without local/provider
+readback.
 
 ## The visible ask channel can fail closed
 The charter makes `ask_user_question_kandev` binding for every human-facing
