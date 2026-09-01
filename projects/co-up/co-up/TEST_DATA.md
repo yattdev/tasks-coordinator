@@ -4,7 +4,7 @@
 - Workspace ID: `25f53734-5aea-490e-b7ba-d5da6fe821dd`
 - Repositories: `abe336e4-0af1-4b6b-91e9-17124e2e9bda` (`/data/home/Code/co-up`) and `0c390752-fe23-4ba0-a55b-179ac6f1dff7` (`/data/home/Code/inno-prod/projects/co-up`)
 - Artifact: `artifacts/db.sql` (ignored, mode 0600)
-- Load/start recipes: awaiting owner-provided reviewed scripts
+- Load recipe: `how-to-load.sh` (awaiting owner-provided reviewed script)
 - Fixture ID, source, timestamp, bytes, SHA-256, engine/format, sanitization, assertions, refresh rule and limitations: awaiting validation
 - Verified candidate source (2026-09-01 04:24 UTC): guarded broker container
   `coup-db`, image `mariadb:10.11`, running in Compose project `co-up`.
