@@ -2048,10 +2048,12 @@ a supported transfer path exists.
 The requested queue learning also corrected an efficiency claim. Three disjoint read-only
 helpers made board evidence gathering concurrent, but they could not claim or drain the
 primary session's queue. Telemetry showed at least eight queued entries, later position 14,
-and repeated identical full wake payloads consuming separate positions. Parallel helpers
-reduce reconciliation latency; they do not prove queue drainage. Consolidate outbound
-handoffs, keep mutations serialized in the primary, and report the missing guarded
-queue-claim/coalescing surface to the Kandev Coordinator.
+and repeated identical full wake payloads consuming separate positions. A later changed
+task-lane delta to the Kandev Coordinator failed explicitly with `queue_full` at 15/15
+while its primary was RUNNING. Parallel helpers reduce reconciliation latency; they do not
+prove queue drainage. Consolidate outbound handoffs, keep mutations serialized in the
+primary, persist unsent deltas with a recipient-turn retry trigger, and report the missing
+guarded queue-claim/coalescing surface to the Kandev Coordinator.
 
 Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, this log.
