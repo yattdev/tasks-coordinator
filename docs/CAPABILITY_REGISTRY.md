@@ -260,13 +260,13 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
   exact repository/runtime proof that the project needs no reusable input of
   that class.
 
-### D5. A Human-QA task carries a Human-owned `tested` tag
-- **Trigger** A card in Human-QA has a Human-owned tag whose name normalizes case-insensitively to `tested`.
-- **Action** Read all Human-owned tags before acting. With `tested` alone, preserve the card exactly and take no action. With both `tested` and Human-owned `peer-review`, keep the card in Human-QA and start at most one independent read-only peer reviewer against the exact tested head. If the combination is ambiguous, preserve state and ask/record the intended reason before mutation.
-- **Capability** Task/tag/session readback plus an independent read-only Review session when explicitly selected by the tag pair.
-- **Authority** The Human owns adding/removing `tested` and the tag's meaning. Agent-owned tags cannot override it.
-- **Evidence** Full Human-tag readback, unchanged Human-QA lane and exact tested head/runtime/provider state, reviewer session ID and read-only result when requested, and no writer or lifecycle mutation.
-- **Never** Move the task; remove/add the Human tag; edit files; change runtime/data, commits, branch, or PR/MR state; rerun Human-QA; create a QA writer; or infer that `tested` alone asks for workflow advancement.
+### D5. Human-QA and Human-owned `tested` / `peer-review` are preservation boundaries
+- **Trigger** A card is in Human-QA, or carries a Human-owned tag whose normalized name is `tested` or `peerreview` (case and punctuation insensitive).
+- **Action** Human-QA cards remain in Human-QA. A Human `peer-review` tag means an external peer developer is reviewing on their side; it is not the board Review lane and never requests an internal reviewer. Preserve the exact card/head/runtime/data/provider/session state. If a tagged card is outside Human-QA, use an idle-session immediate move to return it, verify the settled lane and full Human-tag readback, and take no further task action.
+- **Capability** Task/tag/session readback and an immediate idle-session move to the workflow's Human-QA step when correcting placement.
+- **Authority** The Human owns the Human-QA hold and adds/removes Human tags. Agent tags and internal Review/QA results cannot override them.
+- **Evidence** Full Human-tag readback, physical Human-QA lane, exact preserved head/runtime/provider state, complete session census, and no internal reviewer/writer/provider mutation.
+- **Never** Route a Human-QA or Human `peer-review` card to Review/QA/PR; spawn or message an internal reviewer/agent; remove/add a Human tag; edit files; change runtime/data, commits, branch, or PR/MR state; or infer workflow advancement from `tested`, `peer-review`, or their combination.
 
 ---
 

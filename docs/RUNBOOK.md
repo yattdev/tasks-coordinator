@@ -212,25 +212,27 @@ provisioning decision. Record it once; do not raise another owner-data request.
    reviewed, reusable mechanism and needs no file of that class. Keep the
    overall manifest `AWAITING_FIXTURE` if another required input is still absent.
 
-## Respect Human-owned tested and peer-review tags in Human-QA
+## Respect Human-QA and Human-owned tested / peer-review holds
 
 Before any Human-QA action, read the complete tag set and distinguish
-Human-owned from agent-owned tags. Normalize tag names case-insensitively. The
-Human alone controls `tested`.
+Human-owned from agent-owned tags. Normalize case and punctuation: `peer-review`,
+`PeerReview`, and `PEER_REVIEW` all mean `peerreview`; normalize `tested` casing
+the same way. The Human alone controls these Human tags and the Human-QA lane.
 
-1. If `tested` is present without a Human-owned `peer-review`, leave the card,
-   exact head, runtime/data, provider state, lane, and sessions untouched.
-2. If both Human-owned `tested` and `peer-review` are present, verify the exact
-   tested head and complete session census, keep the task in Human-QA, and start
-   no more than one independent read-only reviewer. Its handoff explicitly
-   forbids edits, runtime/data changes, commits, branch/provider mutations,
-   Human-QA reruns, and QA writers.
-3. Record the reviewer session/result and re-read the lane, tags, head, and
-   sessions. A Review result is evidence for the Human; it is not authority to
-   move the card or change readiness.
-4. If tags conflict or their reason is unclear, preserve everything and ask or
-   record the precise ambiguity before acting. Agent tags never override Human
-   tags.
+1. Every card already in Human-QA remains there until the Human changes the
+   controlling lane/tag signal.
+2. A Human-owned `peerreview` tag means an external peer developer is reviewing
+   on their side. It is not a request to enter the board Review column or to
+   create an internal reviewer. Preserve the exact head, runtime/data, provider
+   state, sessions, and tags; take no task action.
+3. `tested` is also a hands-off hold. `tested` plus `peerreview` does not grant
+   permission for an internal read-only reviewer or any workflow action.
+4. If a Human `peerreview` card is outside Human-QA, first verify every primary
+   is idle so `move_task_kandev` applies immediately, return only the lane to
+   Human-QA, and re-read the lane, lifecycle, sessions, and tags. Do not include
+   a handoff prompt or deliberately resume/spawn an agent.
+5. A prior internal Review/QA result is evidence for the Human only. It never
+   authorizes moving the card again. Agent tags never override Human tags.
 
 ## Local ignores in a LINKED WORKTREE go in the common dir
 Task worktrees on this board are linked worktrees: `.git` is a FILE, not a

@@ -2090,6 +2090,23 @@ boundaries.
 Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, this log.
 
+## 2026-09-01h — peer-review is external Human review, not the Review lane
+
+The prior interpretation was still too active. A Human-owned `peer-review`,
+`PeerReview`, or punctuation/case-equivalent tag means another peer developer
+is reviewing outside the board workflow. It does not request the board Review
+column or any internal Kandev reviewer. Human-QA itself is a Human-owned hold:
+cards remain there until the Human changes the lane/tag signal. `tested` and
+`peerreview`, alone or together, require preservation and no task action. If a
+tagged card was moved out by automation, return only its lane to Human-QA after
+an idle-session immediate-move check, then verify lane, tags, sessions and
+preserved state.
+
+This supersedes the one-internal-read-only-reviewer sentence in 2026-09-01f.
+
+Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, this log.
+
 ## 2026-09-01g — owner placement is the catalog resume trigger
 
 After the owner commits to place catalog inputs, continuing to search for a

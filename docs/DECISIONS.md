@@ -1413,17 +1413,19 @@ identity/hash, compatibility, sanitization, secret-free recipes, clean import,
 assertions, and manifest completeness. `NOT_APPLICABLE` is evidence-based, not
 a shortcut for a missing file.
 
-## Human-owned `tested` tags are a preservation boundary (2026-09-01, human-directed)
+## Human-QA and Human peer-review tags are preservation boundaries (2026-09-01, human-directed)
 
-A Human-QA card tagged `tested` has already crossed the Human's test boundary;
-the tag is not an instruction to advance workflow or modify the implementation.
-The Human owns adding and removing it, and all Human-owned tags must be read as
-one intent before action.
+Human-QA is a Human-owned holding lane: cards stay there until the Human changes
+the lane or controlling Human tag. Normalize tag names case- and
+punctuation-insensitively. A Human `peer-review`, `PeerReview`, or equivalent tag
+means another peer developer is reviewing outside the board workflow. It is not
+the board Review column and does not request an internal Kandev reviewer.
 
-Accordingly, `tested` alone means preserve and do nothing. The combination
-`tested` plus Human-owned `peer-review` authorizes only one independent
-read-only review of the exact tested head while the card remains in Human-QA.
-It does not authorize edits, runtime/data changes, a QA rerun, provider-state
-changes, or a lane move. Ambiguity is resolved before mutation. This prevents
-automation from destroying the tested state or surprising the Human with
-unrequested file and lifecycle changes.
+Accordingly, both `tested` and `peerreview` are hands-off preservation signals,
+individually or together. Preserve the exact head, runtime/data, provider state,
+sessions, and Human tags; do not edit, rerun QA, change readiness, spawn/message
+an internal reviewer, or move out of Human-QA. If automation previously placed a
+peer-review card in Review/QA, return only its lane to Human-QA after proving the
+primary is idle and verify the settled placement. This supersedes the earlier
+decision that `tested` plus `peer-review` authorized one internal read-only
+reviewer.
