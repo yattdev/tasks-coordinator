@@ -1369,3 +1369,14 @@ This Coordinator verifies viability and duplicates, creates or adopts one local 
 records source provenance, and then supplies the same full lifecycle supervision as for
 every other task on this board. Project-specific defects with no reusable platform
 deliverable remain owned by the discovering workspace.
+
+**Source-board clarification (later 2026-09-01).** A non-Kandev Coordinator is
+not an alternate platform backlog. Every existing Kandev-platform card must move
+with the same UUID to the identically named Kandev Daily lane; every new platform
+discovery is a message-only intake to canonical Coordinator task
+`a68df3ae-aaf5-4591-a46d-9d73db62e46d`. The source preserves unique work until
+live destination readback proves the transfer. Delete/recreate is not an
+acceptable substitute because it breaks task, session, dependency, and artifact
+identity. A missing transfer capability therefore leaves a visible preserved
+transfer backlog and is itself reported to the Kandev Coordinator for canonical
+ownership.

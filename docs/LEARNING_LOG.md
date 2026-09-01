@@ -2029,3 +2029,29 @@ the source workspace, copy its state, or run implementations on both boards.
 
 Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, this log.
+
+## 2026-09-01d — source boards transfer existing platform cards; queue concurrency is evidence-only
+
+The operator strengthened centralization: a non-Kandev Coordinator must transfer every
+existing Kandev-platform task, preserving its UUID and corresponding Daily column, while
+new platform discoveries are sent to the canonical Kandev Coordinator without creating a
+local card. A source Coordinator retains preservation responsibility until live Kandev
+workspace/workflow/lane readback proves the handoff. Delete/recreate is not transfer.
+
+The first Performcoop attempt exposed a capability gap. `move_task_kandev` returned
+`CONFLICT` for both a relation-safe Done pilot and an idle Blocked pilot, and the catalog
+contained no dedicated task-transfer tool. All ten source cards remained unchanged; one
+consolidated exact-ID manifest and the failure receipt were sent to canonical Coordinator
+task `a68df3ae-aaf5-4591-a46d-9d73db62e46d`. This is the correct fail-closed state until
+a supported transfer path exists.
+
+The requested queue learning also corrected an efficiency claim. Three disjoint read-only
+helpers made board evidence gathering concurrent, but they could not claim or drain the
+primary session's queue. Telemetry showed at least eight queued entries, later position 14,
+and repeated identical full wake payloads consuming separate positions. Parallel helpers
+reduce reconciliation latency; they do not prove queue drainage. Consolidate outbound
+handoffs, keep mutations serialized in the primary, and report the missing guarded
+queue-claim/coalescing surface to the Kandev Coordinator.
+
+Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, this log.

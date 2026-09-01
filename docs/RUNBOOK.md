@@ -1145,6 +1145,34 @@ Coordinators keep supervising their local project work, but platform bugs,
 features, improvements, reusable capabilities, and shared Kandev
 plugin/tooling/docs work are handed to this Coordinator in one of two ways:
 
+### Source-workspace procedure
+
+A non-Kandev Coordinator does not choose between relay and transfer. Existing
+platform cards transfer; new discoveries relay without local card creation.
+
+For an existing card, first capture its exact UUID, physical named lane, task and
+session states, pending lifecycle projection, plan, dependencies, repository/PR,
+unique work, runtime/data, and deterministic next trigger. Let any RUNNING turn
+and manual-move lifecycle settle; do not transfer a live reproduction when the
+destination lane's on-entry action could destroy it. Move the same UUID to the
+identically named Kandev Daily lane, send its complete handoff to canonical
+Coordinator task `a68df3ae-aaf5-4591-a46d-9d73db62e46d`, and verify the live
+destination workspace/workflow/lane/session state. Transfer families together
+when a dependency edge would otherwise straddle workspaces.
+
+If the platform exposes no exact transfer capability, or `move_task_kandev`
+returns `CONFLICT`, preserve every source card and resource in place. Send one
+consolidated manifest that contains a separate exact-ID/lane/preservation block
+for every card plus the exact failure. This satisfies notification without
+creating ten queue entries. Do not delete/recreate, archive, or copy worktrees to
+simulate transfer. Retry only on a supported transfer-capability or operator
+event, then perform the same destination readback.
+
+For a new platform discovery, send one evidence packet—symptom, timestamped
+proof, impact, component, and regression-test acceptance—to the canonical
+Coordinator. Record the delivery session/status and let it deduplicate/create on
+the Kandev board. Do not create a source-workspace platform card.
+
 1. **Evidence relay.** Freeze the peer report as timestamped evidence: source
    workspace/task identity when supplied, symptom, reproduction, logs or provider
    URL/head, affected component, impact, and proposed acceptance criteria. Do not
