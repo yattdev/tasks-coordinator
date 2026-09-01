@@ -138,6 +138,57 @@ filesystem/security workaround. A denial is terminal for that operation:
 preserve the exact error and request that the operator register the project in
 the workspace or add a reviewed broker operation.
 
+## Provide reusable project test data through the Coordinator catalog
+
+Each active workspace has a namespace under `projects/<workspace-slug>/`, and
+each application project has one `TEST_DATA.md` manifest. Keep raw inputs under
+that project's ignored `artifacts/` directory with mode 0600. Do not commit SQL,
+database files, compressed dumps, credentials, tokens, or production secrets.
+The versioned manifest and secret-free recipes describe the artifact; they do
+not contain it.
+
+The manifest must identify:
+
+- workspace ID plus every repository ID/path represented by the project key;
+- fixture ID/version, availability, source class and capture timestamp;
+- filename, bytes, SHA-256, DB engine/version and dump format;
+- sanitization and prohibited-live-integration status;
+- load/start recipe, required environment inputs, expected schema/domain counts,
+  login verification method, feature scenarios and known limitations;
+- refresh policy and the last independently accepted restore receipt.
+
+When a Work or Human-QA task asks for data:
+
+1. Resolve the Coordinator's current workspace and the target's full task UUID,
+   active state and project/repository identity. Reject cross-workspace or
+   ambiguous targets.
+2. Read the project manifest. Reuse the current fixture when compatible. If it
+   is absent or insufficient, use the source broker from the Coordinator's
+   materialized worktree, repository fixtures/seeders, or request one owner
+   artifact/recipe. Deduplicate that request in the Coordinator plan.
+3. Copy/deliver the immutable input and reviewed recipe into a new task-owned
+   inbox path. Set restrictive permissions. Report fixture ID, bytes, SHA-256,
+   source timestamp/class, engine compatibility and expected assertions.
+4. Require the task to recreate an empty isolated destination, verify the hash,
+   run the loader without error suppression, preserve the real exit status and
+   sanitized first error, then verify integrity, schema, representative counts,
+   login and feature behavior.
+5. Record the resulting `TEST_DATA_RECEIPT` in the task handoff and Coordinator
+   trail. Delete the delivered dump after successful import unless a short,
+   explicit re-import window is required. Never delete the Coordinator's
+   catalogued immutable source as part of task cleanup.
+
+Work owns the initial provision and leaves the exact-head task instance alive
+when later QA needs it. Human-QA first validates and reuses that receipt and
+instance. It requests a new delivery only for an absent, stale, incompatible,
+disposed or scenario-insufficient fixture; changing columns alone is not a
+refresh reason.
+
+When the base fixture lacks one scenario, prefer a small reviewed idempotent
+overlay executed only against the task destination. Record its hash separately.
+Do not silently mutate the golden artifact, and do not let each task invent a
+different ad-hoc mock dataset.
+
 ## Local ignores in a LINKED WORKTREE go in the common dir
 Task worktrees on this board are linked worktrees: `.git` is a FILE, not a
 directory. Two consequences that cost real time on 2026-08-19 (`3c2a0d34`):

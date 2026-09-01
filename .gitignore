@@ -1,1 +1,13 @@
 support-request.json
+projects/**/artifacts/*
+!projects/**/artifacts/.gitkeep
+projects/**/*.sql
+projects/**/*.sql.gz
+projects/**/*.dump
+projects/**/*.bak
+projects/**/*.sqlite
+projects/**/*.sqlite3
+projects/**/*.db
+projects/**/*.tar
+projects/**/*.tgz
+projects/**/*.zip

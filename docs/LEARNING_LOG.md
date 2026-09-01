@@ -2057,3 +2057,21 @@ guarded queue-claim/coalescing surface to the Kandev Coordinator.
 
 Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, this log.
+
+## 2026-09-01e — realistic test data is a reusable workspace capability
+
+Per-task Human uploads and agent-invented mock datasets do not scale across a
+large board and routinely leave Human-QA with an empty or irrelevant instance.
+The durable owner is the workspace Coordinator: one project-keyed catalog,
+immutable versioned fixture identity, reviewed load/start recipe, and a verified
+same-workspace delivery whenever a task needs it.
+
+Work imports once into a clean task-owned destination and records delivery,
+import, assertions, exact-head runtime, and lifecycle in `TEST_DATA_RECEIPT`.
+Human-QA reuses that receipt and runtime unless a concrete compatibility,
+staleness, disposal, or scenario-fit failure requires refresh. Raw dumps remain
+ignored and mode 0600; only manifests and secret-free recipes are versioned.
+The existing fixture-fit rule still prevents defaulting to production breadth.
+
+Files: `PROMPT.md`, `projects/`, `docs/CAPABILITY_REGISTRY.md`,
+`docs/RUNBOOK.md`, `docs/QA_INSTANCES.md`, `docs/DECISIONS.md`, this log.

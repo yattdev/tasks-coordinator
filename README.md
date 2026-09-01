@@ -14,6 +14,7 @@ human, and produces a daily standup document.
 - [docs/DECISIONS.md](docs/DECISIONS.md) — design decisions
 - [docs/RUNBOOK.md](docs/RUNBOOK.md) — operations and troubleshooting
 - [docs/QA_INSTANCES.md](docs/QA_INSTANCES.md) — Human-QA test-instance provisioning: fixture-vs-copy, hard prohibitions, credential handoff
+- [projects/README.md](projects/README.md) — workspace/project test-data catalogs, ignored artifact storage, and task delivery receipts
 - [docs/LEARNING_LOG.md](docs/LEARNING_LOG.md) — shared learning-cycle receipts
 - [docs/CONTINUITY.md](docs/CONTINUITY.md) — model-independent load/save contract for session replacement
 - [standups/](standups/) — date-stamped standup reports; newest five retained

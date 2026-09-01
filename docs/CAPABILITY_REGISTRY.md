@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-01a -->
+<!-- registry-version: 2026-09-01b -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -243,6 +243,15 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Trigger** Unsure whether a broker capability exists.
 - **Action** Run the subcommand bare — `docker kandev source`, `docker kandev support`. **`docker kandev` with no arguments under-reports**: it prints only `guarded Docker access supports 'docker compose' only` and never mentions `source` or `support`, both of which work.
 - **Never** Conclude from top-level help that a documented capability is missing, or call `kandev-agent-docker-broker --help` (it blocks with no output).
+
+### D4. A task needs realistic reusable test data
+- **Trigger** Work or Human-QA requires a populated database/fixture and the task has no verified task-owned data receipt.
+- **Action** The task requests the project fixture from its parent/Coordinator. The Coordinator resolves `projects/<workspace-slug>/<project-key>/TEST_DATA.md`, verifies same-workspace task/project/engine compatibility, and delivers the minimum suitable immutable artifact plus its reviewed load/start recipe. Prefer an existing sanitized catalog fixture, then the D2 broker, then repository seeders, then a reviewed scenario overlay. Human-QA reuses the Work receipt unless it is stale, missing, incompatible, disposed, or scenario-insufficient.
+- **Capability** Workspace-scoped project catalog plus Coordinator write authority over exact active same-workspace task roots; `docker kandev source db-dump`/`static-backup` when the source is a registered container/root. Raw artifacts live ignored and mode 0600 under the owning Coordinator worktree's project `artifacts/` directory.
+- **Authority** Standing same-workspace Coordinator authority. Production-like export is allowed only through the D2 broker and remains sanitized, isolated, audited, and short-lived.
+- **Evidence** `TEST_DATA_RECEIPT`: full task UUID, project/repository identity, fixture ID/version, source timestamp/class, bytes + SHA-256, destination DB/container/volume and engine version, clean-destination proof, importer exit/stderr, integrity/schema/domain counts, login + feature check, deletion/retention disposition, and exact-head runtime identity.
+- **Escalate to** One visible Human data-provision request only when no safe existing artifact, broker source, repository fixture, or seeder can satisfy the scenario. Kandev Support is used only if the delivery capability itself is broken, never to fetch routine data.
+- **Never** Invent mock data while a catalog request is pending; commit raw dumps/secrets; reuse or mutate shared/main data; cross workspaces; accept a delivery hash as proof of import; overlay-retry a partial restore; refresh solely because the task entered Human-QA; or make the Human manually resend the same fixture to each task.
 
 ---
 

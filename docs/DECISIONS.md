@@ -1380,3 +1380,23 @@ acceptable substitute because it breaks task, session, dependency, and artifact
 identity. A missing transfer capability therefore leaves a visible preserved
 transfer backlog and is itself reported to the Kandev Coordinator for canonical
 ownership.
+
+## Workspace Coordinators own reusable project test-data catalogs (2026-09-01, human-directed)
+
+Repeatedly asking the Human to upload a database for each Work/Human-QA card
+does not scale and produces inconsistent ad-hoc mock datasets. Every workspace
+Coordinator therefore owns a project-keyed fixture catalog and supplies a
+verified immutable input plus load/start recipe to active same-workspace tasks.
+
+The catalog is namespaced by workspace because all Coordinators share one Git
+repository and project names may collide. Metadata and secret-free recipes are
+versioned; raw dumps are ignored, mode 0600 and kept in the owning Coordinator
+worktree. Work imports once into an isolated task destination, and Human-QA
+reuses that receipt/runtime unless concrete staleness or scenario insufficiency
+requires refresh. This separates four identities that must never be conflated:
+catalog artifact, delivery receipt, successful restore receipt, and live
+exact-head QA runtime.
+
+Production breadth is not the default. The fixture-fit decision in
+`QA_INSTANCES.md` still applies, and brokered production-like exports retain all
+same-workspace, sanitization, isolation and short-lifetime constraints.

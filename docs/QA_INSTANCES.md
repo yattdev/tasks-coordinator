@@ -3,6 +3,23 @@
 Companion to the HUMAN-QA TEST INSTANCE GATE in PROMPT.md. Read both before
 telling the human an instance is ready.
 
+## Reuse the Coordinator's project fixture instead of asking the Human per task
+
+The workspace Coordinator owns the reusable catalog at
+`projects/<workspace-slug>/<project-key>/TEST_DATA.md`. Work requests and imports
+that fixture once into a clean task-owned destination, returns a complete
+`TEST_DATA_RECEIPT`, and leaves the required exact-head runtime/data available.
+Human-QA validates and reuses the receipt; it requests a refresh only when the
+fixture or instance is absent, stale, incompatible, disposed, or unable to
+exercise the scenario. A workflow-step change is not staleness.
+
+Raw artifacts remain ignored, mode 0600 and outside Git. The manifest records
+fixture ID/version, capture/source class, SHA-256, engine/format compatibility,
+sanitization, expected schema/domain assertions, recipe, refresh rule and known
+limitations—never secrets. All task-specific migrations, credentials, overlays
+and writes happen in the private destination, never in the immutable catalog
+artifact. See the [catalog delivery runbook](RUNBOOK.md#provide-reusable-project-test-data-through-the-coordinator-catalog).
+
 ## Fit the fixture to the feature — do not default to copying production
 
 Copying the live application database into a QA instance is the EXPENSIVE option
