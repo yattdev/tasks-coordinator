@@ -2004,24 +2004,39 @@ Task `46945aff-382a-41a4-9f35-bd5c2806911e` owns that capability.
 
 ## Verify task-scoped Compose isolation from a guarded task session
 
-Use a disposable directory under the current task root. Define a minimal service with a
-named volume, start it through `docker compose up -d`, and prove
-`docker compose exec -T <service> test -f <marker>` succeeds. Record the generated
-project/container identity so the positive evidence is unambiguously task-owned.
+**Temporary destructive-operation hold (incident 2026-08-31):** the installed
+deployment-local broker derives one task-root project and can map a disposable sibling
+directory back to the registered main project. A cleanup intended for
+`kd_task8402_qa5db6` therefore selected `kd_35e64fd0f98732f2` and removed its
+web/DB/network plus a unique-or-uncertain MariaDB volume. Until Support request
+`a9328e69-e01d-4d8e-8cbc-d18e41c3cdcd` is resolved, deployed, and task-side verified,
+do not run `down`, `rm`, `kill`, `--volumes`, or another destructive/mutating
+Compose cleanup from a disposable or sibling project directory. Non-destructive
+`docker compose config` remains available for interpolation evidence. Preserve any
+existing reproduction; do not try to prove isolation against the damaged task.
+
+After the repair is deployed, use two disposable synthetic directories under the current
+task root. Define a protected service with sentinel data and a separate disposable
+service, start both through the guarded client, prove each exact project-directory owner,
+then remove only the disposable project. Verify the protected sentinel survives and raw
+Docker still fails closed. Record the project/container identities and preflight audit
+IDs so the positive and negative evidence are unambiguously task-owned.
 
 The guarded client intentionally forwards only three command-scoped interpolation
 variables: `COMPOSE_PROJECT_NAME`, `DB_PORT`, and `WEB_PORT`. Use them when a task's
 tracked Compose file already supports isolated project and host-port overrides. The
 broker validates decimal ports in `1..65535`; every other environment key stays outside
-the broker subprocess. Project identity remains broker-derived: use the rendered
-`kd_<task-hash>` value as authoritative, and never require or attempt an arbitrary
-human-selected project name. Before a hook-backed publication, run `docker compose
-config` once and verify the derived project and published ports, then let the single
+the broker subprocess. Before the pending repair, the rendered `kd_<task-hash>` value
+is evidence only for non-destructive interpolation, not proof of project-directory
+ownership. After the repair, require the broker's exact task + canonical project
+directory + project binding and flushed preflight audit before any destructive command.
+Before a hook-backed publication, run `docker compose config` once and verify the
+resolved project and published ports, then let the single
 ordinary `git push` invoke the mandatory hook. Do not run the hook separately or bypass
 it. A valid port override that still renders the default port, an accepted invalid port,
 or a leaked sentinel is a deployment-guard regression for one deduplicated Kandev
-Support incident. A requested arbitrary project name resolving to the derived task
-identity is expected isolation behavior, not a regression.
+Support incident. Do not treat an arbitrary project name resolving to the registered
+task-main identity as safe destructive isolation.
 
 When a long guarded Compose command finishes its inner work but the client reports
 `BlockingIOError: [Errno 11] write could not complete without blocking`, do not retry the

@@ -1313,3 +1313,25 @@ with a durable URL, timestamp, and scope/questions answered. The Coordinator rem
 approval principal for ordinary same-workspace actions, but that grant cannot impersonate
 an upstream maintainer or waive an external repository's policy. Material scope changes
 after the response require renewed evidence.
+
+## Destructive Compose authorization is project-directory scoped, not task-root scoped (2026-08-31)
+
+The deployment-local Compose broker previously treated one derived task-root project as
+the authoritative identity. That prevents arbitrary project naming, but it does not
+separate a registered main worktree from a disposable sibling clone inside the same task
+root. A disposable `down --volumes --remove-orphans` supplied its own project name yet
+the broker selected the registered main project and removed unique-or-uncertain database
+state.
+
+Destructive authorization must bind the authenticated task, canonical effective Compose
+project directory, exact project identity, current configuration/model evidence, and a
+durably flushed preflight audit before Docker is invoked. Missing, stale, foreign, or
+ambiguous bindings fail closed. Compatibility adoption is narrow, label-backed, locked,
+and never inferred from task-root containment alone.
+
+Until that deployment-local repair is installed and verified with two synthetic projects,
+destructive Compose cleanup from sibling/disposable directories is prohibited.
+Non-destructive config inspection may continue. The damaged task remains preserved:
+synthetic protected-resource survival validates the guard; storage recovery is a separate
+incident, and a baseline reseed must never be described as recovery of uncertain final
+state.
