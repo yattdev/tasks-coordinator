@@ -2624,9 +2624,10 @@ slice with the primary. If that cannot happen, name the concrete capacity,
 dependency, or conflict reason in the cycle log.
 
 1. Capture the ordered entry IDs and contents before acting.
-2. Partition by full task UUID and dependency/PR family. No task, PR, dependency,
-   or shared decision may appear in two slices. New arrivals remain primary-owned
-   until the next snapshot.
+2. Declare a claim set for every proposed slice: full task UUIDs, canonical PR URL
+   plus exact head, dependency IDs, and shared resource IDs. Compare all claim sets
+   pairwise before dispatch. Any collision returns the complete family to one
+   primary owner. New arrivals remain primary-owned until the next snapshot.
 3. Helpers only classify and return evidence. They do not mutate tasks, provider
    state, worktrees, the shared Coordinator repository, queue, or plan. The primary
    deduplicates their receipts, rechecks live state and `pending_moves`, and then
@@ -2642,6 +2643,16 @@ dependency, or conflict reason in the cycle log.
    one-off IDs, and never use SQL or broad cancellation.
 7. Re-read the ordered queue. The receipt must name before/after counts, removed
    IDs, missing IDs, and anything intentionally retained.
+
+The minimum trusted queue envelope is server-issued immutable entry ID,
+workspace/task/session provenance, created timestamp, kind, payload digest, and
+complete routine identity when applicable. Producer-declared priority, family,
+dependencies, freshness, or supersession are advisory only. Durable claim/lease
+and append-only disposition audit bind exact entry IDs and preserve FIFO holes
+through restart and compaction. Never use a global watermark or mutable aggregate
+state as proof that earlier rows were handled. Queue disposition remains separate
+from delivery retry, workflow-control delivery, completion intents, lifecycle
+records, and pending-move census/cancellation.
 
 Verified 2026-08-30 for Coordinator session
 `330609a3-ea23-4674-8c0b-9b572f9c0da7`: two helpers triaged disjoint slices;

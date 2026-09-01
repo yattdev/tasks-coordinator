@@ -1449,3 +1449,23 @@ peer-review card in Review/QA, return only its lane to Human-QA after proving th
 primary is idle and verify the settled placement. This supersedes the earlier
 decision that `tested` plus `peer-review` authorized one internal read-only
 reviewer.
+
+## Queue parallelism uses deterministic claims and per-entry audit (2026-09-01)
+
+Helper assignment must be conflict-free by construction, not by intuition. Each
+proposed slice declares its full task UUIDs, canonical PR URL plus exact head,
+dependency IDs, and shared resource IDs. The Coordinator compares those claim
+sets before dispatch; any collision returns the whole family to one primary
+owner. This prevents two read-only investigations from independently steering
+the same decision while still filling all safe capacity.
+
+The platform boundary is deliberately smaller than Coordinator policy. A trusted
+queue envelope needs immutable entry ID, workspace/task/session provenance,
+created timestamp, kind, payload digest, and complete routine identity when
+applicable. Producer priority, family, dependencies, freshness, and supersession
+are advisory because live context can change them. Durable claims and leases plus
+append-only disposition audit bind exact entry IDs and preserve FIFO holes across
+restart/compaction. A global watermark or mutable aggregate state can silently
+skip an unhandled row and is never completion proof. Queue disposition remains a
+separate atomic domain from delivery retries, workflow control, completion
+intents, lifecycle state, and pending-move cancellation.

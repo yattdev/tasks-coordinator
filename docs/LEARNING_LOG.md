@@ -2155,3 +2155,20 @@ Human tag applications remain hands-off.
 
 Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, this log.
+
+## 2026-09-01j — queue ownership is declared before helpers start
+
+Parallel queue triage is safer and cheaper when every proposed helper slice
+declares the exact task, PR head, dependency, and shared-resource identities it
+will inspect. Pairwise claim-set comparison turns overlap into a deterministic
+primary-owned family instead of discovering the conflict after two reports land.
+
+The queue service should remain factual and minimal: immutable entry identity,
+provenance, time/kind, payload digest, and routine identity. Contextual priority,
+family, freshness, and supersession belong to Coordinator reconciliation. Claims
+and append-only dispositions are exact-entry records that preserve FIFO holes;
+one global watermark cannot safely represent partial progress. Keep this domain
+separate from retries, workflow messages, lifecycle and pending moves.
+
+Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, this log.
