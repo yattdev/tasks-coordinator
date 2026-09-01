@@ -1,6 +1,6 @@
 # Test-data manifest: pc-mobile
 
-- Status: `READY_LINKED_BACKEND`
+- Status: `AWAITING_FIXTURE`
 - Workspace ID: `d35ace87-2aae-4e9c-9114-f9899af7f64b`
 - Repository: `3cb0b634-8e42-41b5-bbfe-aca39b66246e` (`/data/home/Code/pc-mobile`)
 - Mobile-owned database artifact/load recipe: `NOT_APPLICABLE`, verified from
@@ -15,12 +15,23 @@
   The Coordinator provisions a task-owned Performcoop web/DB instance first,
   verifies its `TEST_DATA_RECEIPT`, and gives the mobile task only that
   task-owned backend URL plus disposable test credentials.
+- Verified limitation (2026-09-01): the first clean linked-backend restore and
+  login passed, and the Android emulator reached it, but the fixture contains
+  zero projects, training sessions and participant rows. It cannot exercise
+  the participant-signature feature path. Do not invent a mobile DB, mock these
+  server records, or copy a live task/main database. The missing owner-data
+  slot is a replacement/new version of the Performcoop fixture containing at
+  least one isolated project, training session, and signed/unsigned participant
+  scenario, with compatible reviewed load/start recipes if those change.
 - Mobile setup remains project/task-specific: select the networked development
   flavor, point it at the isolated backend URL, start the guarded Android AVD,
   and verify API reachability, login and the task feature path. Never point a
   mobile test at the shared/main Performcoop service.
-- Refresh rule: reuse the linked backend receipt while its fixture hash,
-  engine, exact backend head and scenario remain valid. A mobile workflow-step
-  change alone does not justify another dump/import.
+- Refresh rule: resume when the owner places a replacement/new-version artifact
+  in `projects/performcoop/performcoop/artifacts/last_db.sql` and updates its
+  manifest metadata (and recipes if required). Validate mode, bytes, hash,
+  compatibility, safe restore and the exact mobile feature assertions before
+  changing this status back to `READY_LINKED_BACKEND`. Do not ask the owner
+  again for the already-decided provisioning action.
 
 Never add secrets or raw dump content to this manifest.

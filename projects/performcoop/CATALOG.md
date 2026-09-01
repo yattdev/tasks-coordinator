@@ -13,8 +13,11 @@ created.
 
 - `performcoop`: `READY`; private fixture
   `performcoop-last-db-20260508-1fcb706c` and reviewed load/start recipes are
-  catalogued. The first clean isolated restore receipt remains required.
-- `pc-mobile`: `READY_LINKED_BACKEND`; it owns no standalone SQL fixture. A
-  mobile integration task consumes a verified task-owned Performcoop backend
-  created from the catalogued fixture, then points its networked development
-  flavor at that isolated URL.
+  catalogued. The first clean isolated restore passed for schema/auth/runtime;
+  the manifest records its sparse domain-data limitation.
+- `pc-mobile`: `AWAITING_FIXTURE`; it owns no standalone SQL fixture. The linked
+  backend was reachable from the emulator, but the current Performcoop fixture
+  has no project/training-session/participant scenario, so the target feature
+  path cannot be exercised. Resume only on owner placement of a replacement or
+  new fixture version containing that scenario; never create a mobile DB/mock
+  substitute.

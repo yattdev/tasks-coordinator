@@ -25,6 +25,14 @@
   suppressed stderr, schema present, representative domain counts, test login,
   task feature path, and exact-head web runtime. Record the resulting
   `TEST_DATA_RECEIPT`; that receipt, not the copy alone, proves acceptance.
+- First clean restore receipt (2026-09-01): accepted for the base Performcoop
+  runtime at fixture SHA above. The guarded importer exited 0 with zero MariaDB
+  error lines; MariaDB integrity, Django checks and migrations passed; 129
+  tables were present; disposable browser/mobile login and the version API
+  passed. The restored fixture is intentionally sparse: it contains zero
+  organizations, projects, trainings, training sessions and registers. It is
+  therefore suitable for schema/auth/runtime checks but **not** for workflows
+  requiring an existing project, training session or participant row.
 - Refresh rule: replace only on an owner-supplied newer fixture or a proven
   schema/scenario incompatibility. Recompute size/hash and retain a new fixture
   ID; do not overwrite provenance silently.
