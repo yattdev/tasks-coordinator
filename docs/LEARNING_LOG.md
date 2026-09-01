@@ -2170,5 +2170,12 @@ and append-only dispositions are exact-entry records that preserve FIFO holes;
 one global watermark cannot safely represent partial progress. Keep this domain
 separate from retries, workflow messages, lifecycle and pending moves.
 
+The failure consequence can include hidden unique work. Kandev task
+`86a16fc1-6394-4fb0-898d-4d42948683f5` could not forward unpublished commit
+`3659717209d32572058c048decf65d3ef320cca3` because the Coordinator queue was
+full. Its plan/tag preserved the receipt. A producer must therefore persist any
+material unsent delta locally with an exact recipient-turn retry trigger; a
+failed queue write is evidence of non-delivery, never durable handoff.
+
 Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, this log.

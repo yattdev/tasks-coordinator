@@ -2673,6 +2673,14 @@ handled conversation item. Coalesce at execution only when routine kind, target,
 payload identity are exact, preserve one effective wake, and keep every Human message,
 task/peer report, and materially different routine payload distinct.
 
+Queue-full is also a preservation risk, not merely a latency signal. On 2026-09-01,
+Kandev task `86a16fc1-6394-4fb0-898d-4d42948683f5` could not forward unique unpublished
+commit `3659717209d32572058c048decf65d3ef320cca3` because the Coordinator queue was full.
+The source task preserved it in its plan/tag. Whenever delivery of a material delta fails,
+first persist the exact branch/head/resource receipt at the source, then record a
+deterministic recipient-turn retry trigger; never let a failed queue write be the only
+record that unique work exists.
+
 ## Recover unread messages from a failed Coordinator session
 
 A failed or superseded Coordinator session can retain a private queue that ordinary

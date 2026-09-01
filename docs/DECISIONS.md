@@ -1469,3 +1469,11 @@ restart/compaction. A global watermark or mutable aggregate state can silently
 skip an unhandled row and is never completion proof. Queue disposition remains a
 separate atomic domain from delivery retries, workflow control, completion
 intents, lifecycle state, and pending-move cancellation.
+
+The preservation requirement is operationally material, not theoretical. A full
+Coordinator queue prevented Kandev task `86a16fc1-6394-4fb0-898d-4d42948683f5`
+from forwarding unique unpublished commit
+`3659717209d32572058c048decf65d3ef320cca3`. The source task retained the exact
+receipt in its plan/tag. Therefore a failed material delivery must be durably
+recorded at the source with a deterministic retry trigger before the producer
+parks; queue delivery is never the sole preservation mechanism.
