@@ -21,9 +21,10 @@
   passed.
 - Why status is `STALE`: the preserved linked backend is healthy internally, but
   the guarded Compose broker has not produced a usable host/LAN mapping. The
-  first repair restored stdin; the port repair then exposed a persisted clone
-  ownership rejection on the exact canonical task before Docker. Support request
-  `9134cd16-2fd8-4f84-9b31-73977c0b5634` owns that repair. Do not send a
+  first repair restored stdin and the next repair fixed runtime-wrapper
+  ownership, but replaying the real pre-repair saved model still publishes port
+  0 after successful recreation. Support request
+  `2cf132e0-5333-42c2-9832-123e8598f475` owns that migration repair. Do not send a
   backend URL or credentials, claim emulator reachability, or complete mobile QA
   until `compose port`, localhost HTTP and LAN/emulator HTTP all pass on the
   preserved exact runtime.
