@@ -1,37 +1,36 @@
 # Test-data manifest: pc-mobile
 
-- Status: `AWAITING_FIXTURE`
+- Status: `STALE`
 - Workspace ID: `d35ace87-2aae-4e9c-9114-f9899af7f64b`
 - Repository: `3cb0b634-8e42-41b5-bbfe-aca39b66246e` (`/data/home/Code/pc-mobile`)
 - Mobile-owned database artifact/load recipe: `NOT_APPLICABLE`, verified from
-  the project rather than inferred from absence. `mockDebug` is documented as
-  no-network/offline; `GatewayServiceMock` loads tracked JSON from
-  `app/src/mock/assets/mock/`; and the app creates its DBFlow database from
-  those inputs. No standalone reusable `db.sql` or `how-to-load.sh` is needed
-  for this project slot. Live-backend testing uses the separately catalogued
-  Performcoop service rather than a copied mobile SQL dump.
-- Linked backend fixture: use
-  `performcoop-last-db-20260508-1fcb706c` from the `performcoop` project slot.
-  The Coordinator provisions a task-owned Performcoop web/DB instance first,
-  verifies its `TEST_DATA_RECEIPT`, and gives the mobile task only that
-  task-owned backend URL plus disposable test credentials.
-- Verified limitation (2026-09-01): the first clean linked-backend restore and
-  login passed, and the Android emulator reached it, but the fixture contains
-  zero projects, training sessions and participant rows. It cannot exercise
-  the participant-signature feature path. Do not invent a mobile DB, mock these
-  server records, or copy a live task/main database. The missing owner-data
-  slot is a replacement/new version of the Performcoop fixture containing at
-  least one isolated project, training session, and signed/unsigned participant
-  scenario, with compatible reviewed load/start recipes if those change.
-- Mobile setup remains project/task-specific: select the networked development
-  flavor, point it at the isolated backend URL, start the guarded Android AVD,
-  and verify API reachability, login and the task feature path. Never point a
-  mobile test at the shared/main Performcoop service.
-- Refresh rule: resume when the owner places a replacement/new-version artifact
-  in `projects/performcoop/performcoop/artifacts/last_db.sql` and updates its
-  manifest metadata (and recipes if required). Validate mode, bytes, hash,
-  compatibility, safe restore and the exact mobile feature assertions before
-  changing this status back to `READY_LINKED_BACKEND`. Do not ask the owner
-  again for the already-decided provisioning action.
+  the project. `mockDebug` is no-network/offline, `GatewayServiceMock` uses
+  tracked JSON, and DBFlow creates the mobile database from those inputs. Live
+  backend testing uses an isolated Performcoop service, never a copied mobile
+  SQL dump.
+- Linked backend fixture: `performcoop-db-backups-20260302-d1a9b7a7`, canonical
+  private artifact and restore receipt recorded in the Performcoop project slot.
+  The dump restores substantial project/training/session/participant data and is
+  compatible with the accepted Performcoop task head.
+- Signature-scenario receipt: the raw restore had no exact signature-enabled
+  signed/unsigned pair. An approved clearly synthetic, idempotent,
+  destination-only overlay created project 123, training 5823, session 28322,
+  signed participant 201874 and unsigned participant 201875 without mutating
+  restored business rows. Internal browser/mobile authentication, permissions,
+  project/training/signature APIs, state distinction and protected PNG access all
+  passed.
+- Why status is `STALE`: the preserved linked backend is healthy internally, but
+  the guarded Compose broker created no declared host/LAN port mappings. Support
+  request `5d2dc347-f2d4-4273-969c-6fd94e0944c6` owns the repair. Do not send a
+  backend URL or credentials, claim emulator reachability, or complete mobile QA
+  until `compose port`, localhost HTTP and LAN/emulator HTTP all pass on the
+  preserved exact runtime.
+- Mobile setup after that trigger: deliver only the task-scoped backend URL,
+  disposable credentials, exact scenario IDs and non-secret
+  `TEST_DATA_RECEIPT`; select the networked development flavor; start the guarded
+  Android AVD; verify API reachability/login and the signed-versus-unsigned pencil
+  color path. Never point a mobile test at shared/main Performcoop.
+- Refresh rule: rerun compatibility and exact feature assertions for any fixture,
+  application head, recipe, scenario overlay, or runtime-publication change.
 
 Never add secrets or raw dump content to this manifest.
