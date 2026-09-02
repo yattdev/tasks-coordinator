@@ -1520,6 +1520,26 @@ trigger; it is the failure mode proactive triage prevents.
 Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, this log.
 
+## 2026-09-02c — Compose success needs data-plane and publication proof
+
+A guarded Compose command returning zero proves only that the broker completed
+its control path. It does not prove redirected stdin reached the child process,
+and a rendered `ports` entry does not prove Docker published that port. The
+Performcoop replacement-fixture acceptance found both failures together:
+`compose exec -T ... < file` returned zero with an empty import log and zero
+tables, while a read-only in-container file import populated 133 tables; later,
+the exact rendered model named the expected DB/web ports but `compose port`
+returned `invalid IP:0` and host sockets refused connections even though all
+internal API checks passed.
+
+Acceptance must therefore assert the data plane independently: known byte or
+record counts plus consumer exit/error for stdin, and `compose port` plus an
+actual host/LAN socket or HTTP probe for publication. Preserve healthy internal
+state when either fails, do not share an unreachable runtime, and route one
+deduplicated broker repair. Never log stdin, secrets, arguments, or credentials.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, this log.
+
 ## 2026-08-31a — task-readable recovery files are not necessarily durable
 
 A failed-session queue recovery produced valid mode-0600 pages under a task-owned
