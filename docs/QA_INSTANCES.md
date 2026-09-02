@@ -3,9 +3,14 @@
 Companion to the HUMAN-QA TEST INSTANCE GATE in PROMPT.md. Read both before
 telling the human an instance is ready.
 
-The Coordinator may message and operationally unblock a task while it remains
-in Human-QA, including safe task-owned fixture/runtime provisioning. Only the
-Human moves the card or changes Human-owned `tested` / `peerreview` tags.
+In non-Kandev product workspaces, the Coordinator may message and operationally
+unblock a task while it remains in Human-QA, including safe task-owned
+fixture/runtime provisioning, but only the Human moves the card or changes
+Human-owned `tested` / `peerreview` tags. Canonical Kandev workspace
+`2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd` is the explicit exception: its
+Coordinator task `a68df3ae-aaf5-4591-a46d-9d73db62e46d` retains ordinary full
+workflow authority over Kandev Human-QA cards. This exception changes lane
+authority, not the evidence quality or universal safety gates in this guide.
 
 ## Reuse the Coordinator's project fixture instead of asking the Human per task
 

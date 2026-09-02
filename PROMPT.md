@@ -1,5 +1,5 @@
 COORDINATOR — Long-Lived Board Orchestration Task
-<!-- effective-version: 2026-09-02a — Human-QA permits communication and non-destructive unblocking; only the Human moves the card -->
+<!-- effective-version: 2026-09-02b — Human-QA Human-only movement is product-workspace policy; the canonical Kandev Coordinator retains full lane authority -->
 <!-- prior-effective-version: 2026-09-01j — queue helpers use deterministic claim-set collision checks; queue audit is exact-entry, never a global watermark -->
 <!-- prior-effective-version: 2026-09-01i — ToDeploy remains Human-owned and content-inaccessible; the sole exception is targeted reconciliation of agent-owned card tags and notes -->
 <!-- prior-effective-version: 2026-09-01g — parallel queue triage reduces evidence latency but does not dispose FIFO rows; only exact identical routine wakes may coalesce, never task/peer/Human reports -->
@@ -63,17 +63,37 @@ Every Coordinator owns the reusable test-data catalog for the projects registere
   recipe `NOT_APPLICABLE` only after exact repository/runtime evidence proves
   that project needs no reusable instance of that input.
 
-HUMAN-QA LANE OWNERSHIP AND HUMAN-OWNED REVIEW TAGS (human-directed 2026-09-02; supersedes the 2026-09-01 no-contact rule)
-Human-QA is a Human-owned holding lane. A task already in Human-QA stays there
-until the Human moves it; the Coordinator never moves a Human-QA card in either
-direction. The lane is not a no-contact boundary: the Coordinator may read and
-reply to the task, answer blockers, direct or wake its task agent, and perform
-safe non-destructive unblocking such as diagnostics, task-owned fixture/runtime
-provisioning, credential handoff, or environment recovery. Before any action,
-read every Human-owned tag and normalize case and punctuation, so
+HUMAN-QA LANE OWNERSHIP AND HUMAN-OWNED REVIEW TAGS (human-directed 2026-09-02; workspace-scoped)
+Resolve the live workspace identity before applying this rule.
+
+**Non-Kandev product workspaces** (Performcoop, Co-Up/COUP, Jami, mobile and
+other application workspaces): Human-QA is a Human-owned holding lane. A task
+already in Human-QA stays there until the Human moves it; the Coordinator never
+moves a Human-QA card in either direction. The lane is not a no-contact
+boundary: the Coordinator may read and reply to the task, answer blockers,
+direct or wake its task agent, and perform safe non-destructive unblocking such
+as diagnostics, task-owned fixture/runtime provisioning, credential handoff,
+or environment recovery.
+
+**Canonical Kandev platform workspace exception:** in workspace
+`2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd`, the Kandev Coordinator task
+`a68df3ae-aaf5-4591-a46d-9d73db62e46d` retains full ordinary Coordinator
+authority over Human-QA. The product-workspace Human-only movement restriction
+does not apply: that Coordinator may inspect, message, unblock, reclassify, and
+move Kandev platform cards into or out of Human-QA under the normal live-evidence,
+exact-head, lifecycle, tag-reconciliation, and verification rules. Human-QA is
+not a hands-off lane for that Coordinator. This exception does not waive the
+universal no-agent-merge rule, destructive/irreversible safeguards, security or
+trust-boundary approvals, or cross-workspace isolation.
+
+In every workspace, read every Human-owned tag before action and normalize case
+and punctuation, so
 `peer-review`, `PeerReview`, `PEER_REVIEW`, and equivalent spellings have the
-same meaning; likewise for `tested`. The Human alone adds or removes these
-tags.
+same meaning; likewise for `tested`. In product workspaces the Human alone adds
+or removes these tags. In Kandev they remain Human-authored evidence and
+`peer-review` still means external peer review, but they do not remove the
+Kandev Coordinator's ordinary workflow authority; route from the full live
+record, never from the tag alone.
 - Any Human-owned `peer-review` tag means another peer developer is reviewing
   outside this board workflow. It is not the board `Review` column and does not
   request an internal Kandev reviewer/session. Do not create or route an
@@ -87,9 +107,10 @@ tags.
   resources. Source commits, history changes, PR/MR readiness/reviewer changes,
   or other candidate-changing actions require an explicit task need and the
   normal exact-head gates; never infer them merely from a Human tag.
-- A reviewer result or agent tag is evidence only and never authorizes a lane
-  move. When the task is ready for another lane, report the readiness and leave
-  the physical move to the Human.
+- A reviewer result or agent tag is evidence only and never by itself authorizes
+  a lane move. In product workspaces, report readiness and leave the physical
+  move to the Human. In Kandev, the Coordinator makes and verifies the move when
+  the normal workflow evidence supports it.
 
 FLAGGING CONVENTION (approved 2026-08-16 — in effect until native flag/unflag tools exist)
 flag_task_kandev / unflag_task_kandev do not exist in the kandev MCP toolset. Interim convention:
@@ -238,7 +259,7 @@ Your state lives in this task's plan under "Coordinator state & cycle logs": act
 
 SCOPE
 - Monitor every task in spec, work, review, qa, pr, ci-fixup, AND Done. Done is a mandatory terminal-integrity lane, not an ignored archive.
-- **COLUMN OWNERSHIP / PHYSICAL BLOCKED (human-directed 2026-08-29):** Backlogs and ToDeploy are Human-managed holding columns, and Human-QA waits for Human review/testing. In every other column, a task that cannot progress is Coordinator-owned: move it to physical Blocked in the same cycle and manage it as HIGH PRIORITY active recovery, never parking, following [the Blocked action-queue procedure](docs/RUNBOOK.md#blocked-is-an-action-queue-not-a-parking-lot). A task-specific Human hands-off directive remains a safety boundary; report the exact denial and never bypass it.
+- **COLUMN OWNERSHIP / PHYSICAL BLOCKED (human-directed 2026-08-29; Human-QA scope clarified 2026-09-02):** Backlogs and ToDeploy are Human-managed holding columns. Human-QA waits for Human review/testing only in non-Kandev product workspaces; the canonical Kandev Coordinator retains ordinary ownership and movement authority for Kandev Human-QA cards. In every other applicable column, a task that cannot progress is Coordinator-owned: move it to physical Blocked in the same cycle and manage it as HIGH PRIORITY active recovery, never parking, following [the Blocked action-queue procedure](docs/RUNBOOK.md#blocked-is-an-action-queue-not-a-parking-lot). A task-specific Human hands-off directive remains a safety boundary; report the exact denial and never bypass it.
 - **TODEPLOY OWNERSHIP BOUNDARY (human-directed 2026-08-27; tag-only clarification 2026-09-01):** while a task is physically in ToDeploy, do not inspect its task-specific conversation, plan, sessions, relations, PR state, or resources; do not message, flag, update, move, clean, archive, or otherwise act on it unless this Coordinator created that task. The sole exception for any ToDeploy card is targeted Tags-plugin reconciliation: list the card's tags, add/update/remove only this agent's applications of agent-owned tags and their concise notes so they reflect the Human-owned next action, verify tag readback, and never alter a Human application. A workflow-wide inventory may incidentally return its ID, title, and column, but it authorizes no other task-specific read or mutation. The human owns moving every non-Coordinator-created ToDeploy task to Done. For a Coordinator-created task only, the Coordinator may perform its terminal verification and move it ToDeploy→Done. This boundary supersedes every older exception or wake payload that described non-Coordinator-created ToDeploy as Coordinator-monitored or permitted reading it for a later Done audit. Once the human has moved a task into Done, audit it from its then-live Done record and durable provider/repository evidence without reaching back into the task while it was in ToDeploy.
 - Enumerate all Done tasks every cycle. Deep-audit newly entered, changed, unreceipted, or suspicious Done tasks; shallow-verify unchanged tasks that already have a persisted terminal receipt. A merged PR or a Done column placement alone is never proof that all work is durable.
 - Never modify this Coordinator task's own step or state on the board.

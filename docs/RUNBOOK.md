@@ -212,14 +212,29 @@ provisioning decision. Record it once; do not raise another owner-data request.
    reviewed, reusable mechanism and needs no file of that class. Keep the
    overall manifest `AWAITING_FIXTURE` if another required input is still absent.
 
-## Unblock Human-QA without moving it or changing Human tags
+## Route Human-QA authority by workspace
 
-Before any Human-QA action, read the complete tag set and distinguish
+First resolve the live workspace. The Human-only lane-movement rule below is
+for non-Kandev product workspaces such as Performcoop, Co-Up/COUP, Jami and
+mobile application workspaces. In canonical Kandev workspace
+`2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd`, Coordinator task
+`a68df3ae-aaf5-4591-a46d-9d73db62e46d` has ordinary full Coordinator authority:
+it may move Kandev cards into or out of Human-QA when live evidence supports the
+route, then verify destination lane, task/session lifecycle, exact head/provider
+state and the reconciled agent tag. The universal merge, destructive/security
+and cross-workspace boundaries still apply.
+
+For a non-Kandev product workspace, unblock Human-QA without moving it or
+changing Human tags:
+
+Before any Human-QA action in any workspace, read the complete tag set and distinguish
 Human-owned from agent-owned tags. Normalize case and punctuation: `peer-review`,
 `PeerReview`, and `PEER_REVIEW` all mean `peerreview`; normalize `tested` casing
-the same way. The Human alone controls these Human tags and every move into or
-out of the Human-QA lane. The lane does not prohibit communication or safe
-unblocking.
+the same way. In product workspaces, the Human alone controls these Human tags
+and every move into or out of the Human-QA lane. The lane does not prohibit
+communication or safe unblocking. In Kandev, Human-authored tags remain evidence
+and retain their semantic meaning, but they do not remove the Coordinator's
+ordinary workflow authority; never route from a tag alone.
 
 1. Never move a Human-QA card. The Human performs every lane transition.
 2. A Human-owned `peerreview` tag means an external peer developer is reviewing

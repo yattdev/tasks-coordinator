@@ -1466,6 +1466,25 @@ changes; operational unblocking is allowed, shared/main data mutation is not.
 When the card is ready for another lane, report that fact and let the Human move
 it.
 
+## Kandev platform Coordinator is exempt from the product Human-QA hold (2026-09-02, human-directed)
+
+The preceding Human-only movement rule is scoped to non-Kandev product
+workspaces such as Performcoop, Co-Up/COUP, Jami and mobile application
+workspaces. It must not be learned as a universal platform rule.
+
+In canonical Kandev workspace `2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd`,
+Coordinator task `a68df3ae-aaf5-4591-a46d-9d73db62e46d` retains ordinary full
+Coordinator authority over Kandev Human-QA cards, including evidence-backed
+inspection, communication, unblocking, reclassification and movement into or
+out of Human-QA. It verifies the resulting lane, task/session lifecycle, exact
+head/provider state and reconciled agent tag just as for other lanes.
+
+Human `peer-review` tags still describe external peer review and never by
+themselves request the board Review lane; `tested` remains Human evidence. In
+Kandev these tags inform, but do not revoke, Coordinator authority. The
+exception does not waive no-agent-merge, destructive/irreversible safeguards,
+security/trust approvals, or cross-workspace isolation.
+
 ## Queue parallelism uses deterministic claims and per-entry audit (2026-09-01)
 
 Helper assignment must be conflict-free by construction, not by intuition. Each
