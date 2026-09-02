@@ -1450,6 +1450,22 @@ primary is idle and verify the settled placement. This supersedes the earlier
 decision that `tested` plus `peer-review` authorized one internal read-only
 reviewer.
 
+## Human-QA permits communication and safe unblocking; only the Human moves it (2026-09-02, human-directed)
+
+This supersedes the 2026-09-01 no-contact portion of the preservation rule.
+Human-QA remains Human-owned for every lane transition, and only the Human may
+add or remove Human-owned `tested` / `peerreview` tags. The Coordinator may
+read and reply to a Human-QA task, answer blockers, wake or direct its agent,
+and perform safe non-destructive unblocking such as diagnostics, isolated
+task-owned fixture/runtime/credential delivery, and environment recovery.
+
+`peerreview` still means an external peer developer is reviewing and never
+requests an internal board Review/QA session. Preserve the exact candidate
+head/provider state by default and avoid unrequested source/history/readiness
+changes; operational unblocking is allowed, shared/main data mutation is not.
+When the card is ready for another lane, report that fact and let the Human move
+it.
+
 ## Queue parallelism uses deterministic claims and per-entry audit (2026-09-01)
 
 Helper assignment must be conflict-free by construction, not by intuition. Each

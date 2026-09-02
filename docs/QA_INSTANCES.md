@@ -3,6 +3,10 @@
 Companion to the HUMAN-QA TEST INSTANCE GATE in PROMPT.md. Read both before
 telling the human an instance is ready.
 
+The Coordinator may message and operationally unblock a task while it remains
+in Human-QA, including safe task-owned fixture/runtime provisioning. Only the
+Human moves the card or changes Human-owned `tested` / `peerreview` tags.
+
 ## Reuse the Coordinator's project fixture instead of asking the Human per task
 
 The workspace Coordinator owns the reusable catalog at

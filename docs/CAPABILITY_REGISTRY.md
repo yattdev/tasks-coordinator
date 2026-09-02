@@ -262,13 +262,13 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
   exact repository/runtime proof that the project needs no reusable input of
   that class.
 
-### D5. Human-QA and Human-owned `tested` / `peer-review` are preservation boundaries
+### D5. Human-QA permits unblocking, while lane movement and Human tags remain Human-owned
 - **Trigger** A card is in Human-QA, or carries a Human-owned tag whose normalized name is `tested` or `peerreview` (case and punctuation insensitive).
-- **Action** Human-QA cards remain in Human-QA. A Human `peer-review` tag means an external peer developer is reviewing on their side; it is not the board Review lane and never requests an internal reviewer. Preserve the exact card/head/runtime/data/provider/session state. If a tagged card is outside Human-QA, use an idle-session immediate move to return it, verify the settled lane and full Human-tag readback, and take no further task action.
-- **Capability** Task/tag/session readback and an immediate idle-session move to the workflow's Human-QA step when correcting placement.
-- **Authority** The Human owns the Human-QA hold and adds/removes Human tags. Agent tags and internal Review/QA results cannot override them.
-- **Evidence** Full Human-tag readback, physical Human-QA lane, exact preserved head/runtime/provider state, complete session census, and no internal reviewer/writer/provider mutation.
-- **Never** Route a Human-QA or Human `peer-review` card to Review/QA/PR; spawn or message an internal reviewer/agent; remove/add a Human tag; edit files; change runtime/data, commits, branch, or PR/MR state; or infer workflow advancement from `tested`, `peer-review`, or their combination.
+- **Action** Keep the card physically in Human-QA and leave every lane move to the Human. The Coordinator may read/reply, wake or direct the task agent, diagnose, deliver task-owned fixtures/credentials, repair an isolated runtime/environment, and take other safe non-destructive actions that unblock Human testing or external peer review. A Human `peer-review` tag means an external peer developer is reviewing on their side; it never requests an internal Review/QA session. `tested` records Human test status and does not prohibit communication or unblocking.
+- **Capability** Task/tag/session readback, task messaging, same-workspace catalog delivery, task-owned runtime/environment operations, and ordinary delegated unblock capabilities—excluding lane movement.
+- **Authority** The Human exclusively moves Human-QA cards and adds/removes Human tags. The Coordinator retains ordinary same-workspace lead authority for communication and safe unblocking within that lane.
+- **Evidence** Physical Human-QA lane unchanged; full Human-tag readback unchanged; exact candidate head/provider state preserved unless a separately justified candidate-changing action was explicitly required; complete session/runtime/data receipt for every unblock; and no internal reviewer spawned solely because of `peer-review`.
+- **Never** Move a Human-QA card; add/remove a Human tag; reinterpret `peer-review` as the board Review lane; spawn an internal reviewer from that tag; mutate shared/main data; or infer workflow advancement from `tested`, `peer-review`, or their combination. Do not make unrequested source/history/provider changes while an external peer is reviewing.
 
 ---
 

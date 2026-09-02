@@ -212,27 +212,36 @@ provisioning decision. Record it once; do not raise another owner-data request.
    reviewed, reusable mechanism and needs no file of that class. Keep the
    overall manifest `AWAITING_FIXTURE` if another required input is still absent.
 
-## Respect Human-QA and Human-owned tested / peer-review holds
+## Unblock Human-QA without moving it or changing Human tags
 
 Before any Human-QA action, read the complete tag set and distinguish
 Human-owned from agent-owned tags. Normalize case and punctuation: `peer-review`,
 `PeerReview`, and `PEER_REVIEW` all mean `peerreview`; normalize `tested` casing
-the same way. The Human alone controls these Human tags and the Human-QA lane.
+the same way. The Human alone controls these Human tags and every move into or
+out of the Human-QA lane. The lane does not prohibit communication or safe
+unblocking.
 
-1. Every card already in Human-QA remains there until the Human changes the
-   controlling lane/tag signal.
+1. Never move a Human-QA card. The Human performs every lane transition.
 2. A Human-owned `peerreview` tag means an external peer developer is reviewing
    on their side. It is not a request to enter the board Review column or to
-   create an internal reviewer. Preserve the exact head, runtime/data, provider
-   state, sessions, and tags; take no task action.
-3. `tested` is also a hands-off hold. `tested` plus `peerreview` does not grant
-   permission for an internal read-only reviewer or any workflow action.
-4. If a Human `peerreview` card is outside Human-QA, first verify every primary
-   is idle so `move_task_kandev` applies immediately, return only the lane to
-   Human-QA, and re-read the lane, lifecycle, sessions, and tags. Do not include
-   a handoff prompt or deliberately resume/spawn an agent.
-5. A prior internal Review/QA result is evidence for the Human only. It never
-   authorizes moving the card again. Agent tags never override Human tags.
+   create an internal reviewer. Preserve the tag and never use it as a workflow
+   routing instruction.
+3. `tested` records Human test status. `tested` plus `peerreview` still does not
+   request internal Review/QA or authorize a lane move, but neither tag blocks a
+   reply or a safe operational unblock.
+4. Read the live lane, complete sessions and Human tags before contact. Then
+   answer questions, reply with receipts, wake/direct the task agent, or provide
+   diagnostics, task-owned fixture/runtime/credential delivery and environment
+   recovery when those actions unblock Human testing or external peer review.
+   Verify afterward that the physical lane and Human tags did not change.
+5. Preserve the exact candidate head/provider state by default. Do not make
+   unrequested code, history, readiness or reviewer changes during an external
+   peer review. If a candidate-changing action is explicitly required, apply the
+   ordinary exact-head gates and state clearly that renewed Human/peer testing
+   may be necessary; still leave the lane move to the Human.
+6. A prior internal Review/QA result is evidence for the Human only. Agent tags
+   never override Human tags, and readiness is reported rather than converted
+   into a Coordinator lane move.
 
 ## Local ignores in a LINKED WORKTREE go in the common dir
 Task worktrees on this board are linked worktrees: `.git` is a FILE, not a
