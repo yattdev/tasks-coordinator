@@ -19,10 +19,10 @@
 - Load/start recipes: `how-to-load.sh` and `how-to-start.sh`, SHA-256
   `d8a0fd92d86d948fe116370302f3b543c1e2214d1a13e67972c3362e8d8f5cf8` and
   `d8305c0a4a038fa8fb5598ec6d6e201074e5804b4a63cd80528ae0d3fff50443`.
-  The current guarded Compose client has a known redirected-stdin defect; use
-  only a reviewed task-plan fallback until Support request
-  `5d2dc347-f2d4-4273-969c-6fd94e0944c6` is accepted. Never infer import from
-  exit 0 alone.
+  Guarded redirected stdin was repaired by deployment-local commit
+  `ab8174cea69f0e503439d06340abed5d19716e5a` and exact binary/empty-input
+  task acceptance passed. Continue to verify importer exit, schema and counts;
+  an exit code alone is never an import receipt.
 - Sanitization: the owner identifies this as test data. An independent
   secret/PII audit has not been recorded, so keep it same-workspace, mode 0600,
   immutable after delivery, short-lived in task inboxes, and never publish or

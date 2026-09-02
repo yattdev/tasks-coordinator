@@ -20,8 +20,10 @@
   project/training/signature APIs, state distinction and protected PNG access all
   passed.
 - Why status is `STALE`: the preserved linked backend is healthy internally, but
-  the guarded Compose broker created no declared host/LAN port mappings. Support
-  request `5d2dc347-f2d4-4273-969c-6fd94e0944c6` owns the repair. Do not send a
+  the guarded Compose broker created no declared host/LAN port mappings. The
+  first repair restored stdin but exact task acceptance still observed
+  `PublishedPort:0` after a volume-preserving service recreation; follow-up
+  Support request `f1295766-fc21-4639-970b-5dc8365a0012` owns the port repair. Do not send a
   backend URL or credentials, claim emulator reachability, or complete mobile QA
   until `compose port`, localhost HTTP and LAN/emulator HTTP all pass on the
   preserved exact runtime.
