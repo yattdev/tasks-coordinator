@@ -23,9 +23,11 @@
   the guarded Compose broker has not produced a usable host/LAN mapping. The
   first repair restored stdin and the next repair fixed runtime-wrapper
   ownership, but replaying the real pre-repair saved model still publishes port
-  0 after successful recreation. The first replay request returned only
-  unfinished synthetic diagnosis; follow-up Support request
-  `7a70141c-e7a2-48d0-84d8-68826afaeae8` owns completion. Do not send a
+  0 after successful recreation. Environment forwarding did not clear the exact
+  task gate. Three Support continuations then terminated without executing the
+  authorized synthetic replay work and without naming an external dependency;
+  the Support execution worker now requires Human repair/restart/rerouting. Do
+  not create another duplicate Support request or send a
   backend URL or credentials, claim emulator reachability, or complete mobile QA
   until `compose port`, localhost HTTP and LAN/emulator HTTP all pass on the
   preserved exact runtime.
