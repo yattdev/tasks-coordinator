@@ -2199,3 +2199,15 @@ failed queue write is evidence of non-delivery, never durable handoff.
 
 Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, this log.
+
+## 2026-09-02d — Task ownership is not same-workspace service isolation
+
+A task-owned database/runtime remains owned and mutable only by its provider
+task, but another exact task in the same workspace may consume its application
+service through a reviewed reachable endpoint and disposable scoped
+credentials. Conflating task-owned state with network isolation led the
+Coordinator to reject a valid mobile-to-backend handoff. Verify both full task
+UUIDs and workspace identity, preserve provider ownership, prove reachability
+from the consumer environment, and share no raw SQL, volume, filesystem, logs,
+worktree, or unrelated secrets. Inability to provide this same-workspace service
+path is a platform defect; cross-workspace access remains forbidden.

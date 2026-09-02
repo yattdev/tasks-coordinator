@@ -1421,6 +1421,19 @@ Production breadth is not the default. The fixture-fit decision in
 `QA_INSTANCES.md` still applies, and brokered production-like exports retain all
 same-workspace, sanitization, isolation and short-lifetime constraints.
 
+### Same-workspace tasks may consume each other's application services
+
+Task ownership protects mutable state; it does not require network isolation
+between exact authorized tasks in the same workspace. A provider task keeps its
+database, volumes, filesystem and runtime ownership, while a consumer task may
+use the provider's reviewed service endpoint and disposable scoped credentials.
+Both full task UUIDs and workspace identity are verified before delivery, and
+reachability is proven from the consumer's real execution environment. Raw SQL,
+database volumes, worktrees, logs and unrelated credentials are not shared for
+service consumption. Cross-workspace access remains forbidden. If the platform
+cannot provide this same-workspace service path, that is a platform capability
+defect to repair rather than a policy reason to duplicate the data/runtime.
+
 ### An owner placement commitment closes the provisioning decision
 
 Once the owner says they will place the required artifact and recipes in the

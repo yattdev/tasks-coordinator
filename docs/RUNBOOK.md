@@ -178,6 +178,18 @@ When a Work or Human-QA task asks for data:
    explicit re-import window is required. Never delete the Coordinator's
    catalogued immutable source as part of task cleanup.
 
+When a consumer task needs an application service owned by another task in the
+same workspace, keep the provider's database/runtime task-owned and expose only
+a reviewed service endpoint plus disposable scoped credentials. Before sending
+the handoff, read back both full task UUIDs and workspace IDs, verify provider
+runtime identity/health, then prove reachability from the consumer's actual
+execution environment (for example its guarded container or Android emulator).
+The consumer does not receive raw SQL merely to call the service and must not
+mount, inspect, or mutate the provider's database volume, filesystem, worktree,
+logs, or unrelated secrets. Cross-workspace access remains forbidden. If the
+platform prevents this exact authorized path, preserve the provider runtime and
+route one platform capability defect; do not treat the isolation as intended.
+
 Work owns the initial provision and leaves the exact-head task instance alive
 when later QA needs it. Human-QA first validates and reuses that receipt and
 instance. It requests a new delivery only for an absent, stale, incompatible,

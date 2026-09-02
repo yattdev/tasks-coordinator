@@ -20,7 +20,10 @@
   project/training/signature APIs, state distinction and protected PNG access all
   passed.
 - Why status is `STALE`: the preserved linked backend is healthy internally, but
-  the guarded Compose broker has not produced a usable host/LAN mapping. The
+  the guarded Compose broker has not produced a service endpoint reachable by
+  the exact same-workspace mobile task. Human policy explicitly permits
+  same-workspace task projects to consume one another's task-owned services;
+  the current isolation is therefore a platform capability defect. The
   first repair restored stdin and the next repair fixed runtime-wrapper
   ownership, but replaying the real pre-repair saved model still publishes port
   0 after successful recreation. Environment forwarding did not clear the exact
@@ -31,7 +34,8 @@
   backend URL or credentials, claim emulator reachability, or complete mobile QA
   until `compose port`, localhost HTTP and LAN/emulator HTTP all pass on the
   preserved exact runtime.
-- Mobile setup after that trigger: deliver only the task-scoped backend URL,
+- Mobile setup after that trigger: deliver only the provider task's reviewed
+  same-workspace backend URL,
   disposable credentials, exact scenario IDs and non-secret
   `TEST_DATA_RECEIPT`; select the networked development flavor; start the guarded
   Android AVD; verify API reachability/login and the signed-versus-unsigned pencil
