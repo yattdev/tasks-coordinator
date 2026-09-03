@@ -66,7 +66,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 
 ### A6. Recovering unread messages from a failed Coordinator session
 - **Trigger** A Coordinator session is terminal/failed while its private queue may still contain unprocessed entries, and the replacement primary must continue without replaying handled work.
-- **Action** Bind to the exact task, failed session, and live replacement primary; use a direct guarded authenticated `message.queue.get`; write complete bodies only to bounded UTF-8 pages with mode `0600` and a hashed manifest. When task-runtime cleanup can remove task-root files before reconciliation, require a platform-managed retained backing directory outside that cleanup boundary plus a task-readable mode-`0700` mirror. Reconcile every entry FIFO against the live plan, board, sessions, and provider state. Preserve the source queue. Delete only request-owned recovery copies after all dispositions are durable and cleanup is separately authorized. If the direct surface or durable retention capability is absent, ask Support to repair/provision that reusable capability, not to read or relay the queue.
+- **Action** First prove the failed session still exists; recover before any session deletion because deletion transactionally purges its queue. Bind to the exact task, failed session, and live replacement primary; use a direct guarded authenticated `message.queue.get`; write complete bodies only to bounded UTF-8 pages with mode `0600` and a hashed manifest. When task-runtime cleanup can remove task-root files before reconciliation, require a platform-managed retained backing directory outside that cleanup boundary plus a task-readable mode-`0700` mirror. Reconcile every entry FIFO against the live plan, board, sessions, and provider state. Preserve the source queue. Delete only request-owned recovery copies after all dispositions are durable and cleanup is separately authorized. If the session is already absent, use only an already-verified retained artifact or reconstruct an explicitly incomplete record from durable plan/conversation/provider state; do not retry queue reads or ask Support for deleted bodies. If the direct surface or durable retention capability is absent, ask Support to repair/provision that reusable capability, not to read or relay the queue.
 - **Capability** Direct guarded authenticated WebSocket/recovery surface only. Procedure: [failed-session queue recovery](RUNBOOK.md#recover-unread-messages-from-a-failed-coordinator-session).
 - **Authority** Explicit failed-session recovery request. A temporary authentication-token lifecycle is a separate security-sensitive authority and must be expressly granted or replaced by a preissued credential.
 - **Evidence** Exact task/session identities; entry count and ordered IDs; canonical entry digest; per-page byte counts/hashes; byte-identical retained backing and task mirror when both are required; readable ownership/modes; one API read; temporary token count returning `0 → 1 → 0` when authorized; and `queue_mutated=false`.
@@ -89,7 +89,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Never** Nudge a task that correctly parked with its blocker captured.
 
 ### B3. Task cannot progress (physical Blocked)
-- **Trigger** Any column except Backlogs / ToDeploy / Human-QA, where the task cannot move.
+- **Trigger** Any active delivery column except Backlogs / ToDeploy and, in non-Kandev product workspaces, Human-QA, where the task cannot move. Canonical Kandev Human-QA remains under ordinary Coordinator routing. Done is governed by B10, not this rule.
 - **Action** Move it to physical Blocked **in the same cycle** and run it as HIGH-PRIORITY active recovery with an owner and a trigger.
 - **Capability** `move_task_kandev`; [Blocked is an action queue](RUNBOOK.md#blocked-is-an-action-queue-not-a-parking-lot).
 - **Authority** Coordinator-owned. A task-specific Human hands-off directive is a hard boundary — report the exact denial.
@@ -176,7 +176,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 
 ### B10. Done-column integrity
 - **Trigger** Every cycle; deeply for new/changed/unreceipted/suspicious Done tasks.
-- **Action** Run the terminal-integrity gate before allowing cleanup; recover unsafe tasks out of Done to the narrowest safe active step.
+- **Action** Run the terminal-integrity gate before cleanup. Recover to the narrowest active step only on concrete evidence of an open deliverable, unmet required gate, unique unfinished work, or a live consumer. Preserve and receipt inert or uncertain housekeeping without reopening the task.
 - **Capability** [Audit every new or changed Done task](RUNBOOK.md#audit-every-new-or-changed-done-task-before-allowing-cleanup).
 - **Authority** Done-integrity recovery is explicitly authorized and is not a backwards-move violation.
 - **Never** Treat a merged PR or Done placement as proof work is durable.
@@ -511,7 +511,7 @@ Production, protected/release branch, cost, and external-communication **labels*
 - **Upstream `kdlbs/*` PR that is READY**: **Coordinator action, not a dead end** — post a mention of `@carlosflorencio` (maintainer, holds the merge) on the PR; add `@jcfs`/`@zeval` only when prior authorship on the touched paths shows they own that area. Readiness first (non-draft, green on current head, threads resolved). **Once per head**, recorded with PR number + head SHA; re-notify on a new push, never on an unchanged head. Agents are credential-blocked (D18), so the Coordinator posts it.
 - **Merge asks**: resolve `base.repo.full_name` (not the head). `yattdev/*` or `ayattara-sfl/*` → human can merge, goes in NEEDS YOUR DECISION. `kdlbs/*` or third-party → human CANNOT merge, goes in WATCH as awaiting the upstream maintainer.
 - **ToDeploy**: never move a task into it; never touch a task already in it unless this Coordinator created that task, except to list and reconcile this agent's own tag applications and notes through the targeted Tags plugin. Leave Human tag applications untouched. A workflow-wide inventory may incidentally return its ID/title/column; issue no other task-specific read or mutation.
-- **Backlogs / ToDeploy** are Human-managed holding columns; **Human-QA** waits for Human review.
+- **Backlogs / ToDeploy** are Human-managed holding columns. **Human-QA** waits for Human review in non-Kandev product workspaces; canonical Kandev Human-QA remains under ordinary Coordinator authority per D5.
 - **Cross-workspace**: no standing to move, message, flag, plan, or answer outside your workspace.
 - **Own card**: never modify this Coordinator task's own step or state.
 - **Wake sources**: Kandev routines only; never create or modify a routine, cron job, or scheduler.

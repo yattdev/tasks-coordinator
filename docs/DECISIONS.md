@@ -1525,3 +1525,38 @@ from forwarding unique unpublished commit
 receipt in its plan/tag. Therefore a failed material delivery must be durably
 recorded at the source with a deterministic retry trigger before the producer
 parks; queue delivery is never the sole preservation mechanism.
+
+## Logical completion is distinct from terminal housekeeping (2026-09-03, human-directed)
+
+The prior terminal-integrity wording made complete runtime/resource disposition
+sound like a prerequisite for logical completion. That overreach moved merged,
+clean, fully durable work from Done to Blocked merely because stale Git
+administration, stopped runtime resources, historical sessions, screenshots or
+cleanup notes remained.
+
+Done recovery now requires concrete unfinished work: an open deliverable, unmet
+required gate, unique uncommitted/unpushed material, or a live consumer.
+Housekeeping residue is preserved and recorded with its later cleanup trigger;
+uncertain cleanup ownership fails closed against deletion, not against Done.
+This generalizes the earlier orphan-process precedent and supersedes any wording
+that treated an unsafe or incomplete cleanup receipt alone as unfinished work.
+
+## Gate auto-advance without an explicit verdict is not PASS (2026-09-03)
+
+A fresh correct-profile gate session can complete a turn and advance the
+workflow without emitting an immutable-head Review or QA verdict. Session
+identity and lane movement prove orchestration, not the gate result. Require an
+explicit terminal `REVIEW_RESULT` or `QA_RESULT` bound to the exact head.
+When absent, stop any session reused by the next gate, settle lifecycle, restore
+the missing gate and create exactly one fresh owner. One turn never certifies
+both Review and QA.
+
+## Failed-session queue recovery must precede session deletion (2026-09-03)
+
+Session deletion removes the session and its queued-message rows in one
+transaction. Therefore a guarded unread-queue recovery must first prove the
+failed session still exists and must finish its retained artifact before
+deletion. Once the session is absent, exact message bodies are irrecoverable
+unless an already verified retained artifact exists; Support cannot resurrect
+them. Continuity then uses only durable plan, conversation and provider records,
+explicitly labels the reconstruction incomplete, and never invents payloads.

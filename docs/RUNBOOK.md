@@ -405,13 +405,21 @@ For each task:
    later cycles; they do not require repeated full archaeology.
 
 Failure response: an open PR/MR, missing merge receipt, remaining consumer, or
-unsafe cleanup receipt is a Done-integrity failure. Freeze cleanup, preserve all artifacts, post a Coordinator flag
+concrete unique unfinished deliverable is a Done-integrity failure. Freeze cleanup, preserve all artifacts, post a Coordinator flag
 with exact commit/path evidence, move the task to the narrowest safe active step,
 and direct/restart its responsible agent. Use Work for authoring/push recovery,
 Human-QA only when new behavior needs renewed acceptance, and CI-Fixup/integration
 after accepted Human-QA work needs base integration. If credentials or authority
 are the only blocker, raise one precise human ask. Do not reset, delete, clean,
 or infer supersession from an older merged PR.
+
+Do not confuse logical completion with physical housekeeping. A stale or missing
+Git-admin path, stopped container/image/volume, inactive historical or
+`WAITING_FOR_INPUT` session, retained screenshot, or deferred cleanup note does
+not reopen Done unless it contains unique unfinished work or serves a live
+consumer. When cleanup safety or ownership is uncertain, preserve the residue,
+record the unknown and exact later cleanup trigger in the terminal receipt, and
+leave the complete task in Done.
 
 ## A PR number without a repository is ambiguous
 
@@ -768,6 +776,13 @@ gate started or passed. If a stale turn traps every nudge, only the target's
 direct parent may stop that turn. The direct parent then starts a fresh gate
 session and returns its ID plus a PASS/BLOCKER receipt. Never infer independence
 from the workflow column alone.
+
+A fresh ID and correct profile are necessary but not sufficient. Require an
+explicit terminal `REVIEW_RESULT=PASSED|BLOCKED` or
+`QA_RESULT=PASSED|BLOCKED` bound to the exact head. Automatic lane advance
+without that verdict is an unproven gate, not PASS: stop any session reused by
+the next gate, wait for lifecycle settlement, restore the missing gate, and
+start exactly one fresh owner. One turn must never certify both Review and QA.
 
 ## A Review or QA gate changed the deliverable it was auditing
 
@@ -1415,8 +1430,9 @@ it in a way that reads as BLOCKED, not as a status line.
 
 ## Blocked is an action queue, not a parking lot
 
-Backlogs and ToDeploy are Human-managed holding columns, and Human-QA waits for
-Human review/testing. In every other workflow column, a task that cannot make
+Backlogs and ToDeploy are Human-managed holding columns. Human-QA waits for Human
+review/testing only in non-Kandev product workspaces; canonical Kandev Human-QA
+remains under ordinary Coordinator routing. In every other active workflow column, a task that cannot make
 forward progress belongs to the Coordinator. Move it to the physical Blocked
 column in the same cycle; a prose classification or stopped session in an
 active lane is not sufficient. Moving a task to Blocked starts recovery—it does
@@ -2726,6 +2742,8 @@ the replacement primary to continue that session's unprocessed work.
 1. Resolve the exact Coordinator task/workspace, failed session, and live replacement
    primary. Fail closed if the old session is not terminal or either session belongs to
    another task/workspace.
+   Confirm the failed session still exists. Session deletion removes that session's
+   queued rows in the same transaction, so recovery must precede deletion.
 2. Use one direct guarded authenticated `message.queue.get` for the exact failed
    session. Never ask Support to perform the read and never read queue rows through SQL.
    If the surface is missing, ask Support once to repair/provision resumable-session or
@@ -2757,6 +2775,12 @@ the replacement primary to continue that session's unprocessed work.
    authorized, delete only the request-owned manifest/pages and their now-empty
    directories. Verify absence and preserve the parent task directory. Until then,
    retain both copies and record their exact paths and hashes in the live handoff.
+
+If the session was already deleted, do not retry `message.queue.get` and do not
+ask Support to recreate or relay the bodies. Use a previously verified retained
+artifact when one exists; otherwise reconstruct only from the durable plan,
+conversation and provider records, label the result incomplete, and continue
+without inventing payloads.
 
 Verified 2026-08-30 on a 14-entry failed-session queue: one authenticated read produced
 ten restricted pages whose byte counts, hashes, and canonical digest matched; temporary

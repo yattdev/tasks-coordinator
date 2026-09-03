@@ -2211,3 +2211,26 @@ UUIDs and workspace identity, preserve provider ownership, prove reachability
 from the consumer environment, and share no raw SQL, volume, filesystem, logs,
 worktree, or unrelated secrets. Inability to provide this same-workspace service
 path is a platform defect; cross-workspace access remains forbidden.
+
+## 2026-09-03a — completion, gate verdicts, and queue retention need positive evidence
+
+Three incidents shared one failure mode: treating operational residue or state
+transition as proof of a different fact.
+
+- A merged, clean, fully durable task was not unfinished merely because stale
+  Git metadata, stopped runtime resources, historical sessions, screenshots or
+  cleanup notes remained. Recover Done only for concrete unfinished work or a
+  live consumer; preserve uncertain housekeeping without deleting it.
+- A fresh Review/QA session and automatic lane advance did not prove the gate
+  passed. Require an explicit terminal verdict bound to the exact head, then
+  use a different turn for the next independent gate.
+- A deleted failed session had no queue left to recover because deletion purged
+  its queued rows transactionally. Recover and retain before deletion; after
+  deletion use only pre-existing durable evidence and label gaps incomplete.
+
+The same cycle also removed stale universal Human-QA summaries: the Human-only
+hold applies to non-Kandev product workspaces, while canonical Kandev Human-QA
+remains under ordinary Coordinator authority.
+
+Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`,
+`docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
