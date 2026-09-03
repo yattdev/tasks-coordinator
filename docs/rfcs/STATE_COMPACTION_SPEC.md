@@ -130,37 +130,104 @@ this gap by recording **every** current-state mutation, not only rollups:
   "op": "<add|update|remove>",
   "record_id": "<id>",
   "record_kind": "<follow_up|lease|dirty_task|escalation|done_receipt>",
-  "before_sha256": "<hex of prior record body, or null if op == add>",
-  "after_sha256": "<hex of new record body, or null if op == remove>",
+  "before": "<null if op == add, else {\"storage\": \"inline\"|\"content_ref\", \"sha256\": \"<hex of prior record body>\", \"body\": \"<full prior record body, present iff storage == inline>\", \"ref\": \"<content-addressed locator, present iff storage == content_ref>\"}>",
+  "after": "<null if op == remove, else {\"storage\": \"inline\"|\"content_ref\", \"sha256\": \"<hex of new record body>\", \"body\": \"<full new record body, present iff storage == inline>\", \"ref\": \"<content-addressed locator, present iff storage == content_ref>\"}>",
+  "compaction_id": "<the correlated §3 compaction_id; required and non-null iff op == remove, else null>",
   "fencing_token": <int>
 }
 ```
 
+- **Bodies, not only hashes.** `before_sha256`/`after_sha256` alone (the
+  prior shape of this field) let replay *check* a step against a hash, but a
+  hash has no reverse function — it cannot supply the actual record content
+  an `add` or `update` needs to reconstruct state. A replay implementation
+  given only hashes could confirm a candidate body is *consistent* with the
+  log but could never produce that body in the first place, which is not
+  "replayable at arbitrary T"; it is only "verifiable given the body from
+  somewhere else, unspecified." `before`/`after` fix this by making each
+  side either (a) `storage: "inline"` — the full canonical record body
+  embedded directly in the log entry, self-contained and requiring nothing
+  else to replay — or (b) `storage: "content_ref"` — an immutable
+  content-addressed locator (e.g. `sha256:<hex>` keyed into a content store,
+  or the exact archive-append location for a `remove`) that a replayer
+  dereferences to obtain the body. `sha256` is present and checked in both
+  cases: for `inline` it is redundant-but-cheap (verifies the embedded body
+  was not corrupted in transit/at rest); for `content_ref` it is the only
+  guard against a payload store returning stale or substituted content for
+  that locator.
+- **Choosing inline vs. content_ref is a size/retention tradeoff, not a
+  free choice per entry-kind.** A `record_kind` whose bodies are small
+  (e.g. `escalation`, `dirty_task`) may always use `inline` — the mutation
+  log's own retention (below) already bounds how long that copy is kept.
+  A `remove` for a record kind with a large body SHOULD use `content_ref`
+  pointing at the exact archive-append location the matching rollup already
+  wrote (§3's `archive_append`), since that content already has its own
+  durable, effectively-permanent retention (§1's append-only archive) and
+  duplicating it inline would only inflate the mutation log the size
+  threshold in §2 exists to bound. Either choice is valid; what is not
+  valid is a `content_ref` whose target has *shorter* retention than the
+  mutation-log entry that points to it (see the explicit availability rule
+  below).
+- **Explicit availability/retention for `content_ref`.** A `content_ref`
+  target's retention MUST be at least as long as the retention of every
+  mutation-log entry that references it: the referencing mutation-log entry
+  may only be pruned (per the retention rule below) *after* it is no longer
+  needed for replay, and a `content_ref` target may only be pruned once
+  every mutation-log entry that could still reference it (i.e. every
+  not-yet-pruned entry naming that exact locator) has itself already been
+  pruned or superseded. A replayer that dereferences a `content_ref` and
+  finds it unavailable (pruned, missing, or the underlying archive/object
+  store returning "not found") MUST abort replay as corrupt input (§7 step
+  4's fail-closed rule), never silently skip the mutation or substitute an
+  empty/default body.
 - Every add/update/remove against the materialized current-state surface —
   whether or not it is rollup-related — appends exactly one mutation-log
   entry, through the single-writer lane (§6), **before** the in-memory/
   on-disk current-state surface itself is considered changed (append-log-
   then-apply, the same ordering §5 already uses for rollup's archive
   append).
+- **`compaction_id` correlation.** Because "a `remove` mutation-log entry is
+  exactly what a rollup produces per rolled record" (below), every `remove`
+  entry MUST carry the `compaction_id` of the compaction receipt (§3) that
+  produced it — this is what makes the cross-check in the next bullet an
+  actual schema-enforced field rather than an informally-implied one.
+  `add` and `update` entries always carry `compaction_id: null`; they are
+  never rollup-driven (a restore-reactivation `add`, per §7 step 5, is
+  correlated by its own `restore_id` instead, not `compaction_id`, since it
+  is not a rollup).
 - A `remove` mutation-log entry is exactly what a rollup produces per
   rolled record (§2/§3's `rolled_records` are a `record_id`-keyed view over
   a contiguous run of `remove`-op mutation-log entries); the mutation log
   and the archive are two views of the same underlying rollup event, not
   two independent things that could disagree — `rolled_records` in a
   compaction receipt (§3) must be exactly the `remove`-op mutation-log
-  entries with the matching `compaction_id` correlation, so the two logs
-  can be cross-checked against each other.
-- `before_sha256`/`after_sha256` let replay (§7) verify each step against
-  the record content it is applying, rather than trusting the `op` field
-  alone: replaying an `update` must confirm the current in-memory record's
-  hash matches `before_sha256` before applying, and must confirm the result
-  hashes to `after_sha256` afterward; a mismatch aborts replay as corrupt
-  input rather than silently producing a divergent reconstruction.
+  entries carrying the matching `compaction_id`, so the two logs can be
+  cross-checked against each other by grouping on that field (not merely by
+  contiguity or informal association).
+- `before`/`after` (via their `sha256`, whichever storage is used) let
+  replay (§7) verify each step against the record content it is applying,
+  rather than trusting the `op` field alone: replaying an `update` must
+  confirm the current in-memory record's hash matches `before.sha256`
+  before applying, and must confirm the result hashes to `after.sha256`
+  afterward; a mismatch aborts replay as corrupt input rather than silently
+  producing a divergent reconstruction.
 - Retention of the mutation log mirrors snapshot retention (§1.2): log
   entries older than the oldest **retained** snapshot's
   `mutation_log_watermark` may be pruned, since no retained snapshot needs
   them for replay; entries newer than that watermark are never pruned until
-  superseded by a newer snapshot the same way.
+  superseded by a newer snapshot the same way. Pruning a mutation-log entry
+  that is the sole remaining reference to a still-unpruned `content_ref`
+  target is only valid together with pruning that target in the same
+  operation (see the availability rule above) — the two are never allowed
+  to drift out of sync.
+- A portable, stdlib-only reference implementation of this section's
+  `apply_mutation`/`replay` algorithm — including inline vs. `content_ref`
+  resolution, hash verification, and the `compaction_id` correlation check
+  — lives in
+  [`replay_reference.py`](replay_reference.py) and is exercised by
+  [`test_replay_reference.py`](test_replay_reference.py), the same
+  "portable validator with tests" convention `docs/contracts/validate_contract.py`
+  established for the policy contract.
 
 ## 2. Automatic rollup thresholds
 
@@ -322,11 +389,11 @@ Before a rollup is considered committed:
   applied up to `mutation_id = k`" is a single comparable value, not a set).
   A crash mid-replay resumes by re-reading that checkpoint and continuing
   from `k+1` — it never restarts from the base snapshot, and it never
-  re-applies `mutation_id <= k` (each mutation's `before_sha256`/
-  `after_sha256` check, per §1.3, would itself detect and reject a
-  duplicate re-application, since the "before" state would no longer match
-  after the first successful apply — this is a second, independent guard
-  on top of the checkpoint).
+  re-applies `mutation_id <= k` (each mutation's `before`/`after` `sha256`
+  check, per §1.3, would itself detect and reject a duplicate
+  re-application, since the "before" state would no longer match after the
+  first successful apply — this is a second, independent guard on top of
+  the checkpoint).
 
 ## 6. Single-writer fencing
 
@@ -369,23 +436,34 @@ point in time `T`:
    (§1.3) with `mutation_id > k0` up to and including the last entry with
    `timestamp <= T`, in ascending `mutation_id` order, and apply each in
    turn:
-   - `add`: insert a new record with the given `record_id`; verify the
-     resulting record's hash equals `after_sha256`.
-   - `update`: verify the working state's current record for `record_id`
-     hashes to `before_sha256` (abort as corrupt input if not — see §5's
-     replay crash/retry guard), replace its content, and verify the result
-     hashes to `after_sha256`.
-   - `remove`: verify the working state's current record hashes to
-     `before_sha256`, then delete it from the working state (its content
-     remains permanently available in the archive append that the matching
-     `compaction_id`/`rolled_records` entry named, per §3 — restore never
-     needs to "undelete" from anywhere else).
+   - `add`: resolve `after` to its body (dereferencing `content_ref` if
+     that is the storage kind, per §1.3's availability rule — abort as
+     corrupt input, never silently skip, if the reference is unavailable),
+     verify the resolved body hashes to `after.sha256`, and insert it as
+     the new record for `record_id`.
+   - `update`: resolve `before` to its body and verify the working state's
+     current record for `record_id` hashes to `before.sha256` (abort as
+     corrupt input if not — see §5's replay crash/retry guard), replace its
+     content with `after` resolved and hash-verified the same way as
+     `add`.
+   - `remove`: resolve `before` to its body (`content_ref` may point at the
+     exact archive-append location the matching `compaction_id`/
+     `rolled_records` entry named, per §3 — restore never needs to
+     "undelete" from anywhere else) and verify the working state's current
+     record hashes to `before.sha256`, then delete it from the working
+     state. Also verify `compaction_id` is present and, if the target `T`
+     spans a full rollup, that it matches a compaction receipt whose
+     `rolled_records` names this exact `record_id` (§1.3's cross-check) —
+     a `remove` entry with a `compaction_id` that does not correlate to any
+     known compaction receipt is corrupt input, not a silently-accepted
+     orphan removal.
    This process is a pure function of `(snapshot.content, ordered
-   mutation-log subsequence)`: two independent implementations given the
-   same snapshot and mutation range must produce byte-identical
-   reconstructed state, which is what "deterministic" means here — there is
-   no other input (no wall-clock behavior, no implementation-specific
-   ordering choice beyond ascending `mutation_id`).
+   mutation-log subsequence, the payload store backing any content_ref)`:
+   two independent implementations given the same snapshot, mutation
+   range, and payload store must produce byte-identical reconstructed
+   state, which is what "deterministic" means here — there is no other
+   input (no wall-clock behavior, no implementation-specific ordering
+   choice beyond ascending `mutation_id`).
 4. **Verify the reconstruction.** Compute `record_id_set_sha256` (§3) over
    the reconstructed working state and confirm it matches the value that
    would be expected from chaining the intervening compaction receipts'
