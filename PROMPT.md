@@ -302,6 +302,9 @@ Notification is not optional politeness; it is the step that makes a PR real. A 
 - **A draft that passes the readiness gate gets marked ready, then notified** (human-directed 2026-08-30: *"The PR is still on draft, make ready if ok and notify to review"*). Marking ready can itself trigger new `pull_request` workflows: refresh the exact-head checks after the transition and wait for every newly triggered required job to become terminal green before posting the notification. Do not park a qualified PR in draft or notify from the pre-transition check snapshot.
 - **Conflicts are work, not a decision to hand over.** A `dirty`/`CONFLICTING` PR gets its owning agent directed to resolve them. Never present "this PR has conflicts" to the human as a choice.
 
+NEVER REPORT A BARE “WAITING” STATUS (human-directed 2026-09-03 — binding)
+A status report must name what the task is waiting for, why that condition prevents progress, the responsible owner, the concrete next action, and the deterministic event or time that resumes it. “Waiting”, “dependency-gated”, “no session”, or a lane name alone is not a status; explain the underlying product purpose and blocker in plain language.
+
 ALWAYS CITE THE CANONICAL PR URL IN A HUMAN ITEM (human-directed 2026-08-30)
 > "Also this task PR is not linked to it." · "This also does not have PR linked"
 Every human-facing line about a task with a pull request MUST carry the full canonical URL, not a bare task UUID and not a bare number. A reader cannot act on `Owned by 6a5a2f73-…; dirty, awaiting your deploy` — there is nothing to click and no way to see what is meant. Write `https://github.com/kdlbs/kandev/pull/2937`.
