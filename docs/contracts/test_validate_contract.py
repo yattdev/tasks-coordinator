@@ -135,6 +135,108 @@ class TestFixtureContracts(unittest.TestCase):
         checks = [c for c, _ in failures]
         self.assertIn("missing_required_invariant", checks)
 
+    def test_missing_entry_id_in_envelope_is_rejected(self):
+        # Regression guard: dropping entry_id from
+        # minimum_trusted_envelope silently reopens the
+        # exact-entry-never-global-watermark hole even though audit_model
+        # and identity_scope are both still correct.
+        contract = load("missing_entry_id_envelope_contract.json")
+        self.assertNotIn(
+            "entry_id",
+            contract["queue_claim_identity"]["minimum_trusted_envelope"],
+        )
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_missing_human_input_in_coalescing_forbidden_is_rejected(self):
+        # Regression guard: dropping human_input from
+        # coalescing_forbidden_for would let a Human message silently
+        # coalesce with a pending routine wake for the same target.
+        contract = load("missing_human_input_coalescing_forbidden_contract.json")
+        self.assertNotIn(
+            "human_input",
+            contract["queue_claim_identity"]["coalescing_forbidden_for"],
+        )
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_missing_claim_or_lease_id_in_receipt_fields_is_rejected(self):
+        # Regression guard: without claim_or_lease_id, a worker/helper
+        # receipt cannot be correlated back to the exact claim it attests
+        # to.
+        contract = load("missing_claim_or_lease_id_receipt_contract.json")
+        self.assertNotIn(
+            "claim_or_lease_id",
+            contract["worker_helper_receipts"]["receipt_required_fields"],
+        )
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_missing_no_unique_local_work_in_done_proof_is_rejected(self):
+        # Regression guard: without no_unique_local_or_untracked_work in
+        # required_proof, a task could reach Done while local worktree
+        # changes never made it into the accepted head.
+        contract = load("missing_no_unique_local_done_proof_contract.json")
+        self.assertNotIn(
+            "no_unique_local_or_untracked_work",
+            contract["done_integrity"]["required_proof"],
+        )
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_missing_local_head_in_done_receipt_fields_is_rejected(self):
+        # Regression guard: without local_head in receipt_fields, the Done
+        # receipt has nothing to check the
+        # no_unique_local_or_untracked_work proof against.
+        contract = load("missing_local_head_done_receipt_contract.json")
+        self.assertNotIn(
+            "local_head", contract["done_integrity"]["receipt_fields"]
+        )
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_false_readiness_recheck_is_rejected(self):
+        # Regression guard: readiness must recheck gates after a
+        # draft-to-ready transition; flipping this to false while
+        # exact_head_required stays true must still fail.
+        contract = load("false_readiness_recheck_contract.json")
+        self.assertFalse(
+            contract["gates"]["readiness"]["recheck_after_draft_to_ready_transition"]
+        )
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_best_effort_unsupported_version_behavior_is_rejected(self):
+        # Regression guard: compatibility.unsupported_version_behavior
+        # must stay fail_closed, never silently downgrade to best_effort.
+        contract = load("best_effort_unsupported_version_contract.json")
+        self.assertEqual(
+            contract["compatibility"]["unsupported_version_behavior"],
+            "best_effort",
+        )
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_missing_done_in_monitored_lanes_is_rejected(self):
+        # Regression guard: done_is_terminal_integrity_lane: true is
+        # meaningless if 'done' is not itself in monitored_lanes -- that
+        # would claim Done is a terminal-integrity lane while never
+        # actually watching it.
+        contract = load("missing_done_monitored_lane_contract.json")
+        self.assertNotIn(
+            "done", contract["workspace_lane_ownership"]["monitored_lanes"]
+        )
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
     def test_required_fields_omitting_done_integrity_is_rejected(self):
         # Regression guard: the top-level done_integrity object can still be
         # present while the self-declared required_fields *list* quietly
@@ -292,6 +394,75 @@ class TestCli(unittest.TestCase):
         )
         self.assertEqual(result.returncode, 1)
         self.assertIn("required_fields", result.stderr)
+
+    def test_cli_missing_entry_id_envelope_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract", os.path.join(FIXTURES, "missing_entry_id_envelope_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_missing_human_input_coalescing_forbidden_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract",
+            os.path.join(FIXTURES, "missing_human_input_coalescing_forbidden_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_missing_claim_or_lease_id_receipt_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract",
+            os.path.join(FIXTURES, "missing_claim_or_lease_id_receipt_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_missing_no_unique_local_done_proof_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract",
+            os.path.join(FIXTURES, "missing_no_unique_local_done_proof_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_missing_local_head_done_receipt_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract",
+            os.path.join(FIXTURES, "missing_local_head_done_receipt_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_false_readiness_recheck_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract", os.path.join(FIXTURES, "false_readiness_recheck_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_best_effort_unsupported_version_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract",
+            os.path.join(FIXTURES, "best_effort_unsupported_version_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_missing_done_monitored_lane_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract", os.path.join(FIXTURES, "missing_done_monitored_lane_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
 
 
 if __name__ == "__main__":

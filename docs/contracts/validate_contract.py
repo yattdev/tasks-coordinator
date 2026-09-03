@@ -36,7 +36,7 @@ import sys
 # The contract's own compatibility.max_known_contract_version is the field
 # the validator checks the contract against; VALIDATOR_SCHEMA_VERSION is
 # reported in --version output only.
-VALIDATOR_SCHEMA_VERSION = "1.0.1"
+VALIDATOR_SCHEMA_VERSION = "1.0.2"
 
 # The highest contract_version this validator BUILD understands, hardcoded in
 # code rather than read from the contract document. A contract's own
@@ -225,6 +225,18 @@ def validate_contract(contract):
             f"contract_version {version} is older than "
             f"min_supported_contract_version {min_supported}",
         ))
+    # 2c. Unsupported-version behavior must be fail-closed, never a silent
+    # "best effort" downgrade (see CONTRACT_MAPPING.md §4 point 4: a plugin
+    # build with a mismatched vendored version "must fail closed ... never
+    # silently downgrade to 'best effort'"). Weakening this field alone,
+    # with every other invariant untouched, would let an out-of-range
+    # contract/plugin pairing silently keep running instead of failing.
+    if compat.get("unsupported_version_behavior") != "fail_closed":
+        failures.append((
+            "missing_required_invariant",
+            "compatibility.unsupported_version_behavior must be "
+            f"'fail_closed', got {compat.get('unsupported_version_behavior')!r}",
+        ))
     # 2b. Independent, hardcoded ceiling (cannot be forged by the document
     # itself -- see VALIDATOR_MAX_SUPPORTED_CONTRACT_VERSION). A contract
     # that self-declares contract_version 2.0.0 alongside a matching
@@ -294,6 +306,16 @@ def validate_contract(contract):
                 "missing_required_invariant",
                 f"gates.{gate_name}.independent_session_required must be true",
             ))
+        # Readiness must recheck gates after a draft-to-ready transition --
+        # without this, a task that was gated while still draft could reach
+        # Ready without its post-transition state ever being reconfirmed
+        # (see PROMPT.md's strict readiness/notification ordering).
+        if gate_name == "readiness" and gate.get("recheck_after_draft_to_ready_transition") is not True:
+            failures.append((
+                "missing_required_invariant",
+                "gates.readiness.recheck_after_draft_to_ready_transition "
+                "must be true",
+            ))
 
     # 5b. Workspace/lane ownership: Done must stay a terminal-integrity lane,
     # never a silently-ignored archive (see CONTRACT_MAPPING.md).
@@ -302,6 +324,16 @@ def validate_contract(contract):
         failures.append((
             "missing_required_invariant",
             "workspace_lane_ownership.done_is_terminal_integrity_lane must be true",
+        ))
+    # 5c. Done must actually be one of the monitored lanes -- otherwise
+    # "done_is_terminal_integrity_lane: true" is a claim about a lane that
+    # is never watched, which is equivalent in practice to not monitoring
+    # Done at all (see PROMPT.md: "Monitor every task in ... AND Done").
+    monitored_lanes = lane_ownership.get("monitored_lanes", [])
+    if "done" not in monitored_lanes:
+        failures.append((
+            "missing_required_invariant",
+            "workspace_lane_ownership.monitored_lanes must include 'done'",
         ))
 
     # 6. Queue claim identity must be per-entry, never a global watermark,
@@ -327,6 +359,28 @@ def validate_contract(contract):
             f"{REQUIRED_QUEUE_COALESCING_RULE!r}, got "
             f"{queue.get('coalescing_rule')!r}",
         ))
+    # 6b. minimum_trusted_envelope must name entry_id -- without a
+    # per-entry identifier in the trusted envelope, a claim cannot actually
+    # be tied to one exact entry, which silently reopens the
+    # exact-entry-never-global-watermark hole this floor exists to close.
+    envelope = queue.get("minimum_trusted_envelope", [])
+    if "entry_id" not in envelope:
+        failures.append((
+            "missing_required_invariant",
+            "queue_claim_identity.minimum_trusted_envelope must include "
+            "'entry_id'",
+        ))
+    # 6c. coalescing_forbidden_for must keep human_input -- dropping it
+    # would let a Human message silently coalesce with a pending routine
+    # wake for the same target, which coalescing_forbidden_for exists
+    # specifically to prevent.
+    coalescing_forbidden = set(queue.get("coalescing_forbidden_for", []))
+    if "human_input" not in coalescing_forbidden:
+        failures.append((
+            "missing_required_invariant",
+            "queue_claim_identity.coalescing_forbidden_for must include "
+            "'human_input'",
+        ))
 
     # 7. Worker/helper receipts: workers must never mutate.
     receipts = contract.get("worker_helper_receipts", {})
@@ -334,6 +388,18 @@ def validate_contract(contract):
         failures.append((
             "missing_required_invariant",
             "worker_helper_receipts.workers_never_mutate must be true",
+        ))
+    # 7c. Receipts must be tied to an actual claim/lease identity --
+    # without claim_or_lease_id, a receipt cannot be correlated back to the
+    # exact claim it attests to (see receipt_is_not_proof_of: a receipt
+    # already isn't proof of claim/ack/removal; omitting the field that
+    # would let it be checked against the claim makes that gap worse).
+    receipt_fields = receipts.get("receipt_required_fields", [])
+    if "claim_or_lease_id" not in receipt_fields:
+        failures.append((
+            "missing_required_invariant",
+            "worker_helper_receipts.receipt_required_fields must include "
+            "'claim_or_lease_id'",
         ))
 
     # 7b. Done integrity: a merged PR or Done-column placement alone must
@@ -346,6 +412,27 @@ def validate_contract(contract):
             "missing_required_invariant",
             "done_integrity.merged_pr_or_done_placement_alone_is_not_proof "
             "must be true",
+        ))
+    # 7c. Done required_proof must keep no_unique_local_or_untracked_work --
+    # without it, a task could be proven Done while local worktree changes
+    # never made it into the accepted head (see PROMPT.md's Done
+    # terminal-integrity gate: local head must be provably contained).
+    required_proof = done_integrity.get("required_proof", [])
+    if "no_unique_local_or_untracked_work" not in required_proof:
+        failures.append((
+            "missing_required_invariant",
+            "done_integrity.required_proof must include "
+            "'no_unique_local_or_untracked_work'",
+        ))
+    # 7d. Done receipt_fields must keep local_head -- without it, the
+    # receipt records what was merged/accepted but never what the local
+    # worktree actually held, which is exactly what the
+    # no_unique_local_or_untracked_work proof above needs to check against.
+    done_receipt_fields = done_integrity.get("receipt_fields", [])
+    if "local_head" not in done_receipt_fields:
+        failures.append((
+            "missing_required_invariant",
+            "done_integrity.receipt_fields must include 'local_head'",
         ))
 
     # 8. Readiness/notification order must be the exact ordered sequence,
