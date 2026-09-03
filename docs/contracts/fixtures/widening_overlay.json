@@ -1,6 +1,6 @@
 {
   "overlay_id": "example-workspace-overlay",
-  "base_contract_version": "1.0.0",
+  "base_contract_version": "1.1.0",
   "narrows": {
     "cross_workspace_authority": true,
     "coordinator_decidable_examples": [

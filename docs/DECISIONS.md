@@ -1606,3 +1606,46 @@ only when the canonical target is genuinely restricted. Acceptance is an
 executed representative `WAKE:CYCLE` after the reviewed Host repair is
 deployed. Until then, a refusal from a disposable or stale-scoped carrier is a
 routing degradation and does not revoke current-session board authority.
+
+## Cross-sender routine-wake coalescing is identity-based, not sender-based (2026-09-03)
+
+The existing coalescing floor ("only identity-equivalent pending routine wakes
+for the same target may coalesce") left routine-wake *identity* itself
+under-specified: nothing bound it to be independent of which sender (task,
+session, or message ID) happened to deliver the wake. Left ambiguous, an
+implementation could key coalescing on the delivering sender instead of the
+wake's actual generation, which either lets non-identical wakes from the same
+sender collapse together (wrong) or lets identical wakes from *different*
+senders each run to completion uncoalesced (redundant full-board scans, the
+defect this clarification closes).
+
+Canonical Host routine identity is now exactly the tuple `workspace_id +
+routine_type_or_name + policy_or_prompt_version_generation +
+semantic_scope_generation`, independent of sender task/session/message ID.
+While an identical generation is queued, claimed, or running, a later
+cross-sender equivalent coalesces into exactly one preserved pending successor
+or freshness bit; the sole effective wake is never silently dropped. Human
+input, task reports, peer messages, and any non-identical generation remain
+distinct FIFO entries regardless of sender, per the existing
+`coalescing_forbidden_for` floor.
+
+A coalesced routine-wake receipt must name: the canonical surviving entry, every
+absorbed source entry ID with its count and timestamp (never the absorbed
+entries' bodies), the leader fencing token in force, the dirty generation the
+coalesced wake satisfies, and whether a post-run requeue is owed because
+further arrivals landed during execution. `coordinator-policy-contract.json`
+publishes this as a **MINOR** (additive, backward-compatible) bump to
+`contract_version` `1.1.0`: `queue_claim_identity.routine_identity_components`,
+`.routine_identity_excludes_sender_ids`, `.cross_sender_coalescing_permitted`,
+`.coalescing_preserved_state`, and
+`worker_helper_receipts.routine_wake_coalescing_receipt_fields`. See
+`docs/contracts/CONTRACT_MAPPING.md` for the field-by-field mapping and
+`docs/rfcs/PLUGIN_SCALE_RFC.md` §2.6/§4 for the scheduling and burst-harness
+implications.
+
+Ownership is unchanged: the Kandev Host queue-primitive owner still owns
+guarded exact-entry queue operations and the identical-routine-wake
+coalescing mechanism itself (transport/storage semantics); the plugin-first
+orchestration program still owns scheduling and dirty-generation consumption
+on top of that primitive. This clarification is a contract/spec-level
+definition, not a reimplementation of either owner's runtime.
