@@ -27,4 +27,3 @@ This file archives the compacted cycle-history tail formerly stored in the live 
 
 - Live Done tasks `931d7f74-7433-4b43-a444-4e1382c3be62`, `2a5ef1a0-ce02-44c2-9389-3ecddb5d9a3c`, `13a8c989-edf9-421b-a1b4-60be56cc988b`, and `5e1c57d4-0ee2-4661-bd8a-9c0add05bafd` repeatedly passed terminal-integrity checks. The residual contained branch for `13a8c989-edf9-421b-a1b4-60be56cc988b` remained fail-closed and was not force-deleted.
 - Coordinator repository continuity remained clean at `a571538a45020effd3566285eeb13a6cf8959552` on task branch `feature/coordinator-long-liv-bt2`; shared `/data/home/Code/coordinator` remained on `main` at the same commit with only the preserved unrelated `?? .claude/` entry.
-
