@@ -130,6 +130,58 @@ class TestFixtureContracts(unittest.TestCase):
         checks = [c for c, _ in failures]
         self.assertIn("missing_required_invariant", checks)
 
+    def test_missing_routine_identity_component_is_rejected(self):
+        # contract_version 1.1.0 clarification: canonical routine identity
+        # is workspace_id + routine_type_or_name +
+        # policy_or_prompt_version_generation + semantic_scope_generation,
+        # independent of sender task/session/message ID. Dropping any one
+        # component (here semantic_scope_generation) must fail closed.
+        contract = load("missing_semantic_scope_generation_routine_identity_contract.json")
+        self.assertNotIn(
+            "semantic_scope_generation",
+            contract["queue_claim_identity"]["routine_identity_components"],
+        )
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_false_routine_identity_excludes_sender_is_rejected(self):
+        # Routine identity must not depend on which sender (task/session/
+        # message ID) delivered the wake -- otherwise cross-sender
+        # duplicates of the same generation could never coalesce.
+        failures = vc.validate_contract(load("false_routine_identity_excludes_sender_contract.json"))
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_false_cross_sender_coalescing_permitted_is_rejected(self):
+        # Cross-sender coalescing must be explicitly permitted, or a
+        # sender-independent identity is meaningless in practice.
+        failures = vc.validate_contract(load("false_cross_sender_coalescing_permitted_contract.json"))
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_weakened_coalescing_preserved_state_is_rejected(self):
+        # Coalescing must preserve exactly one pending successor or
+        # freshness bit, never "drop" the sole effective wake outright.
+        contract = load("weakened_coalescing_preserved_state_contract.json")
+        self.assertEqual(contract["queue_claim_identity"]["coalescing_preserved_state"], "dropped")
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_missing_leader_fencing_token_in_routine_wake_receipt_is_rejected(self):
+        # A coalesced routine-wake receipt must name the leader fencing
+        # token in force, or the receipt cannot be tied back to the single
+        # serializing leader that authorized the coalescing decision.
+        contract = load("missing_leader_fencing_token_routine_wake_receipt_contract.json")
+        self.assertNotIn(
+            "leader_fencing_token",
+            contract["worker_helper_receipts"]["routine_wake_coalescing_receipt_fields"],
+        )
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
     def test_false_done_placement_alone_not_proof_is_rejected(self):
         failures = vc.validate_contract(load("false_done_placement_alone_not_proof_contract.json"))
         checks = [c for c, _ in failures]
@@ -590,6 +642,57 @@ class TestCli(unittest.TestCase):
             "contract",
             "--contract",
             os.path.join(FIXTURES, "false_claim_collision_check_none_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_missing_routine_identity_component_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract",
+            os.path.join(
+                FIXTURES,
+                "missing_semantic_scope_generation_routine_identity_contract.json",
+            ),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_false_routine_identity_excludes_sender_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract",
+            os.path.join(FIXTURES, "false_routine_identity_excludes_sender_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_false_cross_sender_coalescing_permitted_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract",
+            os.path.join(FIXTURES, "false_cross_sender_coalescing_permitted_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_weakened_coalescing_preserved_state_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract",
+            os.path.join(FIXTURES, "weakened_coalescing_preserved_state_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_missing_leader_fencing_token_routine_wake_receipt_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract",
+            os.path.join(
+                FIXTURES,
+                "missing_leader_fencing_token_routine_wake_receipt_contract.json",
+            ),
         )
         self.assertEqual(result.returncode, 1)
         self.assertIn("missing_required_invariant", result.stderr)

@@ -1,14 +1,14 @@
 {
   "contract_id": "coordinator-policy-contract",
-  "contract_version": "1.0.0",
+  "contract_version": "1.1.0",
   "source_charter_effective_version": "2026-09-03a",
   "source_decision_anchor": "docs/DECISIONS.md#coordinator-policy-is-contract-validated-not-hand-copied-2026-09-03-human-directed",
   "generated_at": "2026-09-03",
   "digest_algorithm": "sha256",
-  "digest": "f6a2cfde2e49060628f6295740918189449cd1d77782c0f469a5b334aa965371",
+  "digest": "588dd9b446f72d91ced75f7fe6c9bc67d3d7c515ba66031e458b4ad8b091e3ff",
   "compatibility": {
-    "min_supported_contract_version": "1.0.0",
-    "max_known_contract_version": "1.0.0",
+    "min_supported_contract_version": "1.1.0",
+    "max_known_contract_version": "1.1.0",
     "unsupported_version_behavior": "fail_closed"
   },
   "required_fields": [
@@ -83,6 +83,15 @@
     ],
     "audit_model": "exact_entry_never_global_watermark",
     "coalescing_rule": "only_identity_equivalent_pending_routine_wakes_for_same_target",
+    "routine_identity_components": [
+      "workspace_id",
+      "routine_type_or_name",
+      "policy_or_prompt_version_generation",
+      "semantic_scope_generation"
+    ],
+    "routine_identity_excludes_sender_ids": true,
+    "cross_sender_coalescing_permitted": true,
+    "coalescing_preserved_state": "single_pending_successor_or_freshness_bit",
     "coalescing_forbidden_for": [
       "human_input",
       "task_reports",
@@ -105,6 +114,15 @@
       "queue_row_acknowledged",
       "queue_row_removed",
       "capacity_released"
+    ],
+    "routine_wake_coalescing_receipt_fields": [
+      "canonical_entry_id",
+      "absorbed_source_entry_ids",
+      "absorbed_source_entry_count",
+      "absorbed_source_entry_timestamps_without_bodies",
+      "leader_fencing_token",
+      "dirty_generation",
+      "post_run_requeue_required"
     ],
     "freshness_barrier_required_before_reporting": true
   },

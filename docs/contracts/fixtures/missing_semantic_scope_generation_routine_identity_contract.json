@@ -5,7 +5,7 @@
   "source_decision_anchor": "docs/DECISIONS.md#coordinator-policy-is-contract-validated-not-hand-copied-2026-09-03-human-directed",
   "generated_at": "2026-09-03",
   "digest_algorithm": "sha256",
-  "digest": "38230cdf688cb00631345ccc3b1b6b2ae8e773eb733017c1ce34f4af022a3b54",
+  "digest": "8f287b14e76148a06532c767598f3ddf02e3dd80e232bffc78f35aea94e80b97",
   "compatibility": {
     "min_supported_contract_version": "1.1.0",
     "max_known_contract_version": "1.1.0",
@@ -72,6 +72,7 @@
   "queue_claim_identity": {
     "identity_scope": "per_entry",
     "minimum_trusted_envelope": [
+      "entry_id",
       "workspace_id",
       "task_id",
       "session_id",
@@ -85,8 +86,7 @@
     "routine_identity_components": [
       "workspace_id",
       "routine_type_or_name",
-      "policy_or_prompt_version_generation",
-      "semantic_scope_generation"
+      "policy_or_prompt_version_generation"
     ],
     "routine_identity_excludes_sender_ids": true,
     "cross_sender_coalescing_permitted": true,

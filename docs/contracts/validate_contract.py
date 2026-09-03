@@ -36,7 +36,7 @@ import sys
 # The contract's own compatibility.max_known_contract_version is the field
 # the validator checks the contract against; VALIDATOR_SCHEMA_VERSION is
 # reported in --version output only.
-VALIDATOR_SCHEMA_VERSION = "1.0.2"
+VALIDATOR_SCHEMA_VERSION = "1.1.0"
 
 # The highest contract_version this validator BUILD understands, hardcoded in
 # code rather than read from the contract document. A contract's own
@@ -49,7 +49,7 @@ VALIDATOR_SCHEMA_VERSION = "1.0.2"
 # validator source file was actually written to understand, so it cannot be
 # smuggled past by anything inside the JSON body. Bump it only when this
 # validator is upgraded to actually understand a newer contract_version.
-VALIDATOR_MAX_SUPPORTED_CONTRACT_VERSION = "1.0.0"
+VALIDATOR_MAX_SUPPORTED_CONTRACT_VERSION = "1.1.0"
 
 # The exact, ordered readiness/notification sequence required by the
 # contract (see CONTRACT_MAPPING.md: "Order is fixed; reordering is
@@ -112,6 +112,34 @@ REQUIRED_INDEPENDENT_SESSION_GATES = ["review", "qa"]
 # distinct Human/task/peer messages, which `coalescing_forbidden_for` exists
 # specifically to prevent.
 REQUIRED_QUEUE_COALESCING_RULE = "only_identity_equivalent_pending_routine_wakes_for_same_target"
+
+# Canonical Host routine identity (contract_version 1.1.0 clarification): a
+# routine wake's identity is exactly this tuple, independent of which
+# sender (task/session/message ID) delivered it. Two wakes with an
+# identical value across all four of these components are the *same*
+# pending generation and may coalesce across senders; dropping any one
+# component would let sender identity leak back into the coalescing key,
+# silently narrowing cross-sender coalescing (duplicate full-board-scan
+# risk) or, if implemented backwards, letting non-identical generations
+# collapse together.
+REQUIRED_ROUTINE_IDENTITY_COMPONENTS = {
+    "workspace_id",
+    "routine_type_or_name",
+    "policy_or_prompt_version_generation",
+    "semantic_scope_generation",
+}
+
+# A coalesced routine-wake receipt must be able to prove, after the fact,
+# exactly what was absorbed into the one surviving canonical entry and
+# under which leader authority -- these four are the safety-critical
+# subset (full field list lives in the contract's
+# `routine_wake_coalescing_receipt_fields`, see CONTRACT_MAPPING.md).
+REQUIRED_ROUTINE_WAKE_COALESCING_RECEIPT_FIELDS = {
+    "canonical_entry_id",
+    "absorbed_source_entry_ids",
+    "leader_fencing_token",
+    "dirty_generation",
+}
 
 REQUIRED_HUMAN_RESERVED_CLASSES = {
     "destructive_or_irreversible",
@@ -428,6 +456,53 @@ def validate_contract(contract):
             f"'deterministic_claim_set', got "
             f"{queue.get('claim_collision_check')!r}",
         ))
+    # 6e. Canonical routine identity must name all four components
+    # (workspace_id, routine_type_or_name, policy_or_prompt_version_generation,
+    # semantic_scope_generation) -- this is what makes routine-wake identity
+    # independent of sender task/session/message ID. Dropping any one
+    # component reopens a way for sender identity (or a stale policy/scope
+    # generation) to leak into the coalescing key.
+    routine_identity = set(queue.get("routine_identity_components", []))
+    missing_identity_components = REQUIRED_ROUTINE_IDENTITY_COMPONENTS - routine_identity
+    if missing_identity_components:
+        failures.append((
+            "missing_required_invariant",
+            "queue_claim_identity.routine_identity_components must include "
+            f"{sorted(REQUIRED_ROUTINE_IDENTITY_COMPONENTS)}; missing "
+            f"{sorted(missing_identity_components)}",
+        ))
+    # 6f. Routine identity must explicitly exclude sender IDs -- a routine
+    # wake's identity/generation must not depend on which task/session/
+    # message delivered it, or cross-sender duplicates of the same
+    # generation would never coalesce (reopening the duplicate-full-board-
+    # scan defect this clarification exists to close).
+    if queue.get("routine_identity_excludes_sender_ids") is not True:
+        failures.append((
+            "missing_required_invariant",
+            "queue_claim_identity.routine_identity_excludes_sender_ids must "
+            "be true",
+        ))
+    # 6g. Cross-sender coalescing must be explicitly permitted -- without
+    # this, an otherwise-identical routine generation delivered by two
+    # different senders would never coalesce, defeating the point of a
+    # sender-independent identity.
+    if queue.get("cross_sender_coalescing_permitted") is not True:
+        failures.append((
+            "missing_required_invariant",
+            "queue_claim_identity.cross_sender_coalescing_permitted must "
+            "be true",
+        ))
+    # 6h. Coalescing must preserve exactly one successor state, never drop
+    # the sole effective wake outright. "dropped"/"none" would mean a
+    # cross-sender duplicate could vanish with no pending/freshness trace
+    # at all, which is a stronger defect than the identity being wrong.
+    if queue.get("coalescing_preserved_state") != "single_pending_successor_or_freshness_bit":
+        failures.append((
+            "missing_required_invariant",
+            "queue_claim_identity.coalescing_preserved_state must be "
+            "'single_pending_successor_or_freshness_bit', got "
+            f"{queue.get('coalescing_preserved_state')!r}",
+        ))
 
     # 7. Worker/helper receipts: workers must never mutate.
     receipts = contract.get("worker_helper_receipts", {})
@@ -460,6 +535,23 @@ def validate_contract(contract):
             "missing_required_invariant",
             "worker_helper_receipts.freshness_barrier_required_before_reporting "
             "must be true",
+        ))
+    # 7d. A coalesced routine-wake receipt must name the canonical surviving
+    # entry, every absorbed source entry it stands in for, the leader
+    # fencing token in force, and the dirty generation it satisfies --
+    # without these, "one effective wake survived" cannot be distinguished
+    # from "N entries were silently merged with no audit trail" (see
+    # REQUIRED_ROUTINE_WAKE_COALESCING_RECEIPT_FIELDS).
+    coalescing_receipt_fields = set(receipts.get("routine_wake_coalescing_receipt_fields", []))
+    missing_coalescing_receipt_fields = (
+        REQUIRED_ROUTINE_WAKE_COALESCING_RECEIPT_FIELDS - coalescing_receipt_fields
+    )
+    if missing_coalescing_receipt_fields:
+        failures.append((
+            "missing_required_invariant",
+            "worker_helper_receipts.routine_wake_coalescing_receipt_fields "
+            f"must include {sorted(REQUIRED_ROUTINE_WAKE_COALESCING_RECEIPT_FIELDS)}; "
+            f"missing {sorted(missing_coalescing_receipt_fields)}",
         ))
 
     # 7b. Done integrity: a merged PR or Done-column placement alone must

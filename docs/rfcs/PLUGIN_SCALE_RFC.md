@@ -195,6 +195,54 @@ concurrency and scale model explicit and testable.
   reorders work already triggered by a live wake or a live inbound event; it
   never invents a new wake source or timer of its own.
 
+### 2.6.1 Cross-sender routine-wake identity (contract_version 1.1.0)
+
+- The contract's `queue_claim_identity.routine_identity_components`
+  (`coordinator-policy-contract.json`, see
+  [`../contracts/CONTRACT_MAPPING.md`](../contracts/CONTRACT_MAPPING.md))
+  fixes canonical Host routine identity as the tuple `workspace_id +
+  routine_type_or_name + policy_or_prompt_version_generation +
+  semantic_scope_generation` — deliberately **independent of which sender**
+  (task ID, session ID, or message ID) delivered the wake. Two routine wakes
+  with an identical value across all four components are the *same pending
+  generation*, whether they arrived from the same session or two entirely
+  different ones (e.g. two independent automation deliveries, or a
+  same-session redelivery after a transient disconnect).
+- While an identical generation is queued, claimed, or actively running, a
+  later cross-sender equivalent **coalesces** into exactly one preserved
+  pending successor or freshness bit
+  (`queue_claim_identity.coalescing_preserved_state`) — it is never silently
+  dropped with no trace, and it is never allowed to spawn a second,
+  redundant full monitored-lane scan. This is what
+  `cross_sender_coalescing_permitted: true` requires: coalescing must work
+  *across* senders, not only when the exact same sender happens to redeliver.
+- Human input, task reports, peer-Coordinator reports, and any
+  **non-identical** generation (a different `policy_or_prompt_version_generation`
+  or `semantic_scope_generation`, even from the same workspace and routine
+  type) remain distinct FIFO entries regardless of sender — the existing
+  `coalescing_forbidden_for` floor is unchanged by this clarification; it is
+  the routine-wake identity itself that is now fully specified, not the set
+  of things that must never coalesce.
+- A coalesced routine-wake receipt (`worker_helper_receipts.routine_wake_coalescing_receipt_fields`)
+  binds: `canonical_entry_id` (the one surviving entry the leader actually
+  acted on), `absorbed_source_entry_ids` plus their
+  `absorbed_source_entry_count` and `absorbed_source_entry_timestamps_without_bodies`
+  (proof of exactly what was absorbed, deliberately never the absorbed
+  entries' payload bodies — coalescing is a dedup decision, not a summary of
+  content), the `leader_fencing_token` in force when the coalescing decision
+  was made, the `dirty_generation` the canonical entry satisfies (§2.6), and
+  `post_run_requeue_required`: `true` when a further arrival of the same or a
+  newer generation lands *after* the canonical entry's run has already
+  started — the leader must schedule one follow-up dirty pass for that newer
+  arrival rather than treat the in-flight run as having already covered it.
+- Ownership is unchanged from §5: the Kandev Host queue-primitive owner
+  implements the actual coalescing/dedup mechanism at the transport/storage
+  layer (it is the authority that decides two entries share one routine
+  identity and enforces the single-surviving-entry guarantee); this RFC's
+  leader only **consumes** the resulting canonical entry and its dirty
+  generation (§2.6) to decide *what to schedule*, and does not reimplement
+  Host-side identity comparison or coalescing storage.
+
 ### 2.7 Compact snapshots
 
 - See [`STATE_COMPACTION_SPEC.md`](STATE_COMPACTION_SPEC.md) for the full
@@ -216,6 +264,7 @@ Emit at minimum (all per-workspace, per-cycle, and cumulative):
 | `claim_overlap_count` | count of any two simultaneously-held claims whose resource sets intersect | 0 (hard invariant, not just an SLO) |
 | `queue_entries_lost_total` | entries present pre-crash/restart/session-deletion not recoverable post-event | 0 (hard invariant) |
 | `coalesced_wakes_total` / `coalesced_wakes_incorrect_total` | routine wakes coalesced / any coalesce that was not exactly-identical | incorrect = 0 (hard invariant) |
+| `suppressed_duplicate_full_board_scan_total` | count of routine-wake claims suppressed by cross-sender coalescing (§2.6.1) that would otherwise have triggered a redundant full monitored-lane scan | tracked; must equal `coalesced_wakes_total` exactly (every correct coalesce suppresses exactly one redundant scan, never zero and never more than one) |
 | `leader_fencing_rejections_total` | mutations rejected due to a stale fencing token | tracked, non-zero is expected under failover and is not itself a defect |
 | `readback_mismatch_total` | leader mutations whose post-write readback did not match intent | tracked; sustained non-zero indicates a race or bug |
 | `snapshot_compaction_duration_ms`, `snapshot_bytes_before/after` | see compaction spec | tracked |
@@ -326,12 +375,45 @@ the schedule itself does not depend on this seed.
   `m40`/`m43`), **and 4 near-duplicate non-identical routine-wake markers**
   (`m11`, `m21`, `m36`, `m46`) that must never coalesce with each other or
   with anything else. `10 + 20 + 8 + 8 + 4 = 50`.
+- **Cross-sender assignment (contract_version 1.1.0 addendum, §2.6.1)**: each
+  coalescing-eligible pair's two markers are, by fixed design, delivered by
+  two **distinct senders** — the first member of every pair (`m5`, `m15`,
+  `m30`, `m40`) carries `sender_session_id = harness-session-A`, and the
+  second member (`m8`, `m18`, `m33`, `m43`) carries
+  `sender_session_id = harness-session-B` (two fixed, distinct synthetic
+  session identifiers, never the harness's own driver session). Both members
+  of a pair still share an identical `entry_id`-independent routine-identity
+  4-tuple (`workspace_id`, `routine_type_or_name`,
+  `policy_or_prompt_version_generation`, `semantic_scope_generation`) —
+  this is what makes the pair coalescing-eligible in the first place. This
+  fixed cross-sender assignment is what proves coalescing is keyed on
+  routine identity, not on sender identity: a harness that only ever
+  redelivered duplicates from the *same* sender would not exercise
+  `cross_sender_coalescing_permitted`. The 4 near-duplicate markers
+  (`m11`, `m21`, `m36`, `m46`) each carry their own third fixed sender
+  (`harness-session-C`) and a deliberately different
+  `semantic_scope_generation` value, so they must never coalesce with
+  either pair member regardless of shared sender or target.
 - **Injected faults**, run exactly once each per full harness pass, at these
   fixed positions in the `m1`..`m50` timeline (not "at least once" at an
   arbitrary point — a specific, reproducible position each run):
   - Kill a worker mid-claim: kill the worker holding the claim for `m12`
     (a task self-report) after it has read the entry but before it emits its
     read-only recommendation.
+  - Kill the leader mid-coalescing-decision (contract_version 1.1.0
+    addendum): kill the leader while processing `m8` (pair A repetition 1's
+    cross-sender duplicate of `m5`, arriving at 7830ms inside `m5`'s
+    7800–7850ms claim window per §4.2.1's override table) immediately after
+    the leader recognizes `m8`'s routine identity matches `m5`'s
+    already-claimed entry — so `m8` must be absorbed, never separately
+    claimed — but **before** the coalescing receipt
+    (`canonical_entry_id`/`absorbed_source_entry_ids`/`leader_fencing_token`/
+    `dirty_generation`) is durably written. Recovery must resolve to exactly
+    one of {the receipt is already durably written and `m8` is recorded
+    absorbed} or {the receipt was never written and `m8` is still present,
+    re-derivable as a pending absorption target from the durable queue
+    alone} — never both `m5` and `m8` ending up separately claimed/disposed,
+    and never `m8` vanishing with no absorption record either way.
   - Kill the leader mid-mutation, sub-case A (before readback verify): kill
     the leader during the mutation triggered by `m25` (the last message of
     the first repetition), immediately after the write and before the
@@ -366,13 +448,28 @@ the schedule itself does not depend on this seed.
     injection (per the uniform §4.2.1 cadence, unaffected by this fault)
     with `m40` once the restarted process/session set is live, and grant
     `m39`'s deferred claim as part of the same post-restart recovery
-    pass.
+    pass. Because `m40` (pair B repetition 2's first member) is injected
+    immediately after this restart, the restarted leader/worker set must
+    also re-derive `m40`'s pending coalescing-eligible state purely from
+    durable storage, with no in-memory carryover of pre-restart pairing
+    state from repetition 1.
   - Delete a session that has an unread queued message: target the session
     holding `m45` (a Human message, per the slot-20/45 mapping in the
     schedule table above); delete it only after asserting, per the
     2026-09-03 decision, whether a recovery read of `m45` already completed
     or is provably impossible — the harness records which case occurred, it
     does not assume either.
+  - Delete the non-canonical sender's session mid-pair (contract_version
+    1.1.0 addendum): after `m43` (pair B repetition 2's cross-sender
+    duplicate of `m40`, `sender_session_id = harness-session-B`) has been
+    absorbed and its coalescing receipt durably written, delete
+    `harness-session-B` itself. The coalescing receipt's
+    `absorbed_source_entry_ids`/count/timestamps must remain fully readable
+    from the durable queue/receipt store afterward — proving absorption
+    evidence never depends on the absorbed message's *sender session*
+    surviving, only on the durable receipt already written before deletion
+    (mirrors `docs/DECISIONS.md#failed-session-queue-recovery-must-precede-session-deletion-2026-09-03`
+    applied to a coalesced, not just a plain unread, entry).
 
 ### 4.2.1 Arrival-time schedule
 
@@ -522,10 +619,13 @@ re-randomized schedule is not a conforming harness run.
 2. **Zero unreviewed/lost entries** across the crash/restart/session-deletion
    faults in §4.2 — every queue entry present before a fault is either
    already durably actioned or still present and claimable after recovery.
-   Concretely: `m12`, `m25`, `m26`, `m39`, and `m45` (the exact entries live
-   at each fault's injection point) must each individually resolve to
-   exactly one of {already durably actioned, still present and claimable}
-   after recovery — never neither, never both. Hard invariant.
+   Concretely: `m8`, `m12`, `m25`, `m26`, `m39`, `m43`, and `m45` (the exact
+   entries live at each fault's injection point, including the two
+   contract_version 1.1.0 cross-sender faults: `m8`'s mid-coalescing-decision
+   leader kill and `m43`'s post-absorption sender-session deletion) must
+   each individually resolve to exactly one of {already durably actioned,
+   still present and claimable} after recovery — never neither, never both.
+   Hard invariant.
 3. **Coalescing correctness** — of the 4 identical-duplicate routine-wake
    pairs (`m5`/`m8`, `m15`/`m18`, `m30`/`m33`, `m40`/`m43`), exactly one
    effective wake survives per pair (4 survivors from 8 markers); the 4
@@ -546,6 +646,17 @@ re-randomized schedule is not a conforming harness run.
    (`m1`, `m7`, `m13`, `m20`, `m25`, `m26`, `m32`, `m38`, `m45`, `m50`).
 8. **Task-report claim p95 < 30s** — measured over the 20 task self-report
    messages in §4.2's schedule.
+9. **Cross-sender coalescing correctness** (contract_version 1.1.0) — for
+   each of the 4 coalescing-eligible pairs, the two markers' distinct fixed
+   `sender_session_id`s (`harness-session-A` / `harness-session-B`, §4.2)
+   are confirmed distinct in the run's ingress log, and the pair still
+   produces exactly one canonical entry with a coalescing receipt naming
+   `canonical_entry_id`, `absorbed_source_entry_ids` (matching the
+   non-canonical member's `entry_id`), `leader_fencing_token`, and
+   `dirty_generation`; `suppressed_duplicate_full_board_scan_total` equals
+   `coalesced_wakes_total` for the run. Hard invariant — a coalesce that
+   only ever worked for same-sender redelivery would pass metric 3 but fail
+   this one.
 
 A harness run that fails any single metric is a release blocker for cutover
 past the shadow phase (§2.10 step 2); it is not averaged away by the other
@@ -572,11 +683,15 @@ through a copy of the ID pinned in this document.
 
 - **Kandev Host queue primitive owner** — owns guarded exact-entry queue
   operations and identical-routine-wake coalescing at the **Kandev Host**
-  layer. This RFC's durable queue (§2) *consumes* that primitive; it does
-  not reimplement or duplicate it. Any gap found between what this RFC
-  needs and what that Host primitive currently exposes belongs on that
-  owner's task, not as new queue code here or in the plugin.
+  layer, including cross-sender routine-identity comparison and the
+  coalescing receipt's durable storage (§2.6.1). This RFC's durable queue
+  (§2) *consumes* that primitive; it does not reimplement or duplicate it.
+  Any gap found between what this RFC needs and what that Host primitive
+  currently exposes belongs on that owner's task, not as new queue code
+  here or in the plugin.
 - **Plugin-first orchestration parent program** — owns Host contracts, the
-  plugin scheduler/reconciliation implementation, durable SQLite state,
-  prompt composition, and rollout sequencing. This RFC is a design input to
-  that program, not a replacement for its planning.
+  plugin scheduler/reconciliation implementation (including consuming the
+  Host's coalesced canonical entry and dirty generation to decide what the
+  leader schedules next, §2.6/§2.6.1), durable SQLite state, prompt
+  composition, and rollout sequencing. This RFC is a design input to that
+  program, not a replacement for its planning.
