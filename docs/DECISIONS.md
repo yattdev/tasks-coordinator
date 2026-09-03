@@ -1589,3 +1589,20 @@ Scale benchmarks, leader/worker runtime design, and automatic state compaction
 are delivery specifications owned by the plugin-first orchestration program.
 They do not belong in `PROMPT.md` unless they change binding Coordinator
 authority or behavior.
+
+## Routine scope follows the canonical Coordinator, not a disposable carrier (2026-09-03, Support-confirmed)
+
+Repeated routine carriers were handled by an older Coordinator session whose
+Human scope was analysis-only, while the canonical current Coordinator could
+still list and move tasks and control task sessions. Support request
+`9173dd30-1b9b-412f-b597-0f52a4a1b28c` confirmed this as a routine
+identity/scope routing defect, not global permission loss.
+
+The existing queue-identity/coalescing repair owns the correction; no duplicate
+source path is created. Routine execution must bind to the canonical
+same-workspace Coordinator identity and its current authorized scope, deliver
+one effective wake exactly once, and fail closed with an explicit scope receipt
+only when the canonical target is genuinely restricted. Acceptance is an
+executed representative `WAKE:CYCLE` after the reviewed Host repair is
+deployed. Until then, a refusal from a disposable or stale-scoped carrier is a
+routing degradation and does not revoke current-session board authority.

@@ -2250,3 +2250,15 @@ because they are already binding; missing load tests and compaction automation
 remain implementation work for the existing plugin-first program.
 
 Files: `docs/DECISIONS.md`, this log.
+
+## 2026-09-03c — routine carrier scope is not Coordinator authority
+
+Kandev Support confirmed that repeated wake refusals came from a routine
+identity/scope routing defect: disposable carriers selected an older
+analysis-only session while the canonical current Coordinator still had and
+successfully exercised board-management authority. The existing
+identity/coalescing repair now explicitly includes canonical same-workspace
+scope binding and one-wake/one-execution verification; no duplicate repair task
+was created.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, `docs/DECISIONS.md`, this log.
