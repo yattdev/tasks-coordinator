@@ -67,6 +67,19 @@ class TestFixtureContracts(unittest.TestCase):
         checks = [c for c, _ in failures]
         self.assertIn("unknown_required_field", checks)
 
+    def test_exclusion_leaking_secret_shaped_value_is_rejected(self):
+        failures = vc.validate_contract(load("exclusion_leak_contract.json"))
+        checks = [c for c, _ in failures]
+        self.assertIn("exclusion_leaks_secret", checks)
+
+    def test_bare_exclusion_category_names_are_not_flagged(self):
+        # Regression guard for the opposite failure mode: legitimate bare
+        # category names ("secrets", "credentials") must never themselves
+        # trip the leak check.
+        failures = vc.validate_contract(load_canonical())
+        checks = [c for c, _ in failures]
+        self.assertNotIn("exclusion_leaks_secret", checks)
+
 
 class TestPluginSnapshot(unittest.TestCase):
     def test_valid_plugin_snapshot_passes(self):
@@ -124,6 +137,13 @@ class TestCli(unittest.TestCase):
         )
         self.assertEqual(result.returncode, 1)
         self.assertIn("stale_digest", result.stderr)
+
+    def test_cli_contract_exclusion_leak_exit_one(self):
+        result = self._run(
+            "contract", "--contract", os.path.join(FIXTURES, "exclusion_leak_contract.json")
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("exclusion_leaks_secret", result.stderr)
 
     def test_cli_plugin_snapshot_contradictory_exit_one(self):
         result = self._run(
