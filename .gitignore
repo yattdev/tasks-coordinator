@@ -1,4 +1,6 @@
 support-request.json
+__pycache__/
+*.pyc
 projects/**/artifacts/*
 !projects/**/artifacts/.gitkeep
 projects/**/*.sql
