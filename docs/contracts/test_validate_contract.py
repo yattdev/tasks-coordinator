@@ -17,6 +17,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
 import validate_contract as vc  # noqa: E402
+import adversarial_sweep  # noqa: E402
 
 CANONICAL = os.path.join(HERE, "coordinator-policy-contract.json")
 FIXTURES = os.path.join(HERE, "fixtures")
@@ -379,6 +380,144 @@ class TestFixtureContracts(unittest.TestCase):
         checks = [c for c, _ in failures]
         self.assertIn("missing_required_invariant", checks)
 
+    # --- Blocker fixups: 15 previously-unguarded weaken/remove cases -----
+    # Each fixture below carries an independently recomputed valid digest
+    # (asserted via assertNotIn("stale_digest", ...)) so a weakened/removed
+    # value cannot hide behind a stale-digest failure instead of tripping
+    # its own dedicated invariant check.
+
+    def test_weakened_authority_scope_is_rejected(self):
+        contract = load("weakened_authority_scope_contract.json")
+        self.assertEqual(contract["authority_boundaries"]["scope"], "cross_workspace_allowed")
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+        self.assertNotIn("stale_digest", checks)
+
+    def test_missing_authority_scope_is_rejected(self):
+        contract = load("missing_authority_scope_contract.json")
+        self.assertNotIn("scope", contract["authority_boundaries"])
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+        self.assertNotIn("stale_digest", checks)
+
+    def test_missing_cross_workspace_authority_is_rejected(self):
+        # Regression guard for the original masking bug: the old check used
+        # `authority.get("cross_workspace_authority", False) is not False`,
+        # so a *removed* key would read back as the same falsy default the
+        # invariant requires and silently pass. Presence is now required
+        # explicitly.
+        contract = load("missing_cross_workspace_authority_contract.json")
+        self.assertNotIn("cross_workspace_authority", contract["authority_boundaries"])
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+        self.assertNotIn("stale_digest", checks)
+
+    def test_weakened_lane_unit_is_rejected(self):
+        contract = load("weakened_lane_unit_contract.json")
+        self.assertEqual(contract["workspace_lane_ownership"]["unit"], "task")
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+        self.assertNotIn("stale_digest", checks)
+
+    def test_missing_lane_unit_is_rejected(self):
+        contract = load("missing_lane_unit_contract.json")
+        self.assertNotIn("unit", contract["workspace_lane_ownership"])
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+        self.assertNotIn("stale_digest", checks)
+
+    def test_weakened_peer_model_is_rejected(self):
+        contract = load("weakened_peer_model_contract.json")
+        self.assertFalse(contract["workspace_lane_ownership"]["peer_model"])
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+        self.assertNotIn("stale_digest", checks)
+
+    def test_missing_peer_model_is_rejected(self):
+        contract = load("missing_peer_model_contract.json")
+        self.assertNotIn("peer_model", contract["workspace_lane_ownership"])
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+        self.assertNotIn("stale_digest", checks)
+
+    def test_weakened_cross_workspace_standing_is_rejected(self):
+        contract = load("weakened_cross_workspace_standing_contract.json")
+        self.assertTrue(contract["workspace_lane_ownership"]["cross_workspace_standing"])
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+        self.assertNotIn("stale_digest", checks)
+
+    def test_missing_cross_workspace_standing_is_rejected(self):
+        contract = load("missing_cross_workspace_standing_contract.json")
+        self.assertNotIn("cross_workspace_standing", contract["workspace_lane_ownership"])
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+        self.assertNotIn("stale_digest", checks)
+
+    def test_weakened_auto_start_lane_move_is_rejected(self):
+        contract = load("weakened_auto_start_lane_move_contract.json")
+        self.assertFalse(
+            contract["workspace_lane_ownership"]["auto_start_lane_move_requires_settled_lifecycle"]
+        )
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+        self.assertNotIn("stale_digest", checks)
+
+    def test_missing_auto_start_lane_move_is_rejected(self):
+        contract = load("missing_auto_start_lane_move_contract.json")
+        self.assertNotIn(
+            "auto_start_lane_move_requires_settled_lifecycle",
+            contract["workspace_lane_ownership"],
+        )
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+        self.assertNotIn("stale_digest", checks)
+
+    def test_weakened_mutation_serialized_by_is_rejected(self):
+        contract = load("weakened_mutation_serialized_by_contract.json")
+        self.assertEqual(contract["worker_helper_receipts"]["mutation_serialized_by"], "none")
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+        self.assertNotIn("stale_digest", checks)
+
+    def test_missing_mutation_serialized_by_is_rejected(self):
+        contract = load("missing_mutation_serialized_by_contract.json")
+        self.assertNotIn("mutation_serialized_by", contract["worker_helper_receipts"])
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+        self.assertNotIn("stale_digest", checks)
+
+    def test_weakened_receipt_is_not_proof_of_is_rejected(self):
+        contract = load("weakened_receipt_is_not_proof_of_contract.json")
+        self.assertNotIn(
+            "capacity_released", contract["worker_helper_receipts"]["receipt_is_not_proof_of"]
+        )
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+        self.assertNotIn("stale_digest", checks)
+
+    def test_missing_receipt_is_not_proof_of_is_rejected(self):
+        contract = load("missing_receipt_is_not_proof_of_contract.json")
+        self.assertNotIn("receipt_is_not_proof_of", contract["worker_helper_receipts"])
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+        self.assertNotIn("stale_digest", checks)
+
 
 class TestPluginSnapshot(unittest.TestCase):
     def test_valid_plugin_snapshot_passes(self):
@@ -696,6 +835,37 @@ class TestCli(unittest.TestCase):
         )
         self.assertEqual(result.returncode, 1)
         self.assertIn("missing_required_invariant", result.stderr)
+
+
+class TestAdversarialSweep(unittest.TestCase):
+    """Wires the standalone adversarial_sweep.py into the pytest/unittest
+    suite: every mandatory invariant must reject every weaken/remove
+    mutation defined for it, each judged against an independently
+    recomputed valid digest (see adversarial_sweep.py's module docstring).
+    """
+
+    def test_all_78_mutations_are_rejected(self):
+        results, all_passed = adversarial_sweep.run_sweep()
+        total = len(results)
+        self.assertEqual(total, 78, f"expected exactly 78 mutations in the sweep, got {total}")
+        failed = [(name, failures) for name, failures, ok in results if not ok]
+        self.assertTrue(
+            all_passed,
+            f"{len(failed)}/{total} mutations were NOT correctly rejected: {failed}",
+        )
+
+    def test_sweep_never_masks_behind_stale_digest(self):
+        # Regression guard for the exact defect class this task fixes: a
+        # mutation must never be "caught" only by an incidental
+        # stale_digest failure -- each fixture/mutation carries a
+        # correctly recomputed digest, so its own targeted invariant check
+        # must be the one that fires.
+        results, _ = adversarial_sweep.run_sweep()
+        for name, failures, _ in results:
+            if name == "digest_algorithm.unsupported":
+                continue  # digest cannot be recomputed under an unsupported algorithm by design
+            checks = [c for c, _ in failures]
+            self.assertNotIn("stale_digest", checks, f"{name} was masked by stale_digest: {failures}")
 
 
 if __name__ == "__main__":

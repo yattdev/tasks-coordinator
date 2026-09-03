@@ -495,7 +495,7 @@ ambiguity — this is simulated logical time, not wall-clock time).
 - **Message injection**: begins only after every task has arrived, at fixed
   offset `T_msg0 = 7000` ms (100ms after `t70`). Message `m_i` (`i` = 1..50)
   arrives at offset `T_msg0 + (i-1) * 200` ms — i.e. `m1`@7000ms ..
-  `m50`@16800ms — **except** the six messages listed in the override table
+  `m50`@16800ms — **except** the five messages listed in the override table
   below, whose offsets are deliberately pulled earlier than the uniform
   200ms cadence would place them, to force genuine concurrent claim
   contention on a shared resource key rather than sequential
