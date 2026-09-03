@@ -100,6 +100,19 @@ REQUIRED_TOP_LEVEL_FIELDS = [
 
 REQUIRED_GATE_KEYS = ["review", "qa", "readiness", "done_integrity"]
 
+# Review and QA are symmetric: both must run in an independent session, never
+# the authoring/implementing session self-attesting its own work (see
+# CONTRACT_MAPPING.md: "exact-head Review/QA" gates). Readiness and
+# done_integrity have no independent-session requirement of their own.
+REQUIRED_INDEPENDENT_SESSION_GATES = ["review", "qa"]
+
+# The only coalescing rule this contract permits: identity-equivalent
+# *pending routine wakes for the same target* may collapse to one. Anything
+# broader (e.g. a value like "all_messages") would silently coalesce
+# distinct Human/task/peer messages, which `coalescing_forbidden_for` exists
+# specifically to prevent.
+REQUIRED_QUEUE_COALESCING_RULE = "only_identity_equivalent_pending_routine_wakes_for_same_target"
+
 REQUIRED_HUMAN_RESERVED_CLASSES = {
     "destructive_or_irreversible",
     "security_or_trust_boundary",
@@ -171,6 +184,21 @@ def validate_contract(contract):
             failures.append((
                 "unknown_required_field",
                 f"contract declares required field(s) unknown to this validator: {unknown}",
+            ))
+        # The self-declared required_fields list must also *enumerate* every
+        # field this validator treats as required. A contract that keeps the
+        # actual top-level `done_integrity` object but quietly drops the
+        # string "done_integrity" from its own required_fields list has
+        # weakened what it claims to guarantee (a consumer trusting only the
+        # self-declared list would no longer treat done_integrity as
+        # mandatory) -- fail closed rather than only checking presence of
+        # the underlying object.
+        omitted = [f for f in REQUIRED_TOP_LEVEL_FIELDS if f not in declared_required]
+        if omitted:
+            failures.append((
+                "required_fields",
+                "contract's own required_fields list omits known required "
+                f"field(s): {omitted}",
             ))
     else:
         failures.append(("required_fields", "'required_fields' must be a list"))
@@ -248,7 +276,8 @@ def validate_contract(contract):
             "authority_boundaries.cross_workspace_authority must be false",
         ))
 
-    # 5. Gates must all require exact-head evidence.
+    # 5. Gates must all require exact-head evidence, and Review/QA must both
+    #    require an independent session (self-attestation is not a gate).
     gates = contract.get("gates", {})
     for gate_name in REQUIRED_GATE_KEYS:
         gate = gates.get(gate_name)
@@ -260,8 +289,25 @@ def validate_contract(contract):
                 "missing_required_invariant",
                 f"gates.{gate_name}.exact_head_required must be true",
             ))
+        if gate_name in REQUIRED_INDEPENDENT_SESSION_GATES and gate.get("independent_session_required") is not True:
+            failures.append((
+                "missing_required_invariant",
+                f"gates.{gate_name}.independent_session_required must be true",
+            ))
 
-    # 6. Queue claim identity must be per-entry, never a global watermark.
+    # 5b. Workspace/lane ownership: Done must stay a terminal-integrity lane,
+    # never a silently-ignored archive (see CONTRACT_MAPPING.md).
+    lane_ownership = contract.get("workspace_lane_ownership", {})
+    if lane_ownership.get("done_is_terminal_integrity_lane") is not True:
+        failures.append((
+            "missing_required_invariant",
+            "workspace_lane_ownership.done_is_terminal_integrity_lane must be true",
+        ))
+
+    # 6. Queue claim identity must be per-entry, never a global watermark,
+    # and coalescing must be limited to identity-equivalent pending routine
+    # wakes for the same target -- never a broader rule (e.g.
+    # "all_messages") that would coalesce distinct Human/task/peer messages.
     queue = contract.get("queue_claim_identity", {})
     if queue.get("audit_model") != "exact_entry_never_global_watermark":
         failures.append((
@@ -274,6 +320,13 @@ def validate_contract(contract):
             "missing_required_invariant",
             "queue_claim_identity.identity_scope must be 'per_entry'",
         ))
+    if queue.get("coalescing_rule") != REQUIRED_QUEUE_COALESCING_RULE:
+        failures.append((
+            "missing_required_invariant",
+            "queue_claim_identity.coalescing_rule must be "
+            f"{REQUIRED_QUEUE_COALESCING_RULE!r}, got "
+            f"{queue.get('coalescing_rule')!r}",
+        ))
 
     # 7. Worker/helper receipts: workers must never mutate.
     receipts = contract.get("worker_helper_receipts", {})
@@ -281,6 +334,18 @@ def validate_contract(contract):
         failures.append((
             "missing_required_invariant",
             "worker_helper_receipts.workers_never_mutate must be true",
+        ))
+
+    # 7b. Done integrity: a merged PR or Done-column placement alone must
+    # never be treated as proof (see PROMPT.md's Done terminal-integrity
+    # gate). Weakening this to false would let a stale/incomplete task be
+    # accepted as Done on placement alone.
+    done_integrity = contract.get("done_integrity", {})
+    if done_integrity.get("merged_pr_or_done_placement_alone_is_not_proof") is not True:
+        failures.append((
+            "missing_required_invariant",
+            "done_integrity.merged_pr_or_done_placement_alone_is_not_proof "
+            "must be true",
         ))
 
     # 8. Readiness/notification order must be the exact ordered sequence,

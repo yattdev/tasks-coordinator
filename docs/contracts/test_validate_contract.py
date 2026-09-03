@@ -103,6 +103,51 @@ class TestFixtureContracts(unittest.TestCase):
         checks = [c for c, _ in failures]
         self.assertNotIn("exclusion_leaks_secret", checks)
 
+    def test_false_done_is_terminal_integrity_lane_is_rejected(self):
+        failures = vc.validate_contract(load("false_done_terminal_integrity_lane_contract.json"))
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_false_review_independent_session_required_is_rejected(self):
+        failures = vc.validate_contract(load("false_review_independent_session_contract.json"))
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_false_qa_independent_session_required_is_rejected(self):
+        # Symmetric guard: QA must be checked the same way Review is, not
+        # just Review alone.
+        failures = vc.validate_contract(load("false_qa_independent_session_contract.json"))
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_weakened_coalescing_rule_is_rejected(self):
+        # Regression guard: a coalescing_rule value like "all_messages"
+        # would silently coalesce distinct Human/task/peer messages, which
+        # coalescing_forbidden_for exists specifically to prevent.
+        contract = load("weakened_coalescing_rule_contract.json")
+        self.assertEqual(contract["queue_claim_identity"]["coalescing_rule"], "all_messages")
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_false_done_placement_alone_not_proof_is_rejected(self):
+        failures = vc.validate_contract(load("false_done_placement_alone_not_proof_contract.json"))
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_required_fields_omitting_done_integrity_is_rejected(self):
+        # Regression guard: the top-level done_integrity object can still be
+        # present while the self-declared required_fields *list* quietly
+        # drops the "done_integrity" entry. A consumer trusting only the
+        # list would no longer treat it as mandatory, so this must fail
+        # closed even though every other top-level field is unchanged.
+        contract = load("required_fields_omits_done_integrity_contract.json")
+        self.assertNotIn("done_integrity", contract["required_fields"])
+        self.assertIn("done_integrity", contract)
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("required_fields", checks)
+
 
 class TestPluginSnapshot(unittest.TestCase):
     def test_valid_plugin_snapshot_passes(self):
@@ -221,6 +266,32 @@ class TestCli(unittest.TestCase):
         )
         self.assertEqual(result.returncode, 1)
         self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_false_done_terminal_integrity_lane_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract",
+            os.path.join(FIXTURES, "false_done_terminal_integrity_lane_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_weakened_coalescing_rule_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract", os.path.join(FIXTURES, "weakened_coalescing_rule_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_required_fields_omits_done_integrity_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract",
+            os.path.join(FIXTURES, "required_fields_omits_done_integrity_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("required_fields", result.stderr)
 
 
 if __name__ == "__main__":
