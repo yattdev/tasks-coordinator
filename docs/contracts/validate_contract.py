@@ -36,7 +36,7 @@ import sys
 # The contract's own compatibility.max_known_contract_version is the field
 # the validator checks the contract against; VALIDATOR_SCHEMA_VERSION is
 # reported in --version output only.
-VALIDATOR_SCHEMA_VERSION = "1.1.0"
+VALIDATOR_SCHEMA_VERSION = "1.1.1"
 
 # The highest contract_version this validator BUILD understands, hardcoded in
 # code rather than read from the contract document. A contract's own
@@ -144,6 +144,19 @@ REQUIRED_ROUTINE_WAKE_COALESCING_RECEIPT_FIELDS = {
 REQUIRED_HUMAN_RESERVED_CLASSES = {
     "destructive_or_irreversible",
     "security_or_trust_boundary",
+}
+
+# A helper receipt is evidence for the leader to act on, never itself a
+# disposition of the queue entry (see PROMPT.md: "A helper receipt never
+# proves that its source queue row was claimed, acknowledged, removed, or
+# that capacity was released"). Dropping any one of these four from
+# `receipt_is_not_proof_of` would let a receipt be silently treated as
+# sufficient for that specific disposition claim.
+REQUIRED_RECEIPT_IS_NOT_PROOF_OF = {
+    "queue_row_claimed",
+    "queue_row_acknowledged",
+    "queue_row_removed",
+    "capacity_released",
 }
 
 FORBIDDEN_EXCLUSION_LEAKS = ["secret", "credential", "password", "token"]
@@ -310,10 +323,29 @@ def validate_contract(contract):
             f"authority_boundaries.human_reserved_classes is missing required "
             f"class(es): {sorted(missing_invariant)}",
         ))
-    if authority.get("cross_workspace_authority", False) is not False:
+    # 4a. cross_workspace_authority must be explicitly present AND false --
+    # checking only "not True" (or using a `False` default on a missing
+    # key) would let a contract that silently *removes* this field pass,
+    # since a missing key would then read back as the same falsy default
+    # the invariant requires. The key must be present in the document and
+    # its value must be exactly `false`.
+    if "cross_workspace_authority" not in authority or authority.get("cross_workspace_authority") is not False:
         failures.append((
             "missing_required_invariant",
-            "authority_boundaries.cross_workspace_authority must be false",
+            "authority_boundaries.cross_workspace_authority must be present "
+            "and false",
+        ))
+    # 4a2. scope must stay 'same_workspace_only' -- weakening or removing it
+    # would let a contract silently drop the same-workspace authority
+    # boundary while approval_principal/cross_workspace_authority still
+    # individually check out (see CONTRACT_MAPPING.md: authority_boundaries
+    # is one mapped group but scope is its own independently-enforced
+    # floor).
+    if authority.get("scope") != "same_workspace_only":
+        failures.append((
+            "missing_required_invariant",
+            "authority_boundaries.scope must be 'same_workspace_only', got "
+            f"{authority.get('scope')!r}",
         ))
     # 4b. approval_principal must name an actual accountable principal
     # ('coordinator'), never 'none' -- a contract that keeps every other
@@ -386,6 +418,49 @@ def validate_contract(contract):
         failures.append((
             "missing_required_invariant",
             "workspace_lane_ownership.monitored_lanes must include 'done'",
+        ))
+    # 5d. unit must stay 'workspace' -- this is the granularity every other
+    # workspace_lane_ownership/authority_boundaries field assumes (peer
+    # workspaces, not e.g. per-task or per-repository lane ownership); see
+    # docs/FILESYSTEM_DOCKER_CONTRACT.md §3.
+    if lane_ownership.get("unit") != "workspace":
+        failures.append((
+            "missing_required_invariant",
+            "workspace_lane_ownership.unit must be 'workspace', got "
+            f"{lane_ownership.get('unit')!r}",
+        ))
+    # 5e. peer_model must be explicitly present and true -- workspaces have
+    # no standing over each other (see docs/FILESYSTEM_DOCKER_CONTRACT.md
+    # §3: "peers have no standing over each other"). As with
+    # cross_workspace_authority above, checking only "not True" against a
+    # falsy default would let a contract that removes this field pass, so
+    # presence is checked explicitly.
+    if "peer_model" not in lane_ownership or lane_ownership.get("peer_model") is not True:
+        failures.append((
+            "missing_required_invariant",
+            "workspace_lane_ownership.peer_model must be present and true",
+        ))
+    # 5f. cross_workspace_standing must be explicitly present and false --
+    # the workspace-lane-ownership-level twin of
+    # authority_boundaries.cross_workspace_authority; dropping it would
+    # silently reopen cross-workspace standing at the lane-ownership layer
+    # even though the authority-boundaries floor above still holds.
+    if "cross_workspace_standing" not in lane_ownership or lane_ownership.get("cross_workspace_standing") is not False:
+        failures.append((
+            "missing_required_invariant",
+            "workspace_lane_ownership.cross_workspace_standing must be "
+            "present and false",
+        ))
+    # 5g. auto_start_lane_move_requires_settled_lifecycle must stay true --
+    # without it, an auto-start lane move could fire against a task whose
+    # lifecycle has not yet settled, racing the same in-flight
+    # gate/receipt state the other workspace_lane_ownership/gates floors
+    # exist to protect.
+    if lane_ownership.get("auto_start_lane_move_requires_settled_lifecycle") is not True:
+        failures.append((
+            "missing_required_invariant",
+            "workspace_lane_ownership.auto_start_lane_move_requires_settled_lifecycle "
+            "must be true",
         ))
 
     # 6. Queue claim identity must be per-entry, never a global watermark,
@@ -510,6 +585,33 @@ def validate_contract(contract):
         failures.append((
             "missing_required_invariant",
             "worker_helper_receipts.workers_never_mutate must be true",
+        ))
+    # 7a2. mutation_serialized_by must stay 'single_writer_lane' -- this is
+    # what actually serializes the mutations that workers_never_mutate
+    # forbids workers themselves from making; weakening or removing it
+    # would leave "workers never mutate" true in isolation while no single
+    # lane is named as the serializing mutation path (see §2.5 of
+    # PLUGIN_SCALE_RFC.md, "single-writer mutation lane").
+    if receipts.get("mutation_serialized_by") != "single_writer_lane":
+        failures.append((
+            "missing_required_invariant",
+            "worker_helper_receipts.mutation_serialized_by must be "
+            f"'single_writer_lane', got {receipts.get('mutation_serialized_by')!r}",
+        ))
+    # 7b2. receipt_is_not_proof_of must keep all four disposition classes a
+    # receipt must never be mistaken for proof of -- dropping any one (e.g.
+    # narrowing to just queue_row_claimed) would let a receipt be silently
+    # treated as sufficient for the dropped disposition (see PROMPT.md: "A
+    # helper receipt never proves that its source queue row was claimed,
+    # acknowledged, removed, or that capacity was released").
+    receipt_is_not_proof_of = set(receipts.get("receipt_is_not_proof_of", []))
+    missing_receipt_is_not_proof_of = REQUIRED_RECEIPT_IS_NOT_PROOF_OF - receipt_is_not_proof_of
+    if missing_receipt_is_not_proof_of:
+        failures.append((
+            "missing_required_invariant",
+            "worker_helper_receipts.receipt_is_not_proof_of must include "
+            f"{sorted(REQUIRED_RECEIPT_IS_NOT_PROOF_OF)}; missing "
+            f"{sorted(missing_receipt_is_not_proof_of)}",
         ))
     # 7c. Receipts must be tied to an actual claim/lease identity --
     # without claim_or_lease_id, a receipt cannot be correlated back to the
