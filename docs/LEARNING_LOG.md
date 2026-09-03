@@ -2234,3 +2234,19 @@ remains under ordinary Coordinator authority.
 
 Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`,
 `docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
+
+## 2026-09-03b — plugin policy parity needs a versioned contract
+
+A plugin prompt copied from an earlier Coordinator charter can remain internally
+consistent while becoming behaviorally wrong. The durable boundary is a compact,
+versioned, machine-readable contract for stable authority, lane, queue,
+independent-gate, readiness, terminal-integrity, and escalation invariants. The
+plugin vendors an identified snapshot and CI rejects a stale digest, a missing
+required invariant, or a contradictory prompt/default.
+
+The full charter and live board ledger are deliberately excluded from the
+contract. Queue parallelism and plan rollup were rejected as duplicate learning
+because they are already binding; missing load tests and compaction automation
+remain implementation work for the existing plugin-first program.
+
+Files: `docs/DECISIONS.md`, this log.

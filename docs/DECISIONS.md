@@ -1560,3 +1560,32 @@ deletion. Once the session is absent, exact message bodies are irrecoverable
 unless an already verified retained artifact exists; Support cannot resurrect
 them. Continuity then uses only durable plan, conversation and provider records,
 explicitly labels the reconstruction incomplete, and never invents payloads.
+
+## Coordinator policy is contract-validated, not hand-copied (2026-09-03, human-directed)
+
+The Coordinator plugin must not treat a copied prompt snapshot as an independent
+policy source. The current plugin prompt bundle still identifies an older charter
+revision and retains rules that the live Coordinator charter has since
+superseded. Manual prompt adaptation therefore creates silent behavioral drift
+between the board Coordinator and the plugin intended to replace its recurring
+orchestration work.
+
+The shared Coordinator repository will publish a compact, versioned,
+machine-readable policy contract for stable cross-runtime invariants: authority
+boundaries, workspace and lane ownership, queue conflict identities, worker
+receipt requirements, exact-head Review/QA/readiness/Done gates, escalation
+classes, and the contract version and digest. It is not a serialized copy of the
+full charter and never contains live board state. Workspace overlays may narrow
+behavior but cannot widen the contract's authority or safety boundaries.
+
+The Coordinator plugin vendors an explicit contract snapshot and validates its
+base prompts and defaults against that snapshot in CI. A contract version or
+digest mismatch, a missing required invariant, or a contradictory stale rule is
+a build failure. Updating the contract and updating the plugin snapshot remain
+separate reviewed changes with a visible compatibility receipt, so an older
+deployed plugin fails observably rather than silently claiming parity.
+
+Scale benchmarks, leader/worker runtime design, and automatic state compaction
+are delivery specifications owned by the plugin-first orchestration program.
+They do not belong in `PROMPT.md` unless they change binding Coordinator
+authority or behavior.
