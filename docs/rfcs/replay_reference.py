@@ -158,16 +158,43 @@ def apply_mutation(state, mutation, payload_store=None):
     return new_state
 
 
+def _index_compaction_receipts(compaction_receipts):
+    """Normalize a ``compaction_receipts`` argument into a
+    ``compaction_id -> receipt`` dict.
+
+    Accepts ``None`` (no receipts supplied at all), a dict already keyed by
+    ``compaction_id``, or an iterable of receipt dicts each carrying its own
+    ``compaction_id`` field (the same shape ``check_compaction_correlation``
+    already expects for its ``compaction_receipt`` argument).
+    """
+    if compaction_receipts is None:
+        return {}
+    if isinstance(compaction_receipts, dict):
+        return dict(compaction_receipts)
+    return {receipt["compaction_id"]: receipt for receipt in compaction_receipts}
+
+
 def replay(snapshot_content, mutation_log, payload_store=None,
-           target_mutation_id=None, target_timestamp=None):
+           target_mutation_id=None, target_timestamp=None,
+           compaction_receipts=None):
     """Deterministically replay ``mutation_log`` on top of
     ``snapshot_content`` up to and including ``target_mutation_id`` and/or
     ``target_timestamp`` (§7 step 3), in ascending ``mutation_id`` order.
 
     ``snapshot_content`` is a dict of ``record_id -> body`` (the working
-    state). Returns the reconstructed state; raises ``ReplayError`` on any
-    corrupt/inconsistent input rather than returning a best-effort partial
-    result (§7 step 4's fail-closed rule).
+    state). ``compaction_receipts`` is the relevant compaction receipt set
+    (``None``, a ``compaction_id -> receipt`` dict, or an iterable of
+    receipt dicts) that every ``remove`` mutation actually replayed must
+    correlate against, per §1.3/§7 step 3's cross-check: "a `remove` entry
+    with a `compaction_id` that does not correlate to any known compaction
+    receipt is corrupt input, not a silently-accepted orphan removal." This
+    correlation is enforced here, inside ``replay()`` itself -- it is not a
+    detached optional helper the caller might forget to invoke. Returns the
+    reconstructed state; raises ``ReplayError`` on any corrupt/inconsistent
+    input (an absent receipt set, an unknown/nonexistent `compaction_id`, or
+    a substituted/mismatched receipt, exactly as much as a hash mismatch or
+    duplicate `mutation_id` would) rather than returning a best-effort
+    partial result (§7 step 4's fail-closed rule).
     """
     ids = [m["mutation_id"] for m in mutation_log]
     if len(ids) != len(set(ids)):
@@ -181,12 +208,44 @@ def replay(snapshot_content, mutation_log, payload_store=None,
     # was fetched/paginated.
     ordered = sorted(mutation_log, key=lambda m: m["mutation_id"])
 
-    state = dict(snapshot_content)
+    # Determine the subsequence that will actually be applied under the
+    # target_mutation_id/target_timestamp cutoffs before doing any
+    # correlation work, so a receipt is only required for compaction_ids
+    # this call will actually replay through.
+    applied = []
     for mutation in ordered:
         if target_mutation_id is not None and mutation["mutation_id"] > target_mutation_id:
             break
         if target_timestamp is not None and mutation["timestamp"] > target_timestamp:
             break
+        applied.append(mutation)
+
+    receipts_by_id = _index_compaction_receipts(compaction_receipts)
+    remove_compaction_ids = {
+        m["compaction_id"] for m in applied
+        if m["op"] == "remove" and m.get("compaction_id") is not None
+    }
+    for compaction_id in remove_compaction_ids:
+        receipt = receipts_by_id.get(compaction_id)
+        if receipt is None:
+            raise ReplayError(
+                f"a remove mutation being replayed references compaction_id "
+                f"{compaction_id!r}, but no matching receipt was found in "
+                "the supplied compaction_receipts set (absent receipt set, "
+                "or an unknown/nonexistent compaction_id); a remove cannot "
+                "be replayed without correlating it against its rollup "
+                "receipt"
+            )
+        # Full cross-check, not just "a receipt with this id exists": the
+        # receipt's rolled_records must be exactly the remove-op entries
+        # carrying this compaction_id in the full mutation_log (§1.3), so a
+        # substituted or mismatched receipt (wrong rolled_records for a
+        # correctly-named compaction_id) is caught the same way an unknown
+        # id is.
+        check_compaction_correlation(receipt, mutation_log)
+
+    state = dict(snapshot_content)
+    for mutation in applied:
         state = apply_mutation(state, mutation, payload_store)
     return state
 
