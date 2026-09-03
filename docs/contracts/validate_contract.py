@@ -36,7 +36,44 @@ import sys
 # The contract's own compatibility.max_known_contract_version is the field
 # the validator checks the contract against; VALIDATOR_SCHEMA_VERSION is
 # reported in --version output only.
-VALIDATOR_SCHEMA_VERSION = "1.0.0"
+VALIDATOR_SCHEMA_VERSION = "1.0.1"
+
+# The highest contract_version this validator BUILD understands, hardcoded in
+# code rather than read from the contract document. A contract's own
+# compatibility.max_known_contract_version is self-declared: a future or
+# malicious contract could set contract_version, min_supported_contract_version,
+# and max_known_contract_version all to e.g. "2.0.0" in the same document, and
+# the same-document check in validate_contract() (which only compares the
+# contract against itself) would find it internally consistent and pass it.
+# This constant is the independent, non-forgeable ceiling: it is what THIS
+# validator source file was actually written to understand, so it cannot be
+# smuggled past by anything inside the JSON body. Bump it only when this
+# validator is upgraded to actually understand a newer contract_version.
+VALIDATOR_MAX_SUPPORTED_CONTRACT_VERSION = "1.0.0"
+
+# The exact, ordered readiness/notification sequence required by the
+# contract (see CONTRACT_MAPPING.md: "Order is fixed; reordering is
+# breaking"). Checked as a full sequence, not just first/last elements, so a
+# contract that drops or reorders the middle `refreshed_post_ready_gates`
+# step (the post-ready-gate refresh between provider-ready confirmation and
+# reviewer notification) is rejected.
+REQUIRED_READINESS_NOTIFICATION_ORDER = [
+    "provider_confirmed_ready_nondraft",
+    "refreshed_post_ready_gates",
+    "reviewer_notification",
+]
+
+# Mandatory plugin-snapshot `defaults` keys. A snapshot with a missing or
+# empty `defaults` object -- or missing any one of these keys -- declares no
+# verifiable invariants at all and must fail closed rather than silently
+# pass (an empty object trivially satisfies "no field contradicts the
+# contract").
+REQUIRED_PLUGIN_SNAPSHOT_DEFAULT_KEYS = [
+    "human_reserved_classes",
+    "exact_head_gates",
+    "workers_never_mutate",
+    "cross_workspace_authority",
+]
 
 DIGEST_EXCLUDED_FIELDS = ("digest",)
 
@@ -160,6 +197,23 @@ def validate_contract(contract):
             f"contract_version {version} is older than "
             f"min_supported_contract_version {min_supported}",
         ))
+    # 2b. Independent, hardcoded ceiling (cannot be forged by the document
+    # itself -- see VALIDATOR_MAX_SUPPORTED_CONTRACT_VERSION). A contract
+    # that self-declares contract_version 2.0.0 alongside a matching
+    # compatibility.max_known_contract_version of 2.0.0 passes check #2
+    # above (it is internally consistent with itself) but must still be
+    # rejected here, because this validator build was never actually written
+    # to understand a 2.0.0 schema.
+    if version and _version_tuple(version) > _version_tuple(VALIDATOR_MAX_SUPPORTED_CONTRACT_VERSION):
+        failures.append((
+            "stale_validator_or_future_contract",
+            f"contract_version {version} exceeds "
+            f"{VALIDATOR_MAX_SUPPORTED_CONTRACT_VERSION}, the maximum "
+            "contract_version this validator build understands (hardcoded "
+            "in validate_contract.py, independent of the contract's own "
+            "self-declared compatibility fields); upgrade the validator "
+            "before trusting a newer contract",
+        ))
 
     # 3. Digest check.
     algorithm = contract.get("digest_algorithm", "sha256")
@@ -229,16 +283,17 @@ def validate_contract(contract):
             "worker_helper_receipts.workers_never_mutate must be true",
         ))
 
-    # 8. Readiness/notification order must end with reviewer_notification and
-    #    start with a provider-confirmed-ready check (contradictory-order
-    #    check).
+    # 8. Readiness/notification order must be the exact ordered sequence,
+    # not merely start/end correctly. Checking only the first and last
+    # elements would silently accept a contract that dropped or reordered
+    # the required middle `refreshed_post_ready_gates` step (contradictory-
+    # order check).
     order = contract.get("readiness_notification_order", [])
-    if order[:1] != ["provider_confirmed_ready_nondraft"] or order[-1:] != ["reviewer_notification"]:
+    if list(order) != REQUIRED_READINESS_NOTIFICATION_ORDER:
         failures.append((
             "contradictory_plugin_prompt_default",
-            "readiness_notification_order must start with "
-            "'provider_confirmed_ready_nondraft' and end with "
-            "'reviewer_notification'",
+            "readiness_notification_order must be the exact ordered "
+            f"sequence {REQUIRED_READINESS_NOTIFICATION_ORDER}, got {order!r}",
         ))
 
     # 9. Exclusions must not themselves leak secret-shaped content. Check
@@ -311,11 +366,39 @@ def validate_plugin_snapshot(contract, snapshot):
             f"contract digest {expected_digest!r}",
         ))
 
-    defaults = snapshot.get("defaults", {})
+    defaults = snapshot.get("defaults")
     authority = contract.get("authority_boundaries", {})
     contract_reserved = set(authority.get("human_reserved_classes", []))
+
+    if not isinstance(defaults, dict) or not defaults:
+        failures.append((
+            "missing_required_invariant",
+            "plugin snapshot 'defaults' is missing or empty; a snapshot "
+            "must explicitly declare all of "
+            f"{REQUIRED_PLUGIN_SNAPSHOT_DEFAULT_KEYS} -- an absent or empty "
+            "defaults object trivially satisfies 'no field contradicts the "
+            "contract' and must not be treated as a valid snapshot",
+        ))
+        defaults = {}
+    else:
+        missing_default_keys = [
+            key for key in REQUIRED_PLUGIN_SNAPSHOT_DEFAULT_KEYS if key not in defaults
+        ]
+        if missing_default_keys:
+            failures.append((
+                "missing_required_invariant",
+                f"plugin snapshot 'defaults' is missing mandatory key(s): "
+                f"{missing_default_keys}",
+            ))
+
     snapshot_reserved = set(defaults.get("human_reserved_classes", []))
-    if snapshot_reserved and contract_reserved - snapshot_reserved:
+    if "human_reserved_classes" in defaults and not snapshot_reserved:
+        failures.append((
+            "missing_required_invariant",
+            "plugin snapshot defaults.human_reserved_classes must not be "
+            "empty; it must declare the full human-reserved floor",
+        ))
+    if contract_reserved - snapshot_reserved:
         failures.append((
             "contradictory_plugin_prompt_default",
             "plugin defaults.human_reserved_classes drops required class(es): "

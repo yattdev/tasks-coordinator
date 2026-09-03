@@ -41,7 +41,7 @@ stays compact and machine-readable.
 | `queue_claim_identity.*` | `PROMPT.md` "Queue identity and disposition are per-entry..." paragraph (queue helpers/coalescing section) | `audit_model` must stay `exact_entry_never_global_watermark`; this is the specific defect class the 2026-09-01j decision closed. |
 | `worker_helper_receipts.*` | `PROMPT.md` "helpers never mutate the board, provider, task worktrees..." paragraph; "A helper receipt never proves that its source queue row was claimed..." | `workers_never_mutate` is a floor invariant shared with the scale RFC's read-only worker pool design. |
 | `gates.review`, `gates.qa`, `gates.readiness`, `gates.done_integrity` | `PROMPT.md` "exact-head Review/QA/CI readiness" (multiple sections); "DONE TERMINAL-INTEGRITY GATE" | All four must keep `exact_head_required: true`. This is the single most load-bearing invariant in the contract — it is what stops a stale-head approval. |
-| `readiness_notification_order` | `PROMPT.md` "universal reviewer-request ordering is strict: provider-confirmed ready/non-draft first, then refreshed post-ready gates, then and only then reviewer notification" | Order is fixed; reordering is **breaking**. |
+| `readiness_notification_order` | `PROMPT.md` "universal reviewer-request ordering is strict: provider-confirmed ready/non-draft first, then refreshed post-ready gates, then and only then reviewer notification" | Order is fixed; reordering, or dropping the required middle `refreshed_post_ready_gates` step, is **breaking**. The validator checks the full ordered sequence (not just first/last elements) — see `fixtures/reordered_notification_contract.json`. |
 | `escalation_classes.human_reserved[].includes` | `PROMPT.md` "Destructive includes deletion, reset/clean/discard..." / "Security includes secret/credential disclosure..." | Additive is **minor**; removing an item from `includes` without also removing it from the `PROMPT.md` prose is **breaking** (and would itself require a Human-directed decision, per the escalation-classes rule). |
 | `escalation_classes.label_alone_does_not_escalate` | `PROMPT.md` "Labels such as production, protected/release branch, cost, or external communication do not by themselves create a second approval principal" | Advisory list; additive-only. |
 | `done_integrity.required_proof`, `.receipt_fields` | `PROMPT.md` "Before any move to Done, explicitly prove..." and the terminal-receipt paragraph | Mirrors `docs/FILESYSTEM_DOCKER_CONTRACT.md`'s audit-trail convention (name the exact fields, never an aggregate claim). |
@@ -102,6 +102,35 @@ moved.
    or newer than `compatibility.max_known_contract_version`, the build **must
    fail closed** (`compatibility.unsupported_version_behavior`), never
    silently downgrade to "best effort".
+5. A plugin `defaults` snapshot must explicitly declare every mandatory key
+   (`human_reserved_classes`, `exact_head_gates`, `workers_never_mutate`,
+   `cross_workspace_authority`) with a non-empty value where applicable. An
+   absent or empty `defaults` object is rejected
+   (`missing_required_invariant`) rather than silently treated as "no
+   contradiction found" — see `fixtures/empty_defaults_plugin_snapshot.json`
+   and `fixtures/missing_defaults_plugin_snapshot.json`.
+
+### 4.1 The validator's own version ceiling is hardcoded, not self-declared
+
+`validate_contract()` checks `contract_version` against two independent
+things, and a contract must pass both:
+
+1. The contract's own `compatibility.max_known_contract_version` /
+   `min_supported_contract_version` (a same-document consistency check).
+2. `VALIDATOR_MAX_SUPPORTED_CONTRACT_VERSION`, a constant hardcoded in
+   `validate_contract.py` itself, independent of anything the contract
+   document declares.
+
+Check (1) alone is insufficient: a contract can self-declare
+`contract_version: "2.0.0"` alongside a matching
+`compatibility.max_known_contract_version: "2.0.0"`, which is internally
+consistent and would pass check (1) even though this validator build was
+never written to understand a 2.0.0 schema. Check (2) is the check that
+actually protects against that case — see
+`fixtures/future_version_contract.json` and
+`test_self_declared_future_version_is_rejected`. Bump
+`VALIDATOR_MAX_SUPPORTED_CONTRACT_VERSION` only when the validator source is
+actually upgraded to understand a new `contract_version`.
 
 ## 5. Workspace-overlay narrowing
 
@@ -158,6 +187,6 @@ published `digest` before being trusted.
 - [`coordinator-policy-contract.json`](coordinator-policy-contract.json) — the contract itself.
 - [`validate_contract.py`](validate_contract.py) — the standalone validator.
 - [`test_validate_contract.py`](test_validate_contract.py) — the test suite (`python3 -m unittest docs/contracts/test_validate_contract.py -v`).
-- [`fixtures/`](fixtures/) — one fixture per required validator scenario (valid contract, stale version, stale digest, missing invariant, unknown required field, exclusion-leaking-secret-shaped-value, contradictory plugin snapshot, widening overlay, plus positive controls).
+- [`fixtures/`](fixtures/) — one fixture per required validator scenario (valid contract, stale version, stale digest, missing invariant, unknown required field, exclusion-leaking-secret-shaped-value, self-declared future contract version, reordered/incomplete notification sequence, contradictory plugin snapshot, empty/missing plugin snapshot defaults, widening overlay, plus positive controls).
 - [`../rfcs/PLUGIN_SCALE_RFC.md`](../rfcs/PLUGIN_SCALE_RFC.md) — scale/load architecture and the 70-task/50-message burst harness.
 - [`../rfcs/STATE_COMPACTION_SPEC.md`](../rfcs/STATE_COMPACTION_SPEC.md) — safe state compaction.

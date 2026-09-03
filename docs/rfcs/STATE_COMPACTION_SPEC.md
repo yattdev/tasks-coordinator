@@ -71,7 +71,8 @@ Every rollup operation must record, before mutating anything:
   "pre_state": {
     "byte_count": <int>,
     "sha256": "<hex>",
-    "record_count": <int>
+    "record_count": <int>,
+    "record_id_set_sha256": "<hex, see §4>"
   },
   "rolled_records": [
     {"record_id": "<id>", "kind": "<follow_up|lease|escalation|done_receipt>", "resolved_at": "<ts>"}
@@ -79,12 +80,14 @@ Every rollup operation must record, before mutating anything:
   "post_state": {
     "byte_count": <int>,
     "sha256": "<hex>",
-    "record_count": <int>
+    "record_count": <int>,
+    "record_id_set_sha256": "<hex, see §4>"
   },
   "archive_append": {
     "archive_path": "<path>",
     "byte_count_appended": <int>,
-    "sha256_of_appended_bytes": "<hex>"
+    "sha256_of_appended_bytes": "<hex>",
+    "rolled_record_id_set_sha256": "<hex, see §4>"
   },
   "fencing_token": <int>
 }
@@ -99,7 +102,15 @@ mutation lane from `../rfcs/PLUGIN_SCALE_RFC.md` §2.1/§2.5 — a compaction is
 a mutation like any other and must go through the fenced leader, never a
 side-channel writer.
 
-## 4. Required section-anchor / set-equality validation
+Each `record_id_set_sha256` is computed identically to the contract's own
+digest convention (`../contracts/CONTRACT_MAPPING.md` §6): sort the record
+IDs in the set, join with `\n`, hash the UTF-8 bytes with SHA-256. This lets
+§4's set-equality check compare hashes of record-ID **sets**, not just
+integer counts, so two rollups that happen to move the same *number* of
+records but different *identities* produce different, detectably-mismatched
+hashes.
+
+## 4. Required section-anchor / hash-anchored set-equality and disjointness validation
 
 Before a rollup is considered committed:
 
@@ -112,16 +123,38 @@ Before a rollup is considered committed:
    pointer (`"see docs/archive/<file>#<anchor>"`). A rollup that breaks an
    existing external reference without leaving a forwarding pointer is
    rejected before commit.
-2. **Set-equality validation**: the set of record IDs in
-   `pre_state.record_count` must equal exactly `post_state.record_count +
-   len(rolled_records)`, and every ID in `rolled_records` must be
-   independently verifiable as present in the post-rollup archive append
-   (not just claimed). This is the same "exact-entry, never a global
-   watermark" discipline the contract requires of the queue
-   (`queue_claim_identity.audit_model`), applied to compaction: a compaction
-   that can only assert a smaller total count without naming which records
-   moved is rejected, because that shape is indistinguishable from silent
-   loss.
+2. **Hash-anchored set-equality validation**: a bare count equation
+   (`pre_state.record_count == post_state.record_count +
+   len(rolled_records)`) is necessary but **not sufficient** — it cannot
+   distinguish "the right records moved" from "some other record silently
+   vanished while an unrelated one was double-counted." The validation must
+   instead assert, over the actual record-ID **sets** (not just their
+   sizes):
+   - `pre_state`'s record-ID set equals exactly the **disjoint union** of
+     `post_state`'s record-ID set and the `rolled_records` ID set:
+     `pre_ids == post_ids ∪ rolled_ids` **and** `post_ids ∩ rolled_ids == ∅`.
+     A rollup where a record ID appears in both `post_state` and
+     `rolled_records` (counted twice) or in neither (lost) is rejected even
+     if the byte-count arithmetic happens to balance.
+   - This is checked via the hashes in §3: recompute
+     `record_id_set_sha256` over `post_ids ∪ rolled_ids` (after asserting
+     the union is disjoint, i.e. `|post_ids| + |rolled_ids| ==
+     |post_ids ∪ rolled_ids|`) and require it to equal the recorded
+     `pre_state.record_id_set_sha256`. A hash match without the prior
+     disjointness assertion is not accepted as proof — two different sets
+     can collide in principle, but a set that fails disjointness is already
+     known-wrong regardless of what any hash says.
+   - Every ID in `rolled_records` must additionally be independently
+     verifiable as present in the post-rollup archive append (not just
+     claimed) — the `archive_append.rolled_record_id_set_sha256` field in
+     §3 must match a hash recomputed directly from the bytes actually
+     appended, not copied from the pre-computed `rolled_records` list.
+   - This is the same "exact-entry, never a global watermark" discipline the
+     contract requires of the queue (`queue_claim_identity.audit_model`),
+     applied to compaction: a compaction that can only assert a smaller
+     total count, or a matching sum, without naming and hash-verifying which
+     exact records moved is rejected, because that shape is indistinguishable
+     from silent loss or duplication.
 3. Both validations run **before** the pre-rollup current-state file is
    truncated/rewritten. If either fails, the rollup aborts with no mutation
    applied (the archive append and the rewritten current-state file are
@@ -206,8 +239,12 @@ reference despite §4's checks):
 
 ## 8. What this spec explicitly does not change
 
-- It does not touch the live Coordinator task plan (`43526f71-...`'s parent
-  or any other live task's plan) — this is a specification document only.
+- It does not touch the live Coordinator task plan (the parent program's
+  plan or any other live task's plan) — this is a specification document
+  only, and per the exclusions in
+  [`../contracts/coordinator-policy-contract.json`](../contracts/coordinator-policy-contract.json)
+  (`transient_task_ids`), this spec deliberately does not name any specific
+  transient task ID.
 - It does not relax the Done terminal-integrity gate; a compacted Done
   terminal receipt remains subject to the same shallow-verify-if-unchanged /
   deep-audit-if-new-or-suspicious rule in `PROMPT.md` — compaction only
