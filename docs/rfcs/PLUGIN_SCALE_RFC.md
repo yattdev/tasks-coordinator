@@ -1,7 +1,12 @@
 # RFC: Coordinator plugin scale/load architecture and burst harness
 
 Status: **proposed 2026-09-03**, implementation-ready. Owned by the plugin-first
-orchestration program (parent task `1e46d457-6869-4750-bf97-4640a8df3b68`);
+orchestration program (the parent program tracked on the Kandev board under
+that role; per this repository's exclusion convention — see `exclusions` in
+[`../contracts/coordinator-policy-contract.json`](../contracts/coordinator-policy-contract.json)
+— this document identifies owners by stable role, not by an embedded transient
+board task ID, since a task ID does not survive board reorganization the way
+the role/ownership relationship does);
 this document specifies the target design and acceptance bar but does not
 implement it — implementation lives in the Coordinator plugin repository, not
 here (see `docs/DECISIONS.md#coordinator-policy-is-contract-validated-not-hand-copied-2026-09-03-human-directed`,
@@ -346,6 +351,139 @@ the schedule itself does not depend on this seed.
     or is provably impossible — the harness records which case occurred, it
     does not assume either.
 
+### 4.2.1 Arrival-time schedule
+
+All offsets are milliseconds elapsed since harness start (`T0 = 0`). Two
+independent implementations of this schedule must compute byte-identical
+offsets from the formulas below (no rounding/timezone/clock-source
+ambiguity — this is simulated logical time, not wall-clock time).
+
+- **Task arrival**: task `t_i` (`i` = 1..70) arrives at offset
+  `(i-1) * 100` ms. This single formula reproduces the lane batches already
+  fixed above as contiguous 100ms-spaced blocks with no gaps:
+
+  | Lane batch | Tasks | Offset range (ms) |
+  | --- | --- | --- |
+  | Spec | `t1`–`t10` | 0–900 |
+  | Work | `t11`–`t25` | 1000–2400 |
+  | Review | `t26`–`t35` | 2500–3400 |
+  | QA | `t36`–`t45` | 3500–4400 |
+  | PR | `t46`–`t55` | 4500–5400 |
+  | CI Fixup | `t56`–`t60` | 5500–5900 |
+  | Done | `t61`–`t70` | 6000–6900 |
+
+- **Message injection**: begins only after every task has arrived, at fixed
+  offset `T_msg0 = 7000` ms (100ms after `t70`). Message `m_i` (`i` = 1..50)
+  arrives at offset `T_msg0 + (i-1) * 200` ms — i.e. `m1`@7000ms ..
+  `m50`@16800ms — **except** the six messages listed in the override table
+  below, whose offsets are deliberately pulled earlier than the uniform
+  200ms cadence would place them, to force genuine concurrent claim
+  contention on a shared resource key rather than sequential
+  non-overlapping claims (see §4.2.4):
+
+  | Message | Uniform-cadence offset (ms) | Overridden offset (ms) | Why |
+  | --- | --- | --- | --- |
+  | `m3` | 7400 | 7250 | Forces `m3` to arrive 50ms after `m2` while `m2`'s 200ms self-report claim window (7200–7400ms, see §4.2.3) is still open — the deliberate non-wake overlap/rejection case (§4.2.4). |
+  | `m8` | 8400 | 7830 | Forces `m8` to arrive 30ms after `m5` (paired identical wake, pair A rep. 1) while `m5`'s 50ms claim window (7800–7850ms) is still open. |
+  | `m18` | 10400 | 9830 | Forces `m18` to arrive 30ms after `m15` (pair B rep. 1) while `m15`'s 50ms claim window (9800–9850ms) is still open. |
+  | `m33` | 13400 | 12830 | Forces `m33` to arrive 30ms after `m30` (pair A rep. 2) while `m30`'s 50ms claim window (12800–12850ms) is still open. |
+  | `m43` | 15400 | 14830 | Forces `m43` to arrive 30ms after `m40` (pair B rep. 2) while `m40`'s 50ms claim window (14800–14850ms) is still open. |
+
+  All other messages use the uniform-cadence formula unmodified. The five
+  overrides above are the harness's only intentionally-tightened arrivals;
+  every other pairing in the schedule is spaced far enough apart (relative
+  to the fixed processing durations in §4.2.3) that claims never contend by
+  accident — contention only ever occurs where this table says it must.
+
+### 4.2.2 Worker pool and concurrency schedule
+
+- The worker pool size is fixed at **`W = 8`** read-only workers for the
+  entire run; the harness never autoscales the pool up or down.
+- All 8 workers are idle and claimable starting at `T0`.
+- Concurrency is deterministic: each worker claims exactly one unclaimed
+  queue entry (a message, or a task dirty-signal per §2.6) at a time, taken
+  in strict FIFO arrival order among entries not already claimed, and
+  releases its claim (emits its read-only receipt) exactly
+  `processing_duration(entry_type)` ms after the claim is taken (§4.2.3). A
+  second claim attempt against a resource key that is still held is
+  deferred/rejected until the holder releases — it is never granted
+  concurrently (this is the mechanism the §4.3 "zero claim overlap" metric
+  verifies). With `W = 8` and one entry claimed per worker, at most 8
+  entries are ever concurrently claimed system-wide; this is the entire
+  concurrency schedule, and it requires no additional random limiting.
+- The one designed exception is the faulted claim on `m12` (§4.2's fault
+  list): that worker is killed after reading but before emitting its
+  receipt, so `m12`'s claim is released for re-claim by the same FIFO order
+  during recovery rather than by its own normal processing-duration timer.
+
+### 4.2.3 Deterministic processing durations
+
+Fixed, not random, worker-side read-only processing time from claim to
+receipt emission, by entry type:
+
+| Entry type | Processing duration |
+| --- | --- |
+| Human message | 500 ms |
+| Task self-report | 200 ms |
+| Peer-Coordinator report | 150 ms |
+| Routine wake (identical or near-duplicate) | 50 ms |
+| Task dirty-signal (background scheduling item, §2.6) | 300 ms |
+
+A conforming harness must use exactly these durations — they are what makes
+the §4.3 p95 metrics computable from the fixed schedule itself, rather than
+measured against arbitrary/unspecified production timing. The only
+permitted randomness anywhere in the run is the `HARNESS_RANDOM_SEED`
+jitter named in §4.2's opening paragraph, and it never applies to these
+processing durations.
+
+### 4.2.4 Claim sets: message-to-resource mapping and overlap/rejection cases
+
+Every message claims a resource key of the form `task:<task_id>` — the
+pairwise-conflict claim target from §2.3. The mapping is fixed by formula
+plus a small set of explicit overrides that create the intentional overlap
+cases:
+
+- **Default formula**: for message `m_i` not listed in the override table
+  below, `task_id = t_{11 + ((i-1) mod 15)}` (cycles across the 15 Work-lane
+  tasks `t11`–`t25`).
+- **Overrides** (the deliberate overlap/rejection cases):
+
+  | Message(s) | Resource key | Intended outcome |
+  | --- | --- | --- |
+  | `m2`, `m3` | `task:t12` | Distinct-payload task self-reports on the same resource key, with `m3` injected inside `m2`'s still-open claim window (§4.2.1). `m3`'s claim attempt must be deferred/rejected until `m2` releases at 7400ms; `m3`'s *effective* claim time is therefore 7400ms, not its 7250ms arrival time. Neither message is ever merged or dropped — this is the deliberate **non-wake** overlap/rejection case, distinct from the routine-wake coalescing cases below. |
+  | `m5`, `m8`, `m11` (rep. 1); `m30`, `m33`, `m36` (rep. 2) | `task:t14` | `m5`/`m8` (and, in rep. 2, `m30`/`m33`) are the identical-payload `WAKE:CYCLE` pair on this target and must coalesce to exactly one effective wake (§4.3 metric 3). `m11` (rep. 2: `m36`) is the near-duplicate, non-identical payload on the **same** resource key: it must never coalesce with the pair, and must be served as its own distinct, serialized claim (deferred until the pair's single surviving claim releases if still open) — proving that same-target-but-different-payload is a genuine overlap/rejection case, not a coalescing one. |
+  | `m15`, `m18`, `m21` (rep. 1); `m40`, `m43`, `m46` (rep. 2) | `task:t22` | Same structure as the `task:t14` group above, for coalescing pair B and its near-duplicate. |
+
+  All other tasks referenced by the default formula (`t11`, `t13`,
+  `t15`–`t21`, `t23`–`t25`) receive at most one concurrently-open claim at
+  any point in the schedule under the arrival offsets in §4.2.1 and
+  durations in §4.2.3 — i.e. the formula-mapped messages are the harness's
+  designed **non-overlap** control cases, contrasted with the explicit
+  overlap/rejection cases in the override table.
+
+### 4.2.5 Deriving the §4.3 metrics from the fixed inputs above
+
+Because §4.2.1–§4.2.4 fix every arrival offset, claim target, and
+processing duration, the §4.3 acceptance metrics are computed directly from
+harness output against these known inputs rather than estimated:
+
+- **Zero claim overlap** (§4.3 metric 1) is checked against every resource
+  key in §4.2.4, including the five deliberately-tightened arrivals in
+  §4.2.1 — a conforming run must show the deferred/rejected second claim in
+  each override row, never two simultaneously-held claims on the same key.
+- **Human-message claim p95 < 10s** (§4.3 metric 7) is measured over the
+  claim latency (`claim_time - arrival_time`) of the 10 fixed Human-message
+  arrivals in §4.2.1 (`m1`, `m7`, `m13`, `m20`, `m25`, `m26`, `m32`, `m38`,
+  `m45`, `m50`); under normal (non-faulted) operation each should claim
+  near-immediately (well under the 10s bar) since Human messages are never
+  coalescing-deferred and only `m45` carries a fault (session deletion).
+- **Task-report claim p95 < 30s** (§4.3 metric 8) is measured the same way
+  over the 20 fixed task self-report arrivals, including the deliberately
+  deferred `m3` (§4.2.4), whose effective claim time (7400ms, not its
+  7250ms arrival) is part of the sample the p95 is computed over — a
+  harness that instead measured from `m3`'s *arrival* offset without
+  accounting for the deferral would understate the true claim latency.
+
 ### 4.3 Acceptance metrics (all must pass in the same run)
 
 All metrics below are evaluated against the exact `t1`–`t70` / `m1`–`m50`
@@ -397,14 +535,21 @@ check the report against this spec without re-deriving it.
 
 ## 5. Relationship to existing owners
 
-- Host queue primitive owner `ca015838-e5cf-4294-b3bb-9c50576a5fe6` owns
-  guarded exact-entry queue operations and identical-routine-wake
-  coalescing at the **Kandev Host** layer. This RFC's durable queue (§2)
-  *consumes* that primitive; it does not reimplement or duplicate it. Any
-  gap found between what this RFC needs and what that Host primitive
-  currently exposes belongs on that task, not as new queue code here or in
-  the plugin.
-- Parent program `1e46d457-6869-4750-bf97-4640a8df3b68` owns Host contracts,
-  the plugin scheduler/reconciliation implementation, durable SQLite state,
+Both owners below are identified by their stable board role, not by an
+embedded task ID — consistent with the exclusion of transient board state
+from this repository's shared artifacts (`exclusions` in
+[`../contracts/coordinator-policy-contract.json`](../contracts/coordinator-policy-contract.json);
+see the header of this document for why). A reader needing the current live
+task for either role should resolve it through the Kandev board itself, not
+through a copy of the ID pinned in this document.
+
+- **Kandev Host queue primitive owner** — owns guarded exact-entry queue
+  operations and identical-routine-wake coalescing at the **Kandev Host**
+  layer. This RFC's durable queue (§2) *consumes* that primitive; it does
+  not reimplement or duplicate it. Any gap found between what this RFC
+  needs and what that Host primitive currently exposes belongs on that
+  owner's task, not as new queue code here or in the plugin.
+- **Plugin-first orchestration parent program** — owns Host contracts, the
+  plugin scheduler/reconciliation implementation, durable SQLite state,
   prompt composition, and rollout sequencing. This RFC is a design input to
   that program, not a replacement for its planning.
