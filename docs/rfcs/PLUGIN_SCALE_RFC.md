@@ -340,10 +340,33 @@ the schedule itself does not depend on this seed.
     the leader during the mutation triggered by `m26` (the first message of
     the second repetition), immediately after the readback-verify step
     completes but before the claim is released.
-  - Restart the whole process/session set from durable storage only: after
-    `m38` has been fully disposed (durably actioned) and before `m39` is
-    injected, halt every process/session and cold-restart from durable
-    storage alone; resume injection at `m39`.
+  - Restart the whole process/session set from durable storage only: `m38`
+    arrives at 14,400ms and, carrying its own uncontended `task:t18` claim
+    key (§4.2.4), is claimed immediately, so its earliest possible
+    disposal (Human-message receipt, §4.2.3's 500ms duration) is
+    14,400ms + 500ms = **14,900ms**. `m39` arrives earlier still, at
+    14,600ms, on its own uncontended `task:t19` key — under the ordinary
+    immediate-claim rule of §4.2.2 it would already be claimed at
+    14,600ms and fully disposed by 14,800ms (its 200ms task-self-report
+    duration), i.e. *before* `m38`'s own disposal and before this fault
+    could ever be exercised. This restart fault is therefore the
+    harness's second explicit, designed exception to the immediate-claim
+    rule (the first being `m12`'s mid-claim kill, §4.2.2): `m39`'s claim
+    is deliberately withheld past its 14,600ms arrival, so that it
+    remains durably enqueued but unclaimed through the restart. The
+    fixed, deterministic restart boundary is **14,900ms** — strictly
+    after both `m38`'s 14,900ms disposal and `m39`'s 14,600ms arrival (an
+    explicit, nonnegative 300ms window in which `m39` sits
+    durable-but-unread): at that offset, halt every process/session and
+    cold-restart from durable storage alone. `m39` is the harness's
+    designed unread durable queue entry that crosses the cold restart —
+    recovery must re-derive it from durable state and grant its claim
+    only after the restart, exercising true zero-loss recovery rather
+    than merely re-observing already-disposed state. Resume normal
+    injection (per the uniform §4.2.1 cadence, unaffected by this fault)
+    with `m40` once the restarted process/session set is live, and grant
+    `m39`'s deferred claim as part of the same post-restart recovery
+    pass.
   - Delete a session that has an unread queued message: target the session
     holding `m45` (a Human message, per the slot-20/45 mapping in the
     schedule table above); delete it only after asserting, per the
@@ -483,6 +506,10 @@ harness output against these known inputs rather than estimated:
   7250ms arrival) is part of the sample the p95 is computed over — a
   harness that instead measured from `m3`'s *arrival* offset without
   accounting for the deferral would understate the true claim latency.
+  `m39`'s claim is likewise deliberately withheld (§4.2's restart fault)
+  until after the 14,900ms cold restart rather than its 14,600ms arrival;
+  its effective claim time (post-restart, not its raw arrival offset) is
+  part of this same sample for the identical reason.
 
 ### 4.3 Acceptance metrics (all must pass in the same run)
 

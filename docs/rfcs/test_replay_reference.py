@@ -53,7 +53,8 @@ class TestDeterministicReplayOrder(unittest.TestCase):
                 "compaction_id": "c-1", "fencing_token": 1,
             },
         ]
-        state = rr.replay({}, log)
+        receipt = {"compaction_id": "c-1", "rolled_records": [{"record_id": "f1"}]}
+        state = rr.replay({}, log, compaction_receipts=[receipt])
         self.assertEqual(state, {})
 
     def test_replay_is_order_independent_of_input_list_order(self):
@@ -268,6 +269,118 @@ class TestCompactionCorrelation(unittest.TestCase):
             rr.check_compaction_correlation(receipt, log)
 
 
+class TestReplayCompactionReceiptCorrelation(unittest.TestCase):
+    """`replay()` must itself consume the relevant compaction receipt set
+    and fail closed on any remove mutation whose compaction_id is absent,
+    substituted, unknown, or mismatched -- correlation must not remain a
+    detached optional helper the caller has to remember to invoke
+    separately (see `check_compaction_correlation`, exercised on its own in
+    `TestCompactionCorrelation` above; here it is exercised as part of the
+    actual `replay()` call path)."""
+
+    def _single_remove_log(self, compaction_id="c-1", record_id="r1"):
+        body = {"n": 1}
+        return [
+            {
+                "mutation_id": 1, "workspace_id": "w1", "timestamp": "t1",
+                "op": "remove", "record_id": record_id, "record_kind": "follow_up",
+                "before": mk_side(body), "after": None,
+                "compaction_id": compaction_id, "fencing_token": 1,
+            },
+        ], body
+
+    def test_absent_receipt_set_is_rejected(self):
+        # No compaction_receipts argument supplied at all (the default):
+        # a remove mutation carrying a compaction_id has nothing to
+        # correlate against, and must fail closed rather than silently
+        # apply the removal.
+        log, body = self._single_remove_log()
+        with self.assertRaises(rr.ReplayError):
+            rr.replay({"r1": body}, log)
+
+    def test_empty_receipt_set_is_rejected(self):
+        # An explicitly empty receipt set is the same failure mode as
+        # omitting the argument -- both are "no matching receipt found".
+        log, body = self._single_remove_log()
+        with self.assertRaises(rr.ReplayError):
+            rr.replay({"r1": body}, log, compaction_receipts=[])
+
+    def test_nonexistent_compaction_id_is_rejected(self):
+        # A receipt set is supplied, but none of its entries carry the
+        # compaction_id this remove mutation actually references -- an
+        # unknown/nonexistent id, not merely an absent set.
+        log, body = self._single_remove_log(compaction_id="c-1")
+        other_receipt = {"compaction_id": "c-999", "rolled_records": [{"record_id": "r1"}]}
+        with self.assertRaises(rr.ReplayError):
+            rr.replay({"r1": body}, log, compaction_receipts=[other_receipt])
+
+    def test_substituted_mismatched_receipt_is_rejected(self):
+        # The receipt carries the *correct* compaction_id, but its
+        # rolled_records names a different record -- a substituted/
+        # mismatched receipt, distinct from an unknown id.
+        log, body = self._single_remove_log(compaction_id="c-1", record_id="r1")
+        mismatched_receipt = {
+            "compaction_id": "c-1",
+            "rolled_records": [{"record_id": "some-other-record"}],
+        }
+        with self.assertRaises(rr.ReplayError):
+            rr.replay({"r1": body}, log, compaction_receipts=[mismatched_receipt])
+
+    def test_correlated_removal_succeeds_and_preserves_hash_and_order_checks(self):
+        # Positive case: a correctly correlated receipt lets the remove
+        # proceed, and the existing payload/ref hash verification and
+        # deterministic (ascending mutation_id) ordering still apply
+        # unchanged alongside the new correlation check.
+        body_v1 = {"n": 1}
+        body_v2 = {"n": 2}
+        log = [
+            {
+                "mutation_id": 2, "workspace_id": "w1", "timestamp": "t2",
+                "op": "update", "record_id": "r1", "record_kind": "follow_up",
+                "before": mk_side(body_v1), "after": mk_side(body_v2),
+                "compaction_id": None, "fencing_token": 1,
+            },
+            {
+                "mutation_id": 1, "workspace_id": "w1", "timestamp": "t1",
+                "op": "remove", "record_id": "r2", "record_kind": "follow_up",
+                "before": mk_side(body_v1), "after": None,
+                "compaction_id": "c-1", "fencing_token": 1,
+            },
+        ]
+        receipt = {"compaction_id": "c-1", "rolled_records": [{"record_id": "r2"}]}
+        # log is fed out of mutation_id order (2 before 1) -- replay must
+        # still apply mutation_id 1 (the remove) before mutation_id 2 (the
+        # update), proving ordering is unaffected by the new check.
+        state = rr.replay(
+            {"r1": body_v1, "r2": body_v1}, log, compaction_receipts=[receipt],
+        )
+        self.assertEqual(state, {"r1": body_v2})
+
+    def test_receipt_set_accepted_as_dict_keyed_by_compaction_id(self):
+        # compaction_receipts may also be passed as a dict already keyed by
+        # compaction_id, not just an iterable of receipt dicts.
+        log, body = self._single_remove_log(compaction_id="c-1")
+        receipts = {"c-1": {"compaction_id": "c-1", "rolled_records": [{"record_id": "r1"}]}}
+        state = rr.replay({"r1": body}, log, compaction_receipts=receipts)
+        self.assertEqual(state, {})
+
+    def test_receipt_not_required_for_add_or_update_only_log(self):
+        # Regression guard: the new correlation requirement is scoped to
+        # remove mutations only -- a log with no remove entries must not
+        # require compaction_receipts at all.
+        body = {"n": 1}
+        log = [
+            {
+                "mutation_id": 1, "workspace_id": "w1", "timestamp": "t1",
+                "op": "add", "record_id": "r1", "record_kind": "follow_up",
+                "before": None, "after": mk_side(body),
+                "compaction_id": None, "fencing_token": 1,
+            },
+        ]
+        state = rr.replay({}, log)
+        self.assertEqual(state, {"r1": body})
+
+
 class TestRestoreAndSetEquality(unittest.TestCase):
     def test_full_replay_then_set_equality_matches_compaction_receipt(self):
         # End-to-end: build a small pre-rollup state, replay a rollup's
@@ -288,7 +401,13 @@ class TestRestoreAndSetEquality(unittest.TestCase):
                 "compaction_id": "c-9", "fencing_token": 5,
             },
         ]
-        post_state = rr.replay(pre_state, log)
+        post_state = rr.replay(
+            pre_state, log,
+            compaction_receipts=[{
+                "compaction_id": "c-9",
+                "rolled_records": [{"record_id": "r1"}, {"record_id": "r2"}],
+            }],
+        )
         self.assertEqual(post_state, {"r3": {"n": 3}})
         self.assertTrue(
             rr.verify_set_equality(

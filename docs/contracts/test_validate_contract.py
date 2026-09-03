@@ -250,6 +250,83 @@ class TestFixtureContracts(unittest.TestCase):
         checks = [c for c, _ in failures]
         self.assertIn("required_fields", checks)
 
+    def test_approval_principal_none_is_rejected(self):
+        # Regression guard: authority_boundaries.approval_principal must
+        # name an accountable principal ('coordinator'), never 'none' --
+        # every other authority_boundaries invariant is untouched in this
+        # fixture, so only this one floor must be the cause of failure.
+        contract = load("false_approval_principal_none_contract.json")
+        self.assertEqual(contract["authority_boundaries"]["approval_principal"], "none")
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_missing_workspace_id_in_envelope_is_rejected(self):
+        # Regression guard: dropping workspace_id from
+        # minimum_trusted_envelope while keeping entry_id, audit_model, and
+        # identity_scope intact would silently reopen cross-workspace
+        # authority at the queue-claim layer even though
+        # cross_workspace_authority itself still reads false.
+        contract = load("missing_workspace_id_envelope_contract.json")
+        self.assertNotIn(
+            "workspace_id",
+            contract["queue_claim_identity"]["minimum_trusted_envelope"],
+        )
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_false_freshness_barrier_required_before_reporting_is_rejected(self):
+        # Regression guard: flipping freshness_barrier_required_before_
+        # reporting to false lets a worker/helper report against state it
+        # read before a concurrent mutation, with nothing else in
+        # worker_helper_receipts changed.
+        contract = load("false_freshness_barrier_contract.json")
+        self.assertFalse(
+            contract["worker_helper_receipts"]["freshness_barrier_required_before_reporting"]
+        )
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_missing_canonical_merged_identity_in_done_proof_is_rejected(self):
+        # Regression guard: dropping
+        # canonical_merged_identity_and_accepted_head from
+        # done_integrity.required_proof removes the base head-identity
+        # proof entry while no_unique_local_or_untracked_work and every
+        # other required_proof entry stay intact.
+        contract = load("missing_canonical_merged_identity_done_proof_contract.json")
+        self.assertNotIn(
+            "canonical_merged_identity_and_accepted_head",
+            contract["done_integrity"]["required_proof"],
+        )
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_false_done_terminal_receipt_required_is_rejected(self):
+        # Regression guard: gates.done_integrity.terminal_receipt_required
+        # must stay true independently of exact_head_required -- flipping
+        # only this one gate field to false, with exact_head_required
+        # still true, must still fail.
+        contract = load("false_done_terminal_receipt_required_contract.json")
+        self.assertTrue(contract["gates"]["done_integrity"]["exact_head_required"])
+        self.assertFalse(contract["gates"]["done_integrity"]["terminal_receipt_required"])
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_claim_collision_check_none_is_rejected(self):
+        # Regression guard: queue_claim_identity.claim_collision_check must
+        # be an actual deterministic check, not 'none' -- audit_model,
+        # identity_scope, and coalescing_rule all stay correct in this
+        # fixture, so only this one floor must be the cause of failure.
+        contract = load("false_claim_collision_check_none_contract.json")
+        self.assertEqual(contract["queue_claim_identity"]["claim_collision_check"], "none")
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
 
 class TestPluginSnapshot(unittest.TestCase):
     def test_valid_plugin_snapshot_passes(self):
@@ -460,6 +537,59 @@ class TestCli(unittest.TestCase):
         result = self._run(
             "contract",
             "--contract", os.path.join(FIXTURES, "missing_done_monitored_lane_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_approval_principal_none_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract",
+            os.path.join(FIXTURES, "false_approval_principal_none_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_missing_workspace_id_envelope_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract",
+            os.path.join(FIXTURES, "missing_workspace_id_envelope_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_false_freshness_barrier_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract", os.path.join(FIXTURES, "false_freshness_barrier_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_missing_canonical_merged_identity_done_proof_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract",
+            os.path.join(FIXTURES, "missing_canonical_merged_identity_done_proof_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_false_done_terminal_receipt_required_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract",
+            os.path.join(FIXTURES, "false_done_terminal_receipt_required_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
+
+    def test_cli_claim_collision_check_none_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract",
+            os.path.join(FIXTURES, "false_claim_collision_check_none_contract.json"),
         )
         self.assertEqual(result.returncode, 1)
         self.assertIn("missing_required_invariant", result.stderr)

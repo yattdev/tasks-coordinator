@@ -287,6 +287,18 @@ def validate_contract(contract):
             "missing_required_invariant",
             "authority_boundaries.cross_workspace_authority must be false",
         ))
+    # 4b. approval_principal must name an actual accountable principal
+    # ('coordinator'), never 'none' -- a contract that keeps every other
+    # authority-boundary invariant intact but sets approval_principal to
+    # 'none' silently removes who is accountable for the coordinator-
+    # decidable examples this same object lists, which is a floor-level
+    # weakening even though nothing else in authority_boundaries changed.
+    if authority.get("approval_principal") != "coordinator":
+        failures.append((
+            "missing_required_invariant",
+            "authority_boundaries.approval_principal must be 'coordinator', "
+            f"got {authority.get('approval_principal')!r}",
+        ))
 
     # 5. Gates must all require exact-head evidence, and Review/QA must both
     #    require an independent session (self-attestation is not a gate).
@@ -315,6 +327,18 @@ def validate_contract(contract):
                 "missing_required_invariant",
                 "gates.readiness.recheck_after_draft_to_ready_transition "
                 "must be true",
+            ))
+        # gates.done_integrity.terminal_receipt_required must stay true --
+        # without it, exact_head_required alone would let Done be reached
+        # on a matching head with no terminal receipt at all, reopening the
+        # Done terminal-integrity gate this floor exists to close (see
+        # done_integrity.merged_pr_or_done_placement_alone_is_not_proof,
+        # checked separately below, which this floor backs at the gate
+        # level).
+        if gate_name == "done_integrity" and gate.get("terminal_receipt_required") is not True:
+            failures.append((
+                "missing_required_invariant",
+                "gates.done_integrity.terminal_receipt_required must be true",
             ))
 
     # 5b. Workspace/lane ownership: Done must stay a terminal-integrity lane,
@@ -370,6 +394,18 @@ def validate_contract(contract):
             "queue_claim_identity.minimum_trusted_envelope must include "
             "'entry_id'",
         ))
+    # 6b2. minimum_trusted_envelope must also name workspace_id -- without
+    # it, a claim's trusted envelope cannot be scoped to one workspace,
+    # which silently reopens the cross-workspace-authority hole
+    # authority_boundaries.cross_workspace_authority: false exists to
+    # close at the queue-claim layer (entry_id alone ties a claim to one
+    # entry, but not to one workspace's entries only).
+    if "workspace_id" not in envelope:
+        failures.append((
+            "missing_required_invariant",
+            "queue_claim_identity.minimum_trusted_envelope must include "
+            "'workspace_id'",
+        ))
     # 6c. coalescing_forbidden_for must keep human_input -- dropping it
     # would let a Human message silently coalesce with a pending routine
     # wake for the same target, which coalescing_forbidden_for exists
@@ -380,6 +416,17 @@ def validate_contract(contract):
             "missing_required_invariant",
             "queue_claim_identity.coalescing_forbidden_for must include "
             "'human_input'",
+        ))
+    # 6d. claim_collision_check must be an actual deterministic check, not
+    # 'none' -- without it, two claims against the same resource key could
+    # both be granted concurrently, which is exactly the "zero claim
+    # overlap" invariant PLUGIN_SCALE_RFC.md's harness exists to verify.
+    if queue.get("claim_collision_check") != "deterministic_claim_set":
+        failures.append((
+            "missing_required_invariant",
+            "queue_claim_identity.claim_collision_check must be "
+            f"'deterministic_claim_set', got "
+            f"{queue.get('claim_collision_check')!r}",
         ))
 
     # 7. Worker/helper receipts: workers must never mutate.
@@ -400,6 +447,19 @@ def validate_contract(contract):
             "missing_required_invariant",
             "worker_helper_receipts.receipt_required_fields must include "
             "'claim_or_lease_id'",
+        ))
+    # 7c2. A worker/helper report must be barred from reporting completion
+    # before a freshness barrier confirms its read was current -- without
+    # this, a worker could report against stale state it read before a
+    # concurrent mutation, and that stale report would be indistinguishable
+    # from a fresh one (receipt_is_not_proof_of already says a receipt
+    # isn't proof of claim/ack/removal; a false freshness barrier removes
+    # the one check that would catch a report based on stale state).
+    if receipts.get("freshness_barrier_required_before_reporting") is not True:
+        failures.append((
+            "missing_required_invariant",
+            "worker_helper_receipts.freshness_barrier_required_before_reporting "
+            "must be true",
         ))
 
     # 7b. Done integrity: a merged PR or Done-column placement alone must
@@ -423,6 +483,19 @@ def validate_contract(contract):
             "missing_required_invariant",
             "done_integrity.required_proof must include "
             "'no_unique_local_or_untracked_work'",
+        ))
+    # 7c2. Done required_proof must keep
+    # canonical_merged_identity_and_accepted_head -- without it, a task
+    # could be proven Done with no requirement that the merged/accepted
+    # head is ever identified at all, which is the most basic Done
+    # terminal-integrity floor (every other required_proof entry checks a
+    # *property of* that head; dropping this entry removes the head
+    # identity itself).
+    if "canonical_merged_identity_and_accepted_head" not in required_proof:
+        failures.append((
+            "missing_required_invariant",
+            "done_integrity.required_proof must include "
+            "'canonical_merged_identity_and_accepted_head'",
         ))
     # 7d. Done receipt_fields must keep local_head -- without it, the
     # receipt records what was merged/accepted but never what the local
