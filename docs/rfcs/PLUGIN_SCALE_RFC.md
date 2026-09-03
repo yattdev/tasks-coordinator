@@ -274,52 +274,113 @@ fixed, repeatable scenario rather than ad hoc production observation.
 
 ### 4.2 Scenario shape
 
-- **70 tasks** distributed across the monitored lanes
-  (`workspace_lane_ownership.monitored_lanes`): a representative mix, e.g. 10
-  Spec, 15 Work, 10 Review, 10 QA, 10 PR, 5 CI Fixup, 10 Done (mixed
-  clean/suspicious to exercise the terminal-integrity gate).
-- **50 messages** injected over the run, drawn from a fixed, labeled mix:
-  - Human messages (weight: high priority, must hit the tightest claim SLO).
-  - Task self-reports (status updates, completion claims).
-  - Peer-Coordinator reports (cross-task sync notices).
-  - Routine wake markers, **including deliberately duplicated identical
-    `WAKE:CYCLE` markers** (to exercise coalescing) and **near-duplicate but
-    non-identical** markers (to exercise the "never coalesce non-identical"
-    boundary).
-- **Injected faults**, run at least once each per full harness pass:
-  - Kill a worker mid-claim.
-  - Kill the leader mid-mutation (before and after its readback verify, as
-    two separate sub-cases).
-  - Restart the whole process/session set from durable storage only.
-  - Delete a session that has an unread queued message, *after* confirming
-    (per the 2026-09-03 decision) that a recovery read either completed
-    first or is provably impossible — the harness must assert which case
-    occurred, not assume.
+The scenario is **fully deterministic**: every task, message, and fault
+position below is fixed by explicit enumeration or formula, not left to
+"a representative mix" chosen at run time. Two independent harness
+implementations that both follow this section must produce byte-identical
+task/message schedules. Any residual non-schedule randomness the
+implementation needs (e.g. synthetic payload filler text, timing jitter
+within a fault's injection window) **must** be seeded with the fixed value
+`HARNESS_RANDOM_SEED = 20260903` so a full run is bit-for-bit reproducible;
+the schedule itself does not depend on this seed.
+
+- **70 tasks**, numbered `t1`..`t70` in ascending creation order, distributed
+  across the monitored lanes (`workspace_lane_ownership.monitored_lanes`) in
+  exactly this fixed order and count (no "e.g." — this is the canonical
+  distribution, not an example):
+  - `t1`–`t10` → Spec (10)
+  - `t11`–`t25` → Work (15)
+  - `t26`–`t35` → Review (10)
+  - `t36`–`t45` → QA (10)
+  - `t46`–`t55` → PR (10)
+  - `t56`–`t60` → CI Fixup (5)
+  - `t61`–`t70` → Done (10), split `t61`–`t66` clean terminal receipts and
+    `t67`–`t70` deliberately suspicious (missing/mismatched terminal-receipt
+    field) to exercise the terminal-integrity gate.
+- **50 messages**, indexed `m1`..`m50` in injection order, drawn from a
+  fixed 25-slot base pattern repeated twice (`m1`–`m25` then `m26`–`m50`,
+  each repetition assigning fresh distinct `entry_id`s so no message content
+  repeats across the two halves except the intentional duplicate-wake pairs
+  called out below). The base pattern's per-slot type assignment:
+
+  | Slot (mod 25, 1-indexed) | Type |
+  | --- | --- |
+  | 1, 7, 13, 20, 25 | Human message |
+  | 2, 3, 6, 9, 12, 14, 17, 19, 22, 24 | Task self-report |
+  | 4, 10, 16, 23 | Peer-Coordinator report |
+  | 5, 8 | Routine wake, identical `WAKE:CYCLE` duplicate pair "A" |
+  | 15, 18 | Routine wake, identical `WAKE:CYCLE` duplicate pair "B" |
+  | 11 | Routine wake, near-duplicate (non-identical) variant 1 |
+  | 21 | Routine wake, near-duplicate (non-identical) variant 2 |
+
+  Applied twice (`m1`–`m25`, `m26`–`m50`), this yields exact totals: **10
+  Human messages, 20 task self-reports, 8 peer-Coordinator reports, 8
+  identical-duplicate routine-wake markers forming 4 coalescing-eligible
+  pairs** (pair A repetition 1 = `m5`/`m8`, pair B repetition 1 =
+  `m15`/`m18`, pair A repetition 2 = `m30`/`m33`, pair B repetition 2 =
+  `m40`/`m43`), **and 4 near-duplicate non-identical routine-wake markers**
+  (`m11`, `m21`, `m36`, `m46`) that must never coalesce with each other or
+  with anything else. `10 + 20 + 8 + 8 + 4 = 50`.
+- **Injected faults**, run exactly once each per full harness pass, at these
+  fixed positions in the `m1`..`m50` timeline (not "at least once" at an
+  arbitrary point — a specific, reproducible position each run):
+  - Kill a worker mid-claim: kill the worker holding the claim for `m12`
+    (a task self-report) after it has read the entry but before it emits its
+    read-only recommendation.
+  - Kill the leader mid-mutation, sub-case A (before readback verify): kill
+    the leader during the mutation triggered by `m25` (the last message of
+    the first repetition), immediately after the write and before the
+    readback-verify step.
+  - Kill the leader mid-mutation, sub-case B (after readback verify): kill
+    the leader during the mutation triggered by `m26` (the first message of
+    the second repetition), immediately after the readback-verify step
+    completes but before the claim is released.
+  - Restart the whole process/session set from durable storage only: after
+    `m38` has been fully disposed (durably actioned) and before `m39` is
+    injected, halt every process/session and cold-restart from durable
+    storage alone; resume injection at `m39`.
+  - Delete a session that has an unread queued message: target the session
+    holding `m45` (a Human message, per the slot-20/45 mapping in the
+    schedule table above); delete it only after asserting, per the
+    2026-09-03 decision, whether a recovery read of `m45` already completed
+    or is provably impossible — the harness records which case occurred, it
+    does not assume either.
 
 ### 4.3 Acceptance metrics (all must pass in the same run)
+
+All metrics below are evaluated against the exact `t1`–`t70` / `m1`–`m50`
+schedule and fault positions fixed in §4.2 — a run against a different or
+re-randomized schedule is not a conforming harness run.
 
 1. **Zero claim overlap** — no two simultaneously-held claims (worker or
    leader) ever have intersecting resource sets (§2.3). Hard invariant.
 2. **Zero unreviewed/lost entries** across the crash/restart/session-deletion
    faults in §4.2 — every queue entry present before a fault is either
    already durably actioned or still present and claimable after recovery.
-   Hard invariant.
-3. **Coalescing correctness** — of the deliberately duplicated identical
-   routine wakes, exactly one effective wake survives per duplicate group;
-   of the near-duplicate non-identical markers and every Human/task/peer
-   message, **none** are coalesced (`coalesced_wakes_incorrect_total == 0`).
-4. **Message distinctness** — all 50 injected messages remain individually
-   traceable to a distinct `entry_id` through to disposition; no two
-   distinct messages share a disposition record.
+   Concretely: `m12`, `m25`, `m26`, `m39`, and `m45` (the exact entries live
+   at each fault's injection point) must each individually resolve to
+   exactly one of {already durably actioned, still present and claimable}
+   after recovery — never neither, never both. Hard invariant.
+3. **Coalescing correctness** — of the 4 identical-duplicate routine-wake
+   pairs (`m5`/`m8`, `m15`/`m18`, `m30`/`m33`, `m40`/`m43`), exactly one
+   effective wake survives per pair (4 survivors from 8 markers); the 4
+   near-duplicate markers (`m11`, `m21`, `m36`, `m46`) and every Human/task/
+   peer message remain individually uncoalesced
+   (`coalesced_wakes_incorrect_total == 0`).
+4. **Message distinctness** — all 50 injected messages (`m1`–`m50`) remain
+   individually traceable to a distinct `entry_id` through to disposition;
+   no two distinct messages share a disposition record.
 5. **Workers never mutate** — zero board/provider/plan writes attributable
    to a worker principal across the entire run (structurally enforced per
    §2.2, verified by audit log inspection).
 6. **Single serializing leader with verified readback** — at every point in
    the run, at most one leader fencing token is accepted; every leader
    mutation has a matching readback-verify record before its claim is
-   released.
-7. **Human-message claim p95 < 10s.**
-8. **Task-report claim p95 < 30s.**
+   released (including across the `m25`/`m26` leader-kill sub-cases).
+7. **Human-message claim p95 < 10s** — measured over the 10 Human messages
+   (`m1`, `m7`, `m13`, `m20`, `m25`, `m26`, `m32`, `m38`, `m45`, `m50`).
+8. **Task-report claim p95 < 30s** — measured over the 20 task self-report
+   messages in §4.2's schedule.
 
 A harness run that fails any single metric is a release blocker for cutover
 past the shadow phase (§2.10 step 2); it is not averaged away by the other

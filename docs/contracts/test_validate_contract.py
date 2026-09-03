@@ -67,6 +67,29 @@ class TestFixtureContracts(unittest.TestCase):
         checks = [c for c, _ in failures]
         self.assertIn("unknown_required_field", checks)
 
+    def test_self_declared_future_version_is_rejected(self):
+        # Regression guard: a contract that self-declares contract_version
+        # 2.0.0 alongside a matching compatibility.min/max_known of 2.0.0 is
+        # internally self-consistent (the same-document check alone would
+        # pass it). The validator's own hardcoded
+        # VALIDATOR_MAX_SUPPORTED_CONTRACT_VERSION ceiling must still reject
+        # it, since this v1 validator was never written to understand a
+        # 2.0.0 schema.
+        contract = load("future_version_contract.json")
+        self.assertEqual(contract["contract_version"], "2.0.0")
+        self.assertEqual(contract["compatibility"]["max_known_contract_version"], "2.0.0")
+        failures = vc.validate_contract(contract)
+        checks = [c for c, _ in failures]
+        self.assertIn("stale_validator_or_future_contract", checks)
+
+    def test_reordered_notification_sequence_is_rejected(self):
+        # Regression guard for the old first/last-only check: dropping the
+        # required middle 'refreshed_post_ready_gates' step while keeping
+        # correct first/last elements must still fail.
+        failures = vc.validate_contract(load("reordered_notification_contract.json"))
+        checks = [c for c, _ in failures]
+        self.assertIn("contradictory_plugin_prompt_default", checks)
+
     def test_exclusion_leaking_secret_shaped_value_is_rejected(self):
         failures = vc.validate_contract(load("exclusion_leak_contract.json"))
         checks = [c for c, _ in failures]
@@ -94,6 +117,25 @@ class TestPluginSnapshot(unittest.TestCase):
         failures = vc.validate_plugin_snapshot(contract, snapshot)
         checks = [c for c, _ in failures]
         self.assertIn("contradictory_plugin_prompt_default", checks)
+
+    def test_empty_defaults_plugin_snapshot_is_rejected(self):
+        # Regression guard: an empty `defaults` object trivially satisfies
+        # every "if key present and contradicts" check, and previously
+        # passed. It must fail closed as missing mandatory invariants.
+        contract = load_canonical()
+        snapshot = load("empty_defaults_plugin_snapshot.json")
+        failures = vc.validate_plugin_snapshot(contract, snapshot)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
+
+    def test_missing_defaults_key_plugin_snapshot_is_rejected(self):
+        # Regression guard: a snapshot that omits `defaults` entirely must
+        # fail the same way an empty `defaults` object does.
+        contract = load_canonical()
+        snapshot = load("missing_defaults_plugin_snapshot.json")
+        failures = vc.validate_plugin_snapshot(contract, snapshot)
+        checks = [c for c, _ in failures]
+        self.assertIn("missing_required_invariant", checks)
 
 
 class TestWorkspaceOverlay(unittest.TestCase):
@@ -162,6 +204,23 @@ class TestCli(unittest.TestCase):
         )
         self.assertEqual(result.returncode, 1)
         self.assertIn("overlay_widens_authority", result.stderr)
+
+    def test_cli_future_version_contract_exit_one(self):
+        result = self._run(
+            "contract",
+            "--contract", os.path.join(FIXTURES, "future_version_contract.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("stale_validator_or_future_contract", result.stderr)
+
+    def test_cli_empty_defaults_plugin_snapshot_exit_one(self):
+        result = self._run(
+            "plugin-snapshot",
+            "--contract", CANONICAL,
+            "--snapshot", os.path.join(FIXTURES, "empty_defaults_plugin_snapshot.json"),
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing_required_invariant", result.stderr)
 
 
 if __name__ == "__main__":
