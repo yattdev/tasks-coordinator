@@ -158,6 +158,6 @@ published `digest` before being trusted.
 - [`coordinator-policy-contract.json`](coordinator-policy-contract.json) — the contract itself.
 - [`validate_contract.py`](validate_contract.py) — the standalone validator.
 - [`test_validate_contract.py`](test_validate_contract.py) — the test suite (`python3 -m unittest docs/contracts/test_validate_contract.py -v`).
-- [`fixtures/`](fixtures/) — one fixture per required validator scenario (valid contract, stale version, stale digest, missing invariant, unknown required field, contradictory plugin snapshot, widening overlay, plus positive controls).
+- [`fixtures/`](fixtures/) — one fixture per required validator scenario (valid contract, stale version, stale digest, missing invariant, unknown required field, exclusion-leaking-secret-shaped-value, contradictory plugin snapshot, widening overlay, plus positive controls).
 - [`../rfcs/PLUGIN_SCALE_RFC.md`](../rfcs/PLUGIN_SCALE_RFC.md) — scale/load architecture and the 70-task/50-message burst harness.
 - [`../rfcs/STATE_COMPACTION_SPEC.md`](../rfcs/STATE_COMPACTION_SPEC.md) — safe state compaction.

@@ -70,6 +70,12 @@ REQUIRED_HUMAN_RESERVED_CLASSES = {
 
 FORBIDDEN_EXCLUSION_LEAKS = ["secret", "credential", "password", "token"]
 
+# Bare category names are the expected, safe shape of an `exclusions` entry
+# (see CONTRACT_MAPPING.md: "Category names only ... never example values").
+# Anything else that matches a FORBIDDEN_EXCLUSION_LEAKS term is treated as
+# an embedded secret-shaped value, not a category reference.
+ALLOWED_BARE_EXCLUSION_CATEGORIES = {"secrets", "credentials"}
+
 
 class ValidationError(Exception):
     """Raised with a list of (check_name, message) failures."""
@@ -235,14 +241,24 @@ def validate_contract(contract):
             "'reviewer_notification'",
         ))
 
-    # 9. Exclusions must not themselves leak secret-shaped content.
+    # 9. Exclusions must not themselves leak secret-shaped content. Check
+    # each entry independently (never the whole list joined together, which
+    # would mask a leaking entry among legitimate bare category names).
     exclusions = contract.get("exclusions", [])
-    joined = " ".join(str(e) for e in exclusions).lower()
-    for leak_term in FORBIDDEN_EXCLUSION_LEAKS:
-        if leak_term in joined and joined.strip() not in ("secrets", "credentials"):
-            # Bare category names ("secrets", "credentials") are fine; an
-            # actual value containing one of these words is not.
-            pass  # category names are expected; this loop intentionally lenient
+    for entry in exclusions:
+        normalized = str(entry).strip().lower()
+        if normalized in ALLOWED_BARE_EXCLUSION_CATEGORIES:
+            continue
+        for leak_term in FORBIDDEN_EXCLUSION_LEAKS:
+            if leak_term in normalized:
+                failures.append((
+                    "exclusion_leaks_secret",
+                    f"exclusions entry {entry!r} looks like a secret-shaped "
+                    f"value (matched {leak_term!r}); exclusions may only "
+                    "name categories (e.g. 'secrets', 'credentials'), never "
+                    "embed actual secret-shaped content",
+                ))
+                break
 
     return failures
 
