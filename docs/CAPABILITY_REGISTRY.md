@@ -19,7 +19,9 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 [RUNBOOK](RUNBOOK.md) (procedures) · [DECISIONS](DECISIONS.md) (rationale) ·
 [FILESYSTEM_DOCKER_CONTRACT](FILESYSTEM_DOCKER_CONTRACT.md) (access contract) ·
 [CONTINUITY](CONTINUITY.md) · [QA_INSTANCES](QA_INSTANCES.md) ·
-[LEARNING_LOG](LEARNING_LOG.md)
+[LEARNING_LOG](LEARNING_LOG.md) ·
+[coordinator-policy-contract](contracts/coordinator-policy-contract.json) (plugin policy contract) ·
+[PLUGIN_SCALE_RFC](rfcs/PLUGIN_SCALE_RFC.md) · [STATE_COMPACTION_SPEC](rfcs/STATE_COMPACTION_SPEC.md)
 
 ---
 

@@ -14,6 +14,9 @@ human, and produces a daily standup document.
 - [docs/DECISIONS.md](docs/DECISIONS.md) — design decisions
 - [docs/RUNBOOK.md](docs/RUNBOOK.md) — operations and troubleshooting
 - [docs/QA_INSTANCES.md](docs/QA_INSTANCES.md) — Human-QA test-instance provisioning: fixture-vs-copy, hard prohibitions, credential handoff
+- [docs/contracts/coordinator-policy-contract.json](docs/contracts/coordinator-policy-contract.json) — compact, versioned, machine-readable policy contract (authority, ownership, queue/receipt identities, exact-head gates, escalation classes) that the Coordinator plugin vendors and validates against in CI, per [docs/DECISIONS.md#coordinator-policy-is-contract-validated-not-hand-copied-2026-09-03-human-directed](docs/DECISIONS.md#coordinator-policy-is-contract-validated-not-hand-copied-2026-09-03-human-directed); see [docs/contracts/CONTRACT_MAPPING.md](docs/contracts/CONTRACT_MAPPING.md) for field sources and evolution rules, and [docs/contracts/validate_contract.py](docs/contracts/validate_contract.py) plus [docs/contracts/test_validate_contract.py](docs/contracts/test_validate_contract.py) for the standalone validator and its fixtures
+- [docs/rfcs/PLUGIN_SCALE_RFC.md](docs/rfcs/PLUGIN_SCALE_RFC.md) — implementation-ready plugin scale/load architecture (fenced leader, read-only workers, single-writer mutation lane) and the reproducible burst-harness acceptance bar
+- [docs/rfcs/STATE_COMPACTION_SPEC.md](docs/rfcs/STATE_COMPACTION_SPEC.md) — safe automatic state-compaction specification (materialized state plus append-only archive, crash-safe rollup, restore procedure)
 - [projects/README.md](projects/README.md) — workspace/project test-data catalogs, ignored artifact storage, and task delivery receipts
 - [docs/LEARNING_LOG.md](docs/LEARNING_LOG.md) — shared learning-cycle receipts
 - [docs/CONTINUITY.md](docs/CONTINUITY.md) — model-independent load/save contract for session replacement
