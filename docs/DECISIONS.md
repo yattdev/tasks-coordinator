@@ -1104,6 +1104,31 @@ the request binds it to exact operations, exposes no token, and requires a `0 â†
 receipt. Without that grant, the request requires a preissued credential and treats the
 resulting precise BLOCKED response as terminal rather than retrying contradictory text.
 
+## Coordinator-plugin and Redmine merges are Coordinator-authorized after full gates (2026-09-04, human-directed)
+
+The Human explicitly authorized the canonical Kandev Coordinator to finish the
+Coordinator-plugin and Redmine programs, make ordinary implementation decisions,
+publish and ready their PRs, and merge them as soon as their exact-head gates pass.
+This narrowly supersedes the general no-agent-merge rule for those two programs.
+
+The authorization is not a waiver of evidence or repository ownership. The
+Coordinator must prove the unchanged clean/pushed head, independent Review,
+distinct QA, terminal required checks, zero actionable threads, mergeability, and
+all applicable security/product/visual/runtime gates; must possess authenticated
+merge permission accepted by repository policy; must use a supported
+non-rewriting merge method; and must verify the accepted head and merge commit.
+Absent provider permission, the upstream maintainer remains the merge owner and
+the Coordinator makes the PR ready and notifies that owner. Force-pushes,
+published-history rewriting, unique-state deletion, credential disclosure or
+scope expansion, security-policy bypass, cross-workspace access, production
+deployment, and release remain outside this grant.
+
+Task agents in these programs do not escalate an ordinary trust or product
+decision merely because it came from the Coordinator: the Human named the
+Coordinator as the decision principal and their work-step prompt already requires
+that reliance. A concrete security/trust-boundary action still requires its own
+exact authorization.
+
 ## Failed-session queue recovery is exact, paginated, and non-mutating (2026-08-30; Support-operated path superseded 2026-08-31)
 
 Conversation history does not expose a failed session's unread private queue. Continuity
@@ -1495,7 +1520,8 @@ head/provider state and reconciled agent tag just as for other lanes.
 Human `peer-review` tags still describe external peer review and never by
 themselves request the board Review lane; `tested` remains Human evidence. In
 Kandev these tags inform, but do not revoke, Coordinator authority. The
-exception does not waive no-agent-merge, destructive/irreversible safeguards,
+exception does not waive the repository-scoped merge rule (including its narrow
+named-program Human override), destructive/irreversible safeguards,
 security/trust approvals, or cross-workspace isolation.
 
 ## Queue parallelism uses deterministic claims and per-entry audit (2026-09-01)

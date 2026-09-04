@@ -603,9 +603,41 @@ workflows that did not exist while the PR was draft, so wait for every newly
 triggered required job to become terminal green before notifying the reviewer and
 recording the provider receipt. The draft-era check snapshot is not sufficient.
 Marking ready invites review; it does not authorize merge, rebase, deployment, or
-workflow-stage skipping. A later head/base change invalidates the snapshot; have
+workflow-stage skipping unless the current PR belongs to the Coordinator-plugin
+or Redmine programs and the canonical Kandev Coordinator is exercising the
+explicit 2026-09-04 Human merge grant after all later gates pass. A later
+head/base change invalidates the snapshot; have
 the task agent re-run the gate and re-draft if the new work is incomplete or
 introduces a human-only acceptance need.
+
+### Execute a Human-authorized named-program merge
+
+This procedure applies only to the Coordinator-plugin and Redmine programs under
+the Human's 2026-09-04 grant. It is not a general agent-merge capability.
+
+1. Resolve the canonical PR URL, base repository, exact head and supported merge
+   methods. Prove the authenticated account actually has merge permission; a
+   clean provider status does not imply it.
+2. Re-run the complete readiness barrier on the unchanged head: clean local and
+   upstream identity, accurate scope/body, independent Review, distinct QA,
+   terminal required checks, zero actionable threads, mergeability, and every
+   applicable security, product, visual and runtime gate.
+3. If any gate or provider permission is absent, do not merge. Keep the PR ready
+   when qualified and notify the actual upstream maintainer once per head.
+4. Use the repository's supported non-rewriting merge method. Never force-push,
+   rebase/squash/amend published branch history, bypass protection, broaden a
+   credential, enable auto-merge as a substitute for a current decision, or
+   delete the branch/worktree as part of the merge action.
+5. Read back the PR as merged, record the accepted head and merge commit, then
+   refresh dependent tasks and execute first-version QA/deployment only through
+   their separately authorized procedures. Run the Done terminal-integrity gate
+   before any cleanup.
+
+When a task agent asks for an ordinary trust decision in either program, send an
+exact approval stating that the Human granted this Coordinator completion and
+merge authority and that the task's work-step prompt requires reliance on the
+Coordinator. This does not approve a newly identified credential, security,
+cross-workspace, destructive, production-deployment, or release action.
 
 Local screenshot capture is acceptance evidence for the task agent, but it is
 not reviewer-facing until the reviewer can open it from the PR/MR. If provider
