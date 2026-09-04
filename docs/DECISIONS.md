@@ -1675,3 +1675,19 @@ coalescing mechanism itself (transport/storage semantics); the plugin-first
 orchestration program still owns scheduling and dirty-generation consumption
 on top of that primitive. This clarification is a contract/spec-level
 definition, not a reimplementation of either owner's runtime.
+
+## Support provisioning and task acceptance are separate responsibilities (2026-09-04)
+
+When a required integration check cannot create its external dependency because the
+guard correctly rejects a conflicting or foreign runtime claim, Support may provision
+a least-privilege disposable service bound to the exact task and return a restricted
+credential file, non-secret receipt, and exact cleanup procedure. That is platform
+provisioning, not execution of the task's test.
+
+The task agent remains responsible for independently validating the receipt and
+binding, running the exact acceptance check from its own worktree, and performing only
+the receipt-authorized cleanup afterward. This preserves the Support boundary while
+making guarded environment gaps recoverable. Service health, authentication, or a
+schema probe alone cannot substitute for the product regression, and loopback-only
+access that is sufficient for an automated integration test does not satisfy a
+Human-QA LAN-instance requirement.

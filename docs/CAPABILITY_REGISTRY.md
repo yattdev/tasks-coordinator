@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-03a -->
+<!-- registry-version: 2026-09-04b -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -315,7 +315,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 
 ### G1. Platform repair or reusable capability provisioning is required
 - **Trigger** Normal task tools, one bounded retry, and documented fallbacks cannot repair an unresumable/dead task session, damaged task environment, host/container permission or mount failure, or provision a missing external package, Android emulator, or guarded platform capability.
-- **Action** Deduplicate by root incident and contact Support **yourself** once. The requested outcome must repair the platform or provide a reusable guarded capability, not perform a one-off operation on the Coordinator's behalf. Write four non-empty strings: `problem`, `evidence`, `expected_outcome`, `security_constraints`.
+- **Action** Deduplicate by root incident and contact Support **yourself** once. The requested outcome must repair the platform or provide a reusable guarded capability, not perform a one-off operation on the Coordinator's behalf. For a disposable external test service, require task/worktree binding, least-privilege reachability, a non-secret receipt and exact cleanup command; the task agent then runs the acceptance check itself and cleans up only as authorized by that receipt. Write four non-empty strings: `problem`, `evidence`, `expected_outcome`, `security_constraints`.
 - **Capability**
   ```
   docker kandev support send <request.json>      # -> {"request_id": "...", "status": "queued"}
@@ -325,7 +325,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
   authorized; they are not the normal delivery path.
   Full procedure, schema, and gotchas: [Escalating an environment blocker](RUNBOOK.md#escalating-an-environment-blocker-to-kandev-support-host-codex-agent).
 - **Authority** Standing for a qualifying unresolved incident. No Human relay is required.
-- **Evidence** Request ID plus a pushed Coordinator result, followed by independent verification of its claims.
+- **Evidence** Request ID plus a pushed Coordinator result, followed by independent verification of its claims. A provisioned service is not accepted until the named task executes the blocked check successfully; disposable cleanup requires the exact receipt command and post-cleanup absence evidence. See [Support-provisioned disposable test services](RUNBOOK.md#support-provisioned-disposable-test-services).
 - **Never** Use Support as a message relay, registry/database reader, metadata/preflight service, provider poller, CI/review worker, or executor of Coordinator-decidable operations; ask for one-off `pending_moves` rows; create one request per contact/session-state change; use `codex exec resume` directly; ask the Human to relay; target the support thread as a Kandev task/session; expose host `~/.codex`; or claim a delivery mechanism you have not exercised.
 
 ### G2. Composing the request

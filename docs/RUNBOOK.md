@@ -1991,6 +1991,36 @@ Human once, record the consequence, and resume atomically only after the named
 acceptance receipt. A second identical Support request cannot create missing
 authority and is queue noise.
 
+### Support-provisioned disposable test services
+
+Use this path only when a required integration check needs an external service and
+the task's ordinary guarded runtime cannot create it after one bounded attempt. A
+Compose ownership denial is a platform-capability blocker, not permission to reuse
+another task's project, bypass the guard, expose a host socket, or ask Support to run
+the test.
+
+Request a least-privilege disposable service bound to the exact task, workspace,
+worktree, and active task session. The pushed Support receipt must identify the
+service and endpoint without exposing credentials; place any DSN or token in a
+task-readable mode-`0600` file outside the Git checkout, restrict the runtime
+directory to the task, and include an exact guarded cleanup command. Independently
+verify the receipt hash and mode, task/session/worktree binding, service health, and
+the minimum capability the test needs. Loopback-only reachability is appropriate for
+an automated task-local integration test, but it is never a Human-QA LAN handoff.
+
+The task agent, not Support or the Coordinator, sources the restricted environment
+without printing it and executes the exact blocked acceptance command from the named
+worktree. A successful connection or `CREATE SCHEMA` probe proves provisioning, not
+the product behavior; only the requested test's own zero exit and output close the
+acceptance gap. Preserve the receipt and redact secrets from plans and messages.
+
+After the test finishes, run only the cleanup command authorized by the receipt. For
+task-scoped Compose this should name the explicit project and include disposable
+volume removal when authorized. Record the cleanup audit/command result and prove the
+project has no remaining services through the guarded Compose surface. If cleanup or
+the acceptance check fails, preserve the runtime and send a fresh Support request with
+the exact new defect; do not repeat the original provisioning request.
+
 Verified fail-closed behaviour (2026-08-29T07:20Z): an unknown request ID returns
 `support request is unavailable`; an explicit file outside the coordinator task
 root returns `path is outside this agent task: <path>`; and a request missing any

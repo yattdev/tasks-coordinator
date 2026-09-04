@@ -2262,3 +2262,20 @@ scope binding and one-wake/one-execution verification; no duplicate repair task
 was created.
 
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/DECISIONS.md`, this log.
+
+## 2026-09-04b — Support provisions the dependency; the task proves acceptance
+
+A guarded Compose ownership denial blocked a PostgreSQL concurrency regression. One
+deduplicated Support request provisioned an isolated, task-bound, loopback-only
+PostgreSQL service with a restricted DSN file, health/binding receipt, and explicit
+cleanup command. The task agent then ran the exact regression successfully and removed
+the disposable Compose project and volume through the authorized guarded command.
+
+The reusable boundary is now explicit: Support repairs or provisions the platform,
+while the task validates the receipt, executes its own acceptance check, and cleans up
+only within the receipt's authority. Connection and schema probes establish service
+capability but never replace the requested product test; loopback-only test access is
+also distinct from Human-QA LAN readiness.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, this log. `PROMPT.md` was unchanged.
