@@ -2806,26 +2806,28 @@ the replacement primary to continue that session's unprocessed work.
    another task/workspace.
    Confirm the failed session still exists. Session deletion removes that session's
    queued rows in the same transaction, so recovery must precede deletion.
-2. Use one direct guarded authenticated `message.queue.get` for the exact failed
-   session. Never ask Support to perform the read and never read queue rows through SQL.
-   If the surface is missing, ask Support once to repair/provision resumable-session or
-   reusable guarded recovery capability, then stop until that capability exists.
-3. If the response can exceed transport limits, stream complete UTF-8 bodies into
-   bounded pages. The directory is mode `0700`, files are mode `0600`, and ownership
-   must let the task user read them. If task-runtime cleanup can remove task-root files
-   before FIFO reconciliation finishes, use a platform-managed retained backing
-   directory outside that cleanup boundary and a byte-identical task-root mirror.
-   Support may provision/repair that reusable retention capability but must not create
-   and relay a one-off recovery artifact.
-   Exclude attachments unless separately authorized.
-4. Write a manifest containing ordered entry IDs, page paths, byte counts, SHA-256
-   hashes, a canonical digest over the projected entries, API-read count, token lifecycle,
-   and `queue_mutated=false`. Never put a credential in the artifact.
-5. Re-read every page as the task user, verify all hashes and the canonical digest, then
-   reconstruct entries in API order. When backing and mirror both exist, verify their
-   manifest and page bytes are identical. A root-owned unreadable artifact is incomplete
-   even when its hashes are correct; repair ownership only, then verify bytes did not
-   change.
+2. Call `get_terminal_session_message_queue_kandev` for the exact terminal session.
+   The server injects the caller task: unknown, cross-task, unscoped, or nonterminal
+   targets fail closed. Never ask Support to perform the read and never read queue rows
+   through SQL. If the surface is missing, ask Support once to repair/provision the
+   reusable guarded recovery capability, then stop until it exists.
+3. Start without a cursor and page by the exact opaque `next_cursor`; choose
+   `max_body_bytes` from 1,024 through 262,144. Keep the returned snapshot SHA-256 fixed
+   across every page. Reassemble fragments only when their entry ID and byte offset are
+   contiguous, and keep entries in returned FIFO position order. The surface excludes
+   attachment bodies and metadata; record `attachment_count` but do not infer their
+   contents.
+4. Verify each reconstructed body's UTF-8 byte count and SHA-256 against
+   `content_bytes` and `content_sha256`, plus total entry/content counts and the snapshot
+   hash. Retain the immutable entry ID, position, queued timestamp/by, claim, and hash in
+   the disposition receipt; never put credentials or unnecessary complete bodies in
+   broad logs.
+5. Immediately begin a second snapshot at an empty cursor and compare snapshot hash,
+   ordered IDs, body bytes, and per-entry hashes. Equality is the positive
+   `queue_mutated=false` receipt. A changed-snapshot error means the first reconstruction
+   is stale: discard its conclusions and restart from page one. The API itself creates no
+   recovery copies; if a separately authorized workflow writes any, keep directories
+   mode `0700` and files mode `0600`, and retain them outside task cleanup when needed.
 6. Process entries FIFO, but treat each as a timestamped receipt: compare it with the
    current plan, live board/session state, and provider identity. Record handled,
    superseded, coalesced, or actionable. Do not replay a stale instruction merely because
@@ -2850,6 +2852,14 @@ token rows returned `0 → 1 → 0`; and all entries reconciled FIFO without que
 The first task-root-only copy was removed by runtime cleanup before consumption. The
 successful replacement used a retained Support backing plus a byte-identical task mirror,
 which survived through durable FIFO disposition. Do not treat task-readable as durable.
+
+Verified again from the task-runtime Coordinator on 2026-09-04 after Support request
+`825e8aff-5625-483b-9f44-7e11d5ca6b78`: cancelled session
+`5cca265d-658c-4648-b165-d862a8d48e01` yielded 9 FIFO entries / 35,905 UTF-8 bytes.
+Thirty-six 1-KiB pages shared snapshot
+`9f51da7fa3ceb9535db030758fa1946b5d167599eee2b8220a8e7430a62943b1`; all computed
+body hashes matched, and an immediate 256-KiB reread was byte-identical. The live
+replacement session was rejected with `CONFLICT`, proving the terminal-state guard.
 
 ## Flipping Draft→ready is itself a review trigger — readiness is not terminal
 

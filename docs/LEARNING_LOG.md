@@ -2279,3 +2279,23 @@ also distinct from Human-QA LAN readiness.
 
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, this log. `PROMPT.md` was unchanged.
+
+## 2026-09-04c — terminal queue recovery is a snapshot read, not a replay
+
+Support request `825e8aff-5625-483b-9f44-7e11d5ca6b78` provisioned the reusable
+task-runtime `get_terminal_session_message_queue_kandev` surface. Independent acceptance
+reconstructed a real cancelled Coordinator queue twice: 9 FIFO entries and 35,905 UTF-8
+bytes, first across 36 minimum-size pages and then in one maximum-size page. Every body
+hash matched and both reads retained snapshot
+`9f51da7fa3ceb9535db030758fa1946b5d167599eee2b8220a8e7430a62943b1`; a live-session
+read failed closed.
+
+The important boundary is that recovery yields evidence, not delivery or authority.
+Opaque cursor/snapshot validation detects concurrent change; body hashes detect
+truncation; a repeat snapshot proves the read did not mutate the queue. Each recovered
+entry still needs FIFO reconciliation against newer plan, board, session, and provider
+state, while the source remains untouched. No one-off retained artifact is needed when
+the direct caller consumes bounded pages without persisting complete bodies.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, this log. `PROMPT.md` was unchanged.

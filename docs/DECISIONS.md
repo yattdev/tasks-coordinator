@@ -1129,24 +1129,29 @@ Coordinator as the decision principal and their work-step prompt already require
 that reliance. A concrete security/trust-boundary action still requires its own
 exact authorization.
 
-## Failed-session queue recovery is exact, paginated, and non-mutating (2026-08-30; Support-operated path superseded 2026-08-31)
+## Failed-session queue recovery is exact, paginated, and non-mutating (2026-08-30; direct task-runtime surface verified 2026-09-04)
 
 Conversation history does not expose a failed session's unread private queue. Continuity
-therefore uses one authenticated `message.queue.get` bound to the exact failed session,
-not SQL or broad database access. Complete bodies are paginated into restricted,
-task-readable files with a hashed manifest so transport limits cannot truncate the
-evidence silently. The replacement primary reconstructs API order, reconciles each entry
-against newer live state, and persists every disposition before deleting only the
-temporary recovery copies.
+therefore uses `get_terminal_session_message_queue_kandev`, bound by the server to the
+calling task and one exact terminal session, not SQL or broad database access. Complete
+bodies are returned as bounded UTF-8 fragments with opaque snapshot cursors, byte counts,
+and hashes so transport limits cannot truncate the evidence silently. The replacement
+primary reconstructs FIFO order, independently verifies every body and a repeated
+snapshot, reconciles each entry against newer live state, and persists every disposition.
 
 The read neither removes source rows nor authorizes the recovered instructions. This
 separation preserves auditability: a stale message can be marked superseded without
 replay, a current message can be acted on through ordinary safety gates, and the failed
 session's queue remains unchanged unless a distinct exact-ID removal grant exists.
 
-The exact authenticated recovery format remains valid only through a direct reusable
-guarded Coordinator/platform surface. The Human's later Support-boundary clarification
-supersedes using Support to perform the read or relay its artifact.
+The exact authenticated recovery format is now exposed through the direct reusable
+`get_terminal_session_message_queue_kandev` surface. Server-injected caller-task binding,
+terminal-session enforcement, opaque snapshot cursors, complete-body hashes, and an API
+with no disposition operations make authorization and non-mutation structural rather
+than conventions of a one-off artifact. Support request
+`825e8aff-5625-483b-9f44-7e11d5ca6b78` provisioned the capability; the task-runtime
+Coordinator independently accepted it on a real cancelled session. Support still must
+not perform the read or relay message bodies.
 
 ## Failed-session recovery requires retention outside task-runtime cleanup (2026-08-31; one-off Support artifact path superseded)
 
