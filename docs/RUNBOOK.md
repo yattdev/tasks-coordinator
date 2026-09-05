@@ -17,6 +17,22 @@ Docker instance from the exact tested head and stop that task's older test
 instance first. Publish and verify a `0.0.0.0` binding through the machine's
 actual LAN address; `127.0.0.1` is diagnostic evidence, not a human handoff.
 
+Prove the runtime artifact is exact-head too; a checkout at the right commit is
+not enough. For a packaged application, rebuild every generated layer from that
+checkout in dependency order. In particular, when a backend embeds a frontend
+bundle, produce a fresh frontend distribution, synchronize it into the embed
+input, then build and restart the backend. Record the artifact/image identity
+and verify the restarted service actually serves that bundle (for example by
+matching emitted asset names or hashes), rather than trusting the source HEAD or
+container start time.
+
+If a task route fails while its API calls remain healthy, treat stale packaged
+assets as a competing explanation before attributing the failure to the branch.
+Refresh the full exact-head artifact, rerun the same valid fixture, and compare
+the same scenario against a freshly built base artifact. Do not edit source or
+invent a regression test until the refreshed head still fails and the base does
+not.
+
 Seed the instance from a task-private writable clone of a sanitized, immutable
 snapshot of the main container's application data. Treat the main container and
 its volumes as read-only. Destination-only operations include migrations,

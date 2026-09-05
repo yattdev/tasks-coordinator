@@ -2335,3 +2335,33 @@ the direct caller consumes bounded pages without persisting complete bodies.
 
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, this log. `PROMPT.md` was unchanged.
+
+## 2026-09-05c — exact-head QA is artifact-level, not checkout-level
+
+Window: `2026-09-05T05:18:56Z` through `2026-09-05T17:18:23Z`.
+
+A runtime can use the correct Git checkout while serving stale generated or
+embedded assets. The durable QA procedure now rebuilds each packaged layer in
+dependency order, synchronizes embed inputs before the final binary/image
+build, verifies the served asset identity after restart, and compares identical
+valid fixtures on freshly built head and base artifacts before calling a failure
+branch-owned.
+
+This prevents a stale frontend bundle embedded in an otherwise exact-head
+backend from triggering a no-op source fix or a fabricated regression test.
+
+Rejected by the filter:
+
+- A Review/QA turn that authored a successor cannot certify it: already covered
+  by the independent-gate rule and registry B9a.
+- GitHub provider rate-limit retry timing and the current pull-request head:
+  task-specific live state already covered by the reset-aware retry procedure.
+- The oversized step-summary implementation and exact workflow failures:
+  product-delivery details, not reusable Coordinator orchestration policy.
+- Exact orphan Git-admin cleanup paths and receipts: incident-specific evidence
+  already governed by the Done terminal-integrity and bounded-cleanup rules.
+
+Files changed: `docs/RUNBOOK.md`, `docs/QA_INSTANCES.md`,
+`docs/CAPABILITY_REGISTRY.md`, `docs/DECISIONS.md`, and this log. `PROMPT.md`
+was unchanged, so no live-description mirror is required. Commit and shared-main
+publication receipts are persisted after the fast-forward.

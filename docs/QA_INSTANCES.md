@@ -159,6 +159,29 @@ docker inspect -f '{{.HostConfig.RestartPolicy.Name}}' <container>        # unle
 docker inspect -f '{{range $p,$b := .HostConfig.PortBindings}}{{$p}} {{$b}}{{end}}' <container>
 ```
 
+## Prove packaged artifact identity, not only Git identity
+
+An exact source HEAD does not prove that a running application serves artifacts
+from that HEAD. This matters for applications whose backend binary or image
+embeds a separately generated frontend distribution: a backend rebuild can
+silently preserve an older bundle if the frontend was not rebuilt and copied to
+the embed input first.
+
+Before treating a runtime failure as branch-owned:
+
+1. Build every generated layer from the exact checkout in dependency order.
+2. Synchronize generated assets into the path consumed by the final
+   binary/image, then rebuild that final artifact.
+3. Restart through the task's guarded lifecycle and record the resulting
+   artifact/image identity.
+4. Verify the service exposes the newly built assets by matching emitted asset
+   names or hashes, not merely HTTP 200 or container age.
+5. Re-run the identical valid fixture on freshly built head and base artifacts.
+
+If the refreshed head passes, record the earlier observation as a stale-runtime
+artifact and do not create a source fix. If it still fails while fresh base
+passes, the base-vs-head comparison may attribute the regression to the branch.
+
 `--restart unless-stopped` is mandatory: a whole QA fleet was lost to a host
 restart because no container carried a restart policy. Host-local curls to the
 LAN IP prove the BIND, not the firewall — ask the operator to confirm one URL

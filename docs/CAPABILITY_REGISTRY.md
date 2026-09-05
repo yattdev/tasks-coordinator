@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-05d -->
+<!-- registry-version: 2026-09-05e -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -282,6 +282,15 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Authority** Product workspace: the Human exclusively moves Human-QA cards and adds/removes Human tags. Kandev workspace: the Kandev Coordinator retains normal board authority; Human-authored tags remain evidence rather than autonomous routing commands.
 - **Evidence** Product workspace: physical Human-QA lane and Human tags unchanged after every unblock. Kandev workspace: destination lane, task state, full session/lifecycle census, exact head/provider state, and reconciled agent tag read back after every move. Everywhere: complete runtime/data receipts and no internal reviewer spawned solely because of `peer-review`.
 - **Never** Reinterpret `peer-review` as the board Review lane; spawn an internal reviewer solely from that tag; mutate shared/main data; or infer workflow advancement solely from `tested`, `peer-review`, or their combination. In product workspaces, never move a Human-QA card or alter a Human tag. The Kandev exception never overrides the repo-scoped merge rule in I3, destructive/irreversible safeguards, security/trust approvals, or cross-workspace isolation.
+
+### D6. A runtime failure may come from stale packaged assets
+- **Trigger** The task checkout reports the expected head, but a runtime/UI failure could be served by generated or embedded artifacts built earlier.
+- **Action** Rebuild every generated layer from the exact checkout in dependency order, synchronize embed inputs before building the final binary/image, restart through the task-owned guarded lifecycle, verify the served asset identity, then rerun the identical valid fixture against freshly built head and base artifacts.
+- **Capability** Task-owned build and guarded runtime operations; [packaged artifact identity procedure](QA_INSTANCES.md#prove-packaged-artifact-identity-not-only-git-identity).
+- **Authority** The responsible task agent performs the rebuild and comparison; the Coordinator directs and verifies the receipt.
+- **Evidence** Exact source head plus final artifact/image identity, served asset names or hashes, guarded restart receipt, identical fixture identity, and fresh head/base outcomes.
+- **Escalate to** The implementation owner only when the fresh exact-head artifact still fails and fresh base does not; otherwise classify the old observation as a stale-runtime artifact.
+- **Never** Infer runtime provenance from Git HEAD, HTTP 200, or container age alone; edit source or fabricate a regression test before rebuilding the complete packaged artifact.
 
 ---
 

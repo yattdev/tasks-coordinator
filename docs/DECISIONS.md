@@ -1735,3 +1735,19 @@ making guarded environment gaps recoverable. Service health, authentication, or 
 schema probe alone cannot substitute for the product regression, and loopback-only
 access that is sufficient for an automated integration test does not satisfy a
 Human-QA LAN-instance requirement.
+
+## Exact-head QA includes generated and embedded artifacts (2026-09-05)
+
+Decision: runtime provenance is proved at the final served artifact, not merely
+at the source checkout. A packaged application must rebuild generated layers in
+dependency order, synchronize embed inputs, rebuild and restart the final
+binary/image, and expose enough identity to show which assets it serves before
+QA attributes a failure to the branch.
+
+Rationale: an exact-head backend process once served a stale frontend bundle and
+produced a React route failure while every API request succeeded. Rebuilding the
+frontend, synchronizing the embedded assets, rebuilding the backend, and
+restarting the same task runtime made the identical valid fixture pass without a
+source change. Git identity, container age, and HTTP health each described a
+real property, but none proved the packaged asset provenance. Requiring a fresh
+head/base artifact comparison prevents no-op fixes and fabricated regressions.
