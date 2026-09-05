@@ -1491,6 +1491,22 @@ Take the narrowest safe removal action in that same cycle:
   or trust-boundary decision, raise the visible input request immediately with
   the blocked consequence and a recommendation.
 
+Then follow dependency edges to the root. Every physical Blocked card must end
+at one and only one live recovery root: a verified RUNNING/STARTING owner, a
+visible unanswered Human ask, or a time-bound external event with an exact
+recheck trigger and named fallback owner. An actionable root without a running
+owner is **unstaffed Blocked**. The cycle is incomplete until the Coordinator
+wakes/creates and verifies that owner, or identifies the exact missing platform
+capability/resource and starts its canonical recovery. Do not hide an unstaffed
+root behind a chain of `waiting on task X` records.
+
+Before ending the cycle, run a burn-down pass over the entire physical Blocked
+column: move every cleared task atomically to its narrowest active step, route
+terminal-safe or superseded carriers to Done, remove stale dependencies, and
+consolidate repeated failure classes behind one canonical repair owner. The
+objective is delivered/advanced work and a shrinking recovery queue, not a
+complete description of an unchanged queue.
+
 Every cycle rechecks every Blocked trigger. An unchanged blocker suppresses a
 duplicate ping, not the inspection or ledger update. When the trigger clears,
 atomically move the task back to its recorded actionable step, resume or create
@@ -1506,6 +1522,28 @@ workflow correction, the exact policy/tool denial, current column, preservation
 receipt, Human owner, and deterministic authorization trigger; never bypass the
 guard. A card merely moved aside, with no executing owner and no surfaced Human
 ask when one is required, is a Coordinator failure.
+
+## Report to the Human in executive decision order
+
+Act before reporting. A Human-facing status is a decision surface, not a board
+dump. Use this order:
+
+1. **Needs your action now:** only actions that genuinely require the Human;
+   include the exact action, recommendation, and consequence of delay.
+2. **Delivered / ready:** verified movement since the prior report.
+3. **Coordinator recovery:** only residual blockers with an already verified
+   active owner; include session/owner, present action, and next evidence.
+4. **Dependency chains:** dependent → prerequisite purpose → prerequisite live
+   status/owner → deterministic resume trigger.
+5. **Risks / anomalies:** only facts that change a decision or delivery risk.
+6. **Board pulse:** optional trailing compact outcome counts. Never lead with a
+   raw lane total or `Blocked: N`.
+
+Do not tell the Human about ordinary authorized work the Coordinator has not
+started. Start it first. If it genuinely cannot be staffed, name the missing
+capability/resource and the exact request needed to obtain it. Physical Blocked
+count is a liability metric; pair it with composition and active burn-down, not
+with a claim of progress.
 
 ## Inherited vs owned failure — bisect before you assign
 

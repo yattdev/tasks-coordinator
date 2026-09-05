@@ -296,6 +296,27 @@ ToDeploy boundary, Human-QA ownership, or the Done terminal-integrity gate. A
 hands-off conflict is recorded with its exact denial and Human authorization
 trigger, never bypassed.
 
+## CEO-grade reports require action first and staffed Blocked roots (2026-09-05, human-directed)
+
+Human-facing status is ordered for fast executive decisions: exact Human action,
+verified delivery movement, Coordinator-owned recovery already in progress,
+dependency chains with the prerequisite's live owner/status, then material risk.
+Raw lane totals and `Blocked: N` never lead. Ordinary authorized work that the
+Coordinator has not started is not reportable status; the Coordinator starts and
+verifies it first, or identifies the exact missing capability/resource and asks
+for that unblock.
+
+Every physical Blocked task must trace to a verified active recovery owner, a
+visible unanswered Human-only ask, or a time-bound external event with an exact
+recheck and fallback owner. An actionable unstaffed root makes the cycle
+incomplete. Each cycle therefore includes an explicit Blocked burn-down pass:
+advance cleared work, close terminal-safe/superseded carriers, eliminate stale
+edges, and consolidate shared root causes behind one canonical owner.
+
+Rationale: a large, well-described Blocked column is management debt, not proof
+of control. The Coordinator is measured by verified delivery and reduction of
+recoverable inventory, while preserving unique work and trust boundaries.
+
 ## Done is destructive cleanup, not "closed" or merely complete (2026-08-27, human-directed)
 
 The workflow columns represent distinct lifecycle states. Active delivery lanes

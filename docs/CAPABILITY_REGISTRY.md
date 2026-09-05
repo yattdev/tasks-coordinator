@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-04c -->
+<!-- registry-version: 2026-09-05d -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -100,10 +100,10 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 
 ### B3. Task cannot progress (physical Blocked)
 - **Trigger** Any active delivery column except Backlogs / ToDeploy and, in non-Kandev product workspaces, Human-QA, where the task cannot move. Canonical Kandev Human-QA remains under ordinary Coordinator routing. Done is governed by B10, not this rule.
-- **Action** Move it to physical Blocked **in the same cycle** and run it as HIGH-PRIORITY active recovery with an owner and a trigger.
+- **Action** Move it to physical Blocked **in the same cycle** and run it as HIGH-PRIORITY active recovery with an owner and a trigger. Follow dependencies to one live root: verified RUNNING/STARTING recovery owner, visible Human-only ask, or time-bound external event with exact recheck/fallback. Burn down the column every cycle by advancing cleared work, closing terminal-safe carriers, removing stale edges, and consolidating shared failures behind one canonical repair.
 - **Capability** `move_task_kandev`; [Blocked is an action queue](RUNBOOK.md#blocked-is-an-action-queue-not-a-parking-lot).
 - **Authority** Coordinator-owned. A task-specific Human hands-off directive is a hard boundary — report the exact denial.
-- **Never** Use Blocked as parking; never leave a Blocked card without owner and next trigger.
+- **Never** Use Blocked as parking; never leave an actionable root unstaffed; never report raw Blocked inventory as an outcome or hide an unstaffed root behind dependency prose.
 
 ### B3a. Task moved or its next action changed
 - **Trigger** Every requested/applied task move, or any owner/next-action change that makes the current agent tag stale.

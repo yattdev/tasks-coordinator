@@ -2280,6 +2280,24 @@ also distinct from Human-QA LAN readiness.
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, this log. `PROMPT.md` was unchanged.
 
+## 2026-09-05b — blocked inventory is management debt, not a status result
+
+The Human rejected raw board-count reporting and passive Blocked inventory as a
+leadership outcome. Human-facing status now starts with exact Human actions,
+then verified delivery, staffed Coordinator recovery, dependency chains with
+their live root owner, and only decision-relevant risks. A raw `Blocked: N`
+cannot lead or substitute for action.
+
+Every dependency chain must terminate in a verified active recovery owner, a
+visible Human-only ask, or a time-bound external event with an exact recheck and
+fallback owner. Otherwise it is unstaffed Blocked and the cycle is incomplete.
+Each cycle actively burns the queue down by advancing cleared work, closing
+terminal-safe carriers, removing stale edges, and consolidating shared causes
+behind one canonical repair.
+
+Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, this log.
+
 ## 2026-09-05a — session cleanup and rotation must preserve authority and queues
 
 The Human identified two long-lived Coordinator failures: completed helper
