@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-05e -->
+<!-- registry-version: 2026-09-05f -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -77,10 +77,10 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 
 ### A7. Retiring helper sessions and rotating the primary before context exhaustion
 - **Trigger** A disposable helper's receipt has been consumed and persisted; or the active Coordinator primary reaches 180,000,000 cumulative cached input tokens, approaches the hard 200,000,000 rotation boundary, or shows repeated turn-admission/transport degradation.
-- **Action** For a helper, verify it is non-primary, has no live execution/pending action, and has no unread queue or sole-copy evidence, then prefer supported deletion; otherwise archive it and hide archived/terminal helpers by default. For the primary, run the full continuity checkpoint, preserve the old FIFO queue, create exactly one same-task/workspace successor, verify bootstrap and live reconciliation, atomically promote it as current primary/routine target, and only then retire the old session.
-- **Capability** **NOT PROVISIONED (2026-09-05):** current task-runtime tools can list and spawn sessions, but expose no per-session cached-token counter, single-session close/archive/delete operation, queue-preserving atomic primary promotion, or archived-session visibility control. Preservation owner is task `86c8b47e-e7a5-4693-8e11-dce08899a0bf`; rotation owner is recorded in the live Coordinator plan and board.
+- **Action** For a helper, verify it is non-primary, has no live execution/pending action, and has no unread queue or sole-copy evidence, then prefer supported deletion; otherwise archive it and hide archived/terminal helpers by default. For the primary, the threshold is standing authorization: checkpoint, preserve the old FIFO queue, create exactly one same-task/workspace successor, verify bootstrap and live reconciliation, and invoke the atomic handoff without another Human prompt. The handoff may set the successor primary itself; accept it only after authoritative primary/current/routine-target, generation-fence, and queue readback, then retire the old session. A failed transfer leaves the old primary authoritative and working.
+- **Capability** **NOT PROVISIONED (2026-09-05):** current task-runtime tools can list and spawn sessions, but expose no per-session cached-token counter, single-session close/archive/delete operation, queue-preserving atomic primary promotion, or archived-session visibility control. Preservation owner is task `86c8b47e-e7a5-4693-8e11-dce08899a0bf`; exact rotation owner is task `b8fc206c-9e3f-4497-9ac3-3b62593da258`.
 - **Evidence** Old/new task/workspace/session IDs; server-reported cached-token count; durable plan commit/readback; ordered queue census before/after; successor start and bootstrap receipt; atomic primary/routine-target readback; old-session terminal/archive/delete receipt; and absence of duplicate or lost entries/actions.
-- **Never** Estimate the threshold from prose length, spawn a successor and call that a handoff, delete a session that may own unread messages or unique evidence, leave two primaries, redirect routine traffic before successor verification, write session/queue rows directly, or delete the Coordinator task.
+- **Never** Estimate the threshold from prose length, stop the old primary merely because the threshold was reached, spawn a successor and call that a handoff, issue a second promotion after an atomic handoff already promoted the successor, delete a session that may own unread messages or unique evidence, leave two primaries, redirect routine traffic before successor verification, write session/queue rows directly, or delete the Coordinator task.
 
 ### A8. Attach a provider-backed repository to an already-live task
 - **Trigger** A running or parked worktree-executor task needs another provider-backed repository, including a retry after the server generated its feature branch.

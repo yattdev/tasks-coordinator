@@ -1657,8 +1657,17 @@ The platform does not currently expose the token counter or required lifecycle
 and promotion operations to the Coordinator. This is product work, not a reason
 to leave helper tabs indefinitely or to emulate cleanup through database/task
 deletion. Existing task `86c8b47e-e7a5-4693-8e11-dce08899a0bf` owns safe
-queue-preserving deletion; a separate delivery owns observable token-budget
-rotation and primary transfer.
+queue-preserving deletion; task `b8fc206c-9e3f-4497-9ac3-3b62593da258` owns
+observable token-budget rotation and primary transfer.
+
+The Human further clarified that reaching the cache threshold should cause a
+proactive handoff, not the Coordinator silently stopping. Once the reviewed
+surface exists, threshold-triggered rotation is standing-authorized and needs no
+new Human prompt. A handoff primitive may make its successor primary inside the
+same atomic transaction; that is valid only with authoritative readback of the
+sole primary/current session, canonical routine target, queue parity, and old-
+generation fence. If any part fails, the old primary keeps authority and
+continues safe work after checkpointing rather than yielding into a gap.
 
 ## Routine scope follows the canonical Coordinator, not a disposable carrier (2026-09-03, Support-confirmed)
 

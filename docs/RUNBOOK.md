@@ -2957,7 +2957,9 @@ ordinary tab strip by default, with an explicit history control to reveal them.
 
 For the long-lived primary, use the server's cumulative cached-input-token
 counter. At 180,000,000 tokens, stop taking new optional helper work and perform
-the continuity checkpoint. Complete rotation before 200,000,000 tokens:
+the continuity checkpoint. Once the task-runtime rotation surface is deployed,
+these thresholds are standing authorization to rotate automatically without a
+new Human prompt. Complete rotation before 200,000,000 tokens:
 
 1. Save and read back the full task plan and every repository policy change.
 2. Census the old primary's queue and preserve every unread entry and FIFO
@@ -2970,8 +2972,17 @@ the continuity checkpoint. Complete rotation before 200,000,000 tokens:
 5. Use one server-side transaction to make the successor the current primary
    and routine target, transfer or rebind the preserved queue, and fence the old
    generation. Read all results back. Failure leaves the old primary current.
+   If the handoff operation performs promotion inside that transaction, do not
+   send a separate promotion call; verify its primary/current/routine-target,
+   queue, and generation receipts instead.
 6. Only after successful readback close the old primary, then delete it if the
    helper-style evidence/queue conditions are met; otherwise archive it.
+
+The old primary never stops merely because a threshold was crossed. If the
+atomic operation is unavailable or fails, finish the checkpoint, keep that
+session authoritative, continue safe Coordinator work while it remains healthy,
+and preserve the exact repair trigger. The role must not disappear in the gap
+between successor creation and verified promotion.
 
 Current degradation, verified 2026-09-05: `list_task_sessions_kandev` and
 `spawn_session_kandev` are available, but no task-runtime tool reports the
@@ -2979,7 +2990,7 @@ cached-token count, promotes a new primary, transfers the live queue, or closes,
 archives, deletes, or hides one exact session. Do not approximate atomic
 rotation by spawning a second session. The existing unread-queue preservation
 task must land before destructive cleanup; a separate Host task owns rotation
-telemetry and atomic promotion.
+telemetry and atomic promotion: `b8fc206c-9e3f-4497-9ac3-3b62593da258`.
 
 ## Flipping Draft→ready is itself a review trigger — readiness is not terminal
 

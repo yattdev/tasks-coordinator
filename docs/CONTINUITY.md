@@ -76,6 +76,12 @@ server-reported cumulative cached-input-token count rather than estimating from
 conversation length. Begin the save protocol at 180,000,000 cached tokens and
 complete a primary rotation no later than 200,000,000. Rotate sooner when turn
 admission, tool transport, compaction, or responsiveness degrades repeatedly.
+Once the platform exposes the required operation, these thresholds are standing
+authorization for automatic rotation without another Human prompt. If the
+handoff operation atomically promotes the successor as part of its transaction,
+accept that implicit promotion only after authoritative primary/current,
+routine-target, generation-fence, and queue readback; do not send a second
+promotion request.
 
 Rotation is complete only when all of these hold:
 
@@ -99,6 +105,9 @@ default. When the required token counter, atomic promotion, queue transfer, or
 session-specific close/archive/delete operation is unavailable, record the
 capability gap and do not emulate it with task deletion, database writes, or
 broad cancellation.
+The old primary must not stop merely because it reached the threshold: it
+remains authoritative and continues safe work after checkpointing until a
+successor is proven primary or the session is genuinely unable to continue.
 
 ## Interrupted-session recovery
 

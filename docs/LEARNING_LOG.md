@@ -2371,3 +2371,22 @@ Publication receipt: lesson commit
 `d287595270863ffde570469249faa0e76c06c4f8` without conflict and pushed to
 `origin/main`. `PROMPT.md` remained unchanged, so mirror status is
 `NOT_REQUIRED`. Unresolved conflicts: none.
+
+## 2026-09-05d — a cache threshold triggers continuity, never a silent stop
+
+The Human clarified the intended outcome of primary-session rotation: the
+Coordinator must keep working across context/cache exhaustion. Once Kandev
+exposes authoritative cached-token telemetry and the atomic handoff surface,
+the 180M/200M thresholds are standing authorization to rotate automatically,
+without waiting for another Human prompt.
+
+A handoff call may itself designate the successor primary. That is not a reason
+to send a second promotion request; it is accepted only when server readback
+proves one primary/current session, the canonical routine target, queue parity,
+and the old generation fence. Until that proof exists, the old primary remains
+authoritative and continues safe work after checkpointing. Exact implementation
+owner: task `b8fc206c-9e3f-4497-9ac3-3b62593da258`; queue-preserving retirement
+dependency: `86c8b47e-e7a5-4693-8e11-dce08899a0bf`.
+
+Files: `PROMPT.md`, `docs/CONTINUITY.md`, `docs/CAPABILITY_REGISTRY.md`,
+`docs/RUNBOOK.md`, `docs/DECISIONS.md`, and this log.
