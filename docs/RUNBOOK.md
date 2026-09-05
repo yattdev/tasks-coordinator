@@ -2861,6 +2861,44 @@ Thirty-six 1-KiB pages shared snapshot
 body hashes matched, and an immediate 256-KiB reread was byte-identical. The live
 replacement session was rejected with `CONFLICT`, proving the terminal-state guard.
 
+## Retire completed helper sessions and rotate the Coordinator primary
+
+Treat additional Coordinator sessions as bounded workers. When a helper returns
+its requested result, first reconcile the result against live state and persist
+the durable receipt. Then inspect the exact helper session, pending actions, and
+queue. Delete it when all of the following are proven: it is non-primary; no
+execution is live; no workflow action is pending; no unread message remains (or
+every entry was safely transferred/dispositioned); and no transcript content is
+the sole evidence for unfinished work. If deletion would lose useful history,
+archive it instead. Archived and terminal helpers should be hidden from the
+ordinary tab strip by default, with an explicit history control to reveal them.
+
+For the long-lived primary, use the server's cumulative cached-input-token
+counter. At 180,000,000 tokens, stop taking new optional helper work and perform
+the continuity checkpoint. Complete rotation before 200,000,000 tokens:
+
+1. Save and read back the full task plan and every repository policy change.
+2. Census the old primary's queue and preserve every unread entry and FIFO
+   identity. Never dispose an unread row merely to simplify handoff.
+3. Spawn exactly one named successor on the same Coordinator task/workspace.
+   Its prompt must require `AGENTS.md`, complete `PROMPT.md`, the current plan,
+   live identity resolution, and reconciliation before mutation.
+4. Require a successor receipt naming its exact session/task/workspace and the
+   live obligations/queue it adopted.
+5. Use one server-side transaction to make the successor the current primary
+   and routine target, transfer or rebind the preserved queue, and fence the old
+   generation. Read all results back. Failure leaves the old primary current.
+6. Only after successful readback close the old primary, then delete it if the
+   helper-style evidence/queue conditions are met; otherwise archive it.
+
+Current degradation, verified 2026-09-05: `list_task_sessions_kandev` and
+`spawn_session_kandev` are available, but no task-runtime tool reports the
+cached-token count, promotes a new primary, transfers the live queue, or closes,
+archives, deletes, or hides one exact session. Do not approximate atomic
+rotation by spawning a second session. The existing unread-queue preservation
+task must land before destructive cleanup; a separate Host task owns rotation
+telemetry and atomic promotion.
+
 ## Flipping Draft→ready is itself a review trigger — readiness is not terminal
 
 Some reviewers are suppressed while a pull request is Draft and fire on the transition to

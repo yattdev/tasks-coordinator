@@ -1621,6 +1621,24 @@ are delivery specifications owned by the plugin-first orchestration program.
 They do not belong in `PROMPT.md` unless they change binding Coordinator
 authority or behavior.
 
+## Session lifetime belongs to the role, not one model context (2026-09-05)
+
+The Human requires disposable evidence helpers to disappear from the ordinary
+session tab after their receipts are preserved, and requires the permanent
+Coordinator role to rotate away from a primary before cumulative cached input
+reaches the failure-prone 200,000,000-token boundary. A new session alone is not
+a continuation: it becomes authoritative only through a durable checkpoint,
+FIFO-preserving queue handoff, verified bootstrap, and atomic primary/routine
+target promotion. Deletion remains subordinate to unread-message and unique-
+evidence preservation; archive is the safe fallback.
+
+The platform does not currently expose the token counter or required lifecycle
+and promotion operations to the Coordinator. This is product work, not a reason
+to leave helper tabs indefinitely or to emulate cleanup through database/task
+deletion. Existing task `86c8b47e-e7a5-4693-8e11-dce08899a0bf` owns safe
+queue-preserving deletion; a separate delivery owns observable token-budget
+rotation and primary transfer.
+
 ## Routine scope follows the canonical Coordinator, not a disposable carrier (2026-09-03, Support-confirmed)
 
 Repeated routine carriers were handled by an older Coordinator session whose

@@ -2280,6 +2280,24 @@ also distinct from Human-QA LAN readiness.
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, this log. `PROMPT.md` was unchanged.
 
+## 2026-09-05a — session cleanup and rotation must preserve authority and queues
+
+The Human identified two long-lived Coordinator failures: completed helper
+sessions accumulate as noisy tabs, and an oversized primary can become unable
+to admit another turn before handing off. The binding policy now retires
+helpers after their evidence is durable and starts primary checkpointing at
+180M cached input tokens, with rotation complete by 200M.
+
+Tool discovery proved the present gap precisely: this Coordinator can list and
+spawn sessions, but cannot read per-session cached-token totals, close/archive/
+delete one session, hide archived sessions, atomically promote a successor, or
+transfer the live queue. The safe response is platform delivery plus preserved
+existing sessions—not database writes, task deletion, or a second uncoordinated
+primary.
+
+Files: `PROMPT.md`, `docs/CONTINUITY.md`, `docs/CAPABILITY_REGISTRY.md`,
+`docs/RUNBOOK.md`, `docs/DECISIONS.md`, this log.
+
 ## 2026-09-04c — terminal queue recovery is a snapshot read, not a replay
 
 Support request `825e8aff-5625-483b-9f44-7e11d5ca6b78` provisioned the reusable

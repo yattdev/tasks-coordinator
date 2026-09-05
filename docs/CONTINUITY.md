@@ -69,6 +69,37 @@ For the live handoff, record at minimum: last completed action; all open
 obligations; exact evidence identity; owner; next safe action; follow-up
 trigger/time and attempt count; fallback; and whether partial work is preserved.
 
+## Proactive primary-session rotation and helper cleanup
+
+The Coordinator task is permanent; any one session is disposable. Use a
+server-reported cumulative cached-input-token count rather than estimating from
+conversation length. Begin the save protocol at 180,000,000 cached tokens and
+complete a primary rotation no later than 200,000,000. Rotate sooner when turn
+admission, tool transport, compaction, or responsiveness degrades repeatedly.
+
+Rotation is complete only when all of these hold:
+
+1. The old primary has persisted the current plan and every reusable policy or
+   procedure change.
+2. Its queue has been censused; unread entries remain preserved in original
+   FIFO identity and are not disposed merely because a replacement exists.
+3. Exactly one successor session on the same task/workspace has read the full
+   bootstrap and plan, reconciled live state, and returned a start receipt.
+4. Kandev atomically promotes that successor as the current primary and routine
+   target, with authoritative readback and no interval containing two primaries.
+5. Only after the new primary and queue continuity are verified may the old
+   primary be closed, archived, or deleted.
+
+Additional helper sessions should be retired immediately after their result is
+consumed and durably preserved. Prefer deletion only when the helper is
+non-primary, has no live execution or pending action, has no unread queue (or
+the queue was safely transferred/dispositioned), and its transcript is not the
+sole evidence copy. Otherwise archive it and hide archived/terminal helpers by
+default. When the required token counter, atomic promotion, queue transfer, or
+session-specific close/archive/delete operation is unavailable, record the
+capability gap and do not emulate it with task deletion, database writes, or
+broad cancellation.
+
 ## Interrupted-session recovery
 
 If a session disappears before saving, the next session must not guess. Inspect
