@@ -1035,6 +1035,34 @@ ownership is ambiguous or there is no trustworthy registration source, stop and
 return the mismatch; do not recreate, prune, clean, or rematerialize the
 checkout speculatively.
 
+## Attach another provider repository to an already-live task
+
+Use this only from the exact task's own active session. The Coordinator first
+binds the handoff to the task UUID, repository URL or ID, base branch, and
+preservation constraints; it does not call the tool cross-task.
+
+1. On the owning task, call `add_branch_to_task_kandev` with one repository
+   locator. Omit `checkout_branch` only when a generated feature branch is
+   intended.
+2. Record the complete response: task-repository row ID, repository ID, base,
+   `checkout_branch`, `worktree_branch`, worktree path, task workspace path, and
+   `agent_cwd_changed`. A generated branch must appear in both branch fields.
+3. For an exact retry, use `repository_id`, the same base, and the returned
+   `checkout_branch`. The stable result must reuse the same row, repository
+   position, worktree, and branch. Any ambiguity or mismatch stops the task.
+4. Before editing, verify `pwd`, `git status --short --branch`, `git rev-parse
+   HEAD`, and the intended base ref. Preserve the original task repository and
+   any live runtime named in the handoff.
+
+The verified 2026-09-05 implementation is backend `v0.93.0-97-gd0ce9383d`
+(Support requests `808d887b-c78f-4928-88a8-cdd84ae2e56c` and
+`0e2631fb-4017-4ad8-898f-758c498c2133`). It clones provider repositories through
+the authenticated task/session cloner, validates server-authored same-task
+active-session provenance, projects generated physical branches in responses,
+and makes the explicit-branch retry idempotent. Never work around a failure with
+a manual clone, raw database edit, cross-task invocation, or a concurrent
+`add_workspace_sources_kandev` call.
+
 ## Abandoned, obsolete, or superseded task remains in an active column
 Do not leave dead work parked indefinitely in Spec–CI Fixup. First verify from
 the task trail that no implementation remains authorized, and check that it has
