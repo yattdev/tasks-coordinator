@@ -2365,3 +2365,9 @@ Files changed: `docs/RUNBOOK.md`, `docs/QA_INSTANCES.md`,
 `docs/CAPABILITY_REGISTRY.md`, `docs/DECISIONS.md`, and this log. `PROMPT.md`
 was unchanged, so no live-description mirror is required. Commit and shared-main
 publication receipts are persisted after the fast-forward.
+
+Publication receipt: lesson commit
+`35ad0b6730bf4351291cf0cbbe490c80dc4682b3` fast-forwarded shared main from
+`d287595270863ffde570469249faa0e76c06c4f8` without conflict and pushed to
+`origin/main`. `PROMPT.md` remained unchanged, so mirror status is
+`NOT_REQUIRED`. Unresolved conflicts: none.
