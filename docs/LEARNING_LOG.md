@@ -2390,3 +2390,33 @@ dependency: `86c8b47e-e7a5-4693-8e11-dce08899a0bf`.
 
 Files: `PROMPT.md`, `docs/CONTINUITY.md`, `docs/CAPABILITY_REGISTRY.md`,
 `docs/RUNBOOK.md`, `docs/DECISIONS.md`, and this log.
+
+## 2026-09-05e — stale queue claims fail closed and are refreshed by identity
+
+Window: `2026-09-05T17:22:35Z` through `2026-09-05T23:18:26Z`.
+
+The guarded Coordinator queue census/disposition surface is now callable in the
+live task runtime. Its opaque claim is snapshot-sensitive: concurrent queue
+reordering can return `changed` for an entry while leaving the row intact. The
+safe continuation is a fresh census, equality of immutable ID/provenance/content
+hash, then a retry of only the already-reviewed entry using its new claim.
+`not_found` is another actor's disposition, not proof of removal by the caller.
+
+This preserves unrelated arrivals and FIFO holes without falling back to a
+position, stale claim, broad clear, or database write. It also separates the
+verified live disposition capability from the still-pending upstream merge and
+routine-wake coalescing work.
+
+Rejected by the filter:
+
+- Provider-backed live repository attachment and generated-branch retry: already
+  captured in registry A8 and the provider-attachment runbook.
+- Automatic primary rotation and auto-promotion readback: already captured by
+  the binding `2026-09-05d` lesson and rotation policy.
+- Source-broker runtime authorization details: product implementation evidence,
+  not general Coordinator orchestration policy.
+- Review auto-advance with a still-running gate owner: already covered by the
+  independent-gate lifecycle rule and registry B9a.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, and this log. `PROMPT.md` is unchanged.

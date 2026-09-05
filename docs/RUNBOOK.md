@@ -2819,7 +2819,11 @@ available helper slots, start multiple helpers immediately and keep at most one
 slice with the primary. If that cannot happen, name the concrete capacity,
 dependency, or conflict reason in the cycle log.
 
-1. Capture the ordered entry IDs and contents before acting.
+1. Call `get_message_queue_census_kandev` and freeze the ordered immutable
+   entry IDs, opaque claims, safe provenance, queued timestamps, content hashes,
+   and sizes before acting. Reconcile the corresponding message bodies from the
+   surfaced conversation or an authorized recovery read; the census deliberately
+   does not disclose bodies.
 2. Declare a claim set for every proposed slice: full task UUIDs, canonical PR URL
    plus exact head, dependency IDs, and shared resource IDs. Compare all claim sets
    pairwise before dispatch. Any collision returns the complete family to one
@@ -2832,13 +2836,19 @@ dependency, or conflict reason in the cycle log.
    census for every mentioned task, plus current provider state when the claim depends on
    it. Supersede any helper receipt whose identity or timestamp is no longer current.
 5. Separate ordinary handled messages from durable or newly arrived entries.
-6. Remove only reviewed ordinary IDs, one at a time, through authenticated
-   `message.queue.remove` (`session_id` plus exact `entry_id`). If the Coordinator
-   cannot call that authenticated WebSocket surface, leave the rows intact and submit at
-   most one request for a reusable guarded capability. Never ask Support to remove
-   one-off IDs, and never use SQL or broad cancellation.
-7. Re-read the ordered queue. The receipt must name before/after counts, removed
-   IDs, missing IDs, and anything intentionally retained.
+6. After every selected body and action is durable, pass only those entries'
+   unchanged `id` + opaque `claim` pairs to
+   `dispose_message_queue_entries_kandev`. Interpret its result per entry:
+   `removed` is this call's disposition receipt; `changed` removed nothing and
+   requires a fresh census, identity/hash comparison, and retry with the new
+   claim; `not_found` means another actor already removed the row and is not
+   evidence that this call did so. Never broaden a retry to a newly arrived or
+   merely adjacent row.
+7. Re-read the ordered queue. The receipt must name atomic before/after counts,
+   each per-entry result, removed IDs, changed/not-found IDs, and everything
+   intentionally retained. If the guarded census/disposition tools are absent,
+   leave rows intact and submit at most one reusable-capability request; never
+   ask Support to remove one-off IDs, use SQL, or use broad cancellation.
 
 The minimum trusted queue envelope is server-issued immutable entry ID,
 workspace/task/session provenance, created timestamp, kind, payload digest, and
@@ -2850,24 +2860,25 @@ state as proof that earlier rows were handled. Queue disposition remains separat
 from delivery retry, workflow-control delivery, completion intents, lifecycle
 records, and pending-move census/cancellation.
 
-Verified 2026-08-30 for Coordinator session
-`330609a3-ea23-4674-8c0b-9b572f9c0da7`: two helpers triaged disjoint slices;
-Support request `fad11a89-27bb-415b-8554-7097f225a09d` removed all 15 supplied
-IDs exactly, none were missing, and the post-removal queue was empty. A later
-read-only census again returned 0. Helper triage does not itself drain the queue.
-This receipt proved the mechanism; the human correction is to use it proactively,
-not only after the queue is full.
+Verified live task-runtime interface, 2026-09-05:
+`get_message_queue_census_kandev` returns the claim-bound safe envelope and
+`dispose_message_queue_entries_kandev` performs exact optimistic disposition.
+One acceptance pass removed selected reviewed entries while retaining a
+concurrently arrived Human row. A later pass observed all selected claims return
+`changed` after queue reordering; fresh census claims then removed only the same
+three reviewed immutable IDs and retained the unrelated row. Helper triage does
+not itself drain the queue, and a `changed` claim is a concurrency guard working,
+not a reason to clear broadly.
 
-Current platform gap and owner, verified 2026-09-01: queue telemetry on two live
-Coordinators showed identical routine wakes occupying distinct FIFO positions. Read-only
-helpers shortened evidence collection but did not release any queue capacity. Canonical
-Kandev task `ca015838-e5cf-4294-b3bb-9c50576a5fe6` owns a guarded exact-entry
-census/claim/disposition API plus routine-wake coalescing; session
-`d83affb2-d391-4142-be8a-de12d98939c1` was verified RUNNING. Until that capability is
-deployed, never report a helper-triaged queue as drained and never infer removal from a
-handled conversation item. Coalesce at execution only when routine kind, target, and
-payload identity are exact, preserve one effective wake, and keep every Human message,
-task/peer report, and materially different routine payload distinct.
+Residual platform gap and owner: the live guarded census/disposition surface is
+available, but that does not prove the canonical upstream change or identical-
+routine-wake coalescing is merged and deployed. Kandev task
+`ca015838-e5cf-4294-b3bb-9c50576a5fe6` and
+https://github.com/kdlbs/kandev/pull/3377 remain the canonical owner. Never report
+a helper-triaged queue as drained and never infer removal from a handled
+conversation item. Coalesce at execution only when routine kind, target, and
+payload identity are exact; keep every Human message, task/peer report, and
+materially different routine payload distinct.
 
 Queue-full is also a preservation risk, not merely a latency signal. On 2026-09-01,
 Kandev task `86a16fc1-6394-4fb0-898d-4d42948683f5` could not forward unique unpublished

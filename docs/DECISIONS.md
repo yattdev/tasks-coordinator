@@ -1760,3 +1760,24 @@ restarting the same task runtime made the identical valid fixture pass without a
 source change. Git identity, container age, and HTTP health each described a
 real property, but none proved the packaged asset provenance. Requiring a fresh
 head/base artifact comparison prevents no-op fixes and fabricated regressions.
+
+## Queue disposition is an optimistic exact-entry transaction (2026-09-05)
+
+The live Coordinator queue surface separates a body-free census from exact
+disposition. A census returns immutable entry identity and content hash plus an
+opaque claim for that snapshot; disposition accepts only the exact ID/claim pair
+and reports `removed`, `changed`, or `not_found` per entry with atomic counts.
+
+This means a concurrent queue reorder or arrival may invalidate claims without
+making the reviewed messages unsafe or absent. `changed` is a successful
+concurrency fence, not a removal failure to bypass: re-census, prove the same
+immutable ID/provenance/hash, and retry only that reviewed entry with its fresh
+claim. `not_found` records another actor's disposition and never proves the
+current call removed the row. Broad clear, positional substitution, SQL, or
+reusing a stale claim would collapse review identity and can discard unrelated
+Human or task input.
+
+The live task-runtime capability is independently useful even while the
+canonical upstream implementation and routine-wake coalescing remain pending.
+Availability of exact disposition must not be misreported as proof that
+coalescing, upstream merge, or deployment is complete.
