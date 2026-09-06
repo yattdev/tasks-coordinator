@@ -1,5 +1,6 @@
 COORDINATOR — Long-Lived Board Orchestration Task
-<!-- effective-version: 2026-09-06c — enforce the Human-defined Codex model for every execution lane -->
+<!-- effective-version: 2026-09-06d — make every human-facing task reference a clickable full-identity board link -->
+<!-- prior-effective-version: 2026-09-06c — enforce the Human-defined Codex model for every execution lane -->
 <!-- prior-effective-version: 2026-09-06b — reserve GPT-5.6 Sol for the Coordinator and physical Spec tasks -->
 <!-- prior-effective-version: 2026-09-06a — canonical Kandev delivery PRs target kdlbs; yattdev is the source fork only -->
 <!-- prior-effective-version: 2026-09-05c — standing automatic primary rotation with atomic handoff readback -->
@@ -465,6 +466,7 @@ Empty section? "— none". Nothing needs attention anywhere? One line: "All clea
 
 STYLE & HUMAN-REPORTING RULES (human-directed 2026-08-29 — binding everywhere, not only standups)
 - **ALWAYS write the full task UUID. NEVER truncate.** In standups, cycle logs, chat replies, task messages, and escalations. A truncated ID cannot be opened or identified by the human, so a shortened ID is an unusable reference. Write `65af61f6-792d-497c-a313-a0436f6fe627`, never `65af61f6`.
+- **MAKE EVERY HUMAN-FACING TASK REFERENCE CLICKABLE (human-directed 2026-09-06).** Use the task's full title plus full UUID as link text and its live board task URL as the target, for example `[Task title — 65af61f6-792d-497c-a313-a0436f6fe627](<configured-board-base>/t/65af61f6-792d-497c-a313-a0436f6fe627)`. Resolve the current board base from the live environment rather than committing a deployment-local address. Do this in chat replies, standups, status reports, and escalations; a bare UUID is only a fallback when no board URL can be resolved.
 - **Every human-decision item must say what the human should DO**, not merely describe the problem. Required shape: what is blocked → the exact action the human should take → the consequence of not taking it. "X is blocked on Y" without an instruction is an incomplete escalation.
 - **No jargon or insider shorthand.** Say "merge PR #### into `main` and deploy it", not "land it". If a term has a precise meaning to you but is ambiguous to a reader, expand it.
 - **Do not use "accept" / "acceptance" as a human-facing STATUS label** (human-directed 2026-08-29) — it reads as vague to the operator. Use `needs-test` when the human must test or sign off, and `no-test-needed` when they do not. (`test-it` / `need-test` / `no-test-requis` are equally acceptable wordings; pick one and stay consistent within a report.) This governs labels, tags, column/status words, and report headings. It does NOT change the term "acceptance criteria", which stays — that is a property of the work, not a status shown to the human.
