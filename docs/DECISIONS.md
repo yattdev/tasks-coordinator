@@ -1861,6 +1861,10 @@ repository that will actually receive the change.
 
 ## GPT-5.6 Sol is reserved for coordination and specification (2026-09-06)
 
+Superseded later on 2026-09-06 by the lane-specific Codex model disposition
+below. The original rule incorrectly excluded QA and reduced the Human's full
+per-lane configuration to a Sol/non-Sol split.
+
 Decision: `gpt-5.6-sol` may be used only by the permanent Coordinator and by a
 task physically in the Spec column. Every other role and lane uses an
 appropriate non-Sol profile. Parked nonterminal Sol sessions outside Spec are
@@ -1872,3 +1876,19 @@ for routine implementation, review, QA, CI repair, holding, deployment, or
 terminal work. Auditing both task assignment and session profiles catches the
 two distinct risks: a future launch configured to use Sol and an old Sol session
 that can silently resume after the task has left Spec.
+
+## Codex models follow the physical execution lane (2026-09-06)
+
+Decision: when Codex is used, the permanent Coordinator, Spec, and QA use
+`gpt-5.6-sol`; Work, Blocked, and Human-QA use `gpt-5.6-terra`; Review uses
+`gpt-5.5`; PR and Done use `gpt-5.4`; and CI Fixup uses `gpt-5.6-luna`.
+Backlogs, Todo, and ToDeploy do not start task Codex sessions, with the
+permanent Coordinator as the explicit Backlogs exception. A task leaving a lane
+does not resume that lane's parked process when its model differs from the new
+lane; it starts a correctly mapped process and verifies the effective model.
+
+Rationale: the Human configured model cost and capability by workflow role, not
+with one global Sol prohibition. Sol is intentional for both specification and
+QA, while implementation, review, delivery, repair, and terminal work use the
+specified lighter Codex models. Exact live profile resolution prevents a stale
+session or misleading profile name from defeating that configuration.

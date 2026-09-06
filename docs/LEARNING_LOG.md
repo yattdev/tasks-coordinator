@@ -2498,3 +2498,20 @@ Rejected by the filter:
 
 Files: `docs/RUNBOOK.md`, `docs/QA_INSTANCES.md`, `docs/DECISIONS.md`, and
 this log. `PROMPT.md` is unchanged, so no live-description mirror is required.
+
+## 2026-09-06d — Codex models follow execution lanes
+
+Human correction: the prior Sol-only audit was incomplete. When Codex is used,
+model choice is a lane contract: Coordinator/Spec/QA use `gpt-5.6-sol`;
+Work/Blocked/Human-QA use `gpt-5.6-terra`; Review uses `gpt-5.5`; PR/Done use
+`gpt-5.4`; and CI Fixup uses `gpt-5.6-luna`. Holding/transition lanes do
+not start task Codex sessions, apart from the permanent Coordinator in Backlogs.
+
+The durable lesson is to audit every Codex session against its physical lane,
+not merely search for expensive-model use. A context reset can reuse the same
+process and therefore does not prove a model transition; verify the effective
+profile after every lane entry or replacement.
+
+Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, and this log. The complete updated `PROMPT.md` must be
+mirrored to the live Coordinator task description.

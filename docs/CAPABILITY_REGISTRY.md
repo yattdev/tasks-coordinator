@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-06c -->
+<!-- registry-version: 2026-09-06d -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -598,14 +598,14 @@ Production, protected/release branch, cost, and external-communication **labels*
 - **Action** Suspect your own persistence failure FIRST. Compare your last successful state write against the board's change timestamps and read the actual move/handoff message — it carries the actor's tag.
 - **Never** Invent an external actor to explain state you cannot account for, and never escalate that fiction.
 
-### J7. A task is assigned to or retains a GPT-5.6 Sol session
-- **Trigger** A board audit, task start/resume/message, or lane move exposes a task assignee or nonterminal session whose resolved model is `gpt-5.6-sol`.
-- **Action** Allow it only for this permanent Coordinator or a task physically in Spec. Outside those cases, do not start or resume it; select and verify a fresh role-appropriate non-Sol profile. Distinguish active `RUNNING`/`STARTING` use from parked `WAITING_FOR_INPUT`/`CREATED` risk.
+### J7. A Codex task is assigned to or retains the wrong lane model
+- **Trigger** A board audit, task start/resume/message, or lane move exposes a Codex task assignee or nonterminal session whose resolved model does not match its physical lane.
+- **Action** Enforce the Human-defined Codex map: Coordinator/Spec/QA=`gpt-5.6-sol`; Work/Blocked/Human-QA=`gpt-5.6-terra`; Review=`gpt-5.5`; PR/Done=`gpt-5.4`; CI Fixup=`gpt-5.6-luna`. Backlogs, Todo, and ToDeploy do not start task Codex sessions; the Coordinator is the explicit Backlogs exception. Do not start or resume a mismatch; select and verify a fresh correctly mapped profile. Distinguish active `RUNNING`/`STARTING` use from parked `WAITING_FOR_INPUT`/`CREATED` risk.
 - **Capability** `list_agents_kandev` for profile→model resolution; `list_tasks_kandev` for physical lane and assignee; complete `list_task_sessions_kandev` census for effective nonterminal profiles.
-- **Authority** Human cost-control directive 2026-09-06; see [Audit and contain GPT-5.6 Sol usage](RUNBOOK.md#audit-and-contain-gpt-56-sol-usage).
-- **Evidence** Exact task, lane, session and profile IDs; active/parked classification; fresh non-Sol effective-profile readback after any replacement.
-- **Escalate to** A scoped workflow/profile configuration repair only when the exposed controls cannot select a non-Sol effective profile.
-- **Never** Infer the model from the profile name, wake an out-of-policy parked Sol session to ask it to switch, or count terminal history as current usage.
+- **Authority** Human cost-control directive 2026-09-06; see [Audit and contain Codex lane-model mismatches](RUNBOOK.md#audit-and-contain-codex-lane-model-mismatches).
+- **Evidence** Exact task, physical lane, session and profile IDs, resolved model, active/parked classification, and fresh correctly mapped effective-profile readback after any replacement.
+- **Escalate to** A scoped workflow/profile configuration repair only when the exposed controls cannot select the required lane model.
+- **Never** Infer the model from the profile or lane name, wake a mismatched parked session to ask it to switch, substitute a cheaper or heavier Codex model for the configured lane, or count terminal history as current usage.
 
 ---
 

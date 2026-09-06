@@ -789,25 +789,34 @@ because an obsolete Spec execution still appears live, stop only that direct
 child's stale execution, retry the move, and record the recovery. Never apply this
 rule to unrelated/manual Todo tasks.
 
-## Audit and contain GPT-5.6 Sol usage
+## Audit and contain Codex lane-model mismatches
 
-`gpt-5.6-sol` is reserved for the permanent Coordinator and tasks physically in
-Spec. Audit the live board from authoritative model mappings, not profile names:
+When Codex is used, enforce this physical-lane map: permanent Coordinator,
+Spec, and QA use `gpt-5.6-sol`; Work, Blocked, and Human-QA use
+`gpt-5.6-terra`; Review uses `gpt-5.5`; PR and Done use `gpt-5.4`; CI
+Fixup uses `gpt-5.6-luna`. Backlogs, Todo, and ToDeploy are holding/transition
+lanes and do not start task Codex sessions; the permanent Coordinator is the
+explicit Backlogs exception. This mapping does not replace a deliberately
+selected non-Codex agent family.
 
-1. List configured agents and build the set of enabled profile IDs whose exact
-   model is `gpt-5.6-sol`.
-2. List every task and flag a non-Spec task whose current assignee profile is in
-   that set. This is future launch/resume risk even when no session is active.
+Audit the live board from authoritative model mappings, not profile names:
+
+1. List configured agents and build the exact enabled Codex
+   profile-ID-to-model mapping for every lane model above.
+2. List every task and compare its Codex assignee profile with its physical
+   lane. Any mismatch is future launch/resume risk even when no session is
+   active.
 3. List every task's complete sessions. Classify `RUNNING`/`STARTING` as active
    usage, `WAITING_FOR_INPUT`/`CREATED` as parked resumable risk, and terminal
    sessions as history only.
-4. Do not message or resume an out-of-policy parked session. Select a fresh
-   role-appropriate non-Sol profile, then verify the returned effective profile
-   because a workflow step may override the request.
+4. Do not message or resume a lane-mismatched parked session. Select a fresh
+   profile for the exact lane model, then verify the returned effective profile
+   because a workflow step may override the request. A context reset that reuses
+   the old process is not a model transition.
 5. If task/workflow controls cannot change the effective profile, keep the
-   session parked and record the exact task/session/profile IDs plus the
-   configuration-repair owner. Never spend Sol merely to ask that session to
-   switch models.
+   session parked and record the exact task/lane/session/profile/model plus the
+   configuration-repair owner. Never spend tokens on the wrong Codex model
+   merely to ask that process to switch models.
 
 Report active use separately from configuration and parked-session risk; a WFI
 session does not currently burn inference tokens, but can do so on its next wake.
