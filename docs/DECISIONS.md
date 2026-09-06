@@ -1842,3 +1842,19 @@ the behavior under test and creates resources whose only outcome is a known
 compile/package failure. Source-first compatibility evidence is cheaper,
 safer, and preserves the accepted ownership boundary instead of pressuring the
 host to expose an unsupported write path.
+
+## Kandev delivery PRs use the canonical upstream base (2026-09-06)
+
+Decision: `yattdev/kandev` is the source fork for Kandev product branches;
+delivery pull requests target `kdlbs/kandev`. A same-fork pull request is
+permitted only as a temporary stacked-delta review carrier while its prerequisite
+is not canonical. It is not the delivery PR, and its fork-only preview or deploy
+state is not a Human delivery blocker. Once the prerequisite lands, the owner
+integrates current `upstream/main`, repeats the normal gates, and opens and links
+the canonical upstream pull request.
+
+Rationale: a stacked same-fork comparison can isolate a dependent delta before
+its base is accepted, but reporting that carrier as the product delivery changes
+both the repository owner and the meaning of its CI. The canonical base keeps
+review, merge authority, provider checks, and Human reporting attached to the
+repository that will actually receive the change.

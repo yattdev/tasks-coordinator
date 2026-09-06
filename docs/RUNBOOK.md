@@ -534,7 +534,13 @@ upstream lifecycle fix is tracked by task
 Before classifying CI or review readiness:
 
 1. Resolve the task's deliverable repository and remotes.
-2. Record the canonical PR/MR URL and any fork PR separately.
+2. Record the canonical PR/MR URL and any fork PR separately. For Kandev
+   product work, `yattdev/kandev` is the source fork and `kdlbs/kandev` is the
+   canonical PR base. A same-fork PR can be a temporary stacked-delta review
+   carrier, but never treat it as the delivery PR or turn its fork-only preview
+   failure into a Human deployment decision. Keep the true prerequisite edge;
+   after that prerequisite lands, integrate current `upstream/main`, rerun the
+   exact-head gates, and open/link the upstream PR.
 3. Verify the live head SHA matches the audited checkout or explicitly explain
    why it does not.
 4. Query checks, threads, reviews, and mergeability against that qualified URL.
