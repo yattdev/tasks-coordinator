@@ -2522,3 +2522,34 @@ mirrored to the live Coordinator task description.
   session profile currently maps to. Cost-policy audits therefore verify live
   session/message model metadata when available; static profile IDs alone are
   insufficient evidence of lane compliance.
+
+## 2026-09-06e — no durable lessons this cycle
+
+Window: `2026-09-06T14:19:32Z` through `2026-09-06T23:20:25Z`.
+
+No durable lessons this cycle. The reusable corrections observed in the window
+were already incorporated by event-driven knowledge commits, and the remaining
+reports were task-specific delivery state.
+
+Rejected by the filter:
+
+- Kandev delivery pull requests target the canonical upstream repository while
+  same-fork pull requests are temporary stacked-review carriers: already
+  captured in `PROMPT.md`, the provider-identity runbook, and the 2026-09-06
+  canonical-upstream decision.
+- The complete Codex lane/model disposition and preference for live runtime
+  model evidence over a static profile map: already captured by the
+  2026-09-06d policy and its follow-up learning entry.
+- A plugin-approval task's local successor SHA, stale remote head, unresolved
+  threads, credential wall, and reviewer-notification hold: task-specific live
+  state; exact-head readiness and once-per-head notification are already
+  binding.
+- Human confusion caused by a SHA-only status line: an execution miss against
+  the existing plain-language and never-bare-waiting rules, which already
+  require product purpose, blocker, owner, next action, and resume trigger.
+- Current CI, QA, Human-QA runtime, security finding, and provider-rate-limit
+  receipts: transient task evidence retained in the Coordinator plan.
+
+Files changed: this log only. `PROMPT.md` was unchanged, so live-description
+mirror status is `NOT_REQUIRED`. Publication receipt is completed below after
+the shared-main fast-forward; unresolved conflicts: none at edit time.
