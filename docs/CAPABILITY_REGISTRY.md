@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-06a -->
+<!-- registry-version: 2026-09-06b -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -174,6 +174,15 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Capability** [Turn a draft PR/MR ready through its task agent](RUNBOOK.md#turn-a-draft-prmr-ready-through-its-task-agent).
 - **Evidence** Canonical PR URL + exact clean pushed upstream-matched head; fresh exact-head CI census before and after the ready transition (including any newly triggered `pull_request` jobs); zero unresolved threads; visual evidence for visual changes. A repository-policy gate requiring maintainer or architecture approval needs a substantive response authored by that named authority; the contributor's own issue, PR body, checklist, or recommendation is only a proposal.
 - **Never** Ask for confirmation merely because the PR is draft, report draft status itself as a blocker/defect, or send any review request/mention/assignment/notification while provider state is draft. Never count a self-authored proposal as external approval. Never notify from the draft-era check snapshot: marking ready can start new required workflows. Never rebase, deploy, treat ready-for-review as acceptance, or become the implementer. Merge only under the exact named-program Human grant in I3 after its complete gate.
+
+### B6a. A third-party PR may not fit the upstream project
+- **Trigger** A board dependency relies on a PR to a repository the workspace does not own, especially when its public contract is consumer-specific or namespaced.
+- **Action** Read the repository and organization contribution policy, active templates, issue/RFD route, license, and representative recent non-maintainer PR outcomes. Compare the actual diff—not only its prose—to the upstream product boundary. Keep the proposal draft until its generic benefit, compatibility, authorization/threat boundary, tests, and required issue/RFD are honest and policy-compliant. If the route is closed or the surface is not a genuine upstream fit, preserve the draft as evidence and staff one owned fork, package, or adapter fallback with an explicit update/release contract.
+- **Capability** Official repository/organization files and provider read APIs; [third-party contribution qualification](RUNBOOK.md#qualify-a-third-party-contribution-before-depending-on-it).
+- **Authority** Coordinator-decidable for qualification and fallback staffing; only upstream maintainers can approve that repository's product/architecture boundary.
+- **Evidence** Canonical policy/template URLs and retrieval identity, representative precedent PRs, exact proposal head/body identity, diff-to-product assessment, and a staffed fallback task/owner when fit is not established.
+- **Escalate to** Upstream discussion/RFD only after the proposal is provider-neutral and policy-ready; Human only for a genuine ownership, security, or maintenance-cost decision.
+- **Never** Infer contribution fit from the ability to open a fork PR, cosmetically rewrite a consumer-specific API as generic, spend maintainer attention on a knowingly misfit draft, or leave downstream delivery blocked indefinitely when an owned alternative is viable.
 
 ### B7. PR/MR identity
 - **Trigger** Any use of checks, reviews, or mergeability as evidence.
