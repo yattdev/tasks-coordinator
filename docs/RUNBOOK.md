@@ -808,7 +808,9 @@ Audit the live board from authoritative model mappings, not profile names:
    active.
 3. List every task's complete sessions. Classify `RUNNING`/`STARTING` as active
    usage, `WAITING_FOR_INPUT`/`CREATED` as parked resumable risk, and terminal
-   sessions as history only.
+   sessions as history only. Where live session/message metadata exposes the
+   model actually executing, treat it as authoritative over the session's
+   static profile mapping; process reuse can otherwise hide a wrong-model turn.
 4. Do not message or resume a lane-mismatched parked session. Select a fresh
    profile for the exact lane model, then verify the returned effective profile
    because a workflow step may override the request. A context reset that reuses

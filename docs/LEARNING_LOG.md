@@ -2515,3 +2515,10 @@ profile after every lane entry or replacement.
 Files: `PROMPT.md`, `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, and this log. The complete updated `PROMPT.md` must be
 mirrored to the live Coordinator task description.
+
+### 2026-09-06 — Runtime model identity outranks the static profile map
+
+- A reused workflow process can emit a different effective Codex model than its
+  session profile currently maps to. Cost-policy audits therefore verify live
+  session/message model metadata when available; static profile IDs alone are
+  insufficient evidence of lane compliance.
