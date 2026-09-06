@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-05g -->
+<!-- registry-version: 2026-09-06a -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -146,6 +146,13 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Action** Wait for lifecycle settlement and a stable fresh lane plus complete session census; park or halt stale writers as authorized, then create exactly one intended owner.
 - **Evidence** Pending lifecycle absent/completed, unchanged physical lane on a fresh read, all prior writer sessions terminal/parked, and exactly one intended new owner RUNNING; [settlement procedure](RUNBOOK.md#settle-an-auto-start-lane-move-before-spawning-an-extra-owner).
 - **Never** Treat the move response or one lane read as settlement, spawn a second gate owner during the lifecycle window, or ignore a restarted authoring session/later lane advance.
+
+### B3f. A dependency blocks integration but not safe implementation
+- **Trigger** A task is physically Blocked only because a prerequisite has not merged, deployed, or released, while that prerequisite has an exact reviewed/pushed head and exposes a sufficiently stable contract for isolated downstream work.
+- **Action** Classify the dependency gate explicitly. When only integration is gated, move the dependent to Work, base its isolated branch on the exact prerequisite head, keep the dependency edge and integration hold, and verify one implementation owner starts. Re-run normal Review/QA after the prerequisite becomes canonical. If the contract or safe base is not exact, keep the task Blocked.
+- **Capability** Provider/repository exact-head readback, `list_related_tasks_kandev`, `move_task_kandev`, and task message/session start; [stacked implementation procedure](RUNBOOK.md#distinguish-an-integration-gate-from-an-implementation-gate).
+- **Evidence** Exact prerequisite repository/branch/head, dependent base and worktree identity, preserved dependency edge, one RUNNING/STARTING owner, and an explicit statement that merge/release/runtime integration remains gated.
+- **Never** Remove or bypass the dependency, claim the prerequisite is satisfied, stack on a mutable or unreviewed identity, cross a security/trust boundary, or reuse the stacked receipt after the prerequisite head changes.
 
 ### B4. Flagging / unflagging
 - **Trigger** A genuine blocker, anomaly, or frozen loop.

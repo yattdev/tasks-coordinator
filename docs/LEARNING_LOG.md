@@ -2420,3 +2420,35 @@ Rejected by the filter:
 
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, and this log. `PROMPT.md` is unchanged.
+
+## 2026-09-06a — classify dependency gates before parking implementation
+
+Window: `2026-09-05T23:22:41Z` through `2026-09-06T02:20:03Z`.
+
+A dependency can withhold integration without withholding every safe unit of
+implementation. When the prerequisite has an exact reviewed and pushed head
+and a stable contract, a downstream task may leave Blocked and work in an
+isolated branch stacked on that immutable identity while its dependency edge
+and merge/release hold remain intact. The downstream task must repeat exact-head
+Review and QA after the prerequisite becomes canonical, and any prerequisite
+head change invalidates the stacking receipt.
+
+This distinction prevents an unresolved merge or release from creating an
+unstaffed Blocked root while preserving the real integration gate. Missing or
+mutable contracts, required runtime/data/permission, and security boundaries
+remain implementation gates and stay Blocked.
+
+Rejected by the filter:
+
+- The Human reminder that an inert Blocked task must be started: already
+  binding in the staffed-Blocked invariant; the new lesson is the narrower gate
+  classification that enabled safe progress.
+- Redmine and Coordinator-plugin PR heads and lane states: task-specific live
+  status, persisted in the Coordinator plan rather than shared knowledge.
+- GitHub GraphQL rate limiting with REST fallback: already covered by the
+  provider-degradation rule.
+- Provider-repository materialization and generated-branch retry: already
+  captured in registry A8 and its linked runbook.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, and this log. `PROMPT.md` is unchanged.

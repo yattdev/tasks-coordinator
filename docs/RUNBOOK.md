@@ -1535,6 +1535,30 @@ Take the narrowest safe removal action in that same cycle:
   or trust-boundary decision, raise the visible input request immediately with
   the blocked consequence and a recommendation.
 
+### Distinguish an integration gate from an implementation gate
+
+A dependency edge does not automatically mean that no downstream code can be
+written. First classify what the prerequisite actually gates:
+
+- **Implementation gate:** the downstream task lacks a stable contract, exact
+  source identity, required permission, data, runtime, or security decision.
+  Keep it Blocked.
+- **Integration gate:** the prerequisite implementation exists at an exact
+  reviewed and pushed head, and only canonical merge, deployment, or release is
+  outstanding. Downstream implementation may proceed on a stacked branch when
+  it has a separate task-owned worktree, the exact prerequisite head is recorded
+  as its base, and no shared runtime or trust boundary must be bypassed.
+
+For an integration-only gate, preserve the dependency edge and the later
+merge/release hold, move the downstream task to Work, give its agent the exact
+repository/branch/head and stacking constraints, and verify one session starts.
+The stacked task must not claim the prerequisite is canonical or ship against
+it. If the prerequisite head changes, invalidate the stacking receipt and
+reconcile the downstream base through normal non-rewriting workflow. After the
+prerequisite becomes canonical, re-run the downstream exact-head Review and QA
+before integration. This converts avoidable idle time into reversible work
+without weakening the dependency.
+
 Then follow dependency edges to the root. Every physical Blocked card must end
 at one and only one live recovery root: a verified RUNNING/STARTING owner, a
 visible unanswered Human ask, or a time-bound external event with an exact

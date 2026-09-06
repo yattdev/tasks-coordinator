@@ -1781,3 +1781,19 @@ The live task-runtime capability is independently useful even while the
 canonical upstream implementation and routine-wake coalescing remain pending.
 Availability of exact disposition must not be misreported as proof that
 coalescing, upstream merge, or deployment is complete.
+
+## Dependency edges may gate integration without forbidding implementation (2026-09-06)
+
+Decision: classify each dependency by the capability it withholds. When a
+prerequisite has an exact reviewed and pushed head with a stable contract, but
+only merge, deployment, or release remains, an isolated downstream task may
+implement on a branch stacked from that exact head. The dependency edge and
+integration hold remain in force, and the downstream change repeats normal
+exact-head Review and QA after the prerequisite becomes canonical.
+
+Rationale: treating every unresolved dependency as a total implementation ban
+can leave actionable Blocked roots unstaffed even though the work is safely
+reversible and isolated. Conversely, removing the edge or calling the
+prerequisite complete would erase the real integration gate. Explicitly
+separating implementation readiness from integration readiness preserves both
+delivery velocity and the dependency's safety meaning.
