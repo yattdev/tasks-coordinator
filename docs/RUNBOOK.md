@@ -1997,6 +1997,64 @@ find CI issues), run the full monitored-steps pass and act, do not just report:
   subtask) to poll, open the canonical PR(s) against the repaired base, and advance.
 - Genuinely dependency-parked tasks stay parked; note them, do not force-move.
 
+## Universal per-task inspection and action checklist
+
+Use this procedure every time a task is inspected, mentioned in a board update,
+or included in a Human-facing status—not only during a scheduled monitoring
+cycle. The inspection is incomplete until every applicable check has either an
+executed and verified action or a concrete owner plus deterministic trigger.
+
+1. **Bind the live identity.** Read the physical workflow step, task state,
+   latest conversation evidence, saved plan when present, every nonterminal
+   session, pending actions and moves, relations/dependencies, repository and
+   worktree identity, canonical PR/MR URL, base, branch, and exact head. Treat
+   an older task report as historical until the live sources confirm it.
+2. **Prove the execution owner.** For an executable active lane, identify the
+   one owner expected to act and verify its session is `RUNNING` or `STARTING`
+   on the lane's required model. A `WAITING_FOR_INPUT`, terminal, missing,
+   duplicated, stale, or wrong-model session requires immediate reconciliation:
+   wake, replace, stop, or route it safely, then re-read the resulting state.
+   A legitimate Human/provider/external wait must name its owner, exact awaited
+   evidence, time/event trigger, attempt count, and fallback.
+3. **For physical Blocked, execute the blocked record.** Recheck the exact
+   blocker and dependency root, previous actionable lane, preservation receipt,
+   blocker owner, removal action, expected evidence, trigger, and fallback.
+   Staff the root, take every safe removal action, eliminate stale dependency
+   edges, and atomically return cleared work to its narrowest active lane with a
+   verified correct-model session. Do not resend an unchanged request, but do
+   refresh its evidence and next-check receipt.
+4. **For CI, inspect the latest exact head.** Enumerate all required failed and
+   pending checks with run/job URLs and logs. Classify ownership as branch
+   defect, stale-base conflict, broken main, deterministic infrastructure,
+   provider outage/rate limit, flaky test, or cascade. Give a CI Fixup Luna
+   owner the concrete fix/reproduction/rerun instruction and verify it starts.
+   A maintainer comment is communication, not completion: continue until a fix
+   is pushed or one narrow rerun/permission request has a named owner and
+   deterministic follow-up.
+5. **For every open PR/MR, audit delivery state.** Record canonical repository
+   and URL, base/head SHA, draft state and the actual missing readiness gate,
+   mergeability/conflict status, required checks, unresolved and hidden review
+   threads, reviewer requests, branch protection, and the plain-language reason
+   the PR remains open. Send conflicts to delegated Work for non-rewriting
+   additive integration. When readiness passes, make it non-draft, refresh the
+   checks and threads triggered by that transition, then notify the correct
+   reviewer once per unchanged head. No reviewer request is acceptable only
+   while draft/readiness prevents it or when an exact notification failure is
+   being actively repaired.
+6. **For each workflow gate, explain inactivity and act.** Spec, Work, Review,
+   QA, PR, CI Fixup, Human-QA, and Done each require a current owner or a precise
+   wait. Review and QA must be independent, correct-model, and bound to the
+   exact current head. A changed head invalidates previous Review/QA/CI evidence.
+   Respect the separate ToDeploy ownership boundary; incidental board inventory
+   is not permission for task-specific inspection there.
+7. **Verify and persist the result.** Re-read the task row, physical lane,
+   session/profile/effective model, pending move, agent tag, repository head,
+   and provider state after every action. Update the durable ledger with health,
+   owner, last action, next action, trigger, attempt count, evidence identity,
+   and fallback. A status reply reports the action already taken and uses the
+   clickable full task identity; it never leaves “wait”, “monitor”, “no session”,
+   or a lane name as the executable next action.
+
 
 ## Before a manual workaround on a FAILED task, check if a platform fix OWNS its failure — and preserves it as the reproduction
 

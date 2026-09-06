@@ -1892,3 +1892,19 @@ with one global Sol prohibition. Sol is intentional for both specification and
 QA, while implementation, review, delivery, repair, and terminal work use the
 specified lighter Codex models. Exact live profile resolution prevents a stale
 session or misleading profile name from defeating that configuration.
+
+## Task inspection is always an action sweep (2026-09-06)
+
+Decision: the same per-task inspection checklist applies whenever the
+Coordinator monitors a task, reads it for a board update, or reports its status.
+It is not limited to scheduled `WAKE:CYCLE` runs. Each touch refreshes execution,
+Blocked, CI, PR/reviewer/conflict, and workflow-gate ownership as applicable;
+stale or unowned work is acted on immediately and the result is verified and
+persisted.
+
+Rationale: limiting active management to routine cycles allowed status requests
+to repeat stale claims—green PRs without reviewers, red pipelines without an
+acting fix owner, conflicts treated as observations, and active lanes with no
+running agent. A universal action sweep makes staleness the Coordinator's
+responsibility at the moment it is observed, regardless of what triggered the
+inspection.
