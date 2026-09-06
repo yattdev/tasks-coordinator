@@ -1858,3 +1858,17 @@ its base is accepted, but reporting that carrier as the product delivery changes
 both the repository owner and the meaning of its CI. The canonical base keeps
 review, merge authority, provider checks, and Human reporting attached to the
 repository that will actually receive the change.
+
+## GPT-5.6 Sol is reserved for coordination and specification (2026-09-06)
+
+Decision: `gpt-5.6-sol` may be used only by the permanent Coordinator and by a
+task physically in the Spec column. Every other role and lane uses an
+appropriate non-Sol profile. Parked nonterminal Sol sessions outside Spec are
+not resumed; terminal Sol sessions remain historical evidence only.
+
+Rationale: Sol is a high-cost, high-token-burn model whose additional capability
+is justified for board-wide coordination and difficult specification, but not
+for routine implementation, review, QA, CI repair, holding, deployment, or
+terminal work. Auditing both task assignment and session profiles catches the
+two distinct risks: a future launch configured to use Sol and an old Sol session
+that can silently resume after the task has left Spec.

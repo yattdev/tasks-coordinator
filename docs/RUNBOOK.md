@@ -789,6 +789,29 @@ because an obsolete Spec execution still appears live, stop only that direct
 child's stale execution, retry the move, and record the recovery. Never apply this
 rule to unrelated/manual Todo tasks.
 
+## Audit and contain GPT-5.6 Sol usage
+
+`gpt-5.6-sol` is reserved for the permanent Coordinator and tasks physically in
+Spec. Audit the live board from authoritative model mappings, not profile names:
+
+1. List configured agents and build the set of enabled profile IDs whose exact
+   model is `gpt-5.6-sol`.
+2. List every task and flag a non-Spec task whose current assignee profile is in
+   that set. This is future launch/resume risk even when no session is active.
+3. List every task's complete sessions. Classify `RUNNING`/`STARTING` as active
+   usage, `WAITING_FOR_INPUT`/`CREATED` as parked resumable risk, and terminal
+   sessions as history only.
+4. Do not message or resume an out-of-policy parked session. Select a fresh
+   role-appropriate non-Sol profile, then verify the returned effective profile
+   because a workflow step may override the request.
+5. If task/workflow controls cannot change the effective profile, keep the
+   session parked and record the exact task/session/profile IDs plus the
+   configuration-repair owner. Never spend Sol merely to ask that session to
+   switch models.
+
+Report active use separately from configuration and parked-session risk; a WFI
+session does not currently burn inference tokens, but can do so on its next wake.
+
 ## A resumed session is running but the task is still in the wrong column
 `message_task_kandev` can successfully resume an idle session without changing
 the task's workflow step. This creates a convincing false healthy signal: the

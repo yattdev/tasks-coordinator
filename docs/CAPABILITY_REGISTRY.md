@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-06b -->
+<!-- registry-version: 2026-09-06c -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -597,6 +597,15 @@ Production, protected/release branch, cost, and external-communication **labels*
 ### J6. Unexplained board state
 - **Action** Suspect your own persistence failure FIRST. Compare your last successful state write against the board's change timestamps and read the actual move/handoff message — it carries the actor's tag.
 - **Never** Invent an external actor to explain state you cannot account for, and never escalate that fiction.
+
+### J7. A task is assigned to or retains a GPT-5.6 Sol session
+- **Trigger** A board audit, task start/resume/message, or lane move exposes a task assignee or nonterminal session whose resolved model is `gpt-5.6-sol`.
+- **Action** Allow it only for this permanent Coordinator or a task physically in Spec. Outside those cases, do not start or resume it; select and verify a fresh role-appropriate non-Sol profile. Distinguish active `RUNNING`/`STARTING` use from parked `WAITING_FOR_INPUT`/`CREATED` risk.
+- **Capability** `list_agents_kandev` for profile→model resolution; `list_tasks_kandev` for physical lane and assignee; complete `list_task_sessions_kandev` census for effective nonterminal profiles.
+- **Authority** Human cost-control directive 2026-09-06; see [Audit and contain GPT-5.6 Sol usage](RUNBOOK.md#audit-and-contain-gpt-56-sol-usage).
+- **Evidence** Exact task, lane, session and profile IDs; active/parked classification; fresh non-Sol effective-profile readback after any replacement.
+- **Escalate to** A scoped workflow/profile configuration repair only when the exposed controls cannot select a non-Sol effective profile.
+- **Never** Infer the model from the profile name, wake an out-of-policy parked Sol session to ask it to switch, or count terminal history as current usage.
 
 ---
 
