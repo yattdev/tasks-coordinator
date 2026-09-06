@@ -1797,3 +1797,18 @@ reversible and isolated. Conversely, removing the edge or calling the
 prerequisite complete would erase the real integration gate. Explicitly
 separating implementation readiness from integration readiness preserves both
 delivery velocity and the dependency's safety meaning.
+
+## External PR creation does not prove contribution fit (2026-09-06)
+
+Decision: before a third-party PR becomes a delivery dependency, the Coordinator
+must verify the upstream's current contribution policy and template, and verify
+that the diff itself serves an upstream-generic need. If a consumer-specific
+public contract is not welcomed upstream, delivery moves to an owned fork,
+adapter, or other maintained fallback instead of waiting indefinitely.
+
+Rationale: a technically complete draft once exposed consumer-namespaced methods
+in an unrelated upstream while its description assumed the consumer's internal
+architecture. GitHub allowed the fork PR, but that fact said nothing about
+product fit. Checking policy, template, precedents, and diff-to-product alignment
+before maintainer notification protects upstream attention and gives the board a
+deterministic fallback when the contribution path is unsuitable.

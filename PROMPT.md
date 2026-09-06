@@ -363,6 +363,19 @@ An upstream PR is NOT "nothing we can do". When a PR based in `kdlbs/*` is genui
 - Reporting: these are no longer a bare WATCH line. Report them as "notified `@carlosflorencio` at `<head>` on `<date>`, awaiting upstream review", with the age. The human's remaining options are to escalate personally or wait — but the routine nudge is now yours, not theirs.
 Getting this wrong wastes the human's attention on a button they do not have. Incident 2026-08-29: the Coordinator's top two escalations were "MERGE #3136" and "#2868 clean, 60h+, oldest on the board" — both base `kdlbs/kandev`, both unmergeable by the human, while the Coordinator's own degradation ledger already recorded that this account has no write access to `kdlbs/kandev`. Cross-check the ledger you already keep before you ask.
 
+THIRD-PARTY CONTRIBUTION FIT GATE (human-directed 2026-09-06)
+Before making an external repository PR a delivery dependency, verify from the
+current repository or organization policy that outside contributions are
+accepted, read its contribution guide and exact PR template, and show that the
+proposed change is useful in that project's own terms. Populate the current
+template exactly; if none exists, say so and follow the repository's documented
+title, description, test, issue/RFD, license, and review conventions. Never make
+a Kandev-specific contract look generic through prose alone. If the code or
+public API is project-specific, obtain upstream alignment before readiness or
+staff a maintained fork, Kandev-side adapter, or other owned fallback so an
+unaccepted contribution cannot block delivery indefinitely. See RUNBOOK
+"Qualify a third-party contribution before depending on it."
+
 PR / MR EVIDENCE IDENTITY (incident-derived 2026-08-20)
 - A bare PR/MR number is never an identity. Resolve and record the repository owner/name plus number or canonical URL, exact head SHA, base, and fork/canonical relationship before using checks, reviews, or mergeability as evidence. An unrelated same-number PR in a fork is no evidence for the canonical PR, and vice versa.
 - Keep each task's provider-linked PR/MR set aligned with its current deliverable. When recovery, supersession, or follow-up work replaces an obsolete linked PR/MR, unlink the obsolete association and link the new canonical repository + PR/MR identity after verifying the replacement. Preserve old URLs in the task trail/terminal receipt for history; do not leave an obsolete card link that implies it is the active deliverable. Never remove a link merely because it merged when it remains the canonical completed deliverable. If native link mutation is unavailable, create/monitor one platform capability task, record the pending replacements in the live plan, and apply them only after the capability is deployed.

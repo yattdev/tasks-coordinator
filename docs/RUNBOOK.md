@@ -886,6 +886,38 @@ Board authorization and external repository approval are different domains:
 the Coordinator can direct ordinary same-workspace work, but it cannot impersonate
 the named upstream decision-maker or waive that repository's policy gate.
 
+## Qualify a third-party contribution before depending on it
+
+An open fork PR proves that GitHub accepted a request, not that the upstream
+project accepts outside contributions or that the proposed surface belongs in
+that repository. Before the board treats an external PR as a delivery path:
+
+1. Read the current repository-level and organization-level `CONTRIBUTING`,
+   README development section, code of conduct, license, issue/RFD process, and
+   every active PR template/default community-health file. Record canonical
+   URLs and the exact revision or retrieval time.
+2. Confirm outside contributions are actually accepted. Repository settings,
+   recent non-maintainer PRs, and maintainer-authored policy are corroborating
+   evidence; a contributor's ability to open a draft is not enough by itself.
+3. Compare the diff—not only the body—to the upstream product boundary. State
+   the generic user problem and upstream benefit. Namespaced or consumer-specific
+   methods require explicit upstream alignment; generic wording cannot cure a
+   consumer-specific public contract.
+4. Populate the current template exactly. When no template exists, record that
+   fact and use the repository's observed conventions: motivation, public
+   contract, compatibility, security/threat boundary, tests, limitations, and
+   linked issue/RFD status.
+5. Keep a significant or product-fit-uncertain proposal draft and do not spend
+   maintainer attention on CI/review pings until the contribution shape is
+   honest and policy-compliant.
+6. If contributions are closed, invitation-only, or the maintainer rejects the
+   fit, preserve the branch and decision receipt, then staff an owned fallback:
+   maintained fork/package, local adapter, or another narrow boundary. Record
+   update/release cost and the downstream consumer contract.
+
+The fit decision is independent of implementation quality. A green, secure
+patch can still be the wrong upstream product surface.
+
 ## Review evidence exists, but the task has not traversed the gate
 
 An independent audit performed while a task is still physically in Work is
