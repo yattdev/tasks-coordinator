@@ -133,6 +133,29 @@ Do not declare a feature irrelevant merely because the control plane is already
 containerized, and do not manufacture a display-only runtime that cannot reach
 the changed path.
 
+## Prove contract compatibility before creating stateful runtime
+
+When an integration consumer and its host/API ship independently, a reviewed or
+merged host change does not prove that the consumer uses the accepted contract.
+Before provisioning an external service, Compose project, credentials, ports,
+or synthetic fixtures:
+
+1. Pin the canonical host/API and consumer to exact immutable revisions.
+2. Inspect the generated/public SDK contract actually present at that host
+   revision, including fields that are intentionally read-only or omitted.
+3. Run the consumer's compile, focused contract tests, static checks, and final
+   package-against-host verification.
+4. If any gate fails, stop before runtime creation. Preserve the exact command
+   evidence and assign one scoped source repair on the side that violates the
+   accepted contract.
+5. After the repair passes normal Review and distinct QA, repeat the preflight
+   against fresh canonical identities before creating the runtime.
+
+This ordering prevents a known source incompatibility from producing useless
+containers, credentials, or fixture data. It also keeps contract intent clear:
+do not expand a host write boundary merely to make a consumer that assumed an
+unsupported mutation compile.
+
 ## When the image cannot exercise the feature, say so
 
 QA images routinely lack runtime capabilities: no `git` binary, no configured

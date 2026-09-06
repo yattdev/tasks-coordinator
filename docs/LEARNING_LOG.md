@@ -2467,3 +2467,34 @@ Starting another writer would trade a transport defect for repository corruption
 
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, and this log. `PROMPT.md` is unchanged.
+
+## 2026-09-06c — prove contract compatibility before runtime
+
+Window: `2026-09-06T02:20:03Z` through `2026-09-06T14:19:32Z`. The prior
+explicit learning-cycle timestamp was the start; later event-driven learning
+was included and deduplicated but had not advanced the persisted window.
+
+For integrations whose consumer and host/API ship separately, exact host
+delivery is not enough. Compile, test, and package the exact consumer against
+the exact canonical host contract before creating any stateful service,
+container, credential, port, or fixture. If this preflight fails, preserve the
+evidence, route one scoped source repair, and repeat normal Review and distinct
+QA before attempting runtime provisioning.
+
+Rejected by the filter:
+
+- Runtime binary upgrades require fresh sessions: already captured by
+  `2026-09-06b` and the linked lifecycle procedure.
+- Same-session implementation and Review/QA reuse: already covered by the
+  independent-gate lifecycle rules.
+- Generic quota telemetry contradicting an exact provider call: already
+  covered by the exact-capability provider rule and existing runbook incident.
+- Merged PRs with deployment/native acceptance still outstanding: already
+  covered by terminal-integrity and integration-gate rules.
+- PostgreSQL fixture-table and step-summary failures: product-specific test
+  defects rather than general Coordinator orchestration knowledge.
+- Current task lanes, pull-request heads, ports, and cleanup receipts:
+  transient operational state retained only in the Coordinator plan.
+
+Files: `docs/RUNBOOK.md`, `docs/QA_INSTANCES.md`, `docs/DECISIONS.md`, and
+this log. `PROMPT.md` is unchanged, so no live-description mirror is required.

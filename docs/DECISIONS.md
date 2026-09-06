@@ -1827,3 +1827,18 @@ process. Resuming that session or starting a second writer would make the
 upgrade receipt irrelevant and risk concurrent mutation of an in-progress
 merge. Exact lifecycle replacement preserves both provenance and single-writer
 safety.
+
+## Contract compatibility precedes stateful integration runtime (2026-09-06)
+
+Decision: when a consumer and host/API are versioned independently, acceptance
+must first prove the exact consumer compiles, tests, and packages against the
+exact canonical host contract. Only then may the integration create an external
+service, containers, credentials, ports, or fixture data. A failure becomes a
+scoped source repair and the runtime remains uncreated.
+
+Rationale: a merged host contract can intentionally omit a mutation that the
+consumer still assumes. Starting a stateful E2E in that condition cannot reach
+the behavior under test and creates resources whose only outcome is a known
+compile/package failure. Source-first compatibility evidence is cheaper,
+safer, and preserves the accepted ownership boundary instead of pressuring the
+host to expose an unsupported write path.

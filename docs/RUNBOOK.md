@@ -12,6 +12,16 @@ executor containers it creates. Follow the target-plane check in
 test the component whose behavior changes, and do not manufacture a control-plane
 instance for an executor-container-only feature.
 
+For an integration whose consumer and host/API are versioned separately, run
+the contract-compatibility preflight before creating any stateful runtime. Bind
+both sides to exact immutable revisions, then compile, test, and package the
+consumer against the canonical host contract. Follow the detailed checklist in
+[QA_INSTANCES.md](QA_INSTANCES.md#prove-contract-compatibility-before-creating-stateful-runtime).
+A merged prerequisite proves availability, not compatibility. If the preflight
+fails, preserve the command evidence and route a scoped source repair; do not
+create containers, ports, credentials, or fixtures that cannot exercise the
+accepted contract.
+
 For every Human-QA task that needs an application runtime, create a separate
 Docker instance from the exact tested head and stop that task's older test
 instance first. Publish and verify a `0.0.0.0` binding through the machine's
