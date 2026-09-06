@@ -2555,3 +2555,18 @@ Files changed: this log only. Log commit
 `f5e4a76af2b19fb67c5085749146b3869411fbc4` without conflict. `PROMPT.md` was
 unchanged, so live-description mirror status is `NOT_REQUIRED`. Unresolved
 conflicts: none.
+
+## 2026-09-06f — every task inspection is an action sweep
+
+Human correction: the Coordinator's Blocked, CI, PR/draft/conflict/reviewer,
+and workflow-session checklist must run whenever a task is inspected or
+reported, not only for `WAKE:CYCLE`. A stale condition belongs to the
+Coordinator at the moment it is observed: staff or wake its owner, resolve or
+route the conflict, fix or narrowly rerun CI, explain draft/open state, notify a
+qualified reviewer, and verify/persist the result.
+
+Files: `PROMPT.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`,
+`docs/CAPABILITY_REGISTRY.md`, and this log. Binding policy commit:
+`b41bee242bb3266de20ee5bd6f59d269a19a50c5`; this additive registry/log
+successor will be recorded at its own commit. The complete current `PROMPT.md`
+was mirrored and byte-compared after transport newline normalization.

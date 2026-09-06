@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-06d -->
+<!-- registry-version: 2026-09-06e -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -48,6 +48,15 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Action** Either state in the cycle log why it is healthy and merely *looks* parked, or act on it. Those are the only two outcomes.
 - **Evidence** Session state and `updated_at`, not the column — see [read session state, not the column](RUNBOOK.md#a-task-looks-active-but-is-idle--read-session-state-not-the-column).
 - **Never** Let the Human have to ask "what is going on with this task".
+
+### A3a. Any task is inspected, mentioned, or included in a status update
+- **Trigger** Every task touch, regardless of whether it came from a routine wake, task report, Human question, board-status request, or follow-up.
+- **Action** Run the applicable execution-owner, Blocked, CI, PR/draft/conflict/reviewer, workflow-gate, verification, and persistence checks in the [universal per-task action checklist](RUNBOOK.md#universal-per-task-inspection-and-action-checklist). Act on every safe stale condition immediately; a status read is never observation-only.
+- **Capability** Live board/task/session/plan/relations tools; canonical provider PR/check/thread reads; `message_task_kandev`, `move_task_kandev`, and a correctly mapped fresh session when remediation is required.
+- **Authority** Standing Coordinator duty. ToDeploy and destructive/security boundaries remain unchanged.
+- **Evidence** Fresh exact task/lane/session/model/head/provider readback, action receipt, concrete next owner/trigger, and persisted continuity state.
+- **Escalate to** Human only for a genuinely Human-reserved action, with options, recommendation, and consequence; otherwise staff the task or canonical repair owner.
+- **Never** Repeat a stale status, leave red CI/conflict/no-reviewer/no-owner as a passive observation, or use “wait/monitor/no session” as the next action.
 
 ### A4. Delegating bounded evidence gathering
 - **Trigger** Every turn with at least two independent inbound messages or parallelizable evidence requests.
