@@ -1812,3 +1812,18 @@ architecture. GitHub allowed the fork PR, but that fact said nothing about
 product fit. Checking policy, template, precedents, and diff-to-product alignment
 before maintainer notification protects upstream attention and gives the board a
 deterministic fallback when the contribution path is unsuitable.
+
+## Runtime replacement is a session lifecycle boundary (2026-09-06)
+
+Decision: after upgrading an agent runtime, sessions created before the upgrade
+must be retired and replaced before they are allowed to edit preserved work.
+Context reset does not satisfy this gate because it can reuse the existing agent
+process. The replacement is accepted only after exact old-session terminal
+readback and one verified fresh-session operation.
+
+Rationale: a persistent Codex upgrade fixed an edit transport defect for a
+disposable probe, while the real task's WFI session still held the pre-upgrade
+process. Resuming that session or starting a second writer would make the
+upgrade receipt irrelevant and risk concurrent mutation of an in-progress
+merge. Exact lifecycle replacement preserves both provenance and single-writer
+safety.

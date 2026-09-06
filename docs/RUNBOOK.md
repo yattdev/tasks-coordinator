@@ -954,6 +954,23 @@ diagnostics during this incident, but they are not an authorization path. Never
 write the database directly, extract browser/session credentials, or restart a
 shared backend merely to recover board control.
 
+### An agent runtime was upgraded while a task session remained live
+
+A persistent CLI/runtime upgrade does not replace an already-running agent
+process. A session created before the upgrade can remain `WAITING_FOR_INPUT` and
+resume the old binary even though a fresh shell reports the new version. ACP
+context reset also reuses that process, so it is not an upgrade acceptance test.
+
+Bind the handoff to the exact task/session and preserved worktree fingerprints.
+Retire the pre-upgrade session without waking it, verify terminal/CANCELLED
+readback, then start exactly one replacement session and verify that its start
+time follows the upgrade plus its first bounded task-owned edit/command returns.
+Only then move or message the task. If the Coordinator cannot retire that exact
+session because the only stop surface is direct-parent scoped, keep the task
+parked and send one deduplicated Support request for guarded exact-session
+retirement or the reusable capability; never resume the stale process or create
+two writers on preserved in-progress work.
+
 Routine wake messages do not repair a wedged task-control transport. After one
 bounded critical-tool probe fails, terminate the call, report the exact caller
 session that must be replaced, and stop. Do not write a standup, claim a cycle,

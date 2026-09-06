@@ -191,9 +191,9 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 
 ### B8. Stale, dead, or looping sessions
 - **Trigger** Session RUNNING with no output; step never launched; step re-enters and loops; agent cannot edit files.
-- **Action** Diagnose from session transcripts and `/data/logs/backend-logs.log` before acting. Unchanged tree across re-entries = platform routing defect → create one platform-bug task.
+- **Action** Diagnose from session transcripts and `/data/logs/backend-logs.log` before acting. Unchanged tree across re-entries = platform routing defect → create one platform-bug task. After an agent-runtime binary upgrade, treat every pre-upgrade live/WFI session as still bound to its old process: retire that exact session and start a new one; ACP context reset is not a binary refresh.
 - **Capability** Runbook playbooks: [session RUNNING but no process](RUNBOOK.md#a-session-says-running-but-produces-no-process-output-or-timestamp) · [step never launched](RUNBOOK.md#step-agent-silently-never-launched-task-idle-in-a-step-for-hours) · [completed-session loop](RUNBOOK.md#step-re-enters-on-an-already-completed-session-and-loops) · [untrusted mise.toml](RUNBOOK.md#task-fails-to-start-worktree-misetoml-is-untrusted) · [stale worktree collision](RUNBOOK.md#task-failed-to-start-preparing-worktree-checking-out--fatal--already-exists).
-- **Never** Create duplicate agents or destroy a valid reproduction.
+- **Never** Create duplicate writers, use context reset to claim a runtime upgrade reached an existing process, or destroy a valid reproduction.
 
 ### B9. Unanswered delegation
 - **Trigger** A reply-bearing request produced no receipt.

@@ -2452,3 +2452,18 @@ Rejected by the filter:
 
 Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
 `docs/DECISIONS.md`, and this log. `PROMPT.md` is unchanged.
+
+## 2026-09-06b — runtime upgrades require session replacement
+
+A persistent agent CLI upgrade changes future processes, not already-live task
+sessions. A pre-upgrade `WAITING_FOR_INPUT` session can still resume its old
+binary, and ACP context reset is not a substitute because it reuses that process.
+For preserved work, retire the exact old session first, verify terminal state,
+then start one fresh owner and prove a bounded task operation returns.
+
+When exact retirement is unavailable because stop authorization is limited to a
+direct parent, keep the task parked and request one guarded lifecycle repair.
+Starting another writer would trade a transport defect for repository corruption.
+
+Files: `docs/CAPABILITY_REGISTRY.md`, `docs/RUNBOOK.md`,
+`docs/DECISIONS.md`, and this log. `PROMPT.md` is unchanged.
