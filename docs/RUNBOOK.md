@@ -2059,9 +2059,15 @@ executed and verified action or a concrete owner plus deterministic trigger.
    exact current head. A changed head invalidates previous Review/QA/CI evidence.
    Respect the separate ToDeploy ownership boundary; incidental board inventory
    is not permission for task-specific inspection there.
-7. **Verify and persist the result.** Re-read the task row, physical lane,
-   session/profile/effective model, pending move, agent tag, repository head,
-   and provider state after every action. Update the durable ledger with health,
+7. **Audit tags, then verify and persist the result.** On every task touch,
+   read the complete task tag set and distinguish agent-owned applications from
+   Human-owned applications. If the Coordinator's current tag and note already
+   match the live owner, next action, state, and deterministic trigger, leave
+   them unchanged. Otherwise remove or replace only stale/incompatible
+   agent-owned applications, apply the minimum correct tag/note, and verify the
+   exact targeted readback. Human-owned applications are read-only. Then re-read
+   the task row, physical lane, session/profile/effective model, pending move,
+   repository head, and provider state after every action. Update the durable ledger with health,
    owner, last action, next action, trigger, attempt count, evidence identity,
    and fallback. A status reply reports the action already taken and uses the
    clickable full task identity; it never leaves “wait”, “monitor”, “no session”,
@@ -2828,24 +2834,35 @@ Columns are `id, session_id, task_id, workflow_id, workflow_step_id, step_positi
 queued_at, actor, sender_session_id, move_id` — note `step_position`, which is easy to
 misread as an applied/status flag when scanning a row positionally.
 
-### Reconcile the agent tag with every completed move
+<a id="reconcile-the-agent-tag-with-every-completed-move"></a>
 
-A lane and its agent tag are two views of the same next action. Treat them as one
-Coordinator mutation sequence:
+### Audit and reconcile agent tags on every task touch
 
-1. request the move and verify the physical destination (or record the live pending move);
-2. read the target task's current agent tags;
-3. remove stale or incompatible agent applications;
-4. apply the tag matching the destination owner/next action and write one concise
+A task's tags are part of its live operating state, not decoration. Audit them
+whenever the Coordinator reads, monitors, mentions, reports, or acts on the task.
+A lane and its agent tag remain two views of the same next action. Use this
+sequence:
+
+1. read the task's complete current tag set and identify application ownership;
+2. derive the correct agent-owned tag and note from the live owner, next action,
+   state, and deterministic trigger rather than from the lane name alone;
+3. if the current agent-owned tag and note already match, make no tag mutation;
+4. otherwise remove stale or incompatible agent-owned applications;
+5. apply the minimum tag matching the owner/next action and write one concise
    action/reason or deterministic resume-trigger note;
-5. read the target task's tags again and verify the exact tag ID and note.
+6. read the target task's tags again and verify the exact tag ID and note.
+
+For a move, also verify the physical destination (or record the live pending
+move) before declaring the combined lane/tag action complete.
 
 Examples: active delegated work uses `agent`; an operator-owned merge of a green
 `yattdev/*` PR uses `you merge` with the canonical URL; Human-QA uses `needs-test`
 with the exact test; dependency parking uses `waiting` with the resume trigger. Do
 not infer the tag from the lane name alone—derive it from the actual owner and next
-action. A move is not fully reconciled until both the physical lane and targeted tag
-readback agree. In ToDeploy, targeted listing and reconciliation of this agent's own
+action. A task touch is not fully reconciled while an obsolete agent-owned
+instruction remains; a move also requires the physical lane and targeted tag
+readback to agree. Human-owned applications are always read-only. In ToDeploy,
+targeted listing and reconciliation of this agent's own
 tag applications and notes is the sole permitted task-specific action: leave Human
 applications untouched and do not inspect or mutate task content, messages, plans,
 sessions, relations, PRs, resources, lane, or state. If targeted tagging is temporarily

@@ -122,12 +122,12 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Authority** Coordinator-owned. A task-specific Human hands-off directive is a hard boundary — report the exact denial.
 - **Never** Use Blocked as parking; never leave an actionable root unstaffed; never report raw Blocked inventory as an outcome or hide an unstaffed root behind dependency prose.
 
-### B3a. Task moved or its next action changed
-- **Trigger** Every requested/applied task move, or any owner/next-action change that makes the current agent tag stale.
-- **Action** In the same cycle, verify the physical lane, read targeted tags, remove stale/incompatible agent applications, apply the tag matching the actual owner/next action with a concise hover note, then verify targeted tag readback. A queued move keeps a recorded pending tag reconciliation until the destination applies.
-- **Capability** `move_task_kandev`; Tags plugin targeted `list_tags`, `add_tag`, and `remove_tag`; [reconcile the agent tag with every completed move](RUNBOOK.md#reconcile-the-agent-tag-with-every-completed-move).
-- **Evidence** Physical workflow step plus exact task-scoped tag ID/name/note readback.
-- **Never** Leave the prior lane's instruction on a moved card, infer a tag solely from the lane name, or alter human tags. For ToDeploy, this agent's targeted tag applications and notes are the sole permitted task-specific surface; do not read or mutate task content, workflow state, sessions, PRs, or resources.
+### B3a. Any task is touched, moved, or has its next action changed
+- **Trigger** Every task read, inspection, mention, status report, message, action, or move.
+- **Action** Read the complete task tag set. Preserve matching agent-owned tags/notes without churn; otherwise remove stale/incompatible agent applications, apply the minimum tag matching the actual owner/next action/state/trigger with a concise hover note, then verify targeted tag readback. For a move, also verify the physical lane; a queued move keeps a recorded pending tag reconciliation until the destination applies.
+- **Capability** Tags plugin targeted `list_tags`, `add_tag`, and `remove_tag`; `move_task_kandev` when applicable; [audit and reconcile agent tags on every task touch](RUNBOOK.md#reconcile-the-agent-tag-with-every-completed-move).
+- **Evidence** Complete task-scoped tag ownership read plus, after a mutation, exact tag ID/name/note readback; physical workflow step for a move.
+- **Never** Churn an already-correct tag, leave an obsolete agent-owned instruction, infer a tag solely from the lane name, or alter Human-owned applications. For ToDeploy, this agent's targeted tag applications and notes are the sole permitted task-specific surface; do not read or mutate task content, workflow state, sessions, PRs, or resources.
 
 ### B3b. A live armed pending move makes a task message-unsafe
 - **Trigger** `pending_moves` contains a row whose target differs from the current lane and whose keyed task session is present and `WAITING_FOR_INPUT`.

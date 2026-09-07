@@ -1931,3 +1931,20 @@ acting fix owner, conflicts treated as observations, and active lanes with no
 running agent. A universal action sweep makes staleness the Coordinator's
 responsibility at the moment it is observed, regardless of what triggered the
 inspection.
+
+## Agent-owned tag reconciliation applies to every task touch (2026-09-07; human-directed)
+
+Decision: whenever the Coordinator reads, monitors, mentions, reports, or acts
+on a task, it audits the complete task tag set. Correct agent-owned tags and
+notes are preserved without churn. Stale or incompatible agent-owned
+applications are removed or replaced immediately so the card reflects the live
+owner, next action, state, and deterministic trigger, with targeted readback
+after mutation. Human-owned tag applications remain read-only. This broadens
+the earlier move-only reconciliation trigger; moves still require lane and tag
+agreement as one action.
+
+Rationale: tags are visible operating instructions. Auditing them only on lane
+moves allowed a card to keep obsolete QA, wait, or ownership guidance after its
+actual state changed in place. Treating tags as part of every inspection makes
+the board truthful at the same moment the Coordinator relies on or reports it,
+without needless writes when nothing changed.

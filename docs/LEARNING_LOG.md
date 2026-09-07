@@ -2585,3 +2585,15 @@ block.
 Files: `PROMPT.md`, `docs/RUNBOOK.md`, `docs/CAPABILITY_REGISTRY.md`,
 `docs/DECISIONS.md`, and this log. The complete current `PROMPT.md` must be
 mirrored to the live Coordinator task description.
+
+## 2026-09-07b — task tags are part of every inspection receipt
+
+Human correction: whenever the Coordinator passes through, monitors, mentions,
+or reports a task, it must audit the task's complete tag set. Matching
+agent-owned tags and notes stay unchanged; stale applications are reconciled to
+the live owner, next action, state, and trigger with targeted readback. Human
+tag applications remain untouched.
+
+Files: `PROMPT.md`, `docs/RUNBOOK.md`, `docs/CAPABILITY_REGISTRY.md`,
+`docs/DECISIONS.md`, and this log. The complete current `PROMPT.md` must be
+mirrored to the live Coordinator task description.
