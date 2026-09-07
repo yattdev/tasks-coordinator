@@ -1968,3 +1968,24 @@ runbook, registry, and lane semantics, making review and consistent execution
 harder. One linked matrix makes omissions visible without duplicating the entire
 procedure in the always-loaded charter. Clickable full identities let the Human
 open the exact card directly and eliminate ambiguous or unusable short IDs.
+
+## Owner context precedes anomaly judgment (2026-09-07; human-directed)
+
+Decision: when a task's delivery, branch, PR, blocker, or workflow placement is
+missing, contradictory, or unexplained, the Coordinator asks the owning task
+agent for its task-specific account first whenever safe contact is available.
+It then independently verifies every named repository, fork, remote, branch,
+PR, head, check, and receipt before deciding or reporting. A partial provider
+query—such as checking only the upstream repository when the task pushes to a
+fork—is not evidence of absence. Pending-move safety and Human-owned holding
+lane boundaries still apply; if they prevent contact, the Coordinator states
+that limitation and obtains the narrowest Human routing required rather than
+guessing.
+
+Rationale: task `e0dd8d19-278c-4d38-aafa-c3e866d92cfb` was incorrectly treated
+as deployable without a linked PR. A later upstream-only check then incorrectly
+claimed that no remote branch existed. The task owner established that the
+branch had been pushed to the `yattdev/kandev` fork and PR creation was omitted
+because its earlier handoff authorized only the push. Checking the owner first,
+then verifying both fork and upstream surfaces, would have identified the exact
+procedural gap without either false claim.
