@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "cycle",
+  "cycle_id": "cycle-2026-09-07T15:00:00Z",
+  "observed_at": "2026-09-07T15:00:00Z",
+  "live_task_ids": [
+    "task-1"
+  ],
+  "open_ledger_task_ids": [
+    "task-1"
+  ],
+  "ledger_entries": [
+    {
+      "task_id": "task-1",
+      "owner": "Coordinator",
+      "health": "healthy",
+      "last_checked_cycle_id": "cycle-2026-09-07T15:00:00Z",
+      "last_action": "verified live session",
+      "next_action": "recheck exact session at the next routine cycle",
+      "trigger": "next routine cycle",
+      "fallback": "start a fresh correct-profile owner if session stops",
+      "evidence_generation": "lane:work/session:s1@1/head:h1",
+      "lane": "Work",
+      "anomalous": false,
+      "mutated": false,
+      "transitioned": false,
+      "delivery_status": "none"
+    }
+  ],
+  "blocked_task_ids": [],
+  "blocked_records": [],
+  "anomalies": [],
+  "delivery_claims": [],
+  "transitions": [],
+  "mutations": [],
+  "continuity": {
+    "plan_bytes": 100000,
+    "soft_limit_bytes": 200000,
+    "hard_limit_bytes": 240000,
+    "compaction_performed": false,
+    "write_readback_verified": true,
+    "current_snapshot_first": true,
+    "open_record_sets_preserved": true
+  },
+  "report": {
+    "mentioned_task_ids": [
+      "task-1"
+    ],
+    "barrier_at": "2026-09-07T15:00:00Z",
+    "fresh": true,
+    "task_barriers": [
+      {
+        "task_id": "task-1",
+        "lane_session_observed_at": "2026-09-07T15:00:00Z",
+        "provider_required": false
+      }
+    ]
+  },
+  "gate_results": {
+    "G1": "pass",
+    "G2": "pass",
+    "G3": "pass",
+    "G4": "pass",
+    "G5": "pass",
+    "G6": "pass",
+    "G7": "pass",
+    "G8": "pass",
+    "G9": "pass",
+    "G10": "pass"
+  }
+}

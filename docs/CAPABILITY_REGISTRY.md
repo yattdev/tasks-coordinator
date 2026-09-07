@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-07a -->
+<!-- registry-version: 2026-09-07b -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -58,6 +58,15 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Evidence** Fresh exact task/lane/session/model/head/provider readback, action receipt, concrete next owner/trigger, and persisted continuity state.
 - **Escalate to** Human only for a genuinely Human-reserved action, with options, recommendation, and consequence; otherwise staff the task or canonical repair owner.
 - **Never** Repeat a stale status, leave red CI/conflict/no-reviewer/no-owner as a passive observation, or use “wait/monitor/no session” as the next action.
+
+### A3b. A cycle, transition, or status sweep is about to complete
+- **Trigger** Before declaring a full cycle, scoped status sweep, workflow move, or Human-facing task status complete.
+- **Action** Build the compact G1–G10 receipt from current board/ledger/session/provider evidence and validate it with `python3 docs/contracts/validate_cycle_receipt.py <receipt.json>`. Treat every missing or unknown field as failed. Assign each failure an owner, corrective action, and trigger before continuing.
+- **Capability** [Hard-gate receipt procedure](RUNBOOK.md#build-and-validate-the-cycletransition-gate-receipt); [task-monitoring checklist](TASK_MONITORING_CHECKLIST.md#0-hard-gate-receipt--do-not-advance-on-prose-alone).
+- **Authority** Standing Coordinator duty; it narrows claims and transitions but grants no new mutation authority.
+- **Evidence** Validator exit 0 plus persisted receipt/hash, barrier time, exact task-ID set hashes, and post-write readback.
+- **Escalate to** The owner of the failed gate; Human only when the corrective action is genuinely Human-reserved.
+- **Never** Substitute a narrative summary, checked boxes, lane placement, or tool success response for a passing receipt.
 
 ### A4. Delegating bounded evidence gathering
 - **Trigger** Every turn with at least two independent inbound messages or parallelizable evidence requests.
@@ -354,10 +363,11 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Action** No charter mirror is required unless `PROMPT.md` itself changed. Bump `registry-version` and record the change in [LEARNING_LOG](LEARNING_LOG.md).
 
 ### F3. The state plan will not save
-- **Trigger** Plan rewrite silently fails or exceeds the API limit.
-- **Action** Archive history to `docs/archive/` and keep the live plan compact; the whole plan must be resent on every update.
+- **Trigger** Plan reaches 200,000 UTF-8 bytes, a rewrite/readback fails, or the 240,000-byte hard stop is reached.
+- **Action** At 200,000 bytes, archive the exact preimage and compact resolved/superseded history before unrelated work. At 240,000 bytes, perform only urgent preservation plus compaction. Preserve all open records inline, verify pre/post ID-set equality, rewrite the whole plan once, and read it back below 200,000 bytes.
 - **Capability** [State-plan hygiene](RUNBOOK.md#state-plan-hygiene-keep-it-under-the-api-rewrite-limit).
-- **Never** Send only a new section — that silently deletes everything else. Never invent an external actor to explain state you failed to persist.
+- **Evidence** Archive path, bytes, SHA-256, pre/post open-record set hashes, live-plan bytes, and successful readback.
+- **Never** Send only a new section, remove unresolved records, keep duplicate superseded ledgers inline, append above the hard stop, or invent an external actor to explain state you failed to persist.
 
 ---
 

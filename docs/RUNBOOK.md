@@ -2077,6 +2077,46 @@ with this procedure rather than reconstructing lane-specific cases from memory.
    it never leaves “wait”, “monitor”, “no session”, or a lane name as the
    executable next action.
 
+### Build and validate the cycle/transition gate receipt
+
+Do not ask a future session to reconstruct whether a cycle or transition was
+valid from narrative logs. Before completion, write a compact JSON receipt with
+the exact G1–G10 fields described in `PROMPT.md`, validate it, then persist the
+receipt or its content hash plus every failed gate in the current plan:
+
+```sh
+python3 docs/contracts/validate_cycle_receipt.py /path/to/cycle-receipt.json
+```
+
+Start from `docs/contracts/fixtures/valid_cycle_receipt.json`; replace its
+single-task example with the exact current scope instead of inventing field
+names or omitting empty-but-required collections.
+
+The validator is deliberately fail-closed. `unknown`, omitted fields, unequal
+task-ID sets, incomplete Blocked records, optimistic delivery claims, an
+unverified mutation/transition, a stale Human-report barrier, or a plan at or
+above 200,000 bytes returns non-zero. At 240,000 bytes the hard stop additionally
+forbids unrelated work. Recording a compaction attempt is not enough: the
+completed receipt must prove the live plan finished below 200,000 bytes.
+
+For a status request about a subset of tasks, use `scope="status"` and include
+exactly the mentioned task IDs. G2 and G10 remain mandatory, and the validator
+requires G3–G8 records whenever a scoped task is Blocked, anomalous, mutated,
+transitioned, or described with a delivery/terminal claim. This makes a status
+request a bounded micro-cycle without forcing an unrelated full-board scan.
+
+For transitions, record both halves under the same `transition_id`:
+
+1. Pre: task ID, source/target lane, authority, pending-move preflight time,
+   evidence generation, exact head when applicable, required predecessor
+   verdicts, intended owner/model, and invalidation conditions.
+2. Post: actual lane/state, settled lifecycle, receiving session/profile/runtime
+   model, head, tag and pending-move readback, expected execution state, and
+   verification result.
+
+If the postcondition fails, the move is not advancement. Preserve the task and
+return it to the narrowest safe active or Blocked state with an owner and trigger.
+
 
 ## Before a manual workaround on a FAILED task, check if a platform fix OWNS its failure — and preserves it as the reproduction
 
@@ -2118,11 +2158,29 @@ fixing it. Do not spawn per-task workarounds. Actions:
 
 The Coordinator's persisted state plan can grow past what update_task_plan /
 update_task can rewrite in one call, after which cycle logs cannot be appended and
-the plan silently stops updating. Keep it compact: roll cycle logs older than ~7
-days into a one-line summary, and archive the full history to a dated file under
-docs/archive/ rather than letting the live plan balloon. If it already exceeds the
-limit, record the cycle summary in the cycle response and flag a compaction pass;
-do not fight the API repeatedly.
+the plan silently stops updating. Measure UTF-8 bytes on every bootstrap and
+rewrite. Use 200,000 bytes as the automatic compaction threshold and 240,000 as
+the hard stop that preserves margin below the 262,144-byte API ceiling.
+
+At 200,000 bytes, archive and compact before unrelated work. At 240,000 bytes,
+perform only urgent state preservation and compaction until readback is below
+200,000. The compaction transaction is:
+
+1. Read the complete preimage once; write it verbatim to a dated
+   `docs/archive/` file and record bytes plus SHA-256.
+2. Build a current-first live plan containing identity, current cycle receipt,
+   every open ledger entry, complete active Blocked records, unanswered Human
+   asks, active flags, follow-ups, degradations, preservation receipts, and the
+   executable handoff. Remove only resolved or superseded history.
+3. Compare pre/post sets for open task IDs, Blocked IDs, Human asks, active
+   flags, and follow-up IDs. Any loss aborts the rewrite.
+4. Rewrite the whole plan once, read it back, compare bytes/hash and the same ID
+   sets, and record the archive path/hash plus post-write result.
+
+Never send only a new section, keep duplicate superseded ledgers inline, or
+append another narrative log above the hard stop. If the archive cannot be
+created or set equality cannot be proved, preserve the existing plan and surface
+G9 as failed; do not invent continuity.
 
 
 ## Weekly hygiene

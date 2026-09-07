@@ -844,10 +844,10 @@ class TestAdversarialSweep(unittest.TestCase):
     recomputed valid digest (see adversarial_sweep.py's module docstring).
     """
 
-    def test_all_78_mutations_are_rejected(self):
+    def test_all_108_mutations_are_rejected(self):
         results, all_passed = adversarial_sweep.run_sweep()
         total = len(results)
-        self.assertEqual(total, 78, f"expected exactly 78 mutations in the sweep, got {total}")
+        self.assertEqual(total, 108, f"expected exactly 108 mutations in the sweep, got {total}")
         failed = [(name, failures) for name, failures, ok in results if not ok]
         self.assertTrue(
             all_passed,

@@ -2597,3 +2597,29 @@ tag applications remain untouched.
 Files: `PROMPT.md`, `docs/RUNBOOK.md`, `docs/CAPABILITY_REGISTRY.md`,
 `docs/DECISIONS.md`, and this log. The complete current `PROMPT.md` must be
 mirrored to the live Coordinator task description.
+
+## 2026-09-07c — board confidence requires executable exit evidence
+
+Human correction: a long checklist does not prevent an imagined blocker,
+missing PR, skipped lane, stale task report, or unsafe Done placement unless
+completion is fail-closed. Every full cycle and scoped status claim now produces
+a machine-validated G1–G10 receipt covering exact inventory equality,
+accountable ledger entries, complete current-cycle Blocked falsification,
+owner-first anomaly evidence, remote/provider delivery containment, transition
+preconditions and postconditions, mutation readback, continuity integrity, and
+fresh Human-report barriers. Target-lane predecessor verdicts are explicit, and
+open provider artifacts cannot be called delivered.
+
+Continuity is also bounded: compact automatically at 200,000 UTF-8 bytes and
+hard-stop unrelated work at 240,000. Compaction must archive the byte-exact
+preimage, preserve the open-ID set, put current state first, finish below the
+soft limit, and pass readback. The pre-change live plan was archived exactly at
+`docs/archive/coordinator-plan-a68df3ae-through-2026-09-07T1452Z.md` (258,446
+bytes; SHA-256
+`77c4faf572f35339801e15dcadb9d56364067d42b1c9ff1cbd6f0ef21c1d084f`) and
+the current-first replacement retained all 75 live task IDs and all 46 physical
+Blocked IDs.
+
+Files: `PROMPT.md`, `README.md`, `docs/TASK_MONITORING_CHECKLIST.md`,
+`docs/RUNBOOK.md`, `docs/CONTINUITY.md`, `docs/CAPABILITY_REGISTRY.md`,
+`docs/DECISIONS.md`, `docs/contracts/`, the exact plan archive, and this log.

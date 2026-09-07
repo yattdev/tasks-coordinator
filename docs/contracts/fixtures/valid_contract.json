@@ -1,14 +1,14 @@
 {
   "contract_id": "coordinator-policy-contract",
-  "contract_version": "1.1.0",
-  "source_charter_effective_version": "2026-09-03a",
-  "source_decision_anchor": "docs/DECISIONS.md#coordinator-policy-is-contract-validated-not-hand-copied-2026-09-03-human-directed",
-  "generated_at": "2026-09-03",
+  "contract_version": "1.2.0",
+  "source_charter_effective_version": "2026-09-07f",
+  "source_decision_anchor": "docs/DECISIONS.md#cycle-and-transition-claims-require-machine-validated-exit-receipts-2026-09-07-human-directed",
+  "generated_at": "2026-09-07",
   "digest_algorithm": "sha256",
-  "digest": "00bc80871b666c17abacb96382f3e01291421cc8fe4b726f539fc613cdfb84a4",
+  "digest": "904006a9bae4c2ba58ecb8fc4b6dd93e207c1f42b9ad31be76e77467cc7ccd87",
   "compatibility": {
     "min_supported_contract_version": "1.1.0",
-    "max_known_contract_version": "1.1.0",
+    "max_known_contract_version": "1.2.0",
     "unsupported_version_behavior": "fail_closed"
   },
   "required_fields": [
@@ -26,6 +26,10 @@
     "queue_claim_identity",
     "worker_helper_receipts",
     "gates",
+    "task_evidence_gates",
+    "workflow_transition_gates",
+    "cycle_exit_gates",
+    "continuity_state",
     "readiness_notification_order",
     "escalation_classes",
     "done_integrity",
@@ -143,6 +147,58 @@
       "exact_head_required": true,
       "terminal_receipt_required": true
     }
+  },
+  "task_evidence_gates": {
+    "status_claims_require_fresh_live_barrier": true,
+    "owner_account_required_for_anomaly_when_contact_safe": true,
+    "absence_requires_all_named_surfaces_checked": true,
+    "blocker_falsification_required_each_cycle": true,
+    "blocked_last_checked_current_cycle": true,
+    "delivery_containment_required_before_deployable_or_terminal": true,
+    "delivery_containment_proof": [
+      "task_authored_head",
+      "named_remote_branch_reachability",
+      "canonical_pr_mr_or_artifact_identity",
+      "provider_proven_merge_or_release_state"
+    ],
+    "lane_or_receipt_alone_is_not_proof": true
+  },
+  "workflow_transition_gates": {
+    "pre_transition_receipt_required": true,
+    "post_transition_readback_required": true,
+    "head_change_invalidates_gate_receipts": true,
+    "review_requires_explicit_verdict": true,
+    "qa_requires_explicit_verdict": true,
+    "to_deploy_requires_provider_merged_or_released": true,
+    "done_requires_terminal_receipt": true,
+    "transition_failure_is_not_advancement": true
+  },
+  "cycle_exit_gates": {
+    "live_task_ids_equal_open_ledger_ids": true,
+    "every_open_entry_requires": [
+      "owner",
+      "health",
+      "last_checked_cycle_id",
+      "last_action",
+      "next_action",
+      "trigger",
+      "fallback"
+    ],
+    "blocked_entries_require_complete_current_cycle_record": true,
+    "mutations_require_post_action_readback": true,
+    "coordinator_owned_holding_tasks_require_disposition": true,
+    "persisted_state_write_and_readback_required": true,
+    "unresolved_gate_failure_blocks_cycle_completion": true
+  },
+  "continuity_state": {
+    "live_plan_soft_limit_bytes": 200000,
+    "live_plan_hard_stop_bytes": 240000,
+    "resolved_history_archive_required": true,
+    "unresolved_records_remain_inline": true,
+    "pre_compaction_archive_sha256_required": true,
+    "pre_post_open_record_set_equality_required": true,
+    "post_write_readback_required": true,
+    "current_snapshot_first": true
   },
   "readiness_notification_order": [
     "provider_confirmed_ready_nondraft",

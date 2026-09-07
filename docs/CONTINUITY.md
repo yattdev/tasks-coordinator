@@ -29,8 +29,10 @@ credentials, or unnecessary sensitive data in any layer.
 2. Read `AGENTS.md` and all of `PROMPT.md`.
 3. Resolve the live Coordinator task, workspace, and workflow identity; never
    inherit identity from a stale handoff.
-4. Read the top/current portion of the Coordinator state plan, including every
-   open follow-up entry and unresolved obligation.
+4. Read the current-first Coordinator state snapshot and latest validated
+   G1–G10 receipt, including every open ledger entry, complete Blocked record,
+   follow-up, Human ask, active flag, degradation, and unresolved obligation.
+   Measure its UTF-8 size before unrelated work.
 5. Load only the relevant runbook/decision/reference sections.
 6. Reconcile the handoff against live task/session/PR/worktree state before
    mutating anything. If they disagree, trust current source evidence and repair
@@ -68,6 +70,21 @@ For durable learning:
 For the live handoff, record at minimum: last completed action; all open
 obligations; exact evidence identity; owner; next safe action; follow-up
 trigger/time and attempt count; fallback; and whether partial work is preserved.
+
+The live plan has an operational budget. At 200,000 UTF-8 bytes, archive the
+exact preimage and compact resolved/superseded history before unrelated work. At
+240,000 bytes, stop ordinary coordination and perform only urgent preservation
+plus compaction until readback is below 200,000. Compaction never removes an
+open ledger entry, active Blocked record, unanswered Human ask, active flag,
+follow-up, degradation, preservation receipt, or executable handoff. Record the
+archive path, bytes, SHA-256, pre/post open-record set hashes, and post-write
+readback. The current snapshot must be first so a replacement does not need to
+interpret hundreds of kilobytes of superseded narrative before acting.
+
+Every completed cycle and scoped status sweep persists a machine-readable
+G1–G10 receipt validated by `docs/contracts/validate_cycle_receipt.py`. A
+replacement session treats a missing, failed, or stale receipt as an explicit
+reconciliation task, never as evidence that the prior cycle succeeded.
 
 ## Proactive primary-session rotation and helper cleanup
 

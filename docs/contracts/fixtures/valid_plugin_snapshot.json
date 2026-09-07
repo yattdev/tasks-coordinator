@@ -1,6 +1,6 @@
 {
-  "plugin_contract_version": "1.1.0",
-  "vendored_digest": "00bc80871b666c17abacb96382f3e01291421cc8fe4b726f539fc613cdfb84a4",
+  "plugin_contract_version": "1.2.0",
+  "vendored_digest": "904006a9bae4c2ba58ecb8fc4b6dd93e207c1f42b9ad31be76e77467cc7ccd87",
   "defaults": {
     "human_reserved_classes": [
       "destructive_or_irreversible",

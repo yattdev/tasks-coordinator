@@ -36,7 +36,7 @@ import sys
 # The contract's own compatibility.max_known_contract_version is the field
 # the validator checks the contract against; VALIDATOR_SCHEMA_VERSION is
 # reported in --version output only.
-VALIDATOR_SCHEMA_VERSION = "1.1.1"
+VALIDATOR_SCHEMA_VERSION = "1.2.0"
 
 # The highest contract_version this validator BUILD understands, hardcoded in
 # code rather than read from the contract document. A contract's own
@@ -49,7 +49,7 @@ VALIDATOR_SCHEMA_VERSION = "1.1.1"
 # validator source file was actually written to understand, so it cannot be
 # smuggled past by anything inside the JSON body. Bump it only when this
 # validator is upgraded to actually understand a newer contract_version.
-VALIDATOR_MAX_SUPPORTED_CONTRACT_VERSION = "1.1.0"
+VALIDATOR_MAX_SUPPORTED_CONTRACT_VERSION = "1.2.0"
 
 # The exact, ordered readiness/notification sequence required by the
 # contract (see CONTRACT_MAPPING.md: "Order is fixed; reordering is
@@ -92,6 +92,10 @@ REQUIRED_TOP_LEVEL_FIELDS = [
     "queue_claim_identity",
     "worker_helper_receipts",
     "gates",
+    "task_evidence_gates",
+    "workflow_transition_gates",
+    "cycle_exit_gates",
+    "continuity_state",
     "readiness_notification_order",
     "escalation_classes",
     "done_integrity",
@@ -105,6 +109,23 @@ REQUIRED_GATE_KEYS = ["review", "qa", "readiness", "done_integrity"]
 # CONTRACT_MAPPING.md: "exact-head Review/QA" gates). Readiness and
 # done_integrity have no independent-session requirement of their own.
 REQUIRED_INDEPENDENT_SESSION_GATES = ["review", "qa"]
+
+REQUIRED_DELIVERY_CONTAINMENT_PROOF = {
+    "task_authored_head",
+    "named_remote_branch_reachability",
+    "canonical_pr_mr_or_artifact_identity",
+    "provider_proven_merge_or_release_state",
+}
+
+REQUIRED_OPEN_ENTRY_FIELDS = {
+    "owner",
+    "health",
+    "last_checked_cycle_id",
+    "last_action",
+    "next_action",
+    "trigger",
+    "fallback",
+}
 
 # The only coalescing rule this contract permits: identity-equivalent
 # *pending routine wakes for the same target* may collapse to one. Anything
@@ -399,6 +420,98 @@ def validate_contract(contract):
             failures.append((
                 "missing_required_invariant",
                 "gates.done_integrity.terminal_receipt_required must be true",
+            ))
+
+    # 5a. Evidence, transition, cycle-exit, and continuity gates are the
+    # machine-enforced counterpart of the prose task-touch checklist. Every
+    # scalar below is a fail-closed floor; omission is equivalent to false.
+    evidence_gates = contract.get("task_evidence_gates", {})
+    for field in (
+        "status_claims_require_fresh_live_barrier",
+        "owner_account_required_for_anomaly_when_contact_safe",
+        "absence_requires_all_named_surfaces_checked",
+        "blocker_falsification_required_each_cycle",
+        "blocked_last_checked_current_cycle",
+        "delivery_containment_required_before_deployable_or_terminal",
+        "lane_or_receipt_alone_is_not_proof",
+    ):
+        if evidence_gates.get(field) is not True:
+            failures.append((
+                "missing_required_invariant",
+                f"task_evidence_gates.{field} must be true",
+            ))
+    containment_proof = set(evidence_gates.get("delivery_containment_proof", []))
+    missing_containment = REQUIRED_DELIVERY_CONTAINMENT_PROOF - containment_proof
+    if missing_containment:
+        failures.append((
+            "missing_required_invariant",
+            "task_evidence_gates.delivery_containment_proof is missing "
+            f"{sorted(missing_containment)}",
+        ))
+
+    transition_gates = contract.get("workflow_transition_gates", {})
+    for field in (
+        "pre_transition_receipt_required",
+        "post_transition_readback_required",
+        "head_change_invalidates_gate_receipts",
+        "review_requires_explicit_verdict",
+        "qa_requires_explicit_verdict",
+        "to_deploy_requires_provider_merged_or_released",
+        "done_requires_terminal_receipt",
+        "transition_failure_is_not_advancement",
+    ):
+        if transition_gates.get(field) is not True:
+            failures.append((
+                "missing_required_invariant",
+                f"workflow_transition_gates.{field} must be true",
+            ))
+
+    cycle_gates = contract.get("cycle_exit_gates", {})
+    for field in (
+        "live_task_ids_equal_open_ledger_ids",
+        "blocked_entries_require_complete_current_cycle_record",
+        "mutations_require_post_action_readback",
+        "coordinator_owned_holding_tasks_require_disposition",
+        "persisted_state_write_and_readback_required",
+        "unresolved_gate_failure_blocks_cycle_completion",
+    ):
+        if cycle_gates.get(field) is not True:
+            failures.append((
+                "missing_required_invariant",
+                f"cycle_exit_gates.{field} must be true",
+            ))
+    open_entry_fields = set(cycle_gates.get("every_open_entry_requires", []))
+    missing_entry_fields = REQUIRED_OPEN_ENTRY_FIELDS - open_entry_fields
+    if missing_entry_fields:
+        failures.append((
+            "missing_required_invariant",
+            "cycle_exit_gates.every_open_entry_requires is missing "
+            f"{sorted(missing_entry_fields)}",
+        ))
+
+    continuity = contract.get("continuity_state", {})
+    if continuity.get("live_plan_soft_limit_bytes") != 200000:
+        failures.append((
+            "missing_required_invariant",
+            "continuity_state.live_plan_soft_limit_bytes must be 200000",
+        ))
+    if continuity.get("live_plan_hard_stop_bytes") != 240000:
+        failures.append((
+            "missing_required_invariant",
+            "continuity_state.live_plan_hard_stop_bytes must be 240000",
+        ))
+    for field in (
+        "resolved_history_archive_required",
+        "unresolved_records_remain_inline",
+        "pre_compaction_archive_sha256_required",
+        "pre_post_open_record_set_equality_required",
+        "post_write_readback_required",
+        "current_snapshot_first",
+    ):
+        if continuity.get(field) is not True:
+            failures.append((
+                "missing_required_invariant",
+                f"continuity_state.{field} must be true",
             ))
 
     # 5b. Workspace/lane ownership: Done must stay a terminal-integrity lane,

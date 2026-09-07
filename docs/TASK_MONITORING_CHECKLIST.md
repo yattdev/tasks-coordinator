@@ -8,6 +8,38 @@ status reply. A status request is an action sweep, not a read-only report.
 procedures, and `CAPABILITY_REGISTRY.md` supplies capability routing. If this
 checklist conflicts with either, stop and repair the contradiction.
 
+## 0. Hard-gate receipt — do not advance on prose alone
+
+Before a cycle, scoped status sweep, or workflow transition is called complete,
+emit the compact receipt defined by `PROMPT.md` G1–G10 and validate it with:
+
+```sh
+python3 docs/contracts/validate_cycle_receipt.py <cycle-receipt.json>
+```
+
+- [ ] G1: live task IDs exactly equal open-ledger task IDs.
+- [ ] G2: every open entry has owner, health, current check time, last action,
+  executable next action, trigger, and fallback.
+- [ ] G3: physical-Blocked IDs exactly equal complete Blocked records checked in
+  this cycle, including positive proof and a falsification result.
+- [ ] G4: every anomaly has owner context when safely obtainable and independent
+  verification of all named delivery surfaces.
+- [ ] G5: every delivered/deployable/terminal claim has exact remote and
+  canonical provider containment proof.
+- [ ] G6: every requested transition has a complete pre-transition receipt and
+  all required prior gates at the unchanged evidence generation.
+- [ ] G7: every transition has settled post-transition lane/session/model/head
+  readback; expected execution is actually `RUNNING`/`STARTING`.
+- [ ] G8: every mutation has authoritative readback and a pass/fail result.
+- [ ] G9: persisted state was read back, open-record sets survived, and the live
+  plan is below 200,000 bytes after any required compaction (240,000 is a hard
+  stop, not a warning).
+- [ ] G10: the final Human report has a fresh lane/session/provider barrier for
+  every task and claim it mentions.
+
+An unknown gate is a failed gate. Record the corrective owner/action/trigger and
+continue the cycle; never convert `unknown` into an optimistic status.
+
 ## 1. Required checks on every task touch
 
 - [ ] Present the task to the Human as
@@ -41,6 +73,9 @@ checklist conflicts with either, stop and repair the contradiction.
   lifecycle, tags, repository head, and provider state affected by the action.
 - [ ] Persist owner, health, last action, next action, trigger, attempt count,
   evidence identity, preservation receipt, fallback, and verification result.
+- [ ] Bind every evidence-dependent statement to an `observed_at` time and an
+  evidence generation (lane/session update plus head/provider identity). Any
+  change to that generation invalidates the statement before it can be reused.
 - [ ] Run an adversarial contradiction pass before concluding: identify what
   would disprove the current blocker/status, query that source, and ask whether
   an authorized action, alternate path, stale dependency, or circular wait
@@ -222,6 +257,26 @@ checklist conflicts with either, stop and repair the contradiction.
 - [ ] Treat it as monitored until policy identifies its ownership and execution
   semantics.
 - [ ] Do not infer that a custom lane is inactive, Human-owned, or safe to skip.
+
+## 2.1 Transition matrix — required predecessor and receipt
+
+No column may be skipped merely because a task, comment, or automation says the
+work is complete. Exceptions must name the exact charter rule that authorizes
+the skip and still produce G6/G7 receipts.
+
+| Target | Required current-head predecessor evidence | Postcondition |
+| --- | --- | --- |
+| Work | approved saved plan or exact remediation brief | one correct Work owner running |
+| Review | clean pushed head plus applicable author tests | fresh independent GPT-5.5 verdict owner |
+| QA | explicit current-head `REVIEW_RESULT=PASSED` | distinct fresh Sol QA verdict owner |
+| PR | explicit current-head `QA_RESULT=PASSED` or documented non-applicability authorized by policy | canonical PR identity and current-head provider audit |
+| CI Fixup | exact failed/pending job classification | one Luna owner with run/job evidence |
+| Human-QA | exact remaining manual scenario and safe runtime/evidence handoff | visible Human action and pass/fail routing |
+| ToDeploy | provider-proven canonical merge/release containment and required Human testing complete | Human-owned deploy action only |
+| Done | provider-proven terminal delivery plus complete Done-integrity receipt | no unique work or live consumer remains |
+
+A head, base, diff, workflow-lane, or effective-model change increments the
+evidence generation and invalidates downstream Review/QA/readiness receipts.
 
 ## 3. PR/MR overlay — every open pull or merge request
 

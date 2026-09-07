@@ -2014,3 +2014,30 @@ then repeated a partial provider inference. Without Human challenge, Redmine and
 Coordinator-plugin delivery could have waited indefinitely on a nonexistent
 deployable artifact. The new rule makes the Coordinator actively try to disprove
 every blocker and terminal claim instead of merely confirming its paperwork.
+
+## Cycle and transition claims require machine-validated exit receipts (2026-09-07; human-directed)
+
+Decision: prose checklists remain useful for investigation, but they are no
+longer sufficient evidence that a cycle, task transition, delivery claim, or
+Human status is complete. `PROMPT.md` G1–G10 is the normative gate set, and a
+compact receipt is validated by `docs/contracts/validate_cycle_receipt.py`.
+Unknown and omitted values fail closed. The gate covers exact board/ledger set
+equality, complete accountable entries, current-cycle Blocked proof plus
+falsification, owner-first anomaly verification, remote/provider delivery
+containment, transition pre/postconditions, mutation readback, continuity
+persistence, and a final status freshness barrier.
+
+The live plan is subject to an operational budget: automatic compaction begins
+at 200,000 UTF-8 bytes and 240,000 bytes is a hard stop below the 262,144-byte
+API limit. Compaction archives the exact preimage and removes only resolved or
+superseded history. Every open ledger entry, active Blocked record, Human ask,
+flag, follow-up, degradation, preservation receipt, and executable handoff
+remains inline and is checked by pre/post set equality and readback.
+
+Rationale: the prior process had strong prose but weak execution containment.
+The machine contract still described an older charter, and the live plan had
+grown to 258 KB with stale superseded blockers mixed into current state. That
+combination allowed a lane/receipt narrative to look complete while remote PR
+containment was absent, and risked another silent persistence failure. Stable
+gate IDs, a validator, and a current-first bounded plan turn those failure modes
+into explicit non-zero errors before progress or status can be claimed.
