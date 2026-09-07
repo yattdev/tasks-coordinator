@@ -61,7 +61,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 
 ### A3b. A cycle, transition, or status sweep is about to complete
 - **Trigger** Before declaring a full cycle, scoped status sweep, workflow move, or Human-facing task status complete.
-- **Action** Build the compact G1–G10 receipt from current board/ledger/session/provider evidence and validate it with `python3 docs/contracts/validate_cycle_receipt.py <receipt.json>`. Treat every missing or unknown field as failed. Assign each failure an owner, corrective action, and trigger before continuing.
+- **Action** Build the compact G1–G10 receipt from current board/ledger/session/provider evidence and validate it with `python3 docs/contracts/validate_cycle_receipt.py --max-age-seconds 300 <receipt.json>`. Treat every missing or unknown field as failed. A physical ToDeploy entry must declare `delivery_status: to_deploy_ready` and provide the matching G5 containment claim; `none` is an invalid bypass. Assign each failure an owner, corrective action, and trigger before continuing.
 - **Capability** [Hard-gate receipt procedure](RUNBOOK.md#build-and-validate-the-cycletransition-gate-receipt); [task-monitoring checklist](TASK_MONITORING_CHECKLIST.md#0-hard-gate-receipt--do-not-advance-on-prose-alone).
 - **Authority** Standing Coordinator duty; it narrows claims and transitions but grants no new mutation authority.
 - **Evidence** Validator exit 0 plus persisted receipt/hash, barrier time, exact task-ID set hashes, and post-write readback.

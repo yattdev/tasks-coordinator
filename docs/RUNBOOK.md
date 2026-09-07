@@ -2085,7 +2085,8 @@ the exact G1–G10 fields described in `PROMPT.md`, validate it, then persist th
 receipt or its content hash plus every failed gate in the current plan:
 
 ```sh
-python3 docs/contracts/validate_cycle_receipt.py /path/to/cycle-receipt.json
+python3 docs/contracts/validate_cycle_receipt.py \
+  --max-age-seconds 300 /path/to/cycle-receipt.json
 ```
 
 Start from `docs/contracts/fixtures/valid_cycle_receipt.json`; replace its
@@ -2098,6 +2099,11 @@ unverified mutation/transition, a stale Human-report barrier, or a plan at or
 above 200,000 bytes returns non-zero. At 240,000 bytes the hard stop additionally
 forbids unrelated work. Recording a compaction attempt is not enough: the
 completed receipt must prove the live plan finished below 200,000 bytes.
+
+`--max-age-seconds 300` turns freshness into a wall-clock gate; an internally
+consistent old receipt cannot be replayed as current. A physical ToDeploy entry
+must also use `delivery_status: to_deploy_ready` with a matching G5 containment
+claim, so omitting the claim cannot bypass delivery verification.
 
 For a status request about a subset of tasks, use `scope="status"` and include
 exactly the mentioned task IDs. G2 and G10 remain mandatory, and the validator

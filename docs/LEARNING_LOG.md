@@ -2623,3 +2623,19 @@ Blocked IDs.
 Files: `PROMPT.md`, `README.md`, `docs/TASK_MONITORING_CHECKLIST.md`,
 `docs/RUNBOOK.md`, `docs/CONTINUITY.md`, `docs/CAPABILITY_REGISTRY.md`,
 `docs/DECISIONS.md`, `docs/contracts/`, the exact plan archive, and this log.
+
+## 2026-09-07d — close the ToDeploy and freshness receipt escapes
+
+Follow-up audit found two structural escapes after the G1–G10 rollout. A card
+could be physically in ToDeploy while declaring `delivery_status: none`, which
+suppressed the matching G5 record, and an arbitrarily old receipt could satisfy
+timestamp ordering while claiming `fresh: true`. The validator now rejects the
+ToDeploy opt-out, requires delivery-claim/ledger-status equality, and exposes a
+mandatory live-use five-minute wall-clock age gate. Regression tests cover both
+failures and their valid counterparts.
+
+Files: `docs/contracts/validate_cycle_receipt.py`, its tests,
+`docs/TASK_MONITORING_CHECKLIST.md`, `docs/RUNBOOK.md`,
+`docs/CAPABILITY_REGISTRY.md`, `docs/DECISIONS.md`, and this log. `PROMPT.md`
+already contained the binding rules, so its effective version and live task
+description mirror do not change.

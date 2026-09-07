@@ -2041,3 +2041,23 @@ combination allowed a lane/receipt narrative to look complete while remote PR
 containment was absent, and risked another silent persistence failure. Stable
 gate IDs, a validator, and a current-first bounded plan turn those failure modes
 into explicit non-zero errors before progress or status can be claimed.
+
+## Receipt freshness and ToDeploy containment are non-optional (2026-09-07; human-directed follow-up)
+
+Decision: the cycle-receipt CLI is run with a five-minute wall-clock age limit.
+Timestamp ordering and a self-declared `fresh: true` bit are insufficient because
+an old, internally consistent receipt can otherwise be replayed as current.
+The structural validator remains usable without the age option for archived
+fixture inspection, but a live cycle/status/transition completion uses
+`--max-age-seconds 300`.
+
+Physical ToDeploy placement itself activates G5. Its ledger entry must declare
+`delivery_status: to_deploy_ready`, and the matching delivery claim must prove
+remote reachability, canonical containment, and terminal provider state. A
+ToDeploy card cannot evade containment by declaring `delivery_status: none`, and
+the claim text must exactly match the ledger status.
+
+Rationale: the first machine receipt closed many narrative gaps but still let a
+malformed receipt opt out of G5 precisely on the lane involved in the incident.
+It also checked timestamp relationships without checking their real age. These
+two checks turn the intended fail-closed rules into executable rejection paths.

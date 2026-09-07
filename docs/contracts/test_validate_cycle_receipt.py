@@ -1,5 +1,6 @@
 import json
 import unittest
+from datetime import datetime, timezone
 from pathlib import Path
 
 import validate_cycle_receipt as validator
@@ -148,6 +149,45 @@ class CycleReceiptTests(unittest.TestCase):
         }]
         self.assertIn("G5", self.checks(receipt))
 
+    def test_todeploy_lane_cannot_bypass_delivery_claim(self):
+        receipt = valid_receipt()
+        receipt["ledger_entries"][0]["lane"] = "ToDeploy"
+        self.assertIn("G5", self.checks(receipt))
+
+    def test_todeploy_lane_accepts_exact_containment_claim(self):
+        receipt = valid_receipt()
+        entry = receipt["ledger_entries"][0]
+        entry["lane"] = "ToDeploy"
+        entry["delivery_status"] = "to_deploy_ready"
+        receipt["delivery_claims"] = [{
+            "task_id": "task-1",
+            "claim": "to_deploy_ready",
+            "task_head": "h1",
+            "remote_ref": "origin/feature",
+            "remote_reachable": True,
+            "canonical_delivery": "https://example.test/pull/1",
+            "provider_state": "merged",
+            "contained": True,
+            "observed_at": "2026-09-07T15:00:00Z",
+        }]
+        self.assertEqual(validator.validate(receipt), [])
+
+    def test_delivery_claim_must_match_ledger_status(self):
+        receipt = valid_receipt()
+        receipt["ledger_entries"][0]["delivery_status"] = "deployable"
+        receipt["delivery_claims"] = [{
+            "task_id": "task-1",
+            "claim": "delivered",
+            "task_head": "h1",
+            "remote_ref": "origin/feature",
+            "remote_reachable": True,
+            "canonical_delivery": "https://example.test/pull/1",
+            "provider_state": "merged",
+            "contained": True,
+            "observed_at": "2026-09-07T15:00:00Z",
+        }]
+        self.assertIn("G5", self.checks(receipt))
+
     def test_unsettled_transition_fails(self):
         receipt = valid_receipt()
         entry = receipt["ledger_entries"][0]
@@ -260,6 +300,24 @@ class CycleReceiptTests(unittest.TestCase):
         receipt = valid_receipt()
         receipt["report"]["fresh"] = False
         self.assertIn("G10", self.checks(receipt))
+
+    def test_wall_clock_stale_report_fails_when_age_gate_enabled(self):
+        receipt = valid_receipt()
+        failures = validator.validate(
+            receipt,
+            now=datetime(2026, 9, 7, 15, 10, tzinfo=timezone.utc),
+            max_age_seconds=300,
+        )
+        self.assertIn("G10", {check for check, _ in failures})
+
+    def test_wall_clock_fresh_report_passes_when_age_gate_enabled(self):
+        receipt = valid_receipt()
+        failures = validator.validate(
+            receipt,
+            now=datetime(2026, 9, 7, 15, 4, tzinfo=timezone.utc),
+            max_age_seconds=300,
+        )
+        self.assertEqual(failures, [])
 
     def test_report_barrier_cannot_predate_receipt(self):
         receipt = valid_receipt()

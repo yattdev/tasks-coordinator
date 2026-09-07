@@ -9,7 +9,7 @@ a Python package.
 import argparse
 import json
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 
 SCHEMA_VERSION = "1.0.0"
@@ -87,7 +87,7 @@ def _index(records, path, failures):
     return out
 
 
-def validate(receipt):
+def validate(receipt, *, now=None, max_age_seconds=None):
     failures = []
     if receipt.get("schema_version") != SCHEMA_VERSION:
         failures.append(("schema_version", f"must be {SCHEMA_VERSION!r}"))
@@ -174,6 +174,13 @@ def validate(receipt):
     expected_deliveries = {task_id for task_id, entry in ledger.items() if entry.get("delivery_status") != "none"}
     if set(deliveries) != expected_deliveries:
         failures.append(("G5", "delivery claims must exactly match non-'none' ledger delivery statuses"))
+    for task_id, entry in ledger.items():
+        lane = "".join(ch for ch in str(entry.get("lane", "")).lower() if ch.isalnum())
+        if lane == "todeploy" and entry.get("delivery_status") != "to_deploy_ready":
+            failures.append((
+                "G5",
+                f"{task_id} is physically in ToDeploy without delivery_status='to_deploy_ready'",
+            ))
     for task_id, record in deliveries.items():
         for key in ("claim", "task_head", "remote_ref", "canonical_delivery", "provider_state", "observed_at"):
             if not _nonempty(record.get(key)):
@@ -182,6 +189,8 @@ def validate(receipt):
             failures.append(("G5", f"{task_id}.observed_at must be ISO-8601"))
         if record.get("remote_reachable") is not True or record.get("contained") is not True:
             failures.append(("G5", f"{task_id} lacks positive remote/provider containment"))
+        if record.get("claim") != ledger.get(task_id, {}).get("delivery_status"):
+            failures.append(("G5", f"{task_id} delivery claim does not match ledger delivery_status"))
         if ledger.get(task_id, {}).get("delivery_status") in {"delivered", "deployable", "to_deploy_ready", "terminal"}:
             provider_state = str(record.get("provider_state", "")).strip().lower()
             if provider_state not in TERMINAL_PROVIDER_STATES:
@@ -276,6 +285,17 @@ def validate(receipt):
     report_time = _timestamp(report.get("barrier_at"))
     if receipt_time and report_time and report_time < receipt_time:
         failures.append(("G10", "report barrier predates receipt observation"))
+    if max_age_seconds is not None:
+        if not isinstance(max_age_seconds, int) or max_age_seconds <= 0:
+            failures.append(("G10", "max_age_seconds must be a positive integer"))
+        elif report_time:
+            current_time = now or datetime.now(timezone.utc)
+            if current_time.tzinfo is None:
+                current_time = current_time.replace(tzinfo=timezone.utc)
+            if report_time > current_time + timedelta(seconds=30):
+                failures.append(("G10", "report barrier is in the future"))
+            elif current_time - report_time > timedelta(seconds=max_age_seconds):
+                failures.append(("G10", f"report barrier is older than {max_age_seconds} seconds"))
     barriers = _index(report.get("task_barriers", []), "report.task_barriers", failures)
     if set(barriers) != mentioned:
         failures.append(("G10", "every mentioned task needs exactly one freshness barrier"))
@@ -308,6 +328,11 @@ def validate(receipt):
 def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("receipt")
+    parser.add_argument(
+        "--max-age-seconds",
+        type=int,
+        help="reject a report barrier older than this many seconds",
+    )
     args = parser.parse_args(argv)
     try:
         with open(args.receipt, encoding="utf-8") as handle:
@@ -315,7 +340,7 @@ def main(argv=None):
     except (OSError, json.JSONDecodeError) as exc:
         print(f"input: {exc}", file=sys.stderr)
         return 1
-    failures = validate(receipt)
+    failures = validate(receipt, max_age_seconds=args.max_age_seconds)
     for gate, message in failures:
         print(f"{gate}: {message}", file=sys.stderr)
     return 1 if failures else 0

@@ -14,7 +14,8 @@ Before a cycle, scoped status sweep, or workflow transition is called complete,
 emit the compact receipt defined by `PROMPT.md` G1–G10 and validate it with:
 
 ```sh
-python3 docs/contracts/validate_cycle_receipt.py <cycle-receipt.json>
+python3 docs/contracts/validate_cycle_receipt.py \
+  --max-age-seconds 300 <cycle-receipt.json>
 ```
 
 - [ ] G1: live task IDs exactly equal open-ledger task IDs.
@@ -25,7 +26,9 @@ python3 docs/contracts/validate_cycle_receipt.py <cycle-receipt.json>
 - [ ] G4: every anomaly has owner context when safely obtainable and independent
   verification of all named delivery surfaces.
 - [ ] G5: every delivered/deployable/terminal claim has exact remote and
-  canonical provider containment proof.
+  canonical provider containment proof. A physical ToDeploy card must declare
+  `delivery_status: to_deploy_ready` and carry the matching proof; `none` may
+  not bypass this gate.
 - [ ] G6: every requested transition has a complete pre-transition receipt and
   all required prior gates at the unchanged evidence generation.
 - [ ] G7: every transition has settled post-transition lane/session/model/head
@@ -35,7 +38,8 @@ python3 docs/contracts/validate_cycle_receipt.py <cycle-receipt.json>
   plan is below 200,000 bytes after any required compaction (240,000 is a hard
   stop, not a warning).
 - [ ] G10: the final Human report has a fresh lane/session/provider barrier for
-  every task and claim it mentions.
+  every task and claim it mentions, and the CLI age gate proves the barrier is
+  no more than five minutes old.
 
 An unknown gate is a failed gate. Record the corrective owner/action/trigger and
 continue the cycle; never convert `unknown` into an optimistic status.
