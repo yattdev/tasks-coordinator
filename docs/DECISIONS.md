@@ -2061,3 +2061,10 @@ Rationale: the first machine receipt closed many narrative gaps but still let a
 malformed receipt opt out of G5 precisely on the lane involved in the incident.
 It also checked timestamp relationships without checking their real age. These
 two checks turn the intended fail-closed rules into executable rejection paths.
+
+Boundary: this validator is the Coordinator's mandatory execution/claim gate;
+it does not make Kandev's task-move API transactional with the receipt. Native
+server-side rejection would require a separately designed platform contract that
+binds a receipt to live task generations and revalidates it atomically during the
+move. Until that exists, never describe the CLI as a board-level authorization
+control or assume it prevents another actor from creating an invalid lane state.

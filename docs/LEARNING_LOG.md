@@ -2639,3 +2639,8 @@ Files: `docs/contracts/validate_cycle_receipt.py`, its tests,
 `docs/CAPABILITY_REGISTRY.md`, `docs/DECISIONS.md`, and this log. `PROMPT.md`
 already contained the binding rules, so its effective version and live task
 description mirror do not change.
+
+The current enforcement boundary is explicit: the receipt blocks Coordinator
+completion and status claims but is not yet consumed atomically by Kandev's task
+move API. Server-side transition rejection is a separate platform design, not a
+capability claimed by this policy repository.
