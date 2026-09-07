@@ -135,21 +135,22 @@ Human-QA preserves the integration boundary. A conflicted PR may lack ordinary
 `pull_request` workflows because the provider cannot create a merge ref; this is
 an integration gate, not permission to rebase or merge main during Human-QA.
 
-## Draft readiness belongs to the task agent; the Coordinator owns the gate (2026-08-24, human-directed)
+## Draft readiness evidence belongs to the task agent; the Coordinator owns the decision (2026-08-24, clarified 2026-09-07)
 
 When no acceptance criterion genuinely requires remaining human testing, the
-owning task agent makes its PR/MR ready after it has committed and pushed a clean
-exact head, run applicable tests with high confidence, obtained terminal-green
-required CI, addressed and replied to every actionable review thread, supplied
+owning task agent supplies a clean pushed exact head, applicable high-confidence
+tests, a fresh CI census with every result classified, replies to every actionable
+review thread, and any required
 sanitized screenshots/recordings for visual changes, and refreshed an accurate
 reviewer-facing title/body/scope and mergeability snapshot.
 
 The Coordinator directs and verifies this work as the board lead; it does not
-implement the task's missing fixes, tests, or visual evidence. A credentialed
-Coordinator fallback may perform only the mechanical draft→ready provider action
-after the task agent explicitly reports readiness and the primary independently
-verifies the complete gate. Human-only testing, external access, or approval keeps
-the PR draft and is surfaced through the visible ask channel. Ready-for-review is
+implement the task's missing fixes, tests, or visual evidence. The Coordinator may
+perform the mechanical draft→ready provider action after independently verifying
+the complete gate. Specific remaining human-only testing, external access, or
+approval keeps the PR draft and is surfaced through the visible ask channel;
+Human-QA is not a default hold. Branch-owned or unclassified CI blocks readiness,
+while conclusively unrelated CI may stay actively owned in CI Fixup. Ready-for-review is
 not merge, deploy, or permission to skip workflow gates, and every later head/base
 change invalidates the readiness snapshot.
 
@@ -1197,19 +1198,41 @@ qualified draft should become ready, and does not list draft status alone as a p
 
 Before a task enters Review, the owning agent and Coordinator evaluate the existing
 exact-head readiness gate. If it passes, the supported provider action makes the PR
-ready, post-transition workflows and review state are refreshed to terminal, and the
-reviewer is notified once for that head. Real evidence gaps still block readiness; the
+ready, post-transition workflows and review state are refreshed and classified, and the
+reviewer is notified once for that head when no branch-owned or unclassified blocker
+remains. Real evidence gaps still block readiness; the
 word “draft” does not.
 
 ## Reviewer requests require verified ready state (2026-08-31, human-directed)
 
 For every repository, PR, MR, reviewer, and Review routing path, reviewer contact has
 one strict ordering: execute the supported draft-to-ready transition, verify provider
-readback is non-draft at the unchanged exact head, refresh and settle post-ready gates,
+readback is non-draft at the unchanged exact head, refresh and classify post-ready gates,
 then request or notify the reviewer. No request, assignment, mention, or notification
 is sent while provider state remains draft because draft review notifications may not
 reach the reviewer. Failure to transition or verify ready state is a readiness/provider
 blocker to repair, never permission to notify early.
+
+## Draft-first creation is not a hold until Human-QA (2026-09-07, human-directed; supersedes terminal-green-only readiness)
+
+PR-step agents create drafts first so initial CI and automated feedback can run before
+the contribution is presented as ready. That staging default does not mean every PR
+must remain draft until the Human-QA column. The Coordinator has standing authority to
+make any PR ready at the earliest independently verified high-confidence point, then
+refresh provider state and notify the known reviewer.
+
+Human-QA blocks readiness only when the specific change or acceptance criteria require
+remaining manual/visual human judgment, external hardware/account access, or a reserved
+approval. Code-only, workflow, documentation, and sufficiently automated work do not
+inherit a fictional Human-QA gate.
+
+This supersedes the older requirement that every required check be terminal green
+before readiness or reviewer contact. Branch-owned and unclassified red/pending CI still
+block. A conclusively unrelated flaky, broken-base, provider, infrastructure, or
+cascading result may remain under a named CI-Fixup/rerun owner while review proceeds,
+provided it is disclosed. The invariant that remains strict is ordering: provider-ready
+readback at the unchanged head, then refreshed classification, then reviewer contact;
+never notify while draft.
 
 ## Pending-move preflights are point-in-time gates (2026-08-31)
 

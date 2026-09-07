@@ -584,24 +584,31 @@ evidence needed to decide the correct disposition.
 ## Turn a draft PR/MR ready through its task agent
 
 Draft readiness is a delivery gate, not an implementation task for the
-Coordinator. Direct the owning task agent to close its own evidence gaps and run
-the provider's draft-to-ready action. The Coordinator independently verifies the
-receipt and may perform only that mechanical provider action when the agent is
-otherwise ready but its PR-write credential is unavailable.
+Coordinator. Draft-first creation gives early CI and review automation a safe
+staging state; it does not require the PR to remain draft until Human-QA. Direct
+the owning task agent to close its evidence gaps. The Coordinator independently
+decides readiness and may run the mechanical provider transition as soon as the
+complete receipt is verified; it never implements the missing code, tests, or
+evidence itself.
 
 Draft status by itself is routine provider metadata. Do not ask the Human or task
-owner to confirm it, and do not describe it as a defect or blocker. Before routing
-a task to Review, evaluate the full gate below. A qualified draft is made ready,
-its newly triggered checks are refreshed to terminal, and only then is the reviewer
-notified.
+owner to confirm it, and do not describe it as a defect or blocker. Evaluate the
+full gate immediately after PR creation and on every later task touch. A qualified
+draft is made ready at the earliest high-confidence point, its newly triggered
+checks are refreshed and classified, and the reviewer is then notified. Human-QA
+is part of this gate only when this specific change has a remaining manual/visual
+acceptance need.
 
 This sequence is universal and non-commutative for every PR and MR: execute the
 supported ready-for-review transition; read the canonical provider state back and
-prove `isDraft=false` at the unchanged exact head; refresh and settle the post-ready
+prove `isDraft=false` at the unchanged exact head; refresh and classify the post-ready
 checks, threads, and mergeability; only then send a review request, reviewer
 assignment, mention, or notification. A draft reviewer request is not a harmless
 early nudge—it may not be delivered. If any earlier step fails, stop before contact
-and repair or record that exact readiness/provider blocker.
+and repair or record that exact readiness/provider blocker. A conclusively
+unrelated flaky/infrastructure/provider/broken-base/cascading check may remain
+under its named CI-Fixup or rerun owner while review proceeds; a branch-owned or
+unclassified failure/pending job stops the sequence.
 
 Before marking ready, bind the evidence to the canonical URL and exact head:
 
@@ -612,9 +619,11 @@ Before marking ready, bind the evidence to the canonical URL and exact head:
    compatibility, rollout, and rollback notes are present when the change needs
    them.
 3. The task agent ran the applicable local/unit/integration/security tests and
-   reported high-confidence acceptance evidence. Exact-head required CI is
-   terminal: green or legitimately skipped, with no branch-owned failure or
-   pending required job.
+   reported high-confidence acceptance evidence. Take a fresh exact-head CI census
+   and classify every failed/pending job. Branch-owned or unclassified red/pending
+   CI blocks readiness. Conclusively unrelated flaky, broken-base, provider,
+   infrastructure, or cascading CI does not when an active repair/rerun owner is
+   recorded and the caveat will be disclosed to the reviewer.
 4. Every actionable review thread has a technical reply and is resolved; refresh
    reviews, checks, and mergeability after the last push or base update.
 5. Visual changes include sanitized reviewer-facing screenshots or recordings of
@@ -623,17 +632,20 @@ Before marking ready, bind the evidence to the canonical URL and exact head:
    inline in the PR/MR body with descriptive alt text or captions and a stable,
    reviewer-accessible URL; an ordinary hyperlink or task-local path does not
    satisfy screenshot evidence. Verify the published URL returns image content.
-6. No acceptance criterion still requires human testing, external hardware or
-   account access, security/product approval, or another human-only decision.
-   If one does, keep the draft and surface the exact handoff through the visible
-   ask channel. Automated evidence may close code-only work; screenshots do not
-   waive an explicitly required human acceptance check.
+6. Human-QA blocks readiness only when an acceptance criterion still requires
+   manual/visual human testing, external hardware or account access,
+   security/product approval, or another human-only decision. If one does, keep
+   the draft and surface the exact handoff through the visible ask channel. If
+   none does, do not wait for the Human-QA column: automated evidence may qualify
+   code-only, workflow, documentation, or other nonvisual work immediately.
 
 After the transition, verify `isDraft=false`, canonical head unchanged, and refresh
 CI/thread/mergeability evidence. The transition can itself start `pull_request`
-workflows that did not exist while the PR was draft, so wait for every newly
-triggered required job to become terminal green before notifying the reviewer and
-recording the provider receipt. The draft-era check snapshot is not sufficient.
+workflows that did not exist while the PR was draft, so classify the refreshed
+snapshot before notifying the reviewer. Wait when a new result is branch-owned or
+not yet classifiable; do not hold an otherwise qualified PR behind unrelated
+automated-review latency or conclusively unrelated CI. The draft-era check snapshot
+is not sufficient.
 Marking ready invites review; it does not authorize merge, rebase, deployment, or
 workflow-stage skipping unless the current PR belongs to the Coordinator-plugin
 or Redmine programs and the canonical Kandev Coordinator is exercising the
@@ -4278,11 +4290,13 @@ The routine nudge is **mine**. Only a personal escalation is the operator's.
 
 ### The rule
 
-**Readiness first.** Notify only when the PR is non-draft, every required check
-is terminal green *on the current head*, threads are resolved, and it is
-mergeable. Pinging a maintainer at a red or draft PR spends a human's attention
-for nothing and trains them to ignore the next ping. If it is not ready, the
-action is to make it ready.
+**Readiness first.** Notify only after provider readback proves the PR non-draft
+at the unchanged exact head, threads are resolved, it is mergeable, and the
+refreshed CI snapshot is classified. Branch-owned or unclassified red/pending
+work blocks contact. A conclusively unrelated flaky/infrastructure/provider/
+broken-base/cascading result may remain under an active owner while review
+proceeds; disclose it in the handoff. Never notify a draft or conflicted PR. If
+it is not ready, the action is to make it ready.
 
 **Always `@carlosflorencio`** — the `kdlbs` maintainer, who holds the merge.
 Notify when the PR first becomes ready, and **again on a new push or material
@@ -4367,11 +4381,12 @@ A commit titled like the fix is a claim; the code is the evidence.
 
 ### Readiness, restated
 
-Non-draft AND mergeable AND required checks terminal green on the current head
-AND no `CHANGES_REQUESTED` outstanding AND no unaddressed blocker in issue
-comments AND the maintainer's last word is older than the author's last reply.
-Anything less is not ready, and must not be reported as ready or used to
-justify notifying a maintainer.
+Non-draft AND mergeable AND every exact-head check classified AND no branch-owned
+or unclassified blocking CI AND no `CHANGES_REQUESTED` outstanding AND no
+unaddressed blocker in issue comments AND the maintainer's last word is older
+than the author's last reply. Conclusively unrelated CI also requires an active
+repair/rerun owner and disclosure. Anything less is not ready and must not be
+used to justify notifying a maintainer.
 
 ---
 

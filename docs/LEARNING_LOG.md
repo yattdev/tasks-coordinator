@@ -2570,3 +2570,18 @@ Files: `PROMPT.md`, `docs/RUNBOOK.md`, `docs/DECISIONS.md`,
 `b41bee242bb3266de20ee5bd6f59d269a19a50c5`; this additive registry/log
 successor will be recorded at its own commit. The complete current `PROMPT.md`
 was mirrored and byte-compared after transport newline normalization.
+
+## 2026-09-07a — draft-first is staging, not a Human-QA hold
+
+Human correction: the PR step intentionally creates a draft so early CI and
+automated feedback can run, but the draft must become ready as soon as the
+Coordinator has high-confidence evidence. Human-QA is not a universal readiness
+gate; it applies only when the specific change still needs manual/visual human
+acceptance. After ready-state readback, classify the refreshed provider snapshot
+and notify the known reviewer. Conclusively unrelated CI may stay with an active
+CI-Fixup owner while review proceeds; branch-owned or unclassified failures still
+block.
+
+Files: `PROMPT.md`, `docs/RUNBOOK.md`, `docs/CAPABILITY_REGISTRY.md`,
+`docs/DECISIONS.md`, and this log. The complete current `PROMPT.md` must be
+mirrored to the live Coordinator task description.
