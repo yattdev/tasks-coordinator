@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-06e -->
+<!-- registry-version: 2026-09-07a -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -19,6 +19,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 [RUNBOOK](RUNBOOK.md) (procedures) · [DECISIONS](DECISIONS.md) (rationale) ·
 [FILESYSTEM_DOCKER_CONTRACT](FILESYSTEM_DOCKER_CONTRACT.md) (access contract) ·
 [CONTINUITY](CONTINUITY.md) · [QA_INSTANCES](QA_INSTANCES.md) ·
+[TASK_MONITORING_CHECKLIST](TASK_MONITORING_CHECKLIST.md) ·
 [LEARNING_LOG](LEARNING_LOG.md) ·
 [coordinator-policy-contract](contracts/coordinator-policy-contract.json) (plugin policy contract) ·
 [PLUGIN_SCALE_RFC](rfcs/PLUGIN_SCALE_RFC.md) · [STATE_COMPACTION_SPEC](rfcs/STATE_COMPACTION_SPEC.md)
@@ -51,7 +52,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 
 ### A3a. Any task is inspected, mentioned, or included in a status update
 - **Trigger** Every task touch, regardless of whether it came from a routine wake, task report, Human question, board-status request, or follow-up.
-- **Action** Run the applicable execution-owner, Blocked, CI, PR/draft/conflict/reviewer, workflow-gate, verification, and persistence checks in the [universal per-task action checklist](RUNBOOK.md#universal-per-task-inspection-and-action-checklist). Act on every safe stale condition immediately; a status read is never observation-only.
+- **Action** Run every applicable item in the [lane-by-lane and case-by-case checklist](TASK_MONITORING_CHECKLIST.md), using the [universal per-task action procedure](RUNBOOK.md#universal-per-task-inspection-and-action-checklist). Act on every safe stale condition immediately; a status read is never observation-only. Present every Human-facing task as a clickable full title + full UUID link.
 - **Capability** Live board/task/session/plan/relations tools; canonical provider PR/check/thread reads; `message_task_kandev`, `move_task_kandev`, and a correctly mapped fresh session when remediation is required.
 - **Authority** Standing Coordinator duty. ToDeploy and destructive/security boundaries remain unchanged.
 - **Evidence** Fresh exact task/lane/session/model/head/provider readback, action receipt, concrete next owner/trigger, and persisted continuity state.

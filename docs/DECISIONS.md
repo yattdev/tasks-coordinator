@@ -1948,3 +1948,23 @@ moves allowed a card to keep obsolete QA, wait, or ownership guidance after its
 actual state changed in place. Treating tags as part of every inspection makes
 the board truthful at the same moment the Coordinator relies on or reports it,
 without needless writes when nothing changed.
+
+## Task monitoring has one reviewable lane-and-case checklist (2026-09-07; human-directed)
+
+Decision: every task touch applies the exhaustive checklist in
+`docs/TASK_MONITORING_CHECKLIST.md`. It covers the invariant checks, every
+workflow lane, PR/MR and CI overlays, failure/exception cases, verification,
+tag reconciliation, persistence, and the required Human-facing status shape.
+`PROMPT.md` keeps the binding obligation and links to the checklist; the runbook
+keeps procedural detail; the capability registry routes to both.
+
+Every Human-facing task presentation defaults to a clickable link whose text is
+the full task title plus full UUID and whose target is the live board task URL.
+This applies to chat, standups, tables, escalations, and follow-up lists, not only
+formal board reports.
+
+Rationale: the prior rules were correct but distributed across the charter,
+runbook, registry, and lane semantics, making review and consistent execution
+harder. One linked matrix makes omissions visible without duplicating the entire
+procedure in the always-loaded charter. Clickable full identities let the Human
+open the exact card directly and eliminate ambiguous or unusable short IDs.

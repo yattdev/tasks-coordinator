@@ -2015,6 +2015,9 @@ Use this procedure every time a task is inspected, mentioned in a board update,
 or included in a Human-facing status—not only during a scheduled monitoring
 cycle. The inspection is incomplete until every applicable check has either an
 executed and verified action or a concrete owner plus deterministic trigger.
+The exhaustive, Human-reviewable lane and exception matrix is
+[Coordinator task-monitoring checklist](TASK_MONITORING_CHECKLIST.md); apply it
+with this procedure rather than reconstructing lane-specific cases from memory.
 
 1. **Bind the live identity.** Read the physical workflow step, task state,
    latest conversation evidence, saved plan when present, every nonterminal
@@ -2069,9 +2072,10 @@ executed and verified action or a concrete owner plus deterministic trigger.
    the task row, physical lane, session/profile/effective model, pending move,
    repository head, and provider state after every action. Update the durable ledger with health,
    owner, last action, next action, trigger, attempt count, evidence identity,
-   and fallback. A status reply reports the action already taken and uses the
-   clickable full task identity; it never leaves “wait”, “monitor”, “no session”,
-   or a lane name as the executable next action.
+   and fallback. A status reply reports the action already taken and presents
+   every task as `[Full title — full UUID](<live-board-base>/t/<full-UUID>)`;
+   it never leaves “wait”, “monitor”, “no session”, or a lane name as the
+   executable next action.
 
 
 ## Before a manual workaround on a FAILED task, check if a platform fix OWNS its failure — and preserves it as the reproduction
