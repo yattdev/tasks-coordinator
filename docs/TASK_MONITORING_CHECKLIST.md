@@ -41,6 +41,16 @@ checklist conflicts with either, stop and repair the contradiction.
   lifecycle, tags, repository head, and provider state affected by the action.
 - [ ] Persist owner, health, last action, next action, trigger, attempt count,
   evidence identity, preservation receipt, fallback, and verification result.
+- [ ] Run an adversarial contradiction pass before concluding: identify what
+  would disprove the current blocker/status, query that source, and ask whether
+  an authorized action, alternate path, stale dependency, or circular wait
+  makes the claimed blocker unnecessary. The checklist is the minimum evidence
+  set, not permission to stop thinking once boxes are checked.
+- [ ] Treat missing PR links, fork/upstream disagreement, stale or unreachable
+  heads, long silence, inactive dependencies, open work in Done/ToDeploy, and
+  lane/contract disagreement as automatic anomalies. Obtain the task owner's
+  account first when safely callable, then verify every named fork, upstream,
+  branch, PR, head, and artifact independently.
 
 ## 2. Lane-by-lane checklist
 
@@ -88,6 +98,12 @@ checklist conflicts with either, stop and repair the contradiction.
 
 - [ ] Record the previous actionable lane.
 - [ ] Re-prove the exact blocker/dependency and why work cannot continue.
+- [ ] Prove the blocker from its authoritative live source this cycle; an
+  unchanged tag, plan, prior ledger, task timestamp, or PR state is not proof.
+- [ ] State the falsification test: evidence that would show the blocker is
+  cleared, imaginary, stale, unnecessary, or circular. If current positive
+  proof is unavailable, classify `anomalous`, ask the owner, and staff the
+  verification rather than leaving the card parked.
 - [ ] Name the blocker owner and follow dependencies to one root.
 - [ ] Preserve branch, exact head, worktree, runtime, data, artifacts, and any
   unique uncommitted/unpushed work.
@@ -178,6 +194,11 @@ checklist conflicts with either, stop and repair the contradiction.
 - [ ] Report the Human-owned deployment action with a clickable task identity,
   canonical PR URL when known from prior lawful evidence, and consequence of
   delay; do not manufacture task-specific reads inside the lane.
+- [ ] Workflow inventory showing no linked merged PR, or lawful prior evidence
+  showing an unmerged/unreachable head, is a board-integrity alarm. Do not say
+  “deploy”. Reconcile the agent-owned tag to the exact corrective Human action
+  and request routing out of ToDeploy; once routed, ask the owner and verify
+  full fork/upstream/branch/PR containment before resuming delivery.
 
 ### Done — terminal integrity, not an archive shortcut
 

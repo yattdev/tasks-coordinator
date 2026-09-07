@@ -1989,3 +1989,28 @@ branch had been pushed to the `yattdev/kandev` fork and PR creation was omitted
 because its earlier handoff authorized only the push. Checking the owner first,
 then verifying both fork and upstream surfaces, would have identified the exact
 procedural gap without either false claim.
+
+## Blocker proof is adversarial and delivery claims fail closed (2026-09-07; human-directed)
+
+Decision: every Blocked card is re-proved from its authoritative live source on
+every cycle. The Coordinator records what would falsify the blocker and checks
+whether it is stale, imaginary, unnecessary, circular, or removable through an
+authorized action. Tags, lanes, old receipts, and unchanged timestamps are
+leads, never proof. Suspicious delivery or lane states automatically become
+`anomalous` and receive owner-first investigation plus independent verification.
+The written checklist is a floor; evidence-driven investigation continues past
+it whenever another safe route may exist.
+
+Delivery status fails closed: exact task-authored work must be reachable from a
+named remote branch and contained in the canonical PR/MR or documented release
+artifact, with the required provider-proven merge/release state. A local commit,
+green tests, a fork push, or ToDeploy placement cannot support “deployable”. A
+ToDeploy card lacking proven merged containment is a board-integrity incident,
+not a deployment request.
+
+Rationale: the model-routing repair remained effectively invisible behind a
+false deployment blocker because the Coordinator accepted lane and tag claims,
+then repeated a partial provider inference. Without Human challenge, Redmine and
+Coordinator-plugin delivery could have waited indefinitely on a nonexistent
+deployable artifact. The new rule makes the Coordinator actively try to disprove
+every blocker and terminal claim instead of merely confirming its paperwork.
