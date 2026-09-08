@@ -808,13 +808,6 @@ rule to unrelated/manual Todo tasks.
 
 ## Audit and contain Codex lane-model mismatches
 
-For queued recovery receipts, an existing server row may already contain several
-wrapped messages. When the latest sender prompt cannot match its byte count or
-digest, inspect earlier sender dispatches, reconstruct the ordered complete
-envelopes and separators, and require the census SHA-256 to match. Reconcile
-every question and correction in that row before exact-claim disposal; never
-treat its last prompt as the whole message or combine distinct rows yourself.
-
 Distinguish model enforcement from model selection. A fail-before-inference
 repair may enforce an already resolved profile while leaving workflow pins and
 task assignments unchanged. Read its approved contract before using it as a
@@ -3106,6 +3099,13 @@ coordination/read-only recovery, do not spawn. Record the evidence, classify the
 queued messages still prove the silence is a platform symptom, not a performance judgement.
 
 ## Process the Coordinator queue proactively and drain it safely
+
+For queued recovery receipts, an existing server row may already contain several
+wrapped messages. When the latest sender prompt cannot match its byte count or
+digest, inspect earlier sender dispatches, reconstruct the ordered complete
+envelopes and separators, and require the census SHA-256 to match. Reconcile
+every question and correction in that row before exact-claim disposal; never
+treat its last prompt as the whole message or combine distinct rows yourself.
 
 The session queue has a hard capacity of 15. Parallel management starts before
 pressure: on every turn, census the queue after bootstrap. When at least two
