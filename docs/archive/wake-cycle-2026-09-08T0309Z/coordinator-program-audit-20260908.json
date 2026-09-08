@@ -1,0 +1,1634 @@
+{
+  "audit_time": "2026-09-08T03:15:30Z",
+  "scope": {
+    "coordinator_task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+    "workspace_id": "2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd",
+    "workflow_id": "90f322ed-2159-424d-96e7-c2ad05668b8e",
+    "mode": "read-only",
+    "to_deploy_inspected": false
+  },
+  "provider_limit": {
+    "pull_metadata": "fresh REST succeeded",
+    "checks_threads": "fresh check-run requests hit authenticated rate limit at 2026-09-08T03:15:29Z; no readiness claim made"
+  },
+  "tasks": [
+    {
+      "task_id": "7ca86e53-249b-4b31-a866-e807afd9a962",
+      "title": "feat: Implement Redmine integration",
+      "physical_lane": "Blocked",
+      "semantic_state": "FAILED",
+      "updated_at": "2026-08-30T18:48:05.832707292Z",
+      "assignee_profile_id": "d05f88ca-4699-43c5-a558-70df3df45ec2",
+      "sessions": [
+        {
+          "session_id": "d56cca9f-74aa-4c30-a873-db0e3cbc03d2",
+          "state": "FAILED",
+          "profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": true,
+          "is_current": false,
+          "updated_at": "2026-08-30T18:48:16.918525699Z"
+        }
+      ],
+      "applied_tags": [
+        {
+          "name": "waiting",
+          "note": "Historical Redmine carrier stays preserved until merged PR #3 is published/deployed and ecd8b857 completes the isolated first-version E2E; then prove supersession and close safely.",
+          "owner": "agent"
+        }
+      ],
+      "relations_read": false,
+      "provider_evidence": "kdlbs/kandev#2724 CLOSED draft dirty b0feb95dd74e1f48eb8b00bc38761b11fc5ea4ff",
+      "observation": "Historical Redmine umbrella/carrier; linked kdlbs/kandev#2724 is CLOSED unmerged/draft/dirty at b0feb95d, while actual plugin delivery moved through yattdev/kandev-plugin-redmine and current release/E2E chain.",
+      "exact_preservation_verbatim": "Preservation receipt: task root `/data/tasks/feat-implement-redmi_zf5`; repository checkout `/data/tasks/feat-implement-redmi_zf5/yattdev-kandev-plugin-redmine-feature-redmine-plugin-build-i3m`; canonical implementation branch `feature/complete-redmine-plu-9ux`; last accepted/pushed candidate head `901ad5e11e51c5c1172eb9e86952975f6f72c576`; canonical plugin PR `https://github.com/yattdev/kandev-plugin-redmine/pull/1`. The plan records retained task-owned test services on ports 13080/13081, but the reviewed source broker currently lists no registered containers, so runtime existence/disposition is unverified and must be preserved rather than guessed. No source, Git metadata, provider, runtime, or credential mutation was made during this classification.\n- Next action: platform operator or deployed mediated recovery operation restores only the exact trusted same-workspace per-worktree admin entry, validates reciprocal `gitdir`/`commondir`/HEAD against the workspace marker, then returns read-only `git status --porcelain`, `git log -1`, platform metadata resolution, and one bounded owning-task agent-start receipt. If no trustworthy backup exists, stop and report; do not rematerialize under the current backup-only decision.\n- Deterministic resume trigger: the exact validated restoration receipt plus one successful bounded agent start in this task. Then Coordinator atomically moves Blocked→Human-QA (or the narrowest active step if implementation drift is found), sends this preservation handoff, and verifies the receiving session runs.\n- Prohibitions until trigger: no reset, clean, worktree/branch deletion, broad common-Git repair, raw Docker/socket access, metadata forgery, session retry loop, or disclosure of task credentials recorded earlier in the trail.",
+      "ownership": "Primary Coordinator serializes mutations; named task/dependency owner remains as recorded in the plan.",
+      "actionable_recommendation": "Keep Blocked only as preservation carrier until merged PR #3 is published/deployed and ecd8b857 completes E2E; then prove no unique work and terminal-supersede."
+    },
+    {
+      "task_id": "9e67c426-1300-46ef-a00f-e5603791212d",
+      "title": "Plan coordinator plugin architecture",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "updated_at": "2026-09-04T21:45:23.339890003Z",
+      "assignee_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+      "sessions": [
+        {
+          "session_id": "6ce88dad-4143-40b8-a729-782d00354c99",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": true,
+          "is_current": false,
+          "updated_at": "2026-09-04T21:45:27.579944092Z"
+        },
+        {
+          "session_id": "08558ba9-71d4-4f98-91d0-2418c583ebda",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-29T02:46:23.796010656Z"
+        },
+        {
+          "session_id": "c170ad39-5465-458c-8908-fd5b0787c1be",
+          "state": "COMPLETED",
+          "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "runtime_model": "gpt-5.6-luna",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-29T02:46:23.796010656Z"
+        },
+        {
+          "session_id": "a31e535d-d674-4926-8d13-88fb24e945a8",
+          "state": "COMPLETED",
+          "profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-29T02:46:23.796010656Z"
+        },
+        {
+          "session_id": "c6e9703e-611e-4739-ad78-c9aa597c554f",
+          "state": "COMPLETED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-29T02:46:23.796010656Z"
+        },
+        {
+          "session_id": "3e60d669-6682-4c95-8b0e-7c2e95026584",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-29T02:46:23.796010656Z"
+        },
+        {
+          "session_id": "df881b0e-b4cc-4eb0-93a6-5b5a357ad60a",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-29T02:46:23.796010656Z"
+        },
+        {
+          "session_id": "f18da888-b2c6-4ce9-98f5-e53772d14237",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-29T02:46:23.796010656Z"
+        },
+        {
+          "session_id": "d3720d53-b4e7-490a-a494-a7f07e8bf7c7",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-29T02:46:23.796010656Z"
+        },
+        {
+          "session_id": "8e80bf3a-f5fb-4877-8e14-601a1e4c98aa",
+          "state": "COMPLETED",
+          "profile_id": "d05f88ca-4699-43c5-a558-70df3df45ec2",
+          "runtime_model": "non-Codex/unknown",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-29T02:46:23.796010656Z"
+        },
+        {
+          "session_id": "bb0a603e-dc09-446b-8ac0-e89e3aac2c89",
+          "state": "COMPLETED",
+          "profile_id": "06f0a558-84be-486e-a3ea-941b679dc87a",
+          "runtime_model": "non-Codex/unknown",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-29T02:46:23.796010656Z"
+        },
+        {
+          "session_id": "1b7487f0-7e09-4a80-af16-68ad86e7884e",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "67ba38d7-89b5-40a8-a355-702e25d9e903",
+          "runtime_model": "non-Codex/unknown",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-29T02:46:23.796010656Z"
+        },
+        {
+          "session_id": "e2e8979c-b369-4b21-a8bf-3027b0960e11",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "67ba38d7-89b5-40a8-a355-702e25d9e903",
+          "runtime_model": "non-Codex/unknown",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-29T02:46:23.796010656Z"
+        },
+        {
+          "session_id": "7057ae19-6559-465c-8a6c-0c72b7555e96",
+          "state": "COMPLETED",
+          "profile_id": "06f0a558-84be-486e-a3ea-941b679dc87a",
+          "runtime_model": "non-Codex/unknown",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-29T02:46:23.796010656Z"
+        },
+        {
+          "session_id": "98a2f246-f6fa-4bac-9633-caa1a7fdb8f3",
+          "state": "COMPLETED",
+          "profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-29T02:46:23.796010656Z"
+        },
+        {
+          "session_id": "8c486b7f-4b98-445a-ac28-2abd79f6f607",
+          "state": "COMPLETED",
+          "profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-29T02:46:23.796010656Z"
+        },
+        {
+          "session_id": "4183f996-7c7f-4c8f-9be1-fe38760be504",
+          "state": "COMPLETED",
+          "profile_id": "fdad3d04-4e52-4e41-8236-69bcfe643103",
+          "runtime_model": "non-Codex/unknown",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-29T02:46:23.796010656Z"
+        }
+      ],
+      "applied_tags": [
+        {
+          "name": "waiting",
+          "note": "Waiting on replacement owner 1e46d457 and exact cancellation of two armed transitions before reevaluating superseded PR #2793 head afd2b699.",
+          "owner": "agent"
+        }
+      ],
+      "relations_read": false,
+      "provider_evidence": "kdlbs/kandev#2793 OPEN draft dirty afd2b699bfe9b6af9353ea01728582f61a7be2be",
+      "observation": "Monolithic coordinator Host PR #2793 remains OPEN/DRAFT/DIRTY at afd2b699 and is explicitly superseded. Two historical pending moves and a divergent backup/untracked checkout make direct contact or terminal cleanup unsafe.",
+      "exact_preservation_verbatim": "Preservation receipt:\n\n- Branch: `feature/create-a-plugin-that-kch`.\n- HEAD: `ee41197009dd00331b74ab6a1b9c1a66292f2c20`.\n- Durable backup ref: `origin/backup/create-a-plugin-that-kch-local-1`.\n- Worktree: `/data/tasks/create-a-plugin-that_wtf60hhd/kandev-source`.\n- Tracked worktree state: clean; no preservation commit was necessary.\n- Remote divergence observed on entry: 41 commits ahead of and 361 commits behind `origin/feature/create-a-plugin-that-kch`.\n- Pre-existing untracked files under `apps/backend/internal/system/storage/tempartifacts/` and `apps/web/app/` remain unowned by this task and untouched; none were staged or committed.\n- No service, port, or runtime was started or stopped during this blocked entry. No new artifact was created.\n- Replacement orchestration remains recorded as task `1e46d457-6869-4750-bf97-4640a8df3b68`, primary session `c18b8c82-7acc-4898-a571-d7cb017aab84`; first H0 child is `90d161b6-db1b-45ff-b80d-108ab1e4131c`, session `4322e1b2-d7c5-4eed-8fa6-63869e39c101`.",
+      "ownership": "Primary Coordinator serializes mutations; named task/dependency owner remains as recorded in the plan.",
+      "actionable_recommendation": "Preserve backup ref/worktree verbatim; after #3155 deploys, cancel/prove absent both exact rows, then independently classify unique commits before closing #2793 or terminal-superseding."
+    },
+    {
+      "task_id": "52892e8e-dc44-4d38-80ab-14bb75f7b6bf",
+      "title": "Build coordinator plugin",
+      "physical_lane": "Blocked",
+      "semantic_state": "FAILED",
+      "updated_at": "2026-08-30T18:17:13.764165893Z",
+      "assignee_profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+      "sessions": [
+        {
+          "session_id": "97ca2596-a769-4632-90bc-bee84adbc70c",
+          "state": "FAILED",
+          "profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-30T19:01:19.498686824Z"
+        },
+        {
+          "session_id": "f7bdec6f-930b-4a80-9b39-986d008277ce",
+          "state": "FAILED",
+          "profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-30T19:01:19.498647435Z"
+        },
+        {
+          "session_id": "aeb7cbb7-1e04-4eff-ace0-eb3d932b07ea",
+          "state": "FAILED",
+          "profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-30T19:01:19.529283695Z"
+        },
+        {
+          "session_id": "bd2eb4e5-d069-4d6d-9f7a-a1c20fddff9a",
+          "state": "FAILED",
+          "profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-30T19:01:19.515163569Z"
+        },
+        {
+          "session_id": "73505295-1947-47fb-a213-5e98e1f78913",
+          "state": "FAILED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-30T19:01:19.516900234Z"
+        },
+        {
+          "session_id": "519f75ba-9c11-4c80-bf3b-e36b16362dd0",
+          "state": "COMPLETED",
+          "profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": true,
+          "is_current": false,
+          "updated_at": "2026-08-30T18:16:44.289311263Z"
+        },
+        {
+          "session_id": "3ce211f8-1cae-48bb-9753-ac5ab93b3a07",
+          "state": "COMPLETED",
+          "profile_id": "40385329-6d98-4273-ab7c-aa29ff4353d1",
+          "runtime_model": "non-Codex/unknown",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-30T18:16:44.291275748Z"
+        },
+        {
+          "session_id": "ba3ee01d-4aa0-43e2-ba0a-ff0e2b2db658",
+          "state": "COMPLETED",
+          "profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-30T19:01:19.517825696Z"
+        },
+        {
+          "session_id": "7f33e85e-8bcd-45fa-a876-297125d3131f",
+          "state": "COMPLETED",
+          "profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-30T19:01:19.56164749Z"
+        },
+        {
+          "session_id": "708dc0de-6804-4b64-92e0-0b3d09ab1a1a",
+          "state": "COMPLETED",
+          "profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-30T18:16:44.298973718Z"
+        }
+      ],
+      "applied_tags": [
+        {
+          "name": "waiting",
+          "note": "GitGuardian is cleared at c4c430c; wait only for accepted replacement Host/plugin contracts and completion of the active recovery Review chain.",
+          "owner": "agent"
+        }
+      ],
+      "relations_read": false,
+      "provider_evidence": "yattdev/kandev-plugin-coordinator#1 OPEN draft clean c4c430cea07b62d3c9c63cdeffa0fcbcf005e496",
+      "observation": "Coordinator plugin PR #1 is OPEN/DRAFT/CLEAN at current head c4c430ce; plan says GitGuardian cleared and recovery child 3ec598a8 owns exact-head Review. Blocker is deployment/accepted replacement contracts, not GitGuardian.",
+      "exact_preservation_verbatim": "Preservation receipt: canonical plugin PR #1 is OPEN/DRAFT/CLEAN at current remote head `7b2f10ba7c4a8fa48a408f239b55ba43acc1dbd2`. The former preserved head `5bfdbcf7` is an ancestor; three later commits (`a9f889c1d9af`, `17f4d71f1eb8`, merge `7b2f10ba7c4a`) account for the advancement. Provider checks at the current head are green/skipped. No live task session is running.\n- Next action: after replacement Host/plugin deployment is proven, Coordinator starts one bounded recovery owner at the current preserved head and verifies managed-checkout Git metadata before any implementation or PR-lane action.\n- Deterministic resume trigger: exact replacement Host/plugin contract deployed and accepted, followed by a successful bounded managed-checkout recovery probe.\n- Last checked: 2026-09-07T12:01Z; trigger not cleared.",
+      "ownership": "Primary Coordinator serializes mutations; named task/dependency owner remains as recorded in the plan.",
+      "actionable_recommendation": "Primary-owned dependency 3ec598a8 must finish gates; retain Blocked and do not revive the resolved Human ask."
+    },
+    {
+      "task_id": "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+      "title": "Provision isolated Coordinator plugin end-to-end QA runtime",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "updated_at": "2026-08-30T07:39:58.61540179Z",
+      "assignee_profile_id": null,
+      "sessions": [
+        {
+          "session_id": "c66159ec-9746-4485-9daf-8e757286b0ba",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": true,
+          "is_current": false,
+          "updated_at": "2026-08-30T19:37:24.645011189Z"
+        }
+      ],
+      "applied_tags": [
+        {
+          "name": "waiting",
+          "note": "Wait only for accepted replacement Host/plugin contracts; then run isolated QA from maintained fork commit f4df079 or a verified local artifact. Upstream #451 is watch-only.",
+          "owner": "agent"
+        }
+      ],
+      "relations_read": true,
+      "provider_evidence": "No canonical PR on card; dependency/non-PR evidence governs.",
+      "observation": "QA-runtime support card correctly removed upstream #451 from its dependency. Former listener PIDs/ports are absent; artifacts remain the only preservation surface.",
+      "exact_preservation_verbatim": "Preservation: all repository/artifact/runtime paths remain recorded above, but the formerly listed listener PIDs/ports are absent; do not assume a live runtime.\n- Next action: when replacement Host/plugin-contract delivery is deployed and #451 is reviewed/released where required, start a fresh isolated compatible-host QA runtime and re-run the saved smoke contract. Otherwise preserve artifacts and do not duplicate the implementation owner.\n- Deterministic resume trigger: deployed replacement Host/plugin-contract deliverable under `1e46d457-6869-4750-bf97-4640a8df3b68` plus reviewed/released #451 where required. Trigger current: NO.\n- Last checked: 2026-09-05T08:35:29Z.",
+      "ownership": "Primary Coordinator serializes mutations; named task/dependency owner remains as recorded in the plan.",
+      "actionable_recommendation": "Keep Blocked until replacement Host/plugin contracts deploy, then build a fresh isolated runtime from maintained-fork commit f4df079; never wait for upstream #451."
+    },
+    {
+      "task_id": "a008158f-4aa5-4572-b4ed-ff076ec1d3dd",
+      "title": "Expose model-callable guarded TTY execution",
+      "physical_lane": "Blocked",
+      "semantic_state": "SCHEDULING",
+      "updated_at": "2026-08-30T08:58:58.202647528Z",
+      "assignee_profile_id": null,
+      "sessions": [
+        {
+          "session_id": "6f1a6b1b-b4c9-4ec7-86bb-7a427935df96",
+          "state": "FAILED",
+          "profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-30T08:58:58.201587599Z"
+        },
+        {
+          "session_id": "6e67a21b-0895-458c-b830-65ad27bb498a",
+          "state": "FAILED",
+          "profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": true,
+          "is_current": false,
+          "updated_at": "2026-08-30T08:57:10.760718689Z"
+        }
+      ],
+      "applied_tags": [
+        {
+          "name": "waiting",
+          "note": "Preserve this zero-work startup failure; replacement 46945aff-382a-41a4-9f35-bd5c2806911e owns delivery.",
+          "owner": "agent"
+        }
+      ],
+      "relations_read": true,
+      "provider_evidence": "No canonical PR on card; dependency/non-PR evidence governs.",
+      "observation": "Zero-work inherited-workspace failure with no branch, PR, commit, runtime, or artifact. Replacement maintained-fork delivery 46945aff is merged and upstream #451 is watch-only.",
+      "exact_preservation_verbatim": "Preservation receipt: zero-work incident; no worktree, branch/head, message, PR, commit, runtime, data, credential, or artifact exists. Failed sessions 6e67a21b-0895-458c-b830-65ad27bb498a and 6f1a6b1b are retained; plan and task identity are preserved.\n- Next action: replacement owners make the guarded TTY delivery durable; Coordinator then applies the normal terminal-supersession gate without waking this card.\n- Deterministic resume trigger: replacement delivery evidence is returned and independently verified; then confirm this task has zero unique work/resources and move it to Done as superseded.",
+      "ownership": "Primary Coordinator serializes mutations; named task/dependency owner remains as recorded in the plan.",
+      "actionable_recommendation": "Trigger is cleared for terminal supersession. Primary should verify zero-resource receipt and move directly to Done as superseded; do not launch."
+    },
+    {
+      "task_id": "5c9f515d-e5f9-43c5-bf31-fb42276e5e15",
+      "title": "Add guarded TTY bridge to codex-acp",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "updated_at": "2026-09-08T01:55:31.117935119Z",
+      "assignee_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+      "sessions": [
+        {
+          "session_id": "0e345274-f015-417f-986a-fe727c7f61a7",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "runtime_model": "gpt-5.6-luna",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-31T21:36:09.436603983Z"
+        },
+        {
+          "session_id": "70ecf6f1-9d03-4435-a50e-acce577ec6ec",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "runtime_model": "gpt-5.6-luna",
+          "is_primary": true,
+          "is_current": false,
+          "updated_at": "2026-09-07T02:36:08.288098047Z"
+        },
+        {
+          "session_id": "269f2d7f-5c9f-4170-8157-34d1b0f54426",
+          "state": "COMPLETED",
+          "profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-08-30T10:00:10.96400074Z"
+        }
+      ],
+      "applied_tags": [
+        {
+          "name": "waiting",
+          "note": "Upstream codex-acp #451 is ready at 0bd0f8fb and reviewer-notified; watch only for workflow approval/review while downstream proceeds from the maintained fork.",
+          "owner": "agent"
+        }
+      ],
+      "relations_read": true,
+      "provider_evidence": "agentclientprotocol/codex-acp#451 OPEN non-draft unstable 0bd0f8fb74a0dfec93eb3a8e586dc0d7c0e8488",
+      "observation": "Upstream codex-acp#451 is OPEN/non-draft/mergeable-unstable at 0bd0f8fb; it is watch-only. Maintained yattdev/codex-acp PR #1 is the active merged source at f4df079.",
+      "exact_preservation_verbatim": "Preservation receipt: branch `feature/add-guarded-tty-brid-6q9`; HEAD `0bd0f8fb74a0dfec93eb3a8e586dc0d7c0e8488d`; worktree `/data/tasks/add-guarded-tty-brid_10966pzf/agentclientprotocol-codex-acp`; clean; no running services/ports; no artifacts requiring preservation; no uncommitted changes to commit.",
+      "ownership": "Primary Coordinator serializes mutations; named task/dependency owner remains as recorded in the plan.",
+      "actionable_recommendation": "Keep as external watch root only; no downstream dependency, no repeat ping at unchanged head. Recheck on maintainer review/check/merge/release."
+    },
+    {
+      "task_id": "1e46d457-6869-4750-bf97-4640a8df3b68",
+      "title": "Coordinate plugin-first board supervision delivery",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "updated_at": "2026-09-07T17:02:51.093045102Z",
+      "assignee_profile_id": null,
+      "sessions": [
+        {
+          "session_id": "b2684034-c146-4bd8-9166-8a8f0736a2fc",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T17:02:51.081171259Z"
+        },
+        {
+          "session_id": "3f423a05-1002-4aee-af6e-46b6df0552ed",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-06T17:35:41.624879881Z"
+        },
+        {
+          "session_id": "2913e92b-a019-41cf-8e18-9fe6950a51e6",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "52c71f7e-81cd-4134-9ca1-24a27bd5fca8",
+          "runtime_model": "gpt-5.4-mini",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-06T17:27:35.385900613Z"
+        },
+        {
+          "session_id": "c18b8c82-7acc-4898-a571-d7cb017aab84",
+          "state": "FAILED",
+          "profile_id": "52c71f7e-81cd-4134-9ca1-24a27bd5fca8",
+          "runtime_model": "gpt-5.4-mini",
+          "is_primary": true,
+          "is_current": false,
+          "updated_at": "2026-09-05T03:09:01.832941769Z"
+        }
+      ],
+      "applied_tags": [
+        {
+          "name": "waiting",
+          "note": "Fork-first guarded-TTY work is active; program waits only on exact-model routing PR #3473 merge/deploy for its gated PR-lane continuation.",
+          "owner": "agent"
+        }
+      ],
+      "relations_read": false,
+      "provider_evidence": "No canonical PR on card; dependency/non-PR evidence governs.",
+      "observation": "Program orchestration card has no canonical PR and four parked/terminal sessions; it coordinates replacement children. Current root is exact-model/deployment task #3473, owned by primary.",
+      "exact_preservation_verbatim": "Preservation: clean `/data/tasks/h6-add-plugin-capabi_ujha1a9q/kdlbs-kandev`; branch `feature/h6-add-plugin-capabi-lca`; exact normally pushed head `63712023e07401ee6de737e2172badd0e73ad0c4`; PR OPEN/non-draft. Exact-head independent GPT-5.5 Review and distinct GPT-5.6 Sol QA passed. CI is non-terminal: known non-material deploy-fork workflow/tooling failure plus pending jobs. Do not claim green/readiness, mutate provider, merge, or deploy.\n- Current physical state: Blocked. R4 owner: `e0dd8d19-278c-4d38-aafa-c3e866d92cfb`, PR-lane runtime packaging repair.\n- Exact blocker: PR gate requires effective message metadata `gpt-5.4`. Auto-start emitted `gpt-5.6-luna` (`babccacb-74e3-4831-ba27-34731fce4d17`, cancelled). Requested profile `52c71f7e-81cd-4134-9ca1-24a27bd5fca8` emitted `gpt-5.4-mini`, not `gpt-5.4` (`f99e6680-c366-4370-a358-d92111b30715`, parked). Neither is valid PR-gate evidence.\n- Deterministic resume: `e0dd8d19-278c-4d38-aafa-c3e866d92cfb` proves a PR-lane session whose immutable message metadata is exactly `gpt-5.4`; then run one fresh PR gate and refresh exact-head provider/CI evidence. Historical sessions must never be resumed.\n- Successor/Work handoff if reopened: preserve v2-only H6 identities, legacy `api_read:/api_write:` denial, Human-reserved namespaced denial, canonical/bounded/secret-safe receipt/audit fields, H0 compatibility, and adversarial coverage. Any new head needs fresh GPT-5.5 Review then distinct Sol QA.",
+      "ownership": "Primary Coordinator serializes mutations; named task/dependency owner remains as recorded in the plan.",
+      "actionable_recommendation": "Retain as dependency ledger, but collapse obsolete monolith/#451 edges and ensure each child points to its direct deliverable root where possible."
+    },
+    {
+      "task_id": "23a05db4-c7bf-4732-a390-08cb8f0a3a8d",
+      "title": "H6: Add plugin capability approval and audit",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "updated_at": "2026-09-07T04:08:23.427580226Z",
+      "assignee_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+      "sessions": [
+        {
+          "session_id": "3bbb1fa2-fc37-4fc7-b6af-d68ee525cfac",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "c151363f-a48d-4955-b669-cab94470d04a",
+          "runtime_model": "gpt-5.4",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T04:08:06.979346371Z"
+        },
+        {
+          "session_id": "f99e6680-c366-4370-a358-d92111b30715",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "52c71f7e-81cd-4134-9ca1-24a27bd5fca8",
+          "runtime_model": "gpt-5.4-mini",
+          "is_primary": true,
+          "is_current": false,
+          "updated_at": "2026-09-07T04:08:23.34760938Z"
+        },
+        {
+          "session_id": "babccacb-74e3-4831-ba27-34731fce4d17",
+          "state": "CANCELLED",
+          "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "runtime_model": "gpt-5.6-luna",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "e9c23b53-f4a9-4c10-808d-69a46b0f0a9e",
+          "state": "COMPLETED",
+          "profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "e89e41a7-5e6b-4443-9278-bdec118a12b5",
+          "state": "CANCELLED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "6dd7592f-0ab6-4b51-a064-7dca30a34dc8",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "4a9b3cf4-ba49-4696-988a-07d8e3531244",
+          "state": "CANCELLED",
+          "profile_id": "52c71f7e-81cd-4134-9ca1-24a27bd5fca8",
+          "runtime_model": "gpt-5.4-mini",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "a40bf679-b47f-471d-8d2d-b730fdca3c56",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "79e37a9b-1d17-4def-9222-becbef5385cc",
+          "state": "CANCELLED",
+          "profile_id": "52c71f7e-81cd-4134-9ca1-24a27bd5fca8",
+          "runtime_model": "gpt-5.4-mini",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "69026548-1426-4c10-b584-b34d34a0776c",
+          "state": "COMPLETED",
+          "profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "f773b373-ec78-48ff-b283-1af1f0f01c6e",
+          "state": "CANCELLED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "8cbc0485-c105-4820-86ab-ec2d72ee21e2",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "df1ee058-b92b-4f61-a2f7-59866d719ea9",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "02ee1c29-b6af-4906-8617-f8f4c4cc4fd0",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "d974e754-50c5-4cc4-b9b7-b7bf267fa27d",
+          "state": "CANCELLED",
+          "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "runtime_model": "gpt-5.6-luna",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "5d4e05e9-4f17-446a-a04d-2ebd8b018b7a",
+          "state": "CANCELLED",
+          "profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "b2f815a5-179c-4a11-8b40-2c663e78ded1",
+          "state": "CANCELLED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "ebad1b32-5132-43f8-abc2-1fae04b16ff7",
+          "state": "COMPLETED",
+          "profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "cdde8369-481e-4901-9260-b07fefc82e53",
+          "state": "CANCELLED",
+          "profile_id": "52c71f7e-81cd-4134-9ca1-24a27bd5fca8",
+          "runtime_model": "gpt-5.4-mini",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "5d86b322-19d5-454b-98e0-d691cb9eaec2",
+          "state": "CANCELLED",
+          "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "runtime_model": "gpt-5.6-luna",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "06ea6194-3c40-4ca6-aafa-cb2a0b1b85ea",
+          "state": "CANCELLED",
+          "profile_id": "52c71f7e-81cd-4134-9ca1-24a27bd5fca8",
+          "runtime_model": "gpt-5.4-mini",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "e058cbc5-c55c-4545-b1ec-bbdd15a28465",
+          "state": "CANCELLED",
+          "profile_id": "52c71f7e-81cd-4134-9ca1-24a27bd5fca8",
+          "runtime_model": "gpt-5.4-mini",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "94d8316e-c5e6-416c-b99d-f8d00bed33a2",
+          "state": "CANCELLED",
+          "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "runtime_model": "gpt-5.6-luna",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "68f8984b-b0e6-4b7e-b499-9f8331066c50",
+          "state": "CANCELLED",
+          "profile_id": "52c71f7e-81cd-4134-9ca1-24a27bd5fca8",
+          "runtime_model": "gpt-5.4-mini",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "84f6ee53-e1fb-4499-94b6-4d1172d9d0be",
+          "state": "CANCELLED",
+          "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "runtime_model": "gpt-5.6-luna",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "040def8b-0bfe-48f0-bf31-c15fb3536f87",
+          "state": "COMPLETED",
+          "profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "6066561d-4ce4-4475-8a24-2daced10db85",
+          "state": "CANCELLED",
+          "profile_id": "52c71f7e-81cd-4134-9ca1-24a27bd5fca8",
+          "runtime_model": "gpt-5.4-mini",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "1caeea4a-d6d8-451d-9a05-87a400ec572b",
+          "state": "CANCELLED",
+          "profile_id": "52c71f7e-81cd-4134-9ca1-24a27bd5fca8",
+          "runtime_model": "gpt-5.4-mini",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "9543917c-46b5-4f0c-9f73-2d490a24222f",
+          "state": "CANCELLED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "8f455d09-f2ca-4c8c-8a8e-69ad4de50e34",
+          "state": "CANCELLED",
+          "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "runtime_model": "gpt-5.6-luna",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "27d47235-d2e7-46fc-9110-0afade8b3eb2",
+          "state": "COMPLETED",
+          "profile_id": "52c71f7e-81cd-4134-9ca1-24a27bd5fca8",
+          "runtime_model": "gpt-5.4-mini",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "b0dc8bf2-ef1a-41f4-950f-f6f709b1e121",
+          "state": "CANCELLED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "27cb665b-24a6-42cf-b50e-fce8b05e5b61",
+          "state": "CANCELLED",
+          "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "runtime_model": "gpt-5.6-luna",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "7252f7b5-0073-4ee7-a23a-1c1cb89b356c",
+          "state": "COMPLETED",
+          "profile_id": "2d04a6db-0bd1-46fd-b4ef-8263c4ca291a",
+          "runtime_model": "non-Codex/unknown",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "e1c60316-0cad-4a75-8029-8754a88ad581",
+          "state": "COMPLETED",
+          "profile_id": "e121eb20-74d0-4c89-a791-9594146e93f1",
+          "runtime_model": "non-Codex/unknown",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "64991119-0d28-43dc-b4c8-48877515ec0c",
+          "state": "CANCELLED",
+          "profile_id": "ce9f96f7-4434-4729-b23b-926b4b72f417",
+          "runtime_model": "non-Codex/unknown",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "c005a7fb-af2f-4cf4-b0dc-3c70343c8a50",
+          "state": "COMPLETED",
+          "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "runtime_model": "gpt-5.6-luna",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "eda0956a-b9eb-452e-8a87-bdaa84ec0f96",
+          "state": "CANCELLED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "b3fa930c-9bcb-4dda-8634-35174505958c",
+          "state": "CANCELLED",
+          "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "runtime_model": "gpt-5.6-luna",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "2ea4497b-9cfd-4f5c-acff-8f8ff79c5394",
+          "state": "COMPLETED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        },
+        {
+          "session_id": "8f9dc760-ca50-4beb-84e2-fb5d36e686d4",
+          "state": "CANCELLED",
+          "profile_id": "52c71f7e-81cd-4134-9ca1-24a27bd5fca8",
+          "runtime_model": "gpt-5.4-mini",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T03:52:04.265758387Z"
+        }
+      ],
+      "applied_tags": [
+        {
+          "name": "waiting",
+          "note": "PR #3238 remains preserved. Exact PR-profile validation resumes only after ready PR #3473 exact 4a848709 is merged and deployed; no local-commit deployment is requested.",
+          "owner": "agent"
+        }
+      ],
+      "relations_read": false,
+      "provider_evidence": "kdlbs/kandev#3238 OPEN non-draft unstable 63712023e07401ee6de737e2172badd0e73ad0c4",
+      "observation": "PR #3238 is OPEN/non-draft/mergeable-unstable at exact 63712023. Review/QA were previously passed; PR gate is blocked solely on exact gpt-5.4 runtime deployment #3473.",
+      "exact_preservation_verbatim": "Preservation receipt:** H6 branch `feature/h6-add-plugin-capabi-lca`; exact local/fork/PR head `63712023e07401ee6de737e2172badd0e73ad0c4`; worktree clean; PR #3238 open, non-draft, mergeable, currently `unstable`; independent GPT-5.5 Review PASS and distinct Sol QA PASS on this exact head; no source/provider mutation made by the failed runtime probe; both probe sessions are parked WAITING_FOR_INPUT.\n- **Next action:** Human deploys/restarts the backend from exact repair head `70d64d48612f6ace1bad100bb42491a766a72260`. Then Coordinator creates one fresh non-reproduction session with exact PR profile `c151363f-a48d-4955-b669-cab94470d04a`, checks the first immutable status before any inference, and proceeds only if it either fails closed before inference when gpt-5.4 is unavailable or selects/persists gpt-5.4 when advertised.\n- **Deterministic resume trigger:** Verified deployment of repair head `70d64d48612f6ace1bad100bb42491a766a72260`; successful post-deploy validation as above; then move H6 atomically to PR/MR, send this preservation-bound handoff, and verify the lane session starts on the configured model without unauthorized fallback.",
+      "ownership": "Primary Coordinator serializes mutations; named task/dependency owner remains as recorded in the plan.",
+      "actionable_recommendation": "Retain Blocked; after #3473 deploy, create one fresh exact gpt-5.4 PR owner on unchanged head. Never resume parked fallback-model sessions."
+    },
+    {
+      "task_id": "d5cef521-32bd-4433-873b-33561d6bee8f",
+      "title": "Make visible Human questions durable",
+      "physical_lane": "Blocked",
+      "semantic_state": "SCHEDULING",
+      "updated_at": "2026-09-01T03:38:12.379723798Z",
+      "assignee_profile_id": null,
+      "sessions": [
+        {
+          "session_id": "e5484e62-0e5d-40eb-96cd-73d25dab84d2",
+          "state": "FAILED",
+          "profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-01T03:38:12.378534246Z"
+        },
+        {
+          "session_id": "e0eff956-72ec-4f11-9bd4-47a832821cd0",
+          "state": "FAILED",
+          "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "runtime_model": "gpt-5.6-luna",
+          "is_primary": true,
+          "is_current": false,
+          "updated_at": "2026-09-01T03:37:21.498887984Z"
+        }
+      ],
+      "applied_tags": [
+        {
+          "name": "waiting",
+          "note": "Zero-work inherited-workspace incident; replacement 76b4e3d4-ccb8-408c-a0de-5e5014c538be owns the durable-question implementation.",
+          "owner": "agent"
+        }
+      ],
+      "relations_read": true,
+      "provider_evidence": "No canonical PR on card; dependency/non-PR evidence governs.",
+      "observation": "Zero-work duplicate failed before execution; replacement 76b4e3d4 owns the implementation and has PR #3404.",
+      "exact_preservation_verbatim": "Preservation receipt: approved plan and repository association retained; failed sessions e0eff956-72ec-4f11-9bd4-47a832821cd0 and e5484e62-0e5d-40eb-96cd-73d25dab84d2; no implementation edit, commit, branch, PR, runtime, data, credential, or artifact was created.\n- Next action: replacement task delivers the durable-question capability; Coordinator then proves this card has zero unique work/resources and applies the superseded terminal gate.\n- Deterministic resume trigger: replacement task is terminally delivered and a zero-state/zero-resource receipt for this card is independently verified.",
+      "ownership": "Primary Coordinator serializes mutations; named task/dependency owner remains as recorded in the plan.",
+      "actionable_recommendation": "Terminal-supersede now after verifying no pending move/resource; no need to wait for replacement completion because this card owns no deliverable."
+    },
+    {
+      "task_id": "76b4e3d4-ccb8-408c-a0de-5e5014c538be",
+      "title": "Make visible Human questions durable",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "updated_at": "2026-09-05T19:40:43.952182598Z",
+      "assignee_profile_id": "ce9f96f7-4434-4729-b23b-926b4b72f417",
+      "sessions": [
+        {
+          "session_id": "d30978b2-e58e-4647-a687-0018172b1612",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "runtime_model": "gpt-5.6-luna",
+          "is_primary": true,
+          "is_current": false,
+          "updated_at": "2026-09-05T19:40:27.543548469Z"
+        },
+        {
+          "session_id": "2c83cc7f-6d3b-4c1f-a9fc-c988485fd7cf",
+          "state": "COMPLETED",
+          "profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T09:24:42.490524709Z"
+        },
+        {
+          "session_id": "c031fc77-f998-4a93-95fe-c7248bcb63e0",
+          "state": "CANCELLED",
+          "profile_id": "ce9f96f7-4434-4729-b23b-926b4b72f417",
+          "runtime_model": "non-Codex/unknown",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T09:24:42.210904092Z"
+        },
+        {
+          "session_id": "a3fcb767-ac94-4217-86fd-3a3529ea6552",
+          "state": "COMPLETED",
+          "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "runtime_model": "gpt-5.6-luna",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T09:24:42.210904092Z"
+        }
+      ],
+      "applied_tags": [
+        {
+          "name": "waiting",
+          "note": "Await an administrator-authorized rerun of #3404 run 33957804079; the task actor lacks rerun permission.",
+          "owner": "agent"
+        }
+      ],
+      "relations_read": true,
+      "provider_evidence": "kdlbs/kandev#3404 OPEN draft blocked 654a7cdca1d7af0eba20ac2acae63d4dcc04ab63",
+      "observation": "PR #3404 remains OPEN/DRAFT/mergeable-blocked at 654a7cdc. The saved blocker demanding admin rerun of old run 33957804079 is stale as an exclusive root: current-head checks must be refreshed, and scoped fresh-CI task #3165 is the owned capability path.",
+      "exact_preservation_verbatim": "No labeled preservation receipt found in current plan; preserve complete plan/resources.",
+      "ownership": "Primary Coordinator serializes mutations; named task/dependency owner remains as recorded in the plan.",
+      "actionable_recommendation": "Replace old-run blocker with fresh exact-head classification via primary-owned #3165; retain preserved clean branch. Do not ask Human for admin rerun unless #3165 cannot deliver and current head still requires it."
+    },
+    {
+      "task_id": "ca015838-e5cf-4294-b3bb-9c50576a5fe6",
+      "title": "Add guarded queue claim and routine wake coalescing",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "updated_at": "2026-09-07T21:17:02.892795615Z",
+      "assignee_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+      "sessions": [
+        {
+          "session_id": "7e3f50f5-05f4-47f1-be64-8be0be34aba4",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "runtime_model": "gpt-5.6-luna",
+          "is_primary": true,
+          "is_current": false,
+          "updated_at": "2026-09-07T21:17:02.879102374Z"
+        },
+        {
+          "session_id": "d83affb2-d391-4142-be8a-de12d98939c1",
+          "state": "COMPLETED",
+          "profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-04T11:57:15.224389637Z"
+        }
+      ],
+      "applied_tags": [
+        {
+          "name": "waiting",
+          "note": "Unsafe Work transition resumed Luna session 7e3f50f5. Park without mutation; resume PR #3377 only after PR #3473 is merged/deployed and exact Terra startup is proven.",
+          "owner": "agent"
+        }
+      ],
+      "relations_read": false,
+      "provider_evidence": "kdlbs/kandev#3377 OPEN draft clean 98c121217954b9ec1a4af428c5177a0dd26f3975",
+      "observation": "PR #3377 advanced to exact 98c12121 and is OPEN/DRAFT/CLEAN. Local/fork are preserved clean, but advancement was produced under stale Luna and explicitly unaccepted; #3473 deploy is the exact-model validation root.",
+      "exact_preservation_verbatim": "Preservation: worktree `/data/tasks/add-guarded-queue-cl_sf70tyvs/kdlbs-kandev`; branch `feature/add-guarded-queue-cl-sls`; local HEAD and fork branch `98c121217954b9ec1a4af428c5177a0dd26f3975`; clean tree; no runtime, data, services, or ports retained. Untracked artifacts are preserved; no code, test, push, provider, or lane mutation performed for this blocker.",
+      "ownership": "Primary Coordinator serializes mutations; named task/dependency owner remains as recorded in the plan.",
+      "actionable_recommendation": "Retain Blocked. After #3473 deploy, fresh Terra validates/corrects 98c12121, then new immutable Review/QA and provider gates."
+    },
+    {
+      "task_id": "86c8b47e-e7a5-4693-8e11-dce08899a0bf",
+      "title": "Preserve unread queue on session deletion",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "updated_at": "2026-09-06T08:46:10.564953709Z",
+      "assignee_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+      "sessions": [
+        {
+          "session_id": "02b48c70-3ad9-461d-a5ca-7fe3c01dfe50",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-06T08:11:23.115805113Z"
+        },
+        {
+          "session_id": "2376d3fe-6818-4486-a1fb-7dc99c3bf433",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "runtime_model": "gpt-5.6-luna",
+          "is_primary": true,
+          "is_current": false,
+          "updated_at": "2026-09-06T08:46:10.548844609Z"
+        },
+        {
+          "session_id": "fb3e5dd8-452b-4604-bd38-6c0ba9844d98",
+          "state": "COMPLETED",
+          "profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-06T06:37:20.412715914Z"
+        }
+      ],
+      "applied_tags": [
+        {
+          "name": "waiting",
+          "note": "Fork PR #15 is only a stacked carrier. Wait for upstream PR #3377 to land, then integrate current main, rerun gates, and open the final upstream PR.",
+          "owner": "agent"
+        }
+      ],
+      "relations_read": false,
+      "provider_evidence": "yattdev/kandev#15 OPEN draft dirty c4156e83b8379851f50ce6890a13b16720874df9; stacked only",
+      "observation": "The old external deploy-same-repo failure is obsolete as delivery blocker: fork PR #15 is only a stacked carrier and is OPEN/DRAFT/DIRTY at c4156e83. Actual prerequisite is canonical #3377.",
+      "exact_preservation_verbatim": "Preservation receipt:** branch `feature/preserve-unread-queu-s0c`; head `c4156e83b8379851f50ce6890a13b16720874df9`; worktree `/data/tasks/preserve-unread-queu_ofb2j8xg/kdlbs-kandev`. No source changes are pending; the worktree was clean apart from preserved untracked QA capture artifacts, and `git diff --check` was clean. No task-owned services or ports are running at parking entry. Final QA captures remain in `apps/web/.qa-artifacts/` and were intentionally not committed because they are capture-only artifacts: `preview-session-history-hidden-desktop.png`, `preview-session-history-visible-desktop.png`, `session-history-hidden-desktop.png`, `session-history-hidden-mobile.png`, `session-history-visible-desktop.png`, and `session-history-visible-mobile.png`.",
+      "ownership": "Primary Coordinator serializes mutations; named task/dependency owner remains as recorded in the plan.",
+      "actionable_recommendation": "Rewrite blocker to #3377 merge, then integrate current upstream main, rerun gates and open canonical kdlbs PR; do not spend Human/admin effort on fork preview."
+    },
+    {
+      "task_id": "428d343e-c768-4bce-a5e7-efd3b10f363f",
+      "title": "Plugin fenced runtime and scheduler",
+      "physical_lane": "Blocked",
+      "semantic_state": "CREATED",
+      "updated_at": "2026-09-05T04:15:09.261903467Z",
+      "assignee_profile_id": null,
+      "sessions": [],
+      "applied_tags": [
+        {
+          "name": "waiting",
+          "note": "Blocked on accepted Host queue primitive PR #3377 plus merged policy/durable-state inputs; approved runtime plan preserved. Resume to Work only on that exact delivery trigger.",
+          "owner": "agent"
+        }
+      ],
+      "relations_read": false,
+      "provider_evidence": "No canonical PR on card; dependency/non-PR evidence governs.",
+      "observation": "Approved plan, zero sessions/worktree. It legitimately depends on deployed Host queue primitive #3377, not merely implementation completion.",
+      "exact_preservation_verbatim": "Preservation receipt: no implementation session or worktree has been allocated; no source, branch, runtime, service, credential, or data mutation exists. The approved plan and immutable policy source remain preserved at `yattdev/tasks-coordinator` exact `2ca27d00477dc298fc91187274968f1fc3970fef`.\n- Next action: Coordinator rechecks the queue-primitive task and provider receipt next cycle; once the reviewed contract is deployed/available, atomically move this task to Work and start exactly one Terra owner with this plan.\n- Deterministic resume trigger: task `ca015838-e5cf-4294-b3bb-9c50576a5fe6` supplies a deployed/available exact Host queue primitive compatible with contract v1.1.0.",
+      "ownership": "Primary Coordinator serializes mutations; named task/dependency owner remains as recorded in the plan.",
+      "actionable_recommendation": "Keep Blocked; after #3377 reviewed/merged/deployed, move to Work and start one Terra owner."
+    },
+    {
+      "task_id": "0259d242-0a94-40ef-843e-385292796b64",
+      "title": "Plugin deterministic scale harness",
+      "physical_lane": "Blocked",
+      "semantic_state": "CREATED",
+      "updated_at": "2026-09-05T04:15:09.395253849Z",
+      "assignee_profile_id": null,
+      "sessions": [],
+      "applied_tags": [
+        {
+          "name": "waiting",
+          "note": "Blocked on terminal delivery of runtime task 428d343e; approved deterministic scale-harness plan preserved. Resume to Work and start one owner only after that trigger.",
+          "owner": "agent"
+        }
+      ],
+      "relations_read": false,
+      "provider_evidence": "No canonical PR on card; dependency/non-PR evidence governs.",
+      "observation": "Approved harness plan, zero sessions/worktree. It legitimately depends on reviewed/deployed runtime 428d343e.",
+      "exact_preservation_verbatim": "Preservation receipt: no implementation session or worktree has been allocated; no source, branch, runtime, service, credential, fixture data, or result receipt exists. The approved plan, exact schedule contract, and immutable policy source remain preserved at `yattdev/tasks-coordinator` exact `2ca27d00477dc298fc91187274968f1fc3970fef`.\n- Next action: Coordinator rechecks the runtime dependency next cycle; after it delivers a reviewed/deployed compatible runtime, atomically move this harness to Work and start exactly one Terra owner with the preserved plan.\n- Deterministic resume trigger: task `428d343e-c768-4bce-a5e7-efd3b10f363f` supplies its reviewed/deployed exact runtime and dependency receipt.",
+      "ownership": "Primary Coordinator serializes mutations; named task/dependency owner remains as recorded in the plan.",
+      "actionable_recommendation": "Keep Blocked; start one Terra owner only after 428d343e supplies exact runtime/dependency receipt."
+    },
+    {
+      "task_id": "ecd8b857-42a6-417f-a7e4-084f50fc6956",
+      "title": "Run isolated Redmine first-version E2E",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "updated_at": "2026-09-06T20:23:00.656395344Z",
+      "assignee_profile_id": null,
+      "sessions": [
+        {
+          "session_id": "03a5704f-6e87-41b0-8d9f-738c97950b16",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-06T18:41:06.611188516Z"
+        },
+        {
+          "session_id": "53cde7f4-bae1-4cc4-9f70-9f09f61f92cb",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-06T18:15:08.234459461Z"
+        },
+        {
+          "session_id": "24430474-ffd8-4b8b-8a3b-d972ef799c33",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "ce9f96f7-4434-4729-b23b-926b4b72f417",
+          "runtime_model": "non-Codex/unknown",
+          "is_primary": true,
+          "is_current": false,
+          "updated_at": "2026-09-06T20:23:00.648389252Z"
+        }
+      ],
+      "applied_tags": [
+        {
+          "name": "waiting",
+          "note": "PR #3 is merged at caf011. Resume the isolated Redmine first-version E2E after the updated plugin package is published/deployed; preserve the synthetic fixture until then.",
+          "owner": "agent"
+        }
+      ],
+      "relations_read": true,
+      "provider_evidence": "No canonical PR on card; dependency/non-PR evidence governs.",
+      "observation": "E2E card has three parked sessions and extensive preserved source/package evidence but no live runtime/credentials. Relation points to 7a0454aa. PR #3 merged; publication/deployment remains blocked by release repair e872 and an upstream semver containing #2872.",
+      "exact_preservation_verbatim": "Preservation receipt:\n  - Primary branch/worktree remains clean: `feature/run-isolated-redmine-vlw` at `cfd6bdf65ae6f631d7701c105791a099c0325cc3`, `/data/tasks/run-isolated-redmine_dfcy6fbj/kandev-source`.\n  - Attached Host verification worktree remains clean: `feature/run-isolated-redmine-854` at `fed90594d38138eee709ae94eef4766ae6ee3386`, `/data/tasks/run-isolated-redmine_dfcy6fbj/kdlbs-kandev-main`.\n  - Attached pre-repair plugin worktree remains clean: `feature/run-isolated-redmine-nbz` at `9ab567715b9a224f52625e403d8f52483fcbdae0`, `/data/tasks/run-isolated-redmine_dfcy6fbj/yattdev-kandev-plugin-redmine-main`.\n  - Preserved detached Host source: clean detached HEAD `66b41c896890d8b5be06f6920eb81dc85f4ac35c` at `/data/tasks/run-isolated-redmine_dfcy6fbj/e2e-runtime/host-66b41c`.\n  - Preserved repaired plugin source: detached HEAD `990dcdd2b4ff6034ef28a67d89e863231ef425f1` at `/data/tasks/run-isolated-redmine_dfcy6fbj/e2e-runtime/plugin-990dcdd`; source changes are committed, with untracked Playwright `test-results/` retained as task-local evidence and intentionally neither deleted nor committed.\n  - Preserved package: `/data/tasks/run-isolated-redmine_dfcy6fbj/e2e-runtime/plugin-990dcdd/kandev-plugin-redmine-0.2.0.tar.gz`, SHA-256 `f3fd75d16b897d12259618d0e46ecabbfcec4d9673d9f73086e4737874aaea15`.\n  - Prior evidence remains at `/data/tasks/run-isolated-redmine_dfcy6fbj/e2e-runtime/evidence/QA-RESULT.md` and sibling logs.\n  - No preservation commit was required in this task's clean worktrees.\n  - Runtime/services: none remain; no ports, containers, networks, volumes, API keys, credentials, fixture data, or login remain active.",
+      "ownership": "Primary Coordinator serializes mutations; named task/dependency owner remains as recorded in the plan.",
+      "actionable_recommendation": "Keep Blocked and preserve artifacts. Resume only after repaired plugin release is published/deployed, then rebuild a fresh synthetic runtime; do not reuse prior runtime receipts."
+    },
+    {
+      "task_id": "b8fc206c-9e3f-4497-9ac3-3b62593da258",
+      "title": "Rotate Coordinator sessions before context exhaustion",
+      "physical_lane": "Blocked",
+      "semantic_state": "SCHEDULING",
+      "updated_at": "2026-09-06T08:06:22.272933953Z",
+      "assignee_profile_id": null,
+      "sessions": [
+        {
+          "session_id": "c0d09731-8fb6-4f7b-8cf9-92a1f1ebb561",
+          "state": "FAILED",
+          "profile_id": "ce9f96f7-4434-4729-b23b-926b4b72f417",
+          "runtime_model": "non-Codex/unknown",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-06T08:06:22.271955479Z"
+        },
+        {
+          "session_id": "fcb1771c-de82-4975-9bb6-936de9c703bd",
+          "state": "FAILED",
+          "profile_id": "ce9f96f7-4434-4729-b23b-926b4b72f417",
+          "runtime_model": "non-Codex/unknown",
+          "is_primary": true,
+          "is_current": false,
+          "updated_at": "2026-09-06T00:35:10.758553326Z"
+        }
+      ],
+      "applied_tags": [
+        {
+          "name": "waiting",
+          "note": "Starts automatically after task 86c8b47e-e7a5-4693-8e11-dce08899a0bf delivers safe queue-preserving session cleanup; then implement 180M checkpoint / 200M atomic primary rotation.",
+          "owner": "agent"
+        }
+      ],
+      "relations_read": true,
+      "provider_evidence": "No canonical PR on card; dependency/non-PR evidence governs.",
+      "observation": "Zero implementation work; dependency edge to 86c8b47e is correct, but 86c8b47e itself now depends on canonical #3377 rather than fork CI.",
+      "exact_preservation_verbatim": "Preservation: approved plan and deferred launch only; no session, worktree, branch, commit, PR, runtime, data, or artifact exists.\n- Next action: re-check the dependency each Coordinator cycle. When its accepted compatible contract is available, move this task to Work, refresh the launch handoff against the exact dependency version, and verify exactly one implementation owner starts.\n- Deterministic resume trigger: task `86c8b47e-e7a5-4693-8e11-dce08899a0bf` reaches verified terminal delivery with its queue-preserving session lifecycle available on the task base.",
+      "ownership": "Primary Coordinator serializes mutations; named task/dependency owner remains as recorded in the plan.",
+      "actionable_recommendation": "Keep Blocked; resume after canonical queue-preserving cleanup contract delivers, then move to Work before starting one Terra owner."
+    },
+    {
+      "task_id": "4b56a8b3-89fa-43ef-891d-c6b3a3b88e2a",
+      "title": "Propagate CI cleanup errors on workspace deletion",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "updated_at": "2026-09-07T00:28:31.173257598Z",
+      "assignee_profile_id": null,
+      "sessions": [
+        {
+          "session_id": "339b7c88-b4ee-46fc-8b9f-bc3436bd08a3",
+          "state": "WAITING_FOR_INPUT",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T00:28:35.710818987Z"
+        },
+        {
+          "session_id": "96c16a68-b051-45a7-8936-30e2ba64ab58",
+          "state": "CANCELLED",
+          "profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": true,
+          "is_current": false,
+          "updated_at": "2026-09-07T00:18:52.717782299Z"
+        }
+      ],
+      "applied_tags": [
+        {
+          "name": "waiting",
+          "note": "PR #3165 must merge; then Terra reanchors on the landed store contract and implements this plan.",
+          "owner": "agent"
+        }
+      ],
+      "relations_read": true,
+      "provider_evidence": "kdlbs/kandev#3165 OPEN non-draft dirty a9db12a00a8415a33e40586ab6d2cfd08376fc21",
+      "observation": "Approved plan, no implementation work. PR #3165 is OPEN/non-draft/DIRTY at new head a9db12a0; primary owns its fresh CI, so the dependency remains current.",
+      "exact_preservation_verbatim": "Preservation receipt: no implementation session or worktree has been allocated; no source, branch, runtime, database, provider, credential, or CI mutation exists. This approved plan is the complete preserved work product.\n- Next action: Coordinator rechecks PR #3165 and its owning task next cycle; when exact functionality is merged into canonical `main`, atomically move this task to Work and start exactly one Terra owner on that landed base.\n- Deterministic resume trigger: PR #3165 is merged, or its exact required store contract is proven contained in canonical `main`.",
+      "ownership": "Primary Coordinator serializes mutations; named task/dependency owner remains as recorded in the plan.",
+      "actionable_recommendation": "Keep Blocked; after #3165 functionality is merged/contained in main, start one Terra owner on refreshed base."
+    },
+    {
+      "task_id": "7a0454aa-c089-4365-8966-ad99775a46f8",
+      "title": "Fix Redmine derived custom-field fallback",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "updated_at": "2026-09-07T11:13:19.476344911Z",
+      "assignee_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+      "sessions": [
+        {
+          "session_id": "4c4c8b57-e115-46ee-848c-67354d6cecc3",
+          "state": "CANCELLED",
+          "profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": true,
+          "is_current": false,
+          "updated_at": "2026-09-08T00:18:58.653904148Z"
+        },
+        {
+          "session_id": "00115a51-04cc-4ed6-af65-ddf75dee5804",
+          "state": "CANCELLED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "c32b6146-9aa9-4dfa-bd64-0d2f1584013e",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "e6892c9a-3799-4c40-8484-774a4b42bf3d",
+          "state": "CANCELLED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "49785c54-5212-4da0-bf22-b74cc0439535",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "cb9a35c3-644e-451a-ad36-64716c6dddf9",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "bce819dd-d07e-44ec-b394-b1d8aa09d60b",
+          "state": "CANCELLED",
+          "profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "0a2e59a6-ecfa-428f-a4b1-aab60c13974c",
+          "state": "CANCELLED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "bf286116-f336-49f1-a6a3-c81596a1b995",
+          "state": "CANCELLED",
+          "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "runtime_model": "gpt-5.6-luna",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "7e7d34f7-2ff6-4b29-9424-d1268630806e",
+          "state": "COMPLETED",
+          "profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "2e3effa1-3020-4906-89e1-4bb7c4d95b0a",
+          "state": "CANCELLED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "684e6e3d-5180-4d88-925c-b35c42118d33",
+          "state": "CANCELLED",
+          "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "runtime_model": "gpt-5.6-luna",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "a0a32fec-d529-4a7b-a0f3-61d3a1054fff",
+          "state": "COMPLETED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "b5ff29b8-b87b-486d-8d56-63088d167d17",
+          "state": "CANCELLED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "98a48538-b7e7-4610-8e07-286626fa3677",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "2f63c123-e4ce-46d0-94fa-4dfe1f27bc8f",
+          "state": "CANCELLED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "6cbb0740-0346-48d9-b6be-7328eb952172",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "0fd12b95-cf53-4933-b6e4-5994a555cf09",
+          "state": "CANCELLED",
+          "profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "7cbe9b5b-09dc-482c-bfc3-30773ff680d7",
+          "state": "CANCELLED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "0612f750-9dff-4f48-b7d0-6083ebf5b14b",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "cf0e1176-0133-4620-8a44-3b13cf985490",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "8f8c2ee8-dd44-4699-8290-dfbbfaa2c9b2",
+          "state": "CANCELLED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "5cae9847-a2a9-4b5d-b284-31d4e859a3f2",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "2123903d-3ff8-4d9e-88b2-76325fd7bf46",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "64919d88-5f67-4a27-a3ac-87bd056c3bf2",
+          "state": "CANCELLED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "e0affe5a-5dcb-41b4-adab-596504da46d7",
+          "state": "CANCELLED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "7364fab1-4e45-4b14-a324-5db86f49cb6d",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "172a123c-d12b-434b-ab13-91fda4ded7da",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "55f473bb-ce2d-45dd-9e85-6255547158ef",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "a6ebb6d6-fc46-4b7f-b601-7a302806b008",
+          "state": "CANCELLED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "8cf99ee9-399d-4b11-818c-60a66d2011ec",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "996011de-4a6f-4c98-8bc4-8fdf950a1bcd",
+          "state": "CANCELLED",
+          "profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "runtime_model": "gpt-5.6-sol",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "9b235564-90fc-48b2-8c1d-b2b9917b18bb",
+          "state": "CANCELLED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "280626e2-b790-40d4-b4f1-b552f004efb9",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "88bdb563-f227-45bb-a3b2-e7e025f6f7f1",
+          "state": "CANCELLED",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "runtime_model": "gpt-5.5",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "c9db2876-f072-4065-901d-2358f77ab222",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        },
+        {
+          "session_id": "7e00cff5-df81-47d8-ae10-d9f1d16a153f",
+          "state": "CANCELLED",
+          "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "runtime_model": "gpt-5.6-terra",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-07T11:11:46.612971553Z"
+        }
+      ],
+      "applied_tags": [
+        {
+          "name": "you deploy",
+          "note": "v0.3.0 publish failed in run 34172961697: SDK must be an upstream Kandev release containing merged #2872. Update the SDK ref, rerun publish/deploy, then resume Redmine E2E.",
+          "owner": "agent"
+        }
+      ],
+      "relations_read": true,
+      "provider_evidence": "yattdev/kandev-plugin-redmine#3 MERGED caf0112739375dc5e4ecce5a09456096a8566110 at 2026-09-07T14:10:17Z",
+      "observation": "Source PR #3 is MERGED at caf011, but release run failed after immutable tag v0.3.0 at deb8a346; relation to e872 is the active repair root. Card is not terminal because publication/deployment and dependent E2E remain open.",
+      "exact_preservation_verbatim": "Preservation receipt:** Redmine PR https://github.com/yattdev/kandev-plugin-redmine/pull/3 remains open/draft at exact pushed head `caf0112739375dc5e4ecce5a09456096a8566110` on branch `feature/fix-redmine-derived-rue`. The uncommitted diagnostic experiment remains limited to `internal/watch/watch.go`, `internal/watch/fakehost_test.go`, and `internal/watch/watch_test.go`; it passes the fake-host race test but does not repair the real packaged Host and must not be committed as a workaround. Fresh isolated Kandev/Redmine runtimes, package installations, synthetic data, and test evidence remain retained in this task workspace.\n- **Next action:** The platform owner will return an exact pushed Host repair head plus provider-neutral regression and reproduction instructions. Then a fresh Terra Redmine session validates that exact Host head with the original unmodified packaged E2E; only proven Redmine-side changes may be committed, while the unproven diagnostic experiment is preserved until the task agent decides its safe disposition. A successful new plugin head must traverse fresh independent GPT-5.5 Review and distinct Sol QA.\n- **Deterministic resume trigger:** Platform task `e8728906-86de-4a75-960f-9da585485823` supplies an exact pushed Kandev Host repair head whose external-plugin Create and Update priority regression passes and whose real Host readback preserves `high`.\n- **Human input:** none. No credential, product decision, merge, deployment, or manual test is required from the Human for this blocker.",
+      "ownership": "Primary Coordinator serializes mutations; named task/dependency owner remains as recorded in the plan.",
+      "actionable_recommendation": "Preserve v0.3.0 exactly. Primary-owned e872 repairs preflight; after upstream semver contains #2872, publish next free patch (expected v0.3.1), deploy, then unblock ecd8b857."
+    }
+  ]
+}

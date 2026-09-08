@@ -1,0 +1,544 @@
+{
+  "generated_at": "2026-09-08T03:20:06.323Z",
+  "provider_context": {
+    "authenticated_rest": "403 until recorded reset 2026-09-08T03:50:34Z; not retested in this bounded reuse-evidence follow-up",
+    "public_unauthenticated_api": "working",
+    "root_3473": {
+      "task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+      "public_head": "a91e0e66f87456b0c380ad749ddf9734ddf8f37a",
+      "recorded_head": "0a0077f5",
+      "state": "exact Terra RUNNING to reconcile; do not contact"
+    }
+  },
+  "global_actionability": {
+    "safe_same_lane_terra_recoveries_now": [],
+    "safe_cleared_terminal_transitions_now": [],
+    "note": "No contact or mutation is safe without authoritative pending-move preflight. Candidate terminal clears are only PR-state falsifications and still require primary verification of newer deployment/probe/dependency gates."
+  },
+  "rows": [
+    {
+      "task_id": "6a5a2f73-87e1-4c08-a983-64f2456c3633",
+      "latest_governing_blocker": {
+        "source": "newest_owner_message",
+        "observed_at": "2026-09-06T11:10:39.40897761Z",
+        "text": "Blocked and preserved.\n\nResume only after a compatible host deployment, then run the recorded native user-namespace/bubblewrap probe. The 5,649-entry conflict worktree, local branch, remote backup, and separate Human-QA runtime remain untouched."
+      },
+      "next_action": "Next action:** once an approved working/writable runtime exists, reconcile current main into the PR branch without history rewriting, resolve conflicts, run the exact-head test/check matrix, normal-push, and re-evaluate readiness. Do not retry native exec, source edits, Git history operations, provider writes, or session `15483` while the runtime is unchanged. - **Deterministic resume trigger:** one bounded native read-only command succeeds in this task **and** PR #2937 is conflict-free on a fresh exact head. Then move to Work, send this preservation handoff, and verify a running Work session.",
+      "owner_or_root_task_id": null,
+      "exact_safe_existing_terra_session": {
+        "session_id": "289224cc-e691-48c2-aee4-584633205b7e",
+        "state": "WAITING_FOR_INPUT",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "updated_at": "2026-09-06T11:10:40.288284444Z",
+        "contact_safe": false,
+        "reason": "Correct Blocked/Work model, but authoritative pending-move rows are unavailable; do not message or wake until exact preflight exists."
+      },
+      "human_ask_if_reserved": null,
+      "current_tag": "waiting: PR #2937 merged, but operational delivery and a fresh native userns/bwrap probe remain required; preserve the dirty historical worktree and resume only after compatible deployment.",
+      "needed_tag_correction": "retain until compatible deployment is proven; merged provider state alone does not clear the deployment/probe trigger",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "375dcc90-9ff3-4064-ba27-a7f20b33e80c",
+      "latest_governing_blocker": {
+        "source": "newest_plan_blocker_record",
+        "observed_at": "2026-09-01T06:04:52Z",
+        "text": "## Coordinator blocked record — 2026-09-01T06:04:52Z\n- Previous workflow step: Review.\n- Exact blocker/dependency: remaining Provider Usage coverage cannot be safely completed or committed until a registered writable checkout is restored.\n- Blocker owner: managed-worktree recovery owner b74833e7-a05f-4cdf-81cf-db5b4c02f368.\n- Preservation: recovered plugin commit a5c386b plus package/E2E evidence remain preserved; no cleanup is authorized.\n- Next action: restore a registered writable checkout, then complete, test, commit, push, and independently gate the missing coverage.\n- Deterministic resume trigger: verified writable registered checkout and successful bounded session start.\n- Last checked: 2026-09-01T06:04:52Z; no trigger cleared."
+      },
+      "next_action": "Next action: restore a registered writable checkout, then complete, test, commit, push, and independently gate the missing coverage. - Deterministic resume trigger: verified writable registered checkout and successful bounded session start.",
+      "owner_or_root_task_id": "b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+      "exact_safe_existing_terra_session": null,
+      "human_ask_if_reserved": null,
+      "current_tag": "waiting: Terra start 5fe851f9 failed: existing workspace cannot be safely reused. Preserve a5c386b recovery checkout; trigger: PR #3242 merge/deploy, then retry one Terra owner and finish coverage.",
+      "needed_tag_correction": "none; live tag matches the governing wait",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "dd4f90b0-0cbe-4cab-bdd9-6a3480487f89",
+      "latest_governing_blocker": {
+        "source": "newest_owner_message",
+        "observed_at": "2026-09-07T13:47:15.910336797Z",
+        "text": "Blocker remains valid but interactive `sudo` is not yet proven necessary.\n\nCurrent host-path probes pass with valid signed Debian metadata; they do not exercise Docker’s default-bridge NAT path. No faithful non-root/task-owned verification path exists.\n\nLeast Human action: run the pinned disposable default-bridge APT build. If it passes, no NAT change is needed. If it fails, an authorized host/platform operator must correct the scoped TCP/80 rule. The Coordinator and blocked record were updated; state remains clean at `5eb99d8b`."
+      },
+      "next_action": "Re-prove the exact recorded trigger before transition.",
+      "owner_or_root_task_id": null,
+      "exact_safe_existing_terra_session": null,
+      "human_ask_if_reserved": "Run the pinned disposable Docker default-bridge APT build. Only if it fails, have an authorized host operator inspect/correct the scoped TCP/80 NAT rule.",
+      "current_tag": "waiting: Use interactive sudo to run the documented NAT check/apply/check and record the live result.",
+      "needed_tag_correction": "replace stale interactive-sudo-first note with disposable default-bridge APT probe first; sudo/NAT action only on reproduced failure",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "f2078d51-4dd4-435f-812a-f632328ccfb2",
+      "latest_governing_blocker": {
+        "source": "newest_owner_message",
+        "observed_at": "2026-09-07T13:46:01.262553987Z",
+        "text": "Re-proof completed and sent to the Coordinator.\n\nD1 remains required: PR #3048 is still draft and has no evidence of deployed, audited lease recognition for this task. PR #3473 is unrelated and does not validate this task’s authorization path. No mutation occurred."
+      },
+      "next_action": "Deterministic resume trigger: The execution provider accepts a scoped Coordinator grant for this exact task, branch `feature/harden-env-read-guar-uw9`, and head `0c3ccc9d7582fc2e07520be88fd0ffd86b163540` without direct Human text.",
+      "owner_or_root_task_id": null,
+      "exact_safe_existing_terra_session": {
+        "session_id": "af89eda7-0b05-494b-8cb2-d0ad4ad3e45f",
+        "state": "WAITING_FOR_INPUT",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "updated_at": "2026-09-07T13:46:07.717229375Z",
+        "contact_safe": false,
+        "reason": "Correct Blocked/Work model, but authoritative pending-move rows are unavailable; do not message or wake until exact preflight exists."
+      },
+      "human_ask_if_reserved": null,
+      "current_tag": "waiting: After the reviewed D1 trust channel is deployed, push 0c3ccc9d7582fc2e07520be88fd0ffd86b163540 normally and create one draft PR.",
+      "needed_tag_correction": "none; live tag matches the governing wait",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "77353939-0ba8-40dd-b93c-57adc73a4011",
+      "latest_governing_blocker": {
+        "source": "newest_plan_blocker_record",
+        "observed_at": "2026-09-01T06:04:52Z",
+        "text": "## Coordinator blocked record — 2026-09-01T06:04:52Z\n- Previous workflow step: Review.\n- Exact blocker/dependency: child Git admin/index is unavailable, so Provider Usage intent cannot be committed.\n- Blocker owner: managed-worktree recovery owner b74833e7-a05f-4cdf-81cf-db5b4c02f368 and the parent task owner.\n- Preservation: Provider Usage baseline and artifact intent remain preserved; no cleanup is authorized.\n- Next action: restore a registered writable checkout, reconcile the preserved intent, commit/push it, and verify one successful owner start.\n- Deterministic resume trigger: verified writable checkout plus successful bounded session start.\n- Last checked: 2026-09-01T06:04:52Z; no trigger cleared."
+      },
+      "next_action": "Next action: restore a registered writable checkout, reconcile the preserved intent, commit/push it, and verify one successful owner start. - Deterministic resume trigger: verified writable checkout plus successful bounded session start.",
+      "owner_or_root_task_id": "b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+      "exact_safe_existing_terra_session": null,
+      "human_ask_if_reserved": null,
+      "current_tag": "waiting: Preserve tested a5c386b in parent recovery checkout. Child rematerialization remains blocked by unsafe workspace reuse; trigger: PR #3242 merge/deploy, then create one registered writable entry.",
+      "needed_tag_correction": "none; live tag matches the governing wait",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "957da1cb-063b-4c2e-b406-6d04ad158fb9",
+      "latest_governing_blocker": {
+        "source": "newest_owner_message",
+        "observed_at": "2026-08-29T18:26:30.789147612Z",
+        "text": "Created backup ref:\n\n`refs/heads/backup/reuse-workspace-for-c69-local-1`  \n→ `9ca3137457c8180bf2201ab4bc66d91fe46a0098`"
+      },
+      "next_action": "Resume trigger: a native `apply_patch` successfully edits an existing file in this exact preserved worktree.",
+      "owner_or_root_task_id": null,
+      "exact_safe_existing_terra_session": {
+        "session_id": "c7258f63-dfa0-439a-9cb4-5ec94d8fe1a3",
+        "state": "WAITING_FOR_INPUT",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "updated_at": "2026-08-30T20:57:19.717142278Z",
+        "contact_safe": false,
+        "reason": "Correct Blocked/Work model, but authoritative pending-move rows are unavailable; do not message or wake until exact preflight exists."
+      },
+      "human_ask_if_reserved": null,
+      "current_tag": "waiting: After https://github.com/kdlbs/kandev/pull/2937 is deployed, run the bounded native patch in the preserved exact worktree.",
+      "needed_tag_correction": "none; live tag matches the governing wait",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "c642d57a-5a24-48ca-8f85-57d31115eeb5",
+      "latest_governing_blocker": {
+        "source": "newest_owner_message",
+        "observed_at": "2026-09-06T08:05:00.840293307Z",
+        "text": "R4 parking receipt sent to the Coordinator.\n\nThe task remains parked on shared CI/runtime infrastructure failures for PR #2909 at `27c31f795…`. Both worktrees are preserved unchanged; no polling, rerun, edit, or push was performed. Resume only after infrastructure repair and an authorized exact-head CI run."
+      },
+      "next_action": "Next action:** an authorized owner runs exactly one legitimate unchanged-head rerun/new run for `7ee6f4ee71f79e6952413b24ef0a0e4e67b0cb29`; Coordinator then obtains a complete exact-head/base/mergeability/check/thread census. Terminal green resumes to a fresh immutable Review and distinct QA. A concrete task-owned failure resumes to the narrowest Work repair in the clean recovery clone. - **Deterministic resume trigger:** an authorized exact-head run for `7ee6f4ee71f79e6952413b24ef0a0e4e67b0cb29` becomes terminal and a complete authenticated census is available. Until then remain parked; no polling, editing, rerun retry, or history operation.",
+      "owner_or_root_task_id": null,
+      "exact_safe_existing_terra_session": null,
+      "human_ask_if_reserved": null,
+      "current_tag": "waiting: Blocked on shared Docker/SSH/Kind runtime and immutable-image infrastructure for PR #2909 exact 27c31f795ed53280def76837e3a09e3da9581ef2; resume only after repair plus authorized exact-head CI.",
+      "needed_tag_correction": "none; live tag matches the governing wait",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "212a68ce-7122-4cdb-ba68-764a5ebdb8c6",
+      "latest_governing_blocker": {
+        "source": "newest_plan_blocker_record",
+        "observed_at": "2026-09-04T18:03:00Z",
+        "text": "## Coordinator R4 blocked record — 2026-09-04T18:03:00Z\n\n- Previous workflow step: Work.\n- Exact blocker or dependency: the task-owned linked worktree cannot write its external Git administrative directory; recovery stops at index.lock with a read-only filesystem. Completion depends on platform task b74833e7-a05f-4cdf-81cf-db5b4c02f368 being accepted and delivered with a new writable task checkout.\n- Blocker owner: platform repair task b74833e7-a05f-4cdf-81cf-db5b4c02f368; its current trust-boundary decision is Human-owned.\n- Preservation receipt: recovered source baseline commit a5c386b remains in /data/tasks/expose-provider-usag_kjfkfyxi/kdlbs-kandev-plugin-provider-usage-main/; failed restore changed no source or Git metadata; no runtime, data, credentials, or services were created.\n- Next action: Coordinator must re-check b74833e7 each cycle; once delivered, move this task to Work and start a fresh task-agent session against a newly materialized writable checkout.\n- Deterministic resume trigger: b74833e7 is terminally delivered and a task-owned checkout verifies a Git index write/rollback without a read-only index.lock error."
+      },
+      "next_action": "Next action: Coordinator must re-check b74833e7 each cycle; once delivered, move this task to Work and start a fresh task-agent session against a newly materialized writable checkout. - Deterministic resume trigger: b74833e7 is terminally delivered and a task-owned checkout verifies a Git index write/rollback without a read-only index.lock error.",
+      "owner_or_root_task_id": "b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+      "exact_safe_existing_terra_session": null,
+      "human_ask_if_reserved": null,
+      "current_tag": "waiting: Wait for task b74833e7-a05f-4cdf-81cf-db5b4c02f368, then reconstruct coverage in a new registered entry.",
+      "needed_tag_correction": "none; live tag matches the governing wait",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "9349b6e5-a167-4d88-af14-cb355015e3dd",
+      "latest_governing_blocker": {
+        "source": "newest_owner_message",
+        "observed_at": "2026-09-05T19:38:23.625677698Z",
+        "text": "Fresh census completed and recorded in plan section 23.\n\n- Exact head/local/remote: `5839cd91fb49a0fb3be73a3e1a4b6f7f20cda674`\n- PR #2841: OPEN/DRAFT/MERGEABLE\n- Backend Tests `33910546782`: passed\n- E2E run `33910546907`: failed infrastructure job `101147477375`\n- Failure: immutable digest resolution for `ghcr.io/kdlbs/kandev-ci:runtime-latest`\n- Aggregate failures: `101156096577`, `101156867046`\n- Canonical main: `241650f271c06a7b95296f2878ed42e2560a13dc`\n- Worktree clean; no edits, reruns, or history changes\n\nThe Coordinator received the complete run/job evidence. Resume after CI image/digest repair for one authorized rerun."
+      },
+      "next_action": "Resume trigger: CI image/digest resolution repaired by the infrastructure owner, then one authorized failed-job/run rerun and exact-head status reclassification. Do not waive, ready, notify, merge, deploy, or release.",
+      "owner_or_root_task_id": null,
+      "exact_safe_existing_terra_session": {
+        "session_id": "5f5fd500-96aa-4670-9e41-b82deaaa0109",
+        "state": "WAITING_FOR_INPUT",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "updated_at": "2026-09-03T23:47:52.753298182Z",
+        "contact_safe": false,
+        "reason": "Correct Blocked/Work model, but authoritative pending-move rows are unavailable; do not message or wake until exact preflight exists."
+      },
+      "human_ask_if_reserved": null,
+      "current_tag": "waiting: Await one authorized exact-head #2841 rerun; immutable-image setup failure persists in run 33910546907.",
+      "needed_tag_correction": "none; live tag matches the governing wait",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "153cdbbe-beac-47b8-bc06-8dafdcc8ed80",
+      "latest_governing_blocker": {
+        "source": "newest_owner_message",
+        "observed_at": "2026-09-05T19:02:36.15879949Z",
+        "text": "Blocked handoff recorded and sent to the Coordinator.\n\n- Previous step: Human-QA\n- Blocker: missing authoritative broker registration/provenance and distinct-LAN-client evidence\n- Owner: platform task `8f8a784d-92ea-421f-a368-154ef915fe4e`\n- Resume trigger: broker registration fix pushed and this exact runtime validated\n- State preserved: PR head, clean worktree, QA runtime, port 49217, and untracked screenshot untouched\n\nNo retries, polling, source changes, restarts, or teardown performed."
+      },
+      "next_action": "Next action:** when authenticated provider access is available, obtain one bounded exact-head PR/check/thread census for `3a69861c89d47f346a0d779b557e6bd4c964142a`. If required checks are nonterminal or infrastructure-failed, an authorized Actions owner performs exactly one legitimate rerun/new run. Terminal green resumes to fresh immutable Review and distinct QA; a concrete task-owned failure resumes to Work on a clean dedicated checkout of the successor. - **Deterministic resume trigger:** a complete authenticated exact-head census for `3a69861c89d47f346a0d779b557e6bd4c964142a` is available and either terminal green or identifies a concrete actionable task-owned failure. Until then remain parked and do not poll or duplicate rerun requests.",
+      "owner_or_root_task_id": "8f8a784d-92ea-421f-a368-154ef915fe4e",
+      "exact_safe_existing_terra_session": {
+        "session_id": "60c7829b-fdde-44ea-80aa-b301d188f12b",
+        "state": "WAITING_FOR_INPUT",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "updated_at": "2026-09-05T14:01:34.869214297Z",
+        "contact_safe": false,
+        "reason": "Correct Blocked/Work model, but authoritative pending-move rows are unavailable; do not message or wake until exact preflight exists."
+      },
+      "human_ask_if_reserved": "Previous step: Human-QA PR #2868 head 6dbd4f36 failed maintainer reload retest; resume one Terra Work fix after #3473 deploy and source-broker provenance, then fresh gates/retest.",
+      "current_tag": "waiting: PR #2868 head 6dbd4f36 failed maintainer reload retest; resume one Terra Work fix after #3473 deploy and source-broker provenance, then fresh gates/retest.",
+      "needed_tag_correction": "refresh only after root #3473 reconciles its new public head a91e0e66f87456b0c380ad749ddf9734ddf8f37a and deployment is proven; do not encode the stale recorded head",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "51c2875b-48ae-4097-b985-b8a9584ca8c2",
+      "latest_governing_blocker": {
+        "source": "newest_owner_message",
+        "observed_at": "2026-09-05T05:49:39.536530344Z",
+        "text": "Recovery assignment complete and attached to root `9ee4be81-aa98-4e4d-bdd6-842fd918f00f` (PR #3165).\n\n- Exact local/remote head: `5c6c9c557004efe1f9b90c619cb458a98c1670d7`\n- Worktree: clean and preserved\n- Frontend leaf: one unrelated flaky test; local isolated run passes\n- Backend leaves: passed\n- Windows leaf: cancelled; aggregate failure is derivative\n- Classification: shared CI/runner infrastructure, no branch-owned defect\n- No source changes, reruns, or history rewrites\n- Resume trigger: PR #3165 recovery capability is deployed, then fresh exact-head CI is dispatched and all checks pass"
+      },
+      "next_action": "Next action: obtain one legitimate exact-head required-check run. If terminal green, Coordinator atomically returns this task to Review with a fresh independent reviewer; if a task-owned failure appears, route only that exact log to Work. - Deterministic resume trigger: an authorized exact-head run for `5c6c9c557004efe1f9b90c619cb458a98c1670d7` reaches terminal status and is independently read back.",
+      "owner_or_root_task_id": "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+      "exact_safe_existing_terra_session": {
+        "session_id": "1a3dc5fe-9a08-420a-8fce-8e1194ca257f",
+        "state": "WAITING_FOR_INPUT",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "updated_at": "2026-08-30T06:58:38.091378604Z",
+        "contact_safe": false,
+        "reason": "Correct Blocked/Work model, but authoritative pending-move rows are unavailable; do not message or wake until exact preflight exists."
+      },
+      "human_ask_if_reserved": null,
+      "current_tag": "waiting: await one authorized exact-head CI run for PR #2870 at 5c6c9c557004efe1f9b90c619cb458a98c1670d7",
+      "needed_tag_correction": "none; live tag matches the governing wait",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "fa3fba49-2018-460b-a600-adae23b24cc8",
+      "latest_governing_blocker": {
+        "source": "newest_owner_message",
+        "observed_at": "2026-09-05T13:49:47.194776344Z",
+        "text": "Dependency recorded and verified:\n\n- `blocked: true`\n- `depends_on: [84df0685-2bb9-464b-87df-96533ceb92a6]`\n- Dependency state: `IN_PROGRESS`\n- Worktree clean\n- Local and remote HEAD: `b475179d00f96e1ad7f6055769272d18a8a5f87e`\n\nCoordinator notified. Parked without source edits or CI operations."
+      },
+      "next_action": "Resume trigger:** Resume only when the dependency task completes successfully and an authorized actor produces a fresh run on this exact unchanged head that is terminal green. The Coordinator then removes/manual-controls the dependency as needed and moves #3048 to the narrowest correct review/Human-QA lane with a fresh session.",
+      "owner_or_root_task_id": "84df0685-2bb9-464b-87df-96533ceb92a6",
+      "exact_safe_existing_terra_session": {
+        "session_id": "da37060b-a0ec-4716-9cb2-06211755c4f5",
+        "state": "WAITING_FOR_INPUT",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "updated_at": "2026-09-05T12:49:06.137896106Z",
+        "contact_safe": false,
+        "reason": "Correct Blocked/Work model, but authoritative pending-move rows are unavailable; do not message or wake until exact preflight exists."
+      },
+      "human_ask_if_reserved": null,
+      "current_tag": "waiting: PR #3154 exact b475179d is preserved. Resume only after scoped fresh-CI PR #3165 lands, then run one authorized exact-head CI and re-evaluate.",
+      "needed_tag_correction": "none; live tag matches the governing wait",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+      "latest_governing_blocker": {
+        "source": "newest_owner_message",
+        "observed_at": "2026-09-05T05:21:59.60620911Z",
+        "text": "Recorded the GitLab acceptance expansion. It fits the existing provider-neutral design; the task remains blocked and unchanged otherwise."
+      },
+      "next_action": "This reproduction fits the existing provider-neutral link-management design; it does not require a parallel feature or task. It is deferred until the existing native patch-executor resume trigger is met. 3. GitLab lifecycle notifications/automation either operate safely or return a structured provider-specific unsupported result; no silent GitHub-only fallback.",
+      "owner_or_root_task_id": null,
+      "exact_safe_existing_terra_session": {
+        "session_id": "73c0e127-84ff-4892-a0eb-011f6f77f3c5",
+        "state": "WAITING_FOR_INPUT",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "updated_at": "2026-09-05T05:22:00.192041019Z",
+        "contact_safe": false,
+        "reason": "Correct Blocked/Work model, but authoritative pending-move rows are unavailable; do not message or wake until exact preflight exists."
+      },
+      "human_ask_if_reserved": null,
+      "current_tag": "waiting: After https://github.com/kdlbs/kandev/pull/2937 is deployed, run one bounded native PR/MR-link probe.",
+      "needed_tag_correction": "none; live tag matches the governing wait",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "856898aa-d06a-43f7-9a87-f873665f19da",
+      "latest_governing_blocker": {
+        "source": "newest_owner_message",
+        "observed_at": "2026-09-07T13:44:19.102238129Z",
+        "text": "Audit sent to the Coordinator. The D1 blocker remains valid; no safe publish or draft-PR step can proceed yet."
+      },
+      "next_action": "Next action: after the reviewed publication grant is deployed, publish normally from the preserved exact work and continue through fresh gates. - Deterministic resume trigger: verified reviewed D1 publication grant.",
+      "owner_or_root_task_id": null,
+      "exact_safe_existing_terra_session": null,
+      "human_ask_if_reserved": null,
+      "current_tag": "waiting: Complete the reviewed D1 publication action for the preserved migration evidence, then record terminal disposition.",
+      "needed_tag_correction": "none; live tag matches the governing wait",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "1f8d4dc8-83ac-44d6-9fbd-b34bd46e044e",
+      "latest_governing_blocker": {
+        "source": "newest_owner_message",
+        "observed_at": "2026-09-03T21:50:28.126918342Z",
+        "text": "Parking record verified and updated in task plan §17.\n\n- Blocker: CI run `33741229107`, GHCR digest-resolution failures in jobs `100612614929` and `100612614943`, with dependent aggregate failures.\n- Rerun permission denial: HTTP 403, `Must have admin rights to Repository`.\n- Owner: `kdlbs/kandev` maintainer with Actions admin permission.\n- Resume trigger: maintainer rerun or fresh current-base exact-head/merge-ref CI reaches terminal.\n- Preservation: clean worktree, exact head `3698755510452fe85d2e2cc44fe4df663faebc13`, no resources or changes.\n\nCoordinator notified. I will remain dormant without polling or retries."
+      },
+      "next_action": "Deterministic resume trigger:** maintainer reruns the failed jobs from canonical kdlbs/kandev or triggers a fresh current-base exact-head/merge-ref run, and that CI execution reaches terminal status. Coordinator must then refresh head/base/mergeability/checks/threads and move to QA only if all required checks are terminal green.",
+      "owner_or_root_task_id": null,
+      "exact_safe_existing_terra_session": {
+        "session_id": "c9446a94-42b8-4e66-af78-fc2789014479",
+        "state": "WAITING_FOR_INPUT",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "updated_at": "2026-09-07T14:21:28.480029843Z",
+        "contact_safe": false,
+        "reason": "Correct Blocked/Work model, but authoritative pending-move rows are unavailable; do not message or wake until exact preflight exists."
+      },
+      "human_ask_if_reserved": "Owner: `kdlbs/kandev` maintainer with Actions admin permission. - Resume trigger: maintainer rerun or fresh current-base exact-head/merge-ref CI reaches terminal.",
+      "current_tag": "waiting: Conflict resolved and pushed at exact 85ee99ec with focused tests green. Fresh Review starts after PR-lane repair #3473 proves safe lane-model routing; no admin rerun ask.",
+      "needed_tag_correction": "refresh only after root #3473 reconciles its new public head a91e0e66f87456b0c380ad749ddf9734ddf8f37a and deployment is proven; do not encode the stale recorded head",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "27b493a3-65b6-4d4a-8b68-73f2ffcf9621",
+      "latest_governing_blocker": {
+        "source": "newest_owner_message",
+        "observed_at": "2026-09-05T19:38:17.109402Z",
+        "text": "Fresh exact-head CI census completed.\n\n- PR #3143 remains open, draft, and mergeable.\n- Head: `c8e9f37bdfb75f4455529abe1cf3b3b4eaa14f88`\n- Current canonical `upstream/main`: `241650f271c06a7b95296f2878ed42e2560a13dc`\n- Worktree clean on `feature/fix-workflow-sync-gi-d0x`\n- Backend/build/static checks passed.\n- `E2E Containers Shard 1/6` failed at immutable Playwright runtime image resolution before tests ran:\n  [job 101196152418](https://github.com/kdlbs/kandev/actions/runs/33926129280/job/101196152418)\n- Aggregate E2E failures are downstream cascades.\n- No branch-owned failure, edits, reruns, or pushes.\n- Task marked blocked and Coordinator notified."
+      },
+      "next_action": "Resume trigger: resume only when GHCR immutable runtime digest recovery permits a legitimate exact-head CI rerun for `c8e9f37bdfb75f4455529abe1cf3b3b4eaa14f88`; then verify terminal CI and route terminal green to fresh independent Review, or branch-owned red to Work.",
+      "owner_or_root_task_id": null,
+      "exact_safe_existing_terra_session": {
+        "session_id": "984c6c6e-3f07-4c7f-a8ab-2212cbca4085",
+        "state": "WAITING_FOR_INPUT",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "updated_at": "2026-09-07T14:26:53.76158023Z",
+        "contact_safe": false,
+        "reason": "Correct Blocked/Work model, but authoritative pending-move rows are unavailable; do not message or wake until exact preflight exists."
+      },
+      "human_ask_if_reserved": null,
+      "current_tag": "waiting: PR #3143 exact b5f6a963 is clean and all 68 checks pass. Fresh Review starts only after PR-lane repair #3473 is deployed and proves exact GPT-5.5 routing.",
+      "needed_tag_correction": "refresh only after root #3473 reconciles its new public head a91e0e66f87456b0c380ad749ddf9734ddf8f37a and deployment is proven; do not encode the stale recorded head",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "37eca47b-cf05-47ee-b143-39408edbeed1",
+      "latest_governing_blocker": {
+        "source": "newest_plan_blocker_record",
+        "observed_at": "2026-09-05T08:35:29Z",
+        "text": "GitHub provider access / scoped CI capability owner.\n- Deterministic resume trigger: authenticated `gh pr view` and exact-head `scripts/pr-state --summary 3158` succeed, showing head `f7ddbbe29f0dcfc5ac16d4645c980c712f668ee2`, base `ddcc4fc6a0590e6f32f786f388abe8a46a222b22`, OPEN/DRAFT/MERGEABLE, and terminal non-failing checks; then complete thread reconciliation and return exact evidence.\n- Preservation receipt: clean source state at merge commit `f7ddbbe29f0dcfc5ac16d4645c980c712f668ee2`; branch `feature/bound-merged-worktre-jii`; provider push succeeded to `yattdev/kandev:feature/bound-merged-worktre-jii`; no services, ports, databases, or artifacts require preservation.\n- Blocked-phase restriction: do not edit, test, push, rerun, merge, deploy, notify reviewers, or certify Review/QA until provider access and exact-head CI state are reverified.\n\n\n## Coordinator task-local R4 correction — 2026-09-05T08:35:29Z\n\n- The task-local statement that fork/provider head advanced to `f7ddbbe…` is not authoritative and is superseded. Live card/provider preservation remains exact head `e82d69d…`; no branch rewrite, push, or runtime mutation is authorized from Blocked.\n- Previous workflow step and complete preservation receipt otherwise remain as recorded in the controlling Coordinator ledger.\n- Exact blocker remains the controlling external dependency recorded there; no deterministic trigger cleared this cycle.\n- Blocker owner remains the recorded dependency owner; Coordinator owns atomic resume.\n- Next action: at the next cycle, re-read provider/card head and the controlling dependency. On a real trigger, move to the narrowest actionable lane, hand off from exact preserved head `e82d69d…`, and verify a RUNNING session. Trigger current: NO.\n- Last checked: 2026-09-05T08:35:29Z."
+      },
+      "next_action": "Deterministic resume trigger: authenticated `gh pr view` and exact-head `scripts/pr-state --summary 3158` succeed, showing head `f7ddbbe29f0dcfc5ac16d4645c980c712f668ee2`, base `ddcc4fc6a0590e6f32f786f388abe8a46a222b22`, OPEN/DRAFT/MERGEABLE, and terminal non-failing checks; then complete thread reconciliation and return exact evidence. - Next action: at the next cycle, re-read provider/card head and the controlling dependency. On a real trigger, move to the narrowest actionable lane, hand off from exact preserved head `e82d69d…`, and verify a RUNNING session. Trigger current: NO.",
+      "owner_or_root_task_id": null,
+      "exact_safe_existing_terra_session": {
+        "session_id": "b77c26fc-0920-4fab-bbd7-8096d6178759",
+        "state": "WAITING_FOR_INPUT",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "updated_at": "2026-09-05T04:58:56.184643359Z",
+        "contact_safe": false,
+        "reason": "Correct Blocked/Work model, but authoritative pending-move rows are unavailable; do not message or wake until exact preflight exists."
+      },
+      "human_ask_if_reserved": null,
+      "current_tag": "waiting: PR #3397 is merged. Resume PR #3158 only after deployed immutable-image behavior is available, then run one legitimate exact-head CI.",
+      "needed_tag_correction": "none; live tag matches the governing wait",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "86a16fc1-6394-4fb0-898d-4d42948683f5",
+      "latest_governing_blocker": {
+        "source": "newest_owner_message",
+        "observed_at": "2026-09-03T23:23:16.127303987Z",
+        "text": "No action required for this preservation step. PR #3241’s clean, fully terminal CI receipt is noted."
+      },
+      "next_action": "Next action: first bind and publish the unique test-only commit through the normal task delivery path, then refresh PR #3153 and obtain one legitimate terminal exact-head run. - Deterministic resume trigger: unique commit durably published/contained and scoped fresh-CI capability deployed.",
+      "owner_or_root_task_id": null,
+      "exact_safe_existing_terra_session": {
+        "session_id": "19334df2-3797-4bcd-86a6-7ed619786fbc",
+        "state": "WAITING_FOR_INPUT",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "updated_at": "2026-08-30T20:57:21.575324957Z",
+        "contact_safe": false,
+        "reason": "Correct Blocked/Work model, but authoritative pending-move rows are unavailable; do not message or wake until exact preflight exists."
+      },
+      "human_ask_if_reserved": null,
+      "current_tag": "waiting: PR #3241 is merged. Resume PR #3153 exact 54ee6b1e after scoped fresh-CI capability is deployed, then run one authorized exact-head CI.",
+      "needed_tag_correction": "none; live tag matches the governing wait",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "01d6764d-b66d-46a0-a664-2caf4c3f4d98",
+      "latest_governing_blocker": {
+        "source": "newest_owner_message",
+        "observed_at": "2026-09-07T23:32:20.951542797Z",
+        "text": "Blocked-phase receipt completed and sent to the parent/Coordinator session `8184633d-194b-4cdc-ae54-7891a59e66cf`.\n\nI made no code, index, branch, PR, or cleanup mutations. The worktree remains parked with:\n\n- HEAD and origin branch at `fe21f495adf3c72fd3fc01de2fffc5541858e575`\n- `2,200` staged paths\n- `2` unstaged entries\n- unresolved conflict on `apps/backend/internal/orchestrator/service.go`\n\nI did not call `step_complete_kandev`; this is a parking phase, not completion."
+      },
+      "next_action": "Deterministic resume trigger: resume when the provider records exactly one legitimate failed-job rerun at the unchanged head and that rerun reaches a terminal state.",
+      "owner_or_root_task_id": "8184633d-194b-4cdc-ae54-7891a59e66cf",
+      "exact_safe_existing_terra_session": {
+        "session_id": "553952a7-141d-4d39-8cde-2dc1b9d80ac4",
+        "state": "WAITING_FOR_INPUT",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "updated_at": "2026-09-07T23:29:24.436263604Z",
+        "contact_safe": false,
+        "reason": "Correct Blocked/Work model, but authoritative pending-move rows are unavailable; do not message or wake until exact preflight exists."
+      },
+      "human_ask_if_reserved": null,
+      "current_tag": "waiting: Preserve PR #3166 head fe21f495 and the unrelated staged worktree set; resume only after ownership/content proof and a clean registered Terra workspace.",
+      "needed_tag_correction": "none; live tag matches the governing wait",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+      "latest_governing_blocker": {
+        "source": "newest_owner_message",
+        "observed_at": "2026-09-07T23:40:06.685609808Z",
+        "text": "Parked Blocked.\n\nRecorded the stale Luna lifecycle blocker, exact Terra-only resume trigger, and preservation receipt in the task plan. No repository operations performed."
+      },
+      "next_action": "Deterministic resume trigger: a fresh GPT-5.6 Terra Work session is started for this task. - Deterministic resume trigger: session `a78a91e8-1f9a-4872-a194-0cdf3b6d94db` reaches terminal/WFI, the task is stably Blocked, and exactly one fresh Terra Work owner is started for additive current-main integration of the Windows synchronization fix. - Fallback: remain parked Blocked and do not resume any stale session.",
+      "owner_or_root_task_id": null,
+      "exact_safe_existing_terra_session": null,
+      "human_ask_if_reserved": null,
+      "current_tag": "waiting: Preserve wrong-model Luna head 717028b6 for PR #3319; after #3473 deployment, exact Terra must validate or correct it before fresh Review/QA.",
+      "needed_tag_correction": "refresh only after root #3473 reconciles its new public head a91e0e66f87456b0c380ad749ddf9734ddf8f37a and deployment is proven; do not encode the stale recorded head",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "a3f02302-12fa-4129-8985-116efb8fed66",
+      "latest_governing_blocker": {
+        "source": "newest_owner_message",
+        "observed_at": "2026-09-04T17:50:55.405041521Z",
+        "text": "R4 blocker is recorded in the task plan and confirmed to the Coordinator.\n\nPreservation receipt:\n\n- Clean worktree: `/data/tasks/recover-workspace-re_5cxmeho1/kandev-source`\n- Branch: `feature/recover-workspace-repair`\n- HEAD/tracking: `2045c75198558f899d54fcb385f0cbc0b14dfed5`\n- No active services or source changes\n- PostgreSQL acceptance: PASS\n\nBlocked owner: repository admin or authorized GitHub Actions maintainer. Resume only after a legitimate exact-head rerun/new run reaches terminal. I’m dormant and will not poll or retry."
+      },
+      "next_action": "Deterministic resume trigger: a legitimate rerun or new exact-head run for `2045c75198558f899d54fcb385f0cbc0b14dfed5` reaches terminal; then refresh head/base/mergeability/checks/threads. A fully green exact-head census permits one fresh immutable Review-profile session. Any new current failure is classified before action.",
+      "owner_or_root_task_id": null,
+      "exact_safe_existing_terra_session": {
+        "session_id": "3f8313b3-5834-4e02-adba-c0c1bcabd808",
+        "state": "WAITING_FOR_INPUT",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "updated_at": "2026-09-07T17:00:10.779732479Z",
+        "contact_safe": false,
+        "reason": "Correct Blocked/Work model, but authoritative pending-move rows are unavailable; do not message or wake until exact preflight exists."
+      },
+      "human_ask_if_reserved": "Blocked owner: repository admin or authorized GitHub Actions maintainer. Resume only after a legitimate exact-head rerun/new run reaches terminal. I’m dormant and will not poll or retry. PR #3310 exact 74ff2da8 is clean; all 68 checks pass after the E2E repair. Trigger: PR #3473 merge/deploy, then start one fresh GPT-5.5 Review session on this unchanged head.",
+      "current_tag": "waiting: PR #3310 exact 74ff2da8 is clean; all 68 checks pass after the E2E repair. Trigger: PR #3473 merge/deploy, then start one fresh GPT-5.5 Review session on this unchanged head.",
+      "needed_tag_correction": "refresh only after root #3473 reconciles its new public head a91e0e66f87456b0c380ad749ddf9734ddf8f37a and deployment is proven; do not encode the stale recorded head",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    },
+    {
+      "task_id": "80920898-155a-4aef-8489-97b57213353f",
+      "latest_governing_blocker": {
+        "source": "newest_owner_message",
+        "observed_at": "2026-09-07T23:27:13.515809737Z",
+        "text": "The first read-only check found stale local refs: the merged PR head `e951d798...` is present on the provider but not yet in this worktree’s object database, while the local branch remains clean at `a6d716126...`. I’m fetching only the canonical PR ref (no checkout or branch mutation) so containment can be verified against the actual accepted head."
+      },
+      "next_action": "Next action: Human deploys `70d64d48612f6ace1bad100bb42491a766a72260`; Coordinator then runs the canonical shard repair through a fresh effective GPT-5.4 PR session, delivers and merges `6dea377fa676576c335ca5749656af5a2f4a2784`, then resumes this task to update from main and obtain a fresh exact-head CI run. - Deterministic resume trigger: verified deployment receipt for `70d64d48612f6ace1bad100bb42491a766a72260`, followed by canonical shared repair `6dea377fa676576c335ca5749656af5a2f4a2784` merged into upstream main. On that trigger, move this task to Work/CI Fixup as narrowly appropriate, hand off this preservation receipt, and verify the correct-profile owner starts.",
+      "owner_or_root_task_id": "894fcdbb-6400-4ffb-9fa5-8998fbf450ff",
+      "exact_safe_existing_terra_session": {
+        "session_id": "489ac4d7-079f-4c32-8f24-87e1ff9ed84c",
+        "state": "WAITING_FOR_INPUT",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "updated_at": "2026-09-07T23:28:56.771713439Z",
+        "contact_safe": false,
+        "reason": "Correct Blocked/Work model, but authoritative pending-move rows are unavailable; do not message or wake until exact preflight exists."
+      },
+      "human_ask_if_reserved": null,
+      "current_tag": "waiting: PR #3456 is merged at accepted head e951d798; terminal containment proof waits for #3473 deployment so an exact GPT-5.4 settlement owner can run.",
+      "needed_tag_correction": "refresh only after root #3473 reconciles its new public head a91e0e66f87456b0c380ad749ddf9734ddf8f37a and deployment is proven; do not encode the stale recorded head",
+      "actionability_now": {
+        "same_lane_terra_recovery": false,
+        "cleared_terminal_transition": false,
+        "reason": "No complete current trigger proof. Root #3473 currently has a changed public head under active Terra reconciliation and must not be contacted; pending-move census is unavailable."
+      }
+    }
+  ]
+}
+
