@@ -808,6 +808,30 @@ rule to unrelated/manual Todo tasks.
 
 ## Audit and contain Codex lane-model mismatches
 
+### Accept a newly provisioned exact-profile selector
+
+Support reports `assign_exact_task_profile_kandev` as a guarded assignment
+operation that starts no inference and performs no lane move. First discover
+the callable schema in the live Coordinator client; a deployment report alone
+does not prove that a cached client can invoke it. If missing, record the exact
+catalog result and seek a supported catalog refresh or reusable guarded route,
+preserving the existing task/session holds.
+
+When callable, freshly read the target's state, lane, assignment generation,
+profile/model and profile revision, task timestamp, and complete session census.
+Bind the assignment to the exact intended target lane and required model. Require
+no competing writer and no current or target ToDeploy lane. Verify its audited
+before/after effective profile/model, generation and operation ID; test its
+documented same-input idempotent retry. Re-read task metadata and sessions to
+prove assignment did not move the task or start inference. A later ordinary
+move/start is a separate action with its own lifecycle and actual-runtime gate.
+Never treat reassignment as permission to resume a parked wrong-model process.
+
+Support result `7d4731d6-8598-4974-b058-ed15a8894dbb` reports source commit
+`29fbaca7dd5035d7ed1ed4a01edb731097fceb34`, deployment provenance
+`0f53f1291296be39f90bd3771ce13fa388eca76a`, and 122/122 deployment checks.
+Coordinator-side callable acceptance remains pending in the live plan.
+
 Distinguish model enforcement from model selection. A fail-before-inference
 repair may enforce an already resolved profile while leaving workflow pins and
 task assignments unchanged. Read its approved contract before using it as a

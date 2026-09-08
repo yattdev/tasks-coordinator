@@ -2741,6 +2741,14 @@ description matched exactly after the write. Unresolved conflicts: none.
 
 ## 2026-09-08e — Support timeout leaves the outcome unverified
 
+Follow-up result `7d4731d6-8598-4974-b058-ed15a8894dbb` reported the guarded
+selector implemented and deployed, including the prior hotfix superset. The
+Coordinator and a fresh native discovery helper still lacked its callable tool
+and any refresh control. Deployment success and live-client acceptance are
+therefore separate receipts. Registry J7 and the model runbook retain that
+distinction and the guarded assignment acceptance procedure; the live plan owns
+the catalog-exposure follow-up and task holds.
+
 Request `a335c345-f10a-4ae2-a598-7197e94da5d5` returned a proactive worker
 timeout after 3600 seconds without an implementation or acceptance receipt.
 Capability discovery still exposed no exact-profile selector. A timeout proves
