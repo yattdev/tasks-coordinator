@@ -2102,3 +2102,20 @@ server-side rejection would require a separately designed platform contract that
 binds a receipt to live task generations and revalidates it atomically during the
 move. Until that exists, never describe the CLI as a board-level authorization
 control or assume it prevents another actor from creating an invalid lane state.
+
+## Deployment scope follows the replacement payload (2026-09-08)
+
+Decision: before describing a manual deployment as narrow or safe, enumerate
+the complete files and generated artifacts it replaces and compare those bytes
+with the currently deployed versions. If a whole-file copy would overwrite
+unrelated production divergence, reconcile the intended production behavior
+into the candidate or port the feature change onto the deployed source line;
+then rerun Review and QA on that exact payload.
+
+Rationale: source-control authorship and deployment blast radius are different
+facts. A task can change only one semantic concern while its documented install
+procedure replaces entire templates and compiled stylesheets that also contain
+older branch-versus-production differences. Calling such a rollout
+"category-only" or "style-only" would hide real user-visible removals and
+additions. Auditing the replacement set makes that risk explicit without
+requiring direct production mutation.

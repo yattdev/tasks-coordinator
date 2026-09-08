@@ -2797,3 +2797,31 @@ bootstrap, and monitoring checklist. Historical model receipts remain intact.
 The live Coordinator description and task-plan handoff must be reconciled to
 the new policy and read back; commit and shared-main receipts belong in the
 live plan. This documentation change requires no product-code tests.
+
+## 2026-09-08f — deployment scope follows copied bytes
+
+Window: `2026-09-08T02:38:38Z` through `2026-09-08T08:10:46Z`.
+
+A narrow semantic patch can have a broad rollout when the documented manual
+deployment copies complete templates, configuration, or generated bundles. The
+deployment-safety review now enumerates the actual replacement payload, compares
+it with the deployed versions, reconciles intended production-only behavior,
+and repeats Review and QA on the exact bytes that will be installed.
+
+Rejected by the filter:
+
+- Canonical-host redirects on isolated QA ports: already captured in the prior
+  learning cycle and the Human-QA runtime playbook.
+- Exact-profile selection, fail-before-inference, Support timeout semantics,
+  and the permanent Coordinator's Astra assignment: already captured by
+  event-driven knowledge entries and their linked policy/runbook updates.
+- Current task heads, UI labels, fixture rows, LAN endpoints, Behat runtime
+  compatibility, and workflow placement: task-specific or transient state that
+  remains in the Coordinator plan and task trails.
+- Reusing a prerequisite Docker repair commit on a dependent feature branch:
+  already covered by the immutable prerequisite integration procedure.
+
+Files changed: `docs/RUNBOOK.md`, `docs/DECISIONS.md`, and this log.
+`PROMPT.md` is unchanged, so live-description mirror status is `NOT_REQUIRED`.
+The final commit, fast-forward result, and conflict status are recorded by this
+cycle's repository receipt.
