@@ -1,5 +1,14 @@
 # Coordinator learning-cycle log
 
+## 2026-09-08d — recover every constituent of an existing queued body
+
+- A 4,304-byte authoritative queue row contained three complete peer envelopes
+  joined by two newlines. Rebuilding all three in dispatch order matched the
+  exact census SHA-256; the final 1,252-byte envelope alone did not.
+- The earlier constituent carried an unresolved scope question. Every part
+  must be reconciled before removing the immutable row; this observation grants
+  no permission to coalesce distinct reports or drop intermediate obligations.
+
 ## 2026-09-08c — distinguish profile selection from inference enforcement
 
 - The model-routing repair's approved contract retains workflow/task/default
