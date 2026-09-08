@@ -27,6 +27,12 @@ new charter rule. The pre-existing live-description drift discovered after
 shared-main synchronization is repaired separately under the existing mirror
 procedure. Unresolved conflicts: none.
 
+Repository receipt: cycle-log commit
+`223caed2a68385d653d63b27e926c2aef9c527e0` fast-forwarded shared `main`
+from `e71ca2b255dd108dac648433ce376047832fa36a` without conflict. The branch
+and shared `main` matched cleanly at that commit; this receipt is committed
+and fast-forwarded separately.
+
 ## 2026-09-08j — verify queue bodies as well as their provenance
 
 The monitoring cycle reconstructed eight queued entries, including a sibling
