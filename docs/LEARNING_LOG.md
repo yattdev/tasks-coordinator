@@ -2695,3 +2695,11 @@ Files changed: `docs/RUNBOOK.md`, `docs/QA_INSTANCES.md`, and this log.
 `PROMPT.md` is unchanged, so live-description mirror status is `NOT_REQUIRED`.
 The commit, fast-forward result, and conflict status are recorded by the cycle's
 repository receipt.
+
+Repository receipt: knowledge commit
+`ec0376d08f8049ee1f10b325dc32a1d5a28f9622` fast-forwarded shared `main`
+from `bdf59f0e22989bb1fa03e9c3c108defb56394afd` without conflict. Branch and
+shared `main` matched at that commit with clean trees. Although this cycle did
+not modify `PROMPT.md`, it detected and repaired pre-existing live-description
+drift from the preceding shared-main commit; the complete current file and live
+description matched exactly after the write. Unresolved conflicts: none.
