@@ -3256,6 +3256,13 @@ envelopes and separators, and require the census SHA-256 to match. Reconcile
 every question and correction in that row before exact-claim disposal; never
 treat its last prompt as the whole message or combine distinct rows yourself.
 
+Before disposal, archive the complete reconstructed bytes and independently
+recompute their length and SHA-256. A helper's `match=true` and source-message ID
+alone are insufficient: a later failed `queue_full` dispatch can have similar
+text but cannot be the source of an earlier queued entry. Bind provenance to
+the successful dispatch and the matching bytes. Preserve a same-task sibling
+session wrapper as well as every envelope in a bundled entry.
+
 The session queue has a hard capacity of 15. Parallel management starts before
 pressure: on every turn, census the queue after bootstrap. When at least two
 independent messages exist, fill all safely available helper capacity from one

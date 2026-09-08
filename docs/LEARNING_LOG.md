@@ -1,5 +1,15 @@
 # Coordinator learning-cycle log
 
+## 2026-09-08j — verify queue bodies as well as their provenance
+
+The monitoring cycle reconstructed eight queued entries, including a sibling
+session envelope and a two-message bundle. Recomputing the complete bytes
+confirmed all eight census hashes and corrected one source reference that had
+pointed to a later failed `queue_full` dispatch. The full bodies were archived
+and the live obligations persisted before exact-claim disposal; readback showed
+14 entries reduced to 6. The queue runbook now requires full-byte verification,
+not a helper's match flag alone. No charter or product code changed.
+
 ## 2026-09-08i — collect cancellation through the execution handle
 
 Support request `5b3817ec-da73-4e6f-bca1-e27d6141a934` removed the obsolete
