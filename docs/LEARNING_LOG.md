@@ -2823,5 +2823,8 @@ Rejected by the filter:
 
 Files changed: `docs/RUNBOOK.md`, `docs/DECISIONS.md`, and this log.
 `PROMPT.md` is unchanged, so live-description mirror status is `NOT_REQUIRED`.
-The final commit, fast-forward result, and conflict status are recorded by this
-cycle's repository receipt.
+Repository receipt: knowledge commit
+`eafafeb472da987a6f88f42ed5d81be73781f7ba` fast-forwarded shared `main`
+from `c040f8cb257034c14826955913b872d0f1071512` without conflict. The branch
+and shared `main` matched at that commit with clean trees. Unresolved conflicts:
+none.
