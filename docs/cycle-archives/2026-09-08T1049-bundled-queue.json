@@ -1,0 +1,66 @@
+{
+  "schema_version": "queue-bundled-audit-v1",
+  "cycle_id": "2026-09-08T10:08:24Z",
+  "observed_at": "2026-09-08T10:43:00Z",
+  "mutation": false,
+  "entries": [
+    {
+      "id": "27168c57-bfb2-4f43-b72c-104c50767d75",
+      "sender_task_id": "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+      "sender_task_title": "Manage task PR and MR links via MCP",
+      "sender_session_id": "e48e2582-24f0-41f1-9355-0fe6bfd6c651",
+      "expected_content_bytes": 2431,
+      "expected_content_sha256": "6918008f13809e2beea89c99e5f0541ca3e121814611eccce399b247af923f1a",
+      "reconstruction_status": "exact_bundled_body_verified",
+      "separator": "two LF bytes between complete envelopes",
+      "envelopes_in_order": [
+        {
+          "source_tool_call_message_id": "fe0ba9e2-2654-4ae6-9d8c-2922a13ecce6",
+          "sent_at": "2026-09-08T10:22:01.33940221Z",
+          "prompt": "Preservation/integration complete. I cherry-picked verified upstream repair 032ea05bc as b242b9540 (no conflicts), then checkpointed the pre-existing MCP registration edits as b375c40c8 and pushed `feature/manage-task-pr-and-m-e6i` to origin. Focused `go test ./internal/mcp/server ./internal/mcp/handlers` passes after updating tool-count tests. The first checkpoint attempt was rejected by Go lint solely on the known pre-integration compile fault; the post-integration commit hooks passed (harness, architecture, gofmt, Go lint, commitlint; nonapplicable web hooks skipped). I am resuming the approved provider-neutral implementation; no PR has been opened yet.",
+          "wrapped_content_bytes": 1309,
+          "wrapped_content_sha256": "d7b7211bce9af4b1528b5492fbea54cdf843c786b6a9a3fca4352f1387f9f0c6"
+        },
+        {
+          "source_tool_call_message_id": "a6d5722f-2ae1-42f3-9273-c4691e187a81",
+          "sent_at": "2026-09-08T10:24:23.465995085Z",
+          "prompt": "Additional pushed checkpoint: 7cf884aed `fix(mcp): require task link identity`. It makes task_id explicit and required, preserves server-derived caller_task_id, and makes replace require the full old provider/repository/number identity. Focused `go test ./internal/mcp/server` passes and commit hooks pass. The end-to-end provider-neutral handler/service/store implementation, GitLab projection, docs, and draft PR remain outstanding; no Review/QA/step-complete action taken.",
+          "wrapped_content_bytes": 1120,
+          "wrapped_content_sha256": "9a62def76db9631f3f114ed9080bb59efc3d21b729d69185faa4dfdbac648112"
+        }
+      ],
+      "exact_composition": "standard_peer_wrapper(prompt_10:22) + LF LF + standard_peer_wrapper(prompt_10:24)",
+      "calculated_components": {"first_envelope_bytes": 1309, "separator_bytes": 2, "second_envelope_bytes": 1120, "total_bytes": 2431},
+      "bytes_match": true,
+      "hash_match": true,
+      "ordering_proof": "10:22 preservation/integration checkpoint precedes 10:24 additional pushed checkpoint; reverse order hashes fa4f8fbc9bd2d944c0d2f12f1720f59c330acfc74e1116a1523dab8f1c3286c6 and does not match.",
+      "substantive_obligations": [
+        "Preserve pushed integration commits b242b9540 and b375c40c8 on feature/manage-task-pr-and-m-e6i.",
+        "Preserve pushed checkpoint 7cf884aed and continue provider-neutral handler/service/store, GitLab projection, docs, and draft PR work; no gate or target change was requested."
+      ],
+      "reconciliation": "permitted_exact_full_body_match"
+    },
+    {
+      "id": "12dadb60-7232-4cb8-ba9d-951d5d535384",
+      "sender_task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+      "sender_task_title": "Coordinator: long-lived board orchestration",
+      "sender_session_id": "f5f727af-7c56-45d1-9749-74b027dbb78b",
+      "expected_content_bytes": 1765,
+      "expected_content_sha256": "a24287827d62f6da2a42a54e99624cc5cef0c0bd8f033e50fa31165660f60327",
+      "exact_prompt_source": "cycle-1008-queue-audit.json entry 12dadb60 and source message_task tool call 8d548baf-7ada-47bd-ba72-5684e9f02b97",
+      "wrapper_source": "apps/backend/internal/mcp/handlers/wrap_agent_message.go same-task sibling-session branch",
+      "exact_composition": "same_task_sibling_wrapper(task title, task id, sender session id) + LF LF + exact prompt",
+      "reconstructed_content_bytes": 1765,
+      "reconstructed_content_sha256": "a24287827d62f6da2a42a54e99624cc5cef0c0bd8f033e50fa31165660f60327",
+      "bytes_match": true,
+      "hash_match": true,
+      "reconstruction_status": "exact_same_task_wrapped_body_verified",
+      "substantive_obligation": "Refresh b007bb76 live task/head; successor c3ba0e1f292342bd984d5682570e4fb49e00d3e1 supersedes the earlier 943 diagnosis-only receipt and requires normal current-head delivery gates.",
+      "explicit_target_change": false,
+      "reconciliation": "permitted_exact_full_body_match",
+      "terminal_queue_action": "none; source session is nonterminal, so no terminal-session queue call is justified"
+    }
+  ],
+  "disposition": "Both entries are exactly reconstructed and eligible for primary reconciliation. This audit performed no disposal or queue mutation.",
+  "boundaries": "No task, session, queue, plan, provider, source, or Git mutation occurred."
+}
