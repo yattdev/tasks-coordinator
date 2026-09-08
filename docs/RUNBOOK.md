@@ -3177,6 +3177,16 @@ A failed or superseded Coordinator session can retain a private queue that ordin
 conversation reads do not expose. Recover it only when the Human/user explicitly asks
 the replacement primary to continue that session's unprocessed work.
 
+For a superseded session that is still `WAITING_FOR_INPUT`, the terminal reader
+does not apply. If the Human authorized continuation and same-task identity,
+lane/model, and contact safety are verified, request one bounded handoff from
+that exact existing session: it reads its own queue census, returns ordered
+IDs/counts and any available unresolved work to the successor, preserves unread
+rows, and parks. The successor verifies the census tool receipt in the old
+transcript and remains the sole plan/board writer. Do not terminate a healthy
+session merely to make the terminal reader accept it. `is_current` is relative
+to the calling session; use `is_primary` to compare ownership across callers.
+
 1. Resolve the exact Coordinator task/workspace, failed session, and live replacement
    primary. Fail closed if the old session is not terminal or either session belongs to
    another task/workspace.

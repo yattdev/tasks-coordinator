@@ -1,5 +1,21 @@
 # Coordinator learning-cycle log
 
+## 2026-09-08 — resume from a parked Coordinator predecessor
+
+- Human-designated primary `f0144585-3c79-4f69-ab96-25f547fae0c2`
+  verified predecessor `f5f727af-7c56-45d1-9749-74b027dbb78b` was
+  non-primary and parked, so the terminal queue reader was inapplicable.
+- One bounded same-task handoff let the predecessor census its own queue;
+  original tool receipt at 03:00:21Z proved zero entries. The successor read
+  that receipt and the predecessor parked without board/plan/queue mutation.
+- Older failed session `52c974da-38b6-43cf-8755-50fa346ba873` separately
+  returned an identical empty snapshot in two terminal-reader calls. No
+  session deletion, forced retirement, or queue transfer was needed.
+- Session-list `is_current` changes with the caller; the successor remained
+  `is_primary=true` in both callers' receipts. Reusable fallback recorded in
+  the runbook and capability registry; session-specific ownership stays in
+  the live task plan.
+
 ## 2026-08-21 — semantic merge-result and mixed-CI triage
 
 - Added semantic merge-result triage: a current-main test that contradicts an
