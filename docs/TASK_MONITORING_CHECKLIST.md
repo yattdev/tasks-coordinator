@@ -101,7 +101,9 @@ continue the cycle; never convert `unknown` into an optimistic status.
   ready, save the approved plan, move to Work, and verify the Work owner starts;
   otherwise move to Spec and verify the Spec owner starts.
 - [ ] Do not start an ordinary task Codex session while it remains in Backlogs.
-  The permanent Coordinator task is the only exception.
+  The permanent Coordinator task is the only exception and uses `gpt-6-astra`.
+  Astra is reserved for that role; audit helpers retain Sol and task agents
+  retain their lane models.
 
 ### Todo
 

@@ -808,13 +808,18 @@ rule to unrelated/manual Todo tasks.
 
 ## Audit and contain Codex lane-model mismatches
 
-When Codex is used, enforce this physical-lane map: permanent Coordinator,
-Spec, and QA use `gpt-5.6-sol`; Work, Blocked, and Human-QA use
+When Codex is used, enforce this physical-lane map: the permanent Coordinator
+uses `gpt-6-astra`; Spec and QA use `gpt-5.6-sol`; Work, Blocked, and Human-QA use
 `gpt-5.6-terra`; Review uses `gpt-5.5`; PR and Done use `gpt-5.4`; CI
 Fixup uses `gpt-5.6-luna`. Backlogs, Todo, and ToDeploy are holding/transition
 lanes and do not start task Codex sessions; the permanent Coordinator is the
 explicit Backlogs exception. This mapping does not replace a deliberately
 selected non-Codex agent family.
+
+Astra is reserved for the permanent Coordinator and its replacement primary
+sessions. Read-only audit helpers retain Sol; explicitly select their model
+instead of inheriting the Coordinator's Astra. Delegated task agents retain
+their physical-lane model.
 
 Audit the live board from authoritative model mappings, not profile names:
 

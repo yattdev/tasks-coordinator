@@ -2719,3 +2719,16 @@ shared `main` matched at that commit with clean trees. Although this cycle did
 not modify `PROMPT.md`, it detected and repaired pre-existing live-description
 drift from the preceding shared-main commit; the complete current file and live
 description matched exactly after the write. Unresolved conflicts: none.
+
+## 2026-09-08b — Astra is Coordinator-only
+
+The Human selected `gpt-6-astra` as the standing permanent Coordinator model,
+replacing Sol. The selection also applies to replacement primary sessions.
+All other physical-lane models stay unchanged. Read-only audit helpers retain
+Sol and must not inherit Astra from the primary.
+
+Updated the charter, capability registry, runbook, decisions, continuity
+bootstrap, and monitoring checklist. Historical model receipts remain intact.
+The live Coordinator description and task-plan handoff must be reconciled to
+the new policy and read back; commit and shared-main receipts belong in the
+live plan. This documentation change requires no product-code tests.
