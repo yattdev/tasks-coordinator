@@ -1,0 +1,143 @@
+{
+  "artifact_schema": "coordinator_queue_receipt_v1",
+  "observed_at": "2026-09-08T07:58:01Z",
+  "scope": {
+    "coordinator_task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+    "workspace_id": "2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd",
+    "workflow_id": "90f322ed-2159-424d-96e7-c2ad05668b8e",
+    "queue_session_id": "f0144585-3c79-4f69-ab96-25f547fae0c2",
+    "assigned_queue_entry_id": "98530f4f-67c8-4054-8f42-847a029eac57",
+    "sender_task_id": "51c2875b-48ae-4097-b985-b8a9584ca8c2"
+  },
+  "queue_envelope": {
+    "position": 14,
+    "queued_at": "2026-09-08T07:20:53.727855686Z",
+    "queued_by": "agent",
+    "routine_wake": false,
+    "attachment_count": 0,
+    "claim": "6ff63c9fbe739e05840d976cfe1a9abff6ef8ee1fc40affb9cf67c8140f77018",
+    "content_bytes": 2115,
+    "content_sha256": "4d7b8ea9043de15a3509ebb5de91d5a78512d7e26b01ea28bc25e0fa42550307"
+  },
+  "reconstruction": {
+    "source_tool_call_message_id": "eab3c630-880f-4f15-a036-04bc5d343595",
+    "source_tool_call_id": "exec-b1fffd64-d7ac-445f-9e25-84cef488340f",
+    "source_turn_id": "7a6122dc-834e-4c72-b9c9-59a767eecb50",
+    "source_session_id": "6460f167-7e5e-423e-bd83-d28f445439b5",
+    "source_created_at": "2026-09-08T07:20:53.72129387Z",
+    "assembly": "standard Kandev peer wrapper prefix for the exact live task title and UUID, followed byte-for-byte by message_task_kandev input.prompt",
+    "wrapper_prefix_bytes": 670,
+    "prompt_bytes": 1445,
+    "verified_content_bytes": 2115,
+    "verified_content_sha256": "4d7b8ea9043de15a3509ebb5de91d5a78512d7e26b01ea28bc25e0fa42550307",
+    "matches_queue_census": true,
+    "complete_wrapper_body": "<kandev-system>This message was sent by an agent working in task \"Bug: Notes settings agent utility doesn't load agents profil\" (51c2875b-48ae-4097-b985-b8a9584ca8c2).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"51c2875b-48ae-4097-b985-b8a9584ca8c2\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nWORK RECEIPT (no independent Review/QA/routing/step completion performed): Host branch feature/implement-host-agent-oav is clean at b08e1d99d9441cf741f62122dc97b33fb40a77f9, pushed to yattdev/kandev. Additive commit b08e1d99d `fix(plugins): bound legacy fallback to upgrades` retains 61c6bdfb9 history. It persists a Record provenance flag only when Install replaces a manifest that declared `utility_agent` with a direct-profile-only manifest; host fallback and UpdateConfig retention require that flag. Thus retained upgraded configurations execute, while arbitrary undeclared `utility_agent` values remain FailedPrecondition. Focused new tests cover manifest-upgrade provenance, marked fallback, and unmarked rejection. `cd apps/backend && go test ./internal/plugins -count=1` passed; commit hooks (changed-code Go lint and gofmt) passed. PR https://github.com/kdlbs/kandev/pull/2870 is now draft, OPEN, and verified at b08e1d99d9441cf741f62122dc97b33fb40a77f9; no reviewer request made. TEST_RUNTIME=NONE for this backend provenance change.\n\nNotes separate delivery receipt: /data/tasks/bug-notes-settings-a_imzafc8h/kandev-plugin-notes remains clean at f8548f9d7a1eaabf19d27bb0b0af8f75d8eaeec4; no plugin changes or new PR. Query found no open PR for feature/bug-notes-settings-a-0s3. Existing screenshots preserved under /data/tasks/bug-notes-settings-a_imzafc8h/qa-artifacts (all listed PNGs intact). I am stopping at Work per your fence."
+  },
+  "latest_owner_receipt": {
+    "classification": "Work receipt only; explicitly no independent Review, QA, routing, readiness, reviewer notification, or step completion",
+    "host_head": "b08e1d99d9441cf741f62122dc97b33fb40a77f9",
+    "additive_parent": "61c6bdfb91fa28a166d10025e45fcb083a777e88",
+    "change_summary": "Compatibility fallback is retained only for configurations carrying install-time provenance that an older manifest declared utility_agent before upgrade to a direct-profile-only manifest. Unmarked undeclared utility_agent values remain rejected with FailedPrecondition.",
+    "tests_reported": [
+      "cd apps/backend && go test ./internal/plugins -count=1",
+      "commit hooks: changed-code Go lint and gofmt"
+    ],
+    "runtime": "NONE",
+    "notes_head": "f8548f9d7a1eaabf19d27bb0b0af8f75d8eaeec4",
+    "notes_delivery": "clean, unchanged, no open PR for feature/bug-notes-settings-a-0s3, screenshots preserved"
+  },
+  "live_board_and_sessions": {
+    "physical_lane": "Work",
+    "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+    "task_state_projection": "REVIEW",
+    "task_updated_at": "2026-09-08T07:30:53.726071866Z",
+    "exact_profile_assignment": {
+      "generation": 2,
+      "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+      "model": "gpt-5.6-terra",
+      "assigned_at": "2026-09-08T07:16:54.855892249Z"
+    },
+    "owner_session": {
+      "session_id": "6460f167-7e5e-423e-bd83-d28f445439b5",
+      "name": "fresh-terra-notes-approved-integration",
+      "state": "WAITING_FOR_INPUT",
+      "is_primary": true,
+      "runtime_model_from_message_metadata": "gpt-5.6-terra",
+      "updated_at": "2026-09-08T07:20:58.689898053Z"
+    },
+    "other_nonterminal_sessions": [
+      {
+        "session_id": "1a3dc5fe-9a08-420a-8fce-8e1194ca257f",
+        "state": "WAITING_FOR_INPUT",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289"
+      },
+      {
+        "session_id": "a19ff835-10c8-4b2c-b68e-4c1494c2fdc1",
+        "state": "WAITING_FOR_INPUT",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289"
+      }
+    ]
+  },
+  "task_plan_authority": {
+    "decision_at": "2026-09-08T07:16Z",
+    "authorized_scope": "Correct the legacy compatibility fallback within the manifest-boundary security contract by an additive fix/revert commit, preserve both histories and screenshots, run focused regression tests, normally push the accepted Host head, link existing PR 2870, keep it draft, and stop after a Work receipt.",
+    "invalid_prior_gates": [
+      "self-Review",
+      "self-QA",
+      "step_complete"
+    ],
+    "preservation_requirements": [
+      "Host 61c6bdfb91fa28a166d10025e45fcb083a777e88",
+      "Notes f8548f9d7a1eaabf19d27bb0b0af8f75d8eaeec4",
+      "all screenshots"
+    ]
+  },
+  "repository_and_provider_readback": {
+    "host_worktree": "/data/tasks/bug-notes-settings-a_imzafc8h/kandev-source",
+    "host_branch": "feature/implement-host-agent-oav",
+    "host_worktree_clean": true,
+    "host_local_head": "b08e1d99d9441cf741f62122dc97b33fb40a77f9",
+    "host_tracking_head": "b08e1d99d9441cf741f62122dc97b33fb40a77f9",
+    "fork_remote_ref": "yattdev/kandev:feature/implement-host-agent-oav",
+    "fork_remote_head": "b08e1d99d9441cf741f62122dc97b33fb40a77f9",
+    "preserved_old_head_is_ancestor": true,
+    "canonical_pr": {
+      "url": "https://github.com/kdlbs/kandev/pull/2870",
+      "state": "open",
+      "draft": true,
+      "head_repository": "yattdev/kandev",
+      "head_branch": "feature/implement-host-agent-oav",
+      "head_sha": "b08e1d99d9441cf741f62122dc97b33fb40a77f9",
+      "base_repository": "kdlbs/kandev",
+      "base_branch": "main",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "provider_updated_at": "2026-09-08T07:58:01Z"
+    },
+    "notes_worktree": "/data/tasks/bug-notes-settings-a_imzafc8h/kandev-plugin-notes",
+    "notes_branch": "feature/bug-notes-settings-a-0s3",
+    "notes_worktree_clean": true,
+    "notes_local_head": "f8548f9d7a1eaabf19d27bb0b0af8f75d8eaeec4",
+    "notes_open_prs_for_branch": []
+  },
+  "recommended_next_independent_gate": {
+    "gate": "fresh Review",
+    "required_lane_model": "gpt-5.5",
+    "exact_head": "b08e1d99d9441cf741f62122dc97b33fb40a77f9",
+    "reason": "The authorized Terra Work correction is complete, clean, pushed, and contained in draft PR 2870, while all earlier self-Review/self-QA receipts are invalid. The next independent gate is a new Review session bound to this exact head; any head change invalidates it.",
+    "review_focus": [
+      "Verify the persisted provenance flag can only be created by an actual manifest upgrade from declared utility_agent to direct-profile-only.",
+      "Verify host fallback and UpdateConfig retention require the provenance flag.",
+      "Verify arbitrary unmarked undeclared utility_agent values still fail with FailedPrecondition.",
+      "Verify the additive commit retains 61c6bdfb91fa28a166d10025e45fcb083a777e88 and leaves the Notes delivery untouched."
+    ],
+    "after_review": "If Review passes unchanged, run distinct fresh QA with gpt-5.6-sol at the same exact head before any readiness or reviewer notification decision."
+  },
+  "constraints_observed": {
+    "board_mutations": 0,
+    "task_or_provider_messages": 0,
+    "tests_run": 0,
+    "provider_mutations": 0,
+    "support_actions": 0
+  }
+}
