@@ -2644,3 +2644,54 @@ The current enforcement boundary is explicit: the receipt blocks Coordinator
 completion and status claims but is not yet consumed atomically by Kandev's task
 move API. Server-side transition rejection is a separate platform design, not a
 capability claimed by this policy repository.
+
+## 2026-09-07e — no durable lessons this cycle
+
+Window: `2026-09-06T23:20:25Z` through `2026-09-07T20:11:52Z`.
+
+No durable lessons this cycle. The reusable corrections observed in the window
+were already incorporated by event-driven knowledge commits, and the remaining
+reports were task-specific delivery state.
+
+Rejected by the filter:
+
+- Temporary integration of an exact prerequisite commit into a dependent
+  feature branch: already covered by the immutable-head stacked/cherry-pick
+  dependency procedure.
+- Explanations of PR-lane placement and status requests: execution of the
+  existing full-inspection and plain-language reporting rules, not new policy.
+- Current task heads, runtime receipts, provider state, and workflow placement:
+  transient operational state retained in the Coordinator plan.
+
+Files changed: this log only. This overdue receipt is committed together with
+the following learning-cycle entry after the prior dedicated worktree became
+writable. `PROMPT.md` was unchanged by this entry, so live-description mirror
+status is `NOT_REQUIRED`. Unresolved conflicts: none.
+
+## 2026-09-08a — preserve canonical origins on isolated QA ports
+
+Window: `2026-09-07T20:11:52Z` through `2026-09-08T02:38:38Z`.
+
+A task-owned runtime can be healthy and reachable on an isolated LAN port while
+canonical-host redirects, stored absolute URLs, or generated links send the
+tester to a different service on the default port. Human-QA readiness now
+requires an end-to-end client-path probe that preserves the canonical hostname
+and non-default port through redirects and verifies a product marker. The safe
+workaround is task-local and reversible: use an untracked Compose override,
+client-side hostname mapping, and disposable fixture/QA-only origin settings;
+never mutate shared listeners or production data.
+
+Rejected by the filter:
+
+- The specific port, hostname, task head, fixture rows, and runtime file paths:
+  transient task evidence retained only in the Coordinator plan.
+- Exact requested-model fallback and guarded pending-move cancellation:
+  already owned by existing platform delivery chains and covered by current
+  fail-closed policy.
+- Reusing the Docker repair commit on the dependent feature branch: already
+  covered by the immutable prerequisite integration procedure.
+
+Files changed: `docs/RUNBOOK.md`, `docs/QA_INSTANCES.md`, and this log.
+`PROMPT.md` is unchanged, so live-description mirror status is `NOT_REQUIRED`.
+The commit, fast-forward result, and conflict status are recorded by the cycle's
+repository receipt.

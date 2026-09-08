@@ -133,6 +133,36 @@ Do not declare a feature irrelevant merely because the control plane is already
 containerized, and do not manufacture a display-only runtime that cannot reach
 the changed path.
 
+## Preserve the canonical application origin on a non-default QA port
+
+Reachability and application identity are separate gates. A task-owned service
+can answer on an isolated LAN port while canonical-host redirects, stored site
+URLs, or generated links silently send the tester to a shared listener on the
+default port. A successful raw-IP health probe therefore does not prove that a
+human can operate the application.
+
+When the default host port is already owned by another service:
+
+1. Use a reversible, task-local Compose override to publish an unused port; do
+   not remap or stop the shared listener.
+2. Map the application's canonical hostname to the QA machine on the actual
+   tester client. Do not use a raw IP as a substitute when the application
+   enforces host identity.
+3. If the disposable fixture or QA-only configuration stores an absolute
+   origin, update only that task-owned state so the canonical hostname includes
+   the published port. Never rewrite production or shared fixture data.
+4. From the client-visible path, follow redirects for the root and every
+   task-relevant route. Require the final URL to retain the scheme, canonical
+   hostname, and non-default port, and verify a product marker so a different
+   service cannot satisfy the probe.
+5. Record the untracked override/config paths, reversible fixture mutations,
+   exact-head identity, start/stop commands, and final URLs in the Human-QA
+   receipt. Keep the override uncommitted unless it is intentionally part of
+   the product deliverable.
+
+If the redirect chain drops the port or reaches another listener, the instance
+is not ready even when direct container-network and raw-IP health checks pass.
+
 ## Prove contract compatibility before creating stateful runtime
 
 When an integration consumer and its host/API ship independently, a reviewed or

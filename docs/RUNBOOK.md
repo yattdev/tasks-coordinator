@@ -26,6 +26,11 @@ For every Human-QA task that needs an application runtime, create a separate
 Docker instance from the exact tested head and stop that task's older test
 instance first. Publish and verify a `0.0.0.0` binding through the machine's
 actual LAN address; `127.0.0.1` is diagnostic evidence, not a human handoff.
+If the application redirects to a canonical hostname or stores an absolute
+origin, also prove the complete client-visible redirect chain preserves any
+non-default QA port. Follow
+[QA_INSTANCES.md](QA_INSTANCES.md#preserve-the-canonical-application-origin-on-a-non-default-qa-port);
+a healthy raw-IP endpoint alone is not a usable Human-QA handoff.
 
 Prove the runtime artifact is exact-head too; a checkout at the right commit is
 not enough. For a packaged application, rebuild every generated layer from that
