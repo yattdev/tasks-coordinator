@@ -1,0 +1,77 @@
+{
+  "schema_version": "queue-last-audit-v1",
+  "cycle_id": "2026-09-08T10:08:24Z",
+  "observed_at": "2026-09-08T10:51:00Z",
+  "mutation": false,
+  "wrapper_contract": "Exact normalized message_task prompt prefixed by the standard peer wrapper in apps/backend/internal/mcp/handlers/wrap_agent_message.go.",
+  "entries": [
+    {
+      "id": "e993e34a-366f-4464-9310-d01901eaa2e7",
+      "sender_task_id": "6a5a2f73-87e1-4c08-a983-64f2456c3633",
+      "sender_session_id": "9551a5d6-41b7-43d1-b2ab-5bbf70769347",
+      "source_message_id": "7ce3a9a0-c400-4951-b0cc-5e4c8faee698",
+      "source_sent_at": "2026-09-08T09:44:36.196893325Z",
+      "content_bytes": 1433,
+      "content_sha256": "4eadabe8fa6376f8432e268dd75087c10912c97a1bd4f1bf96b78f9a49dca83c",
+      "match": true,
+      "action": "Historical cleanup receipt only: native TERM returned no-such-process while the exact PID still appeared live. Superseded by later verified Support cancellation and bounded task-owned rerun evidence; preserve as chronology, do not reinstate its blocker."
+    },
+    {
+      "id": "f44dff56-8e3a-4f78-947e-1a46bb22106e",
+      "sender_task_id": "fa3fba49-2018-460b-a600-adae23b24cc8",
+      "sender_session_id": "da37060b-a0ec-4716-9cb2-06211755c4f5",
+      "source_message_id": "3d7d4ef6-66ac-4b4a-9835-83c6c3377214",
+      "source_sent_at": "2026-09-08T10:48:00.956305204Z",
+      "content_bytes": 1515,
+      "content_sha256": "ac5dc5820547eaa57f5ce33485a6b76a904ea09f60bbaccbf02f1e404277c5de",
+      "match": true,
+      "action": "Retain the full remaining security decision: choose A/B/C for sole workspace-wide designation versus scoped principal and Host lease controls. Sender recommends explicit Human approval of a precise replacement contract before removing authorization controls."
+    },
+    {
+      "id": "343ee98f-220b-431b-91c1-aa3ecd6a588a",
+      "sender_task_id": "51c2875b-48ae-4097-b985-b8a9584ca8c2",
+      "sender_session_id": "a19ff835-10c8-4b2c-b68e-4c1494c2fdc1",
+      "source_message_id": "b21531b7-ac5c-4ff9-8ed3-e1f11e379222",
+      "source_sent_at": "2026-09-08T10:36:14.457009136Z",
+      "content_bytes": 1694,
+      "content_sha256": "4cd68797ca09124ff0bf742c356331d8c93ed7f47b3d9743297afe9934db89bb",
+      "match": true,
+      "action": "Historical pre-fix draft hold at PR #2870 head 5f76822f; superseded by the later corrective docs delivery below. Preserve the provider-rate-limit caveat and refresh current head/checks/threads."
+    },
+    {
+      "id": "21c329b9-c6a4-4f79-9089-29ed68127fd6",
+      "sender_task_id": "51c2875b-48ae-4097-b985-b8a9584ca8c2",
+      "sender_session_id": "a19ff835-10c8-4b2c-b68e-4c1494c2fdc1",
+      "source_message_id": "1dda72c4-f6a1-4ae6-8328-eddecb8cb0f4",
+      "source_sent_at": "2026-09-08T10:38:43.901903125Z",
+      "content_bytes": 2051,
+      "content_sha256": "a1d52d6438fc40c997bbaf5b247e14ab2d5dcecccd0cc4f9593072905f04370e",
+      "match": true,
+      "action": "Act on corrective docs head 0f36c0a6b0ed47560cce77f0ec518497106143f3: refresh exact provider checks and authenticated thread state after quota, then independent current-head Review/QA. Preserve the runtime-model contradiction."
+    },
+    {
+      "id": "88f611b1-c245-4d49-bd69-1caa4cdce745",
+      "sender_task_id": "6a5a2f73-87e1-4c08-a983-64f2456c3633",
+      "sender_session_id": "289224cc-e691-48c2-aee4-584633205b7e",
+      "source_message_id": "ca0a5a5d-904a-408c-97e6-0681572c7785",
+      "source_sent_at": "2026-09-08T10:38:06.503396918Z",
+      "content_bytes": 1494,
+      "content_sha256": "df2e9bfe537c5a3ca817713410f1ed79008684061e186c694962447b323d50d6",
+      "match": true,
+      "action": "Preserve task Blocked receipt: unshare passed; bwrap failed normally on missing proc namespace. Support task 16b0c902-464c-40e6-80b1-fc69b8f63ce4 owns repair; resume only after pushed fix and task-owning bounded verification."
+    },
+    {
+      "id": "1c6fdd49-f305-42d3-aec4-5df19a2e0d2c",
+      "sender_task_id": "b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+      "sender_session_id": "25e60dac-d4f2-4e9d-b3db-b45f9e8cd324",
+      "source_message_id": "fa1a1b03-606e-46a3-9c22-619bf59d6952",
+      "source_sent_at": "2026-09-08T10:44:57.44527838Z",
+      "content_bytes": 2877,
+      "content_sha256": "332dfdc0558863e689d0c2f78c00ec65b6e9a508bf9e525c649284bcbbb3f4a8",
+      "match": true,
+      "action": "Distinct Sol QA passed for PR #3496 exact 3012ed6d0fca364238ce856c226aaac84ad4192c after GPT-5.5 Review. Wait for four queued CI checks, explicitly reply/disposition comments 3956293187, 3956294115, 3956295802, then refresh readiness; no UI QA needed."
+    }
+  ],
+  "disposition": "All six exact wrapper bodies match the supplied census byte lengths and SHA-256 values and may be reconciled by the primary. No disposal was performed.",
+  "boundaries": "No other queues were scanned. No queue, task, plan, provider, source, session, or Git mutation occurred."
+}
