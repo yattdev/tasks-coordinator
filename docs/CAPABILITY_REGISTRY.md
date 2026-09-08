@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-08a -->
+<!-- registry-version: 2026-09-08b -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -622,6 +622,8 @@ Production, protected/release branch, cost, and external-communication **labels*
 - **Never** Invent an external actor to explain state you cannot account for, and never escalate that fiction.
 
 ### J7. A Codex task is assigned to or retains the wrong lane model
+- **Startup denial visibility verified (2026-09-08):** `list_task_sessions_kandev` now returns the bounded `startup_failure` for a strict pre-inference model rejection. The canonical Coordinator verified `exact_model_unavailable`, requested `gpt-5.4`, reason `requested_not_advertised`, and both `inference_started=false` and `substitution_performed=false`. Source `22a6632c0a02d7c566ea19690330dfc0a504d03b` recognizes the exact persisted ACP wrapper; the earlier unwrapped-only projector silently omitted the field. An unavailable provider model is distinct from a selector or enforcement defect: retain the failed session, do not substitute or repeatedly launch, and wait for the provider entitlement/catalog or an explicit Human model-policy change.
+- **A selection is not a fresh-session guarantee:** a later lane move may reuse an existing matching-profile session. Verify actual runtime metadata and independent gate ownership after settlement; a successful selection alone does not prove either. Task `state=REVIEW` is not a physical Review lane: map `workflow_step_id` from live workflow metadata.
 - **Selector verified callable (2026-09-08):** Support result `25ab4998-3933-48f4-bc2e-374355b35f9e` repaired the Kanban/automation catalog mismatch in source `cf35864d884661372cc660a24ab255438d6434bd`, deployed by `7e949b520b64c019c22da5c9e953ee61ba41fd5a`. The canonical Coordinator's next ordinary turn exposed `assign_exact_task_profile_kandev`. Live assignment changed Sol to Terra at generation 1; an identical retry returned unchanged generation and operation ID. Readback proved no lane move or inference. A separate Done-integrity recovery move then created a fresh Terra primary, completed the parked Sol session without resuming it, and returned actual Terra message metadata plus preserved Kandev/ACP heads. Selection and launch are separate verified operations; repeat their fresh guards for each target and lane. Ordinary tasks do not receive this capability. See the runbook procedure.
 - **Selection versus enforcement (verified 2026-09-08):** a repair that checks the resolved model before inference does not necessarily expose a way to choose that model. PR #3473 explicitly retains workflow/task/default profile precedence. Do not make its deployment the sole resume trigger for an unavailable profile-selection control. Deduplicate and request one reusable guarded selection/transition capability through Support, independently of provider API quota; keep the exact request and affected tasks in the live plan. Never infer that Support authentication failed because GitHub quota failed.
 - **Trigger** A board audit, task start/resume/message, or lane move exposes a Codex task assignee or nonterminal session whose resolved model does not match its physical lane.

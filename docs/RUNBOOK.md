@@ -827,6 +827,28 @@ prove assignment did not move the task or start inference. A later ordinary
 move/start is a separate action with its own lifecycle and actual-runtime gate.
 Never treat reassignment as permission to resume a parked wrong-model process.
 
+A later move may reuse an existing matching-profile session. Require the actual
+receiving session and independent owner rather than assuming that a selector
+write created a fresh process. If an author carries on into Review or QA, stop
+the next gate, preserve authored changes and observations as Work evidence,
+settle the move, and assign exactly one independent correct-model gate owner.
+Use `workflow_step_id` for the physical lane; task state `REVIEW` can appear in
+Work, Blocked, QA, Human-QA, or Done.
+
+For a failed exact-model launch, read `list_task_sessions_kandev` and inspect its
+bounded `startup_failure`. A verified `requested_not_advertised` with
+`inference_started=false` and `substitution_performed=false` proves a safe
+pre-inference denial. It does not prove the requested provider model is usable.
+Keep provider entitlement separate from source enforcement acceptance. Do not
+retry or substitute a model until its actual external trigger changes.
+
+If Support advertises a projection but the actual caller response omits it,
+retry that read once and report the exact returned field set through one new
+Support request. On 2026-09-08 the failed wire check revealed the persisted
+`failed to initialize ACP: ` wrapper, which the first parser did not accept.
+Support fixed only that stable wrapper, leaving arbitrary raw errors private;
+the canonical Coordinator then verified the real caller response successfully.
+
 Support result `7d4731d6-8598-4974-b058-ed15a8894dbb` reports source commit
 `29fbaca7dd5035d7ed1ed4a01edb731097fceb34`, deployment provenance
 `0f53f1291296be39f90bd3771ce13fa388eca76a`, and 122/122 deployment checks.

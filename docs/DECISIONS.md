@@ -71,6 +71,14 @@ Independent gates additionally require a fresh session and immutable-head
 receipt. A Review or QA column containing the still-running authoring session is
 a settling transition, not proof that independent review began.
 
+The exact-profile selector controls future selection, not freshness of a later
+session. Preserve valid earlier independent verdicts when an agent subsequently
+advances itself through other phases, but reject its self-issued later gates.
+Read the physical lane UUID independently of task state; `REVIEW` is a lifecycle
+state used in several physical columns. Provider non-advertisement of a required
+model is an external launch constraint, not a failed source-level enforcement
+test when rejection is proven to precede inference without substitution.
+
 ## Gate evidence follows physical ownership (2026-08-21)
 
 Ad-hoc review evidence gathered during Work does not imply the task already

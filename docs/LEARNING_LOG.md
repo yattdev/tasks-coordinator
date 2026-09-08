@@ -1,5 +1,21 @@
 # Coordinator learning-cycle log
 
+## 2026-09-08g — verify the actual caller response and preserve gate independence
+
+The first strict-model diagnostic deployment exposed the advertised tool schema
+but omitted the expected field from two real session reads. Support found the
+persisted ACP initialization wrapper and repaired its bounded parser. The next
+canonical Coordinator read returned the typed unavailable-model denial with no
+inference or substitution. Source and deployment receipts are distinct from the
+successful caller check. Exact GPT-5.4 availability remains a provider/catalog
+dependency; another model must not be substituted without Human policy change.
+
+Exact-profile assignment can be followed by reuse of an existing matching-profile
+session. Two task agents advanced themselves through multiple phases, so their
+self-issued later QA results were rejected while valid earlier independent
+verdicts and all authored changes were preserved. Fresh lane UUID, session and
+runtime-model evidence controls; task state `REVIEW` never identifies the lane.
+
 ## 2026-09-08f — verify catalog exposure, assignment and launch separately
 
 Support corrected a Kanban/automation catalog mismatch; a fresh ordinary
