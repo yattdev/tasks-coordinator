@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-08b -->
+<!-- registry-version: 2026-09-08c -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -648,6 +648,12 @@ Production, protected/release branch, cost, and external-communication **labels*
 - **Never** Substitute `file`, dimensions, checksums, DOM/XML hierarchy, responsive-web output, or console cleanliness for the required visual/native evidence. Never repeat unbounded hangs or delete the preserved images before the receiving QA/PR step has durable evidence.
 
 ---
+
+### K2. Local screenshots need publication on the canonical GitHub PR
+- **Status** **VERIFIED WORKING (2026-09-08):** installed `gh pr edit --attach` uploaded three sanitized Coordinator-plugin screenshots through the existing authenticated context; anonymous downloads matched the retained PNG bytes.
+- **Action** Have the QA owner inspect `gh pr edit --help`, preserve the current PR body/head, and upload with repeated `--attach '<path>#<alt>'` flags. Follow [the upload procedure](RUNBOOK.md#publish-pr-screenshots-with-the-installed-github-cli).
+- **Evidence** Inline body URLs, anonymous image response, matching SHA-256, unchanged exact head and intended draft state. Partial upload failure requires body readback before retry.
+- **Never** Assume browser credentials are required before checking the installed supported CLI, replace the body with a fragment, mint credentials, or use an undocumented uploader or third-party host.
 
 ## Maintenance
 

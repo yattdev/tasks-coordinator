@@ -721,6 +721,29 @@ merge authority and that the task's work-step prompt requires reliance on the
 Coordinator. This does not approve a newly identified credential, security,
 cross-workspace, destructive, production-deployment, or release action.
 
+## Publish PR screenshots with the installed GitHub CLI
+
+Verified 2026-09-08: this environment's `gh pr edit --help` advertises
+`--attach`. Check the installed CLI before declaring an uploader unavailable.
+The task QA owner uses its existing authenticated provider context:
+
+```sh
+gh pr edit <number> --repo <owner/repo> --attach '<image.png>#<descriptive alt text>'
+```
+
+Repeat `--attach` for multiple files. Without a body flag, the CLI preserves the
+existing body and appends inline image Markdown. A body-file operation replaces
+the body; use it only with the complete inspected document. The CLI rewrites
+references to matching attached files to uploaded asset URLs.
+
+First verify the sanitized local image and checksum, exact PR/head and current
+body, and absence of a duplicate image. A partial upload can update the body and
+then exit nonzero: read the body before retrying. Afterward verify every public
+asset returns image content anonymously and byte-matches the local image, and
+read back the full body, head, and draft state. Refresh readiness separately.
+No new credential, cookie extraction, undocumented upload endpoint, source
+commit for image transport, or third-party host is needed or authorized.
+
 Local screenshot capture is acceptance evidence for the task agent, but it is
 not reviewer-facing until the reviewer can open it from the PR/MR. If provider
 authentication, browser-session requirements, or rate limits block attachment:

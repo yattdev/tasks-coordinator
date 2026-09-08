@@ -1,5 +1,18 @@
 # Coordinator learning-cycle log
 
+## 2026-09-08h — inspect the installed uploader and exact provider endpoint
+
+The installed GitHub CLI supports `gh pr edit --attach`. Coordinator-plugin QA
+published three inline PNGs and independent anonymous downloads matched the
+preserved hashes. A claimed missing upload capability was therefore cleared
+without browser credential access or a Support request. Partial success may
+change the PR body despite a nonzero exit; inspect before retrying.
+
+During the same cycle `gh api rate_limit` returned HTTP 200 and full remaining
+quota while repository REST and GraphQL operations returned quota-exhausted
+errors. The actual requested endpoint and its response headers control the
+hold; a quota-summary or authentication-status command cannot prove recovery.
+
 ## 2026-09-08g — verify the actual caller response and preserve gate independence
 
 The first strict-model diagnostic deployment exposed the advertised tool schema
