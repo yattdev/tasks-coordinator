@@ -989,12 +989,25 @@ unreviewed entry.
 
 ## ACP command delivery may need a provider-scoped deployment override (2026-08-30, Support-verified)
 
+**Superseded for modern Codex, 2026-09-08.** The following records the 0.147-era
+workaround, not a current instruction. In 0.153.4, forcing `unified_exec=false`
+selected the legacy synchronous path, which could time out after 30 seconds
+without a resumable handle. Support request
+`5b3817ec-da73-4e6f-bca1-e27d6141a934` removed the override in deployment commit
+`06d5375b66026cc01687b02d0a2f404d1b2d63d3`, preserving the guard boundaries.
+The owning Coordinator verified real tool-allocated TTY input/output, a running
+execution handle, Ctrl-C cancellation through that handle, captured output and
+terminal exit 1; a separate completed command preserved its intended exit 7.
+Do not restore the old override. See the current cancellation procedure in the
+runbook. The historical probe's host PID had already disappeared; its exit and
+stderr remain unrecoverable and are not counted as a passing probe.
+
 The ordinary Codex ACP path can complete a command yet defer its result beyond a
 short diagnostic window when Codex CLI `unified_exec` is enabled. This is distinct
 from the browser/task-shell two-resize PTY wiring issue: the worktree, guard policy,
 and command itself can all be healthy while the model receives no completion payload.
 
-The accepted local remediation is provider-scoped, not a sandbox relaxation.
+The historical local remediation was provider-scoped, not a sandbox relaxation.
 Deployment-only `yattdev/kandev-service` `main` commit
 `6fcc88f689dae9797dd131229167a98d0e955d43` (not public `kdlbs/kandev` source) preserves the full guard,
 attestation, Git checks, Docker-token policy, and all existing `CODEX_CONFIG` keys,

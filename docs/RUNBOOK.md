@@ -2713,6 +2713,37 @@ grant the Coordinator raw sudo/process authority.
 
 ## Recover a task shell whose PTY output was never wired
 
+### Current Codex execution handles and cancellation (2026-09-08)
+
+For modern Codex, first distinguish the model's execution tool from the browser
+terminal bridge described below. The historical Codex 0.147 override forcing
+`unified_exec=false` is obsolete: with 0.153.4 it selected a legacy synchronous
+path whose 30-second timeout could lose the execution handle. Support removed
+the override in deployment commit `06d5375b66026cc01687b02d0a2f404d1b2d63d3`.
+Do not reintroduce it or weaken the guard.
+
+1. Start a bounded command with `exec_command`, `tty:true`, and a short
+   `yield_time_ms`; retain the returned `session_id` and captured output.
+2. Send `\u0003` through `write_stdin` to that exact execution ID.
+3. If it is still running, poll the same ID with empty `chars` until its real
+   terminal exit code and output arrive. If the cancellation call itself returns
+   the terminal result, collection is complete; do not poll a closed handle.
+4. Completed commands return actual output and exit status directly. A cancelled
+   command must return its real non-success result; do not assume a particular
+   numeric exit code. Never substitute a host PID or generic signal operation.
+
+Owning Coordinator verification for Support request
+`5b3817ec-da73-4e6f-bca1-e27d6141a934`: bounded Python sleep, input/output TTY
+assertions true, execution ID `64075`, Ctrl-C returned `KeyboardInterrupt` and
+exit 1; a completed non-TTY probe returned stdout/stderr markers and intended
+exit 7. Cancellation completed on the first write, so no empty poll was needed.
+The original legacy probe had no handle; Support found PID `536514` and parent
+`459529` already absent and sent no signal. Their lost output/status remain
+unknown. This is a deployment-local compatibility repair, not proof of an
+upstream Kandev defect or completion of another task's TTY integration gates.
+
+### Historical browser terminal bridge and Codex 0.147 evidence
+
 A live task terminal can look completely hung even while its command is running. The
 shell bridge defers PTY creation until the first resize. That resize starts the process,
 but output wiring is established only on a subsequent resize. A client that sends only

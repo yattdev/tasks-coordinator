@@ -1,5 +1,17 @@
 # Coordinator learning-cycle log
 
+## 2026-09-08i — collect cancellation through the execution handle
+
+Support request `5b3817ec-da73-4e6f-bca1-e27d6141a934` removed the obsolete
+Codex 0.147 unified-exec override, which made 0.153.4 use a legacy synchronous
+path with no resumable handle after timeout. The owning Coordinator verified
+tool-allocated TTY execution ID `64075`, Ctrl-C cancellation, captured
+`KeyboardInterrupt` and exit 1, plus direct completed-command output and exit 7.
+When cancellation already returns terminal status, no further poll is required.
+The old probe's exit/stderr remain unrecoverable; process absence is not success.
+Registry G8, the terminal runbook and the old decision now explicitly supersede
+the historical workaround. No charter policy changed.
+
 ## 2026-09-08h — inspect the installed uploader and exact provider endpoint
 
 The installed GitHub CLI supports `gh pr edit --attach`. Coordinator-plugin QA
