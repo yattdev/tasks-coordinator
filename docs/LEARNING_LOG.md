@@ -1,5 +1,15 @@
 # Coordinator learning-cycle log
 
+## 2026-09-08c — distinguish profile selection from inference enforcement
+
+- The model-routing repair's approved contract retains workflow/task/default
+  profile precedence; checking the resolved model does not supply a setter.
+- Request one reusable guarded selection/transition capability through Support
+  when normal controls lack it. Operational request IDs and exact task/session
+  predicates belong in the live plan.
+- Test Support broker and GitHub availability independently; a provider quota
+  limit is not a Support authentication failure.
+
 ## 2026-09-08 — resume from a parked Coordinator predecessor
 
 - Human-designated primary `f0144585-3c79-4f69-ab96-25f547fae0c2`

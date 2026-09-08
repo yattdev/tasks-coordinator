@@ -808,6 +808,15 @@ rule to unrelated/manual Todo tasks.
 
 ## Audit and contain Codex lane-model mismatches
 
+Distinguish model enforcement from model selection. A fail-before-inference
+repair may enforce an already resolved profile while leaving workflow pins and
+task assignments unchanged. Read its approved contract before using it as a
+universal launch unblock. If task-runtime controls cannot select the required
+profile, request one reusable guarded control through Support; do not duplicate
+the enforcement implementation or treat its merge as proof of a setter.
+Support broker availability and GitHub quota are separate surfaces. Keep the
+request and affected sessions in the live plan; never wake a mismatch to test it.
+
 When Codex is used, enforce this physical-lane map: the permanent Coordinator
 uses `gpt-6-astra`; Spec and QA use `gpt-5.6-sol`; Work, Blocked, and Human-QA use
 `gpt-5.6-terra`; Review uses `gpt-5.5`; PR and Done use `gpt-5.4`; CI

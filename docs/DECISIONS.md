@@ -2058,6 +2058,16 @@ containment was absent, and risked another silent persistence failure. Stable
 gate IDs, a validator, and a current-first bounded plan turn those failure modes
 into explicit non-zero errors before progress or status can be claimed.
 
+## Model selection is distinct from enforcement (2026-09-08)
+
+A repair that enforces the resolved profile does not automatically provide a
+profile setter or safe transition override. PR #3473 retains selection
+precedence; its completion cannot clear a missing selection capability. Route
+that separate gap to one deduplicated guarded Support request. Provider quota
+does not establish Support broker unavailability. Existing correct-model
+recovery sessions remain usable under fresh stable-lane and full-session
+preflight; no mismatched inference is allowed.
+
 ## Receipt freshness and ToDeploy containment are non-optional (2026-09-07; human-directed follow-up)
 
 Decision: the cycle-receipt CLI is run with a five-minute wall-clock age limit.
