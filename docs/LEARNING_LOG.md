@@ -2896,3 +2896,16 @@ Repository receipt: knowledge commit
 from `c040f8cb257034c14826955913b872d0f1071512` without conflict. The branch
 and shared `main` matched at that commit with clean trees. Unresolved conflicts:
 none.
+
+## 2026-09-08 — Coordinator continuity permits Sol or Astra
+
+The Human clarified that Coordinator sessions may use either Sol or Astra.
+This supersedes the earlier Astra-only selection for permanent and replacement
+primary sessions. Keep the current valid model on a resume; all other lane
+models and Sol audit helpers remain unchanged. Updated the charter, registry,
+runbook, decisions, continuity bootstrap, and monitoring checklist together.
+
+A Human-designated successor and the server primary flag are separate facts.
+Read back both; when the atomic promotion surface is unavailable, preserve
+predecessor queues, request bounded read-only handoffs, and record the sole
+Human-designated writer without claiming server promotion succeeded.

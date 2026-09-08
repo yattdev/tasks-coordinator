@@ -1923,7 +1923,7 @@ that can silently resume after the task has left Spec.
 
 ## Codex models follow the physical execution lane (2026-09-06)
 
-The Coordinator selection below is superseded by the 2026-09-08 Astra decision;
+The Coordinator selection below is superseded by the 2026-09-08 Sol-or-Astra decision;
 all other lane selections remain in force.
 
 Decision: when Codex is used, the permanent Coordinator, Spec, and QA use
@@ -1940,18 +1940,20 @@ QA, while implementation, review, delivery, repair, and terminal work use the
 specified lighter Codex models. Exact live profile resolution prevents a stale
 session or misleading profile name from defeating that configuration.
 
-## Astra is reserved for the permanent Coordinator (2026-09-08)
+## Sol or Astra may run the permanent Coordinator (2026-09-08)
 
-Decision: the permanent Coordinator uses `gpt-6-astra` instead of Sol, including
-replacement primary sessions. This is a standing role policy. Spec and QA
+Decision: the Human's latest clarification permits either `gpt-5.6-sol` or
+`gpt-6-astra` for the permanent Coordinator, including replacement primary
+sessions, superseding the earlier Astra-only selection. Both are standing
+authorized models; resuming does not require switching a valid selection. Spec and QA
 continue to use Sol; Work, Blocked, and Human-QA use Terra; Review uses GPT-5.5;
 PR and Done use GPT-5.4; CI Fixup uses Luna.
 
 The Human explicitly restricted Astra to the Coordinator. Delegated task
 agents retain their lane model, and read-only audit helpers retain Sol. Native
 helper launches must select that model explicitly when the host would otherwise
-inherit the primary model. Historical Sol Coordinator receipts remain history;
-they do not authorize future Sol primary launches.
+inherit the primary model. Future Sol Coordinator launches are authorized by
+this clarification; all other lane selections remain unchanged.
 
 ## Task inspection is always an action sweep (2026-09-06)
 

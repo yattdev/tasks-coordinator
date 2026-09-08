@@ -29,8 +29,8 @@ credentials, or unnecessary sensitive data in any layer.
 2. Read `AGENTS.md` and all of `PROMPT.md`.
 3. Resolve the live Coordinator task, workspace, and workflow identity; never
    inherit identity from a stale handoff.
-   Verify the permanent Coordinator uses `gpt-6-astra`, including replacement
-   primaries. Audit helpers retain Sol and task agents retain their lane models;
+   Verify the permanent Coordinator uses `gpt-5.6-sol` or `gpt-6-astra`, including
+   replacement primaries. Either is authorized. Audit helpers retain Sol and task agents retain their lane models;
    neither inherits the Coordinator-only Astra selection.
 4. Read the current-first Coordinator state snapshot and latest validated
    G1–G10 receipt, including every open ledger entry, complete Blocked record,
