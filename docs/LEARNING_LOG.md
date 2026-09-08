@@ -1,5 +1,32 @@
 # Coordinator learning-cycle log
 
+## 2026-09-08k — no durable lessons this cycle
+
+Window: `2026-09-08T08:10:46Z` through `2026-09-08T14:15:53Z`.
+
+No durable lessons this cycle. The reusable corrections observed in the window
+were already incorporated by event-driven knowledge commits, and the remaining
+records were task-specific coordination state.
+
+Rejected by the filter:
+
+- Strict-model caller verification, profile selection versus launch,
+  queue-bundle reconstruction and full-byte disposal proof, installed GitHub
+  screenshot upload, endpoint-specific quota checks, and execution-handle
+  cancellation: already captured in the 2026-09-08f through 2026-09-08j
+  entries and their linked runbook, registry, and decision updates.
+- Current task/session IDs, queue entries, repository heads, provider responses,
+  and terminal receipts: transient operational evidence retained in the owning
+  Coordinator plans and cycle archives.
+- Repeated learning-wake delivery and the stale task-description mirror:
+  execution of existing routine and mirror-reconciliation procedures, not new
+  policy.
+
+Files changed: this log only. `PROMPT.md` was unchanged, so this cycle adds no
+new charter rule. The pre-existing live-description drift discovered after
+shared-main synchronization is repaired separately under the existing mirror
+procedure. Unresolved conflicts: none.
+
 ## 2026-09-08j — verify queue bodies as well as their provenance
 
 The monitoring cycle reconstructed eight queued entries, including a sibling
