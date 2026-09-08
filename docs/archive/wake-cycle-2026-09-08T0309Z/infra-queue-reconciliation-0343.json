@@ -1,0 +1,510 @@
+{
+  "generated_at": "2026-09-08T03:45:42.941Z",
+  "scope": "Read-only reconciliation of the two 03:37 queued receipts; no contact, disposal, tests, implementation, provider mutation, task mutation, or ToDeploy read.",
+  "rows": [
+    {
+      "task_id": "9349b6e5-a167-4d88-af14-cb355015e3dd",
+      "target_session_id": "5f5fd500-96aa-4670-9e41-b82deaaa0109",
+      "sender_dispatch": {
+        "tool_call_created_at": "2026-09-08T03:36:02.129665761Z",
+        "exact_prompt": "Bounded Coordinator Blocked reconciliation. Your current authoritative provider https://github.com/kdlbs/kandev/pull/2841 remains OPEN/DRAFT but now conflicts with main, head5839cd91fb49a0fb3be73a3e1a4b6f7f20cda674. The prior immutable-image infrastructure fix#3397 is merged. Reconcile the CURRENT governing blocker from newest exact evidence, preserving existing branch and backup. Report whether old CI result still requires new-base integration or a legitimate rerun, exact next author action and safe Work owner. Update your task plan's current blocker only. No code/tests/push/rerun/provider-write/ready/merge/deploy/cleanup or lane move in this bounded turn. Public REST can read; authenticated core reset03:51Z. Do not reuse primary Luna. Stable Blocked+all sessions read; no authoritative pending-row tool; narrow same-lane exact Terra fallback."
+      },
+      "returned_queue_receipt": {
+        "queue_id": "21d8e284-144d-4bc5-ad0c-1a2568608f3b",
+        "claim": "c4b2c17ba1e41ddfc8008737243e0c34a314faf3ab4ebdd6c5b566207e005fc1",
+        "content_bytes": 1966,
+        "content_sha256": "7edf3e9c2043343a6f2231ade4f58bc45b772a00ebaf3d012196e0b5281d51fd",
+        "queued_at": "2026-09-08T03:37:21.191860977Z",
+        "exact_queue_body": "Bounded blocker reconciliation complete; only this task plan’s current-blocker section was updated.\n\nNewest exact public REST evidence: PR #2841 is OPEN/DRAFT at head 5839cd91fb49a0fb3be73a3e1a4b6f7f20cda674, base ddcc4fc6a0590e6f32f786f388abe8a46a222b22, mergeable=false, mergeable_state=dirty, rebaseable=false. Origin branch remains at that head; backup origin/backup/allow-coordinator-re-wxo-local-3 remains 87befe0dd38e1f448d025f04033f0e222aae7497. The old E2E run 33910546907 is terminal failure at the stale head.\n\nPR #3397, the immutable-runtime-image fix, merged 2026-09-05 18:20:09 UTC as 0c9b1ec58874d35a00039c07f967ce67f0c02bfc. Its fix supersedes the old CI infrastructure cause, but a rerun at the conflicting stale head cannot yield an authoritative mergeable/new-base result. Therefore this requires current-base integration, not a rerun first.\n\nExact next author action: same-lane exact Terra Work owner performs a normal merge of current canonical main into feature/allow-coordinator-re-wxo (no rebase/history rewrite), resolves conflicts preserving authorization work and backup, validates, then pushes the new head. That push legitimately triggers authoritative post-reconciliation CI. Do not use primary Luna. No code/tests/push/rerun/provider write/ready/merge/deploy/cleanup/lane move occurred.",
+        "sender_tool_call_created_at": "2026-09-08T03:37:21.184793349Z",
+        "sender_tool_call_output": "queued to Coordinator primary session f0144585-3c79-4f69-ab96-25f547fae0c2",
+        "hash_evidence": "Authoritative get_message_queue_census_kandev content_sha256 and content_bytes; exact body recovered from sender message_task_kandev tool-call input."
+      },
+      "live_board": {
+        "physical_lane": "Blocked",
+        "to_deploy": false
+      },
+      "live_provider": {
+        "url": "https://github.com/kdlbs/kandev/pull/2841",
+        "state": "open",
+        "draft": true,
+        "head": "5839cd91fb49a0fb3be73a3e1a4b6f7f20cda674",
+        "base": "ddcc4fc6a0590e6f32f786f388abe8a46a222b22",
+        "mergeable": false,
+        "mergeable_state": "dirty",
+        "rebaseable": false
+      },
+      "newest_governing_blocker_record": "## 24. Current Governing Blocker: Base Reconciliation (2026-09-08)\n\n- Authoritative public REST evidence: PR #2841 is OPEN/DRAFT at exact head `5839cd91fb49a0fb3be73a3e1a4b6f7f20cda674`, against base `ddcc4fc6a0590e6f32f786f388abe8a46a222b22`; GitHub reports `mergeable=false`, `mergeable_state=dirty`, and `rebaseable=false`. Origin still has that exact branch head, and the preservation backup `origin/backup/allow-coordinator-re-wxo-local-3` remains `87befe0dd38e1f448d025f04033f0e222aae7497`.\n- CI reconciliation: the old exact-head E2E run `33910546907` remains terminal failure at the stale/conflicting head. Its immutable-runtime-image cause is superseded by merged PR #3397, `fix(ci): stabilize immutable runtime image resolution`, merged 2026-09-05 18:20:09 UTC as `0c9b1ec58874d35a00039c07f967ce67f0c02bfc`. A rerun of the old head would not produce a mergeable/current-base result, so it is not the governing next action.\n- Exact next author action: reconcile the current canonical main into `feature/allow-coordinator-re-wxo` with a normal merge (not rebase or history rewrite), resolve the reported conflict while preserving the related-task authorization change and backup, validate the merged result, then push the new head. That push legitimately starts the authoritative post-reconciliation CI run; do not rerun the stale failed run first.\n- Safe Work owner: the same-lane exact Terra Work implementation owner. Do not use the primary Luna session.\n- Resume condition: a Terra owner is available to perform the normal merge-base reconciliation. Until then, preserve the branch and backup; do not edit source, run tests, push, rerun CI, ready, merge, deploy, clean up, or move lanes in this blocked state.",
+      "exact_preservation_lines_from_governing_record": [
+        "- Authoritative public REST evidence: PR #2841 is OPEN/DRAFT at exact head `5839cd91fb49a0fb3be73a3e1a4b6f7f20cda674`, against base `ddcc4fc6a0590e6f32f786f388abe8a46a222b22`; GitHub reports `mergeable=false`, `mergeable_state=dirty`, and `rebaseable=false`. Origin still has that exact branch head, and the preservation backup `origin/backup/allow-coordinator-re-wxo-local-3` remains `87befe0dd38e1f448d025f04033f0e222aae7497`.",
+        "- CI reconciliation: the old exact-head E2E run `33910546907` remains terminal failure at the stale/conflicting head. Its immutable-runtime-image cause is superseded by merged PR #3397, `fix(ci): stabilize immutable runtime image resolution`, merged 2026-09-05 18:20:09 UTC as `0c9b1ec58874d35a00039c07f967ce67f0c02bfc`. A rerun of the old head would not produce a mergeable/current-base result, so it is not the governing next action.",
+        "- Exact next author action: reconcile the current canonical main into `feature/allow-coordinator-re-wxo` with a normal merge (not rebase or history rewrite), resolve the reported conflict while preserving the related-task authorization change and backup, validate the merged result, then push the new head. That push legitimately starts the authoritative post-reconciliation CI run; do not rerun the stale failed run first.",
+        "- Resume condition: a Terra owner is available to perform the normal merge-base reconciliation. Until then, preserve the branch and backup; do not edit source, run tests, push, rerun CI, ready, merge, deploy, clean up, or move lanes in this blocked state."
+      ],
+      "complete_sessions": [
+        {
+          "session_id": "a7c5d8eb-4505-4ce4-ac8d-5a9bb62a9d02",
+          "name": "fresh-qa-pr2841-6bb0c552",
+          "agent_profile_id": "1606e51e-fcd1-41fc-b431-948e1a7e9c64",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-03T06:10:30.108790022Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "0714be65-1e0d-4e13-8d1e-b0ae7fe361af",
+          "name": "fresh-review-pr2841-6bb0c552",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-03T05:45:31.747562469Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "6ea4effa-3fd1-4e12-9ac1-6c897be8afe3",
+          "name": null,
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": true,
+          "is_current": false,
+          "updated_at": "2026-09-05T19:40:27.552835359Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "1f359d48-fa84-4d6b-9cff-fdc3352b7d4f",
+          "name": "independent-qa-pr2841-4c458f7",
+          "agent_profile_id": "1606e51e-fcd1-41fc-b431-948e1a7e9c64",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-03T04:58:48.462853181Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "568b99ad-dfe8-4cc7-ba16-f39da3020ce6",
+          "name": null,
+          "agent_profile_id": "ce9f96f7-4434-4729-b23b-926b4b72f417",
+          "state": "COMPLETED",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-03T04:58:48.477189009Z",
+          "completed_at": "2026-09-03T04:58:48.477189009Z"
+        },
+        {
+          "session_id": "252ab0e8-b81f-4390-9069-af8890dc6614",
+          "name": null,
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "state": "COMPLETED",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-03T04:58:48.462853181Z",
+          "completed_at": "2026-09-01T05:17:01.734350925Z"
+        },
+        {
+          "session_id": "5f5fd500-96aa-4670-9e41-b82deaaa0109",
+          "name": "independent-policy-review",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-08T03:37:29.734226635Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "6001e533-5764-4a8d-9c72-b134e96a1120",
+          "name": null,
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "state": "COMPLETED",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-03T04:58:48.462853181Z",
+          "completed_at": "2026-08-30T02:44:06.701109673Z"
+        },
+        {
+          "session_id": "e0d43585-0e30-4d30-8052-b6a338214c0b",
+          "name": null,
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "state": "COMPLETED",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-03T04:58:48.462853181Z",
+          "completed_at": "2026-08-20T07:30:46.882445543Z"
+        },
+        {
+          "session_id": "6f04c7cf-a587-419c-91fd-18ec7d3ddb49",
+          "name": null,
+          "agent_profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "state": "COMPLETED",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-03T04:58:48.462853181Z",
+          "completed_at": "2026-08-20T06:50:24.170804026Z"
+        },
+        {
+          "session_id": "925d6794-757d-4f00-92b5-5612309a2d3a",
+          "name": null,
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "state": "COMPLETED",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-03T04:58:48.462853181Z",
+          "completed_at": "2026-08-27T19:38:03.1618837Z"
+        },
+        {
+          "session_id": "67507b30-cefa-4edc-9849-2c1d51c5adb3",
+          "name": null,
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "state": "COMPLETED",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-03T04:58:48.462853181Z",
+          "completed_at": "2026-08-20T06:07:44.411719513Z"
+        }
+      ],
+      "diagnostic_session_readback": {
+        "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "is_current": false,
+        "is_primary": false,
+        "name": "independent-policy-review",
+        "session_id": "5f5fd500-96aa-4670-9e41-b82deaaa0109",
+        "started_at": "2026-08-30T00:50:27.649824038Z",
+        "state": "WAITING_FOR_INPUT",
+        "updated_at": "2026-09-08T03:37:29.734226635Z"
+      },
+      "current_tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "Terra is reconciling current conflicts and preservation before the next authoring handoff.",
+          "owner": "agent",
+          "updatedAt": "2026-09-08T03:36:05.419985166Z"
+        }
+      ],
+      "plan_tag_agreement": {
+        "plan_matches_receipt": true,
+        "tag_matches_current_state": false,
+        "reason": "The tag still says Terra is reconciling, but the diagnostic turn completed and the session returned to WAITING_FOR_INPUT. Replace it with the exact current-main reconciliation trigger and preservation instruction."
+      },
+      "safe_next_action": "Preserve head 5839cd91fb49a0fb3be73a3e1a4b6f7f20cda674 and backup 87befe0dd38e1f448d025f04033f0e222aae7497. Do not rerun stale CI. After a fresh stable-Blocked complete-session census and no concrete armed-row evidence, dispatch exact Terra session 5f5fd500-96aa-4670-9e41-b82deaaa0109 for the explicitly authorized recovery: normally merge then-current canonical main, preserve authorization behavior, validate, and normal-push. If moving to Work would auto-resume primary Luna 6ea4effa-3fd1-4e12-9ac1-6c897be8afe3, keep the task Blocked and use the exact Terra recovery session or wait for safe model routing; never wake Luna."
+    },
+    {
+      "task_id": "37eca47b-cf05-47ee-b143-39408edbeed1",
+      "target_session_id": "b77c26fc-0920-4fab-bbd7-8096d6178759",
+      "sender_dispatch": {
+        "tool_call_created_at": "2026-09-08T03:36:05.472248733Z",
+        "exact_prompt": "Bounded Coordinator Blocked reconciliation. https://github.com/kdlbs/kandev/pull/3158 is OPEN/DRAFT/dirty at provider heade82d69d4 (read exact full SHA yourself). Task plan contains conflicting older f7ddbbe/d8fd2 receipts; your latest Coordinator correction made provider e82d69d authoritative. Reconcile local vs fork/canonical current head, preservation of each divergent head, and CURRENT conflict/CI prerequisite. Old immutable-runtime root#3397 is merged. Report exact next Work action and preserve all unique work. Update only current task-plan blocker; no source/tests/push/rewrite/rerun/provider-state/merge/deploy/cleanup or lane move. Avoid parked primary Luna. Stable Blocked+all sessions read; use exact Terra same-lane fallback; no known armed row in current ledger."
+      },
+      "returned_queue_receipt": {
+        "queue_id": "2c77da0e-d935-49e2-9172-f972522c57a0",
+        "claim": "5a189e939995eb6b3ede1d68ba58a97156c0b3b80597f4255ca48226acbf4129",
+        "content_bytes": 1658,
+        "content_sha256": "75ccf3a457c871bab4e816d9d61a7099775a64eb15a1fa172bcf1d2fc23c2887",
+        "queued_at": "2026-09-08T03:37:44.123135988Z",
+        "exact_queue_body": "Reconciled and updated only task 37eca47b-cf05-47ee-b143-39408edbeed1's current plan blocker (Coordinator task-local R5, 2026-09-08). Exact local HEAD and fork tracking ref both equal authoritative provider head e82d69d41c4acb0ab7290ea397fd4a76b5d44db4; clean worktree. d8fd2d8112ca3104b67bd7839cd3dcf446a58b1, f7ddbbe29f0dcfc5ac16d4645c980c712f668ee2, and 8ab5e0e25bcbd4410b0260df0a07c75b19be22e4 are ancestors, so their work is preserved. Local origin/main is 3d042e9d8f1897f167891e44eb78b3977e2e27c8 (local main differs: fed90594d38138eee709ae94eef4766ae6ee3386); merge base ddcc4fc6a0590e6f32f786f388abe8a46a222b22. Read-only merge-tree returned clean but does not override supplied provider OPEN/DRAFT/dirty state. Recorded the exact next Work action: same-lane Terra handoff from e82, reconcile dirty PR against then-current canonical base, validate, normal authorized publish, exact-head terminal CI, then fresh Review and QA. No source/tests/push/rewrite/rerun/provider mutation/merge/lane movement.",
+        "sender_tool_call_created_at": "2026-09-08T03:37:44.117276039Z",
+        "sender_tool_call_output": "queued to Coordinator primary session f0144585-3c79-4f69-ab96-25f547fae0c2",
+        "hash_evidence": "Authoritative get_message_queue_census_kandev content_sha256 and content_bytes; exact body recovered from sender message_task_kandev tool-call input."
+      },
+      "live_board": {
+        "physical_lane": "Blocked",
+        "to_deploy": false
+      },
+      "live_provider": {
+        "url": "https://github.com/kdlbs/kandev/pull/3158",
+        "state": "open",
+        "draft": true,
+        "head": "e82d69d41c4acb0ab7290ea397fd4a76b5d44db4",
+        "base": "ddcc4fc6a0590e6f32f786f388abe8a46a222b22",
+        "mergeable": false,
+        "mergeable_state": "dirty",
+        "rebaseable": false
+      },
+      "newest_governing_blocker_record": "## Coordinator task-local R5 reconciliation — 2026-09-08\n\n- Authoritative provider/card state supplied by the Coordinator: PR #3158 is OPEN/DRAFT/dirty at `e82d69d41c4acb0ab7290ea397fd4a76b5d44db4`. This replaces the contradictory older `d8fd2d…` and `f7ddbbe…` provider receipts.\n- Local preservation verification: checked-out branch and `refs/remotes/fork/feature/bound-merged-worktre-jii` both resolve to `e82d69d41c4acb0ab7290ea397fd4a76b5d44db4`; the worktree is clean. `d8fd2d8112ca3104b67bd7839cd3dcf446a58b1`, `f7ddbbe29f0dcfc5ac16d4645c980c712f668ee2`, and `8ab5e0e25bcbd4410b0260df0a07c75b19be22e4` are all ancestors of the preserved head, so their unique work is retained in its history.\n- Local canonical-reference observation only: `refs/remotes/origin/main` is `3d042e9d8f1897f167891e44eb78b3977e2e27c8`, while the local `main` branch is `fed90594d38138eee709ae94eef4766ae6ee3386`; neither is an ancestor of `e82d69d…`. The recorded merge base with `refs/remotes/origin/main` is `ddcc4fc6a0590e6f32f786f388abe8a46a222b22`. A read-only local merge-tree probe exited cleanly, but it is not a substitute for the provider’s current dirty merge-state judgment.\n- Exact blocker: the provider reports PR #3158 dirty at the authoritative preserved head. Current server mergeability and exact-head CI are not certified. No provider query, rerun, push, rewrite, merge, or source/test action was performed in this reconciliation.\n- Blocker owner: Coordinator-controlled Work handoff with GitHub provider/CI authority. The parked primary Luna session remains untouched; use the exact Terra same-lane fallback when the Coordinator dispatches.\n- Deterministic resume trigger: the Coordinator dispatches a same-lane Work session from exact head `e82d69d41c4acb0ab7290ea397fd4a76b5d44db4` after the provider merge prerequisite is actionable. The next Work action is to reconcile the dirty PR against the then-current canonical base without discarding the preserved history, complete the required focused validation, publish the resulting exact head through authorized normal flow, and then obtain terminal exact-head CI before fresh independent Review and QA.\n- Preservation receipt: clean worktree `/data/tasks/bound-merged-worktre_cgr6a5yd/kdlbs-kandev`; branch `feature/bound-merged-worktre-jii`; local and fork-tracking head `e82d69d41c4acb0ab7290ea397fd4a76b5d44db4`; PR #3158 OPEN/DRAFT/dirty by supplied provider state; TEST_RUNTIME=NONE; no services, ports, databases, artifacts, refs, or provider state changed.\n- Blocked-phase restriction: do not edit source, run tests, push, rewrite history, rerun or poll CI, mutate provider state, merge, deploy, clean up, or move lanes while parked.",
+      "exact_preservation_lines_from_governing_record": [
+        "- Local preservation verification: checked-out branch and `refs/remotes/fork/feature/bound-merged-worktre-jii` both resolve to `e82d69d41c4acb0ab7290ea397fd4a76b5d44db4`; the worktree is clean. `d8fd2d8112ca3104b67bd7839cd3dcf446a58b1`, `f7ddbbe29f0dcfc5ac16d4645c980c712f668ee2`, and `8ab5e0e25bcbd4410b0260df0a07c75b19be22e4` are all ancestors of the preserved head, so their unique work is retained in its history.",
+        "- Local canonical-reference observation only: `refs/remotes/origin/main` is `3d042e9d8f1897f167891e44eb78b3977e2e27c8`, while the local `main` branch is `fed90594d38138eee709ae94eef4766ae6ee3386`; neither is an ancestor of `e82d69d…`. The recorded merge base with `refs/remotes/origin/main` is `ddcc4fc6a0590e6f32f786f388abe8a46a222b22`. A read-only local merge-tree probe exited cleanly, but it is not a substitute for the provider’s current dirty merge-state judgment.",
+        "- Exact blocker: the provider reports PR #3158 dirty at the authoritative preserved head. Current server mergeability and exact-head CI are not certified. No provider query, rerun, push, rewrite, merge, or source/test action was performed in this reconciliation.",
+        "- Deterministic resume trigger: the Coordinator dispatches a same-lane Work session from exact head `e82d69d41c4acb0ab7290ea397fd4a76b5d44db4` after the provider merge prerequisite is actionable. The next Work action is to reconcile the dirty PR against the then-current canonical base without discarding the preserved history, complete the required focused validation, publish the resulting exact head through authorized normal flow, and then obtain terminal exact-head CI before fresh independent Review and QA.",
+        "- Preservation receipt: clean worktree `/data/tasks/bound-merged-worktre_cgr6a5yd/kdlbs-kandev`; branch `feature/bound-merged-worktre-jii`; local and fork-tracking head `e82d69d41c4acb0ab7290ea397fd4a76b5d44db4`; PR #3158 OPEN/DRAFT/dirty by supplied provider state; TEST_RUNTIME=NONE; no services, ports, databases, artifacts, refs, or provider state changed."
+      ],
+      "complete_sessions": [
+        {
+          "session_id": "33e65edf-1989-4700-bac3-70940afed0fa",
+          "name": "fresh-review-b7c809a3",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "deda16e9-8cea-470c-8947-eee153013a72",
+          "name": "fresh-review-4c6e2714",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "658ed0a4-89ba-4cdb-8a36-c0bec4958ee8",
+          "name": "fresh-review-f8c3052f",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "04fe20cb-abcb-48d9-a611-797ace7b6425",
+          "name": "fresh-review-0200a3d0",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "state": "COMPLETED",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.54203422Z",
+          "completed_at": "2026-09-05T04:58:56.229654008Z"
+        },
+        {
+          "session_id": "8f8fb23c-5616-4d77-8fef-df46a9c0eb49",
+          "name": "distinct-qa-pr3158-320b4a24",
+          "agent_profile_id": "1606e51e-fcd1-41fc-b431-948e1a7e9c64",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "9fba3c11-5c9d-44a0-9aec-f6c1313b900d",
+          "name": "independent-review-pr3158-320b4a24",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "eb59466c-390c-4b75-87ac-41dafcf78216",
+          "name": "independent-review-pr3158-c536296c",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "b1943118-2301-4210-8078-0d131594d25f",
+          "name": "fresh-qa-8ab5e0e-r2",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "state": "COMPLETED",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": "2026-09-04T22:43:10.468489185Z"
+        },
+        {
+          "session_id": "b77c26fc-0920-4fab-bbd7-8096d6178759",
+          "name": "immutable-review-8ab5e0e",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-08T03:37:53.710752135Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "d35af0fc-cd3e-4e5c-bab6-66e1e39c2675",
+          "name": "fresh-qa-57ba0e9e",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "44159f69-41d7-4b80-bcec-49ba1c8d5e10",
+          "name": "fresh-review-57ba0e9e",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "state": "COMPLETED",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": "2026-08-31T22:41:49.079798158Z"
+        },
+        {
+          "session_id": "928e44f2-37ca-4f9b-9490-bf04ce1b6e8d",
+          "name": "current-main-integration-8e828889",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "7dcd1ef2-0cbe-4401-a1ce-a9ef1df2bf87",
+          "name": "independent-review-8e828889",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "bb03dd51-8fb0-4af3-93da-8d6d5567b516",
+          "name": "additive-conflict-repair-82e2dc44",
+          "agent_profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "6b77a011-ca17-4c92-adb1-1cfdfe8ca5ea",
+          "name": "fresh-review-6d705ed",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "state": "COMPLETED",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": "2026-08-30T18:50:27.948067443Z"
+        },
+        {
+          "session_id": "87590b19-b867-4ec4-98fc-d5894b646af4",
+          "name": "qa-6cafcffe",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "e2830631-3fec-4ae7-9876-c014fecd2600",
+          "name": "immutable-review-6cafcffe",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "27d7a36a-3514-4c32-8a67-c3a58c15dab7",
+          "name": "default-branch-protection-remediation",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "e9e69e9d-2682-4fce-b513-976f213ed035",
+          "name": "immutable-review-1346e5b",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "559a10cb-4740-4940-8120-5a339fc7d168",
+          "name": "recovery-order-remediation",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "7a192096-7d80-463c-8f92-dbe2ef9980d5",
+          "name": "current-head-independent-review",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "eba904b4-9cfb-4d1c-99f1-2ad444d075b4",
+          "name": null,
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": true,
+          "is_current": false,
+          "updated_at": "2026-09-05T06:11:44.309582587Z",
+          "completed_at": null
+        },
+        {
+          "session_id": "9d3806c8-753e-4a24-a59e-bf320f3d4f73",
+          "name": "independent immutable-head review",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "state": "COMPLETED",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": "2026-08-30T12:19:47.727887065Z"
+        },
+        {
+          "session_id": "c47093eb-8203-4bf7-a04e-68da86989f07",
+          "name": null,
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "state": "WAITING_FOR_INPUT",
+          "is_primary": false,
+          "is_current": false,
+          "updated_at": "2026-09-05T04:58:56.184643359Z",
+          "completed_at": null
+        }
+      ],
+      "diagnostic_session_readback": {
+        "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "is_current": false,
+        "is_primary": false,
+        "name": "immutable-review-8ab5e0e",
+        "session_id": "b77c26fc-0920-4fab-bbd7-8096d6178759",
+        "started_at": "2026-08-31T23:06:47.638231912Z",
+        "state": "WAITING_FOR_INPUT",
+        "updated_at": "2026-09-08T03:37:53.710752135Z"
+      },
+      "current_tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "Terra is reconciling current conflicts and preservation before the next authoring handoff.",
+          "owner": "agent",
+          "updatedAt": "2026-09-08T03:36:08.31318498Z"
+        }
+      ],
+      "plan_tag_agreement": {
+        "plan_matches_receipt": true,
+        "tag_matches_current_state": false,
+        "reason": "The tag still says Terra is reconciling, but the diagnostic turn completed and the session returned to WAITING_FOR_INPUT. Replace it with the exact current-main reconciliation trigger and preservation instruction."
+      },
+      "safe_next_action": "Preserve clean head e82d69d41c4acb0ab7290ea397fd4a76b5d44db4; older d8fd2d8112ca3104b67bd7839cd3dcf446a58b1, f7ddbbe29f0dcfc5ac16d4645c980c712f668ee2, and 8ab5e0e25bcbd4410b0260df0a07c75b19be22e4 are ancestors. After a fresh stable-Blocked complete-session census and no concrete armed-row evidence, dispatch exact Terra session b77c26fc-0920-4fab-bbd7-8096d6178759 for the explicitly authorized recovery: reconcile against then-current canonical main without discarding history, validate, normal-push, and obtain terminal exact-head CI. Never wake primary Luna eba904b4-9cfb-4d1c-99f1-2ad444d075b4."
+    }
+  ]
+}
+
