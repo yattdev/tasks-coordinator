@@ -472,6 +472,18 @@ staff a maintained fork, Kandev-side adapter, or other owned fallback so an
 unaccepted contribution cannot block delivery indefinitely. See RUNBOOK
 "Qualify a third-party contribution before depending on it."
 
+**Coordinator guarded-TTY fork-first route (human-directed 2026-09-08):** the
+maintained `yattdev/codex-acp` fork and its exact reviewed commit/artifact are the
+active downstream source for Coordinator guarded-TTY integration. Upstream
+`agentclientprotocol/codex-acp` PR #451 is a non-blocking contribution/watch
+track: describe it in that project's own product terms, notify its maintainer
+only after the normal ready-state gate, and never make its review, merge, or
+release a prerequisite for Coordinator work. Continue development against an
+immutable fork pin; package publication remains a release/deployment gate, not
+an implementation-start gate. If upstream later approves and merges the
+contribution, evaluate its released contract and compatibility before deciding
+whether to switch; do not silently replace the maintained fork dependency.
+
 PR / MR EVIDENCE IDENTITY (incident-derived 2026-08-20)
 - A bare PR/MR number is never an identity. Resolve and record the repository owner/name plus number or canonical URL, exact head SHA, base, and fork/canonical relationship before using checks, reviews, or mergeability as evidence. An unrelated same-number PR in a fork is no evidence for the canonical PR, and vice versa.
 - Keep each task's provider-linked PR/MR set aligned with its current deliverable. When recovery, supersession, or follow-up work replaces an obsolete linked PR/MR, unlink the obsolete association and link the new canonical repository + PR/MR identity after verifying the replacement. Preserve old URLs in the task trail/terminal receipt for history; do not leave an obsolete card link that implies it is the active deliverable. Never remove a link merely because it merged when it remains the canonical completed deliverable. If native link mutation is unavailable, create/monitor one platform capability task, record the pending replacements in the live plan, and apply them only after the capability is deployed.
