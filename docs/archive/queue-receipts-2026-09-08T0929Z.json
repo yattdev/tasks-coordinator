@@ -1,0 +1,141 @@
+{
+  "observed_at": "2026-09-08T09:28:47Z",
+  "scope": "Nine exact peer wrappers reconstructed from sender calls and reconciled by primary",
+  "entries": [
+    {
+      "entry": {
+        "attachment_count": 0,
+        "claim": "35ce5c9a6127a22cbdcca0a521e95caadec87c23d1021cc7c047267f428411ef",
+        "content_bytes": 1398,
+        "content_sha256": "3cd768b04ae53ce1506f0ace6c5d0453841ff6a5b38bcc744ba89fa90ad0bc93",
+        "id": "80350933-0d43-4962-aca7-46e77c5ea166",
+        "position": 28,
+        "queued_at": "2026-09-08T08:58:59.665850747Z",
+        "queued_by": "agent",
+        "routine_wake": false,
+        "sender_task_id": "3f721d52-452b-4bc6-a61e-68d875baafbd"
+      },
+      "content": "<kandev-system>This message was sent by an agent working in task \"Recover Redmine preflight in a dedicated workspace\" (3f721d52-452b-4bc6-a61e-68d875baafbd).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"3f721d52-452b-4bc6-a61e-68d875baafbd\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nDraft PR created exactly once after authenticated actor/permission and head dedup verification: https://github.com/yattdev/kandev-plugin-redmine/pull/4. It is OPEN/DRAFT at clean local/fork head `980dead49f3af23ab10c16c4a2c49ae5887ee7fa` (`feature/recover-redmine-pref-5hj`, matching origin). Receipt CI: GitGuardian SUCCESS; Build plugin packages, Tidy/format/vet/test, and Server on candidate Kandev task-update contract are QUEUED. No comments or reviews/threads. Preflight remains intentionally fail-closed: canonical `kdlbs/kandev@v0.93.0` does not contain required contract `5f5b1f0f319e688c7aa4f161c30e0dd024d3f1eb`; do not release until a qualifying canonical SemVer tag exists. No self-gates/ready/merge/release/tag action taken."
+    },
+    {
+      "entry": {
+        "attachment_count": 0,
+        "claim": "fcb2c80b490b0c14faa3d883ec0984dbec8f308b074e23ba4c1ca1d2578ec458",
+        "content_bytes": 2787,
+        "content_sha256": "49ee7ef33429b8742cde22c6b09ac9f883893ded680b97692f9a92ca98204b83",
+        "id": "5cb5ea6f-e438-4caf-b3a3-5c34aff881ae",
+        "position": 29,
+        "queued_at": "2026-09-08T09:08:55.463794354Z",
+        "queued_by": "agent",
+        "routine_wake": false,
+        "sender_task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d"
+      },
+      "content": "<kandev-system>This message was sent by a sibling agent session (session f5f727af-7c56-45d1-9749-74b027dbb78b) working on YOUR OWN task \"Coordinator: long-lived board orchestration\" (a68df3ae-aaf5-4591-a46d-9d73db62e46d).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"a68df3ae-aaf5-4591-a46d-9d73db62e46d\" and session_id=\"f5f727af-7c56-45d1-9749-74b027dbb78b\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nFORWARDED UNCHANGED READINESS RECEIPT from task 27b493a3-65b6-4d4a-8b68-73f2ffcf9621:\n\nQA_READINESS_RESULT=GATES_COMPLETE\n\nExact identity: local/fork/PR/checks head all b5f6a9636caa94cdca37afa15de89ce8f51a2232; branch 0/0 with origin; worktree clean. PR OPEN/DRAFT/MERGEABLE/CLEAN.\n\nBase distinction: provider baseRefOid and merge base bcdb0ce5e9437b7874db33b642b56616b8c029d3; actual upstream main e3d435258995f72e603f00e1f69e7759dde0f1f1. Conflict-free read-only merge-tree; main intentionally not integrated.\n\nCurrent CI: exact-head snapshot complete; pr-state 48 successful, 0 failed/pending/approval-required/errors. Raw gh checks 69 = 50 pass + 19 conditional skips; zero non-pass. All substantive backend/Postgres/Windows/static/architecture/docs/harness/title/desktop/Kubernetes/browser/container E2E and aggregate gates passed.\n\nThreads/actions: 0 unresolved, 0 hidden, 0 CHANGES_REQUESTED, 0 actionable issue comments, 0 approval-required runs; pr-resolve list empty.\n\nTitle correct: fix(github): coordinate rate limits and workflow sync recovery. Body narrative scope is correct. Post-ready metadata freshness items: walkthrough link is b887 historical; validation pre-commit range ends 03ed; body says 41 docs pages vs current 46; \"No hook was bypassed\" conflicts with durable receipt of the earlier merge commit's golangci-lint-lock skip. These are description freshness items, not QA/CI failures.\n\nVisuals: 45 backend + 13 docs changed, 0 web, 0 media; no visual QA applies.\n\nReadiness gates complete. Coordinator may ready, refresh the historical body/walkthrough metadata, recheck post-ready automation, and notify. No edits/push/resource mutation performed.\n\nForwarding receipt: old session f5f727af-7c56-45d1-9749-74b027dbb78b received this after retirement; its own queue census was empty. Live readback at 2026-09-08T09:08Z still showed successor f0144585-3c79-4f69-ab96-25f547fae0c2 RUNNING and is_primary=true. No board/provider/repository/plan mutation was performed by the old session."
+    },
+    {
+      "entry": {
+        "attachment_count": 0,
+        "claim": "e7d752a62615837574494d923346242497f0e7353921c0c36d3e039c219bc732",
+        "content_bytes": 1241,
+        "content_sha256": "e250ec70027b412ebc1065aa8e215d3b4736577d2b501c3bd0a0c25c283b6549",
+        "id": "cb329ddf-ec62-4ba9-b4c3-1e85e4956c4b",
+        "position": 30,
+        "queued_at": "2026-09-08T09:09:58.204281778Z",
+        "queued_by": "agent",
+        "routine_wake": false,
+        "sender_task_id": "6a5a2f73-87e1-4c08-a983-64f2456c3633"
+      },
+      "content": "<kandev-system>This message was sent by an agent working in task \"Executor containers: allow unprivileged user namespaces\" (6a5a2f73-87e1-4c08-a983-64f2456c3633).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"6a5a2f73-87e1-4c08-a983-64f2456c3633\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nExact invocation inspection: the sole combined native probe returned from exec_command as `Script completed`, wall time 30.2s, with no `session_id`, no `exit_code`, and no resumable cell/command handle. Its captured output reached the `unshare` receipt (exit 0, empty stderr) but contained no bwrap exit/stderr lines. Because the function call itself had already completed and exposed no handle, there is nothing eligible for a bounded poll. I did not launch a new bwrap probe. Result remains: native/unshare PASS; bwrap terminal state unproven due to absent terminal receipt."
+    },
+    {
+      "entry": {
+        "attachment_count": 0,
+        "claim": "d076f9230733095f11b2e773ec49982775be14f8df1e0ed94f709f121350b54e",
+        "content_bytes": 2494,
+        "content_sha256": "878491d58d8dae3ee8b4f340efb1cfb5b25bb249e10a7096be756de1d5380b86",
+        "id": "8090b746-3dba-42f9-b74c-f22813fd53cb",
+        "position": 31,
+        "queued_at": "2026-09-08T09:10:38.71672992Z",
+        "queued_by": "agent",
+        "routine_wake": false,
+        "sender_task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb"
+      },
+      "content": "<kandev-system>This message was sent by an agent working in task \"Fix PR lane profile executing wrong model\" (e0dd8d19-278c-4d38-aafa-c3e866d92cfb).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"e0dd8d19-278c-4d38-aafa-c3e866d92cfb\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nQA_RESULT=PASSED at immutable PR #3473 head a91e0e66f87456b0c380ad749ddf9734ddf8f37a. New sanitized visual evidence is complete in a fresh disposable detached clone; the task worktree/source was untouched.\n\nArtifacts:\n- /tmp/kandev-pr3473-visual.yBV4WZ/artifacts/01-profile-exact-model-unavailable.png (894x56), SHA-256 e4193022410c9ee886aa5921e58c7d87b0b1aeb4d3fc789c6d9fc8bffd5ebc46\n- /tmp/kandev-pr3473-visual.yBV4WZ/artifacts/02-task-profile-unadvertised-model-warning.png (320x46), SHA-256 c4e8c1786b8e539ccbeafaa4192afcf89c825a56936c518f7ce7c17995b9f3fb\n- manifest.json SHA-256 b0c36ce55e53f958f968a9da8d2e0521359e85cd3a0cccd13ffc20c23b7d935a\n- checksums.sha256 and pr-body.md alongside them.\n\nManaged Chromium capture passed 1/1. It asserts settings shows exact unavailable opus without inferred opus[1m], and task creation shows the generic unadvertised-model warning without opus[1m]. Element-bounded frames exclude navigation, local paths, credentials, task data, and fixture branding; both were inspected at original resolution.\n\nExact reusable publication gap: no active tool can upload GitHub user attachments. The repo upload helper requires authenticated PR-composer drag/drop; gh has no supported attachment-upload endpoint. I did not use hidden credentials, bypass guards, commit assets, deploy, or substitute another host. pr-body.md is ready for that drag/drop step; public image-content readback is pending the returned github.com/user-attachments URLs.\n\nPost-buffer PR state remains failed=0, pending=0, unresolved=0, hidden=0, changes-requested=0, actionable comments=0, errors=[] at the exact head. Full receipt saved as plan R12/§25. Support receipt 2064d88b remains the accepted live exact-5.4 typed fail-before-inference proof. No source/provider/PR mutation, ready/merge/deploy/release/move/self-gate/step_complete."
+    },
+    {
+      "entry": {
+        "attachment_count": 0,
+        "claim": "b1ee0d0d82e409032ccda373b72d5aa35db1fbd85cc886e1413fcbb9a53ed0a8",
+        "content_bytes": 2645,
+        "content_sha256": "a10a246e09e0a39f267da0c90c1bc6539beaf7e81e436c89d815ce78cf25310d",
+        "id": "96f7a32a-9b1a-4f3c-8afa-f0026fcf0339",
+        "position": 34,
+        "queued_at": "2026-09-08T09:14:35.181053868Z",
+        "queued_by": "agent",
+        "routine_wake": false,
+        "sender_task_id": "51c2875b-48ae-4097-b985-b8a9584ca8c2"
+      },
+      "content": "<kandev-system>This message was sent by an agent working in task \"Bug: Notes settings agent utility doesn't load agents profil\" (51c2875b-48ae-4097-b985-b8a9584ca8c2).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"51c2875b-48ae-4097-b985-b8a9584ca8c2\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nQA_RESULT: FAIL at exact Host head b08e1d99d9441cf741f62122dc97b33fb40a77f9 and Notes head f8548f9d7a1eaabf19d27bb0b0af8f75d8eaeec4. Fresh distinct native QA ran on actual runtime model gpt-5.6-sol after Kandev spawn_session exact profiles were fenced by \"competing active writer\". Both repos remained clean; Host local/upstream/PR heads matched; PR #2870 remained OPEN/DRAFT/MERGEABLE with 58 success, 18 expected skips, 0 failures.\n\nBlocking finding: manifest-only legacy upgrade sets LegacyUtilityAgentFallback from schema history even when no legacy utility_agent was configured (apps/backend/internal/plugins/service_install.go:119,151-155). A later PATCH can newly introduce undeclared utility_agent because service_config.go:72 preserves it when the marker exists and validation permits undeclared keys; host_utility.go:100 then executes it. Synthetic task-owned regression produced: \"new undeclared selector was honored: err=<nil> runner_calls=1 profile=\\\"profile-via-bypass\\\"\". Evidence: /data/tasks/bug-notes-settings-a_imzafc8h/qa-independent-b08e1d99/legacy-boundary-repro.log. Required fix: bind compatibility to a selector already configured before manifest transition and prevent later direct-schema PATCH from introducing or replacing undeclared legacy utility_agent.\n\nOther evidence green: Host backend 1,513 pass/0 fail/1 PostgreSQL-env skip; Host frontend 114 pass/0 fail; web typecheck; docs 46 pages; Notes 29 Go + 98 Node, vet, tidy, package-host 0.5.0 content/checksums. Visual evidence inspected at docs/screenshots/pr-validation/2870/{agent-profile-picker-desktop.png,agent-profile-settings-mobile.png,notes-enhance-preview-desktop.png}. Fresh browser install skipped to preserve protected fixtures; isolated package/component tests and preserved screenshots substituted. Full i18n skipped locally due Node 22 vs required 24; exact-head CI gate is green. Route to Work. No source edit, step_complete, move, ready, merge, deploy, or cleanup performed."
+    },
+    {
+      "entry": {
+        "attachment_count": 0,
+        "claim": "921032d2ef0fc719ad77835b67a20862d9e2d7bbab7cafe9ad33c6552fcdea88",
+        "content_bytes": 1553,
+        "content_sha256": "cfa8da2d90a70ea491e24a57242682d5dfaeaac7c63f411723e6aa5e9a9b5360",
+        "id": "717e2904-edea-4df1-a8be-fbbcb527dd68",
+        "position": 36,
+        "queued_at": "2026-09-08T09:15:10.800271581Z",
+        "queued_by": "agent",
+        "routine_wake": false,
+        "sender_task_id": "51c2875b-48ae-4097-b985-b8a9584ca8c2"
+      },
+      "content": "<kandev-system>This message was sent by an agent working in task \"Bug: Notes settings agent utility doesn't load agents profil\" (51c2875b-48ae-4097-b985-b8a9584ca8c2).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"51c2875b-48ae-4097-b985-b8a9584ca8c2\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nClarification received. No further session will be created and no tests will be duplicated. Before the correction arrived, primary session 94633f5b-7a60-45e5-bdc3-fb27f6511d71 had already used one native helper because both Kandev spawn_session attempts were rejected by the active-writer fence. Exact helper identity: /root/independent_qa_b08e1d99, actual runtime model gpt-5.6-sol.\n\nIts completed verdict remains QA_RESULT: FAIL at Host b08e1d99d9441cf741f62122dc97b33fb40a77f9 and Notes f8548f9d7a1eaabf19d27bb0b0af8f75d8eaeec4. It reproduced the undeclared utility_agent legacy-boundary bypass; evidence is /data/tasks/bug-notes-settings-a_imzafc8h/qa-independent-b08e1d99/legacy-boundary-repro.log. Both worktrees remained clean and heads unchanged. All other focused suites passed as in the prior receipt. No spawn/move/step_complete/source mutation occurred after the verdict."
+    },
+    {
+      "entry": {
+        "attachment_count": 0,
+        "claim": "0be5bb5625f85fe709e012cc125090456e6837e762cf892fd5a69215488c71d7",
+        "content_bytes": 1500,
+        "content_sha256": "dd34579a4d1aab939409b4d9fbff46a89ec1d415f48581299f9002b77a1d7c9c",
+        "id": "05be2d69-af77-4b9f-90f6-c155f2d53143",
+        "position": 32,
+        "queued_at": "2026-09-08T09:11:16.907722007Z",
+        "queued_by": "agent",
+        "routine_wake": false,
+        "sender_task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4"
+      },
+      "content": "<kandev-system>This message was sent by an agent working in task \"Fix PR-watch amplification, task-status, and unbounded\" (b007bb76-841e-4243-a251-c4f87a1ed1e4).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"b007bb76-841e-4243-a251-c4f87a1ed1e4\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nExact-head readiness census completed for PR #3319. Local/origin/PR head all 94393129239b6da0c4a48f9e63fbe6d927a9bc82; clean, OPEN/DRAFT, mergeable=MERGEABLE, mergeStateStatus=BLOCKED. Complete snapshot: 67 checks, 47 pass, 0 pending, 0 unresolved/hidden threads, no exact-head review or actionable issue comment. Only leaf failure: run 34193812022, PG16 job 101957764126, step “Run fixed PostgreSQL 16 persistence gates”; concrete test internal/automation.TestExportAutomationsDocument_AC30_ConcurrentMutationNeitherBlocksNorIsReflected reads 1 automation where 2 expected. Branch diff has no internal/automation paths; current exact-base main run 34165015452 passed. No source churn under the scope prohibition; readiness BLOCKED pending a separate concrete automation diagnosis or clean rerun. Full receipt appended to task plan."
+    },
+    {
+      "entry": {
+        "attachment_count": 0,
+        "claim": "e6c65c16045225f37549eb1dcce19663b3c434321e394dde5813772b800d835a",
+        "content_bytes": 2262,
+        "content_sha256": "5e5b7fc09732a68438d58d4f1a7ad4561c72a300acbb192f461d41546a74ba41",
+        "id": "a1bea11c-9d6e-40b9-b191-f671d8f5f823",
+        "position": 33,
+        "queued_at": "2026-09-08T09:12:01.579935934Z",
+        "queued_by": "agent",
+        "routine_wake": false,
+        "sender_task_id": "37eca47b-cf05-47ee-b143-39408edbeed1"
+      },
+      "content": "<kandev-system>This message was sent by an agent working in task \"Bound merged worktree branch accumulation\" (37eca47b-cf05-47ee-b143-39408edbeed1).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"37eca47b-cf05-47ee-b143-39408edbeed1\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nCurrent-head CI remediation complete; stopping without a gate verdict.\n\nNew exact pushed head: cbb2485565fb55467f0093db49aed6c211d8456f. Fork SSH ls-remote, local HEAD, and PR #3158 provider head agree. PR is OPEN/DRAFT, mergeable=MERGEABLE, mergeStateStatus=BLOCKED pending new checks. Worktree clean. a4b1032b2e4391b643e969e8f94df0c2eaddb4c6 plus d8fd2d8112ca3104b67bd7839cd3dcf446a58b1/f7ddbbe29f0dcfc5ac16d4645c980c712f668ee2/8ab5e0e25bcbd4410b0260df0a07c75b19be22e4 remain ancestors.\n\nExact current-head diagnosis: uploaded artifact backend-test-results-1 for job 101994324068 named TestCutover_FreshSchemaHasFinalShape: fresh task_environment_repos missing archived branch candidate index. R7’s removal of the unsafe pre-normalization migration fixed legacy upgrade ordering but left fresh initialization unindexed because normalization is a no-op on fresh DBs. PostgreSQL 16’s corresponding fixed package set includes this same sqlite package.\n\nScoped commit cbb248556 creates the index idempotently only after normalizeTaskWorktreeOwnership, where both fresh and legacy schemas have status. It preserves the legacy safety correction and does not alter branch cleanup policy.\n\nPASS:\n- go test -race ./internal/task/repository/sqlite -run '^(TestCutover_FreshSchemaHasFinalShape|TestCutover_ReplayIsNoOp)$' -count=1\n- go test -race ./internal/task/repository/sqlite -count=1\n- go run ./cmd/sqlguard ./internal\n- normal commit hooks / changed Go lint.\n\nTask plan has R8. Fresh exact-head CI is the sole remaining prerequisite; no rerun, self-review/QA, ready, merge, deploy, or lane movement performed."
+    },
+    {
+      "entry": {
+        "attachment_count": 0,
+        "claim": "ed2fadef6646b1bc63d658e8d55438d4fcd58f3e848d864c24c5e18ea2f22dbc",
+        "content_bytes": 1701,
+        "content_sha256": "6078b4d15e9743f24f949f222d138caebb8d93ace002a5c44cf8a912a29435a0",
+        "id": "1c092c25-4efe-4d35-93a4-7b0092862f8a",
+        "position": 35,
+        "queued_at": "2026-09-08T09:14:49.403975689Z",
+        "queued_by": "agent",
+        "routine_wake": false,
+        "sender_task_id": "c642d57a-5a24-48ca-8f85-57d31115eeb5"
+      },
+      "content": "<kandev-system>This message was sent by an agent working in task \"Prevent stale sessions blocking workflow\" (c642d57a-5a24-48ca-8f85-57d31115eeb5).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"c642d57a-5a24-48ca-8f85-57d31115eeb5\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nWork recovery complete in the clean clone only. Fetched canonical origin/main at e3d435258995f72e603f00e1f69e7759dde0f1f1 and performed an additive merge preserving b38fbe8d6958cf59fb5c37b4aa6156c3a9de0c1b ancestry. Resolved nine content conflicts by retaining both durable delivery/completion-settlement behavior and upstream lifecycle/parked-session changes; merge commit 02bb3ad3b52d37658a117b7ec0e10a660a812fee pushed normally to fork/feature/prevent-stale-sessio-7n1. Recovery clone is clean at that head; original mid-merge /data/tasks/prevent-stale-sessio_df5zabn0/kandev-source was not accessed or changed. Validation passed: go test ./internal/orchestrator ./internal/agent/runtime/lifecycle ./internal/mcp/server. Provider readback: PR #2909 remains OPEN/DRAFT, base e3d435258995f72e603f00e1f69e7759dde0f1f1, head 02bb3ad3b52d37658a117b7ec0e10a660a812fee, mergeStateStatus BLOCKED. No self-gate, step completion, ready, merge, or deploy action was taken. Hook receipt: pre-commit unavailable/inactive and commit-msg inactive; no bypass used."
+    }
+  ]
+}
