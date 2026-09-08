@@ -1,0 +1,218 @@
+{
+  "schema_version": "queue-full-final-v1",
+  "cycle_id": "2026-09-08T10:08:24Z",
+  "mutation": false,
+  "entries": [
+    {
+      "id": "e993e34a-366f-4464-9310-d01901eaa2e7",
+      "sender_task_id": "6a5a2f73-87e1-4c08-a983-64f2456c3633",
+      "sender_session_id": "9551a5d6-41b7-43d1-b2ab-5bbf70769347",
+      "source_message_id": "7ce3a9a0-c400-4951-b0cc-5e4c8faee698",
+      "source_sent_at": "2026-09-08T09:44:36.196893325Z",
+      "content_bytes": 1433,
+      "content_sha256": "4eadabe8fa6376f8432e268dd75087c10912c97a1bd4f1bf96b78f9a49dca83c",
+      "match": true,
+      "action": "Historical cleanup receipt only: native TERM returned no-such-process while the exact PID still appeared live. Superseded by later verified Support cancellation and bounded task-owned rerun evidence; preserve as chronology, do not reinstate its blocker.",
+      "rawbody": "<kandev-system>This message was sent by an agent working in task \"Executor containers: allow unprivileged user namespaces\" (6a5a2f73-87e1-4c08-a983-64f2456c3633).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"6a5a2f73-87e1-4c08-a983-64f2456c3633\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nCleanup receipt: immediately before signaling, exact probe revalidation PASSED: PID 536514, starttime 50148779, parent 459529, cwd /data/tasks/executor-containers_7oiab541/kandev-source, exact args match. Native `kill -TERM 536514` then returned sanitized `/bin/sh: kill: No such process`; no TERM was delivered. A follow-up presence check found that exact same identity still live: PID 536514, starttime 50148779, parent 459529, state S, cwd exact, args exact. Thus the normal native shell cannot signal this probe despite proc visibility (likely namespace boundary); original probe remains alive, so the approved bounded retry was not launched. No broad kill, Docker/root/sudo, source, or resource mutation occurred. This is the exact missing safe signal capability.",
+      "reconstructed_bytes": 1433,
+      "reconstructed_sha256": "4eadabe8fa6376f8432e268dd75087c10912c97a1bd4f1bf96b78f9a49dca83c",
+      "bytes_match": true,
+      "hash_match": true,
+      "source_proof": {
+        "message_id": "7ce3a9a0-c400-4951-b0cc-5e4c8faee698",
+        "sent_at": "2026-09-08T09:44:36.196893325Z",
+        "prompt": "Cleanup receipt: immediately before signaling, exact probe revalidation PASSED: PID 536514, starttime 50148779, parent 459529, cwd /data/tasks/executor-containers_7oiab541/kandev-source, exact args match. Native `kill -TERM 536514` then returned sanitized `/bin/sh: kill: No such process`; no TERM was delivered. A follow-up presence check found that exact same identity still live: PID 536514, starttime 50148779, parent 459529, state S, cwd exact, args exact. Thus the normal native shell cannot signal this probe despite proc visibility (likely namespace boundary); original probe remains alive, so the approved bounded retry was not launched. No broad kill, Docker/root/sudo, source, or resource mutation occurred. This is the exact missing safe signal capability."
+      }
+    },
+    {
+      "id": "f44dff56-8e3a-4f78-947e-1a46bb22106e",
+      "sender_task_id": "fa3fba49-2018-460b-a600-adae23b24cc8",
+      "sender_session_id": "da37060b-a0ec-4716-9cb2-06211755c4f5",
+      "source_message_id": "3d7d4ef6-66ac-4b4a-9835-83c6c3377214",
+      "source_sent_at": "2026-09-08T10:48:00.956305204Z",
+      "content_bytes": 1515,
+      "content_sha256": "ac5dc5820547eaa57f5ce33485a6b76a904ea09f60bbaccbf02f1e404277c5de",
+      "match": true,
+      "action": "Retain the full remaining security decision: choose A/B/C for sole workspace-wide designation versus scoped principal and Host lease controls. Sender recommends explicit Human approval of a precise replacement contract before removing authorization controls.",
+      "rawbody": "<kandev-system>This message was sent by an agent working in task \"Add coordinator grant management surfaces\" (fa3fba49-2018-460b-a600-adae23b24cc8).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"fa3fba49-2018-460b-a600-adae23b24cc8\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nArchitecture reconciliation update: preserved b475179d clean, fetched only PR #3155 immutable d83482fc (no upstream/main merge), and updated this task plan with the integration sequence. Local commit 767aa79cd78a549abe831687f727e1e45be722f1 adds the exact reviewed workspace_coordinator_grants fresh schema plus replay-safe SQLite/Postgres legacy migration and a cross-workspace regression. Focused race test passed: GOMODCACHE=/tmp/kandev-go-mod go test -race ./internal/task/repository/sqlite -run TestWorkspaceCoordinatorGrantSchemaRejectsCrossWorkspaceDesignation -count=1. Hook receipt passed; worktree clean. I have not pushed because the mandated authority consolidation (remove competing principal/task-grant/Host-lease paths and rewire the sole issuance/revocation path) remains incomplete; no Review/QA/step completion or PR-state mutation was performed.",
+      "reconstructed_bytes": 1515,
+      "reconstructed_sha256": "ac5dc5820547eaa57f5ce33485a6b76a904ea09f60bbaccbf02f1e404277c5de",
+      "bytes_match": true,
+      "hash_match": true,
+      "source_proof": {
+        "message_id": "e0cea3b6-874f-4c5b-b86f-23c9a38eecb9",
+        "sent_at": "2026-09-08T10:35:36.147632695Z",
+        "prompt": "Architecture reconciliation update: preserved b475179d clean, fetched only PR #3155 immutable d83482fc (no upstream/main merge), and updated this task plan with the integration sequence. Local commit 767aa79cd78a549abe831687f727e1e45be722f1 adds the exact reviewed workspace_coordinator_grants fresh schema plus replay-safe SQLite/Postgres legacy migration and a cross-workspace regression. Focused race test passed: GOMODCACHE=/tmp/kandev-go-mod go test -race ./internal/task/repository/sqlite -run TestWorkspaceCoordinatorGrantSchemaRejectsCrossWorkspaceDesignation -count=1. Hook receipt passed; worktree clean. I have not pushed because the mandated authority consolidation (remove competing principal/task-grant/Host-lease paths and rewire the sole issuance/revocation path) remains incomplete; no Review/QA/step completion or PR-state mutation was performed."
+      }
+    },
+    {
+      "id": "343ee98f-220b-431b-91c1-aa3ecd6a588a",
+      "sender_task_id": "51c2875b-48ae-4097-b985-b8a9584ca8c2",
+      "sender_session_id": "a19ff835-10c8-4b2c-b68e-4c1494c2fdc1",
+      "source_message_id": "b21531b7-ac5c-4ff9-8ed3-e1f11e379222",
+      "source_sent_at": "2026-09-08T10:36:14.457009136Z",
+      "content_bytes": 1694,
+      "content_sha256": "4cd68797ca09124ff0bf742c356331d8c93ed7f47b3d9743297afe9934db89bb",
+      "match": true,
+      "action": "Historical pre-fix draft hold at PR #2870 head 5f76822f; superseded by the later corrective docs delivery below. Preserve the provider-rate-limit caveat and refresh current head/checks/threads.",
+      "rawbody": "<kandev-system>This message was sent by an agent working in task \"Bug: Notes settings agent utility doesn't load agents profil\" (51c2875b-48ae-4097-b985-b8a9584ca8c2).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"51c2875b-48ae-4097-b985-b8a9584ca8c2\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nDraft-readiness gate does not pass; I made no provider mutation. Public GitHub REST at 2026-09-08 10:35–10:36 UTC shows PR #2870 OPEN but draft=true, head=5f76822f38f25a0efeb01b0bc23e903f3c5d5853 (not requested 2e0c8d8169ec1559b481e9d8e1d39053819799ba), mergeable=true/mergeable_state=unstable, and 71 check runs with queued/in_progress entries (including E2E shards and package-fork-preview). The plan’s latest corrective Work receipt also records this same current head and explicitly says keep draft/no ready. gh authenticated GraphQL/REST is rate-limited, so I could not independently query resolved review-thread state; public REST did return inline comments but cannot prove thread resolution. Existing PR body retains visual QA evidence, but references older exact-head runtime 1cc241e and preview commit b08e1d9, so it cannot establish current-head evidence by itself. Recommendation: retain draft; wait for terminal exact-head checks, then re-run authenticated thread census and current-head evidence/body gate.",
+      "reconstructed_bytes": 1694,
+      "reconstructed_sha256": "4cd68797ca09124ff0bf742c356331d8c93ed7f47b3d9743297afe9934db89bb",
+      "bytes_match": true,
+      "hash_match": true,
+      "source_proof": {
+        "message_id": "b21531b7-ac5c-4ff9-8ed3-e1f11e379222",
+        "sent_at": "2026-09-08T10:36:14.457009136Z",
+        "prompt": "Draft-readiness gate does not pass; I made no provider mutation. Public GitHub REST at 2026-09-08 10:35–10:36 UTC shows PR #2870 OPEN but draft=true, head=5f76822f38f25a0efeb01b0bc23e903f3c5d5853 (not requested 2e0c8d8169ec1559b481e9d8e1d39053819799ba), mergeable=true/mergeable_state=unstable, and 71 check runs with queued/in_progress entries (including E2E shards and package-fork-preview). The plan’s latest corrective Work receipt also records this same current head and explicitly says keep draft/no ready. gh authenticated GraphQL/REST is rate-limited, so I could not independently query resolved review-thread state; public REST did return inline comments but cannot prove thread resolution. Existing PR body retains visual QA evidence, but references older exact-head runtime 1cc241e and preview commit b08e1d9, so it cannot establish current-head evidence by itself. Recommendation: retain draft; wait for terminal exact-head checks, then re-run authenticated thread census and current-head evidence/body gate."
+      }
+    },
+    {
+      "id": "21c329b9-c6a4-4f79-9089-29ed68127fd6",
+      "sender_task_id": "51c2875b-48ae-4097-b985-b8a9584ca8c2",
+      "sender_session_id": "a19ff835-10c8-4b2c-b68e-4c1494c2fdc1",
+      "source_message_id": "1dda72c4-f6a1-4ae6-8328-eddecb8cb0f4",
+      "source_sent_at": "2026-09-08T10:38:43.901903125Z",
+      "content_bytes": 2051,
+      "content_sha256": "a1d52d6438fc40c997bbaf5b247e14ab2d5dcecccd0cc4f9593072905f04370e",
+      "match": true,
+      "action": "Act on corrective docs head 0f36c0a6b0ed47560cce77f0ec518497106143f3: refresh exact provider checks and authenticated thread state after quota, then independent current-head Review/QA. Preserve the runtime-model contradiction.",
+      "rawbody": "<kandev-system>This message was sent by an agent working in task \"Bug: Notes settings agent utility doesn't load agents profil\" (51c2875b-48ae-4097-b985-b8a9584ca8c2).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"51c2875b-48ae-4097-b985-b8a9584ca8c2\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nCorrective docs delivery complete. Pushed Host exact head 0f36c0a6b0ed47560cce77f0ec518497106143f3 (origin verified equal; clean tree), commit `docs(plugins): clarify verified legacy fallback`. Updated only docs/public/plugins-authoring.md, docs/public/plugins-manifest.md, and ADR 0048: direct profile wins; fallback accepts active manifest-declared utility_agent OR a retained value authorized only by verified manifest transition (`LegacyUtilityAgentFallback`); arbitrary undeclared submitted utility_agent is ignored. Validation PASS: `git diff --check`; `node --test scripts/validate-public-docs.test.mjs` (61/61); `node scripts/validate-public-docs.mjs` (46 pages); commit hooks incl architecture/public-copy/commitlint PASS. No Host/Notes behavior changes; no ready/notify/merge/deploy/move/step_complete. Requested per-thread reply/resolve could not run: `scripts/pr-resolve list 2870` fails `GraphQL: API rate limit already exceeded for user ID 79718216`; public REST exposes only the older resolved docs thread, not a new unresolved thread. Current task session is a19ff835-10c8-4b2c-b68e-4c1494c2fdc1, profile c06ad00e-0da1-429a-8174-54f97164a289 configured gpt-5.6-terra; this runtime self-identifies as GPT-6, so model identity remains contradictory. Verdict: implementation/docs acceptance PASS; provider thread-reply action operationally pending rate-limit recovery.",
+      "reconstructed_bytes": 2051,
+      "reconstructed_sha256": "a1d52d6438fc40c997bbaf5b247e14ab2d5dcecccd0cc4f9593072905f04370e",
+      "bytes_match": true,
+      "hash_match": true,
+      "source_proof": {
+        "message_id": "1dda72c4-f6a1-4ae6-8328-eddecb8cb0f4",
+        "sent_at": "2026-09-08T10:38:43.901903125Z",
+        "prompt": "Corrective docs delivery complete. Pushed Host exact head 0f36c0a6b0ed47560cce77f0ec518497106143f3 (origin verified equal; clean tree), commit `docs(plugins): clarify verified legacy fallback`. Updated only docs/public/plugins-authoring.md, docs/public/plugins-manifest.md, and ADR 0048: direct profile wins; fallback accepts active manifest-declared utility_agent OR a retained value authorized only by verified manifest transition (`LegacyUtilityAgentFallback`); arbitrary undeclared submitted utility_agent is ignored. Validation PASS: `git diff --check`; `node --test scripts/validate-public-docs.test.mjs` (61/61); `node scripts/validate-public-docs.mjs` (46 pages); commit hooks incl architecture/public-copy/commitlint PASS. No Host/Notes behavior changes; no ready/notify/merge/deploy/move/step_complete. Requested per-thread reply/resolve could not run: `scripts/pr-resolve list 2870` fails `GraphQL: API rate limit already exceeded for user ID 79718216`; public REST exposes only the older resolved docs thread, not a new unresolved thread. Current task session is a19ff835-10c8-4b2c-b68e-4c1494c2fdc1, profile c06ad00e-0da1-429a-8174-54f97164a289 configured gpt-5.6-terra; this runtime self-identifies as GPT-6, so model identity remains contradictory. Verdict: implementation/docs acceptance PASS; provider thread-reply action operationally pending rate-limit recovery."
+      }
+    },
+    {
+      "id": "88f611b1-c245-4d49-bd69-1caa4cdce745",
+      "sender_task_id": "6a5a2f73-87e1-4c08-a983-64f2456c3633",
+      "sender_session_id": "289224cc-e691-48c2-aee4-584633205b7e",
+      "source_message_id": "ca0a5a5d-904a-408c-97e6-0681572c7785",
+      "source_sent_at": "2026-09-08T10:38:06.503396918Z",
+      "content_bytes": 1494,
+      "content_sha256": "df2e9bfe537c5a3ca817713410f1ed79008684061e186c694962447b323d50d6",
+      "match": true,
+      "action": "Preserve task Blocked receipt: unshare passed; bwrap failed normally on missing proc namespace. Support task 16b0c902-464c-40e6-80b1-fc69b8f63ce4 owns repair; resume only after pushed fix and task-owning bounded verification.",
+      "rawbody": "<kandev-system>This message was sent by an agent working in task \"Executor containers: allow unprivileged user namespaces\" (6a5a2f73-87e1-4c08-a983-64f2456c3633).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"6a5a2f73-87e1-4c08-a983-64f2456c3633\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nBlocked preservation receipt: previous step Human-QA. Completed single bounded probe in Terra session 9551a5d6-41b7-43d1-b2ab-5bbf70769347: unshare_exit=0; bwrap_exit=1, `bwrap: open /proc/282/ns/ns failed: No such file or directory`; it exited normally in 0.051s, so no command session cancellation was needed. Blocker owner: Support task 16b0c902-464c-40e6-80b1-fc69b8f63ce4 / Coordinator. Resume only after pushed repair plus explicit task-owning bounded acceptance handoff (fallback: Coordinator incident follow-up on terminal block). Preserved unchanged: /data/tasks/executor-containers_7oiab541/kandev-source; feature/executor-containers-nll at d8af676da8852ea68dec1faedec8ed3baa8a236c; origin/backup/executor-containers-nll-local-1; 5,649 unresolved merge entries. No rerun, source/security change, cleanup, or PID action.",
+      "reconstructed_bytes": 1494,
+      "reconstructed_sha256": "df2e9bfe537c5a3ca817713410f1ed79008684061e186c694962447b323d50d6",
+      "bytes_match": true,
+      "hash_match": true,
+      "source_proof": {
+        "message_id": "ca0a5a5d-904a-408c-97e6-0681572c7785",
+        "sent_at": "2026-09-08T10:38:06.503396918Z",
+        "prompt": "Blocked preservation receipt: previous step Human-QA. Completed single bounded probe in Terra session 9551a5d6-41b7-43d1-b2ab-5bbf70769347: unshare_exit=0; bwrap_exit=1, `bwrap: open /proc/282/ns/ns failed: No such file or directory`; it exited normally in 0.051s, so no command session cancellation was needed. Blocker owner: Support task 16b0c902-464c-40e6-80b1-fc69b8f63ce4 / Coordinator. Resume only after pushed repair plus explicit task-owning bounded acceptance handoff (fallback: Coordinator incident follow-up on terminal block). Preserved unchanged: /data/tasks/executor-containers_7oiab541/kandev-source; feature/executor-containers-nll at d8af676da8852ea68dec1faedec8ed3baa8a236c; origin/backup/executor-containers-nll-local-1; 5,649 unresolved merge entries. No rerun, source/security change, cleanup, or PID action."
+      }
+    },
+    {
+      "id": "1c6fdd49-f305-42d3-aec4-5df19a2e0d2c",
+      "sender_task_id": "b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+      "sender_session_id": "25e60dac-d4f2-4e9d-b3db-b45f9e8cd324",
+      "source_message_id": "fa1a1b03-606e-46a3-9c22-619bf59d6952",
+      "source_sent_at": "2026-09-08T10:44:57.44527838Z",
+      "content_bytes": 2877,
+      "content_sha256": "332dfdc0558863e689d0c2f78c00ec65b6e9a508bf9e525c649284bcbbb3f4a8",
+      "match": true,
+      "action": "Distinct Sol QA passed for PR #3496 exact 3012ed6d0fca364238ce856c226aaac84ad4192c after GPT-5.5 Review. Wait for four queued CI checks, explicitly reply/disposition comments 3956293187, 3956294115, 3956295802, then refresh readiness; no UI QA needed.",
+      "rawbody": "<kandev-system>This message was sent by an agent working in task \"Make managed task worktrees Git-writable\" (b74833e7-a05f-4cdf-81cf-db5b4c02f368).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"b74833e7-a05f-4cdf-81cf-db5b4c02f368\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nQA_RESULT = PASSED\n\nDistinct Sol QA for C1 PR #3496 completed on actual runtime model `gpt-5.6-sol`, Kandev session `25e60dac-d4f2-4e9d-b3db-b45f9e8cd324`. Prerequisite independent review session `25a12882-32bb-46dd-b8e2-147d17108967` is recorded as `gpt-5.5` and returned REVIEW_RESULT=PASSED for exact head.\n\nExact identity: PR/fork head `3012ed6d0fca364238ce856c226aaac84ad4192c`; source `yattdev/kandev:fix/task-git-metadata-projection-c1`; target `kdlbs/kandev:main`; current upstream main `18d38c11a09924137a492c6b3ac258090a87b17c`. PR is open/draft and mergeable; current-main merge-tree was clean (`f138636eb14513fce97456363951a8a0ba114859`). Diff is exactly two added files (`apps/backend/internal/worktree/git_metadata.go`, `git_metadata_test.go`); diff check passed; C2 inert.\n\nEnvironment: umbrella checkout remained clean at `bb2cc6d32005a28761c40cceb181bfdb331e45ea`. Exact PR tree was isolated under `/tmp/kandev-c1-qa.m1pxm8`, tested, then deleted after exact prefix validation. No branch/ref/worktree/provider mutation.\n\nCoverage PASS on exact PR tree: full `go test ./internal/worktree`; 10-case race/adversarial subset covering raw `.git` pointer through symlink, forged reciprocal pointer, symlinked `.git`/HEAD/objects, trusted common-dir mismatch and swap, native commit locking, multi-repo separation; full `go test -race ./internal/worktree -count=1`.\n\nBehavior verified: raw pointer symlink components are rejected before canonicalization; normal linked-worktree projection, shared common-dir identity, exact writable paths, native locks, and multi-repo separation regressions pass.\n\nComments 3956293187, 3956294115, 3956295802 remain nonblocking, but REST shows no replies, so explicit replies/disposition remain PR-readiness items.\n\nCI not claimed green: exact head 45 runs, 41 completed (22 success, 19 skipped), 4 queued (`Build`, `Resolve Playwright runtime image`, `Desktop E2E Smoke`, `package-fork-preview`), 0 failed.\n\nUI_VISUAL_CHANGE = NO. No QA fixes, screenshots, escalated findings, or out-of-scope tasks. No ready/notify/merge/deploy, self-move, or step_complete. Initial handoff to terminal session `52c974da...` failed; this is the single retry to the live primary coordinator session.",
+      "reconstructed_bytes": 2877,
+      "reconstructed_sha256": "332dfdc0558863e689d0c2f78c00ec65b6e9a508bf9e525c649284bcbbb3f4a8",
+      "bytes_match": true,
+      "hash_match": true,
+      "source_proof": {
+        "message_id": "fa1a1b03-606e-46a3-9c22-619bf59d6952",
+        "sent_at": "2026-09-08T10:44:57.44527838Z",
+        "prompt": "QA_RESULT = PASSED\n\nDistinct Sol QA for C1 PR #3496 completed on actual runtime model `gpt-5.6-sol`, Kandev session `25e60dac-d4f2-4e9d-b3db-b45f9e8cd324`. Prerequisite independent review session `25a12882-32bb-46dd-b8e2-147d17108967` is recorded as `gpt-5.5` and returned REVIEW_RESULT=PASSED for exact head.\n\nExact identity: PR/fork head `3012ed6d0fca364238ce856c226aaac84ad4192c`; source `yattdev/kandev:fix/task-git-metadata-projection-c1`; target `kdlbs/kandev:main`; current upstream main `18d38c11a09924137a492c6b3ac258090a87b17c`. PR is open/draft and mergeable; current-main merge-tree was clean (`f138636eb14513fce97456363951a8a0ba114859`). Diff is exactly two added files (`apps/backend/internal/worktree/git_metadata.go`, `git_metadata_test.go`); diff check passed; C2 inert.\n\nEnvironment: umbrella checkout remained clean at `bb2cc6d32005a28761c40cceb181bfdb331e45ea`. Exact PR tree was isolated under `/tmp/kandev-c1-qa.m1pxm8`, tested, then deleted after exact prefix validation. No branch/ref/worktree/provider mutation.\n\nCoverage PASS on exact PR tree: full `go test ./internal/worktree`; 10-case race/adversarial subset covering raw `.git` pointer through symlink, forged reciprocal pointer, symlinked `.git`/HEAD/objects, trusted common-dir mismatch and swap, native commit locking, multi-repo separation; full `go test -race ./internal/worktree -count=1`.\n\nBehavior verified: raw pointer symlink components are rejected before canonicalization; normal linked-worktree projection, shared common-dir identity, exact writable paths, native locks, and multi-repo separation regressions pass.\n\nComments 3956293187, 3956294115, 3956295802 remain nonblocking, but REST shows no replies, so explicit replies/disposition remain PR-readiness items.\n\nCI not claimed green: exact head 45 runs, 41 completed (22 success, 19 skipped), 4 queued (`Build`, `Resolve Playwright runtime image`, `Desktop E2E Smoke`, `package-fork-preview`), 0 failed.\n\nUI_VISUAL_CHANGE = NO. No QA fixes, screenshots, escalated findings, or out-of-scope tasks. No ready/notify/merge/deploy, self-move, or step_complete. Initial handoff to terminal session `52c974da...` failed; this is the single retry to the live primary coordinator session."
+      }
+    },
+    {
+      "id": "12dadb60-7232-4cb8-ba9d-951d5d535384",
+      "sender_task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+      "sender_task_title": "Coordinator: long-lived board orchestration",
+      "sender_session_id": "f5f727af-7c56-45d1-9749-74b027dbb78b",
+      "expected_content_bytes": 1765,
+      "expected_content_sha256": "a24287827d62f6da2a42a54e99624cc5cef0c0bd8f033e50fa31165660f60327",
+      "exact_prompt_source": "cycle-1008-queue-audit.json entry 12dadb60 and source message_task tool call 8d548baf-7ada-47bd-ba72-5684e9f02b97",
+      "wrapper_source": "apps/backend/internal/mcp/handlers/wrap_agent_message.go same-task sibling-session branch",
+      "exact_composition": "same_task_sibling_wrapper(task title, task id, sender session id) + LF LF + exact prompt",
+      "reconstructed_content_bytes": 1765,
+      "reconstructed_content_sha256": "a24287827d62f6da2a42a54e99624cc5cef0c0bd8f033e50fa31165660f60327",
+      "bytes_match": true,
+      "hash_match": true,
+      "reconstruction_status": "exact_same_task_wrapped_body_verified",
+      "substantive_obligation": "Refresh b007bb76 live task/head; successor c3ba0e1f292342bd984d5682570e4fb49e00d3e1 supersedes the earlier 943 diagnosis-only receipt and requires normal current-head delivery gates.",
+      "explicit_target_change": false,
+      "reconciliation": "permitted_exact_full_body_match",
+      "terminal_queue_action": "none; source session is nonterminal, so no terminal-session queue call is justified",
+      "rawbody": "<kandev-system>This message was sent by a sibling agent session (session f5f727af-7c56-45d1-9749-74b027dbb78b) working on YOUR OWN task \"Coordinator: long-lived board orchestration\" (a68df3ae-aaf5-4591-a46d-9d73db62e46d).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"a68df3ae-aaf5-4591-a46d-9d73db62e46d\" and session_id=\"f5f727af-7c56-45d1-9749-74b027dbb78b\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nFORWARDED SUCCESSOR RECEIPT from task b007bb76-841e-4243-a251-c4f87a1ed1e4, received by retired session at 2026-09-08T09:45Z:\n\nApproved AC30 repair implemented and normally pushed. Successor: c3ba0e1f292342bd984d5682570e4fb49e00d3e1 (`fix(db): preserve fresh SQLite reader snapshots`), parent 943931292. Only apps/backend/internal/db/sqlite.go changed: retains mode=ro, removes cache=shared, updates invariant comment; no automation edits. Post-edit gates PASS: AC30 `go test -race -count=20` (20/20), maintenance dry-run targeted test, `go test -race -count=1 ./internal/db ./internal/maintenance`, gofmt/diff check. Normal hooks passed (harness, architecture, gofmt, Go lint, public-copy, commitlint; no bypass). Local/upstream branch are exact c3ba0e1 and worktree clean. No API/provider retries.\n\nThis supersedes the earlier 943 diagnosis-only receipt. The retired session performed no task, board, provider, repository, or shared-plan mutation. Refresh live task/head before acting.",
+      "reconstructed_bytes": 1765,
+      "reconstructed_sha256": "a24287827d62f6da2a42a54e99624cc5cef0c0bd8f033e50fa31165660f60327",
+      "source_proof": {
+        "tool_call_id": "8d548baf-7ada-47bd-ba72-5684e9f02b97",
+        "prompt": "FORWARDED SUCCESSOR RECEIPT from task b007bb76-841e-4243-a251-c4f87a1ed1e4, received by retired session at 2026-09-08T09:45Z:\n\nApproved AC30 repair implemented and normally pushed. Successor: c3ba0e1f292342bd984d5682570e4fb49e00d3e1 (`fix(db): preserve fresh SQLite reader snapshots`), parent 943931292. Only apps/backend/internal/db/sqlite.go changed: retains mode=ro, removes cache=shared, updates invariant comment; no automation edits. Post-edit gates PASS: AC30 `go test -race -count=20` (20/20), maintenance dry-run targeted test, `go test -race -count=1 ./internal/db ./internal/maintenance`, gofmt/diff check. Normal hooks passed (harness, architecture, gofmt, Go lint, public-copy, commitlint; no bypass). Local/upstream branch are exact c3ba0e1 and worktree clean. No API/provider retries.\n\nThis supersedes the earlier 943 diagnosis-only receipt. The retired session performed no task, board, provider, repository, or shared-plan mutation. Refresh live task/head before acting."
+      }
+    },
+    {
+      "id": "27168c57-bfb2-4f43-b72c-104c50767d75",
+      "sender_task_id": "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+      "sender_task_title": "Manage task PR and MR links via MCP",
+      "sender_session_id": "e48e2582-24f0-41f1-9355-0fe6bfd6c651",
+      "expected_content_bytes": 2431,
+      "expected_content_sha256": "6918008f13809e2beea89c99e5f0541ca3e121814611eccce399b247af923f1a",
+      "reconstruction_status": "exact_bundled_body_verified",
+      "separator": "two LF bytes between complete envelopes",
+      "envelopes_in_order": [
+        {
+          "source_tool_call_message_id": "fe0ba9e2-2654-4ae6-9d8c-2922a13ecce6",
+          "sent_at": "2026-09-08T10:22:01.33940221Z",
+          "prompt": "Preservation/integration complete. I cherry-picked verified upstream repair 032ea05bc as b242b9540 (no conflicts), then checkpointed the pre-existing MCP registration edits as b375c40c8 and pushed `feature/manage-task-pr-and-m-e6i` to origin. Focused `go test ./internal/mcp/server ./internal/mcp/handlers` passes after updating tool-count tests. The first checkpoint attempt was rejected by Go lint solely on the known pre-integration compile fault; the post-integration commit hooks passed (harness, architecture, gofmt, Go lint, commitlint; nonapplicable web hooks skipped). I am resuming the approved provider-neutral implementation; no PR has been opened yet.",
+          "wrapped_content_bytes": 1309,
+          "wrapped_content_sha256": "d7b7211bce9af4b1528b5492fbea54cdf843c786b6a9a3fca4352f1387f9f0c6"
+        },
+        {
+          "source_tool_call_message_id": "a6d5722f-2ae1-42f3-9273-c4691e187a81",
+          "sent_at": "2026-09-08T10:24:23.465995085Z",
+          "prompt": "Additional pushed checkpoint: 7cf884aed `fix(mcp): require task link identity`. It makes task_id explicit and required, preserves server-derived caller_task_id, and makes replace require the full old provider/repository/number identity. Focused `go test ./internal/mcp/server` passes and commit hooks pass. The end-to-end provider-neutral handler/service/store implementation, GitLab projection, docs, and draft PR remain outstanding; no Review/QA/step-complete action taken.",
+          "wrapped_content_bytes": 1120,
+          "wrapped_content_sha256": "9a62def76db9631f3f114ed9080bb59efc3d21b729d69185faa4dfdbac648112"
+        }
+      ],
+      "exact_composition": "standard_peer_wrapper(prompt_10:22) + LF LF + standard_peer_wrapper(prompt_10:24)",
+      "calculated_components": {
+        "first_envelope_bytes": 1309,
+        "separator_bytes": 2,
+        "second_envelope_bytes": 1120,
+        "total_bytes": 2431
+      },
+      "bytes_match": true,
+      "hash_match": true,
+      "ordering_proof": "10:22 preservation/integration checkpoint precedes 10:24 additional pushed checkpoint; reverse order hashes fa4f8fbc9bd2d944c0d2f12f1720f59c330acfc74e1116a1523dab8f1c3286c6 and does not match.",
+      "substantive_obligations": [
+        "Preserve pushed integration commits b242b9540 and b375c40c8 on feature/manage-task-pr-and-m-e6i.",
+        "Preserve pushed checkpoint 7cf884aed and continue provider-neutral handler/service/store, GitLab projection, docs, and draft PR work; no gate or target change was requested."
+      ],
+      "reconciliation": "permitted_exact_full_body_match",
+      "rawbody": "<kandev-system>This message was sent by an agent working in task \"Manage task PR and MR links via MCP\" (af3d7a12-5fc2-408e-ab36-bb4bba6fed22).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"af3d7a12-5fc2-408e-ab36-bb4bba6fed22\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nPreservation/integration complete. I cherry-picked verified upstream repair 032ea05bc as b242b9540 (no conflicts), then checkpointed the pre-existing MCP registration edits as b375c40c8 and pushed `feature/manage-task-pr-and-m-e6i` to origin. Focused `go test ./internal/mcp/server ./internal/mcp/handlers` passes after updating tool-count tests. The first checkpoint attempt was rejected by Go lint solely on the known pre-integration compile fault; the post-integration commit hooks passed (harness, architecture, gofmt, Go lint, commitlint; nonapplicable web hooks skipped). I am resuming the approved provider-neutral implementation; no PR has been opened yet.\n\n<kandev-system>This message was sent by an agent working in task \"Manage task PR and MR links via MCP\" (af3d7a12-5fc2-408e-ab36-bb4bba6fed22).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"af3d7a12-5fc2-408e-ab36-bb4bba6fed22\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nAdditional pushed checkpoint: 7cf884aed `fix(mcp): require task link identity`. It makes task_id explicit and required, preserves server-derived caller_task_id, and makes replace require the full old provider/repository/number identity. Focused `go test ./internal/mcp/server` passes and commit hooks pass. The end-to-end provider-neutral handler/service/store implementation, GitLab projection, docs, and draft PR remain outstanding; no Review/QA/step-complete action taken.",
+      "reconstructed_bytes": 2431,
+      "reconstructed_sha256": "6918008f13809e2beea89c99e5f0541ca3e121814611eccce399b247af923f1a",
+      "source_proof": [
+        {
+          "tool_call_message_id": "fe0ba9e2-2654-4ae6-9d8c-2922a13ecce6",
+          "sent_at": "2026-09-08T10:22:01.33940221Z",
+          "prompt": "Preservation/integration complete. I cherry-picked verified upstream repair 032ea05bc as b242b9540 (no conflicts), then checkpointed the pre-existing MCP registration edits as b375c40c8 and pushed `feature/manage-task-pr-and-m-e6i` to origin. Focused `go test ./internal/mcp/server ./internal/mcp/handlers` passes after updating tool-count tests. The first checkpoint attempt was rejected by Go lint solely on the known pre-integration compile fault; the post-integration commit hooks passed (harness, architecture, gofmt, Go lint, commitlint; nonapplicable web hooks skipped). I am resuming the approved provider-neutral implementation; no PR has been opened yet."
+        },
+        {
+          "tool_call_message_id": "a6d5722f-2ae1-42f3-9273-c4691e187a81",
+          "sent_at": "2026-09-08T10:24:23.465995085Z",
+          "prompt": "Additional pushed checkpoint: 7cf884aed `fix(mcp): require task link identity`. It makes task_id explicit and required, preserves server-derived caller_task_id, and makes replace require the full old provider/repository/number identity. Focused `go test ./internal/mcp/server` passes and commit hooks pass. The end-to-end provider-neutral handler/service/store implementation, GitLab projection, docs, and draft PR remain outstanding; no Review/QA/step-complete action taken."
+        }
+      ]
+    }
+  ],
+  "all_match": true,
+  "disposition": "Evidence only; no queue disposal performed."
+}

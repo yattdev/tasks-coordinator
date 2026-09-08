@@ -1,0 +1,70 @@
+{
+  "schema": "root-terminal-integrity-v1",
+  "checked_at": "2026-09-08T11:34:00Z",
+  "mode": "read_only",
+  "task": {
+    "id": "52892e8e-dc44-4d38-80ab-14bb75f7b6bf",
+    "title": "Build coordinator plugin",
+    "physical_state": "Blocked/FAILED",
+    "parent_id": "9e67c426-1300-46ef-a00f-e5603791212d"
+  },
+  "own_delivery": {
+    "prs": [
+      {
+        "repository": "yattdev/kandev-plugin-coordinator",
+        "number": 1,
+        "state": "merged",
+        "accepted_head": "c4c430cea07b62d3c9c63cdeffa0fcbcf005e496",
+        "merge_commit": "6fb1fdd63c1728258c40a67df037116c5ca9bbb8"
+      }
+    ],
+    "open_prs": 0,
+    "open_subtasks": 0,
+    "implementation_blockers": []
+  },
+  "sessions": {
+    "total": 10,
+    "running_or_starting": 0,
+    "pending_actions": 0
+  },
+  "worktree": {
+    "path": "/data/tasks/build-coordinator-pl_b91zvxy8/yattdev-kandev-plugin-coordinator",
+    "registered_head": "c4c430cea07b62d3c9c63cdeffa0fcbcf005e496",
+    "tracked_status": "dirty because preserved historical tree is checked against successor head",
+    "ordinary_changes": 113,
+    "untracked": 7,
+    "computed_worktree_tree": "9d6e4da72eda1b19d101768940c21fda1f8e4504",
+    "backup_commit": "776306b",
+    "backup_tree": "9d6e4da72eda1b19d101768940c21fda1f8e4504",
+    "exact_worktree_preserved_in_backup": true,
+    "backup_remote_ref": "refs/heads/backup/build-coordinator-pl-bhx-orphaned-1",
+    "backup_remote_verified": true,
+    "unique_unpushed_work": false,
+    "cleanup_authorized": false,
+    "preservation_action": "Leave dirty projection, backup ref, .build screenshots, and QA data untouched."
+  },
+  "resources": {
+    "owned_live_consumer_required": false,
+    "active_task_sessions": 0,
+    "stale_socket": {
+      "path": "/data/tasks/build-coordinator-pl_b91zvxy8/kandev-qa-data-352b8b6d/supervisor/control.sock",
+      "active_listener_or_fuser": false
+    },
+    "cleanup_needed_for_done": false,
+    "cleanup_action": "none; preserve"
+  },
+  "dependency_classification": {
+    "cleared_code_dependency": "Recovery task 3ec598a8 delivered and PR1 merged at the accepted head.",
+    "remaining_release_deploy_holds": [
+      "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+      "01432319-aa8b-4c7d-9841-addcc6ab8e76"
+    ],
+    "holds_root_code_completion": false
+  },
+  "verdict": {
+    "done_eligible": true,
+    "reason": "No remaining open PR/subtask or unique unpushed work; the dirty historical tree is exactly represented by the verified remote backup, accepted successor code is merged, no active runtime is required, and remaining dependencies govern release/deployment only."
+  },
+  "mutation": false
+}
+

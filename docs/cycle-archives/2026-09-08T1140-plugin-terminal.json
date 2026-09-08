@@ -1,0 +1,92 @@
+{
+  "schema": "terminal-integrity-v1",
+  "checked_at": "2026-09-08T11:31:00Z",
+  "mode": "read_only",
+  "task": {
+    "id": "3ec598a8-b49d-4d5f-9bf3-52b0d611cd32",
+    "title": "Recover coordinator plugin",
+    "worktree": "/data/tasks/recover-coordinator_8dja868q/yattdev-kandev-plugin-coordinator",
+    "branch": "feature/recover-coordinator-lhd",
+    "head": "c4c430cea07b62d3c9c63cdeffa0fcbcf005e496"
+  },
+  "delivery": {
+    "repository": "yattdev/kandev-plugin-coordinator",
+    "pr": 1,
+    "accepted_head": "c4c430cea07b62d3c9c63cdeffa0fcbcf005e496",
+    "merged_at": "2026-09-08T11:27:30Z",
+    "merge_commit": "6fb1fdd63c1728258c40a67df037116c5ca9bbb8",
+    "merge_parents": [
+      "17f4d71f1eb8d1d4f1865e25c20a0d94ee1f089c",
+      "c4c430cea07b62d3c9c63cdeffa0fcbcf005e496"
+    ],
+    "exact_head_contained": true,
+    "readback": "plugin-merged-readback.json"
+  },
+  "preservation": {
+    "tracked_clean": true,
+    "staged_clean": true,
+    "untracked_intentional": [
+      ".qa/",
+      ".playwright/",
+      ".playwright-cli/"
+    ],
+    "cleanup_authorized": false,
+    "action": "Preserve all generated evidence and browser support directories in place."
+  },
+  "artifacts": {
+    "reviewer_pngs": [
+      {
+        "path": ".qa/screenshots/distinct-coordinator-reports-desktop.png",
+        "sha256": "0fbeb92004e14ae7bcbf79d99648a35bf9cf07bb9a020438c390e5eae51283f6",
+        "matches_within_task_tree": 1
+      },
+      {
+        "path": ".qa/screenshots/distinct-coordinator-run-notice-desktop.png",
+        "sha256": "141784e89b92d647e4c16b5a0d797ec4fe06428a436b5270a245e682c0d01f29",
+        "matches_within_task_tree": 1
+      },
+      {
+        "path": ".qa/screenshots/distinct-coordinator-chat-mobile.png",
+        "sha256": "7fd2ee387e5b289bc4470ef2784a4352de03be522d0e4fd199c1fdc8c0277b85",
+        "matches_within_task_tree": 1
+      }
+    ],
+    "unique_and_preserved": true,
+    "additional_qa_files_preserved": true
+  },
+  "runtime_data": {
+    "owned_running_processes": 0,
+    "owned_sockets_or_pipes": 0,
+    "owned_db_pid_or_socket_files": 0,
+    "live_consumer_required": false,
+    "cleanup_needed": false
+  },
+  "gates": {
+    "code_delivery": "complete",
+    "independent_review": "passed",
+    "distinct_sol_qa": "passed",
+    "human_qa": "passed",
+    "provider_checks": "terminal non-failing before merge",
+    "release_runtime_smoke": "remains external release/deployment dependency only"
+  },
+  "dependencies": {
+    "release_deploy_only": [
+      "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+      "01432319-aa8b-4c7d-9841-addcc6ab8e76"
+    ],
+    "implementation_blockers": []
+  },
+  "verdict": {
+    "done_eligible": true,
+    "reason": "Accepted exact head is a parent of the verified merge commit; tracked source is clean, unique QA evidence is preserved, no owned runtime/data cleanup or live consumer is required, and remaining Host/release work is deployment-only."
+  },
+  "root_carrier": {
+    "id": "52892e8e-dc44-4d38-80ab-14bb75f7b6bf",
+    "code_delivery_clear": true,
+    "terminal_action": "May be classified as code-delivery complete while preserving all receipts.",
+    "remaining_hold": "Host-compatible release/runtime validation remains attached to afdb2ef3/01432319, not to the merged implementation task.",
+    "done_eligible_subject_to_board_semantics": true
+  },
+  "mutations": false
+}
+
