@@ -830,7 +830,14 @@ Never treat reassignment as permission to resume a parked wrong-model process.
 Support result `7d4731d6-8598-4974-b058-ed15a8894dbb` reports source commit
 `29fbaca7dd5035d7ed1ed4a01edb731097fceb34`, deployment provenance
 `0f53f1291296be39f90bd3771ce13fa388eca76a`, and 122/122 deployment checks.
-Coordinator-side callable acceptance remains pending in the live plan.
+Support result `25ab4998-3933-48f4-bc2e-374355b35f9e` subsequently repaired
+the catalog surface: the canonical Coordinator uses Kanban, while the first
+registration covered automation only. Source `cf35864d884661372cc660a24ab255438d6434bd`
+adds a backend-verified canonical-repository capability to the Kanban profile.
+The ordinary resumed Coordinator turn exposed the tool without session reset.
+Live assignment, idempotent retry, metadata preservation, and a separate fresh
+Terra Work launch were verified on 2026-09-08. A successful assignment alone
+still does not certify a later launch or another task's assignment generation.
 
 Distinguish model enforcement from model selection. A fail-before-inference
 repair may enforce an already resolved profile while leaving workflow pins and

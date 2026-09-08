@@ -1,5 +1,17 @@
 # Coordinator learning-cycle log
 
+## 2026-09-08f — verify catalog exposure, assignment and launch separately
+
+Support corrected a Kanban/automation catalog mismatch; a fresh ordinary
+Coordinator turn exposed the exact-profile selector. The live operation selected
+Terra, an identical retry retained generation 1 and operation ID, and readback
+proved no lane or session change. A separate Work move then created a new Terra
+primary and completed the old Sol process without resuming it. Runtime message
+metadata and preserved source heads confirmed the start. This clears the usable
+selector gap, while each later target still needs fresh state/generation guards.
+The Support deployment also replaced disposable in-memory helper state and
+`/tmp` artifacts: incremental audit receipts belong in the persistent task root.
+
 ## 2026-09-08d — recover every constituent of an existing queued body
 
 - A 4,304-byte authoritative queue row contained three complete peer envelopes
