@@ -2336,6 +2336,15 @@ Two things that are easy to get wrong:
 
 #### When Support answers BLOCKED
 
+A pushed `Outcome: FAILED` reporting a worker timeout is different from the
+verified `BLOCKED` result below. Record the failed request and actual timeout;
+neither successful provisioning nor absence of partial changes is established.
+Re-discover the requested guarded capability. Run a supplied safe acceptance
+command if one exists; otherwise record that acceptance is unavailable, without
+starting a known wrong-model session as a probe. Send one fresh evidence-bearing
+request asking Support to reconcile partial work and any surviving writer before
+continuing the original scope. Do not poll or reuse the terminal request ID.
+
 A genuine `KANDEV_SUPPORT_STATUS: BLOCKED` with a non-zero return code proves
 that broker delivery worked; it does **not** clear the task blocker. Read and
 persist the response's exact missing authority or capability and its smallest next

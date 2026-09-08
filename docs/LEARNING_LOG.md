@@ -2739,6 +2739,16 @@ not modify `PROMPT.md`, it detected and repaired pre-existing live-description
 drift from the preceding shared-main commit; the complete current file and live
 description matched exactly after the write. Unresolved conflicts: none.
 
+## 2026-09-08e — Support timeout leaves the outcome unverified
+
+Request `a335c345-f10a-4ae2-a598-7197e94da5d5` returned a proactive worker
+timeout after 3600 seconds without an implementation or acceptance receipt.
+Capability discovery still exposed no exact-profile selector. A timeout proves
+neither rollback nor absence of partial work. The fresh request must reconcile
+partial work and any surviving writer before continuing; no unsafe inference
+probe or polling is needed. Registry J3 and the Support runbook now record this
+distinction. No product code changed or product test was required.
+
 ## 2026-09-08b — Astra is Coordinator-only
 
 The Human selected `gpt-6-astra` as the standing permanent Coordinator model,

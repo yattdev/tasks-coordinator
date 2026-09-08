@@ -603,6 +603,7 @@ Production, protected/release branch, cost, and external-communication **labels*
 - Ignore the host-side warning `failed to load models cache` / `missing field supports_parallel_tool_calls` — it appears on successful `returncode: 0` runs too. Diagnose from `returncode` and the assistant turn, never from the presence of an `ERROR` line.
 
 ### J3. Fresh request after a terminal failure
+- A proactively delivered worker timeout is a terminal execution failure, not a verified `BLOCKED` diagnosis or proof that nothing changed. Re-discover the named capability without launching a risky probe. If no acceptance command or verified result exists, send one fresh request with the timeout and discovery evidence; require reconciliation of partial work and any surviving writer before retrying. Do not poll the failed request or infer rollback.
 - **Trigger** An old request sits at `complete` / `returncode 1`.
 - **Action** Terminal failures are **not** retroactively requeued. Check the old ID once, then send a **fresh** request.
 - **Never** Reuse a terminal request ID or wait for it to self-heal.
