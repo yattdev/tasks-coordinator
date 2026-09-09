@@ -68,6 +68,9 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Escalate to** The owner of the failed gate; Human only when the corrective action is genuinely Human-reserved.
 - **Never** Substitute a narrative summary, checked boxes, lane placement, or tool success response for a passing receipt.
 
+- **Provider mutation barrier (2026-09-09):** fully paginate post-ready checks and threads before notifying reviewers. A successful query is not a passing gate. Inspect its result in a separate decision step; abort dependent notification when any check is pending, a page remains, or a head differs. Newly triggered checks invalidate an earlier terminal snapshot. Correct a premature public claim in its existing comment and record the deviation; never silently treat notification as proof that its prerequisite passed.
+- **Holding-lane batching:** resolve and inspect physical lanes before issuing dependent task reads. Do not queue a relation/session/content read alongside the board read that determines whether ToDeploy forbids it.
+
 ### A4. Delegating bounded evidence gathering
 - **Trigger** Every turn with at least two independent inbound messages or parallelizable evidence requests.
 - **Action** Proactively fill all safely available helper capacity from one ordered snapshot. Declare each slice's claim set (full task UUIDs, canonical PR URL + exact head, dependency IDs, shared resource IDs) and compare all pairs before dispatch; any collision returns the family to one primary owner. Give disjoint named slices and stop conditions; keep helpers read-only. The primary deduplicates receipts and serializes all mutations. Before a human-facing result or action, it re-reads every mentioned task's live lane and complete session census, plus provider state when relevant. Process independent queued work serially only when capacity, conflicts, dependencies, or bounded startup cost require it, and record that reason.
@@ -161,6 +164,8 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Capability** Native related-task read plus exact dependency add/remove; [relation projection procedure](RUNBOOK.md#cross-task-delegation-edges-belong-on-the-dependent-not-the-prerequisite).
 - **Evidence** Both endpoint IDs and their before/after `blockers` and `blocked_by` projections.
 - **Never** Infer edge direction from one projection, or repeat/remove a correct edge because `blocked_by` was mistaken for prerequisites.
+
+- **Observed scope limit (2026-09-09):** `remove_task_dependency_kandev` rejected same-workspace dependent IDs with `task_id must be your current task`. Read access does not imply mutation scope. Preserve both endpoint readbacks; a Done-only obsolete edge is housekeeping, not unfinished delivery. Do not wake a parked wrong-model Done session or use a database workaround. Route reusable cross-task relation capability through its existing owner.
 
 ### B3e. An auto-start-lane move is still settling
 - **Trigger** A manual move targets an auto-start lane while `manual_move_lifecycle_pending` or related source-session completion is unsettled.

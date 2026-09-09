@@ -4941,3 +4941,24 @@ reserves for the human.
 **If no `author_type: "user"` message exists, do not act.** Say plainly that you
 cannot find the decision on the card and ask the operator to confirm — do not
 split the difference by half-moving the card.
+
+
+## Fail closed between provider reads and writes (2026-09-09)
+
+A provider read and its dependent mutation require separate decision steps.
+Complete pagination, inspect the exact head and all check/thread states, and
+only then issue readiness or reviewer notification. Never put an unconditional
+notification after a query in one orchestration script: a queued check is a
+successful API response but a failed readiness barrier. Ready transitions can
+start more checks after an initially empty census. Record their current owner
+and completion trigger; do not label them terminal. Correct premature wording
+in the existing comment, preserve the audit trail, and suppress duplicate pings.
+
+Apply the same rule to holding-lane boundaries: read and classify the board row
+before issuing task-specific reads. A ToDeploy result must prevent subsequent
+content/session/relation inspection unless the exact charter exception applies.
+
+The live dependency-removal endpoint rejected another dependent task ID as
+current-task-only on 2026-09-09. Preserve reciprocal before/after projections
+and the rejected operation. Do not emulate removal through SQL, wake unsafe
+Done sessions, or treat harmless stale edges as unique unfinished work.

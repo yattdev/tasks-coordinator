@@ -2919,3 +2919,18 @@ A Human-designated successor and the server primary flag are separate facts.
 Read back both; when the atomic promotion surface is unavailable, preserve
 predecessor queues, request bounded read-only handoffs, and record the sole
 Human-designated writer without claiming server promotion succeeded.
+
+
+## 2026-09-09 — Check results before dependent mutations
+
+A post-ready check census returned a queued walkthrough job while an
+unconditional orchestration script continued to reviewer notification. The
+existing comments were corrected and their pending checks retained in the
+Coordinator ledger. Full pagination and an explicit decision boundary are
+required before dependent writes. A separate batch also read a relation before
+inspecting the board row that identified ToDeploy; no further holding-card
+inspection followed. Read boundaries are decisions, not merely call order.
+
+Same-workspace relation reads worked while cross-task dependency removal was
+rejected as current-task-only. The two obsolete Done edges were preserved as
+housekeeping with exact reciprocal readback rather than bypassing scope.
