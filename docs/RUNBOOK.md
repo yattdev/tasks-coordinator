@@ -592,11 +592,18 @@ be absent because no merge ref can be created. Inspect workflow triggers and a
 prior clean head before calling missing CI a permissions or path-filter defect.
 If that projection contradicts a just-pushed merge, verify the exact commit
 parents and whether the provider's advertised base is an ancestor of its head.
-Refresh head/base and mergeability through authenticated REST without cache.
-If the base is already an ancestor but the same response still says `dirty`,
-record inconsistent provider evidence and recheck after a natural check or
-provider event. Keep readiness on hold; do not manufacture another source merge
-or wake a writer unless the base changes or concrete conflict evidence appears.
+Refresh head/base and mergeability through authenticated REST without cache,
+then independently read the canonical base branch ref through the provider's
+Git-ref API or `git ls-remote`. The PR's own base SHA can remain stale even when
+its conflict verdict reflects newer main commits. Compare the actual base ref
+with the pushed head: record merge base, divergence, and concrete conflicting
+paths from a read-only merge analysis. If that actual base is already contained
+and no source conflict exists, retain the readiness hold and recheck after a
+natural event. If the actual base advanced and conflicts are proved, resume
+the existing correct-lane owner for additive reconciliation with the candidate
+and original worktree preserved. Do not manufacture a source merge from a
+provider label alone, or keep real integration work parked behind a stale PR
+base projection.
 During Human-QA, preserve the phase boundary: do not rebase, merge main, squash,
 rewrite, or resolve the conflict. Record the integration gate and require a
 fresh exact-head CI snapshot after an authorized integration-phase resolution.

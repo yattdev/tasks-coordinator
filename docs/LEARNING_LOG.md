@@ -2972,7 +2972,11 @@ checkouts preserved. Exact operational receipts remain in the task plans.
 
 PR #2909 advertised a base that was the direct parent of its clean pushed head,
 yet authenticated no-cache REST still reported `mergeable=false/dirty`.
-Independent commit-parent and ancestry checks prevented a redundant remerge.
-The Coordinator preserved the candidate and assigned a provider-event recheck,
-while retaining CI and review gates. This is a bounded incident receipt, not a
-general permission to disregard provider mergeability.
+The initial commit-parent check used that advertised base and led to a
+provider-event wait. A later independent canonical Git-ref check found main at
+`b18308bed56612458a8dd474516ffcc0cb780978`, ahead of the advertised
+`401947fd828b9bffe503003764566be01f19d1e1`. Read-only merge analysis proved two
+real conflicts. The existing Terra recovery owner resumed with the clean
+candidate and original worktree preserved. The correction is to verify the
+actual base branch separately before diagnosing a stale mergeability verdict;
+the PR's base SHA and conflict verdict can describe different generations.

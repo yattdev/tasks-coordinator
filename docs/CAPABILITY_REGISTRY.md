@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-08d -->
+<!-- registry-version: 2026-09-09e -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -214,7 +214,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 ### B7. PR/MR identity
 - **Trigger** Any use of checks, reviews, or mergeability as evidence.
 - **Action** Resolve repository owner/name + number or canonical URL, exact head SHA, base, fork relationship first. Refresh after every head/base change.
-- **Contradictory mergeability:** if the advertised base is already an ancestor of the exact head, verify commit parents and refresh the authenticated provider response before directing another merge. An unchanged `dirty` projection alone does not justify source changes; retain the readiness hold and recheck after a provider event. See [PR identity procedure](RUNBOOK.md#verify-pr-and-mr-identity).
+- **Contradictory mergeability:** verify the actual canonical base branch ref independently of the PR's advertised base SHA, which can itself be stale. Compare that actual ref with the exact pushed head. An unchanged `dirty` label alone does not justify source changes; concrete conflict evidence against the actual base does. Preserve the candidate until this distinction is resolved. See [PR identity procedure](RUNBOOK.md#verify-pr-and-mr-identity).
 - **Never** Treat a bare PR number as identity; never reuse evidence from a superseded SHA.
 
 ### B8. Stale, dead, or looping sessions
