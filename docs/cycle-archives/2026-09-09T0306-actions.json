@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "cycle-2026-09-09T0238Z",
+  "observed_through": "2026-09-09T03:06:16Z",
+  "coordinator_task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+  "coordinator_session_id": "da0761f2-cd4e-44d1-bccc-6f9c1119f534",
+  "queue": {
+    "initial_census": 0,
+    "arrived_during_cycle": 12,
+    "non_routine_disposed_after_task_conversation_read": 11,
+    "retained_routine_wakes": 1,
+    "final_expected_count": 1
+  },
+  "actions": [
+    {"task_id":"f2078d51-4dd4-435f-812a-f632328ccfb2","action":"QA failure returned to Terra Work; successor ceac6ce7 was authored; cross-lane Luna contained in Blocked","verification":"physical Blocked; Luna receipt read; source/provider preservation recorded","next":"when no writer remains, read full remote head and start fresh GPT-5.5 Review"},
+    {"task_id":"1f8d4dc8-83ac-44d6-9fbd-b34bd46e044e","action":"reviewer cross-lane PR mutation and Luna continuation contained in Blocked","verification":"physical Blocked; exact code head 32d10e8d696a0b536e74e3dd9d84ba308638cead preserved","next":"when no writer remains, start distinct Sol QA"},
+    {"task_id":"af3d7a12-5fc2-408e-ab36-bb4bba6fed22","action":"fresh GPT-5.5 Review started at 811863f50e045f540e9ebebc2087e8f9dfaa7a59; auto-cross contained","verification":"physical Blocked; reviewer lifecycle owns current hold","next":"read terminal Review result; PASS routes to fresh Sol QA, BLOCKED routes Work"},
+    {"task_id":"856898aa-d06a-43f7-9a87-f873665f19da","action":"SDK-pin successor a630cb9c44e7a7b4467b531fbeb35a56e119c601 returned to fresh GPT-5.5 Review; auto-cross contained","verification":"physical Blocked; reviewer WFI; local preservation-only commit 9e6faf0cb71c8ff78bcae5c28d5fbbf11e882c86 is ahead of unchanged remote PR head","next":"preserve both identities; after reviewer terminal, read Review and route to distinct Sol QA or Work"},
+    {"task_id":"27b493a3-65b6-4d4a-8b68-73f2ffcf9621","action":"fresh Review attempted after green CI; reused Luna cross-lane continuation contained","verification":"physical Blocked at exact head 14a54e1a420e860978a92213908a8705b16e1016","next":"after Luna terminal, read Review result and route to fresh Sol QA or Work"},
+    {"task_id":"37eca47b-cf05-47ee-b143-39408edbeed1","action":"reused QA rejected; fresh Sol spawn denied by competing parked writer; contained","verification":"physical Blocked; fresh readback corrected actual clean local/fork/PR head to f1d0393e98b28a9683e1ee09830cef0014b95933; stale tracking ref remains 6d6a5cd2","next":"reconcile canonical head, then launch a genuinely fresh Sol QA only after writer admission clears"},
+    {"task_id":"b007bb76-841e-4243-a251-c4f87a1ed1e4","action":"returned to CI Fixup for exact PR #3319 census after Human-QA crossing","verification":"CI_RESULT=PROVIDER_BLOCKED at 5b1f77903e07e8e36af19433d57ee4e7439eef29; GraphQL and REST both HTTP 403 rate limit; no mutation","next":"refresh provider census after authenticated quota/reset recovers"},
+    {"task_id":"c642d57a-5a24-48ca-8f85-57d31115eeb5","action":"existing Terra merge-recovery session resumed once","verification":"message sent; session returned WFI without successor receipt","next":"resume same Terra once next cycle if no newer receipt; preserve merge state"},
+    {"task_id":"02159e6a-726a-43b2-8d9a-f74c5c01fe11","action":"corrected session identity and resumed isolated recovery","verification":"Terra 4b049eaa-494a-4f57-97c8-d205721253ca RUNNING","next":"consume exact successor/preservation receipt"},
+    {"task_id":"ca015838-e5cf-4294-b3bb-9c50576a5fe6","action":"sent Review blocker restoring removed QueueSessionIdentity/incarnation semantics","verification":"Terra 260b4ddd-841f-40ec-9bd8-39535052dcc6 RUNNING","next":"consume successor head/tests, then fresh Review"},
+    {"task_id":"e0dd8d19-278c-4d38-aafa-c3e866d92cfb","action":"stopped Human-QA crossover and parked CI watcher","verification":"55e23b447864a88a09f914d0edb271aa27f588de; 43 success, 21 skipped, 10 pending, 0 failed; no mutation or step_complete","next":"fresh terminal CI census on later cycle"},
+    {"task_id":"7a0454aa-c089-4365-8966-ad99775a46f8","action":"moved PR to Blocked on repair plus upstream semver release","verification":"physical Blocked; caf0112739375dc5e4ecce5a09456096a8566110 and merged PR #3 preserved","next":"resume only after repair task complete and upstream tag containing #2872"},
+    {"task_id":"7056a702-a3c3-4fe8-8535-c6b8d340ef6a","action":"moved QA to Blocked on strict GPT-5.4 PR-owner unavailability","verification":"physical Blocked; clean 6e990c1f606b7dcb19c98f83ee8ea59f5af4f813; PR #3155 open draft mergeable","next":"fresh strict PR owner after exact GPT-5.4 advertises or Human changes policy"},
+    {"task_id":"a3f02302-12fa-4129-8985-116efb8fed66","action":"moved QA to Blocked on strict GPT-5.4 PR-owner unavailability","verification":"physical Blocked; clean a1fb4e83c1286f0a0847937e621454a0de02adae; PR #3310 49 checks green","next":"fresh strict PR owner after exact GPT-5.4 advertises or Human changes policy"},
+    {"task_id":"09325a7b-afb5-4f54-b2a7-ceae217a7bee","action":"moved QA to Blocked on strict GPT-5.4 PR-owner unavailability","verification":"physical Blocked; current exact-head Review/QA receipt preserved","next":"fresh strict PR owner after exact GPT-5.4 advertises or Human changes policy"}
+  ],
+  "done_cleanup": {
+    "obsolete_edges": [
+      {"dependent":"894fcdbb-6400-4ffb-9fa5-8998fbf450ff","prerequisite":"80920898-155a-4aef-8489-97b57213353f"},
+      {"dependent":"8463d2ff-e8f1-4ba5-99c3-fad2c2da3f66","prerequisite":"e0dd8d19-278c-4d38-aafa-c3e866d92cfb"}
+    ],
+    "attempt_result": "both rejected: task_id must be your current task; owner-scoped cleanup required"
+  }
+}
