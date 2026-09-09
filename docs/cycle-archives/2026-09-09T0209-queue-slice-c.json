@@ -1,0 +1,271 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "read-only queue triage slice C",
+  "primary_queue_frozen_at": "2026-09-09T01:56:xxZ",
+  "audit_observed_at": "2026-09-09T01:58:00Z",
+  "allowed_task_ids": [
+    "fa3fba49-2018-460b-a600-adae23b24cc8",
+    "27b493a3-65b6-4d4a-8b68-73f2ffcf9621"
+  ],
+  "mutations": {
+    "board": false,
+    "provider": false,
+    "source": false,
+    "plan": false,
+    "queue": false,
+    "tags": false,
+    "sessions": false
+  },
+  "tasks": [
+    {
+      "task_id": "fa3fba49-2018-460b-a600-adae23b24cc8",
+      "title": "Add coordinator grant management surfaces",
+      "live_row": {
+        "state": "REVIEW",
+        "physical_lane": "CI Fixup",
+        "workflow_step_id": "347f3904-5972-44bf-92e8-a9a9a5efb96d",
+        "updated_at": "2026-09-09T01:37:37.653586323Z",
+        "assignee_agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "exact_assignment": {
+          "generation": 10,
+          "target_workflow_step_id": "6c2e5bf5-57db-4682-8daa-d110f22b60da",
+          "model": "gpt-5.5",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "classification": "stale Review projection for the current CI Fixup lane"
+        },
+        "manual_move_lifecycle_completed": true
+      },
+      "sessions": {
+        "active_running_or_starting": 0,
+        "relevant": [
+          {
+            "session_id": "6c98a7f5-c71a-4595-b534-fa9ff6f89a97",
+            "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "model": "gpt-5.6-luna",
+            "state": "WAITING_FOR_INPUT",
+            "is_primary": true,
+            "updated_at": "2026-09-09T01:37:37.622076883Z"
+          }
+        ]
+      },
+      "source_identity": {
+        "canonical_pr": "https://github.com/kdlbs/kandev/pull/3048",
+        "branch": "feature/add-coordinator-gran-7zf",
+        "canonical_pr_source_ref": "origin/feature/grant-coordinator-ma-nnw",
+        "head": "5176dc3e5b7c4ebac86a9796513a16e1808d9a76",
+        "parent": "6deae586eeb486d25b908153bdbb500f94511520",
+        "commit_subject": "test: cover coordinator grant ui lifecycle",
+        "worktree_clean": true,
+        "tracking_ref_equals_head": true,
+        "canonical_pr_source_ref_equals_head": true,
+        "local_preservation_checked_read_only": true
+      },
+      "queue_entries": [
+        {
+          "queue_id": "e93d47b3-9e03-44ad-b66a-4d78e1e1691c",
+          "frozen_metadata": {
+            "queued_at": "2026-09-09T01:35:31.000837032Z",
+            "content_bytes": 1263,
+            "content_sha256": "bb1f91230e6024fb2c2759b71fa481007f3926c3483fa3f154c3fdf4fd9f83a5",
+            "claim": "a6047be66908e69a29fcfa877bc25920131ce6b958cfd427e743e7f3401cf2ac",
+            "sender_task_id": "fa3fba49-2018-460b-a600-adae23b24cc8"
+          },
+          "bound_source_message": {
+            "session_id": "6c98a7f5-c71a-4595-b534-fa9ff6f89a97",
+            "tool_call_message_id": "c87f9c53-780d-4d85-8845-8985fdcac892",
+            "tool_call_created_at": "2026-09-09T01:35:30.991531933Z",
+            "queue_ack_updated_at": "2026-09-09T01:35:31.011447819Z"
+          },
+          "report_meaning": "At exact PR head 5176dc3e5b7c4ebac86a9796513a16e1808d9a76, Luna could not reproduce CI job 102268943650's TestHandleMessageTask_CoordinatorGrantInterruptsAndResolvesAudit failure. The focused test passed once and 30 times, passed under race, and internal/mcp/handlers passed under race. Its attempted stable-shard reproduction showed unrelated process-probe/task-handler failures while the target handler package passed. Exact CI logs/artifacts required authenticated admin access, so no production change was justified.",
+          "later_same_session_evidence": {
+            "at": "2026-09-09T01:35:39.891046082Z through 2026-09-09T01:37:34.731078776Z",
+            "meaning": "A final shuffled handler-package race stress run (-shuffle=on -count=3) also passed. The branch remained unchanged; no push and no completion signal occurred."
+          },
+          "classification": {
+            "stale": false,
+            "current": true,
+            "actionable": true,
+            "qualification": "The queued body is incomplete because it predates the final passing stress run, but its no-reproduction/no-fix conclusion remains current. It does not clear the provider-observed CI failure."
+          },
+          "primary_action": "Keep the task in CI Fixup. Persist the complete 01:37 Luna receipt and exact clean/pushed head, correct the lane assignment projection before any resume, then obtain authenticated exact-job logs or one legitimate exact-head rerun. A terminal green rerun routes to fresh independent gpt-5.5 Review followed by distinct Sol QA; a repeated branch-owned failure routes exact evidence to one Luna CI owner. Do not treat local non-reproduction as terminal CI green.",
+          "safe_disposition": {
+            "eligible_now": false,
+            "eligible_after": "Primary persists the complete later same-session evidence and the unresolved provider-CI routing decision, then re-censuses and disposes using the exact current opaque claim.",
+            "reason": "The frozen queue report carries the only queued owner result and the task plan inspected by this auditor does not yet contain head 5176dc3e or the later 01:37 conclusion."
+          }
+        }
+      ]
+    },
+    {
+      "task_id": "27b493a3-65b6-4d4a-8b68-73f2ffcf9621",
+      "title": "Fix workflow-sync GitHub polling starving API quota",
+      "live_row": {
+        "state": "REVIEW",
+        "physical_lane": "Human-QA",
+        "workflow_step_id": "814573a3-f2a3-4f42-8706-4f2997401fa6",
+        "updated_at": "2026-09-09T01:45:48.316977304Z",
+        "assignee_agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+        "exact_assignment": {
+          "generation": 10,
+          "target_workflow_step_id": "6c2e5bf5-57db-4682-8daa-d110f22b60da",
+          "model": "gpt-5.5",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "classification": "stale Review projection for current Human-QA and intended fresh QA route"
+        },
+        "manual_move_lifecycle_completed": true,
+        "linked_pr": "https://github.com/kdlbs/kandev/pull/3143"
+      },
+      "source_identity": {
+        "head": "14a54e1a420e860978a92213908a8705b16e1016",
+        "branch": "feature/fix-workflow-sync-gi-d0x",
+        "local_head_equals_tracking_ref": true,
+        "origin_branch_equals_head": true,
+        "worktree_clean": true,
+        "provider_identity_from_recovery_receipt": "PR #3143 OPEN/DRAFT/MERGEABLE/CLEAN at the same head",
+        "local_preservation_checked_read_only": true
+      },
+      "sessions": {
+        "active_running_or_starting": 0,
+        "review_session": {
+          "session_id": "ac1a9157-9598-4080-b8f4-0e6c77091d59",
+          "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "model": "gpt-5.5",
+          "state": "COMPLETED",
+          "updated_at": "2026-09-09T01:44:06.68182622Z"
+        },
+        "primary_ci_session": {
+          "session_id": "704c5708-b53e-4ca0-a596-61f87647ca79",
+          "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "model": "gpt-5.6-luna",
+          "state": "WAITING_FOR_INPUT",
+          "updated_at": "2026-09-09T01:45:48.193758358Z"
+        }
+      },
+      "valid_gate_recovery": {
+        "receipt_path": "/tmp/coordinator-27-review-recovery.json",
+        "receipt_sha256": "d609ae4729558dc8b979ff61776fa935aaecfa651a52a9382e435ef8eec5a77b",
+        "review_only_segment": {
+          "session_id": "ac1a9157-9598-4080-b8f4-0e6c77091d59",
+          "from": "2026-09-09T01:34:48.35604131Z",
+          "through": "2026-09-09T01:38:35.121993417Z",
+          "head": "14a54e1a420e860978a92213908a8705b16e1016",
+          "merge_base": "77e3cfc979c237c062a597c848b6ff2133c944c3",
+          "verdict": "PASSED",
+          "blocking_findings": [],
+          "evidence_message_id": "34954d84-79d9-4ac4-a0d0-73188eaddbd2",
+          "step_complete_message_id": "9777706c-13d3-4c2d-b248-423472402c36",
+          "step_complete_accepted": true
+        },
+        "invalid_same_session_segments": [
+          {
+            "lane": "QA",
+            "from": "2026-09-09T01:38:42.241033305Z",
+            "through": "2026-09-09T01:41:07.530028204Z",
+            "reason": "The same gpt-5.5 Review session cannot supply distinct Sol QA. Its QA_RESULT=PASSED is excluded."
+          },
+          {
+            "lane": "PR",
+            "from": "2026-09-09T01:41:14.082307477Z",
+            "through": "2026-09-09T01:43:59.846856266Z",
+            "reason": "PR routing followed invalid same-session QA and is excluded as a workflow gate."
+          }
+        ],
+        "repeat_review_required": false,
+        "condition": "Head remains exactly 14a54e1a420e860978a92213908a8705b16e1016."
+      },
+      "queue_entries": [
+        {
+          "queue_id": "00400cd4-ccc1-4a12-90d9-79416117f07c",
+          "frozen_metadata": {
+            "queued_at": "2026-09-09T01:43:56.307795891Z",
+            "content_bytes": 5115,
+            "content_sha256": "109fc374becd2c771e4b9453421b81aa46b42e16c16e1ec976a84d69d2d61774",
+            "claim": "d3bb8e047bff657de98d62da8188422faa333372b4039ec1cdfe8179c68c91f0",
+            "sender_task_id": "27b493a3-65b6-4d4a-8b68-73f2ffcf9621"
+          },
+          "bound_source_message": {
+            "session_id": "ac1a9157-9598-4080-b8f4-0e6c77091d59",
+            "tool_call_message_id": "f94758ca-1435-426d-bc87-5875de14f483",
+            "created_at": "2026-09-09T01:43:56.230396022Z",
+            "queue_ack_updated_at": "2026-09-09T01:43:56.350294431Z"
+          },
+          "report_meaning": "The gpt-5.5 session claimed PR phase complete, reused draft PR #3143 at exact head 14a54e1a/base 77e3cfc, reported source/local identity, an all-clear helper snapshot, and asserted QA_RESULT=PASSED before routing to CI Fixup.",
+          "classification": {
+            "stale": true,
+            "current": false,
+            "actionable": true,
+            "qualification": "Its head/PR/source preservation facts remain useful, but its QA and PR gate claims are invalid because they came from the same gpt-5.5 Review session. Later valid Luna CI evidence supersedes its CI routing premise."
+          },
+          "primary_action": "Retain only the immutable PR/head/source facts. Explicitly exclude the same-session QA_RESULT=PASSED and PR routing from gate evidence. Use the valid Review-only segment plus later Luna CI receipt to route fresh distinct Sol QA.",
+          "safe_disposition": {
+            "eligible_now": false,
+            "eligible_after": "Primary persists the exact invalid-gate classification and the fresh-Sol-QA route, then re-censuses and disposes with the unchanged current claim.",
+            "reason": "The body is fully reconstructed, but disposition should follow durable receipt incorporation by the sole writer."
+          }
+        },
+        {
+          "queue_id": "f69ca1a8-3d65-46b7-a157-97304fa284e6",
+          "supplied_claim_metadata": {
+            "queued_at": "2026-09-09T01:45:44Z",
+            "content_bytes": 3499,
+            "content_sha256_prefix": "de97b742"
+          },
+          "immutable_frozen_census_metadata_found": {
+            "queued_at": "2026-09-09T01:44:18.700814674Z",
+            "content_bytes": 1151,
+            "content_sha256": "33050122adb907ef007223923ac6a6f26fe785a518161fd2b674891fa3c14e8c",
+            "claim": "58395b75f6b1c893f89170c12ee31b2fa9dfc4df166fb219a5b92f2b2d8a2763",
+            "sender_task_id": "27b493a3-65b6-4d4a-8b68-73f2ffcf9621",
+            "evidence": "/tmp/coordinator-cycle-0054-checkpoint.json and docs/cycle-archives/2026-09-09T0146-actions.json"
+          },
+          "bound_frozen_source_message": {
+            "session_id": "704c5708-b53e-4ca0-a596-61f87647ca79",
+            "tool_call_message_id": "3e501653-0739-488e-a28e-edef7e7f8356",
+            "created_at": "2026-09-09T01:44:18.690527518Z",
+            "meaning": "A stale preservation report from reused Luna context claimed historical head e8913ded1a0c5a88f71d9cefb958dd7116a01fc and old Review blockers. It predates the Luna CI turn at the current head and is superseded."
+          },
+          "later_unambiguously_distinct_source_message": {
+            "session_id": "704c5708-b53e-4ca0-a596-61f87647ca79",
+            "tool_call_message_id": "7f932977-7153-4c81-b638-49c5f6867695",
+            "created_at": "2026-09-09T01:45:44.836955357Z",
+            "meaning": "Current-head preservation receipt: 14a54e1a was terminal green; only local non-runtime verification was done; no provider/source/workflow/PR/file/commit changes after correction; Luna parked and promised no completion/move/readiness action."
+          },
+          "classification": {
+            "stale": true,
+            "current": false,
+            "actionable": true,
+            "qualification": "The exact queue ID supplied cannot safely be bound to the stated 01:45:44/de97b742/3499-byte report. The immutable frozen census binds this ID to the 01:44:18 stale wrong-head report. Queue entries are immutable, so this mismatch must not be normalized away."
+          },
+          "primary_action": "Re-census the primary queue and locate the actual queue ID/claim/hash for the 01:45:44 tool-call message 7f932977-7153-4c81-b638-49c5f6867695. Preserve that current-head receipt under its actual queue identity. Treat f69ca1a8 under the immutable census tuple as stale wrong-head evidence only.",
+          "safe_disposition": {
+            "eligible_now": false,
+            "eligible_after": "A fresh census resolves the identity mismatch; primary durably records both the old wrong-head correction and the actual later current-head receipt; disposal uses only each exact current ID plus opaque claim.",
+            "reason": "The provided f69 ID/hash/size/time tuple is internally inconsistent with immutable frozen evidence. No disposal tuple is safe to infer."
+          }
+        }
+      ],
+      "later_valid_ci_evidence": {
+        "session_id": "704c5708-b53e-4ca0-a596-61f87647ca79",
+        "head": "14a54e1a420e860978a92213908a8705b16e1016",
+        "checks_total": 76,
+        "passed": 54,
+        "skipped": 22,
+        "failed": 0,
+        "pending": 0,
+        "source_changes": false,
+        "anomaly": "Luna called CI step_complete at 01:44:51; it was accepted and auto-advanced into Human-QA. Luna then performed Human-QA work before Coordinator correction, but made no source/provider/workflow change after correction and parked. The Luna Human-QA activity is not distinct Sol QA and is excluded."
+      },
+      "primary_route": {
+        "action": "Move the settled task from Human-QA to QA under Coordinator authority, assign the exact gpt-5.6-sol QA profile with fresh guards, start one distinct Sol QA session, and verify effective Sol identity. Do not repeat Review while the head remains exact. Exclude ac1 QA/PR and Luna Human-QA claims.",
+        "fallback": "If lane or exact-profile assignment cannot settle, keep all legacy sessions parked and preserve the clean pushed head. If the head changes, invalidate the Review receipt and restart at fresh Review."
+      }
+    }
+  ],
+  "cross_entry_disposition_order": [
+    "First resolve the f69ca1a8 identity mismatch with a fresh primary census; do not infer its claim.",
+    "Persist fa3's complete 01:37 CI non-reproduction receipt and unresolved exact-provider-CI route.",
+    "Persist 27b's invalid same-session QA/PR exclusion and restore fresh distinct Sol QA at unchanged head.",
+    "Only then dispose entries using exact unchanged census IDs and opaque claims."
+  ],
+  "auditor_conclusion": "Two queue bodies are reconstructable: e93d47b3 is current but incomplete/actionable, and 00400cd4 is stale as gate evidence but retains preservation facts. f69ca1a8 has a material identity mismatch: immutable frozen evidence binds it to the stale 01:44:18 wrong-head Luna report, while the supplied metadata describes the distinct 01:45:44 current-head receipt. Never mark that mismatch as pass or dispose by inference."
+}

@@ -1,0 +1,235 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "queue_triage_slice",
+  "slice": "A",
+  "frozen_at": "2026-09-09T01:56:00Z",
+  "audited_at": "2026-09-09T02:00:02.687527188Z",
+  "read_only": true,
+  "task_ids": [
+    "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+    "856898aa-d06a-43f7-9a87-f873665f19da"
+  ],
+  "summary": {
+    "queue_entries": 3,
+    "classifications": {
+      "stale_superseded": 1,
+      "current_historical_action_satisfied": 2
+    },
+    "immediate_primary_action": "Both live Review tasks have fresh blocking findings. Move each to Work with a new gpt-5.6-terra owner and exact finding handoff; do not launch QA from any queued report.",
+    "disposition_rule": "Each distinct row is eligible for exact-ID disposition only after the primary incorporates this per-entry audit and current action into durable continuity. Do not coalesce the two 856 reports."
+  },
+  "tasks": [
+    {
+      "task_id": "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+      "title": "Allow scoped fresh CI dispatch",
+      "live_read": {
+        "lane": "Review",
+        "workflow_step_id": "6c2e5bf5-57db-4682-8daa-d110f22b60da",
+        "task_state": "REVIEW",
+        "pr": {
+          "repository": "kdlbs/kandev",
+          "number": 3165,
+          "url": "https://github.com/kdlbs/kandev/pull/3165",
+          "state": "open"
+        },
+        "exact_head": "90cd6e827817d4b255dcce80d820daf2f29b9805",
+        "current_session": {
+          "session_id": "c97032bd-ea45-4e3a-a62b-82c676b48cf5",
+          "state": "WAITING_FOR_INPUT",
+          "model": "gpt-5.5",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "is_primary": true,
+          "started_at": "2026-09-09T01:38:16.939004245Z",
+          "updated_at": "2026-09-09T01:44:11.312723324Z"
+        },
+        "session_census": {
+          "total": 58,
+          "nonterminal": 1,
+          "all_sessions_inspected": true
+        }
+      },
+      "latest_evidence": {
+        "message_id": "576b6ab8-cf72-40a2-8795-ee5073e3b610",
+        "created_at": "2026-09-09T01:43:56.030741404Z",
+        "verdict": "REVIEW_RESULT: Blocked",
+        "head": "90cd6e827817d4b255dcce80d820daf2f29b9805",
+        "finding": "docs/public/feature-status.md says same-repository reviewed-workflow dispatch is supported, contradicting the accepted rerun-only contract and implementation that return dispatch_ref_unavailable.",
+        "required_action": "Move Review to Work; route a fresh gpt-5.6-terra author to correct the public feature matrix, normally push a successor, then run a fresh gpt-5.5 Review and distinct gpt-5.6-sol QA/current-head CI."
+      },
+      "plan_reconciliation": {
+        "current_first_latest_owner_matches": true,
+        "latest_owner_record": "Review head 90cd6e827817d4b255dcce80d820daf2f29b9805; session c97032bd-ea45-4e3a-a62b-82c676b48cf5; reviewer found the feature-status contradiction; next route Terra Work.",
+        "stale_conflicts": [
+          "The older ledger sentence 'consume Review verdict; on PASS start QA' is superseded by the later latest-owner blocker.",
+          "The live task description still names obsolete head a0ba9a8ba9e86de63b75732a39eb991c31b1f455 and GitHub-quota blocking, so it must not drive queue disposition."
+        ]
+      }
+    },
+    {
+      "task_id": "856898aa-d06a-43f7-9a87-f873665f19da",
+      "title": "The tags plugin update should preserve the existings tags",
+      "live_read": {
+        "lane": "Review",
+        "workflow_step_id": "6c2e5bf5-57db-4682-8daa-d110f22b60da",
+        "task_state": "REVIEW",
+        "pr": {
+          "repository": "yattdev/kandev-plugin-tags",
+          "number": 17,
+          "url": "https://github.com/yattdev/kandev-plugin-tags/pull/17",
+          "state": "open",
+          "draft": true
+        },
+        "exact_head": "e4438137d9279188ae06b7e5a76800c11aada487",
+        "current_session": {
+          "session_id": "d36d9ac8-7619-49a1-8a65-746def571f94",
+          "state": "WAITING_FOR_INPUT",
+          "model": "gpt-5.5",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "is_primary": true,
+          "started_at": "2026-09-09T01:39:59.322014873Z",
+          "updated_at": "2026-09-09T01:42:34.543368692Z"
+        },
+        "source_session": {
+          "session_id": "f70a7917-acbb-483c-b654-51d8717862f0",
+          "state": "COMPLETED",
+          "model": "gpt-5.6-terra",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "started_at": "2026-09-08T15:28:52.588472573Z",
+          "completed_at": "2026-09-09T01:39:59.980559664Z"
+        },
+        "session_census": {
+          "total": 7,
+          "nonterminal": 1,
+          "all_sessions_inspected": true
+        }
+      },
+      "latest_evidence": {
+        "message_id": "5bcd3e23-b1e5-40dd-9ccb-4540ed8df487",
+        "created_at": "2026-09-09T01:42:20.225481346Z",
+        "verdict": "REVIEW_RESULT: BLOCKED for Terra",
+        "head": "e4438137d9279188ae06b7e5a76800c11aada487",
+        "finding": "A shared-tags read that rejects with a retryable 503 after destroy() or re-entrant initialize() can schedule a new retry timer after teardown, violating lifecycle cleanup.",
+        "reproduction": "Start fetchSharedTags(), call destroy(), then reject with structured 503; timersAfterDestroyAndReject=1 with delay 250ms.",
+        "required_action": "Move Review to Work; route fresh gpt-5.6-terra to guard late-settling reads across lifecycle generations, add focused coverage, normally push a successor, then fresh gpt-5.5 Review and distinct Sol QA/current-head CI."
+      },
+      "plan_reconciliation": {
+        "current_first_latest_owner_matches": true,
+        "latest_owner_record": "Review head e4438137d9279188ae06b7e5a76800c11aada487; session d36d9ac8-7619-49a1-8a65-746def571f94; reviewer found late-503 retry after destroy; next Terra repair.",
+        "stale_conflicts": [
+          "The older ledger sentence 'on PASS run distinct Sol QA' is superseded by the later latest-owner blocker.",
+          "Both queued publication reports predate the fresh Review finding and authorize no QA transition."
+        ]
+      }
+    }
+  ],
+  "queue_entries": [
+    {
+      "queue_id": "e7080697-7ac5-47e1-b33e-800d51310e88",
+      "sender_task_id": "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+      "queued_at": "2026-09-09T01:03:30.780851495Z",
+      "content_bytes": 2480,
+      "content_sha256": "4533c65ae7d31568f44d9bf1aa591bdd40f7b5e89633749a822c541e4d81d09b",
+      "source": {
+        "session_id": "bf927f67-fbe5-4e25-a8e6-6e4f4b268d52",
+        "model": "gpt-5.6-sol",
+        "tool_call_message_id": "d9e80a62-4feb-4046-b9ad-2cf5f0b70da6",
+        "tool_call_created_at": "2026-09-09T01:03:30.773083396Z",
+        "final_message_id": "6cae20d2-1f93-4ff3-9556-b3c5fe41376f",
+        "final_message_created_at": "2026-09-09T01:03:38.816419335Z"
+      },
+      "exact_report_meaning": {
+        "verdict": "QA PASS for implementation/security/idempotence at head a2653b62eff53d2840e21d1bdb70ae8a7852d52f.",
+        "ci": "CURRENT_HEAD_CI pending: 72 checks, 29 success, 21 skipped, 22 queued/in progress, zero terminal failures.",
+        "constraints": "No provider/source/workflow/readiness mutation; PR remained open and draft.",
+        "requested_followup": "Wait for same-head CI terminal state before readiness."
+      },
+      "classification": "stale_superseded",
+      "reasons": [
+        "A later source mutation removed .kandev/review-notes.md and normally pushed head 90cd6e827817d4b255dcce80d820daf2f29b9805, invalidating the a265 Review/QA gates.",
+        "Fresh Review of 90cd is blocked by a public documentation contradiction.",
+        "The old pending-CI instruction cannot justify QA, readiness, or a backward lane move."
+      ],
+      "necessary_primary_action": "Preserve as historical QA evidence only. Act on current 90cd Review blocker by routing Terra Work.",
+      "disposition": {
+        "eligible": true,
+        "method": "exact_id_after_durable_reconciliation",
+        "safe_reason": "The source transcript, immutable body hash, old-head relationship, and superseding current finding are all identified."
+      }
+    },
+    {
+      "queue_id": "3a5aa24f-dc0d-41ce-9e59-43180029213e",
+      "sender_task_id": "856898aa-d06a-43f7-9a87-f873665f19da",
+      "queued_at": "2026-09-09T01:05:09.367741097Z",
+      "content_bytes": 1410,
+      "content_sha256": "7700b72286e3fdc3c5a663304e9bde794036573a34c6f20714035f15d420eee7",
+      "source": {
+        "session_id": "f70a7917-acbb-483c-b654-51d8717862f0",
+        "model": "gpt-5.6-terra",
+        "tool_call_message_id": "cbf36dc0-6b07-4638-90f5-e0fe94bec71e",
+        "tool_call_created_at": "2026-09-09T01:05:09.358191302Z",
+        "final_message_id": "feb9c8ed-04eb-4302-b772-42817986801b",
+        "final_message_created_at": "2026-09-09T01:05:13.685719233Z"
+      },
+      "exact_report_meaning": {
+        "result": "Authorized normal non-force publication succeeded.",
+        "branch": "feature/the-tags-plugin-upda-sww",
+        "head": "e4438137d9279188ae06b7e5a76800c11aada487",
+        "preservation": "Feature and backup refs both equal e4438137d9279188ae06b7e5a76800c11aada487; qa-artifacts remained untouched.",
+        "provider_wait": "Draft PR search/create was deferred after authenticated GitHub REST HTTP 403 at 2026-09-09T01:04:26Z; wait until at least 01:15Z."
+      },
+      "classification": "current_historical_action_satisfied",
+      "reasons": [
+        "The publication receipt remains true for the current reviewed head.",
+        "Its only open followup, draft PR search/create, was completed by later queue entry 4cf7b692-cb8e-4685-9be7-e2d0358c630b.",
+        "It is a distinct report and must be dispositioned individually."
+      ],
+      "necessary_primary_action": "Retain the exact publication/preservation receipt; do not retry publication or treat the expired 01:15 provider wait as current.",
+      "disposition": {
+        "eligible": true,
+        "method": "exact_id_after_durable_reconciliation",
+        "safe_reason": "The report is incorporated and its followup is proven satisfied by PR #17 at the same head."
+      }
+    },
+    {
+      "queue_id": "4cf7b692-cb8e-4685-9be7-e2d0358c630b",
+      "sender_task_id": "856898aa-d06a-43f7-9a87-f873665f19da",
+      "queued_at": "2026-09-09T01:27:01.285594300Z",
+      "content_bytes": 1305,
+      "content_sha256": "3c169b84d4b2151da2adf03c71a6593897f974768844ffcc748c1e569561558e",
+      "source": {
+        "session_id": "f70a7917-acbb-483c-b654-51d8717862f0",
+        "model": "gpt-5.6-terra",
+        "tool_call_message_id": "1798cc4e-2a07-4706-9ebe-93207f5a1589",
+        "tool_call_created_at": "2026-09-09T01:27:01.274920259Z",
+        "final_message_id": "c0f5daa3-0d3a-4ab8-aed8-83795d6f31c4",
+        "final_message_created_at": "2026-09-09T01:27:03.440465950Z"
+      },
+      "exact_report_meaning": {
+        "result": "Canonical draft PR #17 created after duplicate search found none.",
+        "pr_url": "https://github.com/yattdev/kandev-plugin-tags/pull/17",
+        "provider_readback": "OPEN/DRAFT, base main, head feature/the-tags-plugin-upda-sww at e4438137d9279188ae06b7e5a76800c11aada487.",
+        "preservation": "Feature and backup refs both equal e443813; qa-artifacts untouched.",
+        "requested_followup": "Independent Review then distinct Sol QA."
+      },
+      "classification": "current_historical_action_satisfied",
+      "reasons": [
+        "PR creation and same-head provider readback remain true.",
+        "Independent Review occurred and returned a blocker, so the queued next-step instruction is now superseded.",
+        "The report cannot authorize QA because current Review failed."
+      ],
+      "necessary_primary_action": "Preserve PR creation/readback, then route current Review blocker to Terra Work. Keep PR draft until successor-head gates support readiness.",
+      "disposition": {
+        "eligible": true,
+        "method": "exact_id_after_durable_reconciliation",
+        "safe_reason": "The provider artifact is live and linked, and the later Review outcome determines the current action."
+      }
+    }
+  ],
+  "prohibited_inferences": [
+    "Do not infer current CI green from e7080697.",
+    "Do not accept a2653b62 Review/QA receipts for head 90cd6e827817d4b255dcce80d820daf2f29b9805.",
+    "Do not send 856898aa to QA from either publication report.",
+    "Do not merge or mark either PR ready from these queue entries."
+  ],
+  "mutations_performed": []
+}

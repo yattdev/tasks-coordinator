@@ -1,0 +1,296 @@
+{
+  "schema_version": "queue-management-v1",
+  "observed_at": "2026-09-09T02:11:38Z",
+  "session_id": "da0761f2-cd4e-44d1-bccc-6f9c1119f534",
+  "before_count": 11,
+  "helper_slices": [
+    {
+      "path": "docs/cycle-archives/2026-09-09T0209-queue-slice-a.json",
+      "task_ids": [
+        "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+        "856898aa-d06a-43f7-9a87-f873665f19da"
+      ],
+      "queue_ids": [
+        "e7080697-7ac5-47e1-b33e-800d51310e88",
+        "3a5aa24f-dc0d-41ce-9e59-43180029213e",
+        "4cf7b692-cb8e-4685-9be7-e2d0358c630b"
+      ]
+    },
+    {
+      "path": "docs/cycle-archives/2026-09-09T0209-queue-slice-b.json",
+      "task_ids": [
+        "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+        "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+        "af3d7a12-5fc2-408e-ab36-bb4bba6fed22"
+      ],
+      "queue_ids": [
+        "fafe5590-2be3-408b-95ce-0cd22ed0b6be",
+        "994f6b08-e1df-446a-b364-535897657ee7",
+        "528b6695-0fc7-4d58-9272-18224189fc6e",
+        "56601051-6b94-4295-8cef-398236d825f2"
+      ]
+    },
+    {
+      "path": "docs/cycle-archives/2026-09-09T0209-queue-slice-c.json",
+      "task_ids": [
+        "fa3fba49-2018-460b-a600-adae23b24cc8",
+        "27b493a3-65b6-4d4a-8b68-73f2ffcf9621"
+      ],
+      "queue_ids": [
+        "e93d47b3-9e03-44ad-b66a-4d78e1e1691c",
+        "00400cd4-ccc1-4a12-90d9-79416117f07c",
+        "f69ca1a8-3d65-46b7-a157-97304fa284e6"
+      ]
+    }
+  ],
+  "queue_entries": [
+    {
+      "attachment_count": 0,
+      "claim": "ccce93e5e4be083b5c41851f74fcde39a1064eef9c7bf234274d75df843f6e4a",
+      "content_bytes": 2480,
+      "content_sha256": "4533c65ae7d31568f44d9bf1aa591bdd40f7b5e89633749a822c541e4d81d09b",
+      "id": "e7080697-7ac5-47e1-b33e-800d51310e88",
+      "position": 3,
+      "queued_at": "2026-09-09T01:03:30.780851495Z",
+      "queued_by": "agent",
+      "routine_wake": false,
+      "sender_task_id": "9ee4be81-aa98-4e4d-bdd6-842fd918f00f"
+    },
+    {
+      "attachment_count": 0,
+      "claim": "87ce3b411c24a1c99d86c317314e2af43bbaaca14108f844dc3417293eaf880e",
+      "content_bytes": 1410,
+      "content_sha256": "7700b72286e3fdc3c5a663304e9bde794036573a34c6f20714035f15d420eee7",
+      "id": "3a5aa24f-dc0d-41ce-9e59-43180029213e",
+      "position": 4,
+      "queued_at": "2026-09-09T01:05:09.367741097Z",
+      "queued_by": "agent",
+      "routine_wake": false,
+      "sender_task_id": "856898aa-d06a-43f7-9a87-f873665f19da"
+    },
+    {
+      "attachment_count": 0,
+      "claim": "839020f7abf431c1a7341d4db18060b40dd2d5661b316a121bc1b811fbcf24e1",
+      "content_bytes": 1722,
+      "content_sha256": "b7b835f1bf3d427b85bc4cff4e76d711c116f73c1ae7cc2149e1a3b6c76a9750",
+      "id": "fafe5590-2be3-408b-95ce-0cd22ed0b6be",
+      "position": 5,
+      "queued_at": "2026-09-09T01:07:34.287532502Z",
+      "queued_by": "agent",
+      "routine_wake": false,
+      "sender_task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4"
+    },
+    {
+      "attachment_count": 0,
+      "claim": "7e3cbde5bc1af80b1086d32ecb3a5f77041802b8f1893465c5ec237d6fa96e5f",
+      "content_bytes": 13898,
+      "content_sha256": "caa6b9b990f87a7432b7b2cdebfba98a5efdc1ef4d0a5487641feceee36ebc69",
+      "id": "d23e238c-1ddc-4d37-98a5-fbd68396f618",
+      "position": 6,
+      "queued_at": "2026-09-09T01:01:04.205745814Z",
+      "queued_by": "agent",
+      "routine_identity": "routine:472cf28a675c1478a1ce25ec437ce42f2ad10cc5a939e3e71c7332373739f737",
+      "routine_wake": true,
+      "sender_task_id": "4477c387-8885-49f9-8757-81ca06874c81"
+    },
+    {
+      "attachment_count": 0,
+      "claim": "17b315a91d804e346b00652777a7f9a75bdcc104e1cc80c995f9ffd5725f228a",
+      "content_bytes": 1305,
+      "content_sha256": "3c169b84d4b2151da2adf03c71a6593897f974768844ffcc748c1e569561558e",
+      "id": "4cf7b692-cb8e-4685-9be7-e2d0358c630b",
+      "position": 7,
+      "queued_at": "2026-09-09T01:27:01.2855943Z",
+      "queued_by": "agent",
+      "routine_wake": false,
+      "sender_task_id": "856898aa-d06a-43f7-9a87-f873665f19da"
+    },
+    {
+      "attachment_count": 0,
+      "claim": "4868e1797febe265f1776a40ff61507091459b320827b0dad716eb402a313bf9",
+      "content_bytes": 1515,
+      "content_sha256": "53329e90da17e89d06b61cb4cb09679e0a61cf67572ccb8286a51dc9a079c643",
+      "id": "994f6b08-e1df-446a-b364-535897657ee7",
+      "position": 8,
+      "queued_at": "2026-09-09T01:30:28.57869774Z",
+      "queued_by": "agent",
+      "routine_wake": false,
+      "sender_task_id": "af3d7a12-5fc2-408e-ab36-bb4bba6fed22"
+    },
+    {
+      "attachment_count": 0,
+      "claim": "974461d8f2f2621301e224a0033145be28cc899aef2951689cd906a2573c0fb5",
+      "content_bytes": 1908,
+      "content_sha256": "43bf81d9aaaedc069889e9d01dff8995a1b05712840eed33b7940d521c8c4668",
+      "id": "528b6695-0fc7-4d58-9272-18224189fc6e",
+      "position": 9,
+      "queued_at": "2026-09-09T01:33:02.656651324Z",
+      "queued_by": "agent",
+      "routine_wake": false,
+      "sender_task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb"
+    },
+    {
+      "attachment_count": 0,
+      "claim": "a6047be66908e69a29fcfa877bc25920131ce6b958cfd427e743e7f3401cf2ac",
+      "content_bytes": 1263,
+      "content_sha256": "bb1f91230e6024fb2c2759b71fa481007f3926c3483fa3f154c3fdf4fd9f83a5",
+      "id": "e93d47b3-9e03-44ad-b66a-4d78e1e1691c",
+      "position": 10,
+      "queued_at": "2026-09-09T01:35:31.000837032Z",
+      "queued_by": "agent",
+      "routine_wake": false,
+      "sender_task_id": "fa3fba49-2018-460b-a600-adae23b24cc8"
+    },
+    {
+      "attachment_count": 0,
+      "claim": "d3bb8e047bff657de98d62da8188422faa333372b4039ec1cdfe8179c68c91f0",
+      "content_bytes": 5115,
+      "content_sha256": "109fc374becd2c771e4b9453421b81aa46b42e16c16e1ec976a84d69d2d61774",
+      "id": "00400cd4-ccc1-4a12-90d9-79416117f07c",
+      "position": 11,
+      "queued_at": "2026-09-09T01:43:56.307795891Z",
+      "queued_by": "agent",
+      "routine_wake": false,
+      "sender_task_id": "27b493a3-65b6-4d4a-8b68-73f2ffcf9621"
+    },
+    {
+      "attachment_count": 0,
+      "claim": "e28c6ca916d02c96829d308cc58b0fa85c4e82fbc301ba70c3f8b1351beb980b",
+      "content_bytes": 3499,
+      "content_sha256": "de97b7422c5692da977ba8916e2882db9b55bf71a8a830dd7176ec2fb8b73dd7",
+      "id": "f69ca1a8-3d65-46b7-a157-97304fa284e6",
+      "position": 12,
+      "queued_at": "2026-09-09T01:45:44.844654407Z",
+      "queued_by": "agent",
+      "routine_wake": false,
+      "sender_task_id": "27b493a3-65b6-4d4a-8b68-73f2ffcf9621"
+    },
+    {
+      "attachment_count": 0,
+      "claim": "f4dabea192b2249dc2ca3da515fdb29df21d8beb2ddc5681033a52653c8f39eb",
+      "content_bytes": 2315,
+      "content_sha256": "339f724bf598cf8eae772738edb3aeca1b704be37528f0a0ae9760e337fba38a",
+      "id": "56601051-6b94-4295-8cef-398236d825f2",
+      "position": 13,
+      "queued_at": "2026-09-09T01:54:16.012296001Z",
+      "queued_by": "agent",
+      "routine_wake": false,
+      "sender_task_id": "af3d7a12-5fc2-408e-ab36-bb4bba6fed22"
+    }
+  ],
+  "actions": [
+    {
+      "task_id": "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+      "result": "Review blocker routed to Work",
+      "session_id": "66cd7011-69d2-4e93-a32f-d2e32da423c4",
+      "profile": "gpt-5.6-terra",
+      "state": "RUNNING",
+      "verified_at": "2026-09-09T02:05:03Z",
+      "next": "Correct feature-status contract, push successor, then fresh Review/Sol QA."
+    },
+    {
+      "task_id": "856898aa-d06a-43f7-9a87-f873665f19da",
+      "result": "Review blocker routed to Work",
+      "session_id": "d0225300-f069-4aaf-aa31-cc397fbf1f11",
+      "profile": "gpt-5.6-terra",
+      "state": "RUNNING",
+      "verified_at": "2026-09-09T02:05:03Z",
+      "next": "Prevent late 503 retry after teardown, push successor, then fresh Review/Sol QA."
+    },
+    {
+      "task_id": "27b493a3-65b6-4d4a-8b68-73f2ffcf9621",
+      "result": "Invalid same-session QA excluded; valid Review-only receipt routed to distinct QA",
+      "session_id": "d3b0dd01-efea-4425-b639-42b2d73ff94c",
+      "profile": "gpt-5.6-sol",
+      "state": "RUNNING",
+      "verified_at": "2026-09-09T02:09:41Z",
+      "head": "14a54e1a420e860978a92213908a8705b16e1016"
+    },
+    {
+      "task_id": "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+      "result": "Completed Work head routed to fresh Review",
+      "session_id": "358c8faa-deec-4f91-8e2a-d173b47675b3",
+      "profile": "gpt-5.5",
+      "state": "RUNNING",
+      "verified_at": "2026-09-09T02:09:41Z",
+      "head": "9937d2424b9b74a8cb4bb874b9f3d266161726a1",
+      "provider_degradation": "GitHub REST 403 secondary/rate limit at 02:08:14Z; reviewer must fail closed on provider claims."
+    },
+    {
+      "task_id": "fa3fba49-2018-460b-a600-adae23b24cc8",
+      "result": "No branch fix justified from non-reproduction; retained in CI Fixup with corrected exact Luna assignment and waiting tag",
+      "session_id": "6c98a7f5-c71a-4595-b534-fa9ff6f89a97",
+      "profile": "gpt-5.6-luna",
+      "state": "WAITING_FOR_INPUT",
+      "head": "5176dc3e5b7c4ebac86a9796513a16e1808d9a76",
+      "next": "Obtain exact-job logs or legitimate exact-head rerun; green routes to fresh Review then Sol QA."
+    },
+    {
+      "task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+      "result": "Wrong-model Review/QA queue report excluded; published recovery head remains under Terra Work",
+      "session_id": "70b483b8-8ea8-4fcb-b450-488ec190c328",
+      "profile": "gpt-5.6-terra",
+      "state": "RUNNING",
+      "head": "55e23b447864a88a09f914d0edb271aa27f588de",
+      "next": "Finish exact-head CI, then fresh model-separated Review/QA."
+    },
+    {
+      "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+      "result": "Queued Review PASS already consumed by later distinct Sol QA PASS and readiness flow",
+      "head": "5b1f77903e07e8e36af19433d57ee4e7439eef29",
+      "next": "Only provider post-ready check/review flow remains."
+    }
+  ],
+  "disposition_plan": {
+    "removable_after_durable_plan_write": [
+      {
+        "id": "e7080697-7ac5-47e1-b33e-800d51310e88",
+        "claim": "ccce93e5e4be083b5c41851f74fcde39a1064eef9c7bf234274d75df843f6e4a"
+      },
+      {
+        "id": "3a5aa24f-dc0d-41ce-9e59-43180029213e",
+        "claim": "87ce3b411c24a1c99d86c317314e2af43bbaaca14108f844dc3417293eaf880e"
+      },
+      {
+        "id": "fafe5590-2be3-408b-95ce-0cd22ed0b6be",
+        "claim": "839020f7abf431c1a7341d4db18060b40dd2d5661b316a121bc1b811fbcf24e1"
+      },
+      {
+        "id": "4cf7b692-cb8e-4685-9be7-e2d0358c630b",
+        "claim": "17b315a91d804e346b00652777a7f9a75bdcc104e1cc80c995f9ffd5725f228a"
+      },
+      {
+        "id": "994f6b08-e1df-446a-b364-535897657ee7",
+        "claim": "4868e1797febe265f1776a40ff61507091459b320827b0dad716eb402a313bf9"
+      },
+      {
+        "id": "528b6695-0fc7-4d58-9272-18224189fc6e",
+        "claim": "974461d8f2f2621301e224a0033145be28cc899aef2951689cd906a2573c0fb5"
+      },
+      {
+        "id": "e93d47b3-9e03-44ad-b66a-4d78e1e1691c",
+        "claim": "a6047be66908e69a29fcfa877bc25920131ce6b958cfd427e743e7f3401cf2ac"
+      },
+      {
+        "id": "00400cd4-ccc1-4a12-90d9-79416117f07c",
+        "claim": "d3bb8e047bff657de98d62da8188422faa333372b4039ec1cdfe8179c68c91f0"
+      },
+      {
+        "id": "f69ca1a8-3d65-46b7-a157-97304fa284e6",
+        "claim": "e28c6ca916d02c96829d308cc58b0fa85c4e82fbc301ba70c3f8b1351beb980b"
+      },
+      {
+        "id": "56601051-6b94-4295-8cef-398236d825f2",
+        "claim": "f4dabea192b2249dc2ca3da515fdb29df21d8beb2ddc5681033a52653c8f39eb"
+      }
+    ],
+    "retained": [
+      {
+        "id": "d23e238c-1ddc-4d37-98a5-fbd68396f618",
+        "reason": "sole effective routine wake for the still-open full board cycle; claim changed during concurrent current-session delivery and is preserved"
+      }
+    ],
+    "identity_resolution": "Fresh authoritative census at post-action barrier binds f69ca1a8-3d65-46b7-a157-97304fa284e6 to the 2026-09-09T01:45:44.844654407Z / 3499-byte / de97b742 tuple and source tool call 7f932977; older archived tuple is superseded and must not control current disposition."
+  },
+  "cycle_status": "IN_PROGRESS; queue work does not satisfy full G1-G10 cycle exit gates."
+}

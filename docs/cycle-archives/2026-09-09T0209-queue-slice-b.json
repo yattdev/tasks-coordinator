@@ -1,0 +1,336 @@
+{
+  "schema_version": "queue-triage-receipt-v1",
+  "scope": {
+    "queue_frozen_at": "2026-09-09T01:56:xxZ",
+    "mode": "read-only",
+    "task_ids": [
+      "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+      "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+      "af3d7a12-5fc2-408e-ab36-bb4bba6fed22"
+    ],
+    "queue_ids": [
+      "fafe5590-2be3-408b-95ce-0cd22ed0b6be",
+      "994f6b08-e1df-446a-b364-535897657ee7",
+      "528b6695-0fc7-4d58-9272-18224189fc6e",
+      "56601051-6b94-4295-8cef-398236d825f2"
+    ],
+    "mutations_performed": [
+      "write /tmp/queue-slice-b.json"
+    ],
+    "method": "Censused every task session, then read the current task rows/plans and the relevant source-session conversations at and after each frozen queue timestamp. Queue bindings use the supplied queue timestamp/SHA/byte tuple plus the exact source message_task call at that timestamp."
+  },
+  "tasks": [
+    {
+      "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+      "change_request": {
+        "provider": "github",
+        "number": 3319,
+        "url": "https://github.com/kdlbs/kandev/pull/3319",
+        "branch": "feature/fix-pr-watch-amplifi-u6z",
+        "head": "5b1f77903e07e8e36af19433d57ee4e7439eef29",
+        "review_base": "401947fd828b9bffe503003764566be01f19d1e1"
+      },
+      "live_row": {
+        "physical_lane": "QA",
+        "workflow_step_id": "485f61e8-33e7-4cc6-a170-6d1411cc5ebb",
+        "state_field": "REVIEW",
+        "row_updated_at": "2026-09-09T01:18:30.256916476Z",
+        "assignment_generation": 13,
+        "assigned_profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+        "assigned_role_model": "QA / gpt-5.6-sol"
+      },
+      "session_census": {
+        "total": 23,
+        "all_sessions_inspected": true,
+        "relevant_sessions": [
+          {
+            "session_id": "a5597c78-6db5-4be8-ac56-323b258c7ae6",
+            "role_model": "Review / gpt-5.5",
+            "started_at": "2026-09-09T00:56:39.328848949Z",
+            "completed_at": "2026-09-09T01:10:00.458486961Z",
+            "state": "COMPLETED"
+          },
+          {
+            "session_id": "6470ff3b-c746-480f-a19b-6bc985751b5a",
+            "role_model": "QA / gpt-5.6-sol",
+            "started_at": "2026-09-09T01:09:59.559936846Z",
+            "updated_at": "2026-09-09T01:18:33.859100022Z",
+            "state": "WAITING_FOR_INPUT",
+            "is_primary": true
+          }
+        ]
+      },
+      "queue_reports": [
+        {
+          "queue_id": "fafe5590-2be3-408b-95ce-0cd22ed0b6be",
+          "queued_at": "2026-09-09T01:07:34Z",
+          "supplied_sha256_prefix": "b7b835f1",
+          "supplied_bytes": 1722,
+          "bound_source": {
+            "session_id": "a5597c78-6db5-4be8-ac56-323b258c7ae6",
+            "source_message_id": "f3336554-0713-4510-927e-bed5a9b111c5",
+            "source_created_at": "2026-09-09T01:07:34.279421267Z",
+            "source_lane": "Review",
+            "source_model": "gpt-5.5",
+            "delivery_status": "queued"
+          },
+          "meaning": {
+            "result": "REVIEW_RESULT=PASSED",
+            "exact_head": "5b1f77903e07e8e36af19433d57ee4e7439eef29",
+            "findings": "No code findings after local full-diff review and focused tests.",
+            "provider_limitation": "The reviewer did not refresh GitHub metadata or threads because its GitHub GraphQL identity was rate-limited; the report explicitly made no live-provider claim."
+          },
+          "classification": {
+            "at_enqueue": "current_and_actionable",
+            "at_frozen_queue": "valid_but_fully_consumed_and_superseded",
+            "reason": "The exact-head Review gate was consumed by the Review-to-QA transition at 2026-09-09T01:09:59Z. Distinct Sol QA then passed the same head at 2026-09-09T01:18:20.111733331Z (message 59de0d28-63ed-4b85-a7ab-cea22e548c81d), with clean local/origin equality and no findings. The Coordinator plan separately records provider thread/CI verification and the later readiness handling; the queued review report has no unconsumed provider claim."
+          },
+          "primary_action": "No action from this queue item. Continue only the already-separate PR readiness/terminal-check workflow for PR #3319; do not repeat Review or QA from this receipt.",
+          "safe_disposition": {
+            "eligible_now": true,
+            "recommendation": "acknowledge/archive as superseded after recording this binding",
+            "preserve": "Keep the exact-head Review PASS and its explicit provider limitation in the audit trail."
+          }
+        }
+      ]
+    },
+    {
+      "task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+      "change_request": {
+        "provider": "github",
+        "number": 3473,
+        "url": "https://github.com/kdlbs/kandev/pull/3473",
+        "branch": "feature/fix-pr-lane-profile-bt7",
+        "published_head_at_post_report_recovery": "55e23b447864a88a09f914d0edb271aa27f588de",
+        "previous_remote_head_named_in_report": "6dba59d7a59b842f55b215d44135f88e0c16b3b8",
+        "review_base_named_in_report": "401947fd828b9bffe503003764566be01f19d1e1"
+      },
+      "live_row": {
+        "physical_lane": "Work",
+        "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+        "state_field": "IN_PROGRESS",
+        "row_updated_at": "2026-09-09T01:45:04.929515887Z",
+        "assignment_generation": 12,
+        "assigned_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "assigned_role_model": "Work / gpt-5.6-terra"
+      },
+      "session_census": {
+        "total": 50,
+        "all_sessions_inspected": true,
+        "relevant_sessions": [
+          {
+            "session_id": "48722399-a1f9-438c-b1ae-076186665d48",
+            "name": "independent-review-6dba59d7",
+            "role_model": "Review, then improperly reused for QA / gpt-5.5",
+            "started_at": "2026-09-09T01:27:25.562545426Z",
+            "completed_at": "2026-09-09T01:42:30.58754232Z",
+            "state": "CANCELLED"
+          },
+          {
+            "session_id": "92768746-f3af-47d2-82a2-2730515063a7",
+            "role_model": "gpt-5.5",
+            "started_at": "2026-09-09T01:08:55.221367298Z",
+            "completed_at": "2026-09-09T01:42:30.793025882Z",
+            "state": "CANCELLED",
+            "is_primary": true
+          },
+          {
+            "session_id": "70b483b8-8ea8-4fcb-b450-488ec190c328",
+            "role_model": "Work / gpt-5.6-terra",
+            "started_at": "2026-09-09T01:45:01.840875071Z",
+            "state": "RUNNING",
+            "latest_inspected_evidence_at": "2026-09-09T02:00:47.220356994Z"
+          }
+        ]
+      },
+      "queue_reports": [
+        {
+          "queue_id": "528b6695-0fc7-4d58-9272-18224189fc6e",
+          "queued_at": "2026-09-09T01:33:02Z",
+          "supplied_sha256_prefix": "43bf81d9",
+          "supplied_bytes": 1908,
+          "bound_source": {
+            "session_id": "48722399-a1f9-438c-b1ae-076186665d48",
+            "source_message_id": "9bad8b9d-6411-47af-ac9d-a67c40732914",
+            "source_created_at": "2026-09-09T01:33:02.648365467Z",
+            "source_lane": "Review",
+            "source_model": "gpt-5.5",
+            "delivery_status": "queued"
+          },
+          "meaning": {
+            "reported_work": "The Review session authored commits 649b4fa22 (clear FallbackModel for AutoFallback) and 55e23b447 (review notes), reported focused lifecycle/orchestrator tests passing, and reported no remaining blocking code findings.",
+            "reported_routing_problem": "Its move to QA returned a workflow conflict and it speculated that failed sibling dependency 8463d2ff-e8f1-4ba5-99c3-fad2c2da3f66 might explain it.",
+            "identity_at_report": "Local head 55e23b447 was unpublished; PR #3473 was open/draft at remote head 6dba59d7a59b842f55b215d44135f88e0c16b3b8."
+          },
+          "classification": {
+            "at_enqueue": "actionable_work_preservation_report_but_invalid_review_gate",
+            "at_frozen_queue": "superseded_and_consumed",
+            "reason": "The nominal immutable Review session edited and committed source, then reused itself as QA beginning 2026-09-09T01:33:31.779187352Z and claimed QA PASS. Both gpt-5.5 sessions were cancelled at 2026-09-09T01:42:30Z, invalidating both Review and QA gates. The task was corrected to Work generation 12 at 2026-09-09T01:45:04Z. Fresh Terra session 70b483b8-8ea8-4fcb-b450-488ec190c328 published exact head 55e23b447864a88a09f914d0edb271aa27f588de at 2026-09-09T01:46:36.407858662Z and was monitoring its CI; at 2026-09-09T01:56:25.571754186Z it reported eleven passed and eight pending with zero failures. The old workflow-conflict/dependency speculation is falsified as a current routing blocker by the successful Work transition and active recovery owner."
+          },
+          "primary_action": "Let Work/Terra session 70b483b8-8ea8-4fcb-b450-488ec190c328 finish the exact-head CI/delivery recovery. After terminal clean evidence, start a fresh immutable gpt-5.5 Review on 55e23b447864a88a09f914d0edb271aa27f588de, followed by distinct Sol QA. Do not accept either gate from session 48722399-a1f9-438c-b1ae-076186665d48.",
+          "safe_disposition": {
+            "eligible_now": true,
+            "recommendation": "acknowledge/archive as superseded after preserving its authored-fix and unpublished-head facts",
+            "preserve": "The AutoFallback correction and review-note commits are valid Work inputs and are now published at 55e23b447864a88a09f914d0edb271aa27f588de; the Review/QA verdicts and failed-dependency theory are not gates."
+          }
+        }
+      ]
+    },
+    {
+      "task_id": "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+      "change_request": {
+        "provider": "github",
+        "number": 3506,
+        "url": "https://github.com/kdlbs/kandev/pull/3506",
+        "branch": "feature/manage-task-pr-and-m-e6i",
+        "current_reported_head": "9937d2424b9b74a8cb4bb874b9f3d266161726a1",
+        "integration_merge": "e7eef8a7e9e76c692b2fbd4edd7635b390d01369",
+        "integration_main_parent": "77e3cfc979c237c062a597c848b6ff2133c944c3",
+        "canonical_main_for_next_gate": "401947fd828b9bffe503003764566be01f19d1e1"
+      },
+      "live_row": {
+        "physical_lane": "Work",
+        "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+        "state_field": "REVIEW",
+        "row_updated_at": "2026-09-09T01:54:20.004788053Z",
+        "assignment_generation": 7,
+        "assigned_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "assigned_role_model": "Work / gpt-5.6-terra"
+      },
+      "session_census": {
+        "total": 6,
+        "all_sessions_inspected": true,
+        "relevant_sessions": [
+          {
+            "session_id": "3cccda10-e8cc-4a0f-9720-f916294eeb97",
+            "role_model": "Review / gpt-5.5",
+            "started_at": "2026-09-09T01:03:44.565884143Z",
+            "completed_at": "2026-09-09T01:27:23.017869554Z",
+            "state": "COMPLETED",
+            "review_verdict_at": "2026-09-09T01:07:29.653927172Z",
+            "reviewed_head": "e7eef8a7e9e76c692b2fbd4edd7635b390d01369"
+          },
+          {
+            "session_id": "e48e2582-24f0-41f1-9355-0fe6bfd6c651",
+            "name": "finish-provider-association-handlers-terra",
+            "role_model": "Work / gpt-5.6-terra",
+            "started_at": "2026-09-08T09:46:10.342226971Z",
+            "updated_at": "2026-09-09T01:54:19.987517267Z",
+            "state": "WAITING_FOR_INPUT",
+            "is_primary": true
+          }
+        ],
+        "other_session_ids": [
+          "e9a183a4-d7c3-42a6-84e4-f1eced534676",
+          "56eadd20-e20e-40dc-b9b0-4b298b6f48e5",
+          "2067abb3-313c-4778-803c-966792fabaa1",
+          "73c0e127-84ff-4892-a0eb-011f6f77f3c5"
+        ]
+      },
+      "review_root": {
+        "session_id": "3cccda10-e8cc-4a0f-9720-f916294eeb97",
+        "verdict": "REVIEW_RESULT=BLOCKED",
+        "verdict_at": "2026-09-09T01:07:29.653927172Z",
+        "head": "e7eef8a7e9e76c692b2fbd4edd7635b390d01369",
+        "findings": [
+          "Same-identity replace detached the intended association.",
+          "GitHub unlink failed to retire exact automation-options and CI-state rows.",
+          "GitLab task change-request projection omitted authoritative head/base SHA persistence."
+        ]
+      },
+      "queue_reports": [
+        {
+          "queue_id": "994f6b08-e1df-446a-b364-535897657ee7",
+          "queued_at": "2026-09-09T01:30:28Z",
+          "supplied_sha256_prefix": "53329e90",
+          "supplied_bytes": 1515,
+          "bound_source": {
+            "session_id": "e48e2582-24f0-41f1-9355-0fe6bfd6c651",
+            "source_message_id": "2a70e57b-9dc0-40cc-a9a9-612543b8f7f6",
+            "source_created_at": "2026-09-09T01:30:28.551343864Z",
+            "source_lane": "Work",
+            "source_model": "gpt-5.6-terra",
+            "delivery_status": "queued"
+          },
+          "meaning": {
+            "result": "WORK_STATE=WORK_INCOMPLETE",
+            "head": "7a90c024383eedcf053733adc966ed1666e206ef",
+            "completed_findings": [
+              "Same-identity replacement became a no-op that preserves the association.",
+              "GitHub detach transactionally deletes only the exact PR automation-options and CI-state rows."
+            ],
+            "remaining_finding": "GitLab task-MR schema/model/store and provider-neutral MCP projections still lacked head_sha/base_sha."
+          },
+          "classification": {
+            "at_enqueue": "current_and_actionable_continue_work",
+            "at_frozen_queue": "stale_and_fully_superseded_by_56601051-6b94-4295-8cef-398236d825f2",
+            "reason": "The same Work owner continued and completed the sole remaining GitLab SHA finding, producing and pushing successor head 9937d2424b9b74a8cb4bb874b9f3d266161726a1."
+          },
+          "primary_action": "No independent action from this report; process the successor WORK_COMPLETE report instead.",
+          "safe_disposition": {
+            "eligible_now": true,
+            "recommendation": "acknowledge/archive as superseded",
+            "preserve": "Retain it as the intermediate head and partial-fix receipt linking review findings to the final successor."
+          }
+        },
+        {
+          "queue_id": "56601051-6b94-4295-8cef-398236d825f2",
+          "queued_at": "2026-09-09T01:54:16Z",
+          "supplied_sha256_prefix": "339f724b",
+          "supplied_bytes": 2315,
+          "bound_source": {
+            "session_id": "e48e2582-24f0-41f1-9355-0fe6bfd6c651",
+            "source_message_id": "41543992-90d3-40f8-84a4-3bf3c9978070",
+            "source_created_at": "2026-09-09T01:54:16.000240829Z",
+            "source_lane": "Work",
+            "source_model": "gpt-5.6-terra",
+            "delivery_status": "queued",
+            "duplicate_prior_attempt_message_id": "26b4a751-f142-4d69-9891-c664cabcf597",
+            "duplicate_prior_attempt_at": "2026-09-09T01:54:04.630969664Z"
+          },
+          "meaning": {
+            "result": "WORK_STATE=WORK_COMPLETE",
+            "head": "9937d2424b9b74a8cb4bb874b9f3d266161726a1",
+            "branch": "feature/manage-task-pr-and-m-e6i",
+            "publication": "Reported pushed to origin with clean worktree.",
+            "completed_scope": "All three exact Review blockers: a same-identity replace no-op, exact GitHub detach cleanup with sibling preservation, and authoritative GitLab base/head SHA conversion, persistence, migration, and MCP projection.",
+            "validation": "Focused github, gitlab, mcp/handlers, and backendapp tests passed; the report also carries the earlier full gitlab, mcp/handlers, and backendapp package pass. UI_VISUAL_CHANGE=none; TEST_RUNTIME=NONE."
+          },
+          "classification": {
+            "at_enqueue": "current_and_actionable_work_completion",
+            "at_frozen_queue": "current_and_actionable",
+            "reason": "It is the newest task report, matches the live Work row update at 2026-09-09T01:54:20.004788053Z, supersedes the partial 7a90c0243 report, and no later Review or QA session exists in the complete six-session census."
+          },
+          "primary_action": "First verify PR #3506/provider branch still points to 9937d2424b9b74a8cb4bb874b9f3d266161726a1 and verify clean composition against canonical main 401947fd828b9bffe503003764566be01f19d1e1. If both hold, transition Work to fresh independent Review using exact gpt-5.5 at that exact head. Distinct Sol QA follows only after Review PASS.",
+          "safe_disposition": {
+            "eligible_now": false,
+            "recommendation": "retain/claim until the exact-head provider/composition verification and Work-to-Review action have durable receipts",
+            "eligible_after": "A fresh Review session is started and bound to head 9937d2424b9b74a8cb4bb874b9f3d266161726a1, or a precise provider/composition blocker is recorded with owner and deterministic trigger."
+          }
+        }
+      ]
+    }
+  ],
+  "primary_queue_actions": [
+    {
+      "priority": 1,
+      "queue_id": "56601051-6b94-4295-8cef-398236d825f2",
+      "task_id": "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+      "action": "Verify PR #3506 at exact head 9937d2424b9b74a8cb4bb874b9f3d266161726a1 and current-main composition, then route to fresh gpt-5.5 Review."
+    },
+    {
+      "priority": 2,
+      "queue_id": "528b6695-0fc7-4d58-9272-18224189fc6e",
+      "task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+      "action": "No queue-driven transition now; retain the active Terra Work owner until exact-head CI is terminal, then launch new model-separated Review and QA."
+    },
+    {
+      "priority": 3,
+      "queue_ids": [
+        "fafe5590-2be3-408b-95ce-0cd22ed0b6be",
+        "994f6b08-e1df-446a-b364-535897657ee7"
+      ],
+      "action": "Dispose as fully consumed/superseded after preserving their exact-head bindings."
+    }
+  ]
+}
