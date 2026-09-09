@@ -1670,6 +1670,15 @@ Done terminal integrity all apply. Record the intake disposition and source
 provenance in the Coordinator plan and follow-up ledger. Project-specific bugs
 that are not reusable Kandev platform work stay with the source workspace.
 
+Preserve the reporter's meaning when translating evidence into a code search.
+For example, a task in the **Todo workflow column** is not an agent Todo-stream
+event. A CREATED session or materialized worktree does not establish its
+initiating actor. Trace task creation, explicit start/resume, workflow entry,
+and queued delivery using the available request/event identities before naming
+an unauthorized launch path. Ask the source Coordinator for missing attribution
+through supported read-only surfaces; do not launch a probe into the preserved
+source task merely to fill an evidence gap.
+
 This centralization changes ownership, not trust boundaries. Never copy secrets,
 data, worktrees, credentials, or sessions across workspaces; never ask Support to
 relay task details; never run duplicate implementations; and never treat a peer's

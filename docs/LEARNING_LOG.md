@@ -2956,3 +2956,14 @@ inspection followed. Read boundaries are decisions, not merely call order.
 Same-workspace relation reads worked while cross-task dependency removal was
 rejected as current-task-only. The two obsolete Done edges were preserved as
 housekeeping with exact reciprocal readback rather than bypassing scope.
+
+## 2026-09-09 — Preserve the meaning of peer intake evidence
+
+A peer reported session preparation while a task remained in the Todo workflow
+column. The first owner diagnosis instead examined agent Todo-stream handling.
+The Coordinator corrected the interpretation before attributing a launch cause.
+The intake runbook now distinguishes workflow placement from similarly named
+agent events and requires initiating-event evidence. The same investigation
+also independently found unfinished recovery-merge work behind a stale clean
+checkout/rerun-only receipt; the existing owner was returned to Work with both
+checkouts preserved. Exact operational receipts remain in the task plans.

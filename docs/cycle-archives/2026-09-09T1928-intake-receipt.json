@@ -1,0 +1,493 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "status",
+  "cycle_id": "intake-2026-09-09T1907Z",
+  "status": "IN_PROGRESS",
+  "observed_at": "2026-09-09T19:07:49Z",
+  "scope_task_ids": [
+    "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+    "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+    "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+    "f169e54f-610b-4f35-bcdc-cf3dfe3baaab",
+    "fa3fba49-2018-460b-a600-adae23b24cc8",
+    "c642d57a-5a24-48ca-8f85-57d31115eeb5",
+    "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+    "b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+    "212a68ce-7122-4cdb-ba68-764a5ebdb8c6"
+  ],
+  "open_ledger_task_ids": [
+    "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+    "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+    "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+    "f169e54f-610b-4f35-bcdc-cf3dfe3baaab",
+    "fa3fba49-2018-460b-a600-adae23b24cc8",
+    "c642d57a-5a24-48ca-8f85-57d31115eeb5",
+    "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+    "b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+    "212a68ce-7122-4cdb-ba68-764a5ebdb8c6"
+  ],
+  "ledger_entries": [
+    {
+      "task_id": "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+      "owner": "Terra Work session6c820e23-770f-46b6-8f74-01e65d307fc7",
+      "health": "healthy",
+      "last_action": "Moved CI Fixup to Work after deterministic route/queue/fixture defect report; exact generation16 verified running.",
+      "next_action": "Fix route-effect claim ownership, terminal queue admission and PostgreSQL fixture; test/push clean head then fresh Review/QA.",
+      "trigger": "Owner completion or next routine; resume exact Terra owner if incomplete.",
+      "fallback": "Preserve unique work, obtain exact owner evidence and use existing canonical recovery. No duplicate implementation or bypass.",
+      "evidence_generation": "intake-2026-09-09T1907Z@2026-09-09T19:28:00Z",
+      "lane": "Work",
+      "last_checked_cycle_id": "intake-2026-09-09T1907Z",
+      "anomalous": false,
+      "mutated": true,
+      "transitioned": true,
+      "delivery_status": "none",
+      "title": "Recover atomic terminal routing in an isolated workspace",
+      "head_evidence": "96b6e5ea9bc93eb3b6add9f1d2f22d1f7012302a",
+      "last_checked_at": "2026-09-09T19:28:00Z"
+    },
+    {
+      "task_id": "212a68ce-7122-4cdb-ba68-764a5ebdb8c6",
+      "owner": "Coordinator dependency recovery via b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+      "health": "blocked",
+      "last_action": "Corrected stale PR3496-only trigger; full runtime PR3242 is unmerged and staffed in CI Fixup.",
+      "next_action": "After full3242 merge/deploy with C1 disposition resolved, verify newly materialized checkout Git-write/rollback; then fresh Terra Work.",
+      "trigger": "PR3242 provider merge/deploy receipt AND new-checkout probe.",
+      "fallback": "Preserve unique work, obtain exact owner evidence and use existing canonical recovery. No duplicate implementation or bypass.",
+      "evidence_generation": "intake-2026-09-09T1907Z@2026-09-09T19:28:00Z",
+      "lane": "Blocked",
+      "last_checked_cycle_id": "intake-2026-09-09T1907Z",
+      "anomalous": false,
+      "mutated": true,
+      "transitioned": false,
+      "delivery_status": "none",
+      "title": "Finish Provider Usage plugin coverage",
+      "head_evidence": "Failed old session501387d6-5c2c-4036-b768-2c568813d0f8 preserved",
+      "last_checked_at": "2026-09-09T19:28:00Z"
+    },
+    {
+      "task_id": "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+      "owner": "Luna CI session0d758482-e29b-4429-9408-7c7c9c4a7c28",
+      "health": "waiting",
+      "last_action": "Conflict repaired and clean merge pushed; ten current CI jobs still running.",
+      "next_action": "After terminal green route to fresh GPT-5.5 Review and distinct Sol QA; classify new red jobs.",
+      "trigger": "Terminal event or first routine after19:40Z bounded retry; actual rate-limit reset unknown.",
+      "fallback": "Preserve unique work, obtain exact owner evidence and use existing canonical recovery. No duplicate implementation or bypass.",
+      "evidence_generation": "intake-2026-09-09T1907Z@2026-09-09T19:28:00Z",
+      "lane": "CI Fixup",
+      "last_checked_cycle_id": "intake-2026-09-09T1907Z",
+      "anomalous": false,
+      "mutated": true,
+      "transitioned": false,
+      "delivery_status": "none",
+      "title": "Manage task PR and MR links via MCP",
+      "head_evidence": "b1ada7b95dd471752799fbbe78ed6ce8b2794564",
+      "last_checked_at": "2026-09-09T19:28:00Z"
+    },
+    {
+      "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+      "owner": "Terra Work session769c2705-7a83-438e-b98d-3c6afe2a1597",
+      "health": "waiting",
+      "last_action": "Terra pushed193d2b307ffb99eb498e1df7625d6521d0d64c54 with all six fixes and thread replies; focused race suites/lint/hooks passed, clean aligned worktree; CI pending.",
+      "next_action": "After exact-head CI terminal green, route fresh GPT-5.5 Review then distinct Sol QA; classify any new failures.",
+      "trigger": "Current-head terminal event or first routine after19:40Z quota retry.",
+      "fallback": "Preserve unique work, obtain exact owner evidence and use existing canonical recovery. No duplicate implementation or bypass.",
+      "evidence_generation": "intake-2026-09-09T1907Z@2026-09-09T19:28:00Z",
+      "lane": "Work",
+      "last_checked_cycle_id": "intake-2026-09-09T1907Z",
+      "anomalous": false,
+      "mutated": true,
+      "transitioned": true,
+      "delivery_status": "none",
+      "title": "Fix PR-watch amplification, task-status, and unbounded",
+      "head_evidence": "193d2b307ffb99eb498e1df7625d6521d0d64c54",
+      "last_checked_at": "2026-09-09T19:28:00Z"
+    },
+    {
+      "task_id": "b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+      "owner": "Luna CI session5c14b095-1d6d-48a6-9f0c-1decebf9a445",
+      "health": "waiting",
+      "last_action": "PR3242 clean aligned9f71cb00667c331487bd0dd78f6b8e1045e07879; last CI27passed/23pending before GraphQL quota denial; move lifecycle now settled. C1 preserved separate, detailed disposition still outstanding.",
+      "next_action": "On quota recovery refresh full exact-head CI; obtain explicit source-based C1 hardening disposition before fresh Review/QA. Do not close PR3496.",
+      "trigger": "First normal routine after19:40Z bounded retry; exact reset unknown.",
+      "fallback": "Preserve unique work, obtain exact owner evidence and use existing canonical recovery. No duplicate implementation or bypass.",
+      "evidence_generation": "intake-2026-09-09T1907Z@2026-09-09T19:28:00Z",
+      "lane": "CI Fixup",
+      "last_checked_cycle_id": "intake-2026-09-09T1907Z",
+      "anomalous": false,
+      "mutated": true,
+      "transitioned": true,
+      "delivery_status": "none",
+      "title": "Make managed task worktrees Git-writable",
+      "head_evidence": "PR3242=9f71cb00667c331487bd0dd78f6b8e1045e07879; PR3496=5504448a57da825d279adcc57170a0a9b252b4da",
+      "last_checked_at": "2026-09-09T19:28:00Z"
+    },
+    {
+      "task_id": "c642d57a-5a24-48ca-8f85-57d31115eeb5",
+      "owner": "Fresh Terra Work session06f5e499-6e84-4e51-8318-aa9ad155f8e0",
+      "health": "healthy",
+      "last_action": "Peer Todo-COLUMN intake adopted; dirty recovery merge independently verified. Blocked→Work settled; old owner exhausted budget. Exactly one fresh Terra verified RUNNING19:27:56Z.",
+      "next_action": "Finish existing recovery merge and ParentReplyPersistsQueuedReceipt/StepComplete_FirstCallAccepted failures, test/commit/push. Preserve original tree and old parked sessions.",
+      "trigger": "Fresh owner progress report or next routine; explicitly target06f5e499, never parked primarya7e3e659.",
+      "fallback": "Preserve unique work, obtain exact owner evidence and use existing canonical recovery. No duplicate implementation or bypass.",
+      "evidence_generation": "intake-2026-09-09T1907Z@2026-09-09T19:28:00Z",
+      "lane": "Work",
+      "last_checked_cycle_id": "intake-2026-09-09T1907Z",
+      "anomalous": false,
+      "mutated": true,
+      "transitioned": true,
+      "delivery_status": "none",
+      "title": "Prevent stale sessions blocking workflow",
+      "head_evidence": "HEAD02bb3ad3b52d37658a117b7ec0e10a660a812fee with MERGE_HEAD401947fd828b9bffe503003764566be01f19d1e1",
+      "last_checked_at": "2026-09-09T19:28:00Z"
+    },
+    {
+      "task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+      "owner": "Luna CI sessione0f37e2c-a9bf-43d1-9bd8-6ba44e91b8b3",
+      "health": "healthy",
+      "last_action": "Peer configured-pin case distinguished from runtime substitution. Fresh conflict found; Human-QA→CI Fixup generation21 started. Current CI75green/8threads resolved at old head.",
+      "next_action": "Resolve conflicts preserving controls; return new head for fresh Review/QA and pending Human desktop/mobile test. No peer-driven feature expansion.",
+      "trigger": "Owner report or next routine; verify pending manual lifecycle clears.",
+      "fallback": "Preserve unique work, obtain exact owner evidence and use existing canonical recovery. No duplicate implementation or bypass.",
+      "evidence_generation": "intake-2026-09-09T1907Z@2026-09-09T19:28:00Z",
+      "lane": "CI Fixup",
+      "last_checked_cycle_id": "intake-2026-09-09T1907Z",
+      "anomalous": false,
+      "mutated": true,
+      "transitioned": true,
+      "delivery_status": "none",
+      "title": "Fix PR lane profile executing wrong model",
+      "head_evidence": "d80c50ace5eafb1c55e7f82674c296361108fe48",
+      "last_checked_at": "2026-09-09T19:28:00Z"
+    },
+    {
+      "task_id": "f169e54f-610b-4f35-bcdc-cf3dfe3baaab",
+      "owner": "Luna CI sessioneb6eebee-5452-4a97-a9cd-abf1e8fa2b91",
+      "health": "waiting",
+      "last_action": "Conflict integrated; obsolete SetDashboardService removed; clean pushed merge supersedes old artifact-failure head.",
+      "next_action": "Refresh complete exact-head CI/threads after jobs terminate; green routes fresh Review/QA, new red gets classification.",
+      "trigger": "Terminal event or first routine after19:40Z bounded retry; no repeated quota polling.",
+      "fallback": "Preserve unique work, obtain exact owner evidence and use existing canonical recovery. No duplicate implementation or bypass.",
+      "evidence_generation": "intake-2026-09-09T1907Z@2026-09-09T19:28:00Z",
+      "lane": "CI Fixup",
+      "last_checked_cycle_id": "intake-2026-09-09T1907Z",
+      "anomalous": false,
+      "mutated": true,
+      "transitioned": false,
+      "delivery_status": "none",
+      "title": "Enable audited cross-workspace task transfer",
+      "head_evidence": "12961a84c0eb0f5e7c6deb95bcdb0aef8bc9f550",
+      "last_checked_at": "2026-09-09T19:28:00Z"
+    },
+    {
+      "task_id": "fa3fba49-2018-460b-a600-adae23b24cc8",
+      "owner": "Luna CI session6c98a7f5-c71a-4595-b534-fa9ff6f89a97",
+      "health": "waiting",
+      "last_action": "Exact log classified; repo-argument fix and conflict integration pushed. Eleven checks still queued/running.",
+      "next_action": "After terminal green route fresh GPT-5.5 Review and distinct Sol QA; classify any current-head red job.",
+      "trigger": "Terminal event or first routine after19:40Z bounded retry.",
+      "fallback": "Preserve unique work, obtain exact owner evidence and use existing canonical recovery. No duplicate implementation or bypass.",
+      "evidence_generation": "intake-2026-09-09T1907Z@2026-09-09T19:28:00Z",
+      "lane": "CI Fixup",
+      "last_checked_cycle_id": "intake-2026-09-09T1907Z",
+      "anomalous": false,
+      "mutated": true,
+      "transitioned": false,
+      "delivery_status": "none",
+      "title": "Add coordinator grant management surfaces",
+      "head_evidence": "33c03b25760f4a4f77d94a81aa70d58a52856bfa",
+      "last_checked_at": "2026-09-09T19:28:00Z"
+    }
+  ],
+  "blocked_task_ids": [
+    "212a68ce-7122-4cdb-ba68-764a5ebdb8c6"
+  ],
+  "blocked_records": [
+    {
+      "task_id": "212a68ce-7122-4cdb-ba68-764a5ebdb8c6",
+      "previous_step": "Review",
+      "blocker_proof": "Provider19:18Z full runtime PR3242 OPEN at9f71cb00667c331487bd0dd78f6b8e1045e07879 with CI pending; C1 PR3496 has material hardening but grants no runtime permission.",
+      "falsification_query": "Is full runtime merged/deployed with C1 disposition and new dependent checkout Git-write/rollback proof?",
+      "falsification_result": "No: PR3242 remains open; dependency not cleared.",
+      "blocker_owner": "b74833e7-a05f-4cdf-81cf-db5b4c02f368 Luna CI session5c14b095-1d6d-48a6-9f0c-1decebf9a445 RUNNING",
+      "preservation_receipt": "Coverage intent retained.",
+      "removal_action": "After full3242 merge/deploy with C1 disposition resolved, verify newly materialized checkout Git-write/rollback; then fresh Terra Work.",
+      "expected_evidence": "PR3242 merge/deploy including C1 disposition plus successful new-checkout Git-write/rollback.",
+      "trigger": "PR3242 provider merge/deploy receipt AND new-checkout probe.",
+      "attempt_count": 1,
+      "fallback": "Silent recheck.",
+      "last_checked_cycle_id": "intake-2026-09-09T1907Z",
+      "last_checked_at": "2026-09-09T19:28:00Z"
+    }
+  ],
+  "anomalies": [],
+  "delivery_claims": [],
+  "transitions": [
+    {
+      "task_id": "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+      "transition_id": "intake-2026-09-09T1907Z:02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+      "pre": {
+        "source_lane": "CI Fixup",
+        "target_lane": "Work",
+        "authority": "Coordinator recovery charter",
+        "evidence_generation": "intake-2026-09-09T1907Z@2026-09-09T19:28:00Z",
+        "pending_move_checked_at": "2026-09-09T19:15:00Z",
+        "expected_owner": "Terra Work session6c820e23-770f-46b6-8f74-01e65d307fc7",
+        "expected_model": "gpt-5.6-terra",
+        "required_verdicts": [
+          "Existing approved implementation recovery; independent current defect/preservation evidence"
+        ],
+        "invalidation_conditions": "Changed lane/session/model/head, active competing writer or pending incompatible move."
+      },
+      "post": {
+        "lane": "Work",
+        "state": "IN_PROGRESS",
+        "lifecycle_settled": true,
+        "session_id": "6c820e23-770f-46b6-8f74-01e65d307fc7",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "runtime_model": "gpt-5.6-terra",
+        "head": "96b6e5ea9bc93eb3b6add9f1d2f22d1f7012302a",
+        "tag_aligned": true,
+        "pending_move_clear": false,
+        "execution_expected": true,
+        "execution_state": "RUNNING",
+        "verified": true
+      },
+      "pending_move_limitation": "Authoritative census not exposed; used documented stable-lane/full-session fallback. No blanket pending-row clearance claim."
+    },
+    {
+      "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+      "transition_id": "intake-2026-09-09T1907Z:b007bb76-841e-4243-a251-c4f87a1ed1e4",
+      "pre": {
+        "source_lane": "CI Fixup",
+        "target_lane": "Work",
+        "authority": "Coordinator recovery charter",
+        "evidence_generation": "intake-2026-09-09T1907Z@2026-09-09T19:28:00Z",
+        "pending_move_checked_at": "2026-09-09T19:15:00Z",
+        "expected_owner": "Terra Work session769c2705-7a83-438e-b98d-3c6afe2a1597",
+        "expected_model": "gpt-5.6-terra",
+        "required_verdicts": [
+          "Existing approved implementation recovery; independent current defect/preservation evidence"
+        ],
+        "invalidation_conditions": "Changed lane/session/model/head, active competing writer or pending incompatible move."
+      },
+      "post": {
+        "lane": "Work",
+        "state": "REVIEW",
+        "lifecycle_settled": true,
+        "session_id": "769c2705-7a83-438e-b98d-3c6afe2a1597",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "runtime_model": "gpt-5.6-terra",
+        "head": "193d2b307ffb99eb498e1df7625d6521d0d64c54",
+        "tag_aligned": true,
+        "pending_move_clear": false,
+        "execution_expected": false,
+        "execution_state": "RUNNING",
+        "verified": true
+      },
+      "pending_move_limitation": "Authoritative census not exposed; used documented stable-lane/full-session fallback. No blanket pending-row clearance claim."
+    },
+    {
+      "task_id": "b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+      "transition_id": "intake-2026-09-09T1907Z:b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+      "pre": {
+        "source_lane": "Blocked",
+        "target_lane": "CI Fixup",
+        "authority": "Coordinator recovery charter",
+        "evidence_generation": "intake-2026-09-09T1907Z@2026-09-09T19:28:00Z",
+        "pending_move_checked_at": "2026-09-09T19:15:00Z",
+        "expected_owner": "Luna CI session5c14b095-1d6d-48a6-9f0c-1decebf9a445",
+        "expected_model": "gpt-5.6-luna",
+        "required_verdicts": [
+          "Existing approved implementation recovery; independent current defect/preservation evidence"
+        ],
+        "invalidation_conditions": "Changed lane/session/model/head, active competing writer or pending incompatible move."
+      },
+      "post": {
+        "lane": "CI Fixup",
+        "state": "REVIEW",
+        "lifecycle_settled": true,
+        "session_id": "5c14b095-1d6d-48a6-9f0c-1decebf9a445",
+        "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+        "runtime_model": "gpt-5.6-luna",
+        "head": "PR3242=9f71cb00667c331487bd0dd78f6b8e1045e07879; PR3496=5504448a57da825d279adcc57170a0a9b252b4da",
+        "tag_aligned": true,
+        "pending_move_clear": false,
+        "execution_expected": false,
+        "execution_state": "RUNNING",
+        "verified": true
+      },
+      "pending_move_limitation": "Authoritative census not exposed; used documented stable-lane/full-session fallback. No blanket pending-row clearance claim."
+    },
+    {
+      "task_id": "c642d57a-5a24-48ca-8f85-57d31115eeb5",
+      "transition_id": "intake-2026-09-09T1907Z:c642d57a-5a24-48ca-8f85-57d31115eeb5",
+      "pre": {
+        "source_lane": "Blocked",
+        "target_lane": "Work",
+        "authority": "Coordinator recovery charter",
+        "evidence_generation": "intake-2026-09-09T1907Z@2026-09-09T19:28:00Z",
+        "pending_move_checked_at": "2026-09-09T19:15:00Z",
+        "expected_owner": "Fresh Terra Work session06f5e499-6e84-4e51-8318-aa9ad155f8e0",
+        "expected_model": "gpt-5.6-terra",
+        "required_verdicts": [
+          "Existing approved implementation recovery; independent current defect/preservation evidence"
+        ],
+        "invalidation_conditions": "Changed lane/session/model/head, active competing writer or pending incompatible move."
+      },
+      "post": {
+        "lane": "Work",
+        "state": "IN_PROGRESS",
+        "lifecycle_settled": true,
+        "session_id": "06f5e499-6e84-4e51-8318-aa9ad155f8e0",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "runtime_model": "gpt-5.6-terra",
+        "head": "HEAD02bb3ad3b52d37658a117b7ec0e10a660a812fee with MERGE_HEAD401947fd828b9bffe503003764566be01f19d1e1",
+        "tag_aligned": true,
+        "pending_move_clear": false,
+        "execution_expected": true,
+        "execution_state": "RUNNING",
+        "verified": true
+      },
+      "pending_move_limitation": "Authoritative census not exposed; used documented stable-lane/full-session fallback. No blanket pending-row clearance claim."
+    },
+    {
+      "task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+      "transition_id": "intake-2026-09-09T1907Z:e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+      "pre": {
+        "source_lane": "Human-QA",
+        "target_lane": "CI Fixup",
+        "authority": "Coordinator recovery charter",
+        "evidence_generation": "intake-2026-09-09T1907Z@2026-09-09T19:28:00Z",
+        "pending_move_checked_at": "2026-09-09T19:15:00Z",
+        "expected_owner": "Luna CI sessione0f37e2c-a9bf-43d1-9bd8-6ba44e91b8b3",
+        "expected_model": "gpt-5.6-luna",
+        "required_verdicts": [
+          "Existing approved implementation recovery; independent current defect/preservation evidence"
+        ],
+        "invalidation_conditions": "Changed lane/session/model/head, active competing writer or pending incompatible move."
+      },
+      "post": {
+        "lane": "CI Fixup",
+        "state": "IN_PROGRESS",
+        "lifecycle_settled": false,
+        "session_id": "e0f37e2c-a9bf-43d1-9bd8-6ba44e91b8b3",
+        "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+        "runtime_model": "gpt-5.6-luna",
+        "head": "d80c50ace5eafb1c55e7f82674c296361108fe48",
+        "tag_aligned": true,
+        "pending_move_clear": false,
+        "execution_expected": true,
+        "execution_state": "RUNNING",
+        "verified": false
+      },
+      "pending_move_limitation": "Authoritative census not exposed; used documented stable-lane/full-session fallback. No blanket pending-row clearance claim."
+    }
+  ],
+  "mutations": [
+    {
+      "task_id": "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+      "kind": "Scoped coordination, plan/tag updates and any explicit launch/move",
+      "target": "Recover atomic terminal routing in an isolated workspace",
+      "result": "Moved CI Fixup to Work after deterministic route/queue/fixture defect report; exact generation16 verified running.",
+      "readback": "Exact task/session/lane/tag readback retained; running start observed when requested. Pending lifecycle remains separately unverified.",
+      "verified": true
+    },
+    {
+      "task_id": "212a68ce-7122-4cdb-ba68-764a5ebdb8c6",
+      "kind": "Scoped coordination, plan/tag updates and any explicit launch/move",
+      "target": "Finish Provider Usage plugin coverage",
+      "result": "Corrected stale PR3496-only trigger; full runtime PR3242 is unmerged and staffed in CI Fixup.",
+      "readback": "Exact task/session/lane/tag readback retained; running start observed when requested. Pending lifecycle remains separately unverified.",
+      "verified": true
+    },
+    {
+      "task_id": "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+      "kind": "Scoped coordination, plan/tag updates and any explicit launch/move",
+      "target": "Manage task PR and MR links via MCP",
+      "result": "Conflict repaired and clean merge pushed; ten current CI jobs still running.",
+      "readback": "Exact task/session/lane/tag readback retained; running start observed when requested. Pending lifecycle remains separately unverified.",
+      "verified": true
+    },
+    {
+      "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+      "kind": "Scoped coordination, plan/tag updates and any explicit launch/move",
+      "target": "Fix PR-watch amplification, task-status, and unbounded",
+      "result": "Terra pushed193d2b307ffb99eb498e1df7625d6521d0d64c54 with all six fixes and thread replies; focused race suites/lint/hooks passed, clean aligned worktree; CI pending.",
+      "readback": "Exact task/session/lane/tag readback retained; running start observed when requested. Pending lifecycle remains separately unverified.",
+      "verified": true
+    },
+    {
+      "task_id": "b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+      "kind": "Scoped coordination, plan/tag updates and any explicit launch/move",
+      "target": "Make managed task worktrees Git-writable",
+      "result": "PR3242 clean aligned9f71cb00667c331487bd0dd78f6b8e1045e07879; last CI27passed/23pending before GraphQL quota denial; move lifecycle now settled. C1 preserved separate, detailed disposition still outstanding.",
+      "readback": "Exact task/session/lane/tag readback retained; running start observed when requested. Pending lifecycle remains separately unverified.",
+      "verified": true
+    },
+    {
+      "task_id": "c642d57a-5a24-48ca-8f85-57d31115eeb5",
+      "kind": "Scoped coordination, plan/tag updates and any explicit launch/move",
+      "target": "Prevent stale sessions blocking workflow",
+      "result": "Peer Todo-COLUMN intake adopted; dirty recovery merge independently verified. Blocked→Work settled; old owner exhausted budget. Exactly one fresh Terra verified RUNNING19:27:56Z.",
+      "readback": "Exact task/session/lane/tag readback retained; running start observed when requested. Pending lifecycle remains separately unverified.",
+      "verified": true
+    },
+    {
+      "task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+      "kind": "Scoped coordination, plan/tag updates and any explicit launch/move",
+      "target": "Fix PR lane profile executing wrong model",
+      "result": "Peer configured-pin case distinguished from runtime substitution. Fresh conflict found; Human-QA→CI Fixup generation21 started. Current CI75green/8threads resolved at old head.",
+      "readback": "Exact task/session/lane/tag readback retained; running start observed when requested. Pending lifecycle remains separately unverified.",
+      "verified": true
+    },
+    {
+      "task_id": "f169e54f-610b-4f35-bcdc-cf3dfe3baaab",
+      "kind": "Scoped coordination, plan/tag updates and any explicit launch/move",
+      "target": "Enable audited cross-workspace task transfer",
+      "result": "Conflict integrated; obsolete SetDashboardService removed; clean pushed merge supersedes old artifact-failure head.",
+      "readback": "Exact task/session/lane/tag readback retained; running start observed when requested. Pending lifecycle remains separately unverified.",
+      "verified": true
+    },
+    {
+      "task_id": "fa3fba49-2018-460b-a600-adae23b24cc8",
+      "kind": "Scoped coordination, plan/tag updates and any explicit launch/move",
+      "target": "Add coordinator grant management surfaces",
+      "result": "Exact log classified; repo-argument fix and conflict integration pushed. Eleven checks still queued/running.",
+      "readback": "Exact task/session/lane/tag readback retained; running start observed when requested. Pending lifecycle remains separately unverified.",
+      "verified": true
+    }
+  ],
+  "continuity": {
+    "plan_bytes": 127690,
+    "soft_limit_bytes": 200000,
+    "hard_limit_bytes": 240000,
+    "write_readback_verified": true,
+    "current_snapshot_first": true,
+    "open_record_sets_preserved": true,
+    "compaction_performed": false
+  },
+  "report": {
+    "mentioned_task_ids": [],
+    "barrier_at": "2026-09-09T19:33:00Z",
+    "fresh": true,
+    "task_barriers": []
+  },
+  "gate_results": {
+    "G1": "pass",
+    "G2": "pass",
+    "G3": "pass",
+    "G4": "pass",
+    "G5": "pass",
+    "G6": "pass",
+    "G7": "pending",
+    "G8": "pass",
+    "G9": "pass",
+    "G10": "pass"
+  },
+  "limitations": [
+    "This receipt is IN_PROGRESS, not a G1-G10 completion certificate.",
+    "Current full-board Blocked/Done proof remains outstanding.",
+    "Current FIFO entries remain unchanged; no unseen queue body was disposed."
+  ]
+}
