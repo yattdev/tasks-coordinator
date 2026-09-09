@@ -1,0 +1,43 @@
+{
+  "schema_version": "queue-disposition-v1",
+  "cycle_id": "cycle-2026-09-09T0054Z",
+  "session_id": "da0761f2-cd4e-44d1-bccc-6f9c1119f534",
+  "first_disposition": {
+    "before_count": 14,
+    "after_count": 4,
+    "removed_count": 10,
+    "outcome": "all exact claims removed"
+  },
+  "second_disposition": {
+    "before_count": 4,
+    "after_count": 1,
+    "removed_count": 3,
+    "ids": [
+      "73f44080-8765-4904-8b36-7ba8605fdd54",
+      "f45addd8-ade1-4b1c-a788-316bea98af4e",
+      "f6cc5feb-b10b-4852-add1-2a4199b92c18"
+    ],
+    "outcome": "all newly arrived handled claims removed"
+  },
+  "final_census": {
+    "count": 1,
+    "retained_id": "d23e238c-1ddc-4d37-98a5-fbd68396f618",
+    "retained_claim": "7e3cbde5bc1af80b1086d32ecb3a5f77041802b8f1893465c5ec237d6fa96e5f",
+    "reason": "sole effective routine wake retained because the full board cycle is still in progress"
+  },
+  "post_disposition_actions": [
+    {
+      "task_id": "856898aa-d06a-43f7-9a87-f873665f19da",
+      "action": "excluded crossed gpt-5.5 QA and PR segments, restored QA with exact Sol generation 6",
+      "session_id": "cf49e9ab-a4ac-4fc1-951c-421b0bc5c999",
+      "verified_state": "RUNNING"
+    },
+    {
+      "task_id": "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+      "action": "routed two Review findings to Terra Work",
+      "session_id": "2067abb3-313c-4778-803c-966792fabaa1",
+      "verified_state": "RUNNING by direct conversation receipt"
+    }
+  ],
+  "cycle_status": "IN_PROGRESS; this receipt does not satisfy the full board G1-G10 exit gates"
+}
