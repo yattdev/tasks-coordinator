@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0.0",
   "cycle_id": "cycle-2026-09-09T0238Z",
-  "observed_through": "2026-09-09T03:06:16Z",
+  "observed_through": "2026-09-09T03:36:48Z",
   "coordinator_task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
   "coordinator_session_id": "da0761f2-cd4e-44d1-bccc-6f9c1119f534",
   "queue": {
     "initial_census": 0,
-    "arrived_during_cycle": 12,
-    "non_routine_disposed_after_task_conversation_read": 11,
+    "arrived_during_cycle": 13,
+    "non_routine_disposed_after_task_conversation_read": 12,
     "retained_routine_wakes": 1,
     "final_expected_count": 1
   },
@@ -27,7 +27,8 @@
     {"task_id":"7a0454aa-c089-4365-8966-ad99775a46f8","action":"moved PR to Blocked on repair plus upstream semver release","verification":"physical Blocked; caf0112739375dc5e4ecce5a09456096a8566110 and merged PR #3 preserved","next":"resume only after repair task complete and upstream tag containing #2872"},
     {"task_id":"7056a702-a3c3-4fe8-8535-c6b8d340ef6a","action":"moved QA to Blocked on strict GPT-5.4 PR-owner unavailability","verification":"physical Blocked; clean 6e990c1f606b7dcb19c98f83ee8ea59f5af4f813; PR #3155 open draft mergeable","next":"fresh strict PR owner after exact GPT-5.4 advertises or Human changes policy"},
     {"task_id":"a3f02302-12fa-4129-8985-116efb8fed66","action":"moved QA to Blocked on strict GPT-5.4 PR-owner unavailability","verification":"physical Blocked; clean a1fb4e83c1286f0a0847937e621454a0de02adae; PR #3310 49 checks green","next":"fresh strict PR owner after exact GPT-5.4 advertises or Human changes policy"},
-    {"task_id":"09325a7b-afb5-4f54-b2a7-ceae217a7bee","action":"moved QA to Blocked on strict GPT-5.4 PR-owner unavailability","verification":"physical Blocked; current exact-head Review/QA receipt preserved","next":"fresh strict PR owner after exact GPT-5.4 advertises or Human changes policy"}
+    {"task_id":"09325a7b-afb5-4f54-b2a7-ceae217a7bee","action":"moved QA to Blocked on strict GPT-5.4 PR-owner unavailability","verification":"physical Blocked; current exact-head Review/QA receipt preserved","next":"fresh strict PR owner after exact GPT-5.4 advertises or Human changes policy"},
+    {"task_id":"02159e6a-726a-43b2-8d9a-f74c5c01fe11","action":"consumed GPT-5.5 REVIEW_RESULT=BLOCKED and returned task to Work for terminal-operation settlement remediation","verification":"an initial wrong Backlogs target was detected from the spawned agent's do-nothing receipt, all crossed sessions were stopped, the exact workflow map was read, and the task was corrected to physical Work with Terra 41d29cd7-ae61-4796-881d-b3c115392143 RUNNING at assignment generation 11","next":"Terra fixes the deferred pending-move operation settlement defect, tests, commits, and pushes ba906ba9e successor; then start a new independent Review"}
   ],
   "done_cleanup": {
     "obsolete_edges": [

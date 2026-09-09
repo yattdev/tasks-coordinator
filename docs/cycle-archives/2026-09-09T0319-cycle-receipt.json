@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "scope": "cycle",
   "cycle_id": "cycle-2026-09-09T0238Z",
-  "observed_at": "2026-09-09T03:28:33Z",
+  "observed_at": "2026-09-09T03:37:26Z",
   "live_task_ids": [
     "00ceb41b-97fe-42d1-be99-10bbe9d1b676",
     "01432319-aa8b-4c7d-9841-addcc6ab8e76",
@@ -1332,12 +1332,12 @@
       "task_id": "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
       "owner": "task agent",
       "health": "healthy",
-      "last_action": "corrected session identity and resumed isolated recovery",
-      "next_action": "consume independent Review result; PASS routes distinct Sol QA, BLOCKED routes Work",
-      "trigger": "Next normal Coordinator cycle or a named owner receipt.",
-      "fallback": "Preserve current source, runtime, queue, and provider state; do not infer completion.",
-      "evidence_generation": "cycle-2026-09-09T0238Z@03:19Z",
-      "lane": "Review",
+      "last_action": "Consumed GPT-5.5 REVIEW_RESULT=BLOCKED, corrected an initially mistaken Backlogs target, and resumed exact Terra remediation in Work.",
+      "next_action": "Terra settles deleted deferred-move route operations atomically, adds the exact-retry regression, tests, commits, and pushes; then Coordinator starts a new independent Review.",
+      "trigger": "Terra session 41d29cd7 returns an exact successor and AUTHOR_TESTS plus HEAD_PUSHED receipts.",
+      "fallback": "Preserve ba906ba9e and both checkout receipts; if Terra stalls or fails, re-read its terminal conversation before one bounded resume.",
+      "evidence_generation": "cycle-2026-09-09T0238Z@03:32Z",
+      "lane": "Work",
       "last_checked_cycle_id": "cycle-2026-09-09T0238Z",
       "anomalous": false,
       "mutated": true,
@@ -2339,28 +2339,27 @@
     },
     {
       "task_id": "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
-      "transition_id": "cycle0238-11-02159e6a",
+      "transition_id": "cycle0238-17-02159e6a",
       "pre": {
-        "source_lane": "Work",
-        "target_lane": "Review",
+        "source_lane": "Review",
+        "target_lane": "Work",
         "authority": "Coordinator workflow authority",
-        "evidence_generation": "cycle-2026-09-09T0238Z@03:19Z",
-        "pending_move_checked_at": "2026-09-09T03:19:24Z",
-        "expected_owner": "fresh lane owner",
-        "expected_model": "gpt-5.5",
+        "evidence_generation": "cycle-2026-09-09T0238Z@03:32Z",
+        "pending_move_checked_at": "2026-09-09T03:32:52Z",
+        "expected_owner": "task agent",
+        "expected_model": "gpt-5.6-terra",
         "required_verdicts": [
-          "AUTHOR_TESTS=PASSED",
-          "HEAD_PUSHED=CLEAN"
+          "REVIEW_RESULT=BLOCKED"
         ],
         "invalidation_conditions": "Head change, competing writer, wrong model, stale pending move, or provider mutation invalidates this receipt."
       },
       "post": {
-        "lane": "Review",
-        "state": "REVIEW",
+        "lane": "Work",
+        "state": "IN_PROGRESS",
         "lifecycle_settled": true,
-        "session_id": "04ef9db8-289b-443f-af9c-a84b16f2c30c",
-        "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
-        "runtime_model": "gpt-5.5",
+        "session_id": "41d29cd7-ae61-4796-881d-b3c115392143",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "runtime_model": "gpt-5.6-terra",
         "head": "ba906ba9e2c0aa13c6241a891ea4b869d49c1bbc",
         "tag_aligned": true,
         "pending_move_clear": true,
@@ -2489,6 +2488,14 @@
       "verified": true
     },
     {
+      "task_id": "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+      "kind": "workflow coordination",
+      "target": "consumed GPT-5.5 REVIEW_RESULT=BLOCKED and returned the task to Work for terminal-operation settlement remediation",
+      "result": "initial Backlogs misroute was detected and corrected; crossed sessions were stopped; exact Terra assignment generation 11 and physical Work read back",
+      "readback": "Terra 41d29cd7-ae61-4796-881d-b3c115392143 RUNNING at ba906ba9e2c0aa13c6241a891ea4b869d49c1bbc",
+      "verified": true
+    },
+    {
       "task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
       "kind": "workflow coordination",
       "target": "stopped Human-QA crossover and parked CI watcher",
@@ -2530,7 +2537,7 @@
     }
   ],
   "continuity": {
-    "plan_bytes": 197278,
+    "plan_bytes": 198732,
     "soft_limit_bytes": 200000,
     "hard_limit_bytes": 240000,
     "write_readback_verified": true,
@@ -2539,10 +2546,18 @@
     "compaction_performed": false
   },
   "report": {
-    "mentioned_task_ids": [],
-    "barrier_at": "2026-09-09T03:28:33Z",
+    "mentioned_task_ids": [
+      "02159e6a-726a-43b2-8d9a-f74c5c01fe11"
+    ],
+    "barrier_at": "2026-09-09T03:37:26Z",
     "fresh": true,
-    "task_barriers": []
+    "task_barriers": [
+      {
+        "task_id": "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+        "lane_session_observed_at": "2026-09-09T03:37:26Z",
+        "provider_required": false
+      }
+    ]
   },
   "gate_results": {
     "G1": "pass",
