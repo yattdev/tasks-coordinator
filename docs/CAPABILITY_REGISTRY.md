@@ -397,6 +397,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Never** Send secrets or raw credentials in any field.
 
 ### G3. Support returns a genuine terminal BLOCKED response
+- Distinguish operational recovery from reusable capability acceptance. A sole-primary/current session readback does not prove atomic FIFO transfer, routine-target switching, usage accounting, fencing, or idempotence. Preserve those as unproven until the reviewed surface exists; a corrected terminal dependency receipt needs no repeated Support request.
 - **Trigger** The pushed Support result begins `KANDEV_SUPPORT_STATUS: BLOCKED`. An explicitly authorized bounded diagnostic may instead establish this with terminal non-zero status plus the matching received transcript.
 - **Action** Treat delivery as verified but the environment blocker as uncleared. Record the request ID, exact missing authority/capability, smallest next action, preservation receipt, and deterministic resume trigger; physically park the affected workflow task in Blocked. Do not resend the unchanged request.
 - **Capability boundary** As verified 2026-08-29, the reviewed Support worker cannot directly edit persistent canonical workspace-repository inventory when no audited repair operation exists, and cannot provision/reuse GitLab credentials without a reviewed task-scoped credential broker. These are missing platform capabilities, not permission to edit backend state or mount host credentials.

@@ -1,5 +1,15 @@
 # Coordinator learning-cycle log
 
+## 2026-09-09 — Separate recovered primary from missing rotation capability
+
+Support requests `9af7ebae-1097-4dd3-8005-564f4d87eb6d` and corrected closure
+`6c6429e9-9877-48f6-a2e1-05de373d2bd2` distinguish the live sole-primary result
+from unproven atomic queue/routine/fencing/usage semantics. The first response
+also cited the wrong prerequisite owner and a superseded head. Independent
+board/provider evidence corrected both; no repeated provisioning request is
+needed before the existing reviewed delivery chain clears. Procedure is now
+recorded in the registry, runbook, and decisions.
+
 ## 2026-09-08k — no durable lessons this cycle
 
 Window: `2026-09-08T08:10:46Z` through `2026-09-08T14:15:53Z`.

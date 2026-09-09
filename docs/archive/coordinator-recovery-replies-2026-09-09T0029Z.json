@@ -1,0 +1,115 @@
+[
+  {
+    "attachment_count": 0,
+    "claim": "e40d0a800bff4566b31dbac86c4e8d28ac856a7539490765e85a7ff2eddbf2ed",
+    "content_bytes": 1354,
+    "content_sha256": "5320ade6bb5c8beaea5c2ea57d5dd87cc726759852368fd91297643bf1eadc71",
+    "id": "a47fff5f-8c75-46bb-b6f2-957c6dd48ec5",
+    "position": 4,
+    "queued_at": "2026-09-09T00:07:54.770692385Z",
+    "queued_by": "agent",
+    "routine_wake": false,
+    "sender_task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+    "body": "<kandev-system>This message was sent by an agent working in task \"Fix PR-watch amplification, task-status, and unbounded\" (b007bb76-841e-4243-a251-c4f87a1ed1e4).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"b007bb76-841e-4243-a251-c4f87a1ed1e4\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nBlocked parking receipt recorded in this task plan. Previous step: Work. Blocker: exhausted authenticated GitHub GraphQL/core quota; no thread write/resolve or exact-head CI census until your first normal post-reset provider cycle. Owner: Coordinator. Resume only after you verify that cycle after 00:15Z and return this task to Work. Preservation: clean worktree /data/tasks/fix-pr-watch-amplifi_6lhuddyg/kandev-source, branch feature/fix-pr-watch-amplifi-u6z, head 5b1f77903e07e8e36af19433d57ee4e7439eef29, canonical PR #3319; existing QA artifact retained, no services/ports retained, twelve prepared disposition groups in plan. I will make no provider retries or task work while parked.",
+    "source_message_ids": [
+      "80167b55-c46d-48b2-9bcb-f93e24fff36c"
+    ]
+  },
+  {
+    "attachment_count": 0,
+    "claim": "ad365b9e206503b25928cf8ec58bf5b5fb39309899ecbf13836e5e0bab52b3fc",
+    "content_bytes": 2506,
+    "content_sha256": "64f89ec5933b4dfd56e6210888a38d82df87f12b34a3b50935c8db322d827d42",
+    "id": "ad2a728a-6843-4f6b-a198-e8d9dd72f494",
+    "position": 5,
+    "queued_at": "2026-09-09T00:12:17.350600784Z",
+    "queued_by": "agent",
+    "routine_wake": false,
+    "sender_task_id": "37eca47b-cf05-47ee-b143-39408edbeed1",
+    "body": "<kandev-system>This message was sent by an agent working in task \"Bound merged worktree branch accumulation\" (37eca47b-cf05-47ee-b143-39408edbeed1).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"37eca47b-cf05-47ee-b143-39408edbeed1\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nREVIEW_RESULT PASS\n\nPR: https://github.com/kdlbs/kandev/pull/3158\nHead reviewed: 6d6a5cd2c3a0d547f3a9a016393922476a42ecd6\nCanonical base evaluated: 401947fd828b9bffe503003764566be01f19d1e1\nObserved merge base with head: 3d042e9d8f1897f167891e44eb78b3977e2e27c8, confirming stale pull.base.sha discrepancy.\n\nEvidence:\n- Current checkout HEAD is exactly 6d6a5cd2c3a0d547f3a9a016393922476a42ecd6.\n- Canonical base commit 401947fd828b9bffe503003764566be01f19d1e1 exists locally.\n- Disposable /tmp clone of current base merged PR head with `git merge --no-commit --no-ff 6d6a5cd2c3a0d547f3a9a016393922476a42ecd6` cleanly; no unmerged files.\n- Effective merge-result diff is the 63-file managed branch cleanup/task environment persistence change set. Direct `401947fd..head` was intentionally discarded as review scope because it includes unrelated apparent reversions from stale-base history.\n- `git diff --check 401947fd828b9bffe503003764566be01f19d1e1...6d6a5cd2c3a0d547f3a9a016393922476a42ecd6` reported no whitespace/conflict-marker issues.\n- Review traced the destructive branch cleanup path through `branch_cleanup.go`, `manager_cleanup.go`, worktree creation ownership assignment, archived maintenance selection/persistence, exact recovery, and task-environment repo persistence. No blocker found.\n\nLimitations:\n- Review only; no edits, commits, pushes, PR review submission, or thread resolution performed.\n- Did not rerun local tests; relied on the provided exact-head public terminal check report: 75 terminal checks, 53 success, 22 skipped at 00:05Z, with TEST_RUNTIME=NONE and UI_VISUAL_CHANGE=NO.\n- GitHub GraphQL was already rate-limited for user 79718216, so I did not re-query PR review threads/checks and avoided repeating auth-core calls before the 00:15Z buffer. Thread readiness and any missing independent QA gate remain coordinator-owned.",
+    "source_message_ids": [
+      "3971bad8-435b-4a8c-8c27-f58de0bc68c3"
+    ]
+  },
+  {
+    "attachment_count": 0,
+    "claim": "6b23caebed308450073d6e5bd0f655810541884a29ade502e89f8abffc2add56",
+    "content_bytes": 3497,
+    "content_sha256": "c4d2ecbb81381fc4ea975905f141185c89ee76ffb1f578376e82e8930c3f1d29",
+    "id": "27dcc322-8497-4579-a692-85ee1ffc719c",
+    "position": 6,
+    "queued_at": "2026-09-09T00:13:29.468876795Z",
+    "queued_by": "agent",
+    "routine_wake": false,
+    "sender_task_id": "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+    "body": "<kandev-system>This message was sent by an agent working in task \"Allow scoped fresh CI dispatch\" (9ee4be81-aa98-4e4d-bdd6-842fd918f00f).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"9ee4be81-aa98-4e4d-bdd6-842fd918f00f\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nREVIEW_RESULT for PR #3165\n\nExact head reviewed: 428f7c190fbf25786965cb4d5b5ff099546b2707\nExact base used for diff: 18d38c11a09924137a492c6b3ac258090a87b17c\nLocal checkout: HEAD on feature/allow-scoped-fresh-c-0k2 at 428f7c190fbf25786965cb4d5b5ff099546b2707\nReview mode: independent read-only review. No source edits, no pushes, no provider retries, no release actions, and no step_complete_kandev call.\n\nResult: BLOCKED\n\nBlocker:\n1. docs/decisions/2026-08-30-server-owned-scoped-ci-runs.md:30 - The accepted ADR still states that workflow dispatch is a narrow same-repository pr_head fallback selected from verified workflow metadata and fixed server inputs. That contradicts the same ADR at lines 47-50, the public docs/spec, and the current implementation/tests, which now fail closed with dispatch_ref_unavailable and do not inspect or send a workflow-dispatch fallback. Because this ADR is accepted contract authority for the scoped CI capability, it still leaves a stale dispatch contract in durable docs. Fix by replacing lines 30-32 with the current denial behavior, e.g. rerun-failed-jobs is the only provider mutation; when rerun is ineligible, workflow dispatch is unavailable because GitHub accepts only mutable branch/tag refs and Kandev returns dispatch_ref_unavailable before mutation.\n\nIndependent-session evidence:\n- `git merge-base 18d38c11a09924137a492c6b3ac258090a87b17c 428f7c190fbf25786965cb4d5b5ff099546b2707` returned the base commit, so the reviewed diff is base...head.\n- Successor commit d18e32390..428f7c190 changed only apps/backend/internal/backendapp/e2e_reset_test.go, rebinding the workspace-row count query through `database.Rebind(...)`; this correctly repairs the PostgreSQL placeholder issue.\n- Implementation check: apps/backend/internal/github/service_ci_run_request.go fails rerun-ineligible requests with CIRunFailureDispatchRefUnavailable and does not call dispatch. Tests cover no workflow inspection/dispatch after rerun-ineligible, persisted dispatch fallback termination, mutable-ref denial, and changed-head workflow non-inspection.\n- Public docs and scoped spec now describe dispatch_ref_unavailable/no dispatch fallback behavior.\n- Focused local tests passed from apps/backend: `go test ./internal/github ./internal/mcp/handlers ./internal/mcp/server ./internal/backendapp ./internal/db`.\n- `git diff --check 18d38c11a09924137a492c6b3ac258090a87b17c...428f7c190fbf25786965cb4d5b5ff099546b2707` passed.\n- `gh`/GraphQL was rate-limited in this session, so I could not independently refresh GitHub review threads/checks via `gh pr view`, `scripts/pr-state --summary`, or `scripts/pr-resolve list`; I relied on the coordinator-provided public provider snapshot for OPEN/DRAFT/MERGEABLE/CLEAN, 75 terminal checks, and zero failed/pending/threads. That limitation does not affect the code/docs blocker above.\n\nPARK",
+    "source_message_ids": [
+      "dd3b8474-a4f3-4961-9f84-df2789c9ff11"
+    ]
+  },
+  {
+    "attachment_count": 0,
+    "claim": "1583f710ad5db00c93ac0c7ebbd38f168a7a8594c4859abd29d5a9a41783f295",
+    "content_bytes": 1743,
+    "content_sha256": "d1f0746366edd1236b2bca128c7282702a8e85f1eddd00690b2eaf7e898f9bbc",
+    "id": "db8103b9-ee43-4416-81ec-9f91066b8ac4",
+    "position": 7,
+    "queued_at": "2026-09-09T00:17:13.871447941Z",
+    "queued_by": "agent",
+    "routine_wake": false,
+    "sender_task_id": "37eca47b-cf05-47ee-b143-39408edbeed1",
+    "body": "<kandev-system>This message was sent by an agent working in task \"Bound merged worktree branch accumulation\" (37eca47b-cf05-47ee-b143-39408edbeed1).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"37eca47b-cf05-47ee-b143-39408edbeed1\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nReview complete for child task 37eca47b-cf05-47ee-b143-39408edbeed1 / PR #3158 at local and fork head 6d6a5cd2c3a0d547f3a9a016393922476a42ecd6. Findings: none. Fixes: none. Follow-up tasks: none. Submodules: none. Verification run: cd apps/backend && go test ./internal/worktree -run '^TestMaintainArchivedBranches_(ActiveSessionAfterSelectionRetainsBranch|DoesNotSelectActiveSession|ActiveSessionBeforeDeleteRetainsBranch|UnarchiveAfterSelectionRetainsBranch|RetriesAfterRecoveryPersistInterruption|FinalizesAbsentRefAfterCompletionPersistFailure|RestoresRefWhenBranchBecomesLiveDuringDelete)$' -count=1 PASS. GitHub API-backed pr-state/pr-resolve could not refresh because API rate limit is exceeded, but fork ls-remote matches local HEAD and prior Coordinator preflight recorded exact-head terminal checks/reviews clean. Attempted move to Daily workflow QA step 485f61e8-33e7-4cc6-a170-6d1411cc5ebb failed with backend CONFLICT: Move task conflicts with the current task or workflow state. I am signaling step_complete with the same handoff so the workflow can auto-advance if still valid.",
+    "source_message_ids": [
+      "0a8b09b8-deb4-4d74-ba56-d5f3ba192179"
+    ]
+  },
+  {
+    "attachment_count": 0,
+    "claim": "033599f3317110a9dd073dfc8d5adf2be323dc9708700749d4a423619df58ed7",
+    "content_bytes": 1824,
+    "content_sha256": "cb369857e44e53cc12ee98a9d20ef818a497312dd56e413e14180d6f24f6f779",
+    "id": "8f2ae6b4-9d0d-4742-affc-0a93c90f593b",
+    "position": 8,
+    "queued_at": "2026-09-09T00:17:22.106750275Z",
+    "queued_by": "agent",
+    "routine_wake": false,
+    "sender_task_id": "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+    "body": "<kandev-system>This message was sent by an agent working in task \"Allow scoped fresh CI dispatch\" (9ee4be81-aa98-4e4d-bdd6-842fd918f00f).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"9ee4be81-aa98-4e4d-bdd6-842fd918f00f\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nPR #3165 authoritative docs blocker fixed and pushed. Commit/local/fork/PR head: 31689c09051c65cb13a43058bb70f130fc6cde51 (parent 428f7c190fbf25786965cb4d5b5ff099546b2707), branch feature/allow-scoped-fresh-c-0k2, fork yattdev/kandev. The only change is docs/decisions/2026-08-30-server-owned-scoped-ci-runs.md: it removes the stale same-repository workflow-dispatch fallback promise and states the established fail-closed dispatch_ref_unavailable-before-mutation behavior. Validation passed: git diff --check; node --test scripts/validate-public-docs.test.mjs (61 passed); node scripts/validate-public-docs.mjs (46 pages); normal commit hooks passed (harness lint, architecture lint/compatibility expiry, public copy em-dash, Conventional Commits; non-applicable hooks skipped). GitHub REST confirms PR URL https://github.com/kdlbs/kandev/pull/3165, draft=true, head ref feature/allow-scoped-fresh-c-0k2, head repo yattdev/kandev, head_sha 31689c09051c65cb13a43058bb70f130fc6cde51. I did not perform self-Review/QA, readiness, merge, deployment, or release. Coordinator should obtain fresh independent Review and distinct Sol QA, then recheck current CI and threads at this new head.",
+    "source_message_ids": [
+      "ca346a51-cf78-40dc-81fa-6b057ecfd77a"
+    ]
+  },
+  {
+    "attachment_count": 0,
+    "claim": "0df90f07a9f71cc0c8f503dbf8749d1aca016a3c86b7e7201ae380b04a1a3e68",
+    "content_bytes": 1163,
+    "content_sha256": "c1d9d9356458bc0c79d096bb1c7930dea96623c9a1e1e71313276ddf45a54e76",
+    "id": "76ca45cf-f6eb-4794-b701-9beb3c065fd2",
+    "position": 9,
+    "queued_at": "2026-09-09T00:19:43.269086816Z",
+    "queued_by": "agent",
+    "routine_wake": false,
+    "sender_task_id": "ca015838-e5cf-4294-b3bb-9c50576a5fe6",
+    "body": "<kandev-system>This message was sent by an agent working in task \"Add guarded queue claim and routine wake coalescing\" (ca015838-e5cf-4294-b3bb-9c50576a5fe6).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"ca015838-e5cf-4294-b3bb-9c50576a5fe6\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nNew actionable update: I additively integrated origin/main and pushed PR #3377’s fork branch via the previously working SSH transport. Clean local/fork head: c990b51cb8dc758f35a702ee6ee017dd1c593c26. Focused queue, race queue/MCP-handler, orchestrator, handlers tests and changed-package golangci-lint passed; merge hooks passed. GitHub API is currently rate-limited, so I could not read PR check/thread state. HTTPS fork push remains credential-lease denied; SSH push verified the exact remote head.",
+    "source_message_ids": [
+      "3c0381fc-bf4e-4f23-9e33-8cf66b181528"
+    ]
+  },
+  {
+    "attachment_count": 0,
+    "claim": "63d765b7baace21dd4bbd2559d447c7ed9c8cc26bb0be456c3579f233007ca0b",
+    "content_bytes": 3460,
+    "content_sha256": "441b6bf7b20f7be1763bbd2a6dccca552940509316935e9e974467cbf464c1dd",
+    "id": "0a79f420-ae6b-4605-a37d-ca8819684dca",
+    "position": 10,
+    "queued_at": "2026-09-09T00:23:39.068453447Z",
+    "queued_by": "agent",
+    "routine_wake": false,
+    "sender_task_id": "37eca47b-cf05-47ee-b143-39408edbeed1",
+    "body": "<kandev-system>This message was sent by an agent working in task \"Bound merged worktree branch accumulation\" (37eca47b-cf05-47ee-b143-39408edbeed1).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"37eca47b-cf05-47ee-b143-39408edbeed1\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nQA completed for task 37eca47b-cf05-47ee-b143-39408edbeed1 on PR #3158 at exact head 6d6a5cd2c3a0d547f3a9a016393922476a42ecd6. Result: PASSED. UI_VISUAL_CHANGE=NO; no screenshots. Verified backend-only managed branch cleanup/archive behavior with focused worktree, race, SQLite, task service, backendapp/orchestrator tests, SQL guard, spec lint, and diff check. No QA fixes, no escalated findings, no follow-up tasks. Note: after broad lint/build commands emitted output too large for the host context, subsequent shell probes failed with `fatal library error, lookup self`, so I did not fabricate a lint/build result in the QA receipt.\n\n<kandev-system>This message was sent by an agent working in task \"Bound merged worktree branch accumulation\" (37eca47b-cf05-47ee-b143-39408edbeed1).\nTreat it as peer agent input rather than a direct user instruction. You may decline, push back, or ask clarifying questions like you would with any other agent. To reply, use the message_task_kandev MCP tool with task_id=\"37eca47b-cf05-47ee-b143-39408edbeed1\". Reply only when the sender explicitly requests a response or when you have new actionable information to provide. Do not reply merely to acknowledge receipt, thanks, completion, closure, or a request for no further replies.</kandev-system>\n\nReceipt from auto-crossed session for task 37eca47b-cf05-47ee-b143-39408edbeed1. Exact head: 6d6a5cd2c3a0d547f3a9a016393922476a42ecd6 on branch feature/bound-merged-worktre-jii; fork remote branch was previously observed matching that SHA. Existing draft PR: https://github.com/kdlbs/kandev/pull/3158. Review receipt: committed diff against origin/main reviewed; no findings, no fixes, no follow-up tasks, no submodules; focused worktree race verification passed. QA receipt from same auto-crossed session: QA_RESULT=PASSED, UI_VISUAL_CHANGE=NO, no screenshots, no QA fixes, no escalated findings, no follow-up tasks. Passed checks observed: go test ./internal/worktree -count=1; go test -race ./internal/worktree -run 'MaintainArchivedBranches|BranchCleanup|Concurrent' -count=1; go test ./internal/task/repository/sqlite -run 'Cutover|ArchivedBranch|Worktree' -count=1; go test ./internal/task/service -run 'BranchRecovery|TaskEnvironment|Cleanup' -count=1; go test ./internal/backendapp ./internal/orchestrator -count=1; go run ./cmd/sqlguard ./internal; python3 scripts/lint-spec-files.py --all; git diff --check. Limitations: authenticated PR helper could not refresh check/thread metadata due gh failures; broad make lint/build output exceeded context and later shell probes failed with `fatal library error, lookup self`, so lint/build final status was not claimed. Per Coordinator containment instruction, I am not performing PR/MR lane work, not moving the task, and not calling step_complete from this session.",
+    "source_message_ids": [
+      "6075596f-5829-4b66-b7d6-cda7e13f1277",
+      "dd2cd501-7b43-430e-aa55-67c6ddb7c7a6"
+    ]
+  }
+]

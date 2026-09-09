@@ -1,5 +1,13 @@
 # Design decisions
 
+## Primary recovery and atomic rotation are separate claims (2026-09-09)
+
+A live sole-primary/current receipt proves who coordinates now. It does not
+prove atomic queue preservation, routine retargeting, usage, fencing, or retry
+semantics. Keep missing capability criteria open under their existing delivery
+owners after operational recovery, and close a corrected Support exchange
+without another unchanged provisioning request.
+
 ## Coordinator continuity is storage-backed, not session-backed (2026-08-24, human-directed)
 
 The long-lived Coordinator role must survive session termination, compaction,

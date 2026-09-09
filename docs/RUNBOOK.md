@@ -2445,6 +2445,14 @@ Two things that are easy to get wrong:
 
 #### When Support answers BLOCKED
 
+Separate recovered operational state from reusable capability acceptance.
+Sole-primary/current readback cannot establish atomic FIFO transfer, routine
+targeting, fencing, usage accounting, or idempotence. If Support cites the wrong
+prerequisite owner or an obsolete head, send one bounded correction with
+independent evidence. Once the corrected closure agrees, retain its delivery
+trigger and stop requesting unchanged provisioning. Do not attribute unexplained
+session deletion or promotion to Support without an actor receipt.
+
 A pushed `Outcome: FAILED` reporting a worker timeout is different from the
 verified `BLOCKED` result below. Record the failed request and actual timeout;
 neither successful provisioning nor absence of partial changes is established.
