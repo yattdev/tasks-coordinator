@@ -1,0 +1,1435 @@
+{
+  "coverage": {
+    "all_sessions_censused": true,
+    "found_physical_blocked": 30,
+    "latest_plan_and_conversation_read": true,
+    "records": 30,
+    "relation_reads_attempted": true,
+    "requested": 30
+  },
+  "cycle_id": "20260909T0238-blocked",
+  "generated_at": "2026-09-09T02:54:53.990413+00:00",
+  "global_missing_fields": [
+    "Several task relation projections returned FORBIDDEN; each affected record names the gap and relies on current plan/conversation evidence.",
+    "Protected ToDeploy root details are intentionally not asserted fresh.",
+    "No pending-moves census capability was available for the superseded architecture carrier.",
+    "A visible Human ask identity remains unproven for 76b4e3d4-ccb8-408c-a0de-5e5014c538be."
+  ],
+  "global_model_rule": {
+    "Blocked": "Terra",
+    "QA": "Sol",
+    "Review": "GPT-5.5",
+    "Work": "Terra",
+    "parked_mismatch": "unsafe to resume but not active burn"
+  },
+  "groups": {
+    "current_blocker_cleared_move_now": [],
+    "historical_blocker_cleared_but_successor_gate_remains": [
+      "7ca86e53-249b-4b31-a866-e807afd9a962",
+      "6a5a2f73-87e1-4c08-a983-64f2456c3633",
+      "375dcc90-9ff3-4064-ba27-a7f20b33e80c",
+      "77353939-0ba8-40dd-b93c-57adc73a4011",
+      "957da1cb-063b-4c2e-b406-6d04ad158fb9",
+      "212a68ce-7122-4cdb-ba68-764a5ebdb8c6",
+      "ecd8b857-42a6-417f-a7e4-084f50fc6956"
+    ],
+    "primary_actionable_now": [
+      "01d6764d-b66d-46a0-a664-2caf4c3f4d98",
+      "86c8b47e-e7a5-4693-8e11-dce08899a0bf",
+      "428d343e-c768-4bce-a5e7-efd3b10f363f",
+      "0259d242-0a94-40ef-843e-385292796b64",
+      "b8fc206c-9e3f-4497-9ac3-3b62593da258",
+      "cfccac4a-1c80-403f-b284-a673a26a321a",
+      "3f721d52-452b-4bc6-a61e-68d875baafbd"
+    ],
+    "terminal_now": [],
+    "terminal_supersede_candidates_not_yet_eligible": [
+      "9e67c426-1300-46ef-a00f-e5603791212d"
+    ],
+    "unchanged_external_or_active_root_wait": [
+      "96e27238-8b7d-476a-8c70-b8da0abae935",
+      "957da1cb-063b-4c2e-b406-6d04ad158fb9",
+      "b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+      "153cdbbe-beac-47b8-bc06-8dafdcc8ed80",
+      "86a16fc1-6394-4fb0-898d-4d42948683f5",
+      "5c9f515d-e5f9-43c5-bf31-fb42276e5e15",
+      "4b56a8b3-89fa-43ef-891d-c6b3a3b88e2a",
+      "e8728906-86de-4a75-960f-9da585485823"
+    ]
+  },
+  "identity": {
+    "coordinator_task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+    "physical_blocked_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+    "workflow_id": "90f322ed-2159-424d-96e7-c2ad05668b8e",
+    "workspace_id": "2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd"
+  },
+  "mode": "read-only; no task/session/board/provider/tag/plan/source mutation; only this receipt written",
+  "policy_boundary_deviation": {
+    "detail": "Before the live workflow-step mapping was applied to the dependency batch, read-only plan/session inspection was inadvertently performed for protected ToDeploy roots 7a0454aa-c089-4365-8966-ad99775a46f8 and 01432319-aa8b-4c7d-9841-addcc6ab8e76. No mutation, provider action, contact, or further inspection occurred. Their protected content is not used as fresh proof here.",
+    "occurred": true
+  },
+  "provider_barrier": {
+    "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+    "proof": "fresh gh api rate_limit returned core=5000 and graphql=5000; subsequent PR/check/comment reads succeeded",
+    "status": "restored"
+  },
+  "records": [
+    {
+      "attempts_fallback": "No generic retry; if release cannot proceed, keep exact release blocker and owner.",
+      "blocker_owner": "7a0454aa release chain, then ecd8b857 E2E",
+      "current_audit": {
+        "blocker_disposition": "historical blocker cleared/replaced; current successor blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": "maintained plugin implementation is merged; release/E2E gate replaces legacy PR2724",
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation.",
+          "Protected ToDeploy root live content intentionally not used for disposition; only cached lane/identity and provider-safe release facts are carried."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Legacy PR2724 CLOSED unmerged draft DIRTY at b0feb95d\u2026; maintained plugin PR1 is merged; current release/E2E chain remains.",
+        "preservation": "Legacy implementation retained; do not discard before explicit supersession proof.",
+        "recommended_action": "Keep Blocked carrier; after protected Redmine release completes, run isolated first-version E2E and retire the legacy closed-unmerged PR2724 only with terminal preservation proof.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "Redmine release/E2E chain",
+          "owner": "Human release owner through protected ToDeploy root 7a0454aa-c089-4365-8966-ad99775a46f8",
+          "staffed": false,
+          "task_id": "ecd8b857-42a6-417f-a7e4-084f50fc6956"
+        },
+        "root_staffing_evidence": "No live agent root owner was proven; Human/external/unstaffed trigger is named explicitly.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Live relation projection denied FORBIDDEN; frozen edges are stale support only.",
+      "next_action": "Bind carrier to current e872 -> 7a release -> ecd8 E2E chain; after pass, record unique-commit containment and terminal-supersede.",
+      "positive_proof": "Live plan identifies merged canonical plugin PR1 at 0b884b... and says this legacy carrier remains only until repair PR3 is published/deployed and ecd8 E2E proves supersession.",
+      "preservation_receipt": "Legacy implementation retained; do not discard before explicit supersession proof.",
+      "previous_step": "legacy implementation/PR carrier",
+      "proof_freshness": "Kandev-live plan; provider state unavailable this cycle.",
+      "session_census": "All inspected; only terminal FAILED/WFI sessions, no RUNNING/STARTING.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "7ca86e53-249b-4b31-a866-e807afd9a962",
+      "title": "feat: Implement Redmine integration",
+      "trigger_expected_evidence": "Published compatible Redmine package plus ecd8 runtime receipt.",
+      "verdict": "KEEP_BLOCKED_DEPENDENCY_CARRIER"
+    },
+    {
+      "attempts_fallback": "One bounded refresh; do not resume parked Terra in CI.",
+      "blocker_owner": "template repository maintainer",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "PR4 OPEN non-draft CLEAN at f616642516\u2026; no current successful check census; maintainer ask issuecomment-5579038894 remains.",
+        "preservation": "91e366... task head and f616642... template head.",
+        "recommended_action": "Keep Blocked; existing maintainer ask is unchanged. Do not duplicate it. Resume only on maintainer response, new head, or a new check attempt.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "kdlbs/plugin-template#4",
+          "owner": "upstream maintainer",
+          "staffed": true,
+          "task_id": null
+        },
+        "root_staffing_evidence": "Live RUNNING/provider or external maintainer ownership exists.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": "issuecomment-5579038894",
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": true
+        }
+      },
+      "dependencies": "Relation projection denied FORBIDDEN.",
+      "next_action": "At reset, read PR4 exact head and latest attempts. If no jobs materialized, preserve external wait with visible request; if terminal/new run exists, route fresh Luna CI Fixup.",
+      "positive_proof": "Live R4 plan records template PR4 at f616642... with zero-job CI/Build failures requiring maintainer approval/rerun; task preservation head 91e366....",
+      "preservation_receipt": "91e366... task head and f616642... template head.",
+      "previous_step": "Work",
+      "proof_freshness": "Plan proof is historical; exact provider falsification unavailable until reset.",
+      "session_census": "All inspected; primary Terra is WFI, no active session.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "96e27238-8b7d-476a-8c70-b8da0abae935",
+      "title": "Fix stale plugin-hook docs and template rename checklist",
+      "trigger_expected_evidence": "Exact-head run starts or reaches terminal conclusion.",
+      "verdict": "KEEP_BLOCKED_PENDING_RESET_REFRESH"
+    },
+    {
+      "attempts_fallback": "No retry against conflicted PR2793.",
+      "blocker_owner": "replacement program 1e46d457 plus cancellation capability owner",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation.",
+          "No pending-moves census capability was available, so terminal supersession is not eligible."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Legacy PR2793 OPEN draft DIRTY at afd2b699\u2026; it is superseded by the replacement delivery program but terminal integrity prerequisites are not yet complete.",
+        "preservation": "Historical task retained specifically to prevent unsafe terminal routing while moves may remain armed.",
+        "recommended_action": "Keep Blocked as superseded preservation carrier. Move to terminal only after replacement delivery, zero armed pending moves, and explicit branch/commit/backup preservation receipt.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "replacement plugin-first delivery program",
+          "owner": "Coordinator after replacement delivery and pending-move census",
+          "staffed": false,
+          "task_id": "1e46d457-6869-4750-bf97-4640a8df3b68"
+        },
+        "root_staffing_evidence": "No live agent root owner was proven; Human/external/unstaffed trigger is named explicitly.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Relation projection denied FORBIDDEN.",
+      "next_action": "Primary must verify exact pending rows and cancellation deployment; do not contact or move this carrier meanwhile. Terminal-supersede after rows are absent and replacement delivery is proven.",
+      "positive_proof": "Live plan says monolith PR2793 is superseded/conflicted and two historical pending moves remain armed; replacement program root is 1e46d457 and safe cancellation is supplied by 705/PR3155.",
+      "preservation_receipt": "Historical task retained specifically to prevent unsafe terminal routing while moves may remain armed.",
+      "previous_step": "Work",
+      "proof_freshness": "Kandev-live plan; pending-move/provider state not directly readable this cycle.",
+      "session_census": "All inspected; WFI/failed only, no active session.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "9e67c426-1300-46ef-a00f-e5603791212d",
+      "title": "Plan coordinator plugin architecture",
+      "trigger_expected_evidence": "Zero armed pending rows plus replacement containment receipt.",
+      "verdict": "KEEP_BLOCKED_PRESERVATION_ANOMALY"
+    },
+    {
+      "attempts_fallback": "If install fails, capture exact host stderr and keep the administrator as owner.",
+      "blocker_owner": "host administrator, then Support verification owner",
+      "current_audit": {
+        "blocker_disposition": "historical blocker cleared/replaced; current successor blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": "implementation PR2937 merged; runtime proof gate remains",
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Implementation PR2937 is MERGED at 8b9395b0\u2026; host runtime/AppArmor execution proof remains absent.",
+        "preservation": "d8af676... and documented unresolved upstream merge inventory retained.",
+        "recommended_action": "Keep Blocked; Human/Support must execute the documented host runtime/AppArmor remediation and return exact command, output, timestamp, and host identity. Then fresh Terra verifies runtime proof.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "host runtime/AppArmor proof",
+          "owner": "Human/Support host operator",
+          "staffed": false,
+          "task_id": null
+        },
+        "root_staffing_evidence": "No live agent root owner was proven; Human/external/unstaffed trigger is named explicitly.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Relation projection denied FORBIDDEN.",
+      "next_action": "Keep Blocked with visible exact Human host ask; after install, run the bounded bwrap namespace probe and Support acceptance.",
+      "positive_proof": "Live task and Coordinator plans preserve d8af676... and identify the host AppArmor install as unavailable under no-new-privs. Exact host operation: sudo bash /home/ayattara/Code/kandev/scripts/install-codex-apparmor.sh.",
+      "preservation_receipt": "d8af676... and documented unresolved upstream merge inventory retained.",
+      "previous_step": "Human QA",
+      "proof_freshness": "Kandev-live Coordinator plan.",
+      "session_census": "All inspected; primary Terra WFI, no active session.",
+      "tags": "Agent waiting tag retained; no Human tag was present to preserve.",
+      "task_id": "6a5a2f73-87e1-4c08-a983-64f2456c3633",
+      "title": "Executor containers: allow unprivileged user namespaces",
+      "trigger_expected_evidence": "Installed profile plus successful namespace/runtime probe.",
+      "verdict": "KEEP_BLOCKED_HUMAN_HOST_ACTION"
+    },
+    {
+      "attempts_fallback": "If PR3496 is superseded, bind to its exact successor rather than retry old sessions.",
+      "blocker_owner": "b74833e7 / PR3496 maintainer rerun",
+      "current_audit": {
+        "blocker_disposition": "historical blocker cleared/replaced; current successor blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": "stale PR3242/D1 framing superseded by actual root PR3496",
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Current task plan, latest task conversation, complete task session census, and authoritative root/provider evidence cited in the retained R4 record.",
+        "preservation": "Provider-usage scope retained with no active workspace to resume.",
+        "recommended_action": "Keep Blocked; do not ping. Resume only after PR3496 has a newer rerun receipt and reaches the required terminal result.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "kdlbs/kandev#3496",
+          "owner": "upstream CI/maintainer",
+          "staffed": true,
+          "task_id": "b74833e7-a05f-4cdf-81cf-db5b4c02f368"
+        },
+        "root_staffing_evidence": "Live RUNNING/provider or external maintainer ownership exists.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Relation projection denied FORBIDDEN; old frozen PR3242 pointer is falsified.",
+      "next_action": "Replace stale PR3242 trigger with PR3496; after b748 delivery, route fresh Terra Work.",
+      "positive_proof": "Live task plan still identifies writable managed worktrees as prerequisite; live root b748 plan has advanced from stale PR3242 to PR3496 head 5504448....",
+      "preservation_receipt": "Provider-usage scope retained with no active workspace to resume.",
+      "previous_step": "Work",
+      "proof_freshness": "Dependency task live; provider run state awaits reset.",
+      "session_census": "All inspected; terminal sessions only, no active owner.",
+      "tags": "Stale agent waiting tag retained for later correction; no Human tag.",
+      "task_id": "375dcc90-9ff3-4064-ba27-a7f20b33e80c",
+      "title": "Expose Provider Usage through read-only MCP",
+      "trigger_expected_evidence": "PR3496 merged/deployed and a managed checkout proves writable.",
+      "verdict": "KEEP_BLOCKED_ON_ACTIVE_ROOT"
+    },
+    {
+      "attempts_fallback": "Bind to exact replacement if PR3496 changes.",
+      "blocker_owner": "b74833e7 / PR3496",
+      "current_audit": {
+        "blocker_disposition": "historical blocker cleared/replaced; current successor blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": "stale PR3242/D1 framing superseded by actual root PR3496",
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Current task plan, latest task conversation, complete task session census, and authoritative root/provider evidence cited in the retained R4 record.",
+        "preservation": "Baseline retained; no unsafe parked session should resume.",
+        "recommended_action": "Keep Blocked; do not ping. Resume only after PR3496 has a newer rerun receipt and reaches the required terminal result.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "kdlbs/kandev#3496",
+          "owner": "upstream CI/maintainer",
+          "staffed": true,
+          "task_id": "b74833e7-a05f-4cdf-81cf-db5b4c02f368"
+        },
+        "root_staffing_evidence": "Live RUNNING/provider or external maintainer ownership exists.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Relation projection denied FORBIDDEN; frozen pointer explicitly stale.",
+      "next_action": "After PR3496 delivery, create fresh Terra Work session and finish tool.",
+      "positive_proof": "Live plan preserves implementation baseline but states managed checkout write capability is required; current prerequisite is b748 PR3496, replacing stale PR3242.",
+      "preservation_receipt": "Baseline retained; no unsafe parked session should resume.",
+      "previous_step": "Work",
+      "proof_freshness": "Dependency task live; provider run state awaits reset.",
+      "session_census": "All inspected; WFI/terminal only, no active session.",
+      "tags": "Stale PR3242 agent tag retained; no Human tag.",
+      "task_id": "77353939-0ba8-40dd-b93c-57adc73a4011",
+      "title": "Implement provider-usage MCP tool",
+      "trigger_expected_evidence": "Writable managed task checkout proof.",
+      "verdict": "KEEP_BLOCKED_ON_ACTIVE_ROOT"
+    },
+    {
+      "attempts_fallback": "One maintainer notification already exists; suppress duplicates.",
+      "blocker_owner": "upstream maintainer",
+      "current_audit": {
+        "blocker_disposition": "historical blocker cleared/replaced; current successor blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": "old PR2937 dependency cleared; current PR3501 external merge gate remains",
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "PR3501 OPEN non-draft CLEAN at 97d980\u2026; 74 exact-head checks: 51 success, 23 skipped, 0 failure/pending; maintainer notified once in issuecomment-5594390158.",
+        "preservation": {
+          "head": "97d980\u2026",
+          "pr": "https://github.com/kdlbs/kandev/pull/3501",
+          "state": "OPEN clean green"
+        },
+        "recommended_action": "Keep Blocked in external review wait; PR3501 is already clean, green, ready, and notified once. Move only after merge/maintainer response or a new head.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "kdlbs/kandev#3501",
+          "owner": "upstream maintainer",
+          "staffed": true,
+          "task_id": null
+        },
+        "root_staffing_evidence": "Live RUNNING/provider or external maintainer ownership exists.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": "issuecomment-5594390158",
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": true
+        }
+      },
+      "dependencies": [],
+      "next_action": "Wait for maintainer merge/response.",
+      "positive_proof": [
+        "Current task plan/conversation and fresh provider PR3501 evidence."
+      ],
+      "preservation_receipt": {
+        "head": "97d980\u2026",
+        "pr": "https://github.com/kdlbs/kandev/pull/3501",
+        "state": "OPEN clean green"
+      },
+      "previous_step": "Blocked",
+      "proof_freshness": "fresh 2026-09-09T02:40Z-02:47Z",
+      "session_census": {
+        "active": 0,
+        "note": "All task sessions inspected; no RUNNING/STARTING owner."
+      },
+      "tags": [],
+      "task_id": "957da1cb-063b-4c2e-b406-6d04ad158fb9",
+      "title": "Reuse workspace for additional task sessions",
+      "trigger_expected_evidence": "PR3501 merged/response/new head",
+      "verdict": "KEEP_BLOCKED_EXTERNAL_REVIEW"
+    },
+    {
+      "attempts_fallback": "Do not resume parked Luna before trigger; no duplicate maintainer ping.",
+      "blocker_owner": "repository maintainer until a new run materializes",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "PR3496 OPEN draft BLOCKED at 5504448a\u2026; 71 checks: 47 success, 19 skipped, 5 failure, 0 pending; rerun request issuecomment-5594389814 exists and no newer attempt was observed.",
+        "preservation": "Task worktree clean at exact PR3496 head per live plan.",
+        "recommended_action": "Keep Blocked; issuecomment-5594389814 is the existing rerun request. No duplicate ping. Resume CI classification only after a newer run/check attempt appears.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "kdlbs/kandev#3496",
+          "owner": "upstream CI/maintainer",
+          "staffed": true,
+          "task_id": null
+        },
+        "root_staffing_evidence": "Live RUNNING/provider or external maintainer ownership exists.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": "issuecomment-5594389814",
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": true
+        }
+      },
+      "dependencies": "Relation projection denied FORBIDDEN.",
+      "next_action": "At reset, check exact PR head and newest attempts; if request is absent for 5504448, post exactly once. When a run starts, route fresh Luna CI Fixup.",
+      "positive_proof": "Live correction plan identifies PR3496 head 5504448... and artifact-service HTTP 403 leaf failures; admin rerun operations were denied.",
+      "preservation_receipt": "Task worktree clean at exact PR3496 head per live plan.",
+      "previous_step": "CI Fixup",
+      "proof_freshness": "Live plan; exact GitHub attempt state blocked by current rate limit.",
+      "session_census": "All inspected; Luna primary WFI, no active session. Older tag claiming Terra Work is stale.",
+      "tags": "Stale agent owner tag retained for correction; no Human tag.",
+      "task_id": "b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+      "title": "Make managed task worktrees Git-writable",
+      "trigger_expected_evidence": "New exact-head run with jobs or terminal conclusion.",
+      "verdict": "KEEP_BLOCKED_EXTERNAL_RERUN_ROOT"
+    },
+    {
+      "attempts_fallback": "Use exact successor root if PR3496 changes.",
+      "blocker_owner": "b74833e7 / PR3496",
+      "current_audit": {
+        "blocker_disposition": "historical blocker cleared/replaced; current successor blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": "stale PR3242/D1 framing superseded by actual root PR3496",
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Current task plan, latest task conversation, complete task session census, and authoritative root/provider evidence cited in the retained R4 record.",
+        "preservation": "Coverage intent retained.",
+        "recommended_action": "Keep Blocked; do not ping. Resume only after PR3496 has a newer rerun receipt and reaches the required terminal result.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "kdlbs/kandev#3496",
+          "owner": "upstream CI/maintainer",
+          "staffed": true,
+          "task_id": "b74833e7-a05f-4cdf-81cf-db5b4c02f368"
+        },
+        "root_staffing_evidence": "Live RUNNING/provider or external maintainer ownership exists.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Relation projection denied FORBIDDEN; frozen PR3242 association stale.",
+      "next_action": "After writable-checkout deployment, staff fresh Terra Work.",
+      "positive_proof": "Live plan ties remaining coverage to writable managed worktrees; b748 current plan identifies PR3496 as the delivery root.",
+      "preservation_receipt": "Coverage intent retained.",
+      "previous_step": "Work",
+      "proof_freshness": "Kandev-live dependency plan.",
+      "session_census": "All inspected; failed/terminal only, no active session.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "212a68ce-7122-4cdb-ba68-764a5ebdb8c6",
+      "title": "Finish Provider Usage plugin coverage",
+      "trigger_expected_evidence": "Managed checkout write acceptance passes.",
+      "verdict": "KEEP_BLOCKED_ON_ACTIVE_ROOT"
+    },
+    {
+      "attempts_fallback": "If exact model is still unadvertised, retain Blocked with a new strict-start failure receipt.",
+      "blocker_owner": "e0dd8d19 exact-model repair/deployment",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Root PR3473 OPEN draft BLOCKED at 55e23b447\u2026; latest census observed 7 checks in progress and no failure; CI containment session parked WFI pending provider terminal.",
+        "preservation": "PR2841 work remains preserved.",
+        "recommended_action": "Keep Blocked; suppress model-availability pings while PR3473 CI is running. On clean deployment, start a fresh exact GPT-5.4 source session; if unavailable, record a fresh provider advertisement failure rather than reusing an obsolete quota hold.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "kdlbs/kandev#3473 then exact GPT-5.4 source session",
+          "owner": "CI provider currently; GPT-5.4 source after deploy",
+          "staffed": true,
+          "task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb"
+        },
+        "root_staffing_evidence": "Live RUNNING/provider or external maintainer ownership exists.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Relation projection denied FORBIDDEN.",
+      "next_action": "Primary must establish e0 exact current head and fresh Review/QA/merge state; after deployment route fresh exact model, never the parked mismatch.",
+      "positive_proof": "Live plan records exact-model routing dependency and preservation; the original delivery blocker has moved to e0dd8d19/PR3473.",
+      "preservation_receipt": "PR2841 work remains preserved.",
+      "previous_step": "PR/model-gated lane",
+      "proof_freshness": "Task plan current enough to preserve work; e0 current terminal receipt is missing.",
+      "session_census": "All inspected; parked WFI only, no active session.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "9349b6e5-a167-4d88-af14-cb355015e3dd",
+      "title": "Allow coordinator relation inspection",
+      "trigger_expected_evidence": "Exact GPT-5.4 session starts without substitution after PR3473 deploy.",
+      "verdict": "KEEP_BLOCKED_MODEL_DEPENDENCY_BUT_REFRESH_ROOT"
+    },
+    {
+      "attempts_fallback": "One maintainer request already sent; do not duplicate.",
+      "blocker_owner": "repository maintainer",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "PR2868 OPEN non-draft BLOCKED at 9d8bb920\u2026; 74 checks: 45 success, 25 skipped, 4 failure, 0 pending; rerun request issuecomment-5593816947 exists and no newer attempt was observed.",
+        "preservation": "Exact head and visual artifact receipt retained in plan.",
+        "recommended_action": "Keep Blocked; issuecomment-5593816947 already requests rerun. No duplicate ping. Trigger is a newer run, head, or maintainer response.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "kdlbs/kandev#2868",
+          "owner": "upstream CI/maintainer",
+          "staffed": true,
+          "task_id": null
+        },
+        "root_staffing_evidence": "Live RUNNING/provider or external maintainer ownership exists.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": "issuecomment-5593816947",
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": true
+        }
+      },
+      "dependencies": "Relation projection denied FORBIDDEN.",
+      "next_action": "Do one reset-time exact-head/run read. On a new attempt, route fresh Luna CI Fixup, then Review 5.5 and QA Sol.",
+      "positive_proof": "Live plan records PR2868 head 9d8bb920..., artifact-service HTTP 403 leaf failure, and a maintainer rerun request posted at issuecomment-5593816947 on 2026-09-09T00:22Z.",
+      "preservation_receipt": "Exact head and visual artifact receipt retained in plan.",
+      "previous_step": "CI Fixup",
+      "proof_freshness": "Positive request proof is current task-plan evidence; provider state after it awaits reset.",
+      "session_census": "All inspected; Luna primary WFI, no active session.",
+      "tags": "Current agent waiting tag retained; no Human tag.",
+      "task_id": "153cdbbe-beac-47b8-bc06-8dafdcc8ed80",
+      "title": "Fix/Improve task panel close/open",
+      "trigger_expected_evidence": "New PR2868 exact-head attempt.",
+      "verdict": "KEEP_BLOCKED_EXTERNAL_RERUN_VISIBLE"
+    },
+    {
+      "attempts_fallback": "If still unavailable, store the new bounded startup_failure and remain Blocked.",
+      "blocker_owner": "e0dd8d19 / PR3473 deployment",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Root PR3473 OPEN draft BLOCKED at 55e23b447\u2026 with exact-head CI still in progress.",
+        "preservation": "Both exact heads retained; local Notes checkout origin/main is stale and is not provider proof.",
+        "recommended_action": "Keep Blocked; suppress model-availability pings while PR3473 CI is running. On clean deployment, start a fresh exact GPT-5.4 source session; if unavailable, record a fresh provider advertisement failure rather than reusing an obsolete quota hold.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "kdlbs/kandev#3473 then exact GPT-5.4 source session",
+          "owner": "CI provider currently; GPT-5.4 source after deploy",
+          "staffed": true,
+          "task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb"
+        },
+        "root_staffing_evidence": "Live RUNNING/provider or external maintainer ownership exists.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Relation projection denied FORBIDDEN.",
+      "next_action": "After e0 deployment, create a fresh strict GPT-5.4 PR session.",
+      "positive_proof": "Live plan preserves host PR2870 head 0f36c0... and Notes PR7 head f8548f... and records strict exact-model start 14ad... failing requested_not_advertised on 2026-09-08T16:55Z.",
+      "preservation_receipt": "Both exact heads retained; local Notes checkout origin/main is stale and is not provider proof.",
+      "previous_step": "PR",
+      "proof_freshness": "Exact Kandev startup failure is positive evidence; repair deployment remains e0-dependent.",
+      "session_census": "All inspected; no active session; parked mismatches are unsafe.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "51c2875b-48ae-4097-b985-b8a9584ca8c2",
+      "title": "Bug: Notes settings agent utility doesn't load agents profil",
+      "trigger_expected_evidence": "Requested and effective model both GPT-5.4 with inference_started=true.",
+      "verdict": "KEEP_BLOCKED_STRICT_MODEL_GATE"
+    },
+    {
+      "attempts_fallback": "Do not wait on upstream #451.",
+      "blocker_owner": "46945aff release plus remaining plugin-first program roots",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Protected ToDeploy root live content intentionally not used for disposition; only cached lane/identity and provider-safe release facts are carried."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Current task plan, latest task conversation, complete task session census, and authoritative root/provider evidence cited in the retained R4 record.",
+        "preservation": "QA scope retained; no reusable runtime claimed.",
+        "recommended_action": "Keep Blocked on maintained-fork release/E2E; do not substitute upstream #451. Human completes protected release root, then run isolated QA.",
+        "relation_evidence": "fresh blockers projection returned []",
+        "root": {
+          "gate": "maintained codex-acp fork release via protected 01432319-aa8b-4c7d-9841-addcc6ab8e76",
+          "owner": "Human release owner",
+          "staffed": false,
+          "task_id": "46945aff-382a-41a4-9f35-bd5c2806911e"
+        },
+        "root_staffing_evidence": "No live agent root owner was proven; Human/external/unstaffed trigger is named explicitly.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Live relation projection contains no blockers, so physical Blocked lacks an explicit edge.",
+      "next_action": "Add/bind exact active release dependency; after deployment create fresh Sol QA.",
+      "positive_proof": "Live plan explicitly treats upstream codex-acp #451 as watch-only and requires the maintained-fork Host/plugin contracts before fresh isolated QA.",
+      "preservation_receipt": "QA scope retained; no reusable runtime claimed.",
+      "previous_step": "QA",
+      "proof_freshness": "Kandev-live task plan.",
+      "session_census": "All inspected; old WFI session only, no active QA.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+      "title": "Provision isolated Coordinator plugin end-to-end QA runtime",
+      "trigger_expected_evidence": "Pinned maintained-fork package deployed and capability probe succeeds.",
+      "verdict": "KEEP_BLOCKED_PROGRAM_DEPENDENT"
+    },
+    {
+      "attempts_fallback": "If QA fails, bind exact fixup root.",
+      "blocker_owner": "9ee4be81 / PR3165",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Root PR3165 OPEN draft BLOCKED at 383d2102\u2026; current run snapshot had 34 success, 21 skipped, 10 in-progress, 8 queued, 0 failure; Luna root owner RUNNING at 02:44Z.",
+        "preservation": "Historical head retained until supersession is recorded.",
+        "recommended_action": "Keep Blocked; root 9ee4be81 is actively staffed by Luna while PR3165 checks run. Suppress all duplicate staffing/pings; act on terminal CI event.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "kdlbs/kandev#3165",
+          "owner": "Luna CI Fixup session 5bca200c-d4be-40f9-aa05-504efb37fe07",
+          "staffed": true,
+          "task_id": "9ee4be81-aa98-4e4d-bdd6-842fd918f00f"
+        },
+        "root_staffing_evidence": "Live RUNNING/provider or external maintainer ownership exists.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": true
+        }
+      },
+      "dependencies": "Relation projection denied FORBIDDEN.",
+      "next_action": "After #3165 QA/merge/deploy, run registry latency acceptance; terminal-supersede if no unique change remains.",
+      "positive_proof": "Live plan says unique work was superseded by merged PR3241; remaining prerequisite is scoped CI repair #3165.",
+      "preservation_receipt": "Historical head retained until supersession is recorded.",
+      "previous_step": "Work",
+      "proof_freshness": "Primary reports #3165 Review PASS and Sol QA bf927f67 RUNNING at 00:57Z.",
+      "session_census": "All inspected; task itself WFI only.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "86a16fc1-6394-4fb0-898d-4d42948683f5",
+      "title": "Bound plugin registry release latency",
+      "trigger_expected_evidence": "Scoped CI deployment plus latency acceptance.",
+      "verdict": "KEEP_BLOCKED_ON_ACTIVE_ROOT"
+    },
+    {
+      "attempts_fallback": "If PR3048 is superseded, bind exact successor and preserve PR3155 cancellation semantics.",
+      "blocker_owner": "PR3048 contract integration owner; PR3155 compatibility",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "PR3048 OPEN draft; latest inspected check set contains terminal backend failures, so the delivery/contract gate is not cleared.",
+        "preservation": "cfd6... retained.",
+        "recommended_action": "Keep Blocked; classify the current PR3048 terminal backend failures at the source root, produce a delivered clean candidate, then re-run Review 5.5 and distinct Sol QA.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "kdlbs/kandev#3048 / delivery contract gate",
+          "owner": "source owner after terminal CI classification",
+          "staffed": false,
+          "task_id": null
+        },
+        "root_staffing_evidence": "No live agent root owner was proven; Human/external/unstaffed trigger is named explicitly.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Relation projection denied FORBIDDEN.",
+      "next_action": "Keep contract gate; after primary reset refresh, staff the right lane/model from actual PR state. Do not apply 856's normal-push authority falsification to this mutation contract.",
+      "positive_proof": "Live plan identifies competing PR3048/PR3155 authority contracts and preserves cfd6...; primary reports PR3048 owner Luna 6c98a7f5 parked solely on provider limit with a 01:15 retry owned.",
+      "preservation_receipt": "cfd6... retained.",
+      "previous_step": "Work",
+      "proof_freshness": "Kandev-live task plan plus primary live ownership.",
+      "session_census": "All inspected; local task WFI only, no active task session.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "531a41cd-57ef-495a-8dfa-614d2a4d0d52",
+      "title": "Allow Coordinator dependency-edge mutation",
+      "trigger_expected_evidence": "Unified dependency-edge authority contract merged and deployed.",
+      "verdict": "KEEP_BLOCKED_CONTRACT_ROOT_PENDING_RESET"
+    },
+    {
+      "attempts_fallback": "If host AppArmor also blocks runtime, bind exact 6a5 host action rather than generic waiting.",
+      "blocker_owner": "01432319 release/deploy, then fresh QA",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Protected ToDeploy root live content intentionally not used for disposition; only cached lane/identity and provider-safe release facts are carried."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Maintained fork PR1 MERGED at 3352b02\u2026; follow-on PR3497 remains OPEN draft BLOCKED at ae8fc93d\u2026; release/deploy is still Human-owned.",
+        "preservation": "PR3497 head ae8fc93d... and maintained-fork merge f4df079.",
+        "recommended_action": "Keep Blocked until protected Human release/deploy root 01432319 completes. Maintained fork PR1 merge is implementation proof, not release proof.",
+        "relation_evidence": "fresh blockers projection returned []",
+        "root": {
+          "gate": "maintained fork PR merged plus protected release/deploy",
+          "owner": "Human release owner",
+          "staffed": false,
+          "task_id": "01432319-aa8b-4c7d-9841-addcc6ab8e76"
+        },
+        "root_staffing_evidence": "No live agent root owner was proven; Human/external/unstaffed trigger is named explicitly.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Live relation projection has no blocker edge; root must be made explicit.",
+      "next_action": "Bind release dependency; after supported stable route publishes, create fresh Sol QA for guarded runtime.",
+      "positive_proof": "Live plan records scoped local integration PASS and PR3497 head ae8fc93d... but stable runtime capability is not advertised; release/deploy task 01432319 owns publication.",
+      "preservation_receipt": "PR3497 head ae8fc93d... and maintained-fork merge f4df079.",
+      "previous_step": "Work",
+      "proof_freshness": "Kandev-live plan; provider status awaits reset.",
+      "session_census": "All inspected; Terra primary WFI, no active session.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "46945aff-382a-41a4-9f35-bd5c2806911e",
+      "title": "Expose guarded TTY tool to ACP agents",
+      "trigger_expected_evidence": "Stable tool advertised and guarded execution receipt succeeds.",
+      "verdict": "KEEP_BLOCKED_RELEASE_DEPENDENCY"
+    },
+    {
+      "attempts_fallback": "Do not re-ping without new evidence; if closed/unmerged, terminal-record the external outcome.",
+      "blocker_owner": "upstream codex-acp maintainers",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Upstream codex-acp#451 OPEN non-draft UNSTABLE at 0bd0f8\u2026; watch-only and no dependency edge.",
+        "preservation": "Fork branch/head 0bd0f8f... retained; downstream immutable merge f4df079.",
+        "recommended_action": "Keep as watch-only Blocked record with no dependents. Suppress pings; terminalize/update only when upstream #451 merges/closes or the maintained fork contract explicitly changes.",
+        "relation_evidence": "fresh blockers projection returned []",
+        "root": {
+          "gate": "upstream codex-acp#451 watch",
+          "owner": "upstream maintainer; watch-only blocks no task",
+          "staffed": true,
+          "task_id": null
+        },
+        "root_staffing_evidence": "Live RUNNING/provider or external maintainer ownership exists.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": true
+        }
+      },
+      "dependencies": "Live relation projection has no blockers.",
+      "next_action": "Keep as a passive external watch only if PR451 remains open; never use it as a delivery dependency. Reconcile related Done carrier 5e7 separately.",
+      "positive_proof": "Task plan section 'Upstream contribution watch receipt \u2014 2026-09-08T02:04Z' states PR451 is open/non-draft at 0bd0f8f..., this card is watch-only and blocks no downstream delivery, and active downstream source is merged yattdev/codex-acp PR1 at f4df079.",
+      "preservation_receipt": "Fork branch/head 0bd0f8f... retained; downstream immutable merge f4df079.",
+      "previous_step": "CI Fixup",
+      "proof_freshness": "Exact plan receipt; provider open state needs reset refresh.",
+      "session_census": "All inspected; WFI only, no active session.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "5c9f515d-e5f9-43c5-bf31-fb42276e5e15",
+      "title": "Add guarded TTY bridge to codex-acp",
+      "trigger_expected_evidence": "New maintainer review, workflow result, merge, or release.",
+      "verdict": "KEEP_BLOCKED_EXTERNAL_WATCH_ONLY"
+    },
+    {
+      "attempts_fallback": "If successor fails, create a new isolated recovery; never resume the conflicted workspace.",
+      "blocker_owner": "02159 successor Work Terra 4b049eaa",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Legacy PR3166 OPEN draft DIRTY at 4947dc72\u2026; successor 02159e6a has partially integrated local b17c86918 evidence but no delivered current PR/head.",
+        "preservation": "Original interrupted merge and unique staged inventory retained; do not resume it.",
+        "recommended_action": "Keep Blocked preservation carrier. Staff successor 02159e6a in Work with fresh Terra to finish, push, and receipt the unique local integration; do not resume this parked carrier.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "successor integration/delivery",
+          "owner": "unstaffed Work root",
+          "staffed": false,
+          "task_id": "02159e6a-189a-4bcf-8bbc-bc5133ea5ef2"
+        },
+        "root_staffing_evidence": "No live agent root owner was proven; Human/external/unstaffed trigger is named explicitly.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Relation projection denied FORBIDDEN.",
+      "next_action": "Keep until successor finishes; then prove commit/file containment and terminal-supersede this unsafe workspace.",
+      "positive_proof": "Live plan records interrupted merge/unowned staged conflict state and names isolated successor 02159 as recovery owner.",
+      "preservation_receipt": "Original interrupted merge and unique staged inventory retained; do not resume it.",
+      "previous_step": "Work",
+      "proof_freshness": "Primary reports 021 source only partially integrated at b17c86918 and fresh Terra 4b049eaa STARTING at 01:04Z.",
+      "session_census": "All inspected; this task WFI only, no active session.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "01d6764d-b66d-46a0-a664-2caf4c3f4d98",
+      "title": "Make terminal workflow routing atomic",
+      "trigger_expected_evidence": "021 delivery plus unique-work containment receipt.",
+      "verdict": "KEEP_BLOCKED_PRESERVATION_CARRIER"
+    },
+    {
+      "attempts_fallback": "If root is already merged, immediately advance dependents instead of retaining a stale wait.",
+      "blocker_owner": "e0dd8d19 / PR3473, then release owners",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Root PR3473 OPEN draft BLOCKED at 55e23b447\u2026 with exact-head CI still in progress.",
+        "preservation": "Program ledger retained; it is not an implementation workspace.",
+        "recommended_action": "Keep Blocked; suppress model-availability pings while PR3473 CI is running. On clean deployment, start a fresh exact GPT-5.4 source session; if unavailable, record a fresh provider advertisement failure rather than reusing an obsolete quota hold.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "kdlbs/kandev#3473 then exact GPT-5.4 source session",
+          "owner": "CI provider currently; GPT-5.4 source after deploy",
+          "staffed": true,
+          "task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb"
+        },
+        "root_staffing_evidence": "Live RUNNING/provider or external maintainer ownership exists.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Relation projection denied FORBIDDEN.",
+      "next_action": "Primary must refresh/staff e0; keep this card as ledger until all named deliveries and E2E proofs complete.",
+      "positive_proof": "Live plan says remaining program root is exact-model repair PR3473.",
+      "preservation_receipt": "Program ledger retained; it is not an implementation workspace.",
+      "previous_step": "Work",
+      "proof_freshness": "Root e0 lacks a current terminal Review/QA receipt and had no active session in this audit.",
+      "session_census": "All inspected; WFI/failed only, no active session.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "1e46d457-6869-4750-bf97-4640a8df3b68",
+      "title": "Coordinate plugin-first board supervision delivery",
+      "trigger_expected_evidence": "PR3473 merge/deploy and exact-model acceptance.",
+      "verdict": "KEEP_BLOCKED_PROGRAM_LEDGER_NEEDS_ROOT_REFRESH"
+    },
+    {
+      "attempts_fallback": "Store strict failure receipt and remain Blocked if model still unavailable.",
+      "blocker_owner": "e0dd8d19 / PR3473",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Root PR3473 OPEN draft BLOCKED at 55e23b447\u2026 with exact-head CI still in progress.",
+        "preservation": "63712023... clean and reviewed.",
+        "recommended_action": "Keep Blocked; suppress model-availability pings while PR3473 CI is running. On clean deployment, start a fresh exact GPT-5.4 source session; if unavailable, record a fresh provider advertisement failure rather than reusing an obsolete quota hold.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "kdlbs/kandev#3473 then exact GPT-5.4 source session",
+          "owner": "CI provider currently; GPT-5.4 source after deploy",
+          "staffed": true,
+          "task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb"
+        },
+        "root_staffing_evidence": "Live RUNNING/provider or external maintainer ownership exists.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Relation projection denied FORBIDDEN.",
+      "next_action": "After e0 deployment, create a fresh exact GPT-5.4 PR session.",
+      "positive_proof": "Live plan preserves clean head 63712023... with Review/QA passed and records strict-model routing as the only remaining gate.",
+      "preservation_receipt": "63712023... clean and reviewed.",
+      "previous_step": "PR",
+      "proof_freshness": "Kandev-live task evidence; e0 deployment state unresolved.",
+      "session_census": "All inspected; WFI/failed profile attempts only.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "23a05db4-c7bf-4732-a390-08cb8f0a3a8d",
+      "title": "H6: Add plugin capability approval and audit",
+      "trigger_expected_evidence": "No-substitution exact-model startup and PR publication.",
+      "verdict": "KEEP_BLOCKED_STRICT_MODEL_GATE"
+    },
+    {
+      "attempts_fallback": "If #3165 fails QA, bind to its fixup.",
+      "blocker_owner": "9ee4be81 / PR3165",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation.",
+          "No authoritative visible Human ask identity was found."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "PR3404 OPEN draft BLOCKED at 654a7cdc\u2026; Human-visible question/answer evidence remains the release criterion.",
+        "preservation": "PR3404 exact head retained.",
+        "recommended_action": "Keep Blocked; require an actual visible Human question identity and resulting answer/transport receipt. An inherited plan command alone is not proof of a pending visible ask.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "visible durable Human-question transport proof",
+          "owner": "Human/operator response gate",
+          "staffed": false,
+          "task_id": null
+        },
+        "root_staffing_evidence": "No live agent root owner was proven; Human/external/unstaffed trigger is named explicitly.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Live relation projection has no blockers; explicit edge should be added after audit.",
+      "next_action": "After #3165 deployment, perform exact PR3404 CI refresh and route Luna if needed.",
+      "positive_proof": "Live plan preserves PR3404 head 654a7cdc... and now identifies scoped CI #3165 as the prerequisite; historical task326/#3397 is already merged.",
+      "preservation_receipt": "PR3404 exact head retained.",
+      "previous_step": "CI Fixup",
+      "proof_freshness": "Primary reports #3165 Review PASS and Sol QA RUNNING.",
+      "session_census": "All inspected; Luna WFI only.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "76b4e3d4-ccb8-408c-a0de-5e5014c538be",
+      "title": "Make visible Human questions durable",
+      "trigger_expected_evidence": "Scoped CI available and exact-head jobs run.",
+      "verdict": "KEEP_BLOCKED_ON_ACTIVE_ROOT"
+    },
+    {
+      "attempts_fallback": "If active root stops, restaff ca015; do not burn this dependent.",
+      "blocker_owner": "ca015 Work Terra fe0512a7",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Root PR3377 OPEN draft BLOCKED at c990b51\u2026; terminal census 52 success, 21 skipped, failures Run Backend Tests and Backend Postgres, 0 pending.",
+        "preservation": "Fork PR15 retained as carrier only.",
+        "recommended_action": "Keep dependent Blocked. Primary action: route root ca015838-e5cf-4294-b3bb-9c50576a5fe6 from Work to CI Fixup and start fresh Luna to classify/fix the two terminal PR3377 failures; do not resume parked dependent sessions.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "kdlbs/kandev#3377",
+          "owner": "unstaffed after terminal branch failures",
+          "staffed": false,
+          "task_id": "ca015838-e5cf-4294-b3bb-9c50576a5fe6"
+        },
+        "root_staffing_evidence": "No live agent root owner was proven; Human/external/unstaffed trigger is named explicitly.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Relation projection denied FORBIDDEN.",
+      "next_action": "After PR3377 canonical delivery, integrate current main and open canonical upstream PR with Terra.",
+      "positive_proof": "Live plan states fork PR15 is a stacked carrier and true prerequisite is ca015/PR3377.",
+      "preservation_receipt": "Fork PR15 retained as carrier only.",
+      "previous_step": "Work/stacked PR",
+      "proof_freshness": "Primary reports fresh sole Terra fe0512a7 STARTING at 00:58Z on ca015; prior attempts stopped with semantic integration unfinished.",
+      "session_census": "All inspected; local Review/Luna parked WFI, no active session.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "86c8b47e-e7a5-4693-8e11-dce08899a0bf",
+      "title": "Preserve unread queue on session deletion",
+      "trigger_expected_evidence": "Queue primitive merged/deployed with semantic acceptance.",
+      "verdict": "KEEP_BLOCKED_ON_ACTIVE_ROOT"
+    },
+    {
+      "attempts_fallback": "If root changes, update exact dependency.",
+      "blocker_owner": "ca015 Work Terra fe0512a7",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Root PR3377 OPEN draft BLOCKED at c990b51\u2026; terminal census 52 success, 21 skipped, 2 failure, 0 pending.",
+        "preservation": "Task scope retained; no safe implementation resume before contract settles.",
+        "recommended_action": "Keep dependent Blocked. Primary action: route root ca015838-e5cf-4294-b3bb-9c50576a5fe6 from Work to CI Fixup and start fresh Luna to classify/fix the two terminal PR3377 failures; do not resume parked dependent sessions.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "kdlbs/kandev#3377",
+          "owner": "unstaffed after terminal branch failures",
+          "staffed": false,
+          "task_id": "ca015838-e5cf-4294-b3bb-9c50576a5fe6"
+        },
+        "root_staffing_evidence": "No live agent root owner was proven; Human/external/unstaffed trigger is named explicitly.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Relation projection denied FORBIDDEN although earlier task message says edge was verified.",
+      "next_action": "After queue primitive semantic delivery, staff fresh Terra Work.",
+      "positive_proof": "Live plan and task message identify ca015 queue primitive as exact prerequisite.",
+      "preservation_receipt": "Task scope retained; no safe implementation resume before contract settles.",
+      "previous_step": "Work",
+      "proof_freshness": "Primary live active-root report at 00:58Z.",
+      "session_census": "All inspected; Terra WFI only.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "428d343e-c768-4bce-a5e7-efd3b10f363f",
+      "title": "Plugin fenced runtime and scheduler",
+      "trigger_expected_evidence": "Canonical queue contract merged and integration acceptance passes.",
+      "verdict": "KEEP_BLOCKED_ON_ACTIVE_ROOT"
+    },
+    {
+      "attempts_fallback": "Rebind exact successor if either root changes.",
+      "blocker_owner": "ca015 then 428d",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Ultimate root PR3377 OPEN draft BLOCKED at c990b51\u2026 with 2 terminal branch failures and no active owner.",
+        "preservation": "Harness scope retained.",
+        "recommended_action": "Keep dependent Blocked. Primary action: route root ca015838-e5cf-4294-b3bb-9c50576a5fe6 from Work to CI Fixup and start fresh Luna to classify/fix the two terminal PR3377 failures; do not resume parked dependent sessions.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "428d343e -> ca015838 -> kdlbs/kandev#3377",
+          "owner": "root ca015838 unstaffed after terminal branch failures",
+          "staffed": false,
+          "task_id": "428d343e-c768-4bce-a5e7-efd3b10f363f"
+        },
+        "root_staffing_evidence": "No live agent root owner was proven; Human/external/unstaffed trigger is named explicitly.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Relation projection denied FORBIDDEN although prior message says edge was verified.",
+      "next_action": "No active burn. Staff fresh Terra only after 428d runtime acceptance.",
+      "positive_proof": "Live plan names 428d fenced runtime, which itself waits on ca015 queue primitive.",
+      "preservation_receipt": "Harness scope retained.",
+      "previous_step": "Work",
+      "proof_freshness": "Current Kandev plans plus primary ca015 active-root report.",
+      "session_census": "All inspected; Terra WFI only.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "0259d242-0a94-40ef-843e-385292796b64",
+      "title": "Plugin deterministic scale harness",
+      "trigger_expected_evidence": "Fenced runtime deployed and scheduler contract stable.",
+      "verdict": "KEEP_BLOCKED_TRANSITIVE_DEPENDENCY"
+    },
+    {
+      "attempts_fallback": "If upstream semver is absent, record named release owner and exact version requirement.",
+      "blocker_owner": "e872 rerun/release owner, then 7a publisher",
+      "current_audit": {
+        "blocker_disposition": "historical blocker cleared/replaced; current successor blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": "implementation dependency merged; release/publication gate remains",
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Protected ToDeploy root live content intentionally not used for disposition; only cached lane/identity and provider-safe release facts are carried."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Redmine implementation PR3 is MERGED at caf011\u2026; release/publication remains outstanding.",
+        "preservation": "E2E task retained; no runtime artifact claimed.",
+        "recommended_action": "Keep Blocked: implementation edge is satisfied, release gate is not. After protected Human release task 7a0454aa completes, remove/replace the stale implementation edge and run Redmine E2E.",
+        "relation_evidence": "fresh blocker edge returned 7a0454aa-c089-4365-8966-ad99775a46f8",
+        "root": {
+          "gate": "Redmine release/publication after implementation PR3 merge",
+          "owner": "Human release owner; protected ToDeploy",
+          "staffed": false,
+          "task_id": "7a0454aa-c089-4365-8966-ad99775a46f8"
+        },
+        "root_staffing_evidence": "No live agent root owner was proven; Human/external/unstaffed trigger is named explicitly.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Remove satisfied direct blocker edge to 7a implementation and replace with exact release/publication root; frozen edge is semantically stale.",
+      "next_action": "Correct dependency, then create fresh Sol QA only after updated package is published/deployed.",
+      "positive_proof": "Live relation still lists 7a as blocker, while 7a plan proves implementation PR3 merged; 7a's remaining state is release publication through e872 and a compatible upstream semver.",
+      "preservation_receipt": "E2E task retained; no runtime artifact claimed.",
+      "previous_step": "QA",
+      "proof_freshness": "Live relation and live plans.",
+      "session_census": "All inspected; WFI only, no active QA.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "ecd8b857-42a6-417f-a7e4-084f50fc6956",
+      "title": "Run isolated Redmine first-version E2E",
+      "trigger_expected_evidence": "Installed package version/ref and isolated Redmine runtime receipt.",
+      "verdict": "KEEP_BLOCKED_BUT_REMOVE_SATISFIED_EDGE"
+    },
+    {
+      "attempts_fallback": "No active burn while dependency remains.",
+      "blocker_owner": "86c, transitively ca015",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Ultimate root PR3377 OPEN draft BLOCKED at c990b51\u2026 with 2 terminal branch failures and no active owner.",
+        "preservation": "Approved design retained.",
+        "recommended_action": "Keep dependent Blocked. Primary action: route root ca015838-e5cf-4294-b3bb-9c50576a5fe6 from Work to CI Fixup and start fresh Luna to classify/fix the two terminal PR3377 failures; do not resume parked dependent sessions.",
+        "relation_evidence": "fresh blocker edge returned 86c8b47e-e7a5-4693-8e11-dce08899a0bf",
+        "root": {
+          "gate": "86c8b47e -> ca015838 -> kdlbs/kandev#3377",
+          "owner": "root ca015838 unstaffed after terminal branch failures",
+          "staffed": false,
+          "task_id": "86c8b47e-e7a5-4693-8e11-dce08899a0bf"
+        },
+        "root_staffing_evidence": "No live agent root owner was proven; Human/external/unstaffed trigger is named explicitly.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Live blocker edge to 86c.",
+      "next_action": "After 86c canonical delivery, create fresh Terra Work.",
+      "positive_proof": "Live relation projection names 86c queue-deletion delivery as blocker; live plan says implementation begins only after it.",
+      "preservation_receipt": "Approved design retained.",
+      "previous_step": "Work",
+      "proof_freshness": "Kandev-live relation.",
+      "session_census": "All inspected; no active delivery session.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "b8fc206c-9e3f-4497-9ac3-3b62593da258",
+      "title": "Rotate Coordinator sessions before context exhaustion",
+      "trigger_expected_evidence": "Unread-queue preservation acceptance passes.",
+      "verdict": "KEEP_BLOCKED_ON_DEPENDENCY"
+    },
+    {
+      "attempts_fallback": "Bind to exact fixup if QA fails.",
+      "blocker_owner": "9ee4be81 Sol QA bf927f67",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Root PR3165 OPEN draft BLOCKED at 383d2102\u2026; current run in progress; Luna root owner RUNNING at 02:44Z.",
+        "preservation": "No implementation allocation to preserve.",
+        "recommended_action": "Keep Blocked; root 9ee4be81 is actively staffed by Luna during PR3165 CI. Suppress duplicate action until terminal event.",
+        "relation_evidence": "fresh blocker edge returned 9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+        "root": {
+          "gate": "kdlbs/kandev#3165",
+          "owner": "Luna CI Fixup session 5bca200c-d4be-40f9-aa05-504efb37fe07",
+          "staffed": true,
+          "task_id": "9ee4be81-aa98-4e4d-bdd6-842fd918f00f"
+        },
+        "root_staffing_evidence": "Live RUNNING/provider or external maintainer ownership exists.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": true
+        }
+      },
+      "dependencies": "Live blocker edge to 9ee4be81.",
+      "next_action": "After #3165 merge/deploy, staff fresh Terra Work.",
+      "positive_proof": "Live relation names 9ee4be81/#3165 as blocker; primary reports Review PASS and Sol QA bf927f67 RUNNING.",
+      "preservation_receipt": "No implementation allocation to preserve.",
+      "previous_step": "Work",
+      "proof_freshness": "Live relation plus primary active session.",
+      "session_census": "All inspected; local Terra WFI only.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "4b56a8b3-89fa-43ef-891d-c6b3a3b88e2a",
+      "title": "Propagate CI cleanup errors on workspace deletion",
+      "trigger_expected_evidence": "Scoped CI cleanup path deployed.",
+      "verdict": "KEEP_BLOCKED_ON_ACTIVE_ROOT"
+    },
+    {
+      "attempts_fallback": "Do not trust stale agent tag claiming active integration without a session.",
+      "blocker_owner": "primary Coordinator for task093/PR3498",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Root PR3498 OPEN non-draft CLEAN at cb7b887e\u2026; 83 checks: 51 success, 32 skipped, 0 failure/pending; Sol QA session is parked WFI.",
+        "preservation": "Task scope retained.",
+        "recommended_action": "Keep Blocked on PR3498 merge. Exact head cb7b887e is clean/green and root QA is parked; verify the exact-head QA receipt and existing notification identity, then mark/notify once only if absent.",
+        "relation_evidence": "fresh blocker edge returned 093a74ec-02e7-4400-b421-0dddfed12038",
+        "root": {
+          "gate": "kdlbs/kandev#3498",
+          "owner": "external maintainer after exact-head QA",
+          "staffed": true,
+          "task_id": "093a74ec-02e7-4400-b421-0dddfed12038"
+        },
+        "root_staffing_evidence": "Live RUNNING/provider or external maintainer ownership exists.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Live blocker edge to 093; primary check requested.",
+      "next_action": "If PR3498 is contained in canonical main 401947, move to Work and create fresh Terra immediately; otherwise keep exact active root.",
+      "positive_proof": "Live relation names outside-slice task 093/PR3498 as blocker; task plan says current-main integration follows that merge.",
+      "preservation_receipt": "Task scope retained.",
+      "previous_step": "Work",
+      "proof_freshness": "Live dependency edge; provider containment unavailable. Source report gives canonical main 401947... but not PR3498 containment.",
+      "session_census": "All inspected; Terra WFI only, no active session.",
+      "tags": "Agent waiting and needs-test tags retained; no Human tag.",
+      "task_id": "cfccac4a-1c80-403f-b284-a673a26a321a",
+      "title": "Fix shared task-switch E2E failure",
+      "trigger_expected_evidence": "Canonical-main containment of PR3498.",
+      "verdict": "KEEP_BLOCKED_PENDING_OUTSIDE_ROOT_CHECK"
+    },
+    {
+      "attempts_fallback": "Request already visible; do not duplicate.",
+      "blocker_owner": "repository maintainer",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [
+          "Fresh relation projection unavailable/forbidden for this task; dependency statement is from current plan and latest task conversation."
+        ],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "PR3468 OPEN draft BLOCKED at 973a9d\u2026; 81 checks: 49 success, 29 skipped, 3 failure, 0 pending; rerun request issuecomment-5584377539 exists and no newer attempt was observed.",
+        "preservation": "Exact head 973a9d... retained.",
+        "recommended_action": "Keep Blocked; issuecomment-5584377539 already requests rerun. No duplicate ping. Resume on a newer run/head/maintainer response.",
+        "relation_evidence": "fresh relation read denied/unavailable; current plan/conversation used and gap recorded",
+        "root": {
+          "gate": "kdlbs/kandev#3468",
+          "owner": "upstream CI/maintainer",
+          "staffed": true,
+          "task_id": null
+        },
+        "root_staffing_evidence": "Live RUNNING/provider or external maintainer ownership exists.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": "issuecomment-5584377539",
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": true
+        }
+      },
+      "dependencies": "Live dependent is 7a.",
+      "next_action": "At reset check exact-head new attempt; route fresh Luna CI, then Review 5.5 and Sol QA.",
+      "positive_proof": "Live plan records PR3468 head 973a9d... with shared SSH fixture failure and a maintainer rerun request at issuecomment-5572536816 on 2026-09-08T11:24Z.",
+      "preservation_receipt": "Exact head 973a9d... retained.",
+      "previous_step": "CI Fixup",
+      "proof_freshness": "Current task-plan request proof; provider state awaits reset.",
+      "session_census": "All inspected; Luna primary WFI, no active session.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "e8728906-86de-4a75-960f-9da585485823",
+      "title": "Fix plugin task priority persistence",
+      "trigger_expected_evidence": "New exact-head run.",
+      "verdict": "KEEP_BLOCKED_EXTERNAL_RERUN_VISIBLE"
+    },
+    {
+      "attempts_fallback": "If a3f review fails, keep exact fixup root; never resume a parked mismatch.",
+      "blocker_owner": "a3f Review d3527770, then QA/merge",
+      "current_audit": {
+        "blocker_disposition": "current blocker remains",
+        "blocker_still_exists": true,
+        "historical_blocker_cleared": null,
+        "message_recommendation": "No owner contact from this audit. Post only the exact one-time message named by recommended_action, and only after checking for an existing identity.",
+        "missing_fields": [],
+        "move_recommendation": "No move for the physical Blocked card until its gate clears. Any root-lane move is stated in recommended_action.",
+        "observed_window_utc": "2026-09-09T02:38Z/2026-09-09T02:47Z",
+        "physical_lane": "Blocked",
+        "positive_source_proof": "Root PR3310 OPEN draft CLEAN at a1fb4e83\u2026; 75 checks: 53 success, 22 skipped, 0 failure/pending; previous notification named older 74ff2 head, so exact-current-head disposition is actionable.",
+        "preservation": "PR4 draft head 980dead... retained.",
+        "recommended_action": "Keep Blocked on PR3310 merge. Current head a1fb4e83 is clean/green but the visible notification names older 74ff2; verify current-head QA receipt, then mark ready and send one exact-head maintainer notification.",
+        "relation_evidence": "fresh blocker edge returned a3f02302-2d66-45b5-b8a6-1ad8f7b69eaf",
+        "root": {
+          "gate": "kdlbs/kandev#3310",
+          "owner": "external maintainer after exact-head QA",
+          "staffed": true,
+          "task_id": "a3f02302-2d66-45b5-b8a6-1ad8f7b69eaf"
+        },
+        "root_staffing_evidence": "Live RUNNING/provider or external maintainer ownership exists.",
+        "task_session_census": "All sessions for this physical Blocked task inspected; no RUNNING or STARTING session. Nonterminal sessions are parked WFI/CREATED. Parked model/lane mismatches are unsafe to resume and consume no active slot.",
+        "unchanged_ping_suppression": {
+          "identity": null,
+          "reason": "Suppress when an unchanged ask, active root owner, or unchanged watch state already exists; the recommended action names the next deterministic trigger.",
+          "suppress": false
+        }
+      },
+      "dependencies": "Live blocker edge to a3f.",
+      "next_action": "Wait for a3f Review/QA/merge. Then discard the unusable CREATED session and create a fresh GPT-5.5 Review for this task.",
+      "positive_proof": "Live relation names a3f/PR3310. Primary reports new head a1fb4e83 clean/pushed and fresh GPT-5.5 Review d3527770 RUNNING.",
+      "preservation_receipt": "PR4 draft head 980dead... retained.",
+      "previous_step": "Review",
+      "proof_freshness": "Primary live active-session report.",
+      "session_census": "All inspected; this task has Terra WFI and old Review session 94e... stuck CREATED.",
+      "tags": "Agent waiting tag retained; no Human tag.",
+      "task_id": "3f721d52-452b-4bc6-a61e-68d875baafbd",
+      "title": "Recover Redmine preflight in a dedicated workspace",
+      "trigger_expected_evidence": "PR3310 merged/deployed.",
+      "verdict": "KEEP_BLOCKED_ON_ACTIVE_OUTSIDE_ROOT"
+    }
+  ],
+  "schema": "coordinator.blocked-full-cycle.r4.v1"
+}
