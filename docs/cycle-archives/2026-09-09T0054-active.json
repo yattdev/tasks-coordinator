@@ -1,0 +1,403 @@
+{
+  "cycle_id": "coordinator-cycle-0054",
+  "slice": "active",
+  "observed_at": "2026-09-09T01:09:44Z",
+  "identity": {
+    "coordinator_task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+    "workspace_id": "2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd",
+    "workflow_id": "90f322ed-2159-424d-96e7-c2ad05668b8e",
+    "canonical_main_head": "401947",
+    "model_contract": {
+      "Work": "gpt-5.6-terra",
+      "Review": "gpt-5.5",
+      "QA": "gpt-5.6-sol",
+      "CI Fixup": "gpt-5.6-luna",
+      "Human QA": "gpt-5.6-terra",
+      "PR": "gpt-5.4"
+    }
+  },
+  "coverage": {
+    "assigned": 11,
+    "audited": 11,
+    "missing": [],
+    "running_or_starting_sessions": 0,
+    "result": "complete"
+  },
+  "provider_snapshot": {
+    "fresh_public_rest_observed_at_approx": "2026-09-09T01:01:00Z",
+    "authenticated_core_and_graphql": "rate-limited until approximately 2026-09-09T01:00:58Z; no further retry made after parent reported exhaustion",
+    "constraint": "Refresh exact provider state before any readiness transition or notification; do not infer green or thread state from old evidence."
+  },
+  "profile_ids": {
+    "gpt-5.6-terra": "c06ad00e-0da1-429a-8174-54f97164a289",
+    "gpt-5.5": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+    "gpt-5.6-sol": "24eff7cc-14c2-4147-b635-5be3df285af3",
+    "gpt-5.6-luna": "7c6be62e-6980-498a-a4fb-896947ff5402"
+  },
+  "urgent_findings": [
+    "All 11 tasks have zero RUNNING or STARTING sessions; immediate routes must start fresh or explicitly continue the correct parked primary.",
+    "Tasks 1f8d4dc8 and 09325a7b have exact-head gpt-5.5 Review PASS verdicts, but the same reviewer sessions crossed into QA. Those QA results are invalid; each needs a fresh distinct gpt-5.6-sol QA session.",
+    "Task 957da1cb has correctly sequenced exact-head Review PASS and distinct Sol QA PASS on actual PR #3501. Its board PR projection still points to merged #2843 and must be repaired; readiness needs only a fresh provider recheck and notification receipt check.",
+    "Tasks c642d57a and 02159e6a require deliberate Terra integration work; automatic merge attempts were restored clean after overlapping queue/session/workflow conflicts.",
+    "Task fa3fba49 actual PR is #3048, absent from the board projection. Its current head has two backend-test failures and an incomplete screenshot/body publication handoff, so Luna CI Fixup remains the next valid gate.",
+    "Tasks 7056a702 and a3f02302 have clean current-main integration heads with green terminal checks; previous Review/QA evidence is stale and fresh Review then QA can begin immediately.",
+    "Task af3d7a12 is ready for fresh exact-head Review: six threads were reported resolved and remaining CI failures are an artifact-service 403 cascade, but provider thread state must be refreshed before readiness.",
+    "Task 27b493a3 is terminal green and clean, but its PR body still contains stale snapshot-tool wording; correct the body before fresh Review and QA."
+  ],
+  "entries": [
+    {
+      "task_id": "f2078d51-4dd4-435f-812a-f632328ccfb2",
+      "title": "Harden env-read guard against aliased os imports",
+      "physical_lane": "CI Fixup",
+      "workflow_step_id": "347f3904-5972-44bf-92e8-a9a9a5efb96d",
+      "task_state": "REVIEW",
+      "health": "stopped_gate_ready_with_external_ci_failure",
+      "session_census": {"total": 4, "WAITING_FOR_INPUT": 1, "COMPLETED": 3, "RUNNING": 0, "STARTING": 0},
+      "nonterminal_sessions": [{"session_id": "e7388c57-2dad-4f3e-850d-7587a4bd4ce2", "state": "WAITING_FOR_INPUT", "model": "gpt-5.6-luna", "primary": true}],
+      "pr": {"number": 3505, "actual": true, "state": "open", "draft": true, "head": "45a24b9eb2f43da1fe653fc25b4a4ab10fa1cf0f", "mergeable": true, "merge_state": "unstable", "checks": {"success": 27, "skipped": 23, "failure": 4, "pending": 0}, "failure_class": "artifact upload HTTP 403 caused downstream E2E report failures; lint failure was cancelled/stale", "unresolved_threads_last_known": 0},
+      "gate_evidence": {"review": "No valid current-head review. gpt-5.5 session 8a3e2c80-c02b-4e25-a607-32842011f63e passed superseded head 711f8e993 and then crossed into QA.", "qa": "No valid current-head distinct Sol QA."},
+      "local": {"worktree": "/data/tasks/harden-env-read-guar_xm7nu8dv/kandev-source", "branch": "feature/harden-env-read-guar-uw9", "head": "45a24b9eb2f43da1fe653fc25b4a4ab10fa1cf0f", "upstream": "45a24b9eb2f43da1fe653fc25b4a4ab10fa1cf0f", "clean": true, "preserved": true},
+      "tag_audit": "Waiting tag refers to superseded delivery head 0c3 and is stale.",
+      "next_action": "Start a fresh distinct gpt-5.5 Review on exact head 45a24b9e using the classified external CI evidence; on PASS start distinct gpt-5.6-sol QA. Before readiness refresh exact head, checks, mergeability, and threads; notify once per head if policy permits infra-classified failure.",
+      "trigger": "immediate",
+      "fallback": "If fresh provider evidence changes the failure class or exposes branch-owned failures, return to Luna CI Fixup.",
+      "attempt_count": 0
+    },
+    {
+      "task_id": "957da1cb-063b-4c2e-b406-6d04ad158fb9",
+      "title": "Reuse workspace for additional task sessions",
+      "physical_lane": "Human QA",
+      "workflow_step_id": "814573a3-f2a3-4f42-8706-4f2997401fa6",
+      "task_state": "REVIEW",
+      "health": "gate_complete_provider_recheck_and_external_wait_candidate",
+      "session_census": {"total": 13, "WAITING_FOR_INPUT": 1, "COMPLETED": 12, "RUNNING": 0, "STARTING": 0},
+      "nonterminal_sessions": [{"session_id": "e8ca20ed-e74e-4e47-80bc-60fa980531e6", "state": "WAITING_FOR_INPUT", "model": "gpt-5.6-luna", "primary": true, "model_risk": "Do not wake for Human QA; lane contract is Terra and no manual QA is required."}],
+      "pr": {"number": 3501, "actual": true, "board_projection": 2843, "projection_status": "stale merged association", "state": "open", "draft": false, "head": "97d9807121bcd6f05b8021043734579daf3eba41", "mergeability_last_known": "clean/mergeable at 2026-09-08T18:52Z; fresh REST returned null/unknown", "checks": {"success": 49, "skipped": 23, "failure": 0, "pending": 0}, "unresolved_threads_last_known": 0},
+      "gate_evidence": {"review": {"verdict": "PASS", "session_id": "0ffe792a-9221-41af-bb1d-e84d151d101f", "model": "gpt-5.5", "head": "97d9807121bcd6f05b8021043734579daf3eba41"}, "qa": {"verdict": "PASS", "session_id": "00c43643-4228-4231-b95c-849d7159acf8", "model": "gpt-5.6-sol", "head": "97d9807121bcd6f05b8021043734579daf3eba41", "distinct_from_review": true}, "manual_qa": "not required"},
+      "local": {"worktree": "/data/tasks/reuse-workspace-for_gbd0pbtw/kandev-source", "detached": true, "head": "97d9807121bcd6f05b8021043734579daf3eba41", "upstream": null, "clean": true, "preserved": true},
+      "tag_audit": "Agent/status tag is stale despite completed exact-head distinct Sol QA.",
+      "next_action": "After provider reset, refresh exact head, mergeability, checks, and threads on actual PR #3501. If unchanged, verify whether a notification receipt exists for 97d980; notify @carlos once if absent, then classify as explicit external maintainer wait. Repair task PR projection from #2843 to #3501 through the exact pending link mechanism.",
+      "trigger": "provider_reset_or_immediate_if_cached_fresh_provider_capability_available",
+      "fallback": "If head changes or threads/checks regress, invalidate gates and route the matching gate owner.",
+      "dependency_root_verification": "Primary should verify ownership/order for the task-PR-link correction; do not inspect another slice's implementation task.",
+      "attempt_count": 0
+    },
+    {
+      "task_id": "c642d57a-5a24-48ca-8f85-57d31115eeb5",
+      "title": "Prevent stale sessions blocking workflow",
+      "physical_lane": "Work",
+      "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+      "task_state": "REVIEW",
+      "health": "stopped_work_required",
+      "session_census": {"total": 20, "WAITING_FOR_INPUT": 10, "COMPLETED": 9, "CANCELLED": 1, "RUNNING": 0, "STARTING": 0},
+      "nonterminal_sessions": [{"session_id": "a7e3e659-43da-4bb2-9fd9-c35768bf230c", "state": "WAITING_FOR_INPUT", "model": "gpt-5.6-terra", "primary": true}, {"count": 9, "state": "WAITING_FOR_INPUT", "model": "gpt-5.5", "primary": false, "model_risk": "parked wrong-model Review sessions; do not wake for Work"}],
+      "pr": {"number": 2909, "actual": true, "state": "open", "draft": true, "head": "02bb3ad3b52d37658a117b7ec0e10a660a812fee", "mergeability": "dirty/conflicting", "checks": {"total": 75, "pending": 0, "status": "old failures/cancellations; invalid until successor head"}},
+      "gate_evidence": {"review": "invalid until Work produces successor head", "qa": "invalid until successor head"},
+      "local": {"worktree": "/data/tasks/prevent-stale-sessio_df5zabn0/kandev-recovery-pr2909", "head": "02bb3ad3b52d37658a117b7ec0e10a660a812fee", "upstream": "02bb3ad3b52d37658a117b7ec0e10a660a812fee", "clean": true, "preserved": true, "do_not_touch": "/data/tasks/prevent-stale-sessio_df5zabn0/kandev-source (original dirty checkout)"},
+      "tag_audit": "Visible tag still describes an old Luna CI state and is stale.",
+      "next_action": "Continue or start fresh gpt-5.6-terra Work in the clean recovery worktree. Deliberately port canonical-main queue identity and delivery-ledger contracts across the 14 overlapping queue/session/workflow conflicts, run focused tests, commit and normally push. Then start fresh gpt-5.5 Review followed by distinct Sol QA.",
+      "trigger": "immediate",
+      "fallback": "If the conflict depends on an implementation root outside this slice, primary must verify that dependency root before routing; preserve both recovery and original dirty worktrees.",
+      "attempt_count": 0
+    },
+    {
+      "task_id": "fa3fba49-2018-460b-a600-adae23b24cc8",
+      "title": "Add coordinator grant management surfaces",
+      "physical_lane": "CI Fixup",
+      "workflow_step_id": "347f3904-5972-44bf-92e8-a9a9a5efb96d",
+      "task_state": "REVIEW",
+      "health": "stopped_ci_fixup_required",
+      "session_census": {"total": 15, "WAITING_FOR_INPUT": 1, "COMPLETED": 14, "RUNNING": 0, "STARTING": 0},
+      "nonterminal_sessions": [{"session_id": "6c98a7f5-c71a-4595-b534-fa9ff6f89a97", "state": "WAITING_FOR_INPUT", "model": "gpt-5.6-luna", "primary": true}],
+      "pr": {"number": 3048, "actual": true, "board_projection": null, "projection_status": "missing/stale", "state": "open", "draft": true, "head": "5176dc3e5b7c4ebac86a9796513a16e1808d9a76", "mergeable": true, "merge_state": "unstable", "checks": {"success": 52, "skipped": 21, "failure": 2, "pending": 0}, "failures": ["Run Backend Tests", "Backend Tests (1/2)"]},
+      "gate_evidence": {"review": "none valid at current head", "qa": "none valid at current head", "publication": "screenshots were published as raw assets but PR body attachment/update did not complete"},
+      "local": {"worktree": "/data/tasks/add-coordinator-gran_1csfn5ki/kandev-source", "head": "5176dc3e5b7c4ebac86a9796513a16e1808d9a76", "upstream": "5176dc3e5b7c4ebac86a9796513a16e1808d9a76", "clean": true, "preserved": true},
+      "tag_audit": "CI Fixup tag names the right lane but carries superseded head 6de and is stale.",
+      "next_action": "Continue the parked Luna CI Fixup owner or start fresh Luna at exact head 5176dc. Inspect the two current backend job logs, fix and normally push if branch-owned, and complete screenshot embedding/PR-body publication. When checks and body settle, start fresh gpt-5.5 Review then distinct Sol QA.",
+      "trigger": "immediate_after_provider_log_access_resumes",
+      "fallback": "If logs prove external infrastructure failure, record exact classification and proceed through Review/QA under the infra-failure policy; do not reuse old gates.",
+      "attempt_count": 0
+    },
+    {
+      "task_id": "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+      "title": "Manage task PR and MR links via MCP",
+      "physical_lane": "Work",
+      "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+      "task_state": "REVIEW",
+      "health": "stopped_review_ready_with_external_ci_failure",
+      "session_census": {"total": 5, "WAITING_FOR_INPUT": 3, "COMPLETED": 2, "RUNNING": 0, "STARTING": 0},
+      "nonterminal_sessions": [{"session_id": "56eadd20-e20e-40dc-b9b0-4b298b6f48e5", "state": "WAITING_FOR_INPUT", "model": "gpt-5.6-terra", "primary": true}, {"session_id": "e48e2582-24f0-41f1-9355-0fe6bfd6c651", "state": "WAITING_FOR_INPUT", "model": "gpt-5.6-terra", "primary": false}, {"session_id": "2067abb3-313c-4778-803c-966792fabaa1", "state": "WAITING_FOR_INPUT", "model": "gpt-5.6-terra", "primary": false}],
+      "pr": {"number": 3506, "actual": true, "state": "open", "draft": true, "head": "e7eef8a7e9e76c692b2fbd4edd7635b390d01369", "mergeable": true, "merge_state": "unstable", "checks": {"success": 50, "skipped": 34, "failure": 3, "pending": 0}, "failure_class": "artifact download/upload HTTP 403 cascade", "unresolved_threads_last_known": 0, "thread_note": "task conversation reports all six threads resolved"},
+      "gate_evidence": {"review": "Previous gpt-5.5 session e9a183a4 was blocked at superseded head da166; no valid current-head review.", "qa": "none valid at current head"},
+      "local": {"worktree": "/data/tasks/manage-task-pr-and-m_lnhqofsd/kandev-source", "head": "e7eef8a7e9e76c692b2fbd4edd7635b390d01369", "upstream": "e7eef8a7e9e76c692b2fbd4edd7635b390d01369", "clean": true, "preserved": true},
+      "tag_audit": "Terra-active tag is stale because all Terra sessions are stopped and the next gate is Review.",
+      "next_action": "Start a fresh gpt-5.5 Review at exact head e7eef8, with current thread and classified artifact-failure evidence. On PASS start distinct gpt-5.6-sol QA; on PASS refresh provider state and take readiness/notification actions.",
+      "trigger": "immediate",
+      "fallback": "If fresh threads appear or CI evidence becomes branch-owned, return to Terra Work or Luna CI Fixup as appropriate.",
+      "attempt_count": 0
+    },
+    {
+      "task_id": "1f8d4dc8-83ac-44d6-9fbd-b34bd46e044e",
+      "title": "Recover missing linked-worktree admin directories",
+      "physical_lane": "Human QA",
+      "workflow_step_id": "814573a3-f2a3-4f42-8706-4f2997401fa6",
+      "task_state": "REVIEW",
+      "health": "stopped_qa_ready",
+      "session_census": {"total": 18, "WAITING_FOR_INPUT": 1, "COMPLETED": 17, "RUNNING": 0, "STARTING": 0},
+      "nonterminal_sessions": [{"session_id": "e1d19836-b8bf-4c88-ac68-258aec41aef2", "state": "WAITING_FOR_INPUT", "model": "gpt-5.6-luna", "primary": true, "model_risk": "Do not wake for QA."}],
+      "pr": {"number": 3137, "actual": true, "state": "open", "draft": true, "head": "2d3c8f6161f235d0071e686ffb43715fb13bb6ff", "mergeability": "clean", "checks": {"success": 53, "skipped": 20, "failure": 0, "pending": 0}, "unresolved_threads_last_known": 0},
+      "gate_evidence": {"review": {"verdict": "PASS", "session_id": "e284b39d-b6fc-474d-91ea-bc93e07e40c6", "model": "gpt-5.5", "head": "2d3c8f6161f235d0071e686ffb43715fb13bb6ff"}, "qa": "Invalid: the Review session crossed into QA. Earlier Sol QA preceded this review, so gate ordering is invalid."},
+      "local": {"worktree": "/data/tasks/recover-missing-link_596r7wik/kandev-source", "head": "2d3c8f6161f235d0071e686ffb43715fb13bb6ff", "upstream": "2d3c8f6161f235d0071e686ffb43715fb13bb6ff", "clean": true, "preserved": true},
+      "tag_audit": "Tag still describes Terra Work at old head 6bf and is stale.",
+      "next_action": "Start a fresh distinct gpt-5.6-sol QA session at exact head 2d3c8f. On PASS refresh exact provider head, checks, mergeability, and threads, then mark ready and notify once per head.",
+      "trigger": "immediate",
+      "fallback": "Any QA defect returns to Terra Work on a successor head, invalidating the Review PASS.",
+      "attempt_count": 0
+    },
+    {
+      "task_id": "27b493a3-65b6-4d4a-8b68-73f2ffcf9621",
+      "title": "Fix workflow-sync GitHub polling starving API quota",
+      "physical_lane": "CI Fixup",
+      "workflow_step_id": "347f3904-5972-44bf-92e8-a9a9a5efb96d",
+      "task_state": "REVIEW",
+      "health": "stopped_publication_then_review",
+      "session_census": {"total": 22, "WAITING_FOR_INPUT": 8, "COMPLETED": 14, "RUNNING": 0, "STARTING": 0},
+      "nonterminal_sessions": [{"session_id": "5ba49ca2-b68d-440d-9363-e0009effff5f", "state": "WAITING_FOR_INPUT", "model": "gpt-5.6-luna", "primary": true}, {"count": 7, "state": "WAITING_FOR_INPUT", "models": ["gpt-5.5", "gpt-5.6-luna", "gpt-5.6-terra", "unknown"], "primary": false, "model_risk": "Do not wake parked mismatched sessions generically."}],
+      "pr": {"number": 3143, "actual": true, "state": "open", "draft": true, "head": "14a54e1a420e860978a92213908a8705b16e1016", "mergeability": "clean", "checks": {"success": 53, "skipped": 22, "failure": 0, "pending": 0}, "body_gap": "stale wording says snapshot tool is internal"},
+      "gate_evidence": {"review": "none fresh/current-head", "qa": "none fresh/current-head"},
+      "local": {"worktree": "/data/tasks/fix-workflow-sync-gi_eo5i7833/kandev-source", "head": "14a54e1a420e860978a92213908a8705b16e1016", "upstream": "14a54e1a420e860978a92213908a8705b16e1016", "clean": true, "preserved": true},
+      "tag_audit": "Tag describes old Terra restore head a68 and is stale.",
+      "next_action": "Correct the PR body using provider/task mutation capability after rate reset. Then start fresh gpt-5.5 Review at exact head 14a54e followed by distinct Sol QA; refresh provider state before readiness.",
+      "trigger": "provider_reset_for_body_update",
+      "fallback": "If the body can be corrected without GitHub mutation by an already-authorized PR owner, route that exact owner; do not treat terminal green CI as completed gates.",
+      "attempt_count": 0
+    },
+    {
+      "task_id": "7056a702-a3c3-4fe8-8535-c6b8d340ef6a",
+      "title": "Add exact pending-move cancellation",
+      "physical_lane": "Work",
+      "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+      "task_state": "REVIEW",
+      "health": "stopped_review_ready",
+      "session_census": {"total": 44, "WAITING_FOR_INPUT": 1, "COMPLETED": 19, "CANCELLED": 24, "RUNNING": 0, "STARTING": 0},
+      "nonterminal_sessions": [{"session_id": "98bcb761-203b-428d-8a14-6d070e113125", "state": "WAITING_FOR_INPUT", "model": "gpt-5.6-terra", "primary": true}],
+      "pr": {"number": 3155, "actual": true, "state": "open", "draft": true, "head": "6e990c1f606b7dcb19c98f83ee8ea59f5af4f813", "base": "401947", "mergeability": "clean", "checks": {"success": 53, "skipped": 22, "failure": 0, "pending": 0}},
+      "gate_evidence": {"review": "old gates invalid after current-main integration produced head 6e990c", "qa": "old gates invalid"},
+      "local": {"worktree": "/data/tasks/add-exact-pending-mo_p9bciunm/kdlbs-kandev", "head": "6e990c1f606b7dcb19c98f83ee8ea59f5af4f813", "upstream": "6e990c1f606b7dcb19c98f83ee8ea59f5af4f813", "clean": true, "preserved": true},
+      "tag_audit": "Waiting/ready/notified tag refers to a superseded head and is stale.",
+      "next_action": "Start fresh gpt-5.5 Review at exact head 6e990c, then distinct gpt-5.6-sol QA. On PASS perform post-gate provider refresh, readiness transition, and one notification receipt for this head.",
+      "trigger": "immediate",
+      "fallback": "Any finding returns to Terra Work and invalidates the new gate sequence.",
+      "attempt_count": 0
+    },
+    {
+      "task_id": "a3f02302-12fa-4129-8985-116efb8fed66",
+      "title": "Recover workspace reuse inventory mismatches",
+      "physical_lane": "Work",
+      "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+      "task_state": "REVIEW",
+      "health": "stopped_review_ready",
+      "session_census": {"total": 33, "WAITING_FOR_INPUT": 1, "COMPLETED": 12, "CANCELLED": 20, "RUNNING": 0, "STARTING": 0},
+      "nonterminal_sessions": [{"session_id": "605754e5-ca79-4214-81dd-3fac86e0d430", "state": "WAITING_FOR_INPUT", "model": "gpt-5.6-terra", "primary": true}],
+      "pr": {"number": 3310, "actual": true, "state": "open", "draft": true, "head": "a1fb4e83c1286f0a0847937e621454a0de02adae", "base": "401947", "mergeability": "clean", "checks": {"success": 53, "skipped": 22, "failure": 0, "pending": 0}},
+      "gate_evidence": {"review": "old gate evidence invalid after current-main integration produced head a1fb4e", "qa": "old gate evidence invalid"},
+      "local": {"worktree": "/data/tasks/recover-workspace-re_5cxmeho1/kandev-source", "head": "a1fb4e83c1286f0a0847937e621454a0de02adae", "upstream": "a1fb4e83c1286f0a0847937e621454a0de02adae", "clean": true, "preserved": true},
+      "tag_audit": "Tag still claims Sol QA at old head ae and is stale.",
+      "next_action": "Start fresh gpt-5.5 Review at exact head a1fb4e, then distinct gpt-5.6-sol QA. On PASS perform post-gate provider refresh, readiness transition, and one notification receipt for this head.",
+      "trigger": "immediate",
+      "fallback": "Any finding returns to Terra Work and invalidates the new gate sequence.",
+      "attempt_count": 0
+    },
+    {
+      "task_id": "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+      "title": "Recover atomic terminal routing in an isolated workspace",
+      "physical_lane": "Work",
+      "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+      "task_state": "REVIEW",
+      "health": "stopped_work_required",
+      "session_census": {"total": 8, "WAITING_FOR_INPUT": 1, "COMPLETED": 7, "RUNNING": 0, "STARTING": 0},
+      "nonterminal_sessions": [{"session_id": "cf84e6c4-823f-45ab-a90d-c837401fcf9b", "state": "WAITING_FOR_INPUT", "model": "gpt-5.6-terra", "primary": true}],
+      "pr": {"number": 3166, "actual": true, "state": "open", "draft": true, "head": "4947dc72dbc9ea270188a822e2939f15b22456ea", "mergeability": "dirty/conflicting", "checks": {"success": 53, "skipped": 22, "failure": 0, "pending": 0}},
+      "gate_evidence": {"review": "invalid until Work successor head", "qa": "invalid until Work successor head"},
+      "local": {"worktree": "/data/tasks/recover-atomic-termi_li7cmaa7/kandev-source", "head": "4947dc72dbc9ea270188a822e2939f15b22456ea", "upstream": null, "clean": true, "preserved": true, "do_not_touch": "/data/tasks/make-terminal-workfl_8z3b2nzr/kandev-source (original interrupted merge/index)"},
+      "tag_audit": "Review tag refers to an older head and is stale.",
+      "next_action": "Continue or start fresh gpt-5.6-terra Work in the clean recovery worktree. Deliberately implement compatibility for canonical queue-incarnation and pending-route CAS conflicts, test, commit, and normally push. Then fresh gpt-5.5 Review followed by distinct Sol QA.",
+      "trigger": "immediate",
+      "fallback": "If a required contract is owned by another frozen slice, primary must verify the dependency root before routing. Preserve the original interrupted checkout.",
+      "attempt_count": 0
+    },
+    {
+      "task_id": "09325a7b-afb5-4f54-b2a7-ceae217a7bee",
+      "title": "Fix repository provider eligibility refresh regression",
+      "physical_lane": "Human QA",
+      "workflow_step_id": "814573a3-f2a3-4f42-8706-4f2997401fa6",
+      "task_state": "REVIEW",
+      "health": "stopped_qa_ready",
+      "session_census": {"total": 8, "WAITING_FOR_INPUT": 1, "COMPLETED": 7, "RUNNING": 0, "STARTING": 0},
+      "nonterminal_sessions": [{"session_id": "3ea73748-8a86-45d4-ac72-12faaea07445", "state": "WAITING_FOR_INPUT", "model": "gpt-5.6-luna", "primary": true, "model_risk": "Do not wake for QA."}],
+      "pr": {"number": 3498, "actual": true, "state": "open", "draft": true, "head": "cb7b887e6ad482006097a61feb4083dde81fbe36", "mergeability": "clean", "checks": {"success": 47, "skipped": 29, "failure": 0, "pending": 0}},
+      "gate_evidence": {"review": {"verdict": "PASS", "session_id": "93d94266-e8bc-4dad-9151-0d7f6727f083", "model": "gpt-5.5", "head": "cb7b887e6ad482006097a61feb4083dde81fbe36"}, "qa": "Invalid: Review session 93d94266 crossed into QA. Prior Sol session ce91a occurred at superseded head db2."},
+      "local": {"worktree": "/data/tasks/fix-repository-provi_wbjt7f13/kandev-source", "head": "cb7b887e6ad482006097a61feb4083dde81fbe36", "upstream": "cb7b887e6ad482006097a61feb4083dde81fbe36", "clean": true, "preserved": true},
+      "tag_audit": "Waiting tag refers to superseded head db2 and is stale.",
+      "next_action": "Start a fresh distinct gpt-5.6-sol QA session at exact head cb7b887e. On PASS refresh exact provider head, checks, mergeability, and threads, then mark ready and notify once per head.",
+      "trigger": "immediate",
+      "fallback": "Any QA defect returns to Terra Work on a successor head, invalidating the Review PASS.",
+      "attempt_count": 0
+    }
+  ],
+  "dependency_root_verification_requests": [
+    "For task 957da1cb, verify the authorized root/order for repairing the board association from merged PR #2843 to actual open PR #3501.",
+    "For c642d57a and 02159e6a, verify any cross-slice implementation root only if Terra reports that the current-main queue or pending-route contract cannot be resolved within the assigned task; this audit did not inspect other slices."
+  ],
+  "post_reset_refresh": {
+    "observed_at": "2026-09-09T01:31:10Z",
+    "authority": "Fresh authenticated GitHub REST check-runs and pull metadata plus GraphQL review-thread/readiness evidence. This section supersedes earlier provider/session observations where they differ.",
+    "provider_capacity": {
+      "graphql_remaining_after_queries": 4652,
+      "graphql_reset_at": "2026-09-09T02:19:39Z",
+      "status": "available"
+    },
+    "task_updates": [
+      {
+        "task_id": "f2078d51-4dd4-435f-812a-f632328ccfb2",
+        "pr": 3505,
+        "head": "45a24b9eb2f43da1fe653fc25b4a4ab10fa1cf0f",
+        "provider": {"open": true, "draft": true, "mergeable": true, "merge_state": "BLOCKED", "checks": {"success": 27, "skipped": 23, "failure": 3, "cancelled": 1, "pending": 0}, "threads": {"total": 0, "unresolved": 0}},
+        "review": {"verdict": "PASS", "session_id": "db782c70-5ae2-4d51-8277-e054ffa7391e", "model": "gpt-5.5", "state": "WAITING_FOR_INPUT", "exact_head": "45a24b9eb2f43da1fe653fc25b4a4ab10fa1cf0f", "reported_at": "2026-09-09T01:27:12Z", "evidence": "No source findings; merged-tree focused tests passed; local/tracking/remote head exact and clean."},
+        "classification": "Fresh Review passed. CI failures remain the previously classified Build artifact-upload 403, downstream Merge E2E Reports and aggregate E2E Tests Passed; cancelled lint is not a current code verdict.",
+        "next_action": "Start one fresh distinct gpt-5.6-sol QA at exact head 45a24b9e. Before readiness refresh exact provider state and retain the explicit infrastructure-failure classification."
+      },
+      {
+        "task_id": "957da1cb-063b-4c2e-b406-6d04ad158fb9",
+        "pr": 3501,
+        "head": "97d9807121bcd6f05b8021043734579daf3eba41",
+        "provider": {"open": true, "draft": false, "mergeable": true, "merge_state": "CLEAN", "checks": {"success": 49, "skipped": 23, "failure": 0, "pending": 0}, "threads": {"total": 1, "unresolved": 0, "resolved": 1, "outdated": 1}},
+        "gates": {
+          "review": {"verdict": "PASS", "session_id": "0ffe792a-9221-41af-bb1d-e84d151d101f", "model": "gpt-5.5", "head": "97d9807121bcd6f05b8021043734579daf3eba41", "note": "Reviewer later crossed into QA; that QA is excluded while this explicit Review receipt is retained."},
+          "qa": {"verdict": "PASS", "session_id": "00c43643-4228-4231-b95c-849d7159acf8", "model": "gpt-5.6-sol", "head": "97d9807121bcd6f05b8021043734579daf3eba41", "distinct": true, "evidence": "Focused retained-workspace Playwright regression passed 3/3 with retries=2; no visual change."}
+        },
+        "readiness": {
+          "verdict": "BLOCKED_ON_BODY_CORRECTION",
+          "body_defects": [
+            "Body still says independent Review, QA, and current-head CI remain pending.",
+            "Body still records Source head c17b907af2977f29c88ca35652059647b2945e8d instead of current 97d9807121bcd6f05b8021043734579daf3eba41.",
+            "Repository-template Checklist section is absent; CodeRabbit's current body check flags this as a warning."
+          ],
+          "notification": "Only issuecomment-5586603646 exists, notifying @carlosflorencio for superseded head c17b907. No notification receipt exists for exact current head 97d980.",
+          "board_projection": "Task remains associated with merged PR #2843 instead of actual open PR #3501."
+        },
+        "exact_body_edit": {
+          "preserve": ["kandev-pr-walkthrough block", "Cubic generated block", "kandev-preview block"],
+          "replace_stale_prose_with": [
+            "Adds the missing sequential retained-workspace E2E regression on current main. The production empty-ID cleanup guard is already present on main; this follow-up preserves source-cleanup behavior with regression coverage. The final test creates the task, invokes reset/cleanup, and asserts the retained source checkout within the same Playwright attempt, so retries cannot pass using a fresh worker-scoped fixture.",
+            "Validation and gates at exact head `97d9807121bcd6f05b8021043734579daf3eba41`: the focused retained-workspace Playwright regression passed 3/3 with `--retries=2`; focused worktree and task-service Go suites passed; GitHub CI is terminal with 49 successful, 23 skipped, and zero failed or pending checks; independent Review passed in gpt-5.5 session `0ffe792a-9221-41af-bb1d-e84d151d101f`; distinct QA passed in gpt-5.6-sol session `00c43643-4228-4231-b95c-849d7159acf8`; the sole provider review thread is resolved. No visual product changes or screenshots are required.",
+            "Source head: `97d9807121bcd6f05b8021043734579daf3eba41` on `yattdev:delivery/reuse-workspace-source-cleanup-c69`. Historical task branch and both backup refs remain preserved; no history rewrite. Coordinator task: `957da1cb-063b-4c2e-b406-6d04ad158fb9`."
+          ],
+          "append_before_generated_cubic": "Add the repository's complete unchecked Checklist block without pre-filling author declarations."
+        },
+        "next_action": "Correct the body exactly while preserving generated sections, repair the board PR association, then refresh unchanged head/body/checks/mergeability/threads. If still clean, notify @carlosflorencio once for head 97d980 and classify the task as an explicit upstream-maintainer wait."
+      },
+      {
+        "task_id": "c642d57a-5a24-48ca-8f85-57d31115eeb5",
+        "pr": 2909,
+        "head": "02bb3ad3b52d37658a117b7ec0e10a660a812fee",
+        "provider": {"open": true, "draft": true, "mergeable": false, "merge_state": "DIRTY", "checks": {"success": 32, "skipped": 22, "failure": 7, "cancelled": 14, "pending": 0}, "threads": {"total": 33, "unresolved": 0}},
+        "active_gate": {"lane": "Work", "session_id": "a7e3e659-43da-4bb2-9fd9-c35768bf230c", "model": "gpt-5.6-terra", "state": "RUNNING"},
+        "classification": "Correct Terra recovery owner is now running; old head remains conflicting and old CI is not a successor-head verdict.",
+        "next_action": "Consume the Terra delivery receipt and require a normally pushed successor head, then fresh Review and distinct Sol QA."
+      },
+      {
+        "task_id": "fa3fba49-2018-460b-a600-adae23b24cc8",
+        "pr": 3048,
+        "head": "5176dc3e5b7c4ebac86a9796513a16e1808d9a76",
+        "provider": {"open": true, "draft": true, "mergeable": true, "merge_state": "BLOCKED", "checks": {"success": 52, "skipped": 21, "failure": 2, "pending": 0}, "threads": {"total": 6, "unresolved": 0}},
+        "ci_verdict": {
+          "classification": "BRANCH_OWNED_TEST_FAILURE",
+          "failing_test": "TestHandleMessageTask_CoordinatorGrantInterruptsAndResolvesAudit",
+          "failure": "apps/backend/internal/mcp/handlers/message_task_test.go:884 expected websocket MessageType response, actual error",
+          "shard_job": "https://github.com/kdlbs/kandev/actions/runs/34288196529/job/102268943650",
+          "aggregate_job": "https://github.com/kdlbs/kandev/actions/runs/34288196529/job/102274837339",
+          "aggregate_reason": "test_shards finished with result failure; other aggregate inputs were success"
+        },
+        "owner": {"session_id": "6c98a7f5-c71a-4595-b534-fa9ff6f89a97", "model": "gpt-5.6-luna", "state": "WAITING_FOR_INPUT"},
+        "body_gap": "The body still says an active workspace agent principal appears unavailable for normal tasks and directs that principal lifecycle/trust-channel design be addressed before readiness.",
+        "next_action": "Resume the exact Luna owner with the failing-test artifact. Fix the branch-owned handler regression and reconcile the body risk statement against the implementation; normally push and wait for terminal successor-head CI before fresh Review and distinct Sol QA."
+      },
+      {
+        "task_id": "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+        "pr": 3506,
+        "head": "e7eef8a7e9e76c692b2fbd4edd7635b390d01369",
+        "provider": {"open": true, "draft": true, "mergeable": true, "merge_state": "BLOCKED", "checks": {"success": 50, "skipped": 34, "failure": 3, "pending": 0}, "threads": {"total": 6, "unresolved": 0}},
+        "review": {"verdict": "BLOCKED", "session_id": "3cccda10-e8cc-4a0f-9720-f916294eeb97", "model": "gpt-5.5", "head": "e7eef8a7e9e76c692b2fbd4edd7635b390d01369", "findings": ["same-identity replace unlinks the intended association", "GitHub unlink leaves exact automation and CI-state rows", "provider-neutral GitLab MR projection omits exact head SHA and potentially base SHA"]},
+        "next_action": "Route Terra Work for the three Review blockers. Do not route QA. Existing artifact-service CI cascade remains independent and must be refreshed on the successor head."
+      },
+      {
+        "task_id": "1f8d4dc8-83ac-44d6-9fbd-b34bd46e044e",
+        "pr": 3137,
+        "head": "2d3c8f6161f235d0071e686ffb43715fb13bb6ff",
+        "provider": {"open": true, "draft": true, "mergeable": true, "merge_state": "CLEAN", "checks": {"success": 53, "skipped": 20, "failure": 0, "pending": 0}, "threads": {"total": 2, "unresolved": 0}},
+        "review": {"verdict": "PASS", "session_id": "e284b39d-b6fc-474d-91ea-bc93e07e40c6", "model": "gpt-5.5", "head": "2d3c8f6161f235d0071e686ffb43715fb13bb6ff", "qa_from_same_session": "excluded"},
+        "qa": {"verdict": "PASS", "session_id": "78f4d0b5-c3d8-4a6e-8c77-1ab1866b49a0", "model": "gpt-5.6-sol", "state": "WAITING_FOR_INPUT", "head": "2d3c8f6161f235d0071e686ffb43715fb13bb6ff", "reported_at": "2026-09-09T01:30:30Z", "evidence": "Live-main merge simulation passed; race-enabled affected tests, focused task-service tests, Windows cross-compile, backend lint, diff hygiene, and provider reconciliation passed."},
+        "readiness": {"verdict": "READY_FOR_MECHANICAL_TRANSITION", "notification_receipt_for_current_head": null, "manual_qa": "not required"},
+        "next_action": "Re-run the final unchanged-head/body/check/thread barrier, mark PR non-draft, wait for and refresh any post-ready checks, then notify @carlosflorencio once for exact head 2d3c8f. No existing maintainer notification was found."
+      },
+      {
+        "task_id": "27b493a3-65b6-4d4a-8b68-73f2ffcf9621",
+        "pr": 3143,
+        "head": "14a54e1a420e860978a92213908a8705b16e1016",
+        "provider": {"open": true, "draft": true, "mergeable": true, "merge_state": "CLEAN", "checks": {"success": 53, "skipped": 22, "failure": 0, "pending": 0}, "threads": {"total": 20, "unresolved": 0}},
+        "ci_verdict": "PASS: exact-head CI is terminal with zero failure or pending checks; no CI Fixup implementation is needed.",
+        "body_gap": "Body says coordinator snapshots remain internal, which is stale if the restored public get_github_rate_limit_kandev surface is part of this delivery.",
+        "next_action": "Correct the body claim if confirmed against intended public surface, then start fresh gpt-5.5 Review and distinct Sol QA. Do not wake the parked multi-model session set generically."
+      },
+      {
+        "task_id": "7056a702-a3c3-4fe8-8535-c6b8d340ef6a",
+        "pr": 3155,
+        "head": "6e990c1f606b7dcb19c98f83ee8ea59f5af4f813",
+        "provider": {"open": true, "draft": true, "mergeable": true, "merge_state": "BLOCKED", "checks": {"success": 53, "skipped": 22, "failure": 0, "pending": 0}, "threads": {"total": 17, "unresolved": 2}},
+        "review": {"verdict": "PASS", "session_id": "a002d874-6eeb-4104-bd09-8dab33ba016c", "model": "gpt-5.5", "head": "6e990c1f606b7dcb19c98f83ee8ea59f5af4f813"},
+        "unresolved_thread_details": [
+          {"thread_id": "PRRT_kwDOQ2-eWs6gLbs-", "outdated": true, "path": "apps/backend/internal/agent/runtime/lifecycle/persistence.go", "original_line": 256, "finding_url": "https://github.com/kdlbs/kandev/pull/3155#discussion_r3956433886", "finding": "Bind terminal status updates to the execution generation.", "reply_url": "https://github.com/kdlbs/kandev/pull/3155#discussion_r3958996815", "reply": "Fixed in d0e7a167 with execution-ID CAS and rotated-row no-op."},
+          {"thread_id": "PRRT_kwDOQ2-eWs6gLbtI", "outdated": false, "path": "apps/backend/internal/agent/runtime/lifecycle/manager_interaction.go", "line": 1019, "finding_url": "https://github.com/kdlbs/kandev/pull/3155#discussion_r3956433901", "finding": "Schedule deterministic recovery after terminal persistence failures.", "reply_url": "https://github.com/kdlbs/kandev/pull/3155#discussion_r3958996818", "reply": "Fixed in d0e7a167 with deduplicated lifecycle retry, removal, and AgentStopped publication."}
+        ],
+        "resolution_proof": "Commit d0e7a167b7450639a354185a876dfa69df47ca19 is an ancestor of exact current head 6e990c1f606b7dcb19c98f83ee8ea59f5af4f813. Both source findings have technical replies and are already addressed; only provider thread resolution/readback remains.",
+        "next_action": "Resolve the two exact provider threads and refresh. If they remain resolved at unchanged head, route distinct Sol QA; no new Work is indicated by these thread bodies."
+      },
+      {
+        "task_id": "a3f02302-12fa-4129-8985-116efb8fed66",
+        "pr": 3310,
+        "head": "a1fb4e83c1286f0a0847937e621454a0de02adae",
+        "provider": {"open": true, "draft": true, "mergeable": true, "merge_state": "CLEAN", "checks": {"success": 53, "skipped": 22, "failure": 0, "pending": 0}, "threads": {"total": 7, "unresolved": 0}},
+        "review": {"verdict": "PASS", "session_id": "d3527770-8368-4de7-898f-17accce9313d", "model": "gpt-5.5", "head": "a1fb4e83c1286f0a0847937e621454a0de02adae"},
+        "next_action": "Route one fresh distinct gpt-5.6-sol QA now. PASS permits the readiness barrier; finding returns Terra Work."
+      },
+      {
+        "task_id": "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+        "pr": 3166,
+        "head": "4947dc72dbc9ea270188a822e2939f15b22456ea",
+        "provider": {"open": true, "draft": true, "mergeable": false, "merge_state": "DIRTY", "checks": {"success": 53, "skipped": 22, "failure": 0, "pending": 0}, "threads": {"total": 13, "unresolved": 0}},
+        "active_gate": {"lane": "Work", "session_id": "4b049eaa-494a-4f57-97c8-d205721253ca", "model": "gpt-5.6-terra", "state": "RUNNING"},
+        "classification": "Fresh correct-model Terra integration owner is running; provider remains on the old conflicting head.",
+        "next_action": "Consume the Terra successor-head delivery and then run fresh Review and distinct Sol QA."
+      },
+      {
+        "task_id": "09325a7b-afb5-4f54-b2a7-ceae217a7bee",
+        "pr": 3498,
+        "head": "cb7b887e6ad482006097a61feb4083dde81fbe36",
+        "provider": {"open": true, "draft": true, "mergeable": true, "merge_state": "CLEAN", "checks": {"success": 47, "skipped": 29, "failure": 0, "pending": 0}, "threads": {"total": 2, "unresolved": 0}, "screenshots": "Two reviewer-accessible SHA-pinned images are embedded in the body."},
+        "review": {"verdict": "PASS", "session_id": "93d94266-e8bc-4dad-9151-0d7f6727f083", "model": "gpt-5.5", "head": "cb7b887e6ad482006097a61feb4083dde81fbe36", "qa_from_same_session": "excluded"},
+        "qa": {"verdict": "PASS", "session_id": "50c5179b-4b40-46d4-b8e1-594c3476df44", "model": "gpt-5.6-sol", "state": "WAITING_FOR_INPUT", "head": "cb7b887e6ad482006097a61feb4083dde81fbe36", "reported_at": "2026-09-09T01:28:32Z", "evidence": "Focused 16/16, shuffled integration 46/46, eight timing repetitions 128/128, ESLint, Prettier, TypeScript, diff hygiene, and live-main merge-tree passed."},
+        "readiness": {"verdict": "READY_FOR_MECHANICAL_TRANSITION", "notification_receipt_for_current_head": null, "prior_notification": "issuecomment-5584792637 was for superseded head db2f3e20 only", "manual_qa": "not required because the accepted change is behavior/timing and the reviewer-accessible screenshots are already embedded"},
+        "next_action": "Re-run the final unchanged-head/body/check/thread/image barrier, mark PR non-draft, wait for and refresh any post-ready checks, then notify @carlosflorencio once for exact head cb7b887."
+      }
+    ]
+  },
+  "mutation_record": {
+    "task_mutations": 0,
+    "provider_mutations": 0,
+    "repository_mutations": 0,
+    "queue_mutations": 0,
+    "messages_sent_to_tasks": 0,
+    "files_written": ["/tmp/coordinator-cycle-0054-active.json"]
+  }
+}

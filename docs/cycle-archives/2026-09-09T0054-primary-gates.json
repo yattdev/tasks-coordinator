@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "cycle_id": "cycle-2026-09-09T0054Z",
+  "packet": "primary-gates",
+  "observed_at": "2026-09-09T01:28:56.999Z",
+  "scope": [
+    "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+    "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+    "37eca47b-cf05-47ee-b143-39408edbeed1"
+  ],
+  "constraints": {
+    "read_only": true,
+    "tests_run": false,
+    "provider_mutations": false,
+    "task_mutations": false,
+    "polling": false,
+    "to_deploy_inspected": false
+  },
+  "provider": {
+    "graphql_cost": 3,
+    "remaining": 4146,
+    "reset_at": "2026-09-09T02:19:39Z"
+  },
+  "tasks": [
+    {
+      "task_id": "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+      "pr": "https://github.com/kdlbs/kandev/pull/3165",
+      "verdict": "BLOCKED",
+      "head": "a2653b62eff53d2840e21d1bdb70ae8a7852d52f",
+      "provider": {
+        "state": "OPEN",
+        "draft": true,
+        "mergeable": "MERGEABLE",
+        "merge_state_status": "BLOCKED",
+        "head_repo": "yattdev/kandev",
+        "head_ref": "feature/allow-scoped-fresh-c-0k2",
+        "base_repo": "kdlbs/kandev",
+        "base_ref": "main",
+        "provider_base_oid": "18d38c11a09924137a492c6b3ac258090a87b17c",
+        "checks": {
+          "total": 74,
+          "success_neutral_or_skipped": 70,
+          "pending": 4,
+          "failed": 0,
+          "rollup": "PENDING",
+          "pending_names": [
+            "E2E Shard 3/14",
+            "E2E Shard 8/14",
+            "E2E Shard 9/14",
+            "E2E Shard 12/14"
+          ]
+        },
+        "review_threads": {
+          "total": 12,
+          "unresolved": 0
+        }
+      },
+      "supplied_gates": {
+        "review": "fresh independent gpt-5.5 PASSED at exact head",
+        "qa_session": "bf927f67-fbe5-4e25-a8e6-6e4f4b268d52",
+        "qa": "distinct Sol PASSED at exact head"
+      },
+      "source": {
+        "worktree": "/data/tasks/allow-scoped-fresh-c_2p7fiyms/kandev-source",
+        "clean": true,
+        "local_head_matches": true,
+        "upstream_tracking_head_matches": true,
+        "remote_ref_matches": true,
+        "current_canonical_main": "401947fd828b9bffe503003764566be01f19d1e1",
+        "current_main_is_ancestor": false,
+        "merge_base": "18d38c11a09924137a492c6b3ac258090a87b17c"
+      },
+      "body": {
+        "read_complete": true,
+        "validation_present": true,
+        "security_boundary_present": true,
+        "secret_pattern_hits": 0,
+        "source_and_target_consistent": true
+      },
+      "scope_audit": {
+        "status": "BLOCKER",
+        "finding": "Tracked .kandev/review-notes.md is a new five-line task-local review artifact. Canonical upstream/main tracks no .kandev entry; repository history includes explicit cleanup commits removing tracked review notes. No product/spec need for this artifact was found."
+      },
+      "notification": {
+        "current_head_notified": false,
+        "older_head_mentions": [
+          "7e2d1acc353622d93c5bca01fff13eebdf45a93a",
+          "a9db12a00a8415a33e40586ab6d2cfd08376fc21"
+        ]
+      },
+      "exact_gap": "Remove or authoritatively justify the task-local review-notes artifact. A removal changes the head and requires fresh exact-head Review and distinct Sol QA. Separately, wait for the four named E2E checks to become terminal; do not poll. Only after a clean unchanged head with zero failed/pending checks and zero unresolved threads may the draft be readied, post-ready gates refreshed, and the maintainer notified once for that new head."
+    },
+    {
+      "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+      "pr": "https://github.com/kdlbs/kandev/pull/3319",
+      "verdict": "READY_FOR_READY_TRANSITION",
+      "head": "5b1f77903e07e8e36af19433d57ee4e7439eef29",
+      "provider": {
+        "state": "OPEN",
+        "draft": true,
+        "mergeable": "MERGEABLE",
+        "merge_state_status": "CLEAN",
+        "head_repo": "yattdev/kandev",
+        "head_ref": "feature/fix-pr-watch-amplifi-u6z",
+        "base_repo": "kdlbs/kandev",
+        "base_ref": "main",
+        "provider_base_oid": "401947fd828b9bffe503003764566be01f19d1e1",
+        "checks": {
+          "total": 118,
+          "success_neutral_or_skipped": 100,
+          "pending": 0,
+          "failed": 0,
+          "rollup": "SUCCESS"
+        },
+        "review_threads": {
+          "total": 20,
+          "unresolved": 0
+        }
+      },
+      "supplied_gates": {
+        "review": "fresh independent gpt-5.5 PASSED at exact head",
+        "qa_session": "6470ff3b-c746-480f-a19b-6bc985751b5a",
+        "qa": "distinct Sol PASSED at exact head"
+      },
+      "source": {
+        "worktree": "/data/tasks/fix-pr-watch-amplifi_6lhuddyg/kandev-source",
+        "clean": true,
+        "local_head_matches": true,
+        "upstream_tracking_head_matches": true,
+        "remote_ref_matches": true,
+        "current_canonical_main": "401947fd828b9bffe503003764566be01f19d1e1",
+        "current_main_is_ancestor": true,
+        "merge_base": "401947fd828b9bffe503003764566be01f19d1e1"
+      },
+      "body": {
+        "read_complete": true,
+        "summary_and_validation_present": true,
+        "source_and_target_consistent": true,
+        "secret_pattern_hits": 0,
+        "scope_matches_seven_wave_task_plan": true,
+        "limitations": "The body still says fresh Review/QA are expected and describes an earlier main-integration point; those statements are historical rather than false, but a concise current-head gate note would improve reviewer clarity."
+      },
+      "scope_audit": {
+        "status": "PASS",
+        "finding": null
+      },
+      "notification": {
+        "current_head_notified": false,
+        "older_head_notification": "https://github.com/kdlbs/kandev/pull/3319#issuecomment-5586598304",
+        "older_head": "16e031b1927c967699f7038e67e3561a6d18747b"
+      },
+      "exact_gap": "Draft state is the only blocking provider gate. Mark ready at unchanged head, immediately refresh checks/threads/mergeability because pull_request jobs may start, and only after that fresh barrier passes notify @carlosflorencio once for head 5b1f77903e07e8e36af19433d57ee4e7439eef29. The old-head notification does not cover this head."
+    },
+    {
+      "task_id": "37eca47b-cf05-47ee-b143-39408edbeed1",
+      "pr": "https://github.com/kdlbs/kandev/pull/3158",
+      "verdict": "BLOCKED_NEW_REVIEW_FINDINGS",
+      "head": "6d6a5cd2c3a0d547f3a9a016393922476a42ecd6",
+      "provider": {
+        "state": "OPEN",
+        "draft": false,
+        "mergeable": "MERGEABLE",
+        "merge_state_status": "BLOCKED",
+        "head_repo": "yattdev/kandev",
+        "head_ref": "feature/bound-merged-worktre-jii",
+        "base_repo": "kdlbs/kandev",
+        "base_ref": "main",
+        "provider_base_oid": "3d042e9d8f1897f167891e44eb78b3977e2e27c8",
+        "checks": {
+          "total": 84,
+          "success_neutral_or_skipped": 84,
+          "pending": 0,
+          "failed": 0,
+          "rollup": "SUCCESS"
+        },
+        "review_threads": {
+          "total": 25,
+          "unresolved": 3,
+          "findings": [
+            {
+              "severity": "P1",
+              "path": "apps/backend/internal/worktree/branch_cleanup.go",
+              "line": 346,
+              "summary": "Create a durable hidden recovery ref before deleting the only task-owned ref so GC cannot prune the promised recovery commit."
+            },
+            {
+              "severity": "P1",
+              "path": "apps/backend/internal/worktree/manager_git.go",
+              "line": 310,
+              "summary": "When RecoveryHeadSHA exists, validate any same-named existing ref equals that exact head; otherwise fail closed or restore under a non-conflicting ref."
+            },
+            {
+              "severity": "P2",
+              "path": "apps/backend/internal/worktree/manager_git.go",
+              "line": 313,
+              "summary": "Clear persisted compacted state after successful restore, including unarchive then rearchive without a launch."
+            }
+          ]
+        }
+      },
+      "source": {
+        "worktree": "/data/tasks/bound-merged-worktre_cgr6a5yd/kdlbs-kandev",
+        "clean": true,
+        "local_head_matches": true,
+        "upstream_tracking_head_matches": true,
+        "remote_ref_matches": true
+      },
+      "body": {
+        "read_complete": true,
+        "summary_validation_security_origin_and_closes_issue_present": true,
+        "secret_pattern_hits": 0,
+        "source_and_target_consistent": true
+      },
+      "scope_audit": {
+        "status": "PASS_BUT_CORRECTNESS_FINDINGS_BLOCK",
+        "finding": null
+      },
+      "notification": {
+        "current_head_notified": true,
+        "url": "https://github.com/kdlbs/kandev/pull/3158#issuecomment-5593998453",
+        "repeat": false
+      },
+      "exact_gap": "Three actionable current-line review threads invalidate merge readiness despite terminal CI. Return to Work, address all three, reply and resolve with evidence, then run fresh independent gpt-5.5 Review and distinct Sol QA on any successor head, followed by exact-head CI/thread/mergeability refresh. Preserve the existing notification record and do not notify again unless a new head later qualifies."
+    }
+  ],
+  "secrets_audit": {
+    "method": "full PR-body read plus conservative token/private-key/credential-assignment pattern scan",
+    "result": "no candidate secret found in any body",
+    "limitation": "pattern scan does not prove absence of every possible sensitive value"
+  },
+  "overall": "PR3319 may proceed to ready transition with mandatory post-ready refresh; PR3165 and PR3158 are blocked for the exact reasons recorded above."
+}

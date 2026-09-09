@@ -1,0 +1,1107 @@
+{
+  "schema_version": 1,
+  "cycle_id": "cycle-2026-09-09T0054Z",
+  "assignment": "done",
+  "audited_task_count": 25,
+  "audited_at": "2026-09-09T01:22:29Z",
+  "scope_integrity": {
+    "expected": 25,
+    "actual": 25,
+    "all_physical_done": true,
+    "no_unassigned_tasks_inspected": true,
+    "no_mutations": true
+  },
+  "provider_degradation": {
+    "core": "recovered",
+    "graphql": "available",
+    "reset_epoch": 1788916447,
+    "bounded_recheck": "PASS"
+  },
+  "provider_refresh": {
+    "observed_at": "2026-09-09T01:22:29Z",
+    "surface": "one batched GitHub GraphQL request",
+    "rate_limit": {
+      "limit": 5000,
+      "cost": 1,
+      "remaining": 4928,
+      "reset_at": "2026-09-09T02:19:39Z"
+    },
+    "result": "All 17 named pull requests remain MERGED and provider-reachable; every exact claimed task head equals the PR head except task 809, whose local head is a verified ancestor of its canonical PR head. Zero-diff and superseded carriers retain their local/archive preservation proofs.",
+    "pull_requests": [
+      {"tasks":["ae8fc022-5562-4f58-95dc-3dab9d4c179f"],"url":"https://github.com/yattdev/kandev-plugin-tags/pull/7","head":"0c120b3f7e19505c488ebb4b06fda5355afb7a3f","merge_commit":"6f4a127d2984210c4b2f724aca70f59c8a8f821d","merged_at":"2026-08-21T05:47:58Z"},
+      {"tasks":["ae8fc022-5562-4f58-95dc-3dab9d4c179f"],"url":"https://github.com/yattdev/kandev-plugin-tags/pull/4","head":"443ac38c38415f0da186305356230c7530b74524","merge_commit":"900b345c007ef22e0d2082641285c4871f988fdf","merged_at":"2026-08-18T05:42:24Z"},
+      {"tasks":["ae8fc022-5562-4f58-95dc-3dab9d4c179f"],"url":"https://github.com/kdlbs/kandev/pull/2609","head":"8f33ba28ed5cdd88d4fce785db6bd3d9a5ad5c78","merge_commit":"64bc820c45b5353a2bd1cf2aa63c9effe3fa08c9","merged_at":"2026-08-21T17:12:31Z"},
+      {"tasks":["e9f9198c-da98-4c32-ac73-03d8eff7d20e"],"url":"https://github.com/kdlbs/kandev/pull/2693","head":"59a2b6bebeb6a72955ffc684b250a192f74947d5","merge_commit":"898ec638578973d2bc68f6cfa24dedf3e885564e","merged_at":"2026-08-19T13:02:53Z"},
+      {"tasks":["f4136a59-f2ae-4ef3-b718-24d1118b4115"],"url":"https://github.com/kdlbs/kandev/pull/2872","head":"377f532e029ddf0ebf79ee383fb2a272360b6c5b","merge_commit":"5f5b1f0f319e688c7aa4f161c30e0dd024d3f1eb","merged_at":"2026-09-06T10:30:02Z"},
+      {"tasks":["0ce7508b-052a-47a3-b0e2-065e6414015d"],"url":"https://github.com/kdlbs/kandev/pull/2916","head":"2f865edfd9b3ff3c73466e1c522bc1994f980193","merge_commit":"032ea05bc8997028b1690f5f351939c83a6f77c2","merged_at":"2026-08-22T10:42:54Z"},
+      {"tasks":["6bdea0a1-6fce-4d4a-8118-bf0062797827"],"url":"https://github.com/kdlbs/kandev/pull/2937","head":"8b9395b0a3f718a38f4ed671605758836cb65d35","merge_commit":"9b9f3471481869ce348ee47c3ed8b7cb33c9f5bb","merged_at":"2026-09-06T10:30:41Z"},
+      {"tasks":["b2da5061-07a3-46e6-ab48-3881929ac9a5"],"url":"https://github.com/kdlbs/kandev/pull/3147","head":"885c09598f53a393c03c2ed9e0a80028b3725ac7","merge_commit":"d97ce0a7227f6976c09aac773254c760e6f7f41f","merged_at":"2026-08-30T11:20:11Z"},
+      {"tasks":["04802c8a-aad9-4d18-bdca-fa593c2e0b9a"],"url":"https://github.com/kdlbs/kandev/pull/3151","head":"5cceafec6400b5e4d55856dee48012f652f43c4f","merge_commit":"c9461408129e907828e1420534884d4bf3117cdd","merged_at":"2026-08-30T15:22:13Z"},
+      {"tasks":["894fcdbb-6400-4ffb-9fa5-8998fbf450ff"],"url":"https://github.com/kdlbs/kandev/pull/3373","head":"3f8364af214d7c0f4e8769419fd6c24f2bb2152c","merge_commit":"d17812fdb1a6084cfa63f1f3f8c5f713b8cdc486","merged_at":"2026-09-07T20:31:07Z"},
+      {"tasks":["326da7c8-54a1-4522-a7e0-78ecc085beed"],"url":"https://github.com/kdlbs/kandev/pull/3397","head":"a724adf23f8eb8f25e4743a89e513021ec28d469","merge_commit":"0c9b1ec58874d35a00039c07f967ce67f0c02bfc","merged_at":"2026-09-05T18:20:09Z"},
+      {"tasks":["84df0685-2bb9-464b-87df-96533ceb92a6"],"url":"https://github.com/kdlbs/kandev/pull/3410","head":"73da5bf44e15dd4e389c83599053bf76891edde7","merge_commit":"698ef63e678d09b295c49ee0bb21a39cb87a1cdf","merged_at":"2026-09-06T10:35:38Z"},
+      {"tasks":["80920898-155a-4aef-8489-97b57213353f"],"url":"https://github.com/kdlbs/kandev/pull/3456","head":"e951d798e8c9bf1b318eedbc66fe59e335ef57b5","merge_commit":"ed50fb05b5dc91a52eea829318b50b77e3fb2759","merged_at":"2026-09-07T18:48:12Z","task_head":"a6d7161264673d84a9e6af312ee59c376d7de900","task_head_containment":"git merge-base --is-ancestor task_head pr_head exited 0"},
+      {"tasks":["00ceb41b-97fe-42d1-be99-10bbe9d1b676","9973c516-fea3-486a-a75c-703c3bc2e8e0"],"url":"https://github.com/yattdev/kandev-plugin-redmine/pull/1","head":"0b884b249cac0b1e09ebf87fdea99bf56177b4d0","merge_commit":"9ab567715b9a224f52625e403d8f52483fcbdae0","merged_at":"2026-09-04T06:54:31Z"},
+      {"tasks":["f38b523f-f26d-4a8e-a9c2-ce56d58f3098"],"url":"https://github.com/yattdev/kandev-plugin-redmine/pull/2","head":"e903d6f56fc32d4033f03a60c09ec9926915fe37","merge_commit":"990dcdd2b4ff6034ef28a67d89e863231ef425f1","merged_at":"2026-09-06T18:15:52Z"},
+      {"tasks":["3ec598a8-b49d-4d5f-9bf3-52b0d611cd32","52892e8e-dc44-4d38-80ab-14bb75f7b6bf"],"url":"https://github.com/yattdev/kandev-plugin-coordinator/pull/1","head":"c4c430cea07b62d3c9c63cdeffa0fcbcf005e496","merge_commit":"6fb1fdd63c1728258c40a67df037116c5ca9bbb8","merged_at":"2026-09-08T11:27:30Z"},
+      {"tasks":["be077c0f-39cc-498d-a181-2fcb28953186"],"url":"https://github.com/yattdev/kandev-plugin-coordinator/pull/3","head":"97126758baa7997bd390ced8b904e3e2f4111b0d","merge_commit":"17f4d71f1eb8d1d4f1865e25c20a0d94ee1f089c","merged_at":"2026-09-04T07:23:32Z"}
+    ]
+  },
+  "summary": {
+    "terminal_integrity_pass": 25,
+    "active_sessions": 0,
+    "rows_with_followup": 8,
+    "current_lane_model_mismatches": 0,
+    "legacy_parked_sessions": "must not resume"
+  },
+  "dependency_actions": [
+    {
+      "dependent": "894fcdbb-6400-4ffb-9fa5-8998fbf450ff",
+      "prerequisite": "80920898-155a-4aef-8489-97b57213353f",
+      "direction": "remove prerequisite from dependent 894; 809 blocked_by is the same edge projection"
+    },
+    {
+      "dependent": "8463d2ff-e8f1-4ba5-99c3-fad2c2da3f66",
+      "prerequisite": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+      "direction": "remove prerequisite from dependent 846"
+    }
+  ],
+  "rows": [
+    {
+      "task_id": "ae8fc022-5562-4f58-95dc-3dab9d4c179f",
+      "title": "Fix tag display and tags box UI",
+      "lane": "Done",
+      "row_state": "REVIEW",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no active agent tag requiring change",
+      "delivery": {
+        "canonical_pr": "https://github.com/yattdev/kandev-plugin-tags/pull/7",
+        "head": "0c120b3f7e19505c488ebb4b06fda5355afb7a3f",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "anomalies": [],
+      "next_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": false,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "e9f9198c-da98-4c32-ac73-03d8eff7d20e",
+      "title": "GitLab PR tests fail when KANDEV_GITLAB_HOST is set",
+      "lane": "Done",
+      "row_state": "REVIEW",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no active agent tag requiring change",
+      "delivery": {
+        "canonical_pr": "https://github.com/kdlbs/kandev/pull/2693",
+        "head": "59a2b6bebeb6a72955ffc684b250a192f74947d5",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "anomalies": [],
+      "next_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": false,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "52892e8e-dc44-4d38-80ab-14bb75f7b6bf",
+      "title": "Build coordinator plugin",
+      "lane": "Done",
+      "row_state": "FAILED",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no-test-needed valid: superseded by merged recovery PR and dirty tree preserved",
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid by supersession: recovery task delivered plugin PR 1. Dirty projection remains intentionally preserved (113 tracked, 7 untracked) and reconstructed tree 9d6e4da7 matches pushed backup commit 776306b on origin/backup/build-coordinator-pl-bhx-orphaned-1; no unique loss.",
+      "anomalies": [],
+      "next_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": false,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "dd4f90b0-0cbe-4cab-bdd9-6a3480487f89",
+      "title": "Fix Docker build proxy corrupting APT metadata",
+      "lane": "Done",
+      "row_state": "FAILED",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no-test-needed valid: zero-diff/model-limited terminal",
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid zero-diff host/config qualification. Clean local HEAD 5eb99d8, no upstream configured; signed-APT default-builder probe passed; separate userns E2E owned elsewhere.",
+      "anomalies": [],
+      "next_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": false,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "00ceb41b-97fe-42d1-be99-10bbe9d1b676",
+      "title": "Complete Redmine plugin implementation",
+      "lane": "Done",
+      "row_state": "FAILED",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no active agent tag requiring change",
+      "delivery": {
+        "canonical_pr": "https://github.com/yattdev/kandev-plugin-redmine/pull/1",
+        "head": "0b884b249cac0b1e09ebf87fdea99bf56177b4d0",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "anomalies": [],
+      "next_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": false,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "bc53f366-7f36-406e-abc5-54c105367800",
+      "title": "Verify Redmine host contracts and E2E",
+      "lane": "Done",
+      "row_state": "COMPLETED",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "9daf07a8-a210-4d31-9c2d-c867d3e83188"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no active agent tag requiring change",
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid superseded cleanup carrier. Task worktree/local and remote branch removed; stale read-only git-admin residue has no unique work; first-version E2E owned elsewhere.",
+      "anomalies": [],
+      "next_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": false,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "f4136a59-f2ae-4ef3-b718-24d1118b4115",
+      "title": "Clean plugin task-write host hook PR",
+      "lane": "Done",
+      "row_state": "REVIEW",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "45333561-4674-4940-8a04-f202beeddf23",
+          "0387a099",
+          "8ff5f475",
+          "74038e3a",
+          "7d3bfbd8",
+          "4f19ddd8",
+          "e90048b6",
+          "70b07696",
+          "b191758f",
+          "b665fbf9",
+          "747af5f0"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no-test-needed valid: exact merged PR 2872",
+      "delivery": {
+        "canonical_pr": "https://github.com/kdlbs/kandev/pull/2872",
+        "head": "377f532e029ddf0ebf79ee383fb2a272360b6c5b",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "anomalies": [],
+      "next_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": false,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "b2da5061-07a3-46e6-ab48-3881929ac9a5",
+      "title": "Queued board moves never expire and fire silently",
+      "lane": "Done",
+      "row_state": "REVIEW",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "efcd3ff6-e7bc-4c73-81c6-21340f6cdbc8",
+          "62adb5",
+          "a54c"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no active agent tag requiring change",
+      "delivery": {
+        "canonical_pr": "https://github.com/kdlbs/kandev/pull/3147",
+        "head": "885c09598f53a393c03c2ed9e0a80028b3725ac7",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "anomalies": [],
+      "next_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": false,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "3ec598a8-b49d-4d5f-9bf3-52b0d611cd32",
+      "title": "Recover coordinator plugin checkout",
+      "lane": "Done",
+      "row_state": "FAILED",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "916cfd97",
+          "b0d11e31",
+          "e48c8958",
+          "91e55034",
+          "6ef8fe40"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "human tested plus no-test-needed valid",
+      "delivery": {
+        "canonical_pr": "https://github.com/yattdev/kandev-plugin-coordinator/pull/1",
+        "head": "c4c430cea07b62d3c9c63cdeffa0fcbcf005e496",
+        "proof": "merged; remote branch feature/recover-coordinator-lhd reachable; contained; merge 6fb1fdd63c1728258c40a67df037116c5ca9bbb8",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "anomalies": [
+        "live_card_pr_association_missing"
+      ],
+      "next_action": "Attach canonical PR 1 to the card when supported; preserve untracked .playwright-cli/.playwright/.qa artifacts.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal_followup",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": true,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "6bdea0a1-6fce-4d4a-8118-bf0062797827",
+      "title": "Reconcile PR 2937 from clean worktree",
+      "lane": "Done",
+      "row_state": "REVIEW",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "95cab29b",
+          "c047ccb6",
+          "a1398",
+          "25a993",
+          "7244",
+          "2f101",
+          "5079",
+          "8076",
+          "9c683724"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no-test-needed valid: merged PR 2937 and preserved cleanup evidence",
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid: canonical PR 2937 merged at 8b9395b0; worktree/local branch removed, remote PR branch preserved, seven QA screenshots preserved, ports 48293/55698 have no listeners. Live card lacks PR association.",
+      "anomalies": [
+        "live_card_pr_association_missing"
+      ],
+      "next_action": "Attach canonical PR 2937 to the card when supported; retain screenshots and remote branch.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal_followup",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": true,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "04802c8a-aad9-4d18-bdca-fa593c2e0b9a",
+      "title": "Fix ambiguous automations run detail E2E",
+      "lane": "Done",
+      "row_state": "REVIEW",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "3c8735ed",
+          "dd9b9e3e",
+          "2dee",
+          "4dec"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no active agent tag requiring change",
+      "delivery": {
+        "canonical_pr": "https://github.com/kdlbs/kandev/pull/3151",
+        "head": "5cceafec6400b5e4d55856dee48012f652f43c4f",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "anomalies": [],
+      "next_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": false,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "a008158f-4aa5-4572-b4ed-ff076ec1d3dd",
+      "title": "Expose model-callable guarded TTY execution",
+      "lane": "Done",
+      "row_state": "SCHEDULING",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no-test-needed valid: zero-work/model limitation",
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid zero-work failed-launch carrier superseded by 46945aff; no branch, commit, PR, runtime, data, artifact, or consumer.",
+      "anomalies": [],
+      "next_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": false,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "d5cef521-32bd-4433-873b-33561d6bee8f",
+      "title": "Make visible Human questions durable",
+      "lane": "Done",
+      "row_state": "SCHEDULING",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no-test-needed valid: zero-work/model limitation",
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid zero-work failed-launch carrier superseded by 76b4e3d4/PR 3404; no unique work.",
+      "anomalies": [],
+      "next_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": false,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "be077c0f-39cc-498d-a181-2fcb28953186",
+      "title": "Plugin durable state and compaction",
+      "lane": "Done",
+      "row_state": "REVIEW",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "1a923608",
+          "ea2eb143"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no active agent tag requiring change",
+      "delivery": {
+        "canonical_pr": "https://github.com/yattdev/kandev-plugin-coordinator/pull/3",
+        "head": "97126758baa7997bd390ced8b904e3e2f4111b0d",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "anomalies": [],
+      "next_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": false,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "9973c516-fea3-486a-a75c-703c3bc2e8e0",
+      "title": "Review Redmine pagination successor",
+      "lane": "Done",
+      "row_state": "REVIEW",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no active agent tag requiring change",
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid review receipt: Redmine PR 1 head 0b884b249cac0b1e09ebf87fdea99bf56177b4d0 merged as 9ab5677; origin/main contains same tree.",
+      "anomalies": [],
+      "next_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": false,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "94be05ee-3f48-456d-b6e4-88f6baecbb74",
+      "title": "Review Redmine Host compatibility successor",
+      "lane": "Done",
+      "row_state": "REVIEW",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no active agent tag requiring change",
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid invalid-review cleanup carrier: zero unique commits; backup dcfe7c4 remote-preserved; worktree/local branch removed; only empty task dir/read-only git-admin residue remains.",
+      "anomalies": [],
+      "next_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": false,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "894fcdbb-6400-4ffb-9fa5-8998fbf450ff",
+      "title": "Stabilize git changes panel pointer-leave opacity E2E",
+      "lane": "Done",
+      "row_state": "REVIEW",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no active agent tag requiring change",
+      "delivery": {
+        "canonical_pr": "https://github.com/kdlbs/kandev/pull/3373",
+        "head": "3f8364af214d7c0f4e8769419fd6c24f2bb2152c",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "anomalies": [
+        "obsolete_dependency_edge"
+      ],
+      "next_action": "Remove its obsolete prerequisite 80920898 through supported owner-scoped capability; re-read both endpoints.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal_followup",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": true,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "326da7c8-54a1-4522-a7e0-78ecc085beed",
+      "title": "Restore immutable CI runtime image resolution",
+      "lane": "Done",
+      "row_state": "REVIEW",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "b8d6f2e2",
+          "58b1a982"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no active agent tag requiring change",
+      "delivery": {
+        "canonical_pr": "https://github.com/kdlbs/kandev/pull/3397",
+        "head": "a724adf23f8eb8f25e4743a89e513021ec28d469",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "anomalies": [],
+      "next_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": false,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "84df0685-2bb9-464b-87df-96533ceb92a6",
+      "title": "Bound GitHub Actions step-summary output",
+      "lane": "Done",
+      "row_state": "REVIEW",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "fb79cc33",
+          "2c635a5d",
+          "0cc049a8",
+          "85f54fe7",
+          "a81158ae",
+          "cc6e7ae5",
+          "afd032ce",
+          "fea88892"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no-test-needed valid: exact merged PR 3410",
+      "delivery": {
+        "canonical_pr": "https://github.com/kdlbs/kandev/pull/3410",
+        "head": "73da5bf44e15dd4e389c83599053bf76891edde7",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "anomalies": [],
+      "next_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": false,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "0ce7508b-052a-47a3-b0e2-065e6414015d",
+      "title": "Fix main service_pr_watch compile regression",
+      "lane": "Done",
+      "row_state": "REVIEW",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "ec139ce4"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no active agent tag requiring change",
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid zero-diff compile-regression audit; upstream repair PR 2916 fix 032ea05 is contained in main; task authored no commits/files.",
+      "anomalies": [],
+      "next_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": false,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "f38b523f-f26d-4a8e-a9c2-ce56d58f3098",
+      "title": "Fix Redmine Host SDK incompatibility",
+      "lane": "Done",
+      "row_state": "FAILED",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "b4e48590"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "STALE at-risk tag: startup cause is now known exact_model_unavailable/requested_not_advertised before inference; reconcile to terminal/no-test-needed and current provider-reset wording",
+      "delivery": {
+        "canonical_pr": "https://github.com/yattdev/kandev-plugin-redmine/pull/2",
+        "head": "e903d6f56fc32d4033f03a60c09ec9926915fe37",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "anomalies": [
+        "stale_at_risk_tag"
+      ],
+      "next_action": "Replace stale at-risk tag with terminal/no-test-needed note naming exact startup failure and bounded post-reset model recheck.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal_followup",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": true,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "80920898-155a-4aef-8489-97b57213353f",
+      "title": "Repair preview deploy CLI drift",
+      "lane": "Done",
+      "row_state": "FAILED",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no-test-needed terminal note present",
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done delivery valid from full receipt: PR 3456 merged at accepted e951d798 containing local a6d7161264673d84a9e6af312ee59c376d7de900. Local worktree clean and fork ref contains head. Obsolete dependency edge remains.",
+      "anomalies": [
+        "obsolete_dependency_edge"
+      ],
+      "next_action": "Remove edge from dependent 894fcdbb to prerequisite 80920898 through supported owner-scoped capability; re-read both endpoints.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal_followup",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": true,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "5e7b891a-db2d-4cfc-8af2-17f922b56a8e",
+      "title": "Qualify guarded TTY for upstream codex-acp",
+      "lane": "Done",
+      "row_state": "REVIEW",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no active agent tag requiring change",
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid completed zero-diff qualification/spec. Clean HEAD equals origin/main 1a3c01e8ca317f83e3b60bc5632cf052882bea15, 0 commits/diff; full plan concludes upstream PR 451 is not this task delivery. Maintained fork replaced upstream watch; 5c9 owns watch-only follow-up. Generic receipt needs concrete zero-diff/handoff wording.",
+      "anomalies": [
+        "generic_terminal_receipt_incomplete"
+      ],
+      "next_action": "Record concrete clean zero-diff qualification receipt and 5c9 watch-only handoff; no wake and no PR 451 ownership claim.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal_followup",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": true,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "34b29644-b910-405d-bc2e-e6e2c345749c",
+      "title": "Fix plugin task priority persistence",
+      "lane": "Done",
+      "row_state": "SCHEDULING",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no active agent tag requiring change",
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid superseded carrier, but generic receipt inaccurately says no worktree. Local worktree is clean at 973a9d6d367b2c9a50c6ecd0557d70b23817d8b6 and fork/feature/fix-plugin-task-prio-w7w contains it. Preserve and record concrete ownership/containment.",
+      "anomalies": [
+        "generic_terminal_receipt_inaccurate_worktree_claim"
+      ],
+      "next_action": "Correct receipt with clean HEAD/remote containment and reconcile branch ownership with replacement e8728906; do not delete preserved worktree.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal_followup",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": true,
+        "mutated": false,
+        "transitioned": false
+      }
+    },
+    {
+      "task_id": "8463d2ff-e8f1-4ba5-99c3-fad2c2da3f66",
+      "title": "Fix Redmine release preflight and SDK pin",
+      "lane": "Done",
+      "row_state": "FAILED",
+      "verdict": "PASS_WITH_FOLLOWUP",
+      "terminal_integrity": "PASS",
+      "session_integrity": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action"
+      },
+      "model_integrity": {
+        "current_lane_assignment": "exact current Done-lane assignment is authoritative and conforms to gpt-5.4 policy",
+        "legacy_assignee_projection_ignored": true,
+        "model_mismatch": false
+      },
+      "tag_audit": "no-test-needed valid: superseded failed carrier",
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid zero-work failed-launch carrier superseded by 3f721d52/PR 4 head 980dead. No branch/worktree. Obsolete prerequisite edge to e0dd8d19 remains.",
+      "anomalies": [
+        "obsolete_dependency_edge"
+      ],
+      "next_action": "Remove prerequisite e0dd8d19 from dependent 8463d2ff via supported owner-scoped capability; re-read both endpoints.",
+      "ledger": {
+        "owner": "Coordinator terminal-integrity tracking",
+        "health": "terminal_followup",
+        "last_action": "Full Done row/session/tag/preservation audit completed read-only.",
+        "trigger": "Next full cycle or terminal/provider evidence change.",
+        "fallback": "Preserve evidence and route any newly proven defect to the accountable owner.",
+        "anomalous": true,
+        "mutated": false,
+        "transitioned": false
+      }
+    }
+  ]
+}
