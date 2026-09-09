@@ -2156,3 +2156,12 @@ older branch-versus-production differences. Calling such a rollout
 "category-only" or "style-only" would hide real user-visible removals and
 additions. Auditing the replacement set makes that risk explicit without
 requiring direct production mutation.
+
+## 2026-09-09 — Reconcile contradictory mergeability before assigning source work
+
+When the provider advertises a base that is already an ancestor of the pushed
+head, an unchanged `dirty` status is inconsistent evidence, not sufficient
+grounds for another merge. Verify exact commit parents and refresh authenticated
+provider identity, preserve the candidate, and recheck after a natural event.
+Readiness remains gated until the contradiction clears; changed base or concrete
+source conflict evidence, rather than the stale projection alone, resumes work.

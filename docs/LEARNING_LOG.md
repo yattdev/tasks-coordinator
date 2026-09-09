@@ -2967,3 +2967,12 @@ agent events and requires initiating-event evidence. The same investigation
 also independently found unfinished recovery-merge work behind a stale clean
 checkout/rerun-only receipt; the existing owner was returned to Work with both
 checkouts preserved. Exact operational receipts remain in the task plans.
+
+## 2026-09-09 — A dirty projection can contradict an already-merged base
+
+PR #2909 advertised a base that was the direct parent of its clean pushed head,
+yet authenticated no-cache REST still reported `mergeable=false/dirty`.
+Independent commit-parent and ancestry checks prevented a redundant remerge.
+The Coordinator preserved the candidate and assigned a provider-event recheck,
+while retaining CI and review gates. This is a bounded incident receipt, not a
+general permission to disregard provider mergeability.

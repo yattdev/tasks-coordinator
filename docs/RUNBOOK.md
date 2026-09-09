@@ -569,6 +569,8 @@ refs were deleted non-forcibly, leaving 263/263 live and zero candidates. The
 upstream lifecycle fix is tracked by task
 `37eca47b-cf05-47ee-b143-39408edbeed1`.
 
+### Verify PR and MR identity
+
 Before classifying CI or review readiness:
 
 1. Resolve the task's deliverable repository and remotes.
@@ -588,6 +590,13 @@ Before classifying CI or review readiness:
 If GitHub reports `CONFLICTING`/`DIRTY`, ordinary `pull_request` workflows may
 be absent because no merge ref can be created. Inspect workflow triggers and a
 prior clean head before calling missing CI a permissions or path-filter defect.
+If that projection contradicts a just-pushed merge, verify the exact commit
+parents and whether the provider's advertised base is an ancestor of its head.
+Refresh head/base and mergeability through authenticated REST without cache.
+If the base is already an ancestor but the same response still says `dirty`,
+record inconsistent provider evidence and recheck after a natural check or
+provider event. Keep readiness on hold; do not manufacture another source merge
+or wake a writer unless the base changes or concrete conflict evidence appears.
 During Human-QA, preserve the phase boundary: do not rebase, merge main, squash,
 rewrite, or resolve the conflict. Record the integration gate and require a
 fresh exact-head CI snapshot after an authorized integration-phase resolution.
