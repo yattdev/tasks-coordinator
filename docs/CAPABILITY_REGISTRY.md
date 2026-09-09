@@ -190,9 +190,10 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 ### B5. Task blocked on a decision
 - **Trigger** Blocked/flagged task reaches the decision ladder.
 - **Action** DECIDE if the concrete action is neither destructive/irreversible nor security/trust-boundary; else RECOMMEND; else ESCALATE.
-- **Capability** [Exercise full board approval authority](RUNBOOK.md#exercise-full-board-approval-authority-without-a-human-visit).
+- **Capability** [Exercise full board approval authority](RUNBOOK.md#exercise-full-board-approval-authority-without-a-human-visit); `ask_user_question_kandev` for a genuinely Human-only answer; [visible ask failure recovery](RUNBOOK.md#the-visible-ask-channel-can-fail-closed).
 - **Authority** Coordinator is the board's approval principal for every same-workspace task.
-- **Never** Relay a generic "Human approval required" to the Human; never escalate a question a competent lead would decide.
+- **Evidence** A confirmed pending ask ID or authoritative negative readback before retry. A client stream disconnect is not proof that creation failed because the backend may have committed the ask first.
+- **Never** Relay a generic "Human approval required" to the Human; never escalate a question a competent lead would decide; never create duplicate asks while a matching request is pending or its creation result is uncertain.
 
 ### B6. Open draft PR/MR in monitored scope
 - **Trigger** Any open draft.

@@ -1680,6 +1680,15 @@ attached (normally the active coordinator), state plainly that you are relaying
 rather than originating, and give the decision as named options so a one-word
 answer resolves it. Always read the tool's return value; never assume an ask is
 pending because you called the tool.
+
+A client-side stream disconnect is also ambiguous: the backend may have created
+the clarification request before the response channel failed. Before retrying,
+inspect the authoritative ask surface when available and correlate backend logs
+for the exact task/session/time. Persist every discovered pending request ID and
+do not create another ask while any matching request may still be live. If ask
+status is unavailable, record the state as pending/uncertain and wait for an
+answer or a supported readback rather than manufacturing duplicates.
+
 VERIFYING A PEER'S STANDBY — do it behaviourally, not declaratively. One
 coordinator cannot inspect another's routine configuration. The check that works:
 sweep /data/logs/backend-logs.log over the window and attribute every board

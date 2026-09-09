@@ -1,5 +1,15 @@
 # Coordinator learning-cycle log
 
+## 2026-09-09 — reconcile ambiguous visible-ask delivery before retry
+
+Two clarification calls returned client stream-disconnect errors, but backend
+correlation proved that both requests had already been created and assigned
+distinct pending IDs. A transport failure therefore cannot be treated as an
+authoritative negative creation result. The Coordinator now records every
+discovered pending ID and waits for an answer or supported ask-status readback
+instead of generating duplicate Human prompts. The runbook and capability
+registry carry the reusable fail-closed procedure.
+
 ## 2026-09-09 — Separate recovered primary from missing rotation capability
 
 Support requests `9af7ebae-1097-4dd3-8005-564f4d87eb6d` and corrected closure
