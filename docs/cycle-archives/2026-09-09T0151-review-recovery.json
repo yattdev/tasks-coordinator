@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-09-09T01:45:48.316Z",
+  "task_id": "27b493a3-65b6-4d4a-8b68-73f2ffcf9621",
+  "pr": "https://github.com/kdlbs/kandev/pull/3143",
+  "scope": "read-only recovery of session ac1a9157 Review segment and current head/session settlement",
+  "review_recovery": {
+    "session_id": "ac1a9157-9598-4080-b8f4-0e6c77091d59",
+    "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+    "model": "gpt-5.5",
+    "state": "COMPLETED",
+    "started_at": "2026-09-09T01:34:47.439737222Z",
+    "completed_at": "2026-09-09T01:44:06.338986605Z",
+    "valid_segment": {
+      "from": "2026-09-09T01:34:48.35604131Z",
+      "through": "2026-09-09T01:38:35.121993417Z",
+      "lane": "Review",
+      "head": "14a54e1a420e860978a92213908a8705b16e1016",
+      "merge_base": "77e3cfc979c237c062a597c848b6ff2133c944c3",
+      "files_reviewed": 70,
+      "verdict": "PASSED",
+      "blocking_findings": [],
+      "fixes": [],
+      "followup_tasks": [],
+      "submodule_bumps": [],
+      "evidence_message_id": "34954d84-79d9-4ac4-a0d0-73188eaddbd2",
+      "step_complete_message_id": "9777706c-13d3-4c2d-b248-423472402c36",
+      "step_complete_accepted": true
+    },
+    "review_evidence": [
+      "Workspace was clean at candidate head.",
+      "Actual PR diff was anchored to provider merge base after raw origin/main comparison was recognized as unrelated repository history.",
+      "Reviewer confirmed the prior missing zero-call get_github_rate_limit_kandev blocker was repaired and the tool was registered for Kanban and Office task surfaces.",
+      "Focused GitHub rate coordinator/admission/classification/snapshot tests, Workflow Sync backoff/store/scheduler tests, MCP handler/server/backendapp tests, sqlguard, diff check, and exact-head provider checks passed in the historical Review turn.",
+      "Transcript contains no source edit, commit, push, or fix action; final REVIEW report says FIXED None."
+    ],
+    "invalid_later_segments": [
+      {
+        "lane": "QA",
+        "from": "2026-09-09T01:38:42.241033305Z",
+        "through": "2026-09-09T01:41:07.530028204Z",
+        "reason": "same session remained gpt-5.5; QA requires a distinct Sol session",
+        "claimed_result": "PASSED",
+        "accepted": false
+      },
+      {
+        "lane": "PR",
+        "from": "2026-09-09T01:41:14.082307477Z",
+        "through": "2026-09-09T01:43:59.846856266Z",
+        "reason": "same Review session continued under gpt-5.5 after invalid QA; PR claim is excluded",
+        "accepted": false
+      }
+    ]
+  },
+  "head_integrity": {
+    "candidate": "14a54e1a420e860978a92213908a8705b16e1016",
+    "local_head": "14a54e1a420e860978a92213908a8705b16e1016",
+    "branch": "feature/fix-workflow-sync-gi-d0x",
+    "tracking_head": "14a54e1a420e860978a92213908a8705b16e1016",
+    "fork_ref": "14a54e1a420e860978a92213908a8705b16e1016",
+    "provider_head": "14a54e1a420e860978a92213908a8705b16e1016",
+    "provider_state": "OPEN/DRAFT/MERGEABLE/CLEAN",
+    "worktree_clean": true,
+    "source_changed_by_recovered_session": false
+  },
+  "prompt_forensics": {
+    "first_user_message_id": "aa295d57-e8a4-4933-bbef-f0a4894ebd34",
+    "first_user_created_at": "2026-09-09T01:34:48.35604131Z",
+    "visible_content": "## Workflow instructions\\n\\n@workstep-prompt\\n\\n<!-- /workflow-instructions -->\\n\\n@codex-dw-review",
+    "coordinator_specific_read_only_assignment_present": false,
+    "no_step_complete_or_no_move_override_present": false,
+    "hidden_context_observation": "The persisted raw message says this was spawned by coordinator session da0761f2 and that the instructions below are the initial assignment, but the only following task content is the generic workflow prompt and Review prompt expansion.",
+    "proximal_cause": "The agent received generic Review instructions that explicitly require routing and step_complete, with no visible coordinator-specific override. It followed those instructions: attempted a QA move, then called step_complete; the accepted signal injected a QA workflow prompt, after which the same session moved to PR and CI Fixup.",
+    "unproven_cause": "This transcript alone cannot distinguish a caller-side omitted spawn prompt from a platform transport/persistence omission.",
+    "exact_root_check": "Inspect the coordinator session's original spawn_session_kandev tool-call input and returned receipt for session ac1a9157. If the read-only/no-step text is absent there, caller construction omitted it; if present there but absent from this first source message, record a platform prompt-delivery defect with both immutable receipts."
+  },
+  "luna_settlement": {
+    "session_id": "704c5708-b53e-4ca0-a596-61f87647ca79",
+    "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+    "model": "gpt-5.6-luna",
+    "current_state": "WAITING_FOR_INPUT",
+    "ci_receipt": {
+      "head": "14a54e1a420e860978a92213908a8705b16e1016",
+      "checks_total": 76,
+      "passed": 54,
+      "skipped": 22,
+      "failed": 0,
+      "pending": 0,
+      "source_changes": false
+    },
+    "anomaly": "CI step_complete was accepted and auto-advanced the Luna session into Human-QA; it then ran Human-QA tests before the coordinator correction, but made no source/provider/workflow change after correction and parked.",
+    "stale_message": "Its first correction response cited historical e8913ded because the old primary session retained prior context; later CI and preservation receipts correctly bind 14a54e1a."
+  },
+  "current_projection": {
+    "physical_lane": "Human-QA",
+    "workflow_step_id": "814573a3-f2a3-4f42-8706-4f2997401fa6",
+    "task_state": "REVIEW",
+    "active_running_or_starting": 0,
+    "exact_assignment": {
+      "generation": 10,
+      "target_lane": "Review",
+      "model": "gpt-5.5",
+      "status": "stale for current Human-QA and future QA route"
+    }
+  },
+  "routing_conclusion": {
+    "prior_review_valid": true,
+    "repeat_review_required": false,
+    "condition": "Head must remain exactly 14a54e1a420e860978a92213908a8705b16e1016.",
+    "next_action": "Move the settled task from Human-QA to QA under coordinator authority, assign the exact gpt-5.6-sol QA profile with fresh guards, start one distinct Sol QA session, and verify it is actually Sol. Exclude all ac1 QA/PR and Luna Human-QA claims. If the head changes, invalidate this Review receipt and restart at fresh Review.",
+    "fallback": "If lane or exact-profile assignment cannot settle, park without waking any legacy session and preserve the clean pushed head."
+  },
+  "mutations_by_auditor": false,
+  "contacts_by_auditor": false,
+  "tests_by_auditor": false
+}
