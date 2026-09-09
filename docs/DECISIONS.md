@@ -1934,7 +1934,7 @@ that can silently resume after the task has left Spec.
 The Coordinator selection below is superseded by the 2026-09-08 Sol-or-Astra decision;
 all other lane selections remain in force.
 
-Decision: when Codex is used, the permanent Coordinator, Spec, and QA use
+Decision: when the Codex host/client is used, the permanent Coordinator, Spec, and QA use
 `gpt-5.6-sol`; Work, Blocked, and Human-QA use `gpt-5.6-terra`; Review uses
 `gpt-5.5`; PR and Done use `gpt-5.4`; and CI Fixup uses `gpt-5.6-luna`.
 Backlogs, Todo, and ToDeploy do not start task Codex sessions, with the
@@ -1948,13 +1948,27 @@ QA, while implementation, review, delivery, repair, and terminal work use the
 specified lighter Codex models. Exact live profile resolution prevents a stale
 session or misleading profile name from defeating that configuration.
 
+## Review model policy depends on the execution host (2026-09-09)
+
+Decision: `gpt-5.5` is the Review-column requirement for the Codex host/client.
+A Copilot-hosted Review session may instead use `gpt-5.3-codex` or another
+supported model configured for Copilot. The text `codex` in a model name does
+not establish that the session is Codex-hosted. The Coordinator resolves the
+host/client family from authoritative agent, profile, or runtime metadata
+before applying a model mismatch gate.
+
+Rationale: Copilot and Codex expose different valid Review model selections.
+Treating a Copilot model as a Codex-hosted lane mismatch can discard valid
+review evidence, park a healthy reviewer, and create an unnecessary replacement
+session. Host identity therefore precedes exact-model enforcement.
+
 ## Sol or Astra may run the permanent Coordinator (2026-09-08)
 
 Decision: the Human's latest clarification permits either `gpt-5.6-sol` or
 `gpt-6-astra` for the permanent Coordinator, including replacement primary
 sessions, superseding the earlier Astra-only selection. Both are standing
 authorized models; resuming does not require switching a valid selection. Spec and QA
-continue to use Sol; Work, Blocked, and Human-QA use Terra; Review uses GPT-5.5;
+continue to use Sol; Work, Blocked, and Human-QA use Terra; Codex-hosted Review uses GPT-5.5;
 PR and Done use GPT-5.4; CI Fixup uses Luna.
 
 The Human explicitly restricted Astra to the Coordinator. Delegated task

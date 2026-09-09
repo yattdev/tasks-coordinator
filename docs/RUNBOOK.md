@@ -926,7 +926,7 @@ the enforcement implementation or treat its merge as proof of a setter.
 Support broker availability and GitHub quota are separate surfaces. Keep the
 request and affected sessions in the live plan; never wake a mismatch to test it.
 
-When Codex is used, enforce this physical-lane map: the permanent Coordinator
+When the Codex host/client is used, enforce this physical-lane map: the permanent Coordinator
 uses `gpt-5.6-sol` or `gpt-6-astra`; Spec and QA use `gpt-5.6-sol`; Work, Blocked, and Human-QA use
 `gpt-5.6-terra`; Review uses `gpt-5.5`; PR and Done use `gpt-5.4`; CI
 Fixup uses `gpt-5.6-luna`. Backlogs, Todo, and ToDeploy are holding/transition
@@ -934,18 +934,28 @@ lanes and do not start task Codex sessions; the permanent Coordinator is the
 explicit Backlogs exception. This mapping does not replace a deliberately
 selected non-Codex agent family.
 
+For a Copilot-hosted Review session, `gpt-5.3-codex` or another supported
+Copilot model may be valid. The model name does not identify the host/client:
+resolve the host family from authoritative agent, profile, or runtime metadata
+before applying the Codex `gpt-5.5` Review gate. Do not park a Copilot reviewer,
+override its profile, or reject its result solely because its model differs
+from `gpt-5.5`.
+
 Astra is reserved for the permanent Coordinator and its replacement primary
 sessions; Sol is also a standing authorized Coordinator selection. Read-only audit helpers retain Sol; explicitly select their model
 instead of inheriting the Coordinator's Astra. Delegated task agents retain
 their physical-lane model.
 
-Audit the live board from authoritative model mappings, not profile names:
+Audit the live board from authoritative host and model mappings, not profile or
+model names:
 
-1. List configured agents and build the exact enabled Codex
-   profile-ID-to-model mapping for every lane model above.
-2. List every task and compare its Codex assignee profile with its physical
-   lane. Any mismatch is future launch/resume risk even when no session is
-   active.
+1. List configured agents and identify each profile's host/client family before
+   building the exact enabled profile-ID-to-model mapping. A model containing
+   `codex` is not proof that the profile is Codex-hosted.
+2. List every task and compare Codex-hosted assignees with the Codex physical
+   lane map. For Copilot-hosted Review, validate the configured supported
+   Copilot selection instead of imposing `gpt-5.5`. A true host-specific
+   mismatch is future launch/resume risk even when no session is active.
 3. List every task's complete sessions. Classify `RUNNING`/`STARTING` as active
    usage, `WAITING_FOR_INPUT`/`CREATED` as parked resumable risk, and terminal
    sessions as history only. Where live session/message metadata exposes the

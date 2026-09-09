@@ -1,5 +1,17 @@
 # Coordinator learning-cycle log
 
+## 2026-09-09 — Review model enforcement is host-specific
+
+Human correction: Codex-hosted Review uses `gpt-5.5`, while Copilot-hosted
+Review may use `gpt-5.3-codex` or another supported Copilot model. A model name
+containing `codex` does not prove that the executing host/client is Codex.
+
+The durable lesson is to resolve authoritative host identity before exact-model
+enforcement. Otherwise the Coordinator can wrongly park a valid Copilot
+reviewer, discard useful evidence, and launch a redundant replacement. The
+charter, runbook, capability registry, decisions, and task-monitoring checklist
+now carry the host-specific gate.
+
 ## 2026-09-09 — reconcile ambiguous visible-ask delivery before retry
 
 Two clarification calls returned client stream-disconnect errors, but backend

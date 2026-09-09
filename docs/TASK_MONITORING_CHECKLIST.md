@@ -162,11 +162,15 @@ continue the cycle; never convert `unknown` into an optimistic status.
   terminal gate; remove stale dependency edges and consolidate shared root
   failures instead of spawning duplicate repairs.
 
-### Review — Codex `gpt-5.5`
+### Review — Codex host `gpt-5.5`; Copilot configured model
 
 - [ ] Bind review to the canonical PR/MR and exact current head.
+- [ ] Resolve the authoritative host/client family before enforcing the model:
+  Codex-hosted Review requires `gpt-5.5`; Copilot-hosted Review may use
+  `gpt-5.3-codex` or another supported configured model. Never infer the host
+  from the model name alone.
 - [ ] Stop/park authoring writers and verify a fresh independent Review session
-  on the required model; lane movement alone is not a review.
+  on the required host-specific model; lane movement alone is not a review.
 - [ ] Require an explicit `REVIEW_RESULT=PASSED` or `FAILED` tied to that SHA.
 - [ ] On findings, return to Work with exact thread/finding references; after a
   push, invalidate the old result and run a new independent Review.
