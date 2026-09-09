@@ -1,0 +1,2199 @@
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "cycle-2026-09-09T0340Z",
+  "scope": "read-only Done terminal-integrity audit",
+  "audited_at": "2026-09-09T03:46:08Z",
+  "assignment": {
+    "task_count": 25,
+    "task_ids": [
+      "ae8fc022-5562-4f58-95dc-3dab9d4c179f",
+      "e9f9198c-da98-4c32-ac73-03d8eff7d20e",
+      "52892e8e-dc44-4d38-80ab-14bb75f7b6bf",
+      "dd4f90b0-0cbe-4cab-bdd9-6a3480487f89",
+      "00ceb41b-97fe-42d1-be99-10bbe9d1b676",
+      "bc53f366-7f36-406e-abc5-54c105367800",
+      "f4136a59-f2ae-4ef3-b718-24d1118b4115",
+      "b2da5061-07a3-46e6-ab48-3881929ac9a5",
+      "3ec598a8-b49d-4d5f-9bf3-52b0d611cd32",
+      "6bdea0a1-6fce-4d4a-8118-bf0062797827",
+      "04802c8a-aad9-4d18-bdca-fa593c2e0b9a",
+      "a008158f-4aa5-4572-b4ed-ff076ec1d3dd",
+      "d5cef521-32bd-4433-873b-33561d6bee8f",
+      "be077c0f-39cc-498d-a181-2fcb28953186",
+      "9973c516-fea3-486a-a75c-703c3bc2e8e0",
+      "94be05ee-3f48-456d-b6e4-88f6baecbb74",
+      "894fcdbb-6400-4ffb-9fa5-8998fbf450ff",
+      "326da7c8-54a1-4522-a7e0-78ecc085beed",
+      "84df0685-2bb9-464b-87df-96533ceb92a6",
+      "0ce7508b-052a-47a3-b0e2-065e6414015d",
+      "f38b523f-f26d-4a8e-a9c2-ce56d58f3098",
+      "80920898-155a-4aef-8489-97b57213353f",
+      "5e7b891a-db2d-4cfc-8af2-17f922b56a8e",
+      "34b29644-b910-405d-bc2e-e6e2c345749c",
+      "8463d2ff-e8f1-4ba5-99c3-fad2c2da3f66"
+    ],
+    "to_deploy_content_read": false,
+    "mutations": false
+  },
+  "method": {
+    "live": "Fresh list current rows and all-session censuses for exactly 25 claims; all remain physical Done, pending projections null, and zero RUNNING/STARTING.",
+    "relations": "Fresh list_related_tasks on every exact task. Eleven succeeded with zero children; fourteen returned FORBIDDEN and remain UNKNOWN. No unknown is counted as a pass.",
+    "provider": "Fresh batched GitHub GraphQL query over all 17 named canonical PRs.",
+    "preservation": "Materialized-worktree evidence and suspicious-case findings from the 02:38 deep receipt remain controlling because task rows/session activity and delivery heads are unchanged."
+  },
+  "provider_refresh": {
+    "observed_at": "2026-09-09T03:46:08Z",
+    "graphql": {
+      "limit": 5000,
+      "cost": 1,
+      "remaining": 3311,
+      "reset_at": "2026-09-09T04:29:26Z"
+    },
+    "result": "All 17 named canonical PRs remain MERGED at unchanged exact heads and merge commits.",
+    "pull_requests": [
+      {
+        "tasks": [
+          "ae8fc022-5562-4f58-95dc-3dab9d4c179f"
+        ],
+        "url": "https://github.com/yattdev/kandev-plugin-tags/pull/7",
+        "head": "0c120b3f7e19505c488ebb4b06fda5355afb7a3f",
+        "merge_commit": "6f4a127d2984210c4b2f724aca70f59c8a8f821d",
+        "merged_at": "2026-08-21T05:47:58Z"
+      },
+      {
+        "tasks": [
+          "ae8fc022-5562-4f58-95dc-3dab9d4c179f"
+        ],
+        "url": "https://github.com/yattdev/kandev-plugin-tags/pull/4",
+        "head": "443ac38c38415f0da186305356230c7530b74524",
+        "merge_commit": "900b345c007ef22e0d2082641285c4871f988fdf",
+        "merged_at": "2026-08-18T05:42:24Z"
+      },
+      {
+        "tasks": [
+          "ae8fc022-5562-4f58-95dc-3dab9d4c179f"
+        ],
+        "url": "https://github.com/kdlbs/kandev/pull/2609",
+        "head": "8f33ba28ed5cdd88d4fce785db6bd3d9a5ad5c78",
+        "merge_commit": "64bc820c45b5353a2bd1cf2aa63c9effe3fa08c9",
+        "merged_at": "2026-08-21T17:12:31Z"
+      },
+      {
+        "tasks": [
+          "e9f9198c-da98-4c32-ac73-03d8eff7d20e"
+        ],
+        "url": "https://github.com/kdlbs/kandev/pull/2693",
+        "head": "59a2b6bebeb6a72955ffc684b250a192f74947d5",
+        "merge_commit": "898ec638578973d2bc68f6cfa24dedf3e885564e",
+        "merged_at": "2026-08-19T13:02:53Z"
+      },
+      {
+        "tasks": [
+          "f4136a59-f2ae-4ef3-b718-24d1118b4115"
+        ],
+        "url": "https://github.com/kdlbs/kandev/pull/2872",
+        "head": "377f532e029ddf0ebf79ee383fb2a272360b6c5b",
+        "merge_commit": "5f5b1f0f319e688c7aa4f161c30e0dd024d3f1eb",
+        "merged_at": "2026-09-06T10:30:02Z"
+      },
+      {
+        "tasks": [
+          "0ce7508b-052a-47a3-b0e2-065e6414015d"
+        ],
+        "url": "https://github.com/kdlbs/kandev/pull/2916",
+        "head": "2f865edfd9b3ff3c73466e1c522bc1994f980193",
+        "merge_commit": "032ea05bc8997028b1690f5f351939c83a6f77c2",
+        "merged_at": "2026-08-22T10:42:54Z"
+      },
+      {
+        "tasks": [
+          "6bdea0a1-6fce-4d4a-8118-bf0062797827"
+        ],
+        "url": "https://github.com/kdlbs/kandev/pull/2937",
+        "head": "8b9395b0a3f718a38f4ed671605758836cb65d35",
+        "merge_commit": "9b9f3471481869ce348ee47c3ed8b7cb33c9f5bb",
+        "merged_at": "2026-09-06T10:30:41Z"
+      },
+      {
+        "tasks": [
+          "b2da5061-07a3-46e6-ab48-3881929ac9a5"
+        ],
+        "url": "https://github.com/kdlbs/kandev/pull/3147",
+        "head": "885c09598f53a393c03c2ed9e0a80028b3725ac7",
+        "merge_commit": "d97ce0a7227f6976c09aac773254c760e6f7f41f",
+        "merged_at": "2026-08-30T11:20:11Z"
+      },
+      {
+        "tasks": [
+          "04802c8a-aad9-4d18-bdca-fa593c2e0b9a"
+        ],
+        "url": "https://github.com/kdlbs/kandev/pull/3151",
+        "head": "5cceafec6400b5e4d55856dee48012f652f43c4f",
+        "merge_commit": "c9461408129e907828e1420534884d4bf3117cdd",
+        "merged_at": "2026-08-30T15:22:13Z"
+      },
+      {
+        "tasks": [
+          "894fcdbb-6400-4ffb-9fa5-8998fbf450ff"
+        ],
+        "url": "https://github.com/kdlbs/kandev/pull/3373",
+        "head": "3f8364af214d7c0f4e8769419fd6c24f2bb2152c",
+        "merge_commit": "d17812fdb1a6084cfa63f1f3f8c5f713b8cdc486",
+        "merged_at": "2026-09-07T20:31:07Z"
+      },
+      {
+        "tasks": [
+          "326da7c8-54a1-4522-a7e0-78ecc085beed"
+        ],
+        "url": "https://github.com/kdlbs/kandev/pull/3397",
+        "head": "a724adf23f8eb8f25e4743a89e513021ec28d469",
+        "merge_commit": "0c9b1ec58874d35a00039c07f967ce67f0c02bfc",
+        "merged_at": "2026-09-05T18:20:09Z"
+      },
+      {
+        "tasks": [
+          "84df0685-2bb9-464b-87df-96533ceb92a6"
+        ],
+        "url": "https://github.com/kdlbs/kandev/pull/3410",
+        "head": "73da5bf44e15dd4e389c83599053bf76891edde7",
+        "merge_commit": "698ef63e678d09b295c49ee0bb21a39cb87a1cdf",
+        "merged_at": "2026-09-06T10:35:38Z"
+      },
+      {
+        "tasks": [
+          "80920898-155a-4aef-8489-97b57213353f"
+        ],
+        "url": "https://github.com/kdlbs/kandev/pull/3456",
+        "head": "e951d798e8c9bf1b318eedbc66fe59e335ef57b5",
+        "merge_commit": "ed50fb05b5dc91a52eea829318b50b77e3fb2759",
+        "merged_at": "2026-09-07T18:48:12Z",
+        "task_head": "a6d7161264673d84a9e6af312ee59c376d7de900",
+        "task_head_containment": "git merge-base --is-ancestor task_head pr_head exited 0"
+      },
+      {
+        "tasks": [
+          "00ceb41b-97fe-42d1-be99-10bbe9d1b676",
+          "9973c516-fea3-486a-a75c-703c3bc2e8e0"
+        ],
+        "url": "https://github.com/yattdev/kandev-plugin-redmine/pull/1",
+        "head": "0b884b249cac0b1e09ebf87fdea99bf56177b4d0",
+        "merge_commit": "9ab567715b9a224f52625e403d8f52483fcbdae0",
+        "merged_at": "2026-09-04T06:54:31Z"
+      },
+      {
+        "tasks": [
+          "f38b523f-f26d-4a8e-a9c2-ce56d58f3098"
+        ],
+        "url": "https://github.com/yattdev/kandev-plugin-redmine/pull/2",
+        "head": "e903d6f56fc32d4033f03a60c09ec9926915fe37",
+        "merge_commit": "990dcdd2b4ff6034ef28a67d89e863231ef425f1",
+        "merged_at": "2026-09-06T18:15:52Z"
+      },
+      {
+        "tasks": [
+          "3ec598a8-b49d-4d5f-9bf3-52b0d611cd32",
+          "52892e8e-dc44-4d38-80ab-14bb75f7b6bf"
+        ],
+        "url": "https://github.com/yattdev/kandev-plugin-coordinator/pull/1",
+        "head": "c4c430cea07b62d3c9c63cdeffa0fcbcf005e496",
+        "merge_commit": "6fb1fdd63c1728258c40a67df037116c5ca9bbb8",
+        "merged_at": "2026-09-08T11:27:30Z"
+      },
+      {
+        "tasks": [
+          "be077c0f-39cc-498d-a181-2fcb28953186"
+        ],
+        "url": "https://github.com/yattdev/kandev-plugin-coordinator/pull/3",
+        "head": "97126758baa7997bd390ced8b904e3e2f4111b0d",
+        "merge_commit": "17f4d71f1eb8d1d4f1865e25c20a0d94ee1f089c",
+        "merged_at": "2026-09-04T07:23:32Z"
+      }
+    ]
+  },
+  "relation_access_limitation": {
+    "denied_task_ids": [
+      "00ceb41b-97fe-42d1-be99-10bbe9d1b676",
+      "04802c8a-aad9-4d18-bdca-fa593c2e0b9a",
+      "0ce7508b-052a-47a3-b0e2-065e6414015d",
+      "3ec598a8-b49d-4d5f-9bf3-52b0d611cd32",
+      "52892e8e-dc44-4d38-80ab-14bb75f7b6bf",
+      "6bdea0a1-6fce-4d4a-8118-bf0062797827",
+      "84df0685-2bb9-464b-87df-96533ceb92a6",
+      "ae8fc022-5562-4f58-95dc-3dab9d4c179f",
+      "b2da5061-07a3-46e6-ab48-3881929ac9a5",
+      "bc53f366-7f36-406e-abc5-54c105367800",
+      "be077c0f-39cc-498d-a181-2fcb28953186",
+      "dd4f90b0-0cbe-4cab-bdd9-6a3480487f89",
+      "e9f9198c-da98-4c32-ac73-03d8eff7d20e",
+      "f4136a59-f2ae-4ef3-b718-24d1118b4115"
+    ],
+    "required_action": "Root/owner-scoped authority must obtain fresh parent, children, prerequisite, and dependent projections for these 14 exact tasks. Until then preserve artifacts and freeze cleanup; do not infer terminal clean."
+  },
+  "known_housekeeping_edges": [
+    {
+      "dependent": "894fcdbb-6400-4ffb-9fa5-8998fbf450ff",
+      "prerequisite": "80920898-155a-4aef-8489-97b57213353f",
+      "freshly_confirmed": true,
+      "effect": "obsolete Done-to-Done housekeeping; no unfinished delivery"
+    },
+    {
+      "dependent": "8463d2ff-e8f1-4ba5-99c3-fad2c2da3f66",
+      "prerequisite": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+      "freshly_confirmed": true,
+      "effect": "obsolete edge from zero-work superseded carrier; replacement owns delivery"
+    }
+  ],
+  "summary": {
+    "total": 25,
+    "coverage": "25/25",
+    "terminal_clean": 11,
+    "integrity_violation": 0,
+    "unknown": 14,
+    "active_running_or_starting_sessions": 0,
+    "canonical_prs_freshly_verified_merged": 17,
+    "cleanup_authorized": false
+  },
+  "rows": [
+    {
+      "task_id": "ae8fc022-5562-4f58-95dc-3dab9d4c179f",
+      "title": "Fix tag display and tags box UI",
+      "classification": "unknown",
+      "terminal_integrity": "UNKNOWN",
+      "physical_lane": "Done",
+      "row_state": "REVIEW",
+      "task_updated_at": "2026-09-08T04:53:52.718593654Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [
+        {
+          "merged_at": "2026-08-18T05:42:24Z",
+          "number": 4,
+          "state": "merged",
+          "title": "feat: add task-row-tags chips and redesign the Tags box",
+          "url": "https://github.com/yattdev/kandev-plugin-tags/pull/4"
+        },
+        {
+          "merged_at": "2026-08-21T17:12:31Z",
+          "number": 2609,
+          "state": "merged",
+          "title": "feat(plugins): add task-row tags and sidebar actions",
+          "url": "https://github.com/kdlbs/kandev/pull/2609"
+        },
+        {
+          "merged_at": "2026-08-21T05:47:58Z",
+          "number": 7,
+          "state": "merged",
+          "title": "fix(ui): align task-row metadata slot and mobile z-index",
+          "url": "https://github.com/yattdev/kandev-plugin-tags/pull/7"
+        }
+      ],
+      "exact_done_assignment": null,
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "UNKNOWN",
+        "observed_at": "2026-09-09T03:46:08Z",
+        "error": "backend error [FORBIDDEN]: document access denied",
+        "required_root_check": "Read exact parent, children, prerequisites, and dependents. Keep preservation and cleanup freeze until a successful receipt exists."
+      },
+      "delivery": {
+        "canonical_pr": "https://github.com/yattdev/kandev-plugin-tags/pull/7",
+        "head": "0c120b3f7e19505c488ebb4b06fda5355afb7a3f",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "materialized_worktree_refresh": {
+        "path": "/data/tasks/show-tags-applied-to_ioop9bn6/kandev-source",
+        "head": "4a3e50b159fab1a06e3b52274c6c52f6d2942176",
+        "branch": "feature/fix-tag-display-and-e00",
+        "status": "62 untracked, 0 tracked changes",
+        "interpretation": "Known unrelated host-checkout files plus preserved QA data/runtime residue; accepted task heads are merged. Preserve; no cleanup."
+      },
+      "anomalies": [
+        "relation_surface_freshness_unknown"
+      ],
+      "corrective_action": "Root/owner-scoped relation read for this exact task; if still unavailable, preserve all resources and retain UNKNOWN. Do not clean up or count as terminal-clean.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "fresh exact named PR merge verified",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "e9f9198c-da98-4c32-ac73-03d8eff7d20e",
+      "title": "GitLab PR tests fail when KANDEV_GITLAB_HOST is set",
+      "classification": "unknown",
+      "terminal_integrity": "UNKNOWN",
+      "physical_lane": "Done",
+      "row_state": "REVIEW",
+      "task_updated_at": "2026-09-08T04:53:52.988529968Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [
+        {
+          "merged_at": "2026-08-19T13:02:53Z",
+          "number": 2693,
+          "state": "merged",
+          "title": "test: guard process/gitlab env scrubs against drift",
+          "url": "https://github.com/kdlbs/kandev/pull/2693"
+        }
+      ],
+      "exact_done_assignment": null,
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "UNKNOWN",
+        "observed_at": "2026-09-09T03:46:08Z",
+        "error": "backend error [FORBIDDEN]: document access denied",
+        "required_root_check": "Read exact parent, children, prerequisites, and dependents. Keep preservation and cleanup freeze until a successful receipt exists."
+      },
+      "delivery": {
+        "canonical_pr": "https://github.com/kdlbs/kandev/pull/2693",
+        "head": "59a2b6bebeb6a72955ffc684b250a192f74947d5",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "materialized_worktree_refresh": {
+        "status": "no materialized worktree found from current plan/prior receipt; prior remote/archive preservation controls"
+      },
+      "anomalies": [
+        "relation_surface_freshness_unknown"
+      ],
+      "corrective_action": "Root/owner-scoped relation read for this exact task; if still unavailable, preserve all resources and retain UNKNOWN. Do not clean up or count as terminal-clean.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "fresh exact named PR merge verified",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "52892e8e-dc44-4d38-80ab-14bb75f7b6bf",
+      "title": "Build coordinator plugin",
+      "classification": "unknown",
+      "terminal_integrity": "UNKNOWN",
+      "physical_lane": "Done",
+      "row_state": "FAILED",
+      "task_updated_at": "2026-09-08T11:34:40.77279123Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [
+        {
+          "merged_at": "2026-09-08T11:27:30Z",
+          "number": 1,
+          "state": "merged",
+          "title": "feat: add workspace coordinator compatibility slice",
+          "url": "https://github.com/yattdev/kandev-plugin-coordinator/pull/1"
+        }
+      ],
+      "exact_done_assignment": {
+        "assigned_at": "2026-09-08T11:34:39.356765495Z",
+        "assigned_by_session_id": "f0144585-3c79-4f69-ab96-25f547fae0c2",
+        "assigned_by_task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+        "generation": 1,
+        "model": "gpt-5.4",
+        "profile_id": "40385329-6d98-4273-ab7c-aa29ff4353d1",
+        "profile_updated_at": "2026-08-29T03:12:18Z",
+        "target_workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f"
+      },
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "UNKNOWN",
+        "observed_at": "2026-09-09T03:46:08Z",
+        "error": "backend error [FORBIDDEN]: document access denied",
+        "required_root_check": "Read exact parent, children, prerequisites, and dependents. Keep preservation and cleanup freeze until a successful receipt exists."
+      },
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid by supersession: recovery task delivered plugin PR 1. Dirty projection remains intentionally preserved (113 tracked, 7 untracked) and reconstructed tree 9d6e4da7 matches pushed backup commit 776306b on origin/backup/build-coordinator-pl-bhx-orphaned-1; no unique loss.",
+      "materialized_worktree_refresh": {
+        "path": "/data/tasks/build-coordinator-pl_b91zvxy8/yattdev-kandev-plugin-coordinator",
+        "head": "c4c430cea07b62d3c9c63cdeffa0fcbcf005e496",
+        "branch": "feature/recover-coordinator-lhd",
+        "status": "113 tracked changes, 7 untracked",
+        "interpretation": "Intentional dirty projection; reconstructed tree equals remote backup commit 776306b per prior deep receipt; merged recovery PR 1 contains exact canonical head."
+      },
+      "anomalies": [
+        "relation_surface_freshness_unknown"
+      ],
+      "corrective_action": "Root/owner-scoped relation read for this exact task; if still unavailable, preserve all resources and retain UNKNOWN. Do not clean up or count as terminal-clean.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "local/archive/supersession receipt unchanged",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "dd4f90b0-0cbe-4cab-bdd9-6a3480487f89",
+      "title": "Fix Docker build proxy corrupting APT metadata",
+      "classification": "unknown",
+      "terminal_integrity": "UNKNOWN",
+      "physical_lane": "Done",
+      "row_state": "FAILED",
+      "task_updated_at": "2026-09-08T15:07:51.836239088Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [],
+      "exact_done_assignment": {
+        "assigned_at": "2026-09-08T10:28:25.316346414Z",
+        "assigned_by_session_id": "f0144585-3c79-4f69-ab96-25f547fae0c2",
+        "assigned_by_task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+        "generation": 2,
+        "model": "gpt-5.4",
+        "profile_id": "40385329-6d98-4273-ab7c-aa29ff4353d1",
+        "profile_updated_at": "2026-08-29T03:12:18Z",
+        "target_workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f"
+      },
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "UNKNOWN",
+        "observed_at": "2026-09-09T03:46:08Z",
+        "error": "backend error [FORBIDDEN]: document access denied",
+        "required_root_check": "Read exact parent, children, prerequisites, and dependents. Keep preservation and cleanup freeze until a successful receipt exists."
+      },
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid zero-diff host/config qualification. Clean local HEAD 5eb99d8, no upstream configured; signed-APT default-builder probe passed; separate userns E2E owned elsewhere.",
+      "materialized_worktree_refresh": {
+        "path": "/data/tasks/fix-docker-build-pro_3wj1llyv/kandev-source",
+        "head": "5eb99d8b09d66da3b938d48b535bb8b8ec14b21a",
+        "branch": "feature/fix-docker-build-pro-65g",
+        "status": "clean",
+        "interpretation": "Clean zero-diff qualification; no upstream configured."
+      },
+      "anomalies": [
+        "relation_surface_freshness_unknown"
+      ],
+      "corrective_action": "Root/owner-scoped relation read for this exact task; if still unavailable, preserve all resources and retain UNKNOWN. Do not clean up or count as terminal-clean.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "local/archive/supersession receipt unchanged",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "00ceb41b-97fe-42d1-be99-10bbe9d1b676",
+      "title": "Complete Redmine plugin implementation",
+      "classification": "unknown",
+      "terminal_integrity": "UNKNOWN",
+      "physical_lane": "Done",
+      "row_state": "FAILED",
+      "task_updated_at": "2026-09-04T09:28:48.336157305Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [
+        {
+          "merged_at": "2026-09-04T06:54:31Z",
+          "number": 1,
+          "state": "merged",
+          "title": "feat: complete Redmine integration candidate",
+          "url": "https://github.com/yattdev/kandev-plugin-redmine/pull/1"
+        }
+      ],
+      "exact_done_assignment": null,
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "UNKNOWN",
+        "observed_at": "2026-09-09T03:46:08Z",
+        "error": "backend error [FORBIDDEN]: document access denied",
+        "required_root_check": "Read exact parent, children, prerequisites, and dependents. Keep preservation and cleanup freeze until a successful receipt exists."
+      },
+      "delivery": {
+        "canonical_pr": "https://github.com/yattdev/kandev-plugin-redmine/pull/1",
+        "head": "0b884b249cac0b1e09ebf87fdea99bf56177b4d0",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "materialized_worktree_refresh": {
+        "status": "no materialized worktree found from current plan/prior receipt; prior remote/archive preservation controls"
+      },
+      "anomalies": [
+        "relation_surface_freshness_unknown"
+      ],
+      "corrective_action": "Root/owner-scoped relation read for this exact task; if still unavailable, preserve all resources and retain UNKNOWN. Do not clean up or count as terminal-clean.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "fresh exact named PR merge verified",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "bc53f366-7f36-406e-abc5-54c105367800",
+      "title": "Verify Redmine host contracts and E2E",
+      "classification": "unknown",
+      "terminal_integrity": "UNKNOWN",
+      "physical_lane": "Done",
+      "row_state": "COMPLETED",
+      "task_updated_at": "2026-09-08T04:53:52.600447725Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [],
+      "exact_done_assignment": null,
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "9daf07a8-a210-4d31-9c2d-c867d3e83188"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "UNKNOWN",
+        "observed_at": "2026-09-09T03:46:08Z",
+        "error": "backend error [FORBIDDEN]: document access denied",
+        "required_root_check": "Read exact parent, children, prerequisites, and dependents. Keep preservation and cleanup freeze until a successful receipt exists."
+      },
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid superseded cleanup carrier. Task worktree/local and remote branch removed; stale read-only git-admin residue has no unique work; first-version E2E owned elsewhere.",
+      "materialized_worktree_refresh": {
+        "status": "no materialized worktree found from current plan/prior receipt; prior remote/archive preservation controls"
+      },
+      "anomalies": [
+        "relation_surface_freshness_unknown"
+      ],
+      "corrective_action": "Root/owner-scoped relation read for this exact task; if still unavailable, preserve all resources and retain UNKNOWN. Do not clean up or count as terminal-clean.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "local/archive/supersession receipt unchanged",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "f4136a59-f2ae-4ef3-b718-24d1118b4115",
+      "title": "Clean plugin task-write host hook PR",
+      "classification": "unknown",
+      "terminal_integrity": "UNKNOWN",
+      "physical_lane": "Done",
+      "row_state": "REVIEW",
+      "task_updated_at": "2026-09-08T04:53:52.875753593Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [
+        {
+          "merged_at": "2026-09-06T10:30:02Z",
+          "number": 2872,
+          "state": "merged",
+          "title": "feat(plugins): expand task fields for integrations",
+          "url": "https://github.com/kdlbs/kandev/pull/2872"
+        }
+      ],
+      "exact_done_assignment": null,
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "45333561-4674-4940-8a04-f202beeddf23",
+          "0387a099",
+          "8ff5f475",
+          "74038e3a",
+          "7d3bfbd8",
+          "4f19ddd8",
+          "e90048b6",
+          "70b07696",
+          "b191758f",
+          "b665fbf9",
+          "747af5f0"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "UNKNOWN",
+        "observed_at": "2026-09-09T03:46:08Z",
+        "error": "backend error [FORBIDDEN]: document access denied",
+        "required_root_check": "Read exact parent, children, prerequisites, and dependents. Keep preservation and cleanup freeze until a successful receipt exists."
+      },
+      "delivery": {
+        "canonical_pr": "https://github.com/kdlbs/kandev/pull/2872",
+        "head": "377f532e029ddf0ebf79ee383fb2a272360b6c5b",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "materialized_worktree_refresh": {
+        "path": "/data/tasks/clean-plugin-task-wr_0xo4v0tp/kandev-source",
+        "head": "377f532e029ddf0ebf79ee383fb2a272360b6c5b",
+        "branch": "ci-fix/clean-plugin-task-wr-4t2-2872",
+        "status": "clean; configured upstream e55db65 is stale",
+        "interpretation": "Local exact head equals merged PR 2872 head; preservation is complete."
+      },
+      "anomalies": [
+        "relation_surface_freshness_unknown"
+      ],
+      "corrective_action": "Root/owner-scoped relation read for this exact task; if still unavailable, preserve all resources and retain UNKNOWN. Do not clean up or count as terminal-clean.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "fresh exact named PR merge verified",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "b2da5061-07a3-46e6-ab48-3881929ac9a5",
+      "title": "Queued board moves never expire and fire silently",
+      "classification": "unknown",
+      "terminal_integrity": "UNKNOWN",
+      "physical_lane": "Done",
+      "row_state": "REVIEW",
+      "task_updated_at": "2026-09-08T04:53:53.093977588Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [
+        {
+          "merged_at": "2026-08-30T11:20:11Z",
+          "number": 3147,
+          "state": "merged",
+          "title": "fix: expire and reap stale queued board moves",
+          "url": "https://github.com/kdlbs/kandev/pull/3147"
+        }
+      ],
+      "exact_done_assignment": null,
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "efcd3ff6-e7bc-4c73-81c6-21340f6cdbc8",
+          "62adb5",
+          "a54c"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "UNKNOWN",
+        "observed_at": "2026-09-09T03:46:08Z",
+        "error": "backend error [FORBIDDEN]: document access denied",
+        "required_root_check": "Read exact parent, children, prerequisites, and dependents. Keep preservation and cleanup freeze until a successful receipt exists."
+      },
+      "delivery": {
+        "canonical_pr": "https://github.com/kdlbs/kandev/pull/3147",
+        "head": "885c09598f53a393c03c2ed9e0a80028b3725ac7",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "materialized_worktree_refresh": {
+        "status": "no materialized worktree found from current plan/prior receipt; prior remote/archive preservation controls"
+      },
+      "anomalies": [
+        "relation_surface_freshness_unknown"
+      ],
+      "corrective_action": "Root/owner-scoped relation read for this exact task; if still unavailable, preserve all resources and retain UNKNOWN. Do not clean up or count as terminal-clean.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "fresh exact named PR merge verified",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "3ec598a8-b49d-4d5f-9bf3-52b0d611cd32",
+      "title": "Recover coordinator plugin checkout",
+      "classification": "unknown",
+      "terminal_integrity": "UNKNOWN",
+      "physical_lane": "Done",
+      "row_state": "FAILED",
+      "task_updated_at": "2026-09-08T15:07:51.861909412Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [],
+      "exact_done_assignment": {
+        "assigned_at": "2026-09-08T11:30:26.761540813Z",
+        "assigned_by_session_id": "f0144585-3c79-4f69-ab96-25f547fae0c2",
+        "assigned_by_task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+        "generation": 2,
+        "model": "gpt-5.4",
+        "profile_id": "40385329-6d98-4273-ab7c-aa29ff4353d1",
+        "profile_updated_at": "2026-08-29T03:12:18Z",
+        "target_workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f"
+      },
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "916cfd97",
+          "b0d11e31",
+          "e48c8958",
+          "91e55034",
+          "6ef8fe40"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "UNKNOWN",
+        "observed_at": "2026-09-09T03:46:08Z",
+        "error": "backend error [FORBIDDEN]: document access denied",
+        "required_root_check": "Read exact parent, children, prerequisites, and dependents. Keep preservation and cleanup freeze until a successful receipt exists."
+      },
+      "delivery": {
+        "canonical_pr": "https://github.com/yattdev/kandev-plugin-coordinator/pull/1",
+        "head": "c4c430cea07b62d3c9c63cdeffa0fcbcf005e496",
+        "proof": "merged; remote branch feature/recover-coordinator-lhd reachable; contained; merge 6fb1fdd63c1728258c40a67df037116c5ca9bbb8",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "materialized_worktree_refresh": {
+        "path": "/data/tasks/recover-coordinator_8dja868q/yattdev-kandev-plugin-coordinator",
+        "head": "c4c430cea07b62d3c9c63cdeffa0fcbcf005e496",
+        "branch": "feature/recover-coordinator-lhd",
+        "status": "3 intentional untracked directories",
+        "interpretation": "Merged exact head; preserve .playwright-cli/.playwright/.qa evidence."
+      },
+      "anomalies": [
+        "live_card_pr_association_missing",
+        "relation_surface_freshness_unknown"
+      ],
+      "corrective_action": "Root/owner-scoped relation read for this exact task; if still unavailable, preserve all resources and retain UNKNOWN. Do not clean up or count as terminal-clean.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "fresh exact named PR merge verified",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "6bdea0a1-6fce-4d4a-8118-bf0062797827",
+      "title": "Reconcile PR 2937 from clean worktree",
+      "classification": "unknown",
+      "terminal_integrity": "UNKNOWN",
+      "physical_lane": "Done",
+      "row_state": "REVIEW",
+      "task_updated_at": "2026-09-08T04:53:53.211911539Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [],
+      "exact_done_assignment": null,
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "95cab29b",
+          "c047ccb6",
+          "a1398",
+          "25a993",
+          "7244",
+          "2f101",
+          "5079",
+          "8076",
+          "9c683724"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "UNKNOWN",
+        "observed_at": "2026-09-09T03:46:08Z",
+        "error": "backend error [FORBIDDEN]: document access denied",
+        "required_root_check": "Read exact parent, children, prerequisites, and dependents. Keep preservation and cleanup freeze until a successful receipt exists."
+      },
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid: canonical PR 2937 merged at 8b9395b0; worktree/local branch removed, remote PR branch preserved, seven QA screenshots preserved, ports 48293/55698 have no listeners. Live card lacks PR association.",
+      "materialized_worktree_refresh": {
+        "status": "no materialized worktree found from current plan/prior receipt; prior remote/archive preservation controls"
+      },
+      "anomalies": [
+        "live_card_pr_association_missing",
+        "relation_surface_freshness_unknown"
+      ],
+      "corrective_action": "Root/owner-scoped relation read for this exact task; if still unavailable, preserve all resources and retain UNKNOWN. Do not clean up or count as terminal-clean.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "local/archive/supersession receipt unchanged",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "04802c8a-aad9-4d18-bdca-fa593c2e0b9a",
+      "title": "Fix ambiguous automations run detail E2E",
+      "classification": "unknown",
+      "terminal_integrity": "UNKNOWN",
+      "physical_lane": "Done",
+      "row_state": "REVIEW",
+      "task_updated_at": "2026-09-08T04:53:52.770898628Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [
+        {
+          "merged_at": "2026-08-30T15:22:13Z",
+          "number": 3151,
+          "state": "merged",
+          "title": "test(e2e): disambiguate automation trigger notification",
+          "url": "https://github.com/kdlbs/kandev/pull/3151"
+        }
+      ],
+      "exact_done_assignment": null,
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "3c8735ed",
+          "dd9b9e3e",
+          "2dee",
+          "4dec"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "UNKNOWN",
+        "observed_at": "2026-09-09T03:46:08Z",
+        "error": "backend error [FORBIDDEN]: document access denied",
+        "required_root_check": "Read exact parent, children, prerequisites, and dependents. Keep preservation and cleanup freeze until a successful receipt exists."
+      },
+      "delivery": {
+        "canonical_pr": "https://github.com/kdlbs/kandev/pull/3151",
+        "head": "5cceafec6400b5e4d55856dee48012f652f43c4f",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "materialized_worktree_refresh": {
+        "status": "no materialized worktree found from current plan/prior receipt; prior remote/archive preservation controls"
+      },
+      "anomalies": [
+        "relation_surface_freshness_unknown"
+      ],
+      "corrective_action": "Root/owner-scoped relation read for this exact task; if still unavailable, preserve all resources and retain UNKNOWN. Do not clean up or count as terminal-clean.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "fresh exact named PR merge verified",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "a008158f-4aa5-4572-b4ed-ff076ec1d3dd",
+      "title": "Expose model-callable guarded TTY execution",
+      "classification": "terminal-clean",
+      "terminal_integrity": "PASS",
+      "physical_lane": "Done",
+      "row_state": "SCHEDULING",
+      "task_updated_at": "2026-09-08T10:28:24.94802162Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [],
+      "exact_done_assignment": {
+        "assigned_at": "2026-09-08T10:28:24.880416023Z",
+        "assigned_by_session_id": "f0144585-3c79-4f69-ab96-25f547fae0c2",
+        "assigned_by_task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+        "generation": 1,
+        "model": "gpt-5.4",
+        "profile_id": "40385329-6d98-4273-ab7c-aa29ff4353d1",
+        "profile_updated_at": "2026-08-29T03:12:18Z",
+        "target_workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f"
+      },
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "FRESH",
+        "children": [],
+        "prerequisite_ids": [],
+        "dependent_ids": [],
+        "observed_at": "2026-09-09T03:46:08Z"
+      },
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid zero-work failed-launch carrier superseded by 46945aff; no branch, commit, PR, runtime, data, artifact, or consumer.",
+      "materialized_worktree_refresh": {
+        "status": "no materialized worktree found from current plan/prior receipt; prior remote/archive preservation controls"
+      },
+      "anomalies": [],
+      "corrective_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "local/archive/supersession receipt unchanged",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "d5cef521-32bd-4433-873b-33561d6bee8f",
+      "title": "Make visible Human questions durable",
+      "classification": "terminal-clean",
+      "terminal_integrity": "PASS",
+      "physical_lane": "Done",
+      "row_state": "SCHEDULING",
+      "task_updated_at": "2026-09-08T10:28:25.315071116Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [],
+      "exact_done_assignment": {
+        "assigned_at": "2026-09-08T10:28:24.982749926Z",
+        "assigned_by_session_id": "f0144585-3c79-4f69-ab96-25f547fae0c2",
+        "assigned_by_task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+        "generation": 1,
+        "model": "gpt-5.4",
+        "profile_id": "40385329-6d98-4273-ab7c-aa29ff4353d1",
+        "profile_updated_at": "2026-08-29T03:12:18Z",
+        "target_workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f"
+      },
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "FRESH",
+        "children": [],
+        "prerequisite_ids": [],
+        "dependent_ids": [],
+        "observed_at": "2026-09-09T03:46:08Z"
+      },
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid zero-work failed-launch carrier superseded by 76b4e3d4/PR 3404; no unique work.",
+      "materialized_worktree_refresh": {
+        "status": "no materialized worktree found from current plan/prior receipt; prior remote/archive preservation controls"
+      },
+      "anomalies": [],
+      "corrective_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "local/archive/supersession receipt unchanged",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "be077c0f-39cc-498d-a181-2fcb28953186",
+      "title": "Plugin durable state and compaction",
+      "classification": "unknown",
+      "terminal_integrity": "UNKNOWN",
+      "physical_lane": "Done",
+      "row_state": "REVIEW",
+      "task_updated_at": "2026-09-08T04:53:52.785336772Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [
+        {
+          "merged_at": "2026-09-04T07:23:32Z",
+          "number": 3,
+          "state": "merged",
+          "title": "feat(durablestate): plugin-owned SQLite durable state engine",
+          "url": "https://github.com/yattdev/kandev-plugin-coordinator/pull/3"
+        }
+      ],
+      "exact_done_assignment": null,
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "1a923608",
+          "ea2eb143"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "UNKNOWN",
+        "observed_at": "2026-09-09T03:46:08Z",
+        "error": "backend error [FORBIDDEN]: document access denied",
+        "required_root_check": "Read exact parent, children, prerequisites, and dependents. Keep preservation and cleanup freeze until a successful receipt exists."
+      },
+      "delivery": {
+        "canonical_pr": "https://github.com/yattdev/kandev-plugin-coordinator/pull/3",
+        "head": "97126758baa7997bd390ced8b904e3e2f4111b0d",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "materialized_worktree_refresh": {
+        "status": "no materialized worktree found from current plan/prior receipt; prior remote/archive preservation controls"
+      },
+      "anomalies": [
+        "relation_surface_freshness_unknown"
+      ],
+      "corrective_action": "Root/owner-scoped relation read for this exact task; if still unavailable, preserve all resources and retain UNKNOWN. Do not clean up or count as terminal-clean.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "fresh exact named PR merge verified",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "9973c516-fea3-486a-a75c-703c3bc2e8e0",
+      "title": "Review Redmine pagination successor",
+      "classification": "terminal-clean",
+      "terminal_integrity": "PASS",
+      "physical_lane": "Done",
+      "row_state": "REVIEW",
+      "task_updated_at": "2026-09-04T07:00:35.494406145Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [],
+      "exact_done_assignment": null,
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "FRESH",
+        "children": [],
+        "prerequisite_ids": [],
+        "dependent_ids": [],
+        "observed_at": "2026-09-09T03:46:08Z"
+      },
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid review receipt: Redmine PR 1 head 0b884b249cac0b1e09ebf87fdea99bf56177b4d0 merged as 9ab5677; origin/main contains same tree.",
+      "materialized_worktree_refresh": {
+        "status": "no materialized worktree found from current plan/prior receipt; prior remote/archive preservation controls"
+      },
+      "anomalies": [],
+      "corrective_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "local/archive/supersession receipt unchanged",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "94be05ee-3f48-456d-b6e4-88f6baecbb74",
+      "title": "Review Redmine Host compatibility successor",
+      "classification": "terminal-clean",
+      "terminal_integrity": "PASS",
+      "physical_lane": "Done",
+      "row_state": "REVIEW",
+      "task_updated_at": "2026-09-04T11:28:27.980580334Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [],
+      "exact_done_assignment": null,
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "FRESH",
+        "children": [],
+        "prerequisite_ids": [],
+        "dependent_ids": [],
+        "observed_at": "2026-09-09T03:46:08Z"
+      },
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid invalid-review cleanup carrier: zero unique commits; backup dcfe7c4 remote-preserved; worktree/local branch removed; only empty task dir/read-only git-admin residue remains.",
+      "materialized_worktree_refresh": {
+        "status": "no materialized worktree found from current plan/prior receipt; prior remote/archive preservation controls"
+      },
+      "anomalies": [],
+      "corrective_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "local/archive/supersession receipt unchanged",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "894fcdbb-6400-4ffb-9fa5-8998fbf450ff",
+      "title": "Stabilize git changes panel pointer-leave opacity E2E",
+      "classification": "terminal-clean",
+      "terminal_integrity": "PASS",
+      "physical_lane": "Done",
+      "row_state": "REVIEW",
+      "task_updated_at": "2026-09-08T04:53:52.536252086Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [
+        {
+          "merged_at": "2026-09-07T20:31:07Z",
+          "number": 3373,
+          "state": "merged",
+          "title": "fix(web): preserve pending git action ownership",
+          "url": "https://github.com/kdlbs/kandev/pull/3373"
+        }
+      ],
+      "exact_done_assignment": null,
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "FRESH",
+        "children": [],
+        "prerequisite_ids": [
+          "80920898-155a-4aef-8489-97b57213353f"
+        ],
+        "dependent_ids": [],
+        "observed_at": "2026-09-09T03:46:08Z"
+      },
+      "delivery": {
+        "canonical_pr": "https://github.com/kdlbs/kandev/pull/3373",
+        "head": "3f8364af214d7c0f4e8769419fd6c24f2bb2152c",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "materialized_worktree_refresh": {
+        "path": "/data/tasks/stabilize-git-change_vqmaq2ih/kdlbs-kandev",
+        "head": "3f8364af214d7c0f4e8769419fd6c24f2bb2152c",
+        "branch": "feature/stabilize-git-change-2e2",
+        "status": "clean; upstream exact",
+        "interpretation": "Exact merged PR 3373 head."
+      },
+      "anomalies": [
+        "obsolete_dependency_edge"
+      ],
+      "corrective_action": "Remove its obsolete prerequisite 80920898 through supported owner-scoped capability; re-read both endpoints.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "fresh exact named PR merge verified",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "326da7c8-54a1-4522-a7e0-78ecc085beed",
+      "title": "Restore immutable CI runtime image resolution",
+      "classification": "terminal-clean",
+      "terminal_integrity": "PASS",
+      "physical_lane": "Done",
+      "row_state": "REVIEW",
+      "task_updated_at": "2026-09-08T04:53:52.611130782Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [
+        {
+          "merged_at": "2026-09-05T18:20:09Z",
+          "number": 3397,
+          "state": "merged",
+          "title": "fix(ci): stabilize immutable runtime image resolution",
+          "url": "https://github.com/kdlbs/kandev/pull/3397"
+        }
+      ],
+      "exact_done_assignment": null,
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "b8d6f2e2",
+          "58b1a982"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "FRESH",
+        "children": [],
+        "prerequisite_ids": [],
+        "dependent_ids": [],
+        "observed_at": "2026-09-09T03:46:08Z"
+      },
+      "delivery": {
+        "canonical_pr": "https://github.com/kdlbs/kandev/pull/3397",
+        "head": "a724adf23f8eb8f25e4743a89e513021ec28d469",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "materialized_worktree_refresh": {
+        "path": "/data/tasks/restore-immutable-ci_y95kyd4c/kdlbs-kandev",
+        "head": "7868d26a1012f20c55c0a0ea97c4c48ee39f08c0",
+        "branch": "feature/restore-immutable-ci-fqv",
+        "status": "clean; upstream exact",
+        "interpretation": "Local head is ancestor of merged PR 3397 head a724adf23f8eb8f25e4743a89e513021ec28d469."
+      },
+      "anomalies": [],
+      "corrective_action": "No mutation; retain receipt and recheck provider/archive freshness in next complete cycle after reset.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "fresh exact named PR merge verified",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "84df0685-2bb9-464b-87df-96533ceb92a6",
+      "title": "Bound GitHub Actions step-summary output",
+      "classification": "unknown",
+      "terminal_integrity": "UNKNOWN",
+      "physical_lane": "Done",
+      "row_state": "REVIEW",
+      "task_updated_at": "2026-09-08T04:53:52.67785268Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [
+        {
+          "merged_at": "2026-09-06T10:35:38Z",
+          "number": 3410,
+          "state": "merged",
+          "title": "ci: bound backend test step summaries",
+          "url": "https://github.com/kdlbs/kandev/pull/3410"
+        }
+      ],
+      "exact_done_assignment": null,
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "fb79cc33",
+          "2c635a5d",
+          "0cc049a8",
+          "85f54fe7",
+          "a81158ae",
+          "cc6e7ae5",
+          "afd032ce",
+          "fea88892"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "UNKNOWN",
+        "observed_at": "2026-09-09T03:46:08Z",
+        "error": "backend error [FORBIDDEN]: document access denied",
+        "required_root_check": "Read exact parent, children, prerequisites, and dependents. Keep preservation and cleanup freeze until a successful receipt exists."
+      },
+      "delivery": {
+        "canonical_pr": "https://github.com/kdlbs/kandev/pull/3410",
+        "head": "73da5bf44e15dd4e389c83599053bf76891edde7",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "materialized_worktree_refresh": {
+        "status": "no materialized worktree found from current plan/prior receipt; prior remote/archive preservation controls"
+      },
+      "anomalies": [
+        "relation_surface_freshness_unknown"
+      ],
+      "corrective_action": "Root/owner-scoped relation read for this exact task; if still unavailable, preserve all resources and retain UNKNOWN. Do not clean up or count as terminal-clean.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "fresh exact named PR merge verified",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "0ce7508b-052a-47a3-b0e2-065e6414015d",
+      "title": "Fix main service_pr_watch compile regression",
+      "classification": "unknown",
+      "terminal_integrity": "UNKNOWN",
+      "physical_lane": "Done",
+      "row_state": "REVIEW",
+      "task_updated_at": "2026-09-05T16:19:32.902040652Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [],
+      "exact_done_assignment": null,
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "ec139ce4"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "UNKNOWN",
+        "observed_at": "2026-09-09T03:46:08Z",
+        "error": "backend error [FORBIDDEN]: document access denied",
+        "required_root_check": "Read exact parent, children, prerequisites, and dependents. Keep preservation and cleanup freeze until a successful receipt exists."
+      },
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid zero-diff compile-regression audit; upstream repair PR 2916 fix 032ea05 is contained in main; task authored no commits/files.",
+      "materialized_worktree_refresh": {
+        "status": "no materialized worktree found from current plan/prior receipt; prior remote/archive preservation controls"
+      },
+      "anomalies": [
+        "relation_surface_freshness_unknown"
+      ],
+      "corrective_action": "Root/owner-scoped relation read for this exact task; if still unavailable, preserve all resources and retain UNKNOWN. Do not clean up or count as terminal-clean.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "local/archive/supersession receipt unchanged",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "f38b523f-f26d-4a8e-a9c2-ce56d58f3098",
+      "title": "Fix Redmine Host SDK incompatibility",
+      "classification": "terminal-clean",
+      "terminal_integrity": "PASS",
+      "physical_lane": "Done",
+      "row_state": "FAILED",
+      "task_updated_at": "2026-09-08T05:58:13.767202317Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [
+        {
+          "merged_at": "2026-09-06T18:15:52Z",
+          "number": 2,
+          "state": "merged",
+          "title": "fix: align Redmine plugin with canonical Host SDK",
+          "url": "https://github.com/yattdev/kandev-plugin-redmine/pull/2"
+        }
+      ],
+      "exact_done_assignment": {
+        "assigned_at": "2026-09-08T05:58:11.879309684Z",
+        "assigned_by_session_id": "f0144585-3c79-4f69-ab96-25f547fae0c2",
+        "assigned_by_task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+        "generation": 1,
+        "model": "gpt-5.4",
+        "profile_id": "40385329-6d98-4273-ab7c-aa29ff4353d1",
+        "profile_updated_at": "2026-08-29T03:12:18Z",
+        "target_workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f"
+      },
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [
+          "b4e48590"
+        ],
+        "resume_policy": "do not wake; several are legacy non-current-lane profiles",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "FRESH",
+        "children": [],
+        "prerequisite_ids": [],
+        "dependent_ids": [],
+        "observed_at": "2026-09-09T03:46:08Z"
+      },
+      "delivery": {
+        "canonical_pr": "https://github.com/yattdev/kandev-plugin-redmine/pull/2",
+        "head": "e903d6f56fc32d4033f03a60c09ec9926915fe37",
+        "proof": "merged; remote reachable; contained",
+        "provider_observed_at": "2026-09-09T01:22:29Z",
+        "freshness": "fresh provider verification recorded in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Prior complete terminal receipt plus unchanged live Done row/session evidence; no preservation defect found.",
+      "materialized_worktree_refresh": {
+        "path": "/data/tasks/fix-redmine-host-sdk_3ta3th1q/yattdev-kandev-plugin-redmine",
+        "head": "e903d6f56fc32d4033f03a60c09ec9926915fe37",
+        "branch": "feature/fix-redmine-host-sdk-dz2",
+        "status": "clean; upstream exact",
+        "interpretation": "Exact merged PR 2 head. Prior stale at-risk tag is absent from current labels."
+      },
+      "anomalies": [],
+      "corrective_action": "Replace stale at-risk tag with terminal/no-test-needed note naming exact startup failure and bounded post-reset model recheck.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "fresh exact named PR merge verified",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "80920898-155a-4aef-8489-97b57213353f",
+      "title": "Repair preview deploy CLI drift",
+      "classification": "terminal-clean",
+      "terminal_integrity": "PASS",
+      "physical_lane": "Done",
+      "row_state": "FAILED",
+      "task_updated_at": "2026-09-08T15:07:51.633084603Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [
+        {
+          "merged_at": "2026-09-07T18:48:12Z",
+          "number": 3456,
+          "state": "merged",
+          "title": "fix(ci): use trusted preview deploy command",
+          "url": "https://github.com/kdlbs/kandev/pull/3456"
+        }
+      ],
+      "exact_done_assignment": {
+        "assigned_at": "2026-09-08T10:28:25.420185913Z",
+        "assigned_by_session_id": "f0144585-3c79-4f69-ab96-25f547fae0c2",
+        "assigned_by_task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+        "generation": 1,
+        "model": "gpt-5.4",
+        "profile_id": "40385329-6d98-4273-ab7c-aa29ff4353d1",
+        "profile_updated_at": "2026-08-29T03:12:18Z",
+        "target_workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f"
+      },
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "FRESH",
+        "children": [],
+        "prerequisite_ids": [],
+        "dependent_ids": [
+          "894fcdbb-6400-4ffb-9fa5-8998fbf450ff"
+        ],
+        "observed_at": "2026-09-09T03:46:08Z"
+      },
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done delivery valid from full receipt: PR 3456 merged at accepted e951d798 containing local a6d7161264673d84a9e6af312ee59c376d7de900. Local worktree clean and fork ref contains head. Obsolete dependency edge remains.",
+      "materialized_worktree_refresh": {
+        "path": "/data/tasks/repair-preview-deplo_ijo41vhu/kdlbs-kandev",
+        "head": "a6d7161264673d84a9e6af312ee59c376d7de900",
+        "branch": "feature/repair-preview-deplo-u9v",
+        "status": "clean; upstream exact",
+        "interpretation": "Task head is ancestor of merged PR 3456 head e951d798e8c9bf1b318eedbc66fe59e335ef57b5."
+      },
+      "anomalies": [
+        "obsolete_dependency_edge"
+      ],
+      "corrective_action": "Remove edge from dependent 894fcdbb to prerequisite 80920898 through supported owner-scoped capability; re-read both endpoints.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "local/archive/supersession receipt unchanged",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "5e7b891a-db2d-4cfc-8af2-17f922b56a8e",
+      "title": "Qualify guarded TTY for upstream codex-acp",
+      "classification": "terminal-clean",
+      "terminal_integrity": "PASS",
+      "physical_lane": "Done",
+      "row_state": "REVIEW",
+      "task_updated_at": "2026-09-07T01:07:49.499844177Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [],
+      "exact_done_assignment": null,
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "FRESH",
+        "children": [],
+        "prerequisite_ids": [],
+        "dependent_ids": [],
+        "observed_at": "2026-09-09T03:46:08Z"
+      },
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid completed zero-diff qualification/spec. Clean HEAD equals origin/main 1a3c01e8ca317f83e3b60bc5632cf052882bea15, 0 commits/diff; full plan concludes upstream PR 451 is not this task delivery. Maintained fork replaced upstream watch; 5c9 owns watch-only follow-up. Generic receipt needs concrete zero-diff/handoff wording.",
+      "materialized_worktree_refresh": {
+        "path": "/data/tasks/qualify-guarded-tty_5qd7lhna/agentclientprotocol-codex-acp",
+        "head": "1a3c01e8ca317f83e3b60bc5632cf052882bea15",
+        "branch": "feature/qualify-guarded-tty-dsa",
+        "status": "clean; equals origin/main",
+        "interpretation": "Zero-diff qualification. PR 451 belongs to watch-only task 5c9f515d, not this task."
+      },
+      "anomalies": [
+        "generic_terminal_receipt_incomplete"
+      ],
+      "corrective_action": "Record concrete clean zero-diff qualification receipt and 5c9 watch-only handoff; no wake and no PR 451 ownership claim.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "local/archive/supersession receipt unchanged",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "34b29644-b910-405d-bc2e-e6e2c345749c",
+      "title": "Fix plugin task priority persistence",
+      "classification": "terminal-clean",
+      "terminal_integrity": "PASS",
+      "physical_lane": "Done",
+      "row_state": "SCHEDULING",
+      "task_updated_at": "2026-09-07T10:07:54.550454589Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [],
+      "exact_done_assignment": null,
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "FRESH",
+        "children": [],
+        "prerequisite_ids": [],
+        "dependent_ids": [],
+        "observed_at": "2026-09-09T03:46:08Z"
+      },
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid superseded carrier, but generic receipt inaccurately says no worktree. Local worktree is clean at 973a9d6d367b2c9a50c6ecd0557d70b23817d8b6 and fork/feature/fix-plugin-task-prio-w7w contains it. Preserve and record concrete ownership/containment.",
+      "materialized_worktree_refresh": {
+        "path": "/data/tasks/fix-plugin-task-prio_rksfvx9c/kdlbs-kandev",
+        "head": "973a9d6d367b2c9a50c6ecd0557d70b23817d8b6",
+        "branch": "feature/fix-plugin-task-prio-w7w",
+        "status": "clean; fork ref exact",
+        "interpretation": "Remote-preserved superseded carrier; replacement e8728906 owns delivery. Generic no-worktree receipt remains inaccurate."
+      },
+      "anomalies": [
+        "generic_terminal_receipt_inaccurate_worktree_claim"
+      ],
+      "corrective_action": "Correct receipt with clean HEAD/remote containment and reconcile branch ownership with replacement e8728906; do not delete preserved worktree.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "local/archive/supersession receipt unchanged",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    },
+    {
+      "task_id": "8463d2ff-e8f1-4ba5-99c3-fad2c2da3f66",
+      "title": "Fix Redmine release preflight and SDK pin",
+      "classification": "terminal-clean",
+      "terminal_integrity": "PASS",
+      "physical_lane": "Done",
+      "row_state": "FAILED",
+      "task_updated_at": "2026-09-08T10:35:04.898002174Z",
+      "row_unchanged_since_prior_deep_receipt": true,
+      "pending_actions": {
+        "task": null,
+        "primary_session": null
+      },
+      "linked_prs": [],
+      "exact_done_assignment": {
+        "assigned_at": "2026-09-08T10:35:04.850662328Z",
+        "assigned_by_session_id": "f0144585-3c79-4f69-ab96-25f547fae0c2",
+        "assigned_by_task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+        "generation": 2,
+        "model": "gpt-5.4",
+        "profile_id": "40385329-6d98-4273-ab7c-aa29ff4353d1",
+        "profile_updated_at": "2026-08-29T03:12:18Z",
+        "target_workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f"
+      },
+      "session_audit": {
+        "active_running_or_starting": 0,
+        "parked_waiting_for_input": [],
+        "resume_policy": "no parked session requiring action",
+        "all_sessions_inspected_fresh": true,
+        "fresh_observed_at": "2026-09-09T03:46:08Z"
+      },
+      "plan_and_conversation_audit": {
+        "baseline_receipt_revalidated": true,
+        "board_and_session_stable": true,
+        "deep_reaudit_triggered": false,
+        "reason": "No row/session/provider-head change; prior suspicious-case evidence remains unchanged."
+      },
+      "relation_audit": {
+        "status": "FRESH",
+        "children": [],
+        "prerequisite_ids": [
+          "e0dd8d19-278c-4d38-aafa-c3e866d92cfb"
+        ],
+        "dependent_ids": [],
+        "observed_at": "2026-09-09T03:46:08Z"
+      },
+      "delivery": {
+        "canonical_pr": null,
+        "head": null,
+        "proof": "zero-diff, supersession, or terminal qualification receipt; see preservation",
+        "freshness": "local/archive proof controls; named related PRs were freshly verified in provider_refresh at 2026-09-09T01:22:29Z"
+      },
+      "preservation": "Done valid zero-work failed-launch carrier superseded by 3f721d52/PR 4 head 980dead. No branch/worktree. Obsolete prerequisite edge to e0dd8d19 remains.",
+      "materialized_worktree_refresh": {
+        "status": "no materialized worktree found from current plan/prior receipt; prior remote/archive preservation controls"
+      },
+      "anomalies": [
+        "obsolete_dependency_edge"
+      ],
+      "corrective_action": "Remove prerequisite e0dd8d19 from dependent 8463d2ff via supported owner-scoped capability; re-read both endpoints.",
+      "evidence_freshness": {
+        "live_row_all_sessions_relations": "2026-09-09T03:46:08Z",
+        "provider": "2026-09-09T03:46:08Z",
+        "baseline_deep_receipt": "2026-09-09T02:42Z"
+      },
+      "shallow_verification": {
+        "observed_at": "2026-09-09T03:46:08Z",
+        "physical_done": true,
+        "row_state_unchanged": true,
+        "pending_actions_null": true,
+        "every_session_relisted": true,
+        "active_running_or_starting": 0,
+        "provider_projection": "local/archive/supersession receipt unchanged",
+        "suspicious_entry_deep_receipt_reused": true
+      }
+    }
+  ],
+  "baseline": {
+    "path": "/tmp/cycle-20260909T0238-done.json",
+    "sha256": "43ac7d5d0082e41807929235d587d0784d4d7fedd4eceb716b0da6ab86320e66",
+    "use": "Stable terminal receipt shallow-verified because the board was explicitly stable; suspicious preservation and relation rows retained exact prior evidence and were checked against fresh projections."
+  },
+  "corrections_from_baseline": [
+    {
+      "issue": "The 02:38 receipt counted 12 relation-UNKNOWN rows.",
+      "correction": "Fresh 03:40 relation reads show 14 authority-denied rows; 84df0685-2bb9-464b-87df-96533ceb92a6 and 0ce7508b-052a-47a3-b0e2-065e6414015d were previously miscounted as clean despite the same FORBIDDEN surface.",
+      "impact": "Counts corrected to 11 terminal-clean, 14 unknown, 0 violations. No cleanup authorized."
+    }
+  ],
+  "primary_actions": [
+    {
+      "priority": 1,
+      "action": "Preserve all 25 tasks and perform no cleanup because 14 exact relation surfaces remain UNKNOWN."
+    },
+    {
+      "priority": 2,
+      "action": "Use owner/root-scoped list_related_tasks for the 14 denied IDs; record parent, children, prerequisites, and dependents without waking sessions."
+    },
+    {
+      "priority": 3,
+      "action": "Retain obsolete owner-scoped edge actions: dependent 894fcdbb-6400-4ffb-9fa5-8998fbf450ff -> prerequisite 80920898-155a-4aef-8489-97b57213353f, and dependent 8463d2ff-e8f1-4ba5-99c3-fad2c2da3f66 -> prerequisite e0dd8d19-278c-4d38-aafa-c3e866d92cfb. Prior cross-task removal attempts were denied; no edge removal inferred."
+    },
+    {
+      "priority": 4,
+      "action": "Retain preservation follow-ups for ae8fc022 dirty/untracked host residue and QA runtime/data, 52892e8e dirty projection backed by remote backup tree, 3ec598a8 QA/playwright artifacts, 5e7b891a concrete zero-diff/watch-only handoff, and 34b29644 concrete worktree/fork containment. None proves unfinished delivery."
+    }
+  ]
+}
