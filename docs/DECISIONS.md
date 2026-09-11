@@ -1976,6 +1976,25 @@ behavior. Applying Codex cost-control mappings to them creates false mismatch
 blocks and interrupts valid work. The Coordinator still verifies host identity,
 runtime metadata, and all non-model workflow evidence.
 
+## Feature 8241 downstream work may stack after Human-QA (2026-09-11)
+
+Decision: for Feature `3c2a0d34-64ad-46f6-a8db-582ce9c623c8`, S2-D,
+S3-F, and S3-G may launch from S1's latest verified SHA once S1 reaches
+Human-QA, rather than waiting for its merge. S3-H follows S3-G Human-QA and
+S3-I follows S2-D Human-QA. S4-K and S4-J retain their approved-diagram and
+official-branding gates, respectively; S4-J also waits for S3-H Human-QA.
+
+Before a dependent starts, the parent includes the exact prerequisite SHA in
+the child G0 handoff. Active dependents fetch that tracked prerequisite before
+milestones, Review, and QA. A later prerequisite commit requires a prompt
+parent direction to port and revalidate the delta. Dormant children are not
+woken solely to receive this protocol.
+
+Rationale: Human-QA provides a stable, tested implementation integration point
+without unnecessarily serializing independent downstream work behind provider
+merge timing. The exception does not relax any child evidence, CI, Review, QA,
+asset, Human-QA, or merge gate.
+
 ## Sol or Astra may run the permanent Coordinator (2026-09-08)
 
 Decision: the Human's latest clarification permits either `gpt-5.6-sol` or
