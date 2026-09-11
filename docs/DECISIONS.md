@@ -1962,6 +1962,20 @@ Treating a Copilot model as a Codex-hosted lane mismatch can discard valid
 review evidence, park a healthy reviewer, and create an unnecessary replacement
 session. Host identity therefore precedes exact-model enforcement.
 
+## Codex workstep model gates exclude Copilot and Claude (2026-09-11)
+
+Decision: every workstep model mapping and hard model-mismatch gate applies
+only when authoritative metadata identifies the Codex host/client. Copilot and
+Claude sessions use the supported model chosen by their own configured runtime,
+in every workflow lane. A different or dynamically selected Copilot/Claude
+model is not by itself a reason to park, block, replace, override, or reject a
+task session.
+
+Rationale: Copilot and Claude have independent model availability and selection
+behavior. Applying Codex cost-control mappings to them creates false mismatch
+blocks and interrupts valid work. The Coordinator still verifies host identity,
+runtime metadata, and all non-model workflow evidence.
+
 ## Sol or Astra may run the permanent Coordinator (2026-09-08)
 
 Decision: the Human's latest clarification permits either `gpt-5.6-sol` or

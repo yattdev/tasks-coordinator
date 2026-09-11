@@ -950,12 +950,12 @@ lanes and do not start task Codex sessions; the permanent Coordinator is the
 explicit Backlogs exception. This mapping does not replace a deliberately
 selected non-Codex agent family.
 
-For a Copilot-hosted Review session, `gpt-5.3-codex` or another supported
-Copilot model may be valid. The model name does not identify the host/client:
-resolve the host family from authoritative agent, profile, or runtime metadata
-before applying the Codex `gpt-5.5` Review gate. Do not park a Copilot reviewer,
-override its profile, or reject its result solely because its model differs
-from `gpt-5.5`.
+For a Copilot-hosted or Claude-hosted session in any lane, the supported model
+selected by that host's configured runtime may be valid. The model name does
+not identify the host/client: resolve the host family from authoritative agent,
+profile, or runtime metadata before applying a Codex lane-model gate. Do not
+park, block, override, replace, or reject Copilot or Claude work solely because
+its configured or dynamically selected model differs from the Codex mapping.
 
 Astra is reserved for the permanent Coordinator and its replacement primary
 sessions; Sol is also a standing authorized Coordinator selection. Read-only audit helpers retain Sol; explicitly select their model
@@ -968,10 +968,11 @@ model names:
 1. List configured agents and identify each profile's host/client family before
    building the exact enabled profile-ID-to-model mapping. A model containing
    `codex` is not proof that the profile is Codex-hosted.
-2. List every task and compare Codex-hosted assignees with the Codex physical
-   lane map. For Copilot-hosted Review, validate the configured supported
-   Copilot selection instead of imposing `gpt-5.5`. A true host-specific
-   mismatch is future launch/resume risk even when no session is active.
+2. List every task and compare only Codex-hosted assignees with the Codex
+   physical lane map. For Copilot-hosted and Claude-hosted tasks in every lane,
+   validate the configured supported host selection without imposing a Codex
+   mapping. A true Codex host-specific mismatch is future launch/resume risk
+   even when no session is active.
 3. List every task's complete sessions. Classify `RUNNING`/`STARTING` as active
    usage, `WAITING_FOR_INPUT`/`CREATED` as parked resumable risk, and terminal
    sessions as history only. Where live session/message metadata exposes the
