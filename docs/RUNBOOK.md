@@ -878,7 +878,18 @@ because an obsolete Spec execution still appears live, stop only that direct
 child's stale execution, retry the move, and record the recovery. Never apply this
 rule to unrelated/manual Todo tasks.
 
-## Audit and contain Codex lane-model mismatches
+## Use workflow-configured models while fixed lane gates are suspended
+
+As of the Human directive on 2026-09-14, the workflow/workstep-configured Codex
+or Copilot profile is authoritative. Fixed lane-to-model mappings and hard
+model-mismatch gates are suspended until the Human explicitly reinstates them.
+Record host, profile, and effective model as provenance, but never block, park,
+replace, reroute, or discard a task solely because it differs from the former
+map. Reclassify every model-only blocker and resume through the current workflow
+when all non-model prerequisites pass. Keep single-owner, lane, exact-head,
+independent Review/QA, provider, and delivery gates unchanged.
+
+### Historical exact-profile procedure — inactive while the suspension applies
 
 ### Accept a newly provisioned exact-profile selector
 
@@ -903,7 +914,7 @@ A later move may reuse an existing matching-profile session. Require the actual
 receiving session and independent owner rather than assuming that a selector
 write created a fresh process. If an author carries on into Review or QA, stop
 the next gate, preserve authored changes and observations as Work evidence,
-settle the move, and assign exactly one independent correct-model gate owner.
+settle the move, and assign exactly one independent workflow-configured gate owner.
 Use `workflow_step_id` for the physical lane; task state `REVIEW` can appear in
 Work, Blocked, QA, Human-QA, or Done.
 
@@ -942,13 +953,14 @@ the enforcement implementation or treat its merge as proof of a setter.
 Support broker availability and GitHub quota are separate surfaces. Keep the
 request and affected sessions in the live plan; never wake a mismatch to test it.
 
-When the Codex host/client is used, enforce this physical-lane map: the permanent Coordinator
+The former Codex physical-lane map was: the permanent Coordinator
 uses `gpt-5.6-sol` or `gpt-6-astra`; Spec and QA use `gpt-5.6-sol`; Work, Blocked, and Human-QA use
 `gpt-5.6-terra`; Review uses `gpt-5.5`; PR and Done use `gpt-5.4`; CI
 Fixup uses `gpt-5.6-luna`. Backlogs, Todo, and ToDeploy are holding/transition
 lanes and do not start task Codex sessions; the permanent Coordinator is the
 explicit Backlogs exception. This mapping does not replace a deliberately
-selected non-Codex agent family.
+selected non-Codex agent family. This map is historical and is not a current
+launch, resume, move, or blocker gate.
 
 For a Copilot-hosted or Claude-hosted session in any lane, the supported model
 selected by that host's configured runtime may be valid. The model name does
@@ -962,8 +974,9 @@ sessions; Sol is also a standing authorized Coordinator selection. Read-only aud
 instead of inheriting the Coordinator's Astra. Delegated task agents retain
 their physical-lane model.
 
-Audit the live board from authoritative host and model mappings, not profile or
-model names:
+When investigating historical model-routing evidence, audit from authoritative
+host and model mappings, not profile or model names. Do not use this historical
+procedure to impose the suspended map:
 
 1. List configured agents and identify each profile's host/client family before
    building the exact enabled profile-ID-to-model mapping. A model containing
@@ -978,14 +991,11 @@ model names:
    sessions as history only. Where live session/message metadata exposes the
    model actually executing, treat it as authoritative over the session's
    static profile mapping; process reuse can otherwise hide a wrong-model turn.
-4. Do not message or resume a lane-mismatched parked session. Select a fresh
-   profile for the exact lane model, then verify the returned effective profile
-   because a workflow step may override the request. A context reset that reuses
-   the old process is not a model transition.
-5. If task/workflow controls cannot change the effective profile, keep the
-   session parked and record the exact task/lane/session/profile/model plus the
-   configuration-repair owner. Never spend tokens on the wrong Codex model
-   merely to ask that process to switch models.
+4. For current work, use the workflow/workstep-configured profile and verify the
+   returned effective profile plus successful session ownership.
+5. If launch fails, treat it as operational recovery. Preserve exact
+   task/lane/session/profile/model evidence without recreating a legacy
+   model-only blocker.
 
 Report active use separately from configuration and parked-session risk; a WFI
 session does not currently burn inference tokens, but can do so on its next wake.
@@ -1019,7 +1029,7 @@ that interval can leave two active owners.
    Halt or park stale writers only within existing authority, reconcile the actual
    lane and lifecycle, then repeat the settlement checks.
 4. Only after that barrier, create or accept exactly one intended new owner and
-   verify that session RUNNING with the correct profile/head. Re-read the lane and
+   verify that session RUNNING with the workflow-configured profile and exact head. Re-read the lane and
    full session census once more.
 
 The move response and a single lane read are insufficient evidence. The receipt
@@ -2199,8 +2209,8 @@ with this procedure rather than reconstructing lane-specific cases from memory.
    an older task report as historical until the live sources confirm it.
 2. **Prove the execution owner.** For an executable active lane, identify the
    one owner expected to act and verify its session is `RUNNING` or `STARTING`
-   on the lane's required model. A `WAITING_FOR_INPUT`, terminal, missing,
-   duplicated, stale, or wrong-model session requires immediate reconciliation:
+   with the workflow-configured profile. A `WAITING_FOR_INPUT`, terminal,
+   missing, duplicated, stale, or failed session requires immediate reconciliation:
    wake, replace, stop, or route it safely, then re-read the resulting state.
    A legitimate Human/provider/external wait must name its owner, exact awaited
    evidence, time/event trigger, attempt count, and fallback.
@@ -2209,12 +2219,12 @@ with this procedure rather than reconstructing lane-specific cases from memory.
    blocker owner, removal action, expected evidence, trigger, and fallback.
    Staff the root, take every safe removal action, eliminate stale dependency
    edges, and atomically return cleared work to its narrowest active lane with a
-   verified correct-model session. Do not resend an unchanged request, but do
+   verified workflow-configured session. Do not resend an unchanged request, but do
    refresh its evidence and next-check receipt.
 4. **For CI, inspect the latest exact head.** Enumerate all required failed and
    pending checks with run/job URLs and logs. Classify ownership as branch
    defect, stale-base conflict, broken main, deterministic infrastructure,
-   provider outage/rate limit, flaky test, or cascade. Give a CI Fixup Luna
+   provider outage/rate limit, flaky test, or cascade. Give the workflow-configured CI Fixup
    owner the concrete fix/reproduction/rerun instruction and verify it starts.
    A maintainer comment is communication, not completion: continue until a fix
    is pushed or one narrow rerun/permission request has a named owner and
@@ -2231,7 +2241,7 @@ with this procedure rather than reconstructing lane-specific cases from memory.
    being actively repaired.
 6. **For each workflow gate, explain inactivity and act.** Spec, Work, Review,
    QA, PR, CI Fixup, Human-QA, and Done each require a current owner or a precise
-   wait. Review and QA must be independent, correct-model, and bound to the
+   wait. Review and QA must be independent, workflow-configured, and bound to the
    exact current head. A changed head invalidates previous Review/QA/CI evidence.
    Respect the separate ToDeploy ownership boundary; incidental board inventory
    is not permission for task-specific inspection there.
@@ -2503,7 +2513,7 @@ verified `BLOCKED` result below. Record the failed request and actual timeout;
 neither successful provisioning nor absence of partial changes is established.
 Re-discover the requested guarded capability. Run a supplied safe acceptance
 command if one exists; otherwise record that acceptance is unavailable, without
-starting a known wrong-model session as a probe. Send one fresh evidence-bearing
+starting a session solely as a model probe. Send one fresh evidence-bearing
 request asking Support to reconcile partial work and any surviving writer before
 continuing the original scope. Do not poll or reuse the terminal request ID.
 

@@ -101,21 +101,20 @@ continue the cycle; never convert `unknown` into an optimistic status.
   ready, save the approved plan, move to Work, and verify the Work owner starts;
   otherwise move to Spec and verify the Spec owner starts.
 - [ ] Do not start an ordinary task Codex session while it remains in Backlogs.
-  The permanent Coordinator task is the only exception and may use `gpt-5.6-sol` or `gpt-6-astra`.
-  Astra is reserved for that role; audit helpers retain Sol and task agents
-  retain their lane models.
+  The permanent Coordinator task is the only exception. Use the current
+  workflow/workstep-configured profile; fixed model gates are suspended.
 
 ### Todo
 
 - [ ] Coordinator-created Todo with an approved plan: move Todo to Work now and
-  verify a correct-model Work session starts.
+  verify a workflow-configured Work session starts.
 - [ ] Human-created Todo: do not promote without the Human's decision; surface
   the exact decision only through the normal Human-action report/ask path.
 - [ ] Do not leave a Coordinator-owned task in Todo with an empty next action.
 
-### Spec — Codex `gpt-5.6-sol`
+### Spec
 
-- [ ] Verify one fresh Spec owner is running on the required model.
+- [ ] Verify one fresh Spec owner is running with the workflow-configured profile.
 - [ ] Answer lead-decidable questions directly and document the decision as
   vetoable; escalate only destructive/irreversible or security/trust-boundary
   choices.
@@ -124,12 +123,12 @@ continue the cycle; never convert `unknown` into an optimistic status.
   read-only planning lane.
 - [ ] Verify the approved plan exists before any direct Work launch.
 
-### Work — Codex `gpt-5.6-terra`
+### Work
 
 - [ ] Verify exactly one active implementation owner, correct worktree, correct
-  branch/base, clean preservation boundary, and correct model.
+  branch/base, clean preservation boundary, and workflow-configured profile.
 - [ ] If silent or stopped, diagnose before waking; resume the preserved owner
-  or start one fresh correct-model owner without duplicating writers.
+  or start one fresh workflow-configured owner without duplicating writers.
 - [ ] Give exact review/CI/blocker findings, files, run/job/thread links, and
   expected receipt. Never implement the fix in the Coordinator worktree.
 - [ ] Require applicable tests, clean commit, ordinary non-rewriting push, and
@@ -162,22 +161,20 @@ continue the cycle; never convert `unknown` into an optimistic status.
   terminal gate; remove stale dependency edges and consolidate shared root
   failures instead of spawning duplicate repairs.
 
-### Review — Codex host `gpt-5.5`; Copilot configured model
+### Review
 
 - [ ] Bind review to the canonical PR/MR and exact current head.
-- [ ] Resolve the authoritative host/client family before enforcing the model:
-  Codex-hosted Review requires `gpt-5.5`; Copilot-hosted Review may use
-  `gpt-5.3-codex` or another supported configured model. Never infer the host
-  from the model name alone.
+- [ ] Record the workflow-configured profile and actual host/model as
+  provenance. Fixed per-step model gates are suspended.
 - [ ] Stop/park authoring writers and verify a fresh independent Review session
-  on the required host-specific model; lane movement alone is not a review.
+  with the workflow-configured profile; lane movement alone is not a review.
 - [ ] Require an explicit `REVIEW_RESULT=PASSED` or `FAILED` tied to that SHA.
 - [ ] On findings, return to Work with exact thread/finding references; after a
   push, invalidate the old result and run a new independent Review.
 - [ ] On pass, verify all actionable/hidden threads are resolved or replied,
   then advance to a distinct QA owner.
 
-### QA — Codex `gpt-5.6-sol`
+### QA
 
 - [ ] Verify QA is a fresh independent session, not the author or reviewer
   reused by workflow automation, and bind it to the exact current head.
@@ -189,7 +186,7 @@ continue the cycle; never convert `unknown` into an optimistic status.
   not cover a new head.
 - [ ] On pass, advance to PR delivery work and refresh exact-head provider state.
 
-### PR — Codex `gpt-5.4`
+### PR
 
 - [ ] Run the full PR/MR overlay below, including draft reason, readiness,
   conflicts, checks, threads, screenshots, reviewer state, and why still open.
@@ -200,10 +197,10 @@ continue the cycle; never convert `unknown` into an optimistic status.
   do not leave a vague `draft` reason.
 - [ ] Never interpret ready-for-review as merge permission.
 
-### CI Fixup — Codex `gpt-5.6-luna`
+### CI Fixup
 
 - [ ] Bind failures to the canonical PR and latest exact head.
-- [ ] Verify one Luna owner is running with exact failing run/job URLs, logs,
+- [ ] Verify one workflow-configured owner is running with exact failing run/job URLs, logs,
   symbols, and the expected fix or one narrow rerun.
 - [ ] Classify every red/pending result using section 4; do not assign broken
   main, provider, or cascade failures to the feature branch.
@@ -276,11 +273,11 @@ the skip and still produce G6/G7 receipts.
 
 | Target | Required current-head predecessor evidence | Postcondition |
 | --- | --- | --- |
-| Work | approved saved plan or exact remediation brief | one correct Work owner running |
-| Review | clean pushed head plus applicable author tests | fresh independent GPT-5.5 verdict owner |
-| QA | explicit current-head `REVIEW_RESULT=PASSED` | distinct fresh Sol QA verdict owner |
+| Work | approved saved plan or exact remediation brief | one workflow-configured Work owner running |
+| Review | clean pushed head plus applicable author tests | fresh independent workflow-configured verdict owner |
+| QA | explicit current-head `REVIEW_RESULT=PASSED` | distinct fresh workflow-configured QA verdict owner |
 | PR | explicit current-head `QA_RESULT=PASSED` or documented non-applicability authorized by policy | canonical PR identity and current-head provider audit |
-| CI Fixup | exact failed/pending job classification | one Luna owner with run/job evidence |
+| CI Fixup | exact failed/pending job classification | one workflow-configured owner with run/job evidence |
 | Human-QA | exact remaining manual scenario and safe runtime/evidence handoff | visible Human action and pass/fail routing |
 | ToDeploy | provider-proven canonical merge/release containment and required Human testing complete | Human-owned deploy action only |
 | Done | provider-proven terminal delivery plus complete Done-integrity receipt | no unique work or live consumer remains |
@@ -341,13 +338,14 @@ evidence generation and invalidates downstream Review/QA/readiness receipts.
 ## 5. Cross-cutting exception and failure cases
 
 - [ ] **No live owner:** decide whether the lane expects execution. If yes,
-  diagnose and wake/replace with the correct model; if no, name the Human,
+  diagnose and wake/replace through the workflow-configured profile; if no, name the Human,
   provider, dependency, or time-bound trigger and fallback.
 - [ ] **Duplicate writers/gate owners:** freeze optional work, preserve both
   transcripts/worktrees, select one correct owner, park the stale owner, and
   verify the final complete session census.
-- [ ] **Wrong model/profile:** do not resume it. Start a fresh correctly mapped
-  session or route the configuration repair; verify runtime model metadata.
+- [ ] **Former model-map mismatch:** record it as historical provenance, but do
+  not block or replace the session for that reason. Use the current
+  workflow/workstep-configured profile and verify runtime metadata.
 - [ ] **Failed/crashed session:** read its transcript and backend evidence,
   preserve unique work/queue, classify the cause, then restart only with the
   preservation-bound handoff.

@@ -1,5 +1,16 @@
 # Coordinator learning-cycle log
 
+## 2026-09-14 — workflow configuration supersedes fixed model gates
+
+Human correction: each workflow and workstep now maintains its own Codex or
+Copilot model selection, so the former fixed per-step model map and mismatch
+gate are suspended.
+
+The durable lesson is to use workflow configuration as the launch source of
+truth while retaining host/profile/model evidence as provenance. A historical
+model mismatch cannot remain a blocker; startup, ownership, independence,
+exact-head, provider, and delivery failures still require normal recovery.
+
 ## 2026-09-09 — Review model enforcement is host-specific
 
 Human correction: Codex-hosted Review uses `gpt-5.5`, while Copilot-hosted

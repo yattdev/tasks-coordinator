@@ -2200,3 +2200,20 @@ concrete conflict evidence before resuming additive reconciliation. If the
 actual base is contained and no conflict exists, preserve the candidate and
 recheck the projection after a natural event. Readiness stays gated in either
 case until current source and provider evidence agree.
+
+## Fixed per-workstep model gates are suspended (2026-09-14; human-directed)
+
+Decision: the Human now maintains the workflow and each workstep model. Fixed
+lane-to-model mappings and hard model-mismatch gates are suspended until the
+Human explicitly reinstates them. Codex and Copilot sessions use the profile and
+model configured by the current workflow/workstep.
+
+The Coordinator still records host, profile, and effective model for provenance
+and verifies successful startup, lane ownership, exact-head binding, independent
+Review and QA, and every non-model gate. Existing model-only blockers are stale
+under this decision and must be reclassified and resumed through the configured
+workflow when their remaining prerequisites pass.
+
+Rationale: workflow configuration is now the maintained source of truth. Keeping
+the former hard-coded map active would conflict with current Codex/Copilot
+worksteps and freeze otherwise actionable work.
