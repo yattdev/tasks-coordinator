@@ -1,5 +1,33 @@
 # Coordinator learning-cycle log
 
+## WAKE:LEARNING — 2026-09-14T17:34:57Z to 2026-09-14T18:51:00Z
+
+No durable lessons this cycle. The reusable recovery and capability-verification
+patterns observed in the window are already present in shared policy; the
+remaining evidence is task-specific delivery state.
+
+Rejected by the filter:
+
+- Reconstructing an executable current-first plan from live board, session,
+  provider, repository, and artifact evidence after an untrusted plan snapshot
+  is already required by the continuity contract and G9 recovery rules.
+- A tool advertised by discovery while its deployed backend action returns
+  `UNKNOWN_ACTION`, plus the requirement for fresh-primary and preserved
+  predecessor probes after deployment, is an instance of the existing rule
+  that deployment/catalog exposure and live-client acceptance are separate
+  receipts. The queue capability already has one canonical repair owner.
+- Deduplicating cross-workspace platform evidence to that owner is already
+  covered by centralized Kandev intake and one-root incident ownership.
+- Current task heads, UI/export defects, fixture paths and hashes, session IDs,
+  queue-owner blocker state, and pull-request state remain transient operational
+  evidence in task plans and trails.
+
+Files changed: `docs/LEARNING_LOG.md` only. `PROMPT.md` is unchanged, so live
+description mirroring is not required. This receipt advances the next learning
+window to `2026-09-14T18:51:00Z`. Shared-main publication and final clean-tree
+verification are recorded by the commit containing this entry. Unresolved
+conflicts: none.
+
 ## WAKE:LEARNING — 2026-09-14T11:35:29Z to 2026-09-14T17:34:57Z
 
 No durable lessons this cycle. The only recurring coordination issue was an
