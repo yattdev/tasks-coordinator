@@ -151,7 +151,7 @@ Human-QA preserves the integration boundary. A conflicted PR may lack ordinary
 `pull_request` workflows because the provider cannot create a merge ref; this is
 an integration gate, not permission to rebase or merge main during Human-QA.
 
-## Draft readiness evidence belongs to the task agent; the Coordinator owns the decision (2026-08-24, clarified 2026-09-07)
+## Draft readiness evidence belongs to the task agent; the Coordinator owns the decision (2026-08-24, superseded in part 2026-09-14)
 
 When no acceptance criterion genuinely requires remaining human testing, the
 owning task agent supplies a clean pushed exact head, applicable high-confidence
@@ -165,9 +165,10 @@ implement the task's missing fixes, tests, or visual evidence. The Coordinator m
 perform the mechanical draft→ready provider action after independently verifying
 the complete gate. Specific remaining human-only testing, external access, or
 approval keeps the PR draft and is surfaced through the visible ask channel;
-Human-QA is not a default hold. Branch-owned or unclassified CI blocks readiness,
-while conclusively unrelated CI may stay actively owned in CI Fixup. Ready-for-review is
-not merge, deploy, or permission to skip workflow gates, and every later head/base
+Human-QA is not a default hold. The 2026-09-14 decision below supersedes this
+entry's CI exception: every required current-head job must now be terminal without
+failure before reviewer contact. Ready-for-review is not merge, deploy, or
+permission to skip workflow gates, and every later head/base
 change invalidates the readiness snapshot.
 
 A bounded read-only helper (`/root/pr_readiness_policy_audit`) audited this rule's
@@ -1242,7 +1243,7 @@ is sent while provider state remains draft because draft review notifications ma
 reach the reviewer. Failure to transition or verify ready state is a readiness/provider
 blocker to repair, never permission to notify early.
 
-## Draft-first creation is not a hold until Human-QA (2026-09-07, human-directed; supersedes terminal-green-only readiness)
+## Draft-first creation is not a hold until Human-QA (2026-09-07, human-directed; pipeline exception superseded 2026-09-14)
 
 PR-step agents create drafts first so initial CI and automated feedback can run before
 the contribution is presented as ready. That staging default does not mean every PR
@@ -1255,13 +1256,11 @@ remaining manual/visual human judgment, external hardware/account access, or a r
 approval. Code-only, workflow, documentation, and sufficiently automated work do not
 inherit a fictional Human-QA gate.
 
-This supersedes the older requirement that every required check be terminal green
-before readiness or reviewer contact. Branch-owned and unclassified red/pending CI still
-block. A conclusively unrelated flaky, broken-base, provider, infrastructure, or
-cascading result may remain under a named CI-Fixup/rerun owner while review proceeds,
-provided it is disclosed. The invariant that remains strict is ordering: provider-ready
-readback at the unchanged head, then refreshed classification, then reviewer contact;
-never notify while draft.
+The 2026-09-14 decision below supersedes this entry's pipeline exception. The
+current invariant is: provider-ready readback at the unchanged head, refreshed
+post-ready evidence, every required current-head pipeline job terminal without
+failure, then reviewer contact. Never notify while draft or while a required job
+is failed, pending, or unclassified.
 
 ## Pending-move preflights are point-in-time gates (2026-08-31)
 
@@ -2251,3 +2250,24 @@ preserves it, avoids a second writer, and routes the platform defect instead.
 
 Rationale: this recovery preserves the decision ladder and single-writer invariant
 without letting a reply-routing defect strand an otherwise actionable child task.
+
+## Full board authority includes routine external communication (2026-09-14; human-directed)
+
+The Coordinator decides every same-workspace board action within approved scope,
+including routine upstream comments, questions, and reviewer notifications. A
+Human decision is required only for a security/trust-boundary decision or a
+material change to the approved objective, public contract, architecture, schema,
+external integration, or delivery boundary. Destructive or practically
+irreversible operations inside approved scope remain Coordinator decisions after
+exact ownership, preservation, containment, and blast-radius proof; unique-state
+removal or a changed delivery boundary is a scope change.
+
+Reviewer contact follows a strict delivery order: repair required pipeline issues,
+make the PR/MR ready, verify the unchanged exact head is non-draft and every
+required current-head pipeline job is terminal without failure, then notify the
+reviewer. Failed, pending, or unclassified required jobs block contact and receive
+an active repair/rerun owner.
+
+This supersedes the earlier treatment of destructive/irreversible work as an
+independent recurring Human-approval class and the earlier allowance to notify a
+reviewer while a conclusively unrelated pipeline failure remained active.

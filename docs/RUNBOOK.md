@@ -495,9 +495,9 @@ PR that is completely unrelated to the task under review.
 ## Exercise full board approval authority without a Human visit
 
 When a same-workspace task asks for approval, the Coordinator is the approval
-principal. Classify the concrete operation before escalating. If it is neither
-destructive/practically irreversible nor security/trust-boundary sensitive, send
-an explicit Coordinator approval immediately containing:
+principal. Escalate a decision only when it changes the approved scope or crosses
+a security/trust boundary. Otherwise send an explicit Coordinator approval
+immediately containing:
 
 1. full task ID and canonical repository/remote;
 2. exact branch and head when the action publishes or reconciles work;
@@ -506,7 +506,8 @@ an explicit Coordinator approval immediately containing:
 5. required receipt and verification gate; and
 6. fallback: stop without mutation and report the exact blocker.
 
-Normal pushes and additive merges that preserve both histories are
+Normal pushes, additive merges that preserve both histories, and routine
+task-related upstream comments, questions, and reviewer notifications are
 Coordinator-approved. So is exact task-local worktree/local-branch cleanup after
 the complete Done gate proves the accepted PR/MR is merged, every task change is
 contained or superseded, the tree has no uncommitted/untracked deliverable or
@@ -516,15 +517,17 @@ checkouts/other resources, and require path/worktree-inventory/ref-absence
 verification afterward. Active process cwd use or uncertain ownership fails the
 gate and leaves everything preserved.
 
-Escalate deletion/resource removal that may remove unique or still-needed state,
-reset, clean, discard, force-push, published-history rewriting,
-secret/credential disclosure or scope expansion, authorization weakening,
-security-policy bypass, and cross-workspace/trust-boundary access. Using already
+Destructive or practically irreversible operations require exact ownership,
+preservation, containment, and blast-radius evidence. Within approved scope, the
+Coordinator decides after that gate. Removing unique or still-needed state,
+changing the objective/delivery boundary, secret or credential disclosure or
+permission expansion, authorization weakening, security-policy bypass, and
+cross-workspace/trust-boundary access require Human escalation. Using already
 configured credentials for an ordinary authorized operation is not itself a
-security escalation. Labels
-such as production, protected branch, cost, or external communication do not by
-themselves require Human approval; classify the actual operation by destructive
-and security impact. If an executor guard refuses a properly scoped Coordinator
+security escalation. Labels such as production, protected branch, cost, or
+external communication do not by
+themselves require Human approval; classify the actual decision by scope and
+security/trust-boundary impact. If an executor guard refuses a properly scoped Coordinator
 approval, preserve the task and attach the reproduction to the existing
 grant-management platform task; do not repeatedly send the Human to individual
 task conversations.
@@ -653,16 +656,16 @@ checks are refreshed and classified, and the reviewer is then notified. Human-QA
 is part of this gate only when this specific change has a remaining manual/visual
 acceptance need.
 
-This sequence is universal and non-commutative for every PR and MR: execute the
-supported ready-for-review transition; read the canonical provider state back and
-prove `isDraft=false` at the unchanged exact head; refresh and classify the post-ready
-checks, threads, and mergeability; only then send a review request, reviewer
+This sequence is universal and non-commutative for every PR and MR: repair the
+required current-head pipeline, execute the supported ready-for-review transition;
+read the canonical provider state back and prove `isDraft=false` at the unchanged
+exact head; refresh the post-ready checks, threads, and mergeability; require every
+required pipeline job to be terminal without failure; only then send a review request, reviewer
 assignment, mention, or notification. A draft reviewer request is not a harmless
 early nudge—it may not be delivered. If any earlier step fails, stop before contact
-and repair or record that exact readiness/provider blocker. A conclusively
-unrelated flaky/infrastructure/provider/broken-base/cascading check may remain
-under its named CI-Fixup or rerun owner while review proceeds; a branch-owned or
-unclassified failure/pending job stops the sequence.
+and repair or record that exact readiness/provider blocker. Any failed, pending,
+or unclassified required job stops the notification sequence and remains under a
+named CI-Fixup or rerun owner until clear.
 
 Before marking ready, bind the evidence to the canonical URL and exact head:
 
@@ -674,10 +677,9 @@ Before marking ready, bind the evidence to the canonical URL and exact head:
    them.
 3. The task agent ran the applicable local/unit/integration/security tests and
    reported high-confidence acceptance evidence. Take a fresh exact-head CI census
-   and classify every failed/pending job. Branch-owned or unclassified red/pending
-   CI blocks readiness. Conclusively unrelated flaky, broken-base, provider,
-   infrastructure, or cascading CI does not when an active repair/rerun owner is
-   recorded and the caveat will be disclosed to the reviewer.
+   and classify every failed/pending job. A failed, pending, or unclassified
+   required job blocks reviewer notification and receives an active repair/rerun
+   owner until the current-head pipeline is terminal without failure.
 4. Every actionable review thread has a technical reply and is resolved; refresh
    reviews, checks, and mergeability after the last push or base update.
 5. Visual changes include sanitized reviewer-facing screenshots or recordings of
@@ -696,10 +698,8 @@ Before marking ready, bind the evidence to the canonical URL and exact head:
 After the transition, verify `isDraft=false`, canonical head unchanged, and refresh
 CI/thread/mergeability evidence. The transition can itself start `pull_request`
 workflows that did not exist while the PR was draft, so classify the refreshed
-snapshot before notifying the reviewer. Wait when a new result is branch-owned or
-not yet classifiable; do not hold an otherwise qualified PR behind unrelated
-automated-review latency or conclusively unrelated CI. The draft-era check snapshot
-is not sufficient.
+snapshot and require all required jobs to finish without pipeline failure before
+notifying the reviewer. The draft-era check snapshot is not sufficient.
 Marking ready invites review; it does not authorize merge, rebase, deployment, or
 workflow-stage skipping unless the current PR belongs to the Coordinator-plugin
 or Redmine programs and the canonical Kandev Coordinator is exercising the
@@ -4651,13 +4651,12 @@ The routine nudge is **mine**. Only a personal escalation is the operator's.
 
 ### The rule
 
-**Readiness first.** Notify only after provider readback proves the PR non-draft
-at the unchanged exact head, threads are resolved, it is mergeable, and the
-refreshed CI snapshot is classified. Branch-owned or unclassified red/pending
-work blocks contact. A conclusively unrelated flaky/infrastructure/provider/
-broken-base/cascading result may remain under an active owner while review
-proceeds; disclose it in the handoff. Never notify a draft or conflicted PR. If
-it is not ready, the action is to make it ready.
+**Readiness and a clear pipeline first.** Notify only after provider readback
+proves the PR non-draft at the unchanged exact head, threads are resolved, it is
+mergeable, and every required current-head pipeline job is terminal without
+failure. Any failed, pending, or unclassified result blocks contact and receives
+an active repair/rerun owner. Never notify a draft or conflicted PR. If it is not
+ready, make it ready and clear the pipeline.
 
 **Always `@carlosflorencio`** — the `kdlbs` maintainer, who holds the merge.
 Notify when the PR first becomes ready, and **again on a new push or material
@@ -4742,11 +4741,10 @@ A commit titled like the fix is a claim; the code is the evidence.
 
 ### Readiness, restated
 
-Non-draft AND mergeable AND every exact-head check classified AND no branch-owned
-or unclassified blocking CI AND no `CHANGES_REQUESTED` outstanding AND no
+Non-draft AND mergeable AND every required exact-head pipeline job terminal
+without failure AND no `CHANGES_REQUESTED` outstanding AND no
 unaddressed blocker in issue comments AND the maintainer's last word is older
-than the author's last reply. Conclusively unrelated CI also requires an active
-repair/rerun owner and disclosure. Anything less is not ready and must not be
+than the author's last reply. Anything less is not ready and must not be
 used to justify notifying a maintainer.
 
 ---
