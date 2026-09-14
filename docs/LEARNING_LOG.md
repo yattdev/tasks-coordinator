@@ -1,5 +1,29 @@
 # Coordinator learning-cycle log
 
+## WAKE:LEARNING — 2026-09-14T11:35:29Z to 2026-09-14T17:34:57Z
+
+No durable lessons this cycle. The only recurring coordination issue was an
+unchanged external CI rerun wait, and its correct handling is already explicit
+in shared policy.
+
+Rejected by the filter:
+
+- Escalating check intervals during an unchanged provider wait, then stopping
+  the watcher and retaining one request, is already covered by adaptive
+  monitoring, event-driven resume triggers, and the prohibition on polling
+  helpers between wakes.
+- Repeated runner transport failures, current pull-request heads, workflow-run
+  identities, comment receipts, and elapsed wait times are transient delivery
+  evidence retained in the Coordinator plan.
+- Avoiding a second maintainer ping and an empty retrigger commit is an instance
+  of the existing no-duplicate-contact and exact-head preservation rules.
+
+Files changed: `docs/LEARNING_LOG.md` only. `PROMPT.md` is unchanged, so live
+description mirroring is not required. This receipt advances the next learning
+window to `2026-09-14T17:34:57Z`. Shared-main publication and final clean-tree
+verification are recorded by the commit containing this entry. Unresolved
+conflicts: none.
+
 ## WAKE:LEARNING — 2026-09-14T08:35:57Z to 2026-09-14T11:35:29Z
 
 No durable lessons this cycle. The reusable coordination patterns observed in
