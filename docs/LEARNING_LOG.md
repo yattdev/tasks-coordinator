@@ -1,5 +1,33 @@
 # Coordinator learning-cycle log
 
+## WAKE:LEARNING — 2026-09-14T08:35:57Z to 2026-09-14T11:35:29Z
+
+No durable lessons this cycle. The reusable coordination patterns observed in
+the window are already binding policy; the remaining evidence is exact-head
+delivery state.
+
+Rejected by the filter:
+
+- Correcting a branch-owned finding on a successor head, invalidating the old
+  Review/CI receipts, and requiring fresh gates is already covered by the
+  gate-authored-successor and exact-head procedures.
+- A single maintainer rerun request followed by an event-driven wait is already
+  covered by the no-duplicate-contact, adaptive-monitoring, and no-polling-helper
+  rules. Individual run IDs and flaky tests are transient.
+- Routing an authorization-sensitive implementation that follows its approved
+  specification to focused independent Review, without inventing a new Human
+  approval, is already covered by the full Coordinator authority and
+  security/trust-boundary decision rules.
+- Current task heads, CI counts, comments, session identities, and provider
+  permission failures remain in the Coordinator task plan rather than shared
+  knowledge.
+
+Files changed: `docs/LEARNING_LOG.md` only. `PROMPT.md` is unchanged, so live
+description mirroring is not required. This receipt advances the next learning
+window to `2026-09-14T11:35:29Z`. Shared-main publication and final clean-tree
+verification are recorded by the commit containing this entry. Unresolved
+conflicts: none.
+
 ## WAKE:LEARNING — 2026-09-14T05:55:28Z to 2026-09-14T08:35:57Z
 
 No durable lessons this cycle. The reusable policies observed in the window
