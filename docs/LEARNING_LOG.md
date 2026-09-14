@@ -24,9 +24,11 @@ Rejected by the filter:
 
 Files changed: `docs/RUNBOOK.md`, `docs/CAPABILITY_REGISTRY.md`,
 `docs/DECISIONS.md`, and `docs/LEARNING_LOG.md`. `PROMPT.md` is unchanged, so
-live-description mirroring is not required. The commit, shared-main fast-forward,
-clean-tree verification, and unresolved-conflict result are recorded below after
-publication.
+live-description mirroring is not required. Knowledge commit
+`a66f2eb6571bc7cc093675bf77a56be3755197ec` fast-forwarded shared `main` from
+`3dcd2948b6c2b1260eec69a8a1d84d817cfa159a` without conflict. Final clean-tree
+and branch-equality verification follows this cycle-receipt commit. Unresolved
+conflicts: none.
 
 ## WAKE:LEARNING — 2026-09-14T03:06:46Z to 2026-09-14T03:31:57Z
 
