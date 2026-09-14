@@ -1,5 +1,33 @@
 # Coordinator learning-cycle log
 
+## WAKE:LEARNING — 2026-09-14T03:06:46Z to 2026-09-14T03:31:57Z
+
+Captured two durable lessons: terminal cards removed by explained workflow
+archive or prune behavior move from the open ledger to the closed ledger with
+evidence; and a failed parent-reply route for a lead-decidable direct-child
+question can be recovered through a preservation-proven stop and single-owner
+restart. The first lesson corrects and replaces unclear incident-specific
+wording added at the start of this window.
+
+Rejected by the filter:
+
+- Fixed model-gate suspension was already captured by the Human-directed policy
+  commit and the preceding learning entry.
+- Provider-limit helper waits and retry timing are already covered by the
+  rate-limit recovery procedure.
+- A merged PR placed in Done before remaining host acceptance was already covered
+  by the Done terminal-integrity gate.
+- Task IDs, session IDs, branch heads, and current board positions are transient
+  operational evidence retained in the Coordinator task plan.
+
+Files changed: `docs/RUNBOOK.md`, `docs/CAPABILITY_REGISTRY.md`,
+`docs/DECISIONS.md`, and `docs/LEARNING_LOG.md`. Knowledge commit
+`497a67decf32ac2d8edf8d61fbad30a55025c6d4` fast-forwarded shared `main`
+from `0134b844cb5d27ccc2eb3299d83627082bde9601` without conflict.
+`PROMPT.md` was unchanged, so description mirroring was not required.
+Unresolved conflicts: none. This entry is committed and fast-forwarded as the
+cycle-finalization receipt.
+
 ## 2026-09-14 — workflow configuration supersedes fixed model gates
 
 Human correction: each workflow and workstep now maintains its own Codex or
