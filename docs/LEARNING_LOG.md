@@ -1,5 +1,33 @@
 # Coordinator learning-cycle log
 
+## WAKE:LEARNING — 2026-09-14T03:31:57Z to 2026-09-14T05:55:28Z
+
+Captured one durable lesson: watch-based PR discovery can miss a canonical PR
+when the task worktree and provider PR head use different branch names, even
+when both refs contain the same commit. Recovery now proves clean ownership and
+ref equality, aligns the worktree with the canonical PR head only when that
+identity is correct, preserves the old ref through terminal integrity, and
+requires watch-event, task-link, and automation readback. Divergent branches use
+the supported explicit link capability instead.
+
+Rejected by the filter:
+
+- Full same-workspace Coordinator authority and the ready → clear pipeline →
+  reviewer ordering were already captured by the Human-directed policy commit
+  in this window.
+- Fixed per-workstep model-gate suspension was captured before this window.
+- PR documentation coverage failures after base integration, transient evaluator
+  errors, and provider-rate-limit timing are instances of existing exact-head CI
+  classification and provider recovery procedures.
+- Current task IDs, PR numbers, heads, checks, release assets, and session states
+  are transient operational evidence retained in the Coordinator task plan.
+
+Files changed: `docs/RUNBOOK.md`, `docs/CAPABILITY_REGISTRY.md`,
+`docs/DECISIONS.md`, and `docs/LEARNING_LOG.md`. `PROMPT.md` is unchanged, so
+live-description mirroring is not required. The commit, shared-main fast-forward,
+clean-tree verification, and unresolved-conflict result are recorded below after
+publication.
+
 ## WAKE:LEARNING — 2026-09-14T03:06:46Z to 2026-09-14T03:31:57Z
 
 Captured two durable lessons: terminal cards removed by explained workflow

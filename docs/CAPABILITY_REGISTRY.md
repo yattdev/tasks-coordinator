@@ -224,6 +224,13 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Contradictory mergeability:** verify the actual canonical base branch ref independently of the PR's advertised base SHA, which can itself be stale. Compare that actual ref with the exact pushed head. An unchanged `dirty` label alone does not justify source changes; concrete conflict evidence against the actual base does. Preserve the candidate until this distinction is resolved. See [PR identity procedure](RUNBOOK.md#verify-pr-and-mr-identity).
 - **Never** Treat a bare PR number as identity; never reuse evidence from a superseded SHA.
 
+### B7a. Provider PR exists but the task link is missing
+- **Trigger** Provider lookup proves a canonical PR exists while the task's linked-PR projection or automation state is empty.
+- **Action** Ask the task owner for its linkage history, then compare the clean task worktree branch/upstream with the provider PR's exact head repository, branch, and SHA. If watch-based discovery is following a different branch name while both remote refs resolve to the same commit, align the task worktree to the canonical PR head branch and upstream, preserving the old identical ref until terminal integrity. Otherwise use the supported explicit link capability.
+- **Capability** Provider PR lookup by head branch; task repository/worktree inspection; supported branch rename/switch and upstream configuration; branch-watch log/readback; task PR projection and `get_task_pr_automation_kandev`; [missing-link recovery procedure](RUNBOOK.md#readiness-needs-three-reads-not-one--and-a-missing-pr-link-may-mean-a-lost-one).
+- **Evidence** Clean worktree; canonical provider URL, head repository/branch/SHA; old and canonical remote refs at the same commit; no competing writer; branch-switch/watch event; populated task link and per-PR automation readback.
+- **Never** Write provider-link database rows directly, rename across divergent commits, discard the old ref before terminal integrity, or open a duplicate PR to repair board projection.
+
 ### B8. Stale, dead, or looping sessions
 - **Trigger** Session RUNNING with no output; step never launched; step re-enters and loops; agent cannot edit files.
 - **Action** Diagnose from session transcripts and `/data/logs/backend-logs.log` before acting. Unchanged tree across re-entries = platform routing defect → create one platform-bug task. After an agent-runtime binary upgrade, treat every pre-upgrade live/WFI session as still bound to its old process: retire that exact session and start a new one; ACP context reset is not a binary refresh.

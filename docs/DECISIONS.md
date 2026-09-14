@@ -432,6 +432,20 @@ lacks safe link mutation, the Coordinator creates one platform capability task,
 persists the pending replacement set, and waits for deployment rather than
 editing storage directly or leaving future Coordinators to rediscover the gap.
 
+## Watch-based PR discovery follows the canonical head branch (2026-09-14)
+
+A task can have a valid canonical provider PR and an empty linked-PR projection when
+its worktree remains on a different branch name, even if that branch and the PR head
+resolve to the same commit. The watch-based discovery path follows branch identity as
+well as repository ancestry; commit equality alone does not make the association.
+
+The Coordinator first proves the provider PR is the current deliverable, the worktree is
+clean, both remote refs are identical, and no writer competes. It may then align the task
+worktree branch and upstream to the canonical PR head, preserve the old identical ref
+until terminal integrity, and require watch-event plus task-link and automation readback.
+When branch alignment would be false or refs differ, use the supported explicit link
+capability instead. Direct database repair and duplicate PR creation remain prohibited.
+
 ## Knowledge sync across coordinator worktrees (2026-08-17, human-directed)
 Each coordinator instance runs in its own worktree of the shared clone; main
 (/data/home/Code/coordinator) is the source of truth. Rebase onto main before

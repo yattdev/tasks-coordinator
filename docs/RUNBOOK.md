@@ -3286,6 +3286,19 @@ distinguish a regression from an omission, and yours cannot. Note that an unlink
 invisible to board tooling: its CI cannot be resolved without manually mapping the branch
 to a provider repo.
 
+When the provider PR exists but watch-based discovery still leaves the task projection
+empty, compare the task worktree branch and upstream with the PR's exact head repository,
+head branch, and head SHA. The watch may be keyed to the worktree branch name: two branch
+refs can contain the same commit while only the PR head branch is discoverable. Repair this
+organically only after proving the worktree is clean, the PR is the canonical deliverable,
+the old and PR-head remote refs resolve to the same exact commit, and no competing writer
+exists. Rename or switch the task worktree branch to the PR head branch, set its upstream,
+and preserve the old identical remote ref until the task reaches terminal integrity. Then
+verify all three receipts: a branch-switch/watch event, the task-to-PR projection, and the
+per-PR automation state. Prefer a supported explicit link capability when branch alignment
+is not otherwise correct; never write linkage rows directly or create a duplicate PR merely
+to make the board projection appear.
+
 ## `queued` vs `sent` tells you the target's session state — recover a hung session safely
 
 `message_task_kandev` returns `sent` when the target session can accept immediately and
