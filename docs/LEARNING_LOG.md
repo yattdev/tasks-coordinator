@@ -3207,3 +3207,13 @@ real conflicts. The existing Terra recovery owner resumed with the clean
 candidate and original worktree preserved. The correction is to verify the
 actual base branch separately before diagnosing a stale mergeability verdict;
 the PR's base SHA and conflict verdict can describe different generations.
+
+## 2026-09-14 — Information-only delivery wakes parked sessions
+
+Sending a future requirement to a parked task started a new turn even though
+the message explicitly said that no action was required. The session began
+re-investigating preserved work and was stopped before it ran an unauthorized
+test. Future requirements for parked tasks remain in the Coordinator ledger and
+travel with the explicit resume packet. When immediate delivery is necessary,
+the Coordinator verifies the session returns to its parked state and has the
+direct parent interrupt any work outside the stated boundary.

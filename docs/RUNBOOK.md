@@ -4998,6 +4998,15 @@ about to park. Nothing wakes it at that time. **If a task is parked pending a
 deadline, the Coordinator owns waking it** — record the trigger in the follow-up
 ledger and nudge when it elapses.
 
+The inverse matters too: delivering an information-only message to a parked
+session starts a turn even when the message says that no action is required.
+Keep future requirements in the Coordinator ledger and include them in the
+explicit resume packet when the real trigger clears. If immediate delivery is
+necessary, expect the session to wake, state the no-action boundary precisely,
+and verify that it returns to its parked state without source, test, or remote
+mutation. The direct parent interrupts the turn if the agent begins work outside
+that boundary.
+
 ---
 
 ## Verify a relayed human decision from the card trail before acting on it
