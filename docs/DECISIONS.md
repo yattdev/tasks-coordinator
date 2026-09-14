@@ -2217,3 +2217,21 @@ workflow when their remaining prerequisites pass.
 Rationale: workflow configuration is now the maintained source of truth. Keeping
 the former hard-coded map active would conflict with current Codex/Copilot
 worksteps and freeze otherwise actionable work.
+
+## Board prune scope (2026-09-14; coordinator excursion — reconciled)
+
+A platform-side prune removed one terminal card from the live Daily workflow while
+its session artifacts survived. Resolution: persistence-side resolution in the
+Coordinator's own ledger, NOT a live-board mutation by a task agent. An active
+session cannot responsibly mutate the board in the direction of the prune and still
+trust its own work both before and after; the evidence contract is preserved in the
+timestamped receipt that survives a removal, and the residence is explicit. The rules
+for what is retained apply unchanged: Working artifacts (migration proofs, session
+preservation receipts, persist餐具 metrics, worktree contents, hooks, uncommitted WIP
+preservation branches, retained HEADs) are correct; Durable learning apply unchanged so
+long as the ledger section is closed. This satisfies the Coordinator's "ledger is
+truth" invariant (open records match the live board), the plan-cycle receipt gates
+(`G1..G10`), and the routine-wake rule that stale ledger reads falsely attribute
+board-state changes to the Human (the 2026-08-28 preceding forced-reopen pattern gave
+an example). The event class is recorded in the log and the coordinate ledger
+transition applied per-cycle until a platform reconciliation proves more cheaply.

@@ -11,6 +11,29 @@ truth while retaining host/profile/model evidence as provenance. A historical
 model mismatch cannot remain a blocker; startup, ownership, independence,
 exact-head, provider, and delivery failures still require normal recovery.
 
+## 2026-09-14 — reconcile a board prune against durable terminal receipts
+
+A platform-side board prune removed one Coordinator terminal card (`1f434680-0901-4a0c-abaf-1c48d050f7d4`)
+from the live Daily inventory while that card's worktree and final verified TEST_DATA_RECEIPT
+survived intact. The reconciliation required two-source evidence: the board's
+live inventory (daily workflow list) and the HOST-qualified session/workspace
+file inventory (`/data/tasks/...`). Live-agent evidence alone is insufficient here:
+sessions that created proof were themselves time-rotted out of the inventory,
+and the asked-for-session had ended before the prune.
+
+The mechanism: R1 reconciliation failure → ledger entry moved to the
+`[CLOSED]` ledger section with the disposition—never let a G1 audit swallow the
+unannounced prune into a deleted-active-task smell that misclassifies open/board
+contradiction claims and contradicts live-truth later.
+
+Existing rules hardened: the "unexplained board state is first a suspected
+persistence failure (2026-08-29)", and the R2/R4 apply-to-open-items rule (2026-08-30)
+were reaffirmed — the failure was persistence of a completed card, not of a live
+work-in-progress. Tests (`git rev-parse`, session terminal receipts, dir presence)
+are timestamped evidence only, not proof of state; board state is canonical now.
+
+Files: `docs/LEARNING_LOG.md` (this entry), `docs/cycle-archives/2026-09-14T0241-plan-preimage.md` (workspace coordinator state as archived), the ledger record itself.
+
 ## 2026-09-09 — Review model enforcement is host-specific
 
 Human correction: Codex-hosted Review uses `gpt-5.5`, while Copilot-hosted
