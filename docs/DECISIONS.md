@@ -1517,6 +1517,18 @@ identity. A missing transfer capability therefore leaves a visible preserved
 transfer backlog and is itself reported to the Kandev Coordinator for canonical
 ownership.
 
+**Adoption when exact transfer is unavailable (2026-09-14).** A missing transfer
+surface must not leave a confirmed platform defect without a canonical delivery
+owner. After full-board deduplication, the Kandev Coordinator may create exactly
+one local owner using a deterministic external identity keyed to the preserved
+source workspace/task UUID and record the complete source preservation receipt.
+This is evidence-backed adoption, not identity transfer: the halted source card
+remains the evidence carrier until unique-work recovery is confirmed, and nobody
+may claim that its task, session, dependency, or artifact identity moved. The
+missing exact-transfer capability remains a separate platform defect. This
+clarifies the source-board rule without weakening its ban on delete/recreate or
+cross-workspace copying.
+
 ## Workspace Coordinators own reusable project test-data catalogs (2026-09-01, human-directed)
 
 Repeatedly asking the Human to upload a database for each Work/Human-QA card

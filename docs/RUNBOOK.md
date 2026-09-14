@@ -1667,6 +1667,16 @@ creating ten queue entries. Do not delete/recreate, archive, or copy worktrees t
 simulate transfer. Retry only on a supported transfer-capability or operator
 event, then perform the same destination readback.
 
+The canonical Coordinator may establish exactly one local delivery owner from
+that relayed manifest when no viable Kandev-board owner exists. This is adoption,
+not transfer: use a deterministic external identity keyed to the source workspace
+and task UUID, record the source UUID, lane, and complete preservation receipt,
+and keep the halted source card as the evidence carrier until the adopted owner
+confirms recovery of all unique work. Never claim task-identity continuity or ask
+the source to delete its card. Deduplicate and advance the missing exact-transfer
+capability as a separate platform defect; its absence does not leave the reported
+product defect ownerless.
+
 For a new platform discovery, send one evidence packet—symptom, timestamped
 proof, impact, component, and regression-test acceptance—to the canonical
 Coordinator. Record the delivery session/status and let it deduplicate/create on

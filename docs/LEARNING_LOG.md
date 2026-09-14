@@ -1,5 +1,31 @@
 # Coordinator learning-cycle log
 
+## WAKE:LEARNING — 2026-09-14T18:51:00Z to 2026-09-14T20:50:14Z
+
+Captured one durable lesson: when exact cross-workspace task transfer is
+unavailable, the canonical Coordinator may establish one evidence-backed local
+delivery owner after full-board deduplication. That action is adoption rather
+than transfer, so it uses a deterministic source-keyed external identity,
+preserves the halted source card as the evidence carrier until unique-work
+recovery is confirmed, and tracks the missing transfer capability separately.
+
+Rejected by the filter:
+
+- Emergency compaction of an oversized Coordinator state plan is already fully
+  covered by the continuity and recovery rules.
+- Invalidating old-head CI and review evidence after a current-main conflict is
+  already covered by exact-head and current-base policy.
+- Tool transport timeouts and delegated degraded-mode recovery are already
+  covered by the continuity runbook.
+- Current task IDs, branch heads, provider checks, and intake session states are
+  transient operational evidence retained in task plans and trails.
+
+Files changed: `docs/RUNBOOK.md`, `docs/DECISIONS.md`, and
+`docs/LEARNING_LOG.md`. `PROMPT.md` is unchanged, so live description mirroring
+is not required. This receipt advances the next learning window to
+`2026-09-14T20:50:14Z`. Shared-main publication and final clean-tree verification
+are recorded by the commit containing this entry. Unresolved conflicts: none.
+
 ## WAKE:LEARNING — 2026-09-14T17:34:57Z to 2026-09-14T18:51:00Z
 
 No durable lessons this cycle. The reusable recovery and capability-verification
