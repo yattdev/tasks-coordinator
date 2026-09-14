@@ -1,5 +1,33 @@
 # Coordinator learning-cycle log
 
+## WAKE:LEARNING — 2026-09-14T05:55:28Z to 2026-09-14T08:35:57Z
+
+No durable lessons this cycle. The reusable policies observed in the window
+were already present in the shared charter, runbook, registry, and decisions;
+the remaining evidence was task-specific delivery state.
+
+Rejected by the filter:
+
+- The Human's full board authority grant, suspension of fixed per-workstep
+  model gates, and ready → clear pipeline → reviewer ordering were already
+  captured by the current Human-directed policy and decision entries.
+- A premature Review verdict while canonical CI was red, plus corrections that
+  create a successor head, is already covered by exact-head gate invalidation
+  and the Review/QA-authored-successor recovery procedure.
+- A fork workflow passing while the canonical required run remains red is an
+  instance of the existing canonical-delivery and exact-head CI rules; it is
+  useful flake evidence but does not create a new gate policy.
+- Documentation-coverage evaluator quota behavior, individual E2E flakes,
+  provider rerun permissions, transition timing, task IDs, session IDs, PR
+  heads, and check-run receipts are transient operational evidence retained in
+  the Coordinator task plan.
+
+Files changed: `docs/LEARNING_LOG.md` only. `PROMPT.md` is unchanged, so live
+description mirroring is not required. This receipt advances the next learning
+window to `2026-09-14T08:35:57Z`. Shared-main publication and final clean-tree
+verification are recorded by the commit containing this entry. Unresolved
+conflicts: none.
+
 ## WAKE:LEARNING — 2026-09-14T03:31:57Z to 2026-09-14T05:55:28Z
 
 Captured one durable lesson: watch-based PR discovery can miss a canonical PR
