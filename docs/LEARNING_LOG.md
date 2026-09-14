@@ -1,5 +1,35 @@
 # Coordinator learning-cycle log
 
+## WAKE:LEARNING — 2026-09-14T20:50:14Z to 2026-09-14T21:49:19Z
+
+Captured one durable corrective lesson: asynchronous task delivery does not
+preserve decision order. An older mutation authorization can arrive after its
+replacement or revocation, so grants and cancellations now carry a monotonic
+decision generation in the durable parent ledger. The receiver checks the newest
+visible generation before mutation, and a revoking Coordinator verifies active
+processes plus tree, remote, and provider state instead of treating a successful
+cancellation send as containment proof.
+
+Rejected by the filter:
+
+- Information-only delivery waking a parked task was already captured in the
+  2026-09-14 event-driven learning and the parked-task runbook rule.
+- Evidence-backed canonical adoption while exact cross-workspace transfer is
+  unavailable was already captured by the immediately preceding learning cycle.
+- Queue-full preservation and deterministic recipient-turn retry are already
+  covered by the queue runbook and follow-up ledger.
+- A discovery-visible action returning `UNKNOWN_ACTION` is already covered by
+  the deployed-catalog versus live-client acceptance rule and its canonical
+  repair owner.
+- Current task heads, session IDs, provider limits, source-card manifests, and
+  Human-QA defects are transient operational evidence retained in task plans.
+
+Files changed: `docs/RUNBOOK.md`, `docs/DECISIONS.md`, and
+`docs/LEARNING_LOG.md`. `PROMPT.md` is unchanged, so live description mirroring
+is not required. This receipt advances the next learning window to
+`2026-09-14T21:49:19Z`. Shared-main publication and final clean-tree verification
+are recorded by the commit containing this entry. Unresolved conflicts: none.
+
 ## WAKE:LEARNING — 2026-09-14T18:51:00Z to 2026-09-14T20:50:14Z
 
 Captured one durable lesson: when exact cross-workspace task transfer is

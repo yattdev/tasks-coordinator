@@ -773,31 +773,47 @@ authentication, browser-session requirements, or rate limits block attachment:
   change; retry the attachment only after provider access recovers, then refresh
   the body/checks/threads and run the normal draft-readiness gate.
 
-## A task message can arrive after its evidence has already been superseded
+## Revalidate delayed task messages and supersede asynchronous directions safely
 
-Task messages are timestamped evidence events, not authoritative snapshots of
-the current card or provider. A message may truthfully report an older head,
-lane, session census, or gate result after a newer push, transition, or session
-has already materialized.
+Task messages are timestamped events, not authoritative snapshots of the current
+card, provider, or governing instruction. A message may truthfully report an
+older head, lane, session census, or gate result after a newer push, transition,
+or session has materialized. An asynchronous authorization may likewise arrive
+after a later replacement or revocation. Delivery order does not prove decision
+order.
 
-Before acting on a report that would cause a move, wake, duplicate session, PR
+Before acting on a message that would cause a move, wake, duplicate session, PR
 mutation, or readiness claim:
 
 1. Record the message creation time and every claimed identity: task, workflow
-   step, canonical PR/MR, exact head, session ID/profile, and gate result.
+   step, canonical PR/MR, exact head, session ID/profile, gate result, and the
+   durable decision generation when the message authorizes or forbids a
+   mutation.
 2. Read the live task lane and pending actions, the complete task session list,
    and current provider head/state. Include the conversation tail so a newer
    receipt is not mistaken for an unrelated event.
-3. If live state is newer or identity differs, mark the report superseded in the
-   cycle log. Preserve it as history, but do not route, move, ping, resolve, or
-   spawn from it. When the task agent would otherwise act on the stale premise,
-   send one correction containing the newer exact receipt.
+3. If live state is newer, identity differs, or a higher decision generation is
+   already visible, mark the message superseded in the cycle log. Preserve it as
+   history, but do not route, move, ping, resolve, spawn, push, or perform the
+   authorized mutation from it. When the task agent would otherwise act on the
+   stale premise, send one correction containing the newer exact receipt and
+   generation.
 4. If the report is still current, continue through the ordinary exact-head and
    workflow gate. A report's late arrival alone is not a failure and does not
    justify repeating completed work.
 
 The newest message is not automatically the newest evidence: compare timestamps
 and exact identities to source-of-truth readback, not conversation order alone.
+
+For any queued direction that grants mutation authority, the Coordinator records
+a monotonically increasing decision generation in the durable parent ledger and
+includes it in every replacement or revocation. Before executing, the receiver
+checks the newest already-visible task direction and refuses a lower generation.
+If the sender revokes a grant while work may be starting, it also interrupts the
+direct child when authorized and verifies the active command/process, tree, remote
+ref, and provider state. A successful revocation send does not prove that an older
+queued grant disappeared or that no mutation ran. Uncertain ordering fails closed
+with the exact state preserved.
 
 ## A large task plan is append-only BY HAND, not by tool
 `update_task_plan_kandev` and `create_task_plan_kandev` take FULL CONTENT — every

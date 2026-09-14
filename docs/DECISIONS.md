@@ -1122,18 +1122,24 @@ the operator once to run the exact installer; it neither repeats Support nor tre
 untested installation as complete. Afterward, Support—not the Coordinator—uses the
 helper for one exact cleanup and the Coordinator independently verifies the receipt.
 
-## Delayed task reports never override newer live state (2026-08-30)
+## Delayed task messages never override newer live state or direction (2026-08-30; sharpened 2026-09-14)
 
-Task messages can be delivered after a later push, workflow transition, or gate session
-has already materialized. The report may have been accurate when authored while being
-unsafe as an instruction when consumed. Conversation order and the apparent freshness of
-the prose therefore do not establish current state.
+Task messages can be delivered after a later push, workflow transition, gate session,
+replacement direction, or explicit revocation has already materialized. A report may
+have been accurate when authored, and an authorization may once have been valid, while
+either is unsafe when consumed. Conversation order and the apparent freshness of the
+prose therefore do not establish current state or current authority.
 
-The Coordinator treats each report as a timestamped receipt and compares its exact lane,
-head, session, and provider identities with live readback before acting. A newer live
-receipt supersedes an older message without erasing it from history. This prevents stale
-reports from moving cards backward, launching duplicate Review/QA sessions, or applying
-provider mutations to a superseded head.
+The Coordinator treats each message as a timestamped receipt and compares its exact lane,
+head, session, provider identities, and durable decision generation with live readback
+before acting. Mutation grants, replacements, and revocations use a monotonic generation;
+a receiver refuses a lower generation already superseded in the visible task trail. A
+newer live receipt or direction supersedes an older message without erasing it from
+history. After revocation, the Coordinator verifies the active process and delivery
+surfaces because sending the cancellation does not prove that an older queued grant was
+removed or never executed. This prevents stale messages from moving cards backward,
+launching duplicate Review/QA sessions, or applying provider mutations to a superseded
+head.
 
 ## PR screenshot evidence must render where reviewers inspect it (2026-08-30, human-directed)
 
