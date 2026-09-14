@@ -2218,20 +2218,36 @@ Rationale: workflow configuration is now the maintained source of truth. Keeping
 the former hard-coded map active would conflict with current Codex/Copilot
 worksteps and freeze otherwise actionable work.
 
-## Board prune scope (2026-09-14; coordinator excursion — reconciled)
+## Reconcile pruned terminal cards into the closed ledger (2026-09-14; corrective)
 
-A platform-side prune removed one terminal card from the live Daily workflow while
-its session artifacts survived. Resolution: persistence-side resolution in the
-Coordinator's own ledger, NOT a live-board mutation by a task agent. An active
-session cannot responsibly mutate the board in the direction of the prune and still
-trust its own work both before and after; the evidence contract is preserved in the
-timestamped receipt that survives a removal, and the residence is explicit. The rules
-for what is retained apply unchanged: Working artifacts (migration proofs, session
-preservation receipts, persist餐具 metrics, worktree contents, hooks, uncommitted WIP
-preservation branches, retained HEADs) are correct; Durable learning apply unchanged so
-long as the ledger section is closed. This satisfies the Coordinator's "ledger is
-truth" invariant (open records match the live board), the plan-cycle receipt gates
-(`G1..G10`), and the routine-wake rule that stale ledger reads falsely attribute
-board-state changes to the Human (the 2026-08-28 preceding forced-reopen pattern gave
-an example). The event class is recorded in the log and the coordinate ledger
-transition applied per-cycle until a platform reconciliation proves more cheaply.
+When a task disappears from the live board, first reconcile its last physical lane
+and terminal-integrity receipts. If it was already terminal and the workflow's
+archive or prune behavior explains its absence, move its ledger record from open to
+closed with the disposition and evidence. Do not recreate or move a live card merely
+to make the open ledger match.
+
+The live board must equal the open ledger. The closed ledger preserves terminal
+records removed from the live inventory. Surviving sessions, worktrees, commits,
+runtime receipts, and data receipts support preservation and terminal-integrity
+claims; they do not prove that the task remains live. An unexplained disappearance
+still follows persistence-failure recovery until authoritative evidence establishes
+its disposition.
+
+Rationale: the earlier wording mixed incident details with the durable rule and
+could imply that retained filesystem artifacts override the live board. This
+correction keeps board state authoritative while preserving auditable terminal
+history.
+
+## Recover lead-decidable child questions after parent reply failure (2026-09-14)
+
+A direct-child clarification can be lead-decidable even when the dedicated parent
+reply route rejects the exact question ID. That validation failure is an operational
+routing defect rather than an author decision or Human blocker.
+
+When the child is paused before mutation and preservation is exact, the Coordinator
+may record its decision, stop that direct child, and restart one owner with the
+decision and receipt. If a writer or unpublished work is active, the Coordinator
+preserves it, avoids a second writer, and routes the platform defect instead.
+
+Rationale: this recovery preserves the decision ladder and single-writer invariant
+without letting a reply-routing defect strand an otherwise actionable child task.

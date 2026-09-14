@@ -1735,6 +1735,27 @@ do not create another ask while any matching request may still be live. If ask
 status is unavailable, record the state as pending/uncertain and wait for an
 answer or a supported readback rather than manufacturing duplicates.
 
+### Recover a lead-decidable child clarification when parent reply routing fails
+
+When a direct child pauses on a question the Coordinator can decide, first try
+`message_task_kandev` once with the exact pending `reply_to_question_id`. A
+validation failure is a routing failure, not an author blocker and not a reason
+to send the same answer repeatedly.
+
+Read the child's complete session census, pending workflow move, worktree status,
+unpublished commits, and active processes. If the child is paused before source
+mutation and the preservation receipt is exact, record the decision, stop that
+exact direct child, and restart one owner in the correct actionable lane with the
+decision and preservation receipt in its handoff. Verify the old session is
+terminal, the pending clarification and move are cleared, the physical lane is
+correct, and exactly one replacement owner is RUNNING or STARTING.
+
+If a writer is active, work is unpublished, or preservation is uncertain, do not
+stop or create a second writer. Queue the decision without a duplicate question,
+keep the task stalled with a concrete recovery trigger, and route the parent-reply
+defect to its platform owner. Human escalation remains reserved for a genuinely
+Human-only decision.
+
 VERIFYING A PEER'S STANDBY — do it behaviourally, not declaratively. One
 coordinator cannot inspect another's routine configuration. The check that works:
 sweep /data/logs/backend-logs.log over the window and attribute every board

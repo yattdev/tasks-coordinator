@@ -13,26 +13,27 @@ exact-head, provider, and delivery failures still require normal recovery.
 
 ## 2026-09-14 — reconcile a board prune against durable terminal receipts
 
-A platform-side board prune removed one Coordinator terminal card (`1f434680-0901-4a0c-abaf-1c48d050f7d4`)
-from the live Daily inventory while that card's worktree and final verified TEST_DATA_RECEIPT
-survived intact. The reconciliation required two-source evidence: the board's
-live inventory (daily workflow list) and the HOST-qualified session/workspace
-file inventory (`/data/tasks/...`). Live-agent evidence alone is insufficient here:
-sessions that created proof were themselves time-rotted out of the inventory,
-and the asked-for-session had ended before the prune.
+A platform-side prune removed a terminal card while its worktree and receipts
+survived. The durable reconciliation rule is to compare the task's last physical
+lane and terminal receipts with the workflow's archive behavior. An explained
+terminal removal moves from the open ledger to the closed ledger with evidence;
+an unexplained removal remains a suspected persistence failure.
 
-The mechanism: R1 reconciliation failure → ledger entry moved to the
-`[CLOSED]` ledger section with the disposition—never let a G1 audit swallow the
-unannounced prune into a deleted-active-task smell that misclassifies open/board
-contradiction claims and contradicts live-truth later.
+The live board equals the open ledger. Closed records retain terminal history.
+Filesystem and session artifacts prove preservation, but do not prove a card is
+still live.
 
-Existing rules hardened: the "unexplained board state is first a suspected
-persistence failure (2026-08-29)", and the R2/R4 apply-to-open-items rule (2026-08-30)
-were reaffirmed — the failure was persistence of a completed card, not of a live
-work-in-progress. Tests (`git rev-parse`, session terminal receipts, dir presence)
-are timestamped evidence only, not proof of state; board state is canonical now.
+## 2026-09-14 — recover a lead-decidable child question after reply routing fails
 
-Files: `docs/LEARNING_LOG.md` (this entry), `docs/cycle-archives/2026-09-14T0241-plan-preimage.md` (workspace coordinator state as archived), the ledger record itself.
+The dedicated parent reply route rejected an exact pending child-question ID.
+Because the question was lead-decidable and the child was paused before source
+mutation, the Coordinator preserved the worktree and session state, recorded the
+decision, stopped the exact direct child, and restarted one owner with the answer.
+
+The reusable rule is to treat parent-reply validation failure as an operational
+routing defect. Stop and restart only after proving preservation and absence of an
+active writer; otherwise retain the existing writer and route the platform defect.
+Never turn this failure into a Human blocker or create a duplicate writer.
 
 ## 2026-09-09 — Review model enforcement is host-specific
 

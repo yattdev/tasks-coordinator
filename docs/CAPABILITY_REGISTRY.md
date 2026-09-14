@@ -195,6 +195,13 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Evidence** A confirmed pending ask ID or authoritative negative readback before retry. A client stream disconnect is not proof that creation failed because the backend may have committed the ask first.
 - **Never** Relay a generic "Human approval required" to the Human; never escalate a question a competent lead would decide; never create duplicate asks while a matching request is pending or its creation result is uncertain.
 
+### B5a. Parent reply routing fails for a lead-decidable child question
+- **Trigger** A direct child has a pending clarification the Coordinator can decide, and `message_task_kandev` with the exact `reply_to_question_id` returns a validation or routing error.
+- **Action** Treat the error as an operational routing failure. Prove the child is paused before mutation and its work is preserved; record the decision; stop the exact direct child; then restart one owner in the correct lane with the decision and preservation receipt.
+- **Capability** Direct-parent `message_task_kandev`, `stop_task_kandev`, lane move/start, and complete session/worktree inspection; [parent-reply recovery procedure](RUNBOOK.md#recover-a-lead-decidable-child-clarification-when-parent-reply-routing-fails).
+- **Evidence** Exact pending question ID and failed reply result; pre-stop session/worktree/pending-move receipt; old session terminal; pending clarification cleared; correct physical lane; exactly one replacement owner RUNNING or STARTING.
+- **Never** Convert a routing failure into a Human blocker, repeat the same reply blindly, stop an active or unpreserved writer, or start a second writer.
+
 ### B6. Open draft PR/MR in monitored scope
 - **Trigger** Any open draft.
 - **Action** Treat draft as routine provider metadata and a creation default, not a hold until Human-QA. Evaluate readiness immediately and on every task touch. The task agent owns missing implementation/evidence; once the complete receipt is independently verified, the Coordinator may perform the mechanical ready transition. Strict universal order: execute ready transition → verify provider readback is non-draft at the unchanged head → refresh and classify post-ready gates → notify the reviewer when no branch-owned or unclassified blocker exists. A conclusively unrelated flaky/infrastructure/provider/broken-base/cascading check may stay under an active owner while review proceeds. Human-QA blocks readiness only for a specific remaining manual/visual acceptance need.
