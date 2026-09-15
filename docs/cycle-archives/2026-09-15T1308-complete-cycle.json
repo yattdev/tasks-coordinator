@@ -1,7 +1,7 @@
 {
   "schema": "coordinator-cycle-receipt-v1",
   "cycle_id": "wake-cycle-2026-09-15T1308Z",
-  "observed_at": "2026-09-15T13:31:00Z",
+  "observed_at": "2026-09-15T13:39:07Z",
   "prepared_only": false,
   "identity": {
     "primary_current": true,
@@ -21,13 +21,13 @@
       "Backlogs": 1,
       "Work": 1,
       "Review": 1,
-      "CI Fixup": 3,
+      "CI Fixup": 4,
       "Human-QA": 3,
       "PR": 1,
       "ToDeploy": 2,
       "Blocked": 35,
       "Done": 17,
-      "QA": 1
+      "QA": 0
     }
   },
   "set_hashes": {
@@ -43,10 +43,10 @@
       "task_id": "9349b6e5-a167-4d88-af14-cb355015e3dd",
       "from": "Blocked",
       "through": "Work",
-      "to": "QA",
-      "exact_head": "2a514227b47c86a1871900758a8244d0090fa0ca",
-      "owner": "e556975d-6a50-4ed8-927f-3f881c8c2b88",
-      "verification": "Blocked→Work R5, automatic Work→Review, exact-head Review PASS, then automatic Review→QA; sole distinct QA RUNNING profile bd2c30cb; lifecycle/pending settled; prior R4 preserved in exact preimage/action history."
+      "to": "CI Fixup",
+      "exact_head": "ec128a2cb7d47df441d0282a92b5a0354e19c5f3",
+      "owner": "0dbadd36-e86b-4979-bea9-991e5a71c032",
+      "verification": "Blocked→Work R5; automatic Work→Review; exact-head Review PASS; automatic Review→QA; QA PASS with test-only coverage commit ec128a2; automatic QA→CI Fixup; sole configured CI RUNNING profile 7c6be62e; lifecycle/pending settled; prior R4 preserved."
     }
   ],
   "actions": [
@@ -99,6 +99,11 @@
       "task_id": "9349b6e5-a167-4d88-af14-cb355015e3dd",
       "action": "G11 consumed the post-persistence automatic Review→QA transition.",
       "verification": "Review ae45e3d3 completed with no findings at exact 2a514227; focused tests passed and broader failures were unrelated environment tests. Physical QA/IN_PROGRESS; sole distinct QA e556975d-6a50-4ed8-927f-3f881c8c2b88 RUNNING profile bd2c30cb; provider 10 pending/0 bad/0 actionable at 13:31Z; one uncommitted QA test file is under investigation."
+    },
+    {
+      "task_id": "9349b6e5-a167-4d88-af14-cb355015e3dd",
+      "action": "G12-G13 consumed QA PASS/new test-only head and verified automatic QA→CI Fixup routing.",
+      "verification": "Exact clean local/tracking/fork/PR ec128a2cb7d47df441d0282a92b5a0354e19c5f3; production unchanged; TEST_RUNTIME=NONE; QA e556975d completed; physical CI Fixup/IN_PROGRESS with lifecycle/pending null; sole configured CI 0dbadd36-e86b-4979-bea9-991e5a71c032 RUNNING; fresh exact-head CI pending/no failures/0 actionable; at-risk tag updated and Human=false."
     }
   ],
   "provider": {
@@ -137,7 +142,9 @@
     "G8": true,
     "G9": true,
     "G10": true,
-    "G11": true
+    "G11": true,
+    "G12": true,
+    "G13": true
   },
   "preimage": {
     "exact_preimage": "docs/cycle-archives/2026-09-15T1308-plan-preimage.md",
@@ -148,15 +155,16 @@
     "replacement_observed_at": "2026-09-15T13:26:27Z"
   },
   "post_persistence_barrier": {
-    "observed_at": "2026-09-15T13:31:00Z",
+    "observed_at": "2026-09-15T13:39:07Z",
     "task_id": "9349b6e5-a167-4d88-af14-cb355015e3dd",
-    "lane": "QA",
+    "lane": "CI Fixup",
     "state": "IN_PROGRESS",
-    "head": "2a514227b47c86a1871900758a8244d0090fa0ca",
+    "head": "ec128a2cb7d47df441d0282a92b5a0354e19c5f3",
     "base": "6c5ab15980ab3d39660134073d724addae9c8579",
-    "review": "PASS/no findings",
-    "qa_session": "e556975d-6a50-4ed8-927f-3f881c8c2b88 RUNNING",
-    "provider": "10 pending/0 bad/0 actionable",
-    "next": "Consume QA verdict and classify its uncommitted test file; source/head change invalidates gates."
+    "qa": "PASS; test-only coverage commit; production unchanged; TEST_RUNTIME=NONE",
+    "ci_session": "0dbadd36-e86b-4979-bea9-991e5a71c032 RUNNING profile 7c6be62e",
+    "provider": "pending/no failures/0 actionable",
+    "tag": "at-risk updated to ec128a2 current-head instruction; Human=false",
+    "next": "Terminal green starts fresh independent Review; branch-owned red returns to narrow Work."
   }
 }
