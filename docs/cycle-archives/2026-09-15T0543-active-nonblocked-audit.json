@@ -1,0 +1,91 @@
+{
+  "schema": "coordinator-readonly-active-audit/v1",
+  "observed_at": "2026-09-15T05:43:02.030846628Z",
+  "workspace_id": "2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd",
+  "workflow_id": "90f322ed-2159-424d-96e7-c2ad05668b8e",
+  "scope": "11 assigned active nonblocked tasks; plans, latest messages, complete session censuses, relations, tags, and bounded provider state",
+  "mutations": [],
+  "provider_query": {"strategy":"three aggregated GraphQL reads","remaining":3674,"reset_at":"2026-09-15T06:24:40Z"},
+  "limitations": [
+    "Relations returned FORBIDDEN document access denied for fa3fba49-2018-460b-a600-adae23b24cc8, 1e46d457-6869-4750-bf97-4640a8df3b68, 27b493a3-65b6-4d4a-8b68-73f2ffcf9621, a091649a-79b0-40d6-a84d-84a3dc053e4a, and ca015838-e5cf-4294-b3bb-9c50576a5fe6; no protected content was bypassed.",
+    "Provider check state is the exact aggregate statusCheckRollup; individual jobs were not polled to avoid quota bursts."
+  ],
+  "tasks": [
+    {
+      "id":"fa3fba49-2018-460b-a600-adae23b24cc8","title":"Add coordinator grant management surfaces","lane":"Review","task_state":"IN_PROGRESS","health":"stalled",
+      "owner_session":{"id":"5e4d4c27-27c5-4380-8280-89ca109cb6cf","state":"RUNNING","profile":"38b00822-c449-4f68-8e8a-034af450dbc1","updated_at":"2026-09-15T03:29:11.098501656Z"},
+      "provider":{"url":"https://github.com/kdlbs/kandev/pull/3048","state":"OPEN","draft":true,"head":"56531c6e2d5dbea93682ab773fe5e0f55e86ee5d","base":"main","mergeable":"MERGEABLE","checks":"FAILURE","unresolved_threads":0},
+      "tag":{"name":"at-risk","aligned":true,"note":"Settle stale Review owner and classify current hydration E2E failure."},
+      "recommended_action":"Preflight pending moves, diagnose/stop the stale Review owner, classify the exact failed checks, then start exactly one correct recovery owner or return branch-owned findings to Work.","trigger":"fresh session/provider readback","fallback":"preserve current head and keep draft"
+    },
+    {
+      "id":"1e46d457-6869-4750-bf97-4640a8df3b68","title":"Coordinate plugin-first board supervision delivery","lane":"Work","task_state":"REVIEW","health":"waiting",
+      "owner_session":{"id":"ba236402-99ca-48ed-a812-ea0de6fdea3f","state":"WAITING_FOR_INPUT","profile":"38b00822-c449-4f68-8e8a-034af450dbc1","updated_at":"2026-09-15T05:10:19.796106637Z"},
+      "provider":null,"tag":{"name":"agent","aligned":false,"reason":"PR #3672 advanced to repair head bb3f8243 and current provider evidence changed."},
+      "recommended_action":"Keep as coordination wait only if child a091649a and repair ca015838 have concrete owners; update its next-action record from fresh child receipts rather than wake duplicate work.","trigger":"child remediation or queue-repair receipt","fallback":"wake this coordinator child only if a dependency loses ownership"
+    },
+    {
+      "id":"27b493a3-65b6-4d4a-8b68-73f2ffcf9621","title":"Fix workflow-sync GitHub polling starving API quota","lane":"Work","task_state":"IN_PROGRESS","health":"healthy",
+      "owner_session":{"id":"cc2afa78-ca2d-4999-ad01-e2a2102451c4","state":"RUNNING","profile":"38b00822-c449-4f68-8e8a-034af450dbc1","updated_at":"2026-09-15T05:35:36.530402806Z"},
+      "provider":{"url":"https://github.com/kdlbs/kandev/pull/3143","state":"OPEN","draft":true,"head":"a2ea7aba6ff59b3d557d9bc9f551e2d65c11b21b","base":"main","mergeable":"MERGEABLE","checks":"PENDING","unresolved_threads":0},
+      "tag":{"name":"agent","aligned":true},"recommended_action":"Let the active owner finish the terminal exact-head CI census; on success route to fresh Review, on failure classify the exact job without synthetic commits.","trigger":"current-head checks terminal","fallback":"wake CI owner with failing job IDs"
+    },
+    {
+      "id":"46945aff-382a-41a4-9f35-bd5c2806911e","title":"Expose guarded TTY tool to ACP agents","lane":"Work","task_state":"FAILED","health":"failed",
+      "owner_session":{"id":"3f3b00d7-8ba9-415c-a3f8-466f6fad716e","state":"FAILED","profile":"c06ad00e-0da1-429a-8174-54f97164a289","updated_at":"2026-09-15T05:03:56.724755322Z"},
+      "provider":{"url":"https://github.com/kdlbs/kandev/pull/3497","state":"OPEN","draft":true,"head":"ae8fc93dfe7d84170921a2c074b9142876cc4b13","base":"main","mergeable":"CONFLICTING","checks":"SUCCESS","unresolved_threads":2},
+      "tag":{"name":"at-risk","aligned":true},"recommended_action":"After standalone allocator capacity is live-verified, start one Work owner to resolve current-main conflicts plus the two unresolved findings; preserve maintained-fork artifact f4df079f.","trigger":"allocator capacity verified","fallback":"leave failed and preserve source/artifacts"
+    },
+    {
+      "id":"76b4e3d4-ccb8-408c-a0de-5e5014c538be","title":"Make visible Human questions durable","lane":"Work","task_state":"FAILED","health":"failed",
+      "owner_session":{"id":"671294c0-0c9a-4418-91de-c946bb6bccee","state":"FAILED","profile":"c06ad00e-0da1-429a-8174-54f97164a289","updated_at":"2026-09-15T05:03:56.737830261Z"},
+      "provider":{"url":"https://github.com/kdlbs/kandev/pull/3404","state":"OPEN","draft":true,"head":"654a7cdca1d7af0eba20ac2acae63d4dcc04ab63","base":"main","mergeable":"CONFLICTING","checks":"FAILURE","unresolved_threads":0},
+      "tag":{"name":"at-risk","aligned":true},"recommended_action":"After allocator capacity is verified, start one Work owner for additive conflict repair and fresh exact-head CI; do not rerun the obsolete failed workflow without admin/scoped dispatch evidence.","trigger":"allocator capacity verified","fallback":"preserve exact head and draft"
+    },
+    {
+      "id":"8a182e40-d99c-42e9-b9be-1f8f78cf8388","title":"Repair standalone execution port-pool exhaustion","lane":"Work","task_state":"IN_PROGRESS","health":"stalled",
+      "owner_session":{"id":"329b6bbb-00fe-47f3-9293-853b63efa65b","state":"WAITING_FOR_INPUT","profile":"c06ad00e-0da1-429a-8174-54f97164a289","updated_at":"2026-09-15T05:07:10.686727185Z"},
+      "provider":null,"preservation":{"branch":"feature/repair-standalone-ex-zeh","head":"4bd6a9502b1bdd673b60b9935013b71ea2b083f0","tests":"allocator race, authenticated snapshot, compile, spec, lint and build passed"},
+      "tag":{"name":"agent","aligned":false,"reason":"implementation is complete locally; next action is publication, not implementation"},
+      "recommended_action":"Highest priority: preflight and use authorized mechanical credential path to push exact preserved head and open/link a draft PR; then fresh Review and QA. This repair gates two failed Work launches.","trigger":"credential/remote scope verified","fallback":"retain branch/head and create one credential-capability recovery owner"
+    },
+    {
+      "id":"9d5fcce2-e02d-41a5-b8de-d3672254e199","title":"Recover Provider Usage coverage in a registered workspace","lane":"Work","task_state":"REVIEW","health":"stalled",
+      "owner_session":{"id":"1d585db8-d207-4799-9c8d-110a512d26a9","state":"WAITING_FOR_INPUT","profile":"c06ad00e-0da1-429a-8174-54f97164a289","updated_at":"2026-09-15T05:12:27.592105621Z"},
+      "provider":null,"preservation":{"branch":"feature/recover-provider-usa-aew","head":"26c78a7","package_sha256":"ac7492c69e51df9e92984c08b3fc671c402d541c665e9ba5885ff81de66e2351"},
+      "tag":{"name":"agent","aligned":false,"reason":"implementation and coverage completed; publication is the remaining action"},
+      "recommended_action":"Verify canonical/fork ownership, mechanically publish exact preserved head through an authorized fork if needed, open/link the draft PR, and route fresh Review and QA.","trigger":"write-capable remote scope verified","fallback":"preserve commit/package and staff one repository-access recovery owner"
+    },
+    {
+      "id":"9ee4be81-aa98-4e4d-bdd6-842fd918f00f","title":"Allow scoped fresh CI dispatch","lane":"Work","task_state":"REVIEW","health":"waiting",
+      "owner_session":{"id":"377f5e5c-8e4f-4e05-986a-22fb99f04d9b","state":"WAITING_FOR_INPUT","profile":"c06ad00e-0da1-429a-8174-54f97164a289","updated_at":"2026-09-15T05:18:56.265527652Z"},
+      "provider":{"url":"https://github.com/kdlbs/kandev/pull/3165","state":"OPEN","draft":false,"head":"beaf11fbe8aa0ed21d83bc37a6c1af80f909ae20","base":"main","mergeable":"MERGEABLE","checks":"PENDING","unresolved_threads":5,"unresolved_non_outdated_threads":2},
+      "relations":{"blocked_by":["51c2875b-48ae-4097-b985-b8a9584ca8c2","4b56a8b3-89fa-43ef-891d-c6b3a3b88e2a"]},
+      "tag":{"name":"agent","aligned":false,"reason":"five findings were repaired; current state is pending CI plus two current unresolved threads"},
+      "recommended_action":"Recheck when current-head CI becomes terminal; if green, resolve/reply to the two current threads and start fresh Review, otherwise wake owner with exact failures. Audit whether the two dependency edges remain necessary.","trigger":"checks terminal","fallback":"return branch-owned failures to Work"
+    },
+    {
+      "id":"a091649a-79b0-40d6-a84d-84a3dc053e4a","title":"Port AgentConversation Host contract to canonical main","lane":"Work","task_state":"REVIEW","health":"stalled",
+      "owner_session":{"id":"3eac7f4e-4367-4c75-826d-26be94c0c875","state":"WAITING_FOR_INPUT","profile":"c06ad00e-0da1-429a-8174-54f97164a289","updated_at":"2026-09-15T05:13:29.810420393Z"},
+      "provider":{"url":"https://github.com/kdlbs/kandev/pull/3672","state":"OPEN","draft":false,"head":"bb3f8243c120405dad8a74bc82713d681a309af5","base":"main","mergeable":"MERGEABLE","checks":"FAILURE","unresolved_threads":8,"unresolved_non_outdated_threads":5},
+      "tag":{"name":"agent","aligned":false,"reason":"repair head landed; current provider has failed checks and five current unresolved threads"},
+      "recommended_action":"Preflight and wake the existing Work owner to classify exact failed checks and address/reply to five current threads; require fresh Review and distinct QA at bb3f8243 before any reviewer notification.","trigger":"owner returns terminal CI/thread receipt","fallback":"preserve head and keep non-ready"
+    },
+    {
+      "id":"ca015838-e5cf-4294-b3bb-9c50576a5fe6","title":"Add guarded queue claim and routine wake coalescing","lane":"Work","task_state":"REVIEW","health":"stalled",
+      "owner_session":{"id":"260b4ddd-841f-40ec-9bd8-39535052dcc6","state":"WAITING_FOR_INPUT","profile":"c06ad00e-0da1-429a-8174-54f97164a289","updated_at":"2026-09-15T05:03:31.273160844Z"},
+      "provider":{"url":"https://github.com/kdlbs/kandev/pull/3377","state":"OPEN","draft":true,"head":"c990b51cb8dc758f35a702ee6ee017dd1c593c26","base":"main","mergeable":"CONFLICTING","checks":"FAILURE","unresolved_threads":0},
+      "preservation":{"new_local_head":"37ca515b0c8fd94cc98b38f898a9335765378ac2","publication_error":"credential lease scope mismatch"},
+      "tag":{"name":"agent","aligned":false,"reason":"current main contract is incompatible and requires a scoped port; normal publication alone is insufficient"},
+      "recommended_action":"Preflight and resume one Work owner to port the guarded queue/coalescing contract onto current main, preserve 37ca515b, publish normally, then fresh Review/QA.","trigger":"one recovery owner running","fallback":"preserve both heads and keep draft"
+    },
+    {
+      "id":"e0dd8d19-278c-4d38-aafa-c3e866d92cfb","title":"Fix PR lane profile executing wrong model","lane":"Review","task_state":"IN_PROGRESS","health":"healthy",
+      "owner_session":{"id":"538cb403-b31b-473a-a32b-cd9f6a620b52","state":"RUNNING","profile":"ab57f00e-ed8d-4205-bada-8be63fc4cd7d","updated_at":"2026-09-15T05:42:34.144864630Z"},
+      "provider":{"url":"https://github.com/kdlbs/kandev/pull/3473","state":"OPEN","draft":false,"head":"561d2a8cf0d5c30224696304839a550952331ebe","base":"main","mergeable":"MERGEABLE","checks":"SUCCESS","unresolved_threads":0},
+      "relations":{"blocked_by":["8463d2ff-e8f1-4ba5-99c3-fad2c2da3f66"]},
+      "tag":{"name":"agent","aligned":false,"reason":"fresh independent Review is actively running at a green exact head"},
+      "recommended_action":"Let the current independent Review finish; on PASS start distinct QA. Audit/remove the apparently unrelated failed Redmine dependency before advancement if it is stale.","trigger":"Review verdict at exact head","fallback":"return findings to Work"
+    }
+  ]
+}

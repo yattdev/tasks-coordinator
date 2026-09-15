@@ -1,0 +1,182 @@
+{
+  "schema": "coordinator-done-audit-v1",
+  "observed_at": "2026-09-15T05:44:28.319428125Z",
+  "path": "/tmp/coordinator-done-audit-20260915T054428Z.json",
+  "workflow_id": "90f322ed-2159-424d-96e7-c2ad05668b8e",
+  "done_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f",
+  "done_count": 18,
+  "read_only": true,
+  "relation_degradation": "list_related_tasks returned FORBIDDEN document access denied for 10 of 18 tasks after one retry; successful relation reads are recorded per task.",
+  "tasks": [
+    {
+      "id": "09325a7b-afb5-4f54-b2a7-ceae217a7bee",
+      "terminal_integrity": "pass_with_housekeeping",
+      "archive_readiness": "hold",
+      "evidence": "PR kdlbs/kandev#3498 merged; local cb7b887e is clean and zero commits ahead of origin, one behind; no task runtime; primary is inactive WAITING_FOR_INPUT.",
+      "anomaly": "A live dependency edge to cfccac4a-1c80-403f-b284-a673a26a321a remains although the tag calls it obsolete.",
+      "next_action": "Remove or formally retain the stale dependency edge after primary verification; then archive eligibility can be reassessed."
+    },
+    {
+      "id": "153cdbbe-beac-47b8-bc06-8dafdcc8ed80",
+      "terminal_integrity": "fail",
+      "archive_readiness": "not_ready",
+      "evidence": "PR kdlbs/kandev#2868 is closed unmerged at b385a560; task checkout is clean except unique untracked qa-session-tab-close.png; latest task receipt says representative PR files are absent from the main folder and integration is unverified.",
+      "anomaly": "Done contains an unmerged deliverable with preserved unique evidence and no proven supersession or containment.",
+      "next_action": "Primary must freeze cleanup and route the task to the narrowest recovery lane with the b385a560 head and screenshot preserved."
+    },
+    {
+      "id": "1f8d4dc8-83ac-44d6-9fbd-b34bd46e044e",
+      "terminal_integrity": "pass",
+      "archive_readiness": "unknown",
+      "evidence": "PR kdlbs/kandev#3137 merged; local 32d10e8 is clean with no commits ahead of origin and no task runtime or artifacts reported; inactive sessions only.",
+      "anomaly": "Relations could not be re-read because Kandev returned FORBIDDEN document access denied.",
+      "next_action": "Recheck relations before archive; no source recovery is indicated."
+    },
+    {
+      "id": "3d456f24-73e7-4c0b-8821-ee49a3fa0f31",
+      "terminal_integrity": "pass_superseded_carrier",
+      "archive_readiness": "ready",
+      "evidence": "Carrier failed before inference, has no PR, no nonterminal session, no children or blockers, and its checkout is clean; implementation ownership moved to b7cb6fe6-3766-4b81-a7ee-f5e9c16627cf.",
+      "anomaly": null,
+      "next_action": "Eligible for archival after the primary confirms the supersession receipt remains durable."
+    },
+    {
+      "id": "3f721d52-452b-4bc6-a61e-68d875baafbd",
+      "terminal_integrity": "pass_with_housekeeping",
+      "archive_readiness": "hold",
+      "evidence": "PR yattdev/kandev-plugin-redmine#4 merged and local 980dead is clean and synchronized; only inactive CREATED/WAITING sessions remain.",
+      "anomaly": "A stale dependency relation involving a3f02302-12fa-4129-8985-116efb8fed66 remains after delivery.",
+      "next_action": "Reconcile the stale dependency metadata before archival."
+    },
+    {
+      "id": "4640fd95-b7f9-4339-8836-cf03679eaf41",
+      "terminal_integrity": "pass",
+      "archive_readiness": "ready_with_preserved_release_receipt",
+      "evidence": "PR yattdev/kandev-plugin-redmine#5 merged; release v0.3.1 and workflow 34809511526 are recorded immutable; local 03b2754 is clean; no task runtime; relations show no children or blockers.",
+      "anomaly": null,
+      "next_action": "Eligible for archive while preserving the release receipt and checksums."
+    },
+    {
+      "id": "75d4c8af-dc90-4e68-bc74-3d86e99e52cb",
+      "terminal_integrity": "fail",
+      "archive_readiness": "not_ready",
+      "evidence": "Task trail says kdlbs/kandev#3496 remains open draft at 5504448a and waits on maintainer disposition; board linked-PR projection is empty; local task checkout is clean.",
+      "anomaly": "An open PR and unresolved external decision are physically in Done, and the canonical PR is missing from the task link projection.",
+      "next_action": "Primary must move this work to an active/waiting lane or document a proven supersession, and repair the canonical PR link."
+    },
+    {
+      "id": "7a0454aa-c089-4365-8966-ad99775a46f8",
+      "terminal_integrity": "pass_with_preservation",
+      "archive_readiness": "hold",
+      "evidence": "PR yattdev/kandev-plugin-redmine#3 merged; committed plugin branch is synchronized; numerous task-local E2E logs, screenshots, database/master-key runtime files and a diagnostic patch remain untracked as preservation evidence; no nonterminal sessions.",
+      "anomaly": "Large preserved runtime/evidence residue prevents safe archive cleanup without an explicit retention disposition.",
+      "next_action": "Classify the retained runtime/data and diagnostic patch as disposable or uniquely required before archival; do not clean speculatively."
+    },
+    {
+      "id": "7ca86e53-249b-4b31-a866-e807afd9a962",
+      "terminal_integrity": "anomalous_unproven",
+      "archive_readiness": "not_ready",
+      "evidence": "Canonical plugin PR yattdev/kandev-plugin-redmine#1 is merged at 0b884b24 but is absent from board links; the linked kdlbs/kandev#2724 is closed unmerged; the plugin checkout has a missing git-admin directory and the host checkout has a large unclassified untracked tree.",
+      "anomaly": "Canonical delivery linkage, worktree integrity, unique-work containment and runtime disposition are not jointly proven.",
+      "next_action": "Primary should repair/link the canonical PR identity and delegate preservation-aware worktree archaeology before any archive or cleanup."
+    },
+    {
+      "id": "856898aa-d06a-43f7-9a87-f873665f19da",
+      "terminal_integrity": "pass_with_preservation",
+      "archive_readiness": "hold",
+      "evidence": "PR yattdev/kandev-plugin-tags#17 merged; implementation parent is contained in main; local branch is clean but one commit ahead containing six QA-only artifacts, with ignored build/package residue retained.",
+      "anomaly": "Archive cleanup has no explicit disposition for the local QA-only commit and ignored artifacts.",
+      "next_action": "Preserve the artifact-only commit until the primary records an exact retention or cleanup disposition."
+    },
+    {
+      "id": "92535de6-7507-473c-b292-e69516d2434c",
+      "terminal_integrity": "pass_plan_only",
+      "archive_readiness": "ready_with_preservation",
+      "evidence": "Spec-only task has no PR or source commits; checkout is clean at cfd6bdf65; prototype is preserved outside checkout with recorded checksums; relations show no children or blockers; one inactive WAITING session remains.",
+      "anomaly": null,
+      "next_action": "Eligible for archive while retaining the external preservation manifest."
+    },
+    {
+      "id": "957da1cb-063b-4c2e-b406-6d04ad158fb9",
+      "terminal_integrity": "pass_with_link_gap",
+      "archive_readiness": "unknown",
+      "evidence": "PRs kdlbs/kandev#2843 and #3501 are merged; local 97d9807 checkouts are clean; no unique artifacts reported; inactive sessions only.",
+      "anomaly": "Canonical follow-up PR #3501 is not present in the board linked-PR projection, and relations could not be re-read.",
+      "next_action": "Repair the PR association and recheck relations before archival."
+    },
+    {
+      "id": "ae8fc022-5562-4f58-95dc-3dab9d4c179f",
+      "terminal_integrity": "anomalous_unproven",
+      "archive_readiness": "not_ready",
+      "evidence": "Three linked PRs are merged and sessions are terminal, but the host checkout contains a large untracked source tree while the tag calls it redundant residue; retained QA data/runtime was previously about 2.7 GB.",
+      "anomaly": "Current local residue is not bounded or independently proven redundant, so unique unfinished work cannot be excluded.",
+      "next_action": "Delegate an exact path/ownership/containment inventory before archive or cleanup; preserve all residue meanwhile."
+    },
+    {
+      "id": "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+      "terminal_integrity": "fail",
+      "archive_readiness": "not_ready",
+      "evidence": "PR kdlbs/kandev#3506 merged, but the terminal agent explicitly reports task-specific pushed commits 2ba884ba5 and bd92d72aa absent from merged commit 262ecdf2; worktree is clean and remote branch preserves them.",
+      "anomaly": "Task-authored changes are not proven contained or superseded by the merged deliverable.",
+      "next_action": "Primary must route to recovery, preserve the pushed branch, and decide integration or proof of supersession before Done can stand."
+    },
+    {
+      "id": "b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+      "terminal_integrity": "pass_superseded",
+      "archive_readiness": "hold",
+      "evidence": "Umbrella PR kdlbs/kandev#3242 closed unmerged by maintainer disposition; native-sandbox direction supersedes it; checkout is clean and preserved refs contain the work; draft reference PR #3496 remains intentionally open.",
+      "anomaly": "Open reference PR #3496 and preserved branch chain remain active evidence; relations could not be re-read.",
+      "next_action": "Keep preserved until the sandbox/reference consumer and relation state are conclusively retired."
+    },
+    {
+      "id": "bdc56ccb-b1ea-4f22-a1e0-e81eac5fa06e",
+      "terminal_integrity": "pass_with_link_gap",
+      "archive_readiness": "unknown",
+      "evidence": "Canonical PR yattdev/kandev-plugin-redmine#8 merged at accepted head 2192918e; all three task checkouts are clean; latest receipt reports no children or uncommitted implementation.",
+      "anomaly": "The canonical merged PR is missing from the board linked-PR projection, and relations could not be re-read.",
+      "next_action": "Repair the PR association and recheck relations before archival."
+    },
+    {
+      "id": "ecd8b857-42a6-417f-a7e4-084f50fc6956",
+      "terminal_integrity": "pass_with_preservation",
+      "archive_readiness": "hold",
+      "evidence": "First-version E2E is a no-PR evidence task; v0.3.2 validation is recorded complete and runtime disposed; source checkouts are clean, with preserved test artifacts in detached plugin evidence; relations show no children or blockers.",
+      "anomaly": "Tag records a stale queued move requiring safe cancellation before contact or retirement; preserved E2E evidence still lacks an archive disposition.",
+      "next_action": "Cancel/reconcile the stale queued move through the supported exact surface, then decide evidence retention before archive."
+    },
+    {
+      "id": "f2078d51-4dd4-435f-812a-f632328ccfb2",
+      "terminal_integrity": "pass",
+      "archive_readiness": "unknown",
+      "evidence": "PR kdlbs/kandev#3505 merged; local a9702904 is clean with zero commits ahead of origin and one behind; no task runtime; inactive sessions only.",
+      "anomaly": "Relations could not be re-read because Kandev returned FORBIDDEN document access denied.",
+      "next_action": "Recheck relations before archive; no source recovery is indicated."
+    }
+  ],
+  "actionable_anomaly_ids": [
+    "09325a7b-afb5-4f54-b2a7-ceae217a7bee",
+    "153cdbbe-beac-47b8-bc06-8dafdcc8ed80",
+    "3f721d52-452b-4bc6-a61e-68d875baafbd",
+    "75d4c8af-dc90-4e68-bc74-3d86e99e52cb",
+    "7a0454aa-c089-4365-8966-ad99775a46f8",
+    "7ca86e53-249b-4b31-a866-e807afd9a962",
+    "856898aa-d06a-43f7-9a87-f873665f19da",
+    "957da1cb-063b-4c2e-b406-6d04ad158fb9",
+    "ae8fc022-5562-4f58-95dc-3dab9d4c179f",
+    "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+    "b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+    "bdc56ccb-b1ea-4f22-a1e0-e81eac5fa06e",
+    "ecd8b857-42a6-417f-a7e4-084f50fc6956"
+  ],
+  "to_deploy_tag_only": [
+    {
+      "id": "01432319-aa8b-4c7d-9841-addcc6ab8e76",
+      "tags": [{"name":"you deploy","owner":"agent","note":"Human: complete maintained-fork release and integration deployment handoff after merged yattdev/codex-acp PR #1; report deployed version/receipt.","updated_at":"2026-09-07T05:09:30.688537988Z"}]
+    },
+    {
+      "id": "8f8a784d-92ea-421f-a368-154ef915fe4e",
+      "tags": [{"name":"you deploy","owner":"agent","note":"Deploy the merged source-broker runtime registration, then verify provenance and move the card onward.","updated_at":"2026-09-07T02:33:45.97256161Z"}]
+    }
+  ],
+  "scope_limit": "No board, provider, task, queue, tag, conversation, plan, archive, or repository mutation was performed. ToDeploy inspection was limited to tag-list calls."
+}

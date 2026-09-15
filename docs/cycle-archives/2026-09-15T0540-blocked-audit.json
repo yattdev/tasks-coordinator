@@ -1,0 +1,2259 @@
+{
+  "schema": "coordinator-readonly-blocked-audit-v1",
+  "observed_at": "2026-09-15T05:51:14.206482+00:00",
+  "scope_task_ids": [
+    "01d6764d-b66d-46a0-a664-2caf4c3f4d98",
+    "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+    "0259d242-0a94-40ef-843e-385292796b64",
+    "212a68ce-7122-4cdb-ba68-764a5ebdb8c6",
+    "375dcc90-9ff3-4064-ba27-a7f20b33e80c",
+    "428d343e-c768-4bce-a5e7-efd3b10f363f",
+    "4b56a8b3-89fa-43ef-891d-c6b3a3b88e2a",
+    "51c2875b-48ae-4097-b985-b8a9584ca8c2",
+    "531a41cd-57ef-495a-8dfa-614d2a4d0d52",
+    "5c9f515d-e5f9-43c5-bf31-fb42276e5e15",
+    "6a5a2f73-87e1-4c08-a983-64f2456c3633",
+    "6d03f4a9-bf89-4882-bf43-5a584f986185",
+    "77353939-0ba8-40dd-b93c-57adc73a4011",
+    "86a16fc1-6394-4fb0-898d-4d42948683f5",
+    "86c8b47e-e7a5-4693-8e11-dce08899a0bf",
+    "9349b6e5-a167-4d88-af14-cb355015e3dd",
+    "96e27238-8b7d-476a-8c70-b8da0abae935",
+    "9e67c426-1300-46ef-a00f-e5603791212d",
+    "a3f02302-12fa-4129-8985-116efb8fed66",
+    "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+    "b8fc206c-9e3f-4497-9ac3-3b62593da258",
+    "c642d57a-5a24-48ca-8f85-57d31115eeb5",
+    "e8728906-86de-4a75-960f-9da585485823"
+  ],
+  "count": 23,
+  "board_provider_mutations": false,
+  "task_source_mutations": false,
+  "scope": "23 assigned physical Blocked tasks; parent sole actor; no ToDeploy task-specific or protected-row/session read",
+  "limitations": [
+    "15 relation reads denied FORBIDDEN, not bypassed.",
+    "Outside-slice dependency-root owner proofs requested from primary and pending reconciliation; none inferred from old plan.",
+    "Failed-start transcripts empty; no diagnosis fabricated.",
+    "No current security/runtime probe performed; userns Support receipt remains unverified.",
+    "Provider required-policy permission lookup not renewed; all available exact-head checks/threads read.",
+    "Current task-native plans can lag primary tags; corrections explicitly listed."
+  ],
+  "actionable_deltas": [
+    "ProviderUsage legacy alias now resolves to new recovery branch26c78a75 with31dirty paths; preserve and reconcile writer identity.",
+    "Canonical main54e2e21f still lacks Host conversation APIs; identify staffed canonical delivery owner for isolated QA.",
+    "No checked provider failure received a new attempt or changed head; avoid redundant restart/contact.",
+    "Correct stale R4/model-policy/prerequisite records and 01d parent tag; preserve Human tags."
+  ],
+  "runs": {
+    "observed_at": "2026-09-15T05:48:01.675799+00:00",
+    "runs": [
+      {
+        "repo": "kdlbs/kandev-plugin-template",
+        "id": 31053652395,
+        "head_sha": "f616642516372091f1a0aa6239bb693d3eb2839d",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1,
+        "updated_at": "2026-09-04T22:41:52Z",
+        "html_url": "https://github.com/kdlbs/kandev-plugin-template/actions/runs/31053652395",
+        "error": null
+      },
+      {
+        "repo": "kdlbs/kandev-plugin-template",
+        "id": 31053652448,
+        "head_sha": "f616642516372091f1a0aa6239bb693d3eb2839d",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1,
+        "updated_at": "2026-09-04T22:41:52Z",
+        "html_url": "https://github.com/kdlbs/kandev-plugin-template/actions/runs/31053652448",
+        "error": null
+      },
+      {
+        "repo": "kdlbs/kandev",
+        "id": 34888832549,
+        "head_sha": "caee717b7c9d9c120e8dcbfcc77c7b08bfc9b697",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1,
+        "updated_at": "2026-09-14T22:27:48Z",
+        "html_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549",
+        "error": null
+      },
+      {
+        "repo": "kdlbs/kandev",
+        "id": 34882999679,
+        "head_sha": "b44ec64734f4d6aab839b675eb2893b7eac38a04",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1,
+        "updated_at": "2026-09-14T19:34:16Z",
+        "html_url": "https://github.com/kdlbs/kandev/actions/runs/34882999679",
+        "error": null
+      },
+      {
+        "repo": "kdlbs/kandev",
+        "id": 34885041870,
+        "head_sha": "135a156acfaf24803e3938034acddada0f6b366a",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1,
+        "updated_at": "2026-09-14T20:31:10Z",
+        "html_url": "https://github.com/kdlbs/kandev/actions/runs/34885041870",
+        "error": null
+      },
+      {
+        "repo": "kdlbs/kandev",
+        "id": 34886496085,
+        "head_sha": "e30bd1f2e5008be93e11ede6b2d3827a74e68095",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1,
+        "updated_at": "2026-09-14T21:38:36Z",
+        "html_url": "https://github.com/kdlbs/kandev/actions/runs/34886496085",
+        "error": null
+      },
+      {
+        "repo": "kdlbs/kandev",
+        "id": 34810899170,
+        "head_sha": "db0118b473d1ae3e31b1a63263ce625c7d22c5ae",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1,
+        "updated_at": "2026-09-14T07:29:12Z",
+        "html_url": "https://github.com/kdlbs/kandev/actions/runs/34810899170",
+        "error": null
+      },
+      {
+        "repo": "kdlbs/kandev",
+        "id": 34197413540,
+        "head_sha": "973a9d6d367b2c9a50c6ecd0557d70b23817d8b6",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1,
+        "updated_at": "2026-09-08T07:28:52Z",
+        "html_url": "https://github.com/kdlbs/kandev/actions/runs/34197413540",
+        "error": null
+      },
+      {
+        "repo": "yattdev/kandev",
+        "id": 34021528224,
+        "head_sha": "c4156e83b8379851f50ce6890a13b16720874df9",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 2,
+        "updated_at": "2026-09-06T08:41:45Z",
+        "html_url": "https://github.com/yattdev/kandev/actions/runs/34021528224",
+        "error": null
+      },
+      {
+        "repo": "agentclientprotocol/codex-acp",
+        "id": 34178209597,
+        "head_sha": "0bd0f8fb74a0dfec93eb3a8e586dc0d7c0e8488d",
+        "status": "completed",
+        "conclusion": "action_required",
+        "run_attempt": 1,
+        "updated_at": "2026-09-08T01:54:20Z",
+        "html_url": "https://github.com/agentclientprotocol/codex-acp/actions/runs/34178209597"
+      },
+      {
+        "repo": "agentclientprotocol/codex-acp",
+        "id": 33910495965,
+        "head_sha": "0bd0f8fb74a0dfec93eb3a8e586dc0d7c0e8488d",
+        "status": "completed",
+        "conclusion": "action_required",
+        "run_attempt": 1,
+        "updated_at": "2026-09-04T19:18:37Z",
+        "html_url": "https://github.com/agentclientprotocol/codex-acp/actions/runs/33910495965"
+      },
+      {
+        "repo": "agentclientprotocol/codex-acp",
+        "id": 33910495905,
+        "head_sha": "0bd0f8fb74a0dfec93eb3a8e586dc0d7c0e8488d",
+        "status": "completed",
+        "conclusion": "action_required",
+        "run_attempt": 1,
+        "updated_at": "2026-09-04T19:18:37Z",
+        "html_url": "https://github.com/agentclientprotocol/codex-acp/actions/runs/33910495905"
+      }
+    ],
+    "canonical_host_contract": {
+      "apps/backend/proto/kandev/plugin/v1/plugin.proto": {
+        "head": "54e2e21f320601dc2e0702a03ec3dc499a98411c",
+        "blob": "a7b5b056e891c9296f2dd579a9d7f89896c52dfd",
+        "error": null,
+        "matches": []
+      },
+      "apps/backend/pkg/pluginsdk/host.go": {
+        "head": "54e2e21f320601dc2e0702a03ec3dc499a98411c",
+        "blob": "7310a16b3a3b1e3b33a8b7fb28f70f87cf8f6b9a",
+        "error": null,
+        "matches": []
+      }
+    }
+  },
+  "log_evidence": [
+    {
+      "job": 104149800128,
+      "exit": 0,
+      "error": "",
+      "log_sha256": "f95209a2c5147d6b0b9cb4179726806bbda5d4538985e4e00f1e4dd12cdd7bbb",
+      "lines": [
+        "2026-09-14T21:51:33.1709037Z     [cause]: SocketError: other side closed",
+        "2026-09-14T21:51:33.1710394Z     Error Context: e2e/test-results/docker-docker-launch-Docke-f5648-ill-lands-on-feature-branch-containers-retry1/error-context.md",
+        "2026-09-14T21:51:33.1720133Z     TypeError: fetch failed",
+        "2026-09-14T21:51:33.1720607Z     [cause]: SocketError: other side closed",
+        "2026-09-14T21:51:33.1721659Z     Error Context: e2e/test-results/docker-docker-launch-Docke-f5648-ill-lands-on-feature-branch-containers-retry2/error-context.md",
+        "2026-09-14T21:51:33.1725426Z     TypeError: fetch failed",
+        "2026-09-14T21:51:33.1725846Z     [cause]: SocketError: other side closed",
+        "2026-09-14T21:51:33.1727113Z     Error Context: e2e/test-results/docker-docker-launch-Docke-76c0d-ontainer-without-re-cloning-containers/error-context.md",
+        "2026-09-14T21:51:33.1728798Z     TypeError: fetch failed",
+        "2026-09-14T21:51:33.1729203Z     [cause]: SocketError: other side closed",
+        "2026-09-14T21:51:33.1730461Z     Error Context: e2e/test-results/docker-docker-launch-Docke-76c0d-ontainer-without-re-cloning-containers-retry1/error-context.md",
+        "2026-09-14T21:51:33.1738155Z     TypeError: fetch failed",
+        "2026-09-14T21:51:33.1738741Z     [cause]: SocketError: other side closed",
+        "2026-09-14T21:51:33.1740180Z     Error Context: e2e/test-results/docker-docker-launch-Docke-76c0d-ontainer-without-re-cloning-containers-retry2/error-context.md",
+        "2026-09-14T21:51:33.1741484Z   10 failed"
+      ]
+    },
+    {
+      "job": 103880057611,
+      "exit": 0,
+      "error": "",
+      "log_sha256": "0600d4d24af70bb66e28bdc479afb3b8a31ec5dcd64a48a443cfabf9db99dfdc",
+      "lines": [
+        "2026-09-14T06:59:33.7252473Z         at /__w/kandev/kandev/apps/web/e2e/tests/kanban/swimlane-height.spec.ts:145:29",
+        "2026-09-14T06:59:33.7253260Z         at withHeightWorkflows (/__w/kandev/kandev/apps/web/e2e/tests/kanban/swimlane-height-helpers.ts:30:5)",
+        "2026-09-14T06:59:33.7254207Z         at /__w/kandev/kandev/apps/web/e2e/tests/kanban/swimlane-height.spec.ts:130:3",
+        "2026-09-14T06:59:33.7255701Z     e2e/test-results/kanban-swimlane-height-den-3f7b7-ep-the-final-task-reachable-chromium-retry1/test-failed-1.png",
+        "2026-09-14T06:59:33.7257275Z     Error Context: e2e/test-results/kanban-swimlane-height-den-3f7b7-ep-the-final-task-reachable-chromium-retry1/error-context.md",
+        "2026-09-14T06:59:33.7259909Z     e2e/test-results/kanban-swimlane-height-den-3f7b7-ep-the-final-task-reachable-chromium-retry1/trace.zip",
+        "2026-09-14T06:59:33.7261154Z         pnpm exec playwright show-trace e2e/test-results/kanban-swimlane-height-den-3f7b7-ep-the-final-task-reachable-chromium-retry1/trace.zip",
+        "2026-09-14T06:59:33.7263146Z     Error: expect(locator).toBeInViewport() failed",
+        "2026-09-14T06:59:33.7275365Z         at /__w/kandev/kandev/apps/web/e2e/tests/kanban/swimlane-height.spec.ts:145:29",
+        "2026-09-14T06:59:33.7276023Z         at withHeightWorkflows (/__w/kandev/kandev/apps/web/e2e/tests/kanban/swimlane-height-helpers.ts:30:5)",
+        "2026-09-14T06:59:33.7276680Z         at /__w/kandev/kandev/apps/web/e2e/tests/kanban/swimlane-height.spec.ts:130:3",
+        "2026-09-14T06:59:33.7278133Z     e2e/test-results/kanban-swimlane-height-den-3f7b7-ep-the-final-task-reachable-chromium-retry2/test-failed-1.png",
+        "2026-09-14T06:59:33.7279673Z     Error Context: e2e/test-results/kanban-swimlane-height-den-3f7b7-ep-the-final-task-reachable-chromium-retry2/error-context.md",
+        "2026-09-14T06:59:33.7280322Z   1 failed",
+        "2026-09-14T06:59:33.7280987Z     [chromium] \u203a e2e/tests/kanban/swimlane-height.spec.ts:122:5 \u203a dense and sparse workflows size independently and keep the final task reachable "
+      ]
+    },
+    {
+      "job": 103880057676,
+      "exit": 0,
+      "error": "",
+      "log_sha256": "108bb0cd7c0b297e7d8f3a3a25511f7a496b21cd2ec8b8e60c8bb7d445d6ae0e",
+      "lines": [
+        "2026-09-14T07:09:45.0131833Z     Error: expect(locator).toHaveCount(expected) failed",
+        "2026-09-14T07:09:45.0143041Z     e2e/test-results/git-fork-pr-comparison-tar-f85b7-am-target-cannot-be-fetched-chromium/test-failed-1.png",
+        "2026-09-14T07:09:45.0144908Z     Error Context: e2e/test-results/git-fork-pr-comparison-tar-f85b7-am-target-cannot-be-fetched-chromium/error-context.md",
+        "2026-09-14T07:09:45.0146240Z     Error: expect(locator).toHaveCount(expected) failed",
+        "2026-09-14T07:09:45.0155677Z     e2e/test-results/git-fork-pr-comparison-tar-f85b7-am-target-cannot-be-fetched-chromium-retry1/test-failed-1.png",
+        "2026-09-14T07:09:45.0158143Z     Error Context: e2e/test-results/git-fork-pr-comparison-tar-f85b7-am-target-cannot-be-fetched-chromium-retry1/error-context.md",
+        "2026-09-14T07:09:45.0163170Z     Error: expect(locator).toHaveCount(expected) failed",
+        "2026-09-14T07:09:45.0170675Z     e2e/test-results/git-fork-pr-comparison-tar-f85b7-am-target-cannot-be-fetched-chromium-retry2/test-failed-1.png",
+        "2026-09-14T07:09:45.0172254Z     Error Context: e2e/test-results/git-fork-pr-comparison-tar-f85b7-am-target-cannot-be-fetched-chromium-retry2/error-context.md",
+        "2026-09-14T07:09:45.0172894Z   1 failed"
+      ]
+    },
+    {
+      "job": 104119967316,
+      "exit": 0,
+      "error": "",
+      "log_sha256": "36dab5fe28d01017c5ce9dbfaddc9f63b7007be2dc3decc480eaf428b3646d97",
+      "lines": []
+    }
+  ],
+  "sources": [
+    {
+      "path": "/tmp/blocked-native-20260915T0540.json",
+      "sha256": "406381364bb0684fc6daf34d46d8d313113785872b7350846e221ccce3cdf2f8"
+    },
+    {
+      "path": "/tmp/blocked-provider-20260915T0540.json",
+      "sha256": "61da6573e4fb95ee3f93b717c34552a72b46c28cc7c1586dc64dff2f605a09ba"
+    },
+    {
+      "path": "/tmp/blocked-local-20260915T0540.json",
+      "sha256": "1ff7a7811b521425d812682b06cb5bf908fbda0a27bd7ed8f0ca754374f26cc4"
+    },
+    {
+      "path": "/tmp/blocked-runs-20260915T0540.json",
+      "sha256": "bdc793285857c11693cb1243747040552b5afe4a9ac28705ca05a3cca6cc4bcb"
+    },
+    {
+      "path": "/tmp/blocked-log-evidence-20260915T0540.json",
+      "sha256": "9847d302b857d53149dc32f756da3b0bb6dfe243d3c9d9c3a3556015be690727"
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "01d6764d-b66d-46a0-a664-2caf4c3f4d98",
+      "title": "Make terminal workflow routing atomic",
+      "lane": "Blocked",
+      "previous_step": "CI Fixup",
+      "health": "external",
+      "owner": "Actions maintainer; isolated delivery owner 02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+      "blocker_evidence": "Sole docs failure at e30bd1f2, run 34886496085 attempt 1/job 104160061657; validator replay passed per owner. Legacy checkout remains interrupted merge.",
+      "next_action_trigger": "On legitimate rerun/head/status change classify once; green routes isolated recovery to fresh Review then QA.",
+      "fallback_preservation": "Preserve old merge and isolated clean checkout; no duplicate request.",
+      "tag_r4_correction": "Update parent waiting note: it incorrectly implies backend correction is still awaiting gates, omit old failure class.",
+      "sessions_total": 18,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+        "is_current": false,
+        "is_primary": true,
+        "session_id": "f02f5828-691d-4cb5-bd8a-975920709659",
+        "started_at": "2026-09-14T22:42:46.283844563Z",
+        "state": "WAITING_FOR_INPUT",
+        "updated_at": "2026-09-14T22:47:46.075423605Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "Preserve the interrupted merge while the isolated recovery\u2019s pushed backend correction passes independent Review and QA.",
+          "owner": "agent",
+          "updatedAt": "2026-09-08T10:44:01.67210568Z"
+        }
+      ],
+      "relations": {
+        "blockers": [],
+        "blocked_by": [],
+        "children": []
+      },
+      "latest_message": {
+        "id": "034242bb-2701-4391-8556-2b03d3ae3e0d",
+        "at": "2026-09-14T22:47:43.810205441Z",
+        "session_id": "f02f5828-691d-4cb5-bd8a-975920709659"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [
+        {
+          "path": "/data/tasks/make-terminal-workfl_8z3b2nzr/kandev-source",
+          "head": "fe21f495adf3c72fd3fc01de2fffc5541858e575",
+          "branch": "fix/atomic-terminal-routing",
+          "status_count": 2200,
+          "status_sha256": "23424c1595d83e2559e341a86d040f231296ddd109cdb5176d8a6fed507de70a",
+          "status_sample": "M  .agents/skills/e2e/SKILL.md\nA  .agents/skills/e2e/references/resource-safety.md\nM  .agents/skills/mobile-parity/SKILL.md\nM  .agents/skills/playwright-cli/references/playwright-tests.md\nM  .agents/skills/verify/SKILL.md\nA  .github/actions/plan-external-runners/action.yml\nA  .github/scripts/backend",
+          "gitdir": "/data/home/Code/kandev-source/.git/worktrees/kandev-source41"
+        }
+      ],
+      "provider": [
+        {
+          "url": "https://github.com/kdlbs/kandev/pull/3166",
+          "head": "e30bd1f2e5008be93e11ede6b2d3827a74e68095",
+          "base": "753e5549ee730245e4124654052b8b9e364d630c",
+          "draft": true,
+          "merged": false,
+          "mergeable": true,
+          "merge_state": "unstable",
+          "observed_at": "2026-09-15T05:46:50.212745+00:00",
+          "check_count": 77,
+          "failures": [
+            {
+              "name": "Publish PR documentation coverage status",
+              "id": 104160061657,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34886496085/job/104160061657"
+            }
+          ],
+          "unresolved_threads": [],
+          "threads_complete": true
+        }
+      ]
+    },
+    {
+      "task_id": "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+      "title": "Recover atomic terminal routing in an isolated workspace",
+      "lane": "Blocked",
+      "previous_step": "CI Fixup",
+      "health": "external",
+      "owner": "Actions maintainer / Coordinator",
+      "blocker_evidence": "PR3166 exact e30bd1f2 unchanged; docs run 34886496085 attempt1 failed, all other checks pass/skip, zero unresolved threads.",
+      "next_action_trigger": "New legitimate docs attempt/head/status then one exact CI census; terminal green -> Review.",
+      "fallback_preservation": "Preserve both refs and contaminated original; no retry-only edit.",
+      "tag_r4_correction": "Current tag correct.",
+      "sessions_total": 20,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+        "completed_at": "2026-09-14T23:18:41.074342182Z",
+        "is_current": false,
+        "is_primary": false,
+        "session_id": "4081e4fd-1269-4c27-a270-f2b18c05dc23",
+        "started_at": "2026-09-14T23:18:40.239153346Z",
+        "state": "FAILED",
+        "updated_at": "2026-09-15T02:29:21.060522466Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "Resume after a legitimate new attempt changes PR #3166 docs run34886496085 at e30bd1f2; retain one maintainer request.",
+          "owner": "agent",
+          "updatedAt": "2026-09-15T05:09:21.39338498Z"
+        }
+      ],
+      "relations": {
+        "blockers": [],
+        "blocked_by": [],
+        "children": []
+      },
+      "latest_message": {
+        "id": "e03cd1f2-6cfc-4f6f-a4e0-f7ef7f24764b",
+        "at": "2026-09-15T02:32:20.894239677Z",
+        "session_id": "2e3522e5-2c0c-4f08-ac53-156937339be8"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [
+        {
+          "path": "/data/tasks/make-terminal-workfl_8z3b2nzr/kandev-source",
+          "head": "fe21f495adf3c72fd3fc01de2fffc5541858e575",
+          "branch": "fix/atomic-terminal-routing",
+          "status_count": 2200,
+          "status_sha256": "23424c1595d83e2559e341a86d040f231296ddd109cdb5176d8a6fed507de70a",
+          "status_sample": "M  .agents/skills/e2e/SKILL.md\nA  .agents/skills/e2e/references/resource-safety.md\nM  .agents/skills/mobile-parity/SKILL.md\nM  .agents/skills/playwright-cli/references/playwright-tests.md\nM  .agents/skills/verify/SKILL.md\nA  .github/actions/plan-external-runners/action.yml\nA  .github/scripts/backend",
+          "gitdir": "/data/home/Code/kandev-source/.git/worktrees/kandev-source41"
+        },
+        {
+          "path": "/data/tasks/recover-atomic-termi_li7cmaa7/kandev-source",
+          "head": "e30bd1f2e5008be93e11ede6b2d3827a74e68095",
+          "branch": "feature/recover-atomic-termi-7o7",
+          "status_count": 0,
+          "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status_sample": "",
+          "gitdir": "/data/home/Code/kandev-source/.git/worktrees/kandev-source8"
+        }
+      ],
+      "provider": [
+        {
+          "url": "https://github.com/kdlbs/kandev/pull/3166",
+          "head": "e30bd1f2e5008be93e11ede6b2d3827a74e68095",
+          "base": "753e5549ee730245e4124654052b8b9e364d630c",
+          "draft": true,
+          "merged": false,
+          "mergeable": true,
+          "merge_state": "unstable",
+          "observed_at": "2026-09-15T05:46:50.212745+00:00",
+          "check_count": 77,
+          "failures": [
+            {
+              "name": "Publish PR documentation coverage status",
+              "id": 104160061657,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34886496085/job/104160061657"
+            }
+          ],
+          "unresolved_threads": [],
+          "threads_complete": true
+        }
+      ]
+    },
+    {
+      "task_id": "0259d242-0a94-40ef-843e-385292796b64",
+      "title": "Plugin deterministic scale harness",
+      "lane": "Blocked",
+      "previous_step": "Spec",
+      "health": "dependency",
+      "owner": "428d343e-c768-4bce-a5e7-efd3b10f363f -> ca015838-e5cf-4294-b3bb-9c50576a5fe6",
+      "blocker_evidence": "Runtime task has zero live owners, clean unchanged baseline, no reviewed delivered runtime receipt.",
+      "next_action_trigger": "Start configured Work only after reviewed compatible production runtime; parent must verify live queue root.",
+      "fallback_preservation": "Preserve approved deterministic schedule; no substitute queue algorithm.",
+      "tag_r4_correction": "Current tag correct; native edge confirmation denied.",
+      "sessions_total": 1,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "is_current": false,
+        "is_primary": true,
+        "name": "blocked-record-repair-20260908",
+        "session_id": "9699b6a1-f69c-432e-b626-b3eccaa56bf0",
+        "started_at": "2026-09-08T15:28:54.266577944Z",
+        "state": "WAITING_FOR_INPUT",
+        "updated_at": "2026-09-08T15:30:46.433286705Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "Start the deterministic harness after the production runtime has a reviewed exact contract.",
+          "owner": "agent",
+          "updatedAt": "2026-09-15T05:09:20.848201305Z"
+        }
+      ],
+      "relations": {
+        "error": "backend error [FORBIDDEN]: document access denied"
+      },
+      "latest_message": {
+        "id": "7f45c579-1d8b-41e1-984b-5e1e089be437",
+        "at": "2026-09-08T15:30:46.039494844Z",
+        "session_id": "9699b6a1-f69c-432e-b626-b3eccaa56bf0"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [],
+      "provider": []
+    },
+    {
+      "task_id": "212a68ce-7122-4cdb-ba68-764a5ebdb8c6",
+      "title": "Finish Provider Usage plugin coverage",
+      "lane": "Blocked",
+      "previous_step": "Todo",
+      "health": "dependency",
+      "owner": "9d5fcce2-e02d-41a5-b8de-d3672254e199",
+      "blocker_evidence": "Legacy parent and test Git admin remain missing; current tag names recovery while own plan names obsolete b74833e7 root.",
+      "next_action_trigger": "Monitor one recovery owner; final exact tested package then host E2Es and disposition legacy carrier.",
+      "fallback_preservation": "Keep six preserved files and package; do not re-create Git admin.",
+      "tag_r4_correction": "Tag correct; rewrite current R4 owner/trigger to recovery, preserve history.",
+      "sessions_total": 2,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "completed_at": "2026-08-30T19:40:36.453784001Z",
+        "is_current": false,
+        "is_primary": true,
+        "session_id": "501387d6-5c2c-4036-b768-2c568813d0f8",
+        "started_at": "2026-08-27T21:57:46.888306955Z",
+        "state": "FAILED",
+        "updated_at": "2026-08-30T19:40:36.453784001Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "Recovery task9d5fcce2-e02d-41a5-b8de-d3672254e199 owns the missing coverage in a registered checkout; preserve this source.",
+          "owner": "agent",
+          "updatedAt": "2026-09-15T05:09:21.148776434Z"
+        }
+      ],
+      "relations": {
+        "error": "backend error [FORBIDDEN]: document access denied"
+      },
+      "latest_message": {
+        "id": "a9727e67-8866-4dce-bece-f5bf9d46a2ad",
+        "at": "2026-08-27T21:57:46.904724795Z",
+        "session_id": "501387d6-5c2c-4036-b768-2c568813d0f8"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [
+        {
+          "path": "/data/tasks/expose-provider-usag_kjfkfyxi/kdlbs-kandev-plugin-provider-usage-main",
+          "head": "ERROR: fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev-plugin-provider-usage/.git/worktrees/kdlbs-kandev-plugin-provider-usage-main",
+          "branch": "ERROR: fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev-plugin-provider-usage/.git/worktrees/kdlbs-kandev-plugin-provider-usage-main",
+          "status_count": 1,
+          "status_sha256": "99f604430fdd1c012e9b0e76f68e8f7647e7ee0d66ea09fc2c9b2e58aa9db655",
+          "status_sample": "ERROR: fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev-plugin-provider-usage/.git/worktrees/kdlbs-kandev-plugin-provider-usage-main",
+          "gitdir": "ERROR: fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev-plugin-provider-usage/.git/worktrees/kdlbs-kandev-plugin-provider-usage-main"
+        },
+        {
+          "path": "/data/tasks/finish-provider-usag_8isp64fr/kdlbs-kandev-plugin-provider-usage",
+          "head": "ERROR: fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev-plugin-provider-usage/.git/worktrees/kdlbs-kandev-plugin-provider-usage1",
+          "branch": "ERROR: fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev-plugin-provider-usage/.git/worktrees/kdlbs-kandev-plugin-provider-usage1",
+          "status_count": 1,
+          "status_sha256": "957a25962f07cf77ef73f19eae72deafa9527f0b4f0c1b76010a4ae84be48e10",
+          "status_sample": "ERROR: fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev-plugin-provider-usage/.git/worktrees/kdlbs-kandev-plugin-provider-usage1",
+          "gitdir": "ERROR: fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev-plugin-provider-usage/.git/worktrees/kdlbs-kandev-plugin-provider-usage1"
+        }
+      ],
+      "provider": []
+    },
+    {
+      "task_id": "375dcc90-9ff3-4064-ba27-a7f20b33e80c",
+      "title": "Expose Provider Usage through read-only MCP",
+      "lane": "Blocked",
+      "previous_step": "Review",
+      "health": "dependency",
+      "owner": "9d5fcce2-e02d-41a5-b8de-d3672254e199",
+      "blocker_evidence": "Missing plugin Git admin persists; approved remaining concurrency/schema/shared-cache coverage delegated to new recovery according to current tag.",
+      "next_action_trigger": "Consume recovery package and independent review, rerun four actual host E2Es, then fresh gates.",
+      "fallback_preservation": "Preserve legacy plugin package/host commits; do not wake legacy writer.",
+      "tag_r4_correction": "Correct R4 obsolete b74833e7 dependency.",
+      "sessions_total": 8,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "completed_at": "2026-09-07T18:09:53.252039946Z",
+        "is_current": false,
+        "is_primary": false,
+        "session_id": "5fe851f9-7518-4066-8c00-607be9263d35",
+        "started_at": "2026-09-07T18:09:52.693900434Z",
+        "state": "FAILED",
+        "updated_at": "2026-09-07T18:09:53.252039946Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "Recovery task9d5fcce2-e02d-41a5-b8de-d3672254e199 restores plugin coverage; resume host E2E after its exact package and review receipt.",
+          "owner": "agent",
+          "updatedAt": "2026-09-15T05:09:21.022462Z"
+        }
+      ],
+      "relations": {
+        "error": "backend error [FORBIDDEN]: document access denied"
+      },
+      "latest_message": {
+        "id": "38f09fbd-4d12-4e9c-8a7e-64aa2bc138b1",
+        "at": "2026-08-19T10:01:58.193063174Z",
+        "session_id": "d1f45279-3305-4edb-b5b9-56ecf030a310"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [
+        {
+          "path": "/data/tasks/expose-provider-usag_kjfkfyxi/kdlbs-kandev-plugin-provider-usage-main",
+          "head": "ERROR: fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev-plugin-provider-usage/.git/worktrees/kdlbs-kandev-plugin-provider-usage-main",
+          "branch": "ERROR: fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev-plugin-provider-usage/.git/worktrees/kdlbs-kandev-plugin-provider-usage-main",
+          "status_count": 1,
+          "status_sha256": "99f604430fdd1c012e9b0e76f68e8f7647e7ee0d66ea09fc2c9b2e58aa9db655",
+          "status_sample": "ERROR: fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev-plugin-provider-usage/.git/worktrees/kdlbs-kandev-plugin-provider-usage-main",
+          "gitdir": "ERROR: fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev-plugin-provider-usage/.git/worktrees/kdlbs-kandev-plugin-provider-usage-main"
+        }
+      ],
+      "provider": []
+    },
+    {
+      "task_id": "428d343e-c768-4bce-a5e7-efd3b10f363f",
+      "title": "Plugin fenced runtime and scheduler",
+      "lane": "Blocked",
+      "previous_step": "Spec",
+      "health": "dependency",
+      "owner": "ca015838-e5cf-4294-b3bb-9c50576a5fe6",
+      "blocker_evidence": "Host guarded queue contract remains required; unchanged clean 6fb1fdd6 carrier; no runtime implementation yet.",
+      "next_action_trigger": "Start configured Work when reviewed available v1.1.0-compatible queue primitive is supplied.",
+      "fallback_preservation": "Preserve approved runtime plan/policy source; no guessed Host implementation.",
+      "tag_r4_correction": "Remove stale merged-policy/durable-state condition if already delivered; parent confirms root.",
+      "sessions_total": 1,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "is_current": false,
+        "is_primary": true,
+        "name": "blocked-record-repair-20260908",
+        "session_id": "e77fc2f7-6574-4f96-b654-6426e1805b15",
+        "started_at": "2026-09-08T15:28:53.545028788Z",
+        "state": "WAITING_FOR_INPUT",
+        "updated_at": "2026-09-08T15:30:44.80436365Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "Blocked on accepted Host queue primitive PR #3377 plus merged policy/durable-state inputs; approved runtime plan preserved. Resume to Work only on that exact delivery trigger.",
+          "owner": "agent",
+          "updatedAt": "2026-09-05T04:15:17.77701994Z"
+        }
+      ],
+      "relations": {
+        "error": "backend error [FORBIDDEN]: document access denied"
+      },
+      "latest_message": {
+        "id": "cd4902ee-2a72-434b-ac9f-a77f35363e78",
+        "at": "2026-09-08T15:30:43.989703039Z",
+        "session_id": "e77fc2f7-6574-4f96-b654-6426e1805b15"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [
+        {
+          "path": "/data/tasks/plugin-fenced-runtim_053sh4tb/yattdev-kandev-plugin-coordinator",
+          "head": "6fb1fdd63c1728258c40a67df037116c5ca9bbb8",
+          "branch": "feature/plugin-fenced-runtim-ck9",
+          "status_count": 0,
+          "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status_sample": "",
+          "gitdir": "/data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/yattdev/kandev-plugin-coordinator/.git/worktrees/yattdev-kandev-plugin-coordinator1"
+        }
+      ],
+      "provider": []
+    },
+    {
+      "task_id": "4b56a8b3-89fa-43ef-891d-c6b3a3b88e2a",
+      "title": "Propagate CI cleanup errors on workspace deletion",
+      "lane": "Blocked",
+      "previous_step": "Spec",
+      "health": "dependency",
+      "owner": "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+      "blocker_evidence": "Needs scoped CI store tables and deleteCIRunWorkspaceData in canonical main. Native relation confirms owner.",
+      "next_action_trigger": "When contract merged/contained in main -> Work configured owner.",
+      "fallback_preservation": "Preserve approved plan; no branch allocated.",
+      "tag_r4_correction": "Current tag correct.",
+      "sessions_total": 2,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "is_current": false,
+        "is_primary": false,
+        "name": "blocked-dependency-edge-terra",
+        "session_id": "339b7c88-b4ee-46fc-8b9f-bc3436bd08a3",
+        "started_at": "2026-09-07T00:28:08.727249636Z",
+        "state": "WAITING_FOR_INPUT",
+        "updated_at": "2026-09-07T00:28:35.710818987Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "PR #3165 must merge; then Terra reanchors on the landed store contract and implements this plan.",
+          "owner": "agent",
+          "updatedAt": "2026-09-07T00:18:46.102479305Z"
+        }
+      ],
+      "relations": {
+        "blockers": [
+          {
+            "assignee_label": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "id": "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+            "parent_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+            "prs": [
+              {
+                "number": 3165,
+                "state": "open",
+                "title": "feat(github): add scoped coordinator CI reruns",
+                "url": "https://github.com/kdlbs/kandev/pull/3165"
+              }
+            ],
+            "state": "REVIEW",
+            "title": "Allow scoped fresh CI dispatch",
+            "workspace_id": "2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd"
+          }
+        ],
+        "blocked_by": [],
+        "children": []
+      },
+      "latest_message": {
+        "id": "905e015b-bf6b-40ae-8e4a-2199ce05f938",
+        "at": "2026-09-07T00:18:43.563665038Z",
+        "session_id": "96c16a68-b051-45a7-8936-30e2ba64ab58"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [],
+      "provider": []
+    },
+    {
+      "task_id": "51c2875b-48ae-4097-b985-b8a9584ca8c2",
+      "title": "Bug: Notes settings agent utility doesn't load agents profil",
+      "lane": "Blocked",
+      "previous_step": "QA",
+      "health": "decision",
+      "owner": "Human material-contract decision; Coordinator delivery owner",
+      "blocker_evidence": "Host PR2870 exact44bfc3a4 and Notes7 exact19035c9 green with no threads; host local929c4c3 stale. Maintainer asks explicit plugin-owned profile override with Utility Agents fallback.",
+      "next_action_trigger": "Verify visible unresolved material-scope ask, decide/adopt then Work and fresh Review/QA at new exact heads.",
+      "fallback_preservation": "Preserve both clean local heads and QA artifacts; old host QA not current.",
+      "tag_r4_correction": "Current you-decide tag matches; parent verifies actual visible ask.",
+      "sessions_total": 23,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "5b1dc511-64f7-448a-aa2c-5bf72e81f9e9",
+        "is_current": false,
+        "is_primary": true,
+        "session_id": "418654e6-ec5d-43e0-9c28-f2702f4a86a6",
+        "started_at": "2026-09-14T18:25:53.240544503Z",
+        "state": "WAITING_FOR_INPUT",
+        "updated_at": "2026-09-14T18:31:01.057462118Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#f59e0b",
+          "human": false,
+          "id": "tag-5cececc645677193e109",
+          "name": "you decide",
+          "note": "Decide the saved-profile dispatch API contract; recommended plugin-owned override with Utility Agents fallback, then fresh Review and QA.",
+          "owner": "agent",
+          "updatedAt": "2026-09-15T05:09:21.225754858Z"
+        }
+      ],
+      "relations": {
+        "error": "backend error [FORBIDDEN]: document access denied"
+      },
+      "latest_message": {
+        "id": "1821a910-82bb-4075-b99f-20f91622f61b",
+        "at": "2026-09-14T18:30:49.950128982Z",
+        "session_id": "418654e6-ec5d-43e0-9c28-f2702f4a86a6"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [
+        {
+          "path": "/data/tasks/bug-notes-settings-a_imzafc8h/kandev-source",
+          "head": "929c4c3cfeecc7a89eb960bd5474ddb731f019c7",
+          "branch": "feature/implement-host-agent-oav",
+          "status_count": 0,
+          "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status_sample": "",
+          "gitdir": "/data/home/Code/kandev-source/.git/worktrees/kandev-source42"
+        },
+        {
+          "path": "/data/tasks/bug-notes-settings-a_imzafc8h/kandev-plugin-notes",
+          "head": "19035c9e9989e2372d8e4eaca99772b58eb76a96",
+          "branch": "feature/bug-notes-settings-a-0s3",
+          "status_count": 0,
+          "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status_sample": "",
+          "gitdir": "/data/home/Code/kandev-plugin-notes/.git/worktrees/kandev-plugin-notes1"
+        }
+      ],
+      "provider": [
+        {
+          "url": "https://github.com/kdlbs/kandev/pull/2870",
+          "head": "44bfc3a47601b3f55c412c90216713bfe039ffa7",
+          "base": "8acb32c8893d54089d11c7a43e0a61b97ba367bf",
+          "draft": false,
+          "merged": false,
+          "mergeable": true,
+          "merge_state": "clean",
+          "observed_at": "2026-09-15T05:46:45.909150+00:00",
+          "check_count": 77,
+          "failures": [],
+          "unresolved_threads": [],
+          "threads_complete": true
+        },
+        {
+          "url": "https://github.com/yattdev/kandev-plugin-notes/pull/7",
+          "head": "19035c9e9989e2372d8e4eaca99772b58eb76a96",
+          "base": "272c948fd6a5c4aa05d9bfbb26de651b3046339f",
+          "draft": false,
+          "merged": false,
+          "mergeable": true,
+          "merge_state": "clean",
+          "observed_at": "2026-09-15T05:46:47.172699+00:00",
+          "check_count": 3,
+          "failures": [],
+          "unresolved_threads": [],
+          "threads_complete": true
+        }
+      ]
+    },
+    {
+      "task_id": "531a41cd-57ef-495a-8dfa-614d2a4d0d52",
+      "title": "Allow Coordinator dependency-edge mutation",
+      "lane": "Blocked",
+      "previous_step": "CI Fixup",
+      "health": "dependency",
+      "owner": "fa3fba49-2018-460b-a600-adae23b24cc8 and 7056a702-a3c3-4fe8-8535-c6b8d340ef6a",
+      "blocker_evidence": "Needs single canonical designation and cancellation contract; own clean cfd6bdf6 zero delta. Parent evidence required for current prerequisite review verdict.",
+      "next_action_trigger": "Reviewed canonical contract with dual authority resolved -> configured Work.",
+      "fallback_preservation": "Preserve zero-delta carrier; no live grant.",
+      "tag_r4_correction": "Current tag correct; old plan heads obsolete.",
+      "sessions_total": 9,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "5b1dc511-64f7-448a-aa2c-5bf72e81f9e9",
+        "is_current": false,
+        "is_primary": true,
+        "session_id": "5e0de349-8eaf-404f-9ae9-e5d102f70686",
+        "started_at": "2026-09-14T05:25:35.444817693Z",
+        "state": "WAITING_FOR_INPUT",
+        "updated_at": "2026-09-14T05:27:39.993715317Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "Resume dependency-edge implementation after the canonical grant and cancellation contracts pass independent review.",
+          "owner": "agent",
+          "updatedAt": "2026-09-15T05:09:21.304424698Z"
+        }
+      ],
+      "relations": {
+        "error": "backend error [FORBIDDEN]: document access denied"
+      },
+      "latest_message": {
+        "id": "d082059c-acaa-47cb-b4e4-b16ae4650292",
+        "at": "2026-09-14T05:27:27.422736139Z",
+        "session_id": "5e0de349-8eaf-404f-9ae9-e5d102f70686"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [
+        {
+          "path": "/data/tasks/allow-coordinator-de_au1g7cb7/kandev-source",
+          "head": "cfd6bdf65ae6f631d7701c105791a099c0325cc3",
+          "branch": "feature/allow-coordinator-de-gaj",
+          "status_count": 0,
+          "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status_sample": "",
+          "gitdir": "/data/home/Code/kandev-source/.git/worktrees/kandev-source39"
+        }
+      ],
+      "provider": []
+    },
+    {
+      "task_id": "5c9f515d-e5f9-43c5-bf31-fb42276e5e15",
+      "title": "Add guarded TTY bridge to codex-acp",
+      "lane": "Blocked",
+      "previous_step": "Work",
+      "health": "external",
+      "owner": "agentclientprotocol/codex-acp maintainer",
+      "blocker_evidence": "PR451 unchanged0bd0f8fb non-draft; three exact-head action_required runs34178209597/33910495965/33910495905; no threads.",
+      "next_action_trigger": "New maintainer review/approval/result/merge/release -> bounded census.",
+      "fallback_preservation": "Downstream maintained fork proceeds; no duplicate ping.",
+      "tag_r4_correction": "Current tag correct.",
+      "sessions_total": 3,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+        "is_current": false,
+        "is_primary": false,
+        "name": "dependency-edge-correction-remove",
+        "session_id": "0e345274-f015-417f-986a-fe727c7f61a7",
+        "started_at": "2026-08-31T18:54:45.495012521Z",
+        "state": "WAITING_FOR_INPUT",
+        "updated_at": "2026-08-31T21:36:09.436603983Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "Upstream codex-acp #451 is ready at 0bd0f8fb and reviewer-notified; watch only for workflow approval/review while downstream proceeds from the maintained fork.",
+          "owner": "agent",
+          "updatedAt": "2026-09-08T01:58:46.923931459Z"
+        }
+      ],
+      "relations": {
+        "blockers": [],
+        "blocked_by": [],
+        "children": []
+      },
+      "latest_message": {
+        "id": "6e1ea99c-e181-47be-9a9d-2ab2bfb38f8f",
+        "at": "2026-09-06T05:34:51.911338888Z",
+        "session_id": "70ecf6f1-9d03-4435-a50e-acce577ec6ec"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [
+        {
+          "path": "/data/tasks/add-guarded-tty-brid_10966pzf/agentclientprotocol-codex-acp",
+          "head": "0bd0f8fb74a0dfec93eb3a8e586dc0d7c0e8488d",
+          "branch": "feature/add-guarded-tty-brid-6q9",
+          "status_count": 0,
+          "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status_sample": "",
+          "gitdir": "/data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/agentclientprotocol/codex-acp/.git/worktrees/agentclientprotocol-codex-acp"
+        }
+      ],
+      "provider": [
+        {
+          "url": "https://github.com/agentclientprotocol/codex-acp/pull/451",
+          "head": "0bd0f8fb74a0dfec93eb3a8e586dc0d7c0e8488d",
+          "base": "432a4594a396448db6c2e7772a5851ab68b71ef2",
+          "draft": false,
+          "merged": false,
+          "mergeable": true,
+          "merge_state": "unstable",
+          "observed_at": "2026-09-15T05:46:48.989017+00:00",
+          "check_count": 0,
+          "failures": [],
+          "unresolved_threads": [],
+          "threads_complete": true
+        }
+      ]
+    },
+    {
+      "task_id": "6a5a2f73-87e1-4c08-a983-64f2456c3633",
+      "title": "Executor containers: allow unprivileged user namespaces",
+      "lane": "Blocked",
+      "previous_step": "Human-QA",
+      "health": "anomalous",
+      "owner": "Support16b0c902-464c-40e6-80b1-fc69b8f63ce4; Coordinator reconciliation; capacity8a182e40-d99c-42e9-b9be-1f8f78cf8388",
+      "blocker_evidence": "PR2937 merged/green. d8af676d +5649 dirty entries remain. New 05:07 owner failed before transcript; prior actual bwrap failure is Sep8, no current Support result available.",
+      "next_action_trigger": "After verified capacity, one supported reconciliation owner locates pushed incident receipt; only verified remediation enables bounded acceptance probe.",
+      "fallback_preservation": "Preserve backup, merge/index and frozen probe; no security workaround.",
+      "tag_r4_correction": "Current at-risk correct; new failure has empty transcript, root cause from parent required.",
+      "sessions_total": 10,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "completed_at": "2026-09-15T05:07:00.374564105Z",
+        "is_current": false,
+        "is_primary": false,
+        "session_id": "48ea9831-c5fd-4180-8220-e60358978684",
+        "started_at": "2026-09-15T05:06:59.67158007Z",
+        "state": "FAILED",
+        "updated_at": "2026-09-15T05:07:00.375692145Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#e11d48",
+          "human": false,
+          "id": "tag-445f942d5863b3ef35cc",
+          "name": "at-risk",
+          "note": "Evidence-reconciliation launch failed on port capacity; after allocator recovery, verify the existing Support receipt before one acceptance probe.",
+          "owner": "agent",
+          "updatedAt": "2026-09-15T05:09:21.974423169Z"
+        }
+      ],
+      "relations": {
+        "error": "backend error [FORBIDDEN]: document access denied"
+      },
+      "latest_message": {
+        "id": "d61835a1-adb5-4a3e-88c4-1590b67682c3",
+        "at": "2026-09-14T03:13:07.996238261Z",
+        "session_id": "5392b5ee-1843-4436-bd3a-50c9be5b9429"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [
+        {
+          "path": "/data/tasks/executor-containers_7oiab541/kandev-source",
+          "head": "d8af676da8852ea68dec1faedec8ed3baa8a236c",
+          "branch": "feature/executor-containers-nll",
+          "status_count": 5649,
+          "status_sha256": "31f8742d0dcc588ba461af481818ddb29eca8533aeb72c02706f34a4171abfdd",
+          "status_sample": "M  .agents/agents/pr-poller.md\nM  .agents/skills/context-engineering/SKILL.md\nM  .agents/skills/create-kandev-plugin/SKILL.md\nM  .agents/skills/docs-maintainer/SKILL.md\nM  .agents/skills/fix/SKILL.md\nM  .agents/skills/harness-improvement/references/agents.md\nM  .agents/skills/harness-improvement/ref",
+          "gitdir": "/data/home/Code/kandev-source/.git/worktrees/kandev-source28"
+        }
+      ],
+      "provider": [
+        {
+          "url": "https://github.com/kdlbs/kandev/pull/2937",
+          "head": "8b9395b0a3f718a38f4ed671605758836cb65d35",
+          "base": "a170366e34619490758c4c9049b6c5f66c5cbe0b",
+          "draft": false,
+          "merged": true,
+          "mergeable": null,
+          "merge_state": "unknown",
+          "observed_at": "2026-09-15T05:46:43.669580+00:00",
+          "check_count": 76,
+          "failures": [],
+          "unresolved_threads": [],
+          "threads_complete": true
+        }
+      ]
+    },
+    {
+      "task_id": "6d03f4a9-bf89-4882-bf43-5a584f986185",
+      "title": "Adopt exact profile assignment persistence",
+      "lane": "Blocked",
+      "previous_step": "Spec",
+      "health": "dependency",
+      "owner": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+      "blocker_evidence": "Await stable independently reviewed PR3473 exact contract, not legacy fixed model. Source0c83f80f one dirty file; adoptioncfd6bdf6 clean.",
+      "next_action_trigger": "Reviewed merge-ready/merged compatible contract -> Work eight seams.",
+      "fallback_preservation": "Preserve source backup; no shadow Strict contract or fixed lane mapping.",
+      "tag_r4_correction": "Current tag correct.",
+      "sessions_total": 2,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "5b1dc511-64f7-448a-aa2c-5bf72e81f9e9",
+        "is_current": false,
+        "is_primary": true,
+        "session_id": "74f1590e-9dad-4dca-8a2c-0e1652bdccdf",
+        "started_at": "2026-09-14T21:02:52.866930435Z",
+        "state": "WAITING_FOR_INPUT",
+        "updated_at": "2026-09-14T21:05:40.014752615Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "Adopt the eight assignment seams after PR #3473 has a stable reviewed contract; preserve the source and backup.",
+          "owner": "agent",
+          "updatedAt": "2026-09-15T05:09:21.456606411Z"
+        }
+      ],
+      "relations": {
+        "blockers": [],
+        "blocked_by": [],
+        "children": []
+      },
+      "latest_message": {
+        "id": "0822dc71-08c2-45f2-8204-1ede0619233d",
+        "at": "2026-09-14T21:05:25.61587516Z",
+        "session_id": "74f1590e-9dad-4dca-8a2c-0e1652bdccdf"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [
+        {
+          "path": "/data/tasks/platform-exact-profi_k2tb6qj7/kdlbs-kandev",
+          "head": "0c83f80fd90082aa4dc3b7baeb0b28cd6af77575",
+          "branch": "feature/platform-exact-profi-dbo",
+          "status_count": 1,
+          "status_sha256": "c53dae35b4f2e02467efb311820ef6dbb95834e130aceff1c91494dd3f713d09",
+          "status_sample": "M apps/backend/internal/orchestrator/session_launch.go",
+          "gitdir": "/data/repos/workspaces/d35ace87-2aae-4e9c-9114-f9899af7f64b/github/kdlbs/kandev/.git/worktrees/kdlbs-kandev"
+        },
+        {
+          "path": "/data/tasks/adopt-exact-profile_aymu1kux/kandev-source",
+          "head": "cfd6bdf65ae6f631d7701c105791a099c0325cc3",
+          "branch": "feature/adopt-exact-profile-9cd",
+          "status_count": 0,
+          "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status_sample": "",
+          "gitdir": "/data/home/Code/kandev-source/.git/worktrees/kandev-source19"
+        }
+      ],
+      "provider": []
+    },
+    {
+      "task_id": "77353939-0ba8-40dd-b93c-57adc73a4011",
+      "title": "Implement provider-usage MCP tool",
+      "lane": "Blocked",
+      "previous_step": "Review (plan); Backlogs (older move)",
+      "health": "anomalous",
+      "owner": "9d5fcce2-e02d-41a5-b8de-d3672254e199",
+      "blocker_evidence": "Fresh legacy path unexpectedly resolves to recovery branch feature/recover-provider-usa-aew head26c78a756174de2375d1933800eee2e248193c60 with31dirty paths. Other plugin admin missing. Host attachment remains unrelated Redmine branch9149dirty.",
+      "next_action_trigger": "Parent reconcile managed Git-admin alias with sole recovery writer; consume recovery result, never wake legacy writer.",
+      "fallback_preservation": "Preserve existing files/alias; no metadata repair or clean. Root working copy is not evidence old files restored.",
+      "tag_r4_correction": "Tag names correct recovery; own R4 owner and previous-step conflict need explicit correction.",
+      "sessions_total": 4,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "completed_at": "2026-09-07T13:43:29.304606504Z",
+        "is_current": false,
+        "is_primary": false,
+        "session_id": "f44b042d-b4fb-4a4e-97d1-1b33f4e2c2ff",
+        "started_at": "2026-09-07T13:43:29.284999596Z",
+        "state": "FAILED",
+        "updated_at": "2026-09-07T13:43:29.304606504Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "Preserve legacy files while recovery task9d5fcce2-e02d-41a5-b8de-d3672254e199 reconstructs and validates the implementation.",
+          "owner": "agent",
+          "updatedAt": "2026-09-15T05:09:21.089263321Z"
+        }
+      ],
+      "relations": {
+        "error": "backend error [FORBIDDEN]: document access denied"
+      },
+      "latest_message": {
+        "id": "373d0810-b4d8-49a2-a259-2c2ffcd9c358",
+        "at": "2026-08-27T21:57:46.879408471Z",
+        "session_id": "f1ae0de9-7974-455c-a5ca-4005954b869d"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [
+        {
+          "path": "/data/tasks/implement-provider-u_k97qa5oa/kdlbs-kandev-main",
+          "head": "fed90594d38138eee709ae94eef4766ae6ee3386",
+          "branch": "feature/run-isolated-redmine-854",
+          "status_count": 9149,
+          "status_sha256": "75e1c3e677766b52185c9a8fdd3c580f04e9e1c10bd6361e215ad0c5896189ec",
+          "status_sample": "M .agents/agents/pr-poller.md\n M .agents/skills/code-review/SKILL.md\n M .agents/skills/context-engineering/SKILL.md\n M .agents/skills/create-kandev-plugin/SKILL.md\n D .agents/skills/diagram-design/LICENSE\n D .agents/skills/diagram-design/SKILL.md\n D .agents/skills/diagram-design/assets/example-archi",
+          "gitdir": "/data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev/.git/worktrees/kdlbs-kandev-main"
+        },
+        {
+          "path": "/data/tasks/implement-provider-u_k97qa5oa/kandev",
+          "head": "fed90594d38138eee709ae94eef4766ae6ee3386",
+          "branch": "feature/run-isolated-redmine-854",
+          "status_count": 9149,
+          "status_sha256": "75e1c3e677766b52185c9a8fdd3c580f04e9e1c10bd6361e215ad0c5896189ec",
+          "status_sample": "M .agents/agents/pr-poller.md\n M .agents/skills/code-review/SKILL.md\n M .agents/skills/context-engineering/SKILL.md\n M .agents/skills/create-kandev-plugin/SKILL.md\n D .agents/skills/diagram-design/LICENSE\n D .agents/skills/diagram-design/SKILL.md\n D .agents/skills/diagram-design/assets/example-archi",
+          "gitdir": "/data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev/.git/worktrees/kdlbs-kandev-main"
+        },
+        {
+          "path": "/data/tasks/implement-provider-u_k97qa5oa/kdlbs-kandev-plugin-provider-usage",
+          "head": "26c78a756174de2375d1933800eee2e248193c60",
+          "branch": "feature/recover-provider-usa-aew",
+          "status_count": 31,
+          "status_sha256": "5742c60e792529e24a4a2eae95539e56bda95c4da02d124c77276bd4b9140275",
+          "status_sample": "M CHANGELOG.md\n M Makefile\n M README.md\n D docs/screenshots/README.md\n D docs/screenshots/codex-manual-resets-dark-expanded.png\n D docs/screenshots/codex-manual-resets-dark.png\n D docs/screenshots/codex-manual-resets-light-expanded.png\n D docs/screenshots/codex-manual-resets-light.png\n D docs/screen",
+          "gitdir": "/data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev-plugin-provider-usage/.git/worktrees/kdlbs-kandev-plugin-provider-usage"
+        },
+        {
+          "path": "/data/tasks/implement-provider-u_k97qa5oa/kdlbs-kandev-plugin-provider-usage-branch-k5a",
+          "head": "ERROR: fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev-plugin-provider-usage/.git/worktrees/kdlbs-kandev-plugin-provider-usage-branch-k5a",
+          "branch": "ERROR: fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev-plugin-provider-usage/.git/worktrees/kdlbs-kandev-plugin-provider-usage-branch-k5a",
+          "status_count": 1,
+          "status_sha256": "df9ecf9ff75b30031c080824f6b98de657fd543d34413188a19804767f8ca371",
+          "status_sample": "ERROR: fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev-plugin-provider-usage/.git/worktrees/kdlbs-kandev-plugin-provider-usage-branch-k5a",
+          "gitdir": "ERROR: fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev-plugin-provider-usage/.git/worktrees/kdlbs-kandev-plugin-provider-usage-branch-k5a"
+        }
+      ],
+      "provider": []
+    },
+    {
+      "task_id": "86a16fc1-6394-4fb0-898d-4d42948683f5",
+      "title": "Bound plugin registry release latency",
+      "lane": "Blocked",
+      "previous_step": "CI Fixup",
+      "health": "external",
+      "owner": "Actions maintainer; scoped CI fallback9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+      "blocker_evidence": "PR3153 clean135a156a, run34885041870 attempt1 still Backend Tests2/2 failure104119967316; no unresolved threads; local count100 passed historically.",
+      "next_action_trigger": "Legitimate rerun/head/status -> CI census then fresh Review/QA/visual capture.",
+      "fallback_preservation": "No widening timeout/test guard without reproduced branch defect.",
+      "tag_r4_correction": "Tag correct; task plan latest section obsolete QA finding rather than current R4, needs superseding current record.",
+      "sessions_total": 14,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+        "completed_at": "2026-09-14T23:53:42.32219921Z",
+        "is_current": false,
+        "is_primary": false,
+        "session_id": "c6632154-cf10-4fb0-9c8b-72d9b36df611",
+        "started_at": "2026-09-14T23:53:41.683340744Z",
+        "state": "FAILED",
+        "updated_at": "2026-09-15T05:03:56.02611149Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "One rerun request stands for PR #3153 run 34885041870. After green, require fresh Review, QA, and visual capture at head 135a156; prior receipts are stale.",
+          "owner": "agent",
+          "updatedAt": "2026-09-14T22:35:24.06997702Z"
+        }
+      ],
+      "relations": {
+        "error": "backend error [FORBIDDEN]: document access denied"
+      },
+      "latest_message": {
+        "id": "5bf4df9e-87e7-4cef-acf8-480b3690f5e1",
+        "at": "2026-09-15T05:05:00.75356568Z",
+        "session_id": "19334df2-3797-4bcd-86a6-7ed619786fbc"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [
+        {
+          "path": "/data/tasks/bound-plugin-registr_t9zhoda6/kandev-source",
+          "head": "135a156acfaf24803e3938034acddada0f6b366a",
+          "branch": "feature/bound-plugin-registr-x1v",
+          "status_count": 0,
+          "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status_sample": "",
+          "gitdir": "/data/home/Code/kandev-source/.git/worktrees/kandev-source14"
+        }
+      ],
+      "provider": [
+        {
+          "url": "https://github.com/kdlbs/kandev/pull/3153",
+          "head": "135a156acfaf24803e3938034acddada0f6b366a",
+          "base": "8acb32c8893d54089d11c7a43e0a61b97ba367bf",
+          "draft": true,
+          "merged": false,
+          "mergeable": true,
+          "merge_state": "blocked",
+          "observed_at": "2026-09-15T05:46:47.892898+00:00",
+          "check_count": 79,
+          "failures": [
+            {
+              "name": "Run Backend Tests",
+              "id": 104130513966,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34885041870/job/104130513966"
+            },
+            {
+              "name": "Backend Tests (2/2)",
+              "id": 104119967316,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34885041870/job/104119967316"
+            }
+          ],
+          "unresolved_threads": [],
+          "threads_complete": true
+        }
+      ]
+    },
+    {
+      "task_id": "86c8b47e-e7a5-4693-8e11-dce08899a0bf",
+      "title": "Preserve unread queue on session deletion",
+      "lane": "Blocked",
+      "previous_step": "CI Fixup",
+      "health": "dependency",
+      "owner": "ca015838-e5cf-4294-b3bb-9c50576a5fe6",
+      "blocker_evidence": "Fork15 remains draft/conflicting c4156e83 based on old355ec088; preview attempt2 failed irrelevant to canonical delivery. Own unpushed(?) review retention correction must be reconciled;6screenshots preserved.",
+      "next_action_trigger": "After independently reviewed compatible queue contract, reanchor and verify bounded retention/remediation, fresh gates; final delivery PR targets kdlbs.",
+      "fallback_preservation": "Preserve fork15 as stacked reference and six screenshots; no fork-preview repair.",
+      "tag_r4_correction": "Current tag allows reviewed-head start whereas last own R4 demands merged #3377; primary should explicitly record governing start/integration distinction.",
+      "sessions_total": 3,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+        "is_current": false,
+        "is_primary": false,
+        "name": "fresh-review-queue-retention-41922c84",
+        "session_id": "02b48c70-3ad9-461d-a5ca-7fe3c01dfe50",
+        "started_at": "2026-09-06T08:07:43.596498386Z",
+        "state": "WAITING_FOR_INPUT",
+        "updated_at": "2026-09-06T08:11:23.115805113Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "Resume after the queue prerequisite has a pushed, independently reviewed compatible head; then validate cleanup retention fixes.",
+          "owner": "agent",
+          "updatedAt": "2026-09-15T05:09:20.64333759Z"
+        }
+      ],
+      "relations": {
+        "error": "backend error [FORBIDDEN]: document access denied"
+      },
+      "latest_message": {
+        "id": "36b44b24-6e26-45d0-ac54-2b48f6d0b6d7",
+        "at": "2026-09-06T08:46:09.047064069Z",
+        "session_id": "2376d3fe-6818-4486-a1fb-7dc99c3bf433"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [
+        {
+          "path": "/data/tasks/preserve-unread-queu_ofb2j8xg/kdlbs-kandev",
+          "head": "c4156e83b8379851f50ce6890a13b16720874df9",
+          "branch": "feature/preserve-unread-queu-s0c",
+          "status_count": 6,
+          "status_sha256": "5a0cb5ec31052b08184be0ee3cc68d9672a20d484c8e512f547824f2209e5a90",
+          "status_sample": "?? apps/web/.qa-artifacts/preview-session-history-hidden-desktop.png\n?? apps/web/.qa-artifacts/preview-session-history-visible-desktop.png\n?? apps/web/.qa-artifacts/session-history-hidden-desktop.png\n?? apps/web/.qa-artifacts/session-history-hidden-mobile.png\n?? apps/web/.qa-artifacts/session-histor",
+          "gitdir": "/data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev/.git/worktrees/kdlbs-kandev16"
+        }
+      ],
+      "provider": [
+        {
+          "url": "https://github.com/yattdev/kandev/pull/15",
+          "head": "c4156e83b8379851f50ce6890a13b16720874df9",
+          "base": "355ec0881f7966428a2df15a9d6b3602685f6bb8",
+          "draft": true,
+          "merged": false,
+          "mergeable": false,
+          "merge_state": "dirty",
+          "observed_at": "2026-09-15T05:46:51.736308+00:00",
+          "check_count": 10,
+          "failures": [
+            {
+              "name": "deploy-same-repo",
+              "id": 101457586228,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/yattdev/kandev/actions/runs/34021528224/job/101457586228"
+            }
+          ],
+          "unresolved_threads": [],
+          "threads_complete": true
+        }
+      ]
+    },
+    {
+      "task_id": "9349b6e5-a167-4d88-af14-cb355015e3dd",
+      "title": "Allow coordinator relation inspection",
+      "lane": "Blocked",
+      "previous_step": "CI Fixup",
+      "health": "external",
+      "owner": "Actions documentation credential/configuration owner",
+      "blocker_evidence": "PR2841 exact cleanb44ec647 run34882999679 attempt1/job104119439742 sole docs failure; no threads; request5670921314 exists.",
+      "next_action_trigger": "New legitimate attempt/head/status -> once exact census, green fresh Review/QA.",
+      "fallback_preservation": "Preserve clean head; no duplicate request or synthetic push.",
+      "tag_r4_correction": "Current complete R4/tag correct.",
+      "sessions_total": 22,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+        "completed_at": "2026-09-15T05:03:55.890818126Z",
+        "is_current": false,
+        "is_primary": false,
+        "name": "codex-ci-restart",
+        "session_id": "364cc979-268f-4b42-a386-b3e5afdf984a",
+        "started_at": "2026-09-14T21:27:44.795157796Z",
+        "state": "COMPLETED",
+        "updated_at": "2026-09-15T05:03:56.470396635Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#e11d48",
+          "human": false,
+          "id": "tag-445f942d5863b3ef35cc",
+          "name": "at-risk",
+          "note": "Resume when PR #2841 docs job104119439742 receives a legitimate new attempt or status change; preserve b44ec647.",
+          "owner": "agent",
+          "updatedAt": "2026-09-15T05:04:48.243329555Z"
+        }
+      ],
+      "relations": {
+        "error": "backend error [FORBIDDEN]: document access denied"
+      },
+      "latest_message": {
+        "id": "113d40b1-8f21-4ac9-9b6a-aa028a012531",
+        "at": "2026-09-15T05:05:16.616294192Z",
+        "session_id": "34f41bdd-b8a0-4e1f-917c-cc70d2a75595"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [
+        {
+          "path": "/data/tasks/allow-coordinator-re_7jiy6ysd/kandev-source",
+          "head": "b44ec64734f4d6aab839b675eb2893b7eac38a04",
+          "branch": "feature/allow-coordinator-re-wxo",
+          "status_count": 0,
+          "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status_sample": "",
+          "gitdir": "/data/home/Code/kandev-source/.git/worktrees/kandev-source38"
+        }
+      ],
+      "provider": [
+        {
+          "url": "https://github.com/kdlbs/kandev/pull/2841",
+          "head": "b44ec64734f4d6aab839b675eb2893b7eac38a04",
+          "base": "8acb32c8893d54089d11c7a43e0a61b97ba367bf",
+          "draft": true,
+          "merged": false,
+          "mergeable": true,
+          "merge_state": "unstable",
+          "observed_at": "2026-09-15T05:46:45.564027+00:00",
+          "check_count": 77,
+          "failures": [
+            {
+              "name": "Publish PR documentation coverage status",
+              "id": 104119439742,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34882999679/job/104119439742"
+            }
+          ],
+          "unresolved_threads": [],
+          "threads_complete": true
+        }
+      ]
+    },
+    {
+      "task_id": "96e27238-8b7d-476a-8c70-b8da0abae935",
+      "title": "Fix stale plugin-hook docs and template rename checklist",
+      "lane": "Blocked",
+      "previous_step": "Work",
+      "health": "external",
+      "owner": "kdlbs/kandev-plugin-template maintainer",
+      "blocker_evidence": "Template4 f6166425 unchanged; CI/Build31053652395/31053652448 attempt1 failures from expired approval, no executable checks; clean carrier91e36603.",
+      "next_action_trigger": "Maintainer approval/rerun/review -> once exact census.",
+      "fallback_preservation": "Keep user-deferred release.yml outside scope.",
+      "tag_r4_correction": "Current R4/tag correct.",
+      "sessions_total": 5,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "is_current": false,
+        "is_primary": true,
+        "session_id": "3990717f-3976-467b-8b30-a15065c1a1c1",
+        "started_at": "2026-08-27T19:38:02.728942705Z",
+        "state": "WAITING_FOR_INPUT",
+        "updated_at": "2026-09-08T04:10:26.568612141Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "Template maintainer must approve/rerun the two zero-job failures at f616642; request posted. Preserve merged Kandev work and defer release-workflow changes.",
+          "owner": "agent",
+          "updatedAt": "2026-09-08T04:09:44.880254308Z"
+        }
+      ],
+      "relations": {
+        "error": "backend error [FORBIDDEN]: document access denied"
+      },
+      "latest_message": {
+        "id": "8cf29cd7-80c7-4fc9-a437-e44cb149ec06",
+        "at": "2026-09-08T04:10:24.06289713Z",
+        "session_id": "3990717f-3976-467b-8b30-a15065c1a1c1"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [
+        {
+          "path": "/data/tasks/fix-stale-plugin-hoo_wb6/kandev-source",
+          "head": "91e36603f33c0b004815e8ba6ec6c2163d7c3fd9",
+          "branch": "feature/fix-stale-plugin-hoo-54w",
+          "status_count": 0,
+          "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status_sample": "",
+          "gitdir": "/data/home/Code/kandev-source/.git/worktrees/kandev-source18"
+        }
+      ],
+      "provider": [
+        {
+          "url": "https://github.com/kdlbs/kandev-plugin-template/pull/4",
+          "head": "f616642516372091f1a0aa6239bb693d3eb2839d",
+          "base": "e034b0845073b5c6cb5ce94e8ce90b5b57c0ff55",
+          "draft": false,
+          "merged": false,
+          "mergeable": true,
+          "merge_state": "clean",
+          "observed_at": "2026-09-15T05:46:41.451565+00:00",
+          "check_count": 1,
+          "failures": [],
+          "unresolved_threads": [],
+          "threads_complete": true
+        }
+      ]
+    },
+    {
+      "task_id": "9e67c426-1300-46ef-a00f-e5603791212d",
+      "title": "Plan coordinator plugin architecture",
+      "lane": "Blocked",
+      "previous_step": "CI Fixup (verify historical field)",
+      "health": "dependency",
+      "owner": "1e46d457-6869-4750-bf97-4640a8df3b68 and cancellation7056a702-a3c3-4fe8-8535-c6b8d340ef6a",
+      "blocker_evidence": "OldPR2793 draft/conflicting unchangedafd2b699; preservedee411970 +19untracked. Historical armed sessions remain dormant; no pending-row inference from state.",
+      "next_action_trigger": "Only after replacement outcome and authoritative exact-cancellation/absence receipts decide supersede/close; parent verifies prerequisites.",
+      "fallback_preservation": "No stale owner contact; keep backup and unknown untracked files.",
+      "tag_r4_correction": "Current tag says replacement completion OR cancellation but own record uses AND; reconcile explicit prerequisites before movement.",
+      "sessions_total": 19,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "5b1dc511-64f7-448a-aa2c-5bf72e81f9e9",
+        "is_current": false,
+        "is_primary": true,
+        "session_id": "d770156a-416b-4134-9992-99b681782f37",
+        "started_at": "2026-09-14T04:11:48.804362411Z",
+        "state": "WAITING_FOR_INPUT",
+        "updated_at": "2026-09-14T04:13:00.067304194Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "Preserve the source until replacement completion or verified exact cancellation clears contact; never wake historical armed sessions.",
+          "owner": "agent",
+          "updatedAt": "2026-09-15T05:09:20.904728243Z"
+        }
+      ],
+      "relations": {
+        "error": "backend error [FORBIDDEN]: document access denied"
+      },
+      "latest_message": {
+        "id": "37725177-6e95-45bb-97ac-dce4433f3e4d",
+        "at": "2026-09-14T04:12:58.113810923Z",
+        "session_id": "d770156a-416b-4134-9992-99b681782f37"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [
+        {
+          "path": "/data/tasks/create-a-plugin-that_wtf60hhd/kandev-source",
+          "head": "ee41197009dd00331b74ab6a1b9c1a66292f2c20",
+          "branch": "feature/create-a-plugin-that-kch",
+          "status_count": 19,
+          "status_sha256": "f2f762a0231f816623d9dcadb2768cbc8aff54356ddf781d9db38549a51eccbc",
+          "status_sample": "?? apps/backend/internal/system/storage/tempartifacts/process_alive_unix.go\n?? apps/backend/internal/system/storage/tempartifacts/process_alive_windows.go\n?? apps/web/app/office/agents/[id]/components/agent-overview-tab.tsx\n?? apps/web/app/office/agents/page.tsx\n?? apps/web/app/office/inbox/page.tsx",
+          "gitdir": "/data/home/Code/kandev-source/.git/worktrees/kandev-source20"
+        }
+      ],
+      "provider": [
+        {
+          "url": "https://github.com/kdlbs/kandev/pull/2793",
+          "head": "afd2b699bfe9b6af9353ea01728582f61a7be2be",
+          "base": "5b4a8e1013d7144bfc4e63afe8949a8ac97b40ad",
+          "draft": true,
+          "merged": false,
+          "mergeable": false,
+          "merge_state": "dirty",
+          "observed_at": "2026-09-15T05:46:41.586532+00:00",
+          "check_count": 55,
+          "failures": [
+            {
+              "name": "E2E Tests Passed",
+              "id": 99333226830,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/33338649378/job/99333226830"
+            },
+            {
+              "name": "Merge E2E Reports",
+              "id": 99333065170,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/33338649378/job/99333065170"
+            },
+            {
+              "name": "E2E Containers Shard 4/6",
+              "id": 99330947517,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/33338649378/job/99330947517"
+            }
+          ],
+          "unresolved_threads": [],
+          "threads_complete": true
+        }
+      ]
+    },
+    {
+      "task_id": "a3f02302-12fa-4129-8985-116efb8fed66",
+      "title": "Recover workspace reuse inventory mismatches",
+      "lane": "Blocked",
+      "previous_step": "CI Fixup",
+      "health": "external",
+      "owner": "Actions maintainer request5661623450; scopedCI fallback",
+      "blocker_evidence": "PR3310 clean db0118b4 same run34810899170 attempt1 leaf2/14 and10/14 fail plus aggregates; no threads. New failed start has zero messages. Native relation to merged Redmine4 is stale/unrelated.",
+      "next_action_trigger": "Legitimate rerun/head/status -> one exactCI census. Correct own plan R4 from retired model policy to actualCI.",
+      "fallback_preservation": "Preserve clean checkout; no retry-only commit.",
+      "tag_r4_correction": "Tag correct. Remove obsolete dependency only via authorized parent reconciliation; old model-only R4 invalid.",
+      "sessions_total": 3,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "completed_at": "2026-09-15T05:03:57.121735521Z",
+        "is_current": false,
+        "is_primary": false,
+        "session_id": "0a3a26db-4bca-44d0-bc62-489000da0e03",
+        "started_at": "2026-09-15T05:03:56.084864458Z",
+        "state": "FAILED",
+        "updated_at": "2026-09-15T05:03:57.122792912Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "PR #3310 exact db0118b waits on the single maintainer rerun request 5661623450 for canonical E2E Shards 2/10; no duplicate ping or synthetic push.",
+          "owner": "agent",
+          "updatedAt": "2026-09-14T10:05:34.615587359Z"
+        }
+      ],
+      "relations": {
+        "blockers": [],
+        "blocked_by": [
+          {
+            "assignee_label": "5b1dc511-64f7-448a-aa2c-5bf72e81f9e9",
+            "id": "3f721d52-452b-4bc6-a61e-68d875baafbd",
+            "parent_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+            "prs": [
+              {
+                "merged_at": "2026-09-14T05:23:43Z",
+                "number": 4,
+                "state": "merged",
+                "title": "fix: preflight released SDK contract",
+                "url": "https://github.com/yattdev/kandev-plugin-redmine/pull/4"
+              }
+            ],
+            "state": "COMPLETED",
+            "title": "Recover Redmine preflight in a dedicated workspace",
+            "workspace_id": "2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd"
+          }
+        ],
+        "children": []
+      },
+      "latest_message": {
+        "id": "486c5aab-3adc-4869-bfe1-9ece85e3068c",
+        "at": "2026-09-15T02:34:59.739788463Z",
+        "session_id": "f03bfcc5-01ed-4961-9859-bcdef0dd0210"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [
+        {
+          "path": "/data/tasks/recover-workspace-re_5cxmeho1/kandev-source",
+          "head": "db0118b473d1ae3e31b1a63263ce625c7d22c5ae",
+          "branch": "feature/recover-workspace-repair",
+          "status_count": 0,
+          "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status_sample": "",
+          "gitdir": "/data/home/Code/kandev-source/.git/worktrees/kandev-source6"
+        }
+      ],
+      "provider": [
+        {
+          "url": "https://github.com/kdlbs/kandev/pull/3310",
+          "head": "db0118b473d1ae3e31b1a63263ce625c7d22c5ae",
+          "base": "753e5549ee730245e4124654052b8b9e364d630c",
+          "draft": true,
+          "merged": false,
+          "mergeable": true,
+          "merge_state": "blocked",
+          "observed_at": "2026-09-15T05:46:51.225476+00:00",
+          "check_count": 77,
+          "failures": [
+            {
+              "name": "E2E Tests Passed",
+              "id": 103892465882,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34810899170/job/103892465882"
+            },
+            {
+              "name": "Merge E2E Reports",
+              "id": 103891695127,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34810899170/job/103891695127"
+            },
+            {
+              "name": "E2E Shard 10/14",
+              "id": 103880057676,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34810899170/job/103880057676"
+            },
+            {
+              "name": "E2E Shard 2/14",
+              "id": 103880057611,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34810899170/job/103880057611"
+            }
+          ],
+          "unresolved_threads": [],
+          "threads_complete": true
+        }
+      ]
+    },
+    {
+      "task_id": "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+      "title": "Provision isolated Coordinator plugin end-to-end QA runtime",
+      "lane": "Blocked",
+      "previous_step": "QA",
+      "health": "anomalous",
+      "owner": "Canonical Host conversation delivery owner under plugin program; parent must identify live owner",
+      "blocker_evidence": "Current main54e2e21f320601dc2e0702a03ec3dc499a98411c lacks EnsureAgentConversation in proto and AgentConversationHost in SDK; actual missing dependency is not queue3377.",
+      "next_action_trigger": "Canonical compatible Host build -> QA immutable5bfdbcf7 fresh installation smoke, both tools immediately present and persisted report/UI assertions.",
+      "fallback_preservation": "Preserve task-local detachedcheckouts/package/runtime receipts.",
+      "tag_r4_correction": "Tag correct; ensure exact staffed canonical delivery root, not obsolete queue blocker.",
+      "sessions_total": 1,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+        "is_current": false,
+        "is_primary": true,
+        "session_id": "c66159ec-9746-4485-9daf-8e757286b0ba",
+        "started_at": "2026-08-30T04:36:43.038107816Z",
+        "state": "WAITING_FOR_INPUT",
+        "updated_at": "2026-09-14T05:42:05.522735357Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "Await canonical Host delivery of EnsureAgentConversation/AgentConversationHost; #3377 is not required for this smoke gate.",
+          "owner": "agent",
+          "updatedAt": "2026-09-14T05:42:48.380807722Z"
+        }
+      ],
+      "relations": {
+        "blockers": [],
+        "blocked_by": [],
+        "children": []
+      },
+      "latest_message": {
+        "id": "f97004fb-ba2e-4c4a-a094-835cc1d43779",
+        "at": "2026-09-14T05:41:54.912345731Z",
+        "session_id": "c66159ec-9746-4485-9daf-8e757286b0ba"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [
+        {
+          "path": "/data/tasks/provision-isolated-c_lhtgd60a/kandev",
+          "head": "ff9b8b8ecfd32a7ca00708bbbbff330dc9ccc7a7",
+          "branch": "",
+          "status_count": 0,
+          "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status_sample": "",
+          "gitdir": ".git"
+        },
+        {
+          "path": "/data/tasks/provision-isolated-c_lhtgd60a/kandev-current-main-afdb2ef3",
+          "head": "4d8763e4de852701f22345c7ac115ffdfac30664",
+          "branch": "",
+          "status_count": 0,
+          "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status_sample": "",
+          "gitdir": ".git"
+        },
+        {
+          "path": "/data/tasks/provision-isolated-c_lhtgd60a/coordinator-plugin-afdb2ef3",
+          "head": "5bfdbcf7d9608d1210453f95ebfc8f66c3179225",
+          "branch": "",
+          "status_count": 0,
+          "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status_sample": "",
+          "gitdir": ".git"
+        },
+        {
+          "path": "/data/tasks/provision-isolated-c_lhtgd60a/kdlbs-kandev",
+          "head": "4d8763e4de852701f22345c7ac115ffdfac30664",
+          "branch": "feature/provision-isolated-c-325",
+          "status_count": 0,
+          "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status_sample": "",
+          "gitdir": "/data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev/.git/worktrees/kdlbs-kandev5"
+        }
+      ],
+      "provider": []
+    },
+    {
+      "task_id": "b8fc206c-9e3f-4497-9ac3-3b62593da258",
+      "title": "Rotate Coordinator sessions before context exhaustion",
+      "lane": "Blocked",
+      "previous_step": "Spec",
+      "health": "dependency",
+      "owner": "86c8b47e-e7a5-4693-8e11-dce08899a0bf -> ca015838-e5cf-4294-b3bb-9c50576a5fe6",
+      "blocker_evidence": "Cleanup contract not independently delivered; no rotationimplementation/worktree. Manual04:36promotion and misrouted wake do not satisfy automatic delivery.",
+      "next_action_trigger": "Reviewed compatible queue-safe cleanup -> configuredWork; require atomic primary/routine transfer,FIFOidentity,generationfence,bootstrap,safeoldretirement.",
+      "fallback_preservation": "Keep all Coordinator sessions/queues; no manualpromotion request or emulation.",
+      "tag_r4_correction": "Tag correct; own plan missing current manual-promotion provenance/standing workflow policy.",
+      "sessions_total": 2,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "ce9f96f7-4434-4729-b23b-926b4b72f417",
+        "completed_at": "2026-09-06T08:06:22.271955479Z",
+        "is_current": false,
+        "is_primary": false,
+        "session_id": "c0d09731-8fb6-4f7b-8cf9-92a1f1ebb561",
+        "started_at": "2026-09-06T08:06:22.247500687Z",
+        "state": "FAILED",
+        "updated_at": "2026-09-06T08:06:22.271955479Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "Start automatic rotation implementation after cleanup passes independent review; manual promotion does not satisfy delivery.",
+          "owner": "agent",
+          "updatedAt": "2026-09-15T05:09:20.785760667Z"
+        }
+      ],
+      "relations": {
+        "blockers": [
+          {
+            "assignee_label": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "id": "86c8b47e-e7a5-4693-8e11-dce08899a0bf",
+            "prs": [
+              {
+                "number": 15,
+                "state": "open",
+                "title": "fix: preserve queued work during session cleanup",
+                "url": "https://github.com/yattdev/kandev/pull/15"
+              }
+            ],
+            "state": "REVIEW",
+            "title": "Preserve unread queue on session deletion",
+            "workspace_id": "2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd"
+          }
+        ],
+        "blocked_by": [],
+        "children": []
+      },
+      "latest_message": null,
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [],
+      "provider": []
+    },
+    {
+      "task_id": "c642d57a-5a24-48ca-8f85-57d31115eeb5",
+      "title": "Prevent stale sessions blocking workflow",
+      "lane": "Blocked",
+      "previous_step": "CI Fixup",
+      "health": "external",
+      "owner": "Actions/GHCR maintainer; existing single request",
+      "blocker_evidence": "PR2909 cleanrecoverycaee717b, run34888832549 attempt1 sixcontainer failures; ordinary shards cancelled;0threads. Oldsourceb2dbf98a5967dirty preserved.",
+      "next_action_trigger": "New legit attempt/head change -> exactCIcensus then freshReview/QA.",
+      "fallback_preservation": "Keep originalmidmerge andcleanrecovery; no synthetic push.",
+      "tag_r4_correction": "Tag correct; ownplan stale providerdiscrepancy needs current R4.",
+      "sessions_total": 2,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "is_current": false,
+        "is_primary": true,
+        "session_id": "3df169fa-a215-4f8e-a440-11315d6bd206",
+        "started_at": "2026-09-15T05:03:55.624926318Z",
+        "state": "WAITING_FOR_INPUT",
+        "updated_at": "2026-09-15T05:04:38.579050422Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "Resume on a legitimate new PR #2909 run attempt or head change; keep the existing maintainer request and preserved checkout.",
+          "owner": "agent",
+          "updatedAt": "2026-09-15T05:04:48.121064349Z"
+        }
+      ],
+      "relations": {
+        "error": "backend error [FORBIDDEN]: document access denied"
+      },
+      "latest_message": {
+        "id": "ebc5aec4-8262-4873-8b55-b8455972fd92",
+        "at": "2026-09-15T05:04:19.866622297Z",
+        "session_id": "3df169fa-a215-4f8e-a440-11315d6bd206"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [
+        {
+          "path": "/data/tasks/prevent-stale-sessio_df5zabn0/kandev-source",
+          "head": "b2dbf98a01b2bf6f20e21461d05c1f36627fd156",
+          "branch": "feature/prevent-stale-sessio-7n1",
+          "status_count": 5967,
+          "status_sha256": "10520ccdee7558ada3c8de7d9cda6c9277068edfbb01155c75a87b81ba83e9ea",
+          "status_sample": "M  .agents/agents/pr-poller.md\nM  .agents/skills/code-review/SKILL.md\nM  .agents/skills/context-engineering/SKILL.md\nM  .agents/skills/create-kandev-plugin/SKILL.md\nM  .agents/skills/docs-maintainer/SKILL.md\nM  .agents/skills/fix/SKILL.md\nM  .agents/skills/harness-improvement/references/agents.md\nM ",
+          "gitdir": "/data/home/Code/kandev-source/.git/worktrees/kandev-source37"
+        },
+        {
+          "path": "/data/tasks/prevent-stale-sessio_df5zabn0/kandev-recovery-pr2909",
+          "head": "caee717b7c9d9c120e8dcbfcc77c7b08bfc9b697",
+          "branch": "feature/prevent-stale-sessio-7n1",
+          "status_count": 0,
+          "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status_sample": "",
+          "gitdir": ".git"
+        }
+      ],
+      "provider": [
+        {
+          "url": "https://github.com/kdlbs/kandev/pull/2909",
+          "head": "caee717b7c9d9c120e8dcbfcc77c7b08bfc9b697",
+          "base": "8acb32c8893d54089d11c7a43e0a61b97ba367bf",
+          "draft": true,
+          "merged": false,
+          "mergeable": true,
+          "merge_state": "blocked",
+          "observed_at": "2026-09-15T05:46:44.028705+00:00",
+          "check_count": 77,
+          "failures": [
+            {
+              "name": "E2E Tests Passed",
+              "id": 104176916269,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104176916269"
+            },
+            {
+              "name": "Merge E2E Reports",
+              "id": 104175521115,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104175521115"
+            },
+            {
+              "name": "E2E Shard 1/14",
+              "id": 104149801557,
+              "conclusion": "cancelled",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104149801557"
+            },
+            {
+              "name": "E2E Shard 14/14",
+              "id": 104149800914,
+              "conclusion": "cancelled",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104149800914"
+            },
+            {
+              "name": "E2E Shard 4/14",
+              "id": 104149800789,
+              "conclusion": "cancelled",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104149800789"
+            },
+            {
+              "name": "E2E Shard 7/14",
+              "id": 104149800762,
+              "conclusion": "cancelled",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104149800762"
+            },
+            {
+              "name": "E2E Shard 12/14",
+              "id": 104149800732,
+              "conclusion": "cancelled",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104149800732"
+            },
+            {
+              "name": "E2E Shard 11/14",
+              "id": 104149800721,
+              "conclusion": "cancelled",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104149800721"
+            },
+            {
+              "name": "E2E Shard 9/14",
+              "id": 104149800718,
+              "conclusion": "cancelled",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104149800718"
+            },
+            {
+              "name": "E2E Shard 2/14",
+              "id": 104149800716,
+              "conclusion": "cancelled",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104149800716"
+            },
+            {
+              "name": "E2E Shard 13/14",
+              "id": 104149800670,
+              "conclusion": "cancelled",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104149800670"
+            },
+            {
+              "name": "E2E Shard 3/14",
+              "id": 104149800649,
+              "conclusion": "cancelled",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104149800649"
+            },
+            {
+              "name": "E2E Shard 8/14",
+              "id": 104149800648,
+              "conclusion": "cancelled",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104149800648"
+            },
+            {
+              "name": "E2E Shard 10/14",
+              "id": 104149800623,
+              "conclusion": "cancelled",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104149800623"
+            },
+            {
+              "name": "E2E Shard 6/14",
+              "id": 104149800610,
+              "conclusion": "cancelled",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104149800610"
+            },
+            {
+              "name": "E2E Shard 5/14",
+              "id": 104149800592,
+              "conclusion": "cancelled",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104149800592"
+            },
+            {
+              "name": "E2E Containers Shard 2/6",
+              "id": 104149800227,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104149800227"
+            },
+            {
+              "name": "E2E Containers Shard 4/6",
+              "id": 104149800216,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104149800216"
+            },
+            {
+              "name": "E2E Containers Shard 5/6",
+              "id": 104149800168,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104149800168"
+            },
+            {
+              "name": "E2E Containers Shard 3/6",
+              "id": 104149800142,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104149800142"
+            },
+            {
+              "name": "E2E Containers Shard 6/6",
+              "id": 104149800129,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104149800129"
+            },
+            {
+              "name": "E2E Containers Shard 1/6",
+              "id": 104149800128,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34888832549/job/104149800128"
+            }
+          ],
+          "unresolved_threads": [],
+          "threads_complete": true
+        }
+      ]
+    },
+    {
+      "task_id": "e8728906-86de-4a75-960f-9da585485823",
+      "title": "Fix plugin task priority persistence",
+      "lane": "Blocked",
+      "previous_step": "CI Fixup",
+      "health": "external",
+      "owner": "Actions maintainer; fallback9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+      "blocker_evidence": "PR3468 unchangedclean973a9d6d run34197413540attempt1 SSHfixtureleaf101969065371 andaggregates;0threads.",
+      "next_action_trigger": "Newlegitimateattempt -> exactCI; greenfreshReview/QA.",
+      "fallback_preservation": "Preserve clean head; retain sole maintainer request 5584377539.",
+      "tag_r4_correction": "Retaintrigger, replace fixed Luna wording with configured CI owner in current R4.",
+      "sessions_total": 15,
+      "active_sessions": [],
+      "latest_session": {
+        "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+        "is_current": false,
+        "is_primary": true,
+        "session_id": "c8df81fc-3ebe-439f-91d5-1a5646a2dc36",
+        "started_at": "2026-09-08T15:48:39.572584425Z",
+        "state": "WAITING_FOR_INPUT",
+        "updated_at": "2026-09-08T22:41:34.452300385Z"
+      },
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#64748b",
+          "human": false,
+          "id": "tag-6a1aeb09170bfffcfa5e",
+          "name": "waiting",
+          "note": "Maintainer rerun already requested for run 34197413540's SSH fixture failure; resume Luna CI Fixup when a new attempt appears.",
+          "owner": "agent",
+          "updatedAt": "2026-09-09T00:10:30.741420731Z"
+        }
+      ],
+      "relations": {
+        "blockers": [],
+        "blocked_by": [],
+        "children": []
+      },
+      "latest_message": {
+        "id": "91ca74ae-2695-43b1-94c5-5b11c4a52afd",
+        "at": "2026-09-08T22:41:32.444513549Z",
+        "session_id": "c8df81fc-3ebe-439f-91d5-1a5646a2dc36"
+      },
+      "r4_status": "Current task plan read; reconstructed fields above. Listed corrections remain for parent sole writer.",
+      "mutation": false,
+      "repositories": [
+        {
+          "path": "/data/tasks/fix-plugin-task-prio_rksfvx9c/kdlbs-kandev",
+          "head": "973a9d6d367b2c9a50c6ecd0557d70b23817d8b6",
+          "branch": "feature/fix-plugin-task-prio-w7w",
+          "status_count": 0,
+          "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status_sample": "",
+          "gitdir": "/data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/kdlbs/kandev/.git/worktrees/kdlbs-kandev9"
+        }
+      ],
+      "provider": [
+        {
+          "url": "https://github.com/kdlbs/kandev/pull/3468",
+          "head": "973a9d6d367b2c9a50c6ecd0557d70b23817d8b6",
+          "base": "3c6af410637d32f913105f44bf2e6470de119609",
+          "draft": true,
+          "merged": false,
+          "mergeable": true,
+          "merge_state": "blocked",
+          "observed_at": "2026-09-15T05:46:53.185450+00:00",
+          "check_count": 81,
+          "failures": [
+            {
+              "name": "E2E Tests Passed",
+              "id": 101974692716,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34197413540/job/101974692716"
+            },
+            {
+              "name": "Merge E2E Reports",
+              "id": 101973966507,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34197413540/job/101973966507"
+            },
+            {
+              "name": "E2E Containers Shard 5/6",
+              "id": 101969065371,
+              "conclusion": "failure",
+              "status": "completed",
+              "details_url": "https://github.com/kdlbs/kandev/actions/runs/34197413540/job/101969065371"
+            }
+          ],
+          "unresolved_threads": [],
+          "threads_complete": true
+        }
+      ]
+    }
+  ]
+}
