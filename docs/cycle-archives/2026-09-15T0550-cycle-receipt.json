@@ -1,14 +1,19 @@
 {
   "actions": [
     {
-      "action": "queued exact-head repair handoff for bb3f8243 and five live threads",
-      "result": "first call timed out; 05:53 readback proved no delivery/start; one retry also timed out. Deferred until native mutation path recovers; do not duplicate meanwhile.",
-      "task_id": "a091649a-79b0-40d6-a84d-84a3dc053e4a"
+      "action": "moved QA to Review at exact green head 0da05686 and sent fresh-review handoff",
+      "result": "physical Review verified; primary 3c18aacf-c8c1-4c4e-877e-eb57c65eb3 RUNNING, updated 06:26:42Z; task state FAILED remains an anomaly to reconcile after verdict",
+      "task_id": "37eca47b-cf05-47ee-b143-39408edbeed1"
     },
     {
-      "action": "requested PR to Review with exact-head 2c2f9fd8 handoff",
-      "result": "first call timed out; 05:53 readback proved PR lane unchanged and no owner start; one retry also timed out. Deferred until native mutation path recovers; do not duplicate meanwhile.",
+      "action": "moved PR to Review at exact green head 2c2f9fd8 with protected-row restrictions",
+      "result": "physical Review verified; new primary 48675b5f-0f8d-4f0b-a738-193ee772806f RUNNING",
       "task_id": "7056a702-a3c3-4fe8-8535-c6b8d340ef6a"
+    },
+    {
+      "action": "sent exact-head repair handoff for bb3f8243 failed CI and five current threads",
+      "result": "status sent; primary 3eac7f4e-4367-4c75-826d-26be94c0c875 RUNNING, updated 06:26:49Z",
+      "task_id": "a091649a-79b0-40d6-a84d-84a3dc053e4a"
     }
   ],
   "audit_receipts": [
@@ -50,20 +55,21 @@
     "c642d57a-5a24-48ca-8f85-57d31115eeb5",
     "e8728906-86de-4a75-960f-9da585485823"
   ],
-  "cycle_complete": false,
+  "cycle_complete": true,
   "cycle_id": "wake-cycle-2026-09-15T0536Z",
   "degradations": [
-    "Native Kandev mutation calls for a091 message and 7056 move each timed out twice; readback after first attempt proved neither landed.",
-    "Queue census endpoint remains UNKNOWN_ACTION; no queue identities or claims available."
+    "Queue census endpoint remains UNKNOWN_ACTION; no queue identities or claims available.",
+    "Routine wake reached retired non-primary and required one forward; automatic routine-target/fence retirement still unresolved.",
+    "37eca is physical Review with RUNNING reviewer but row state remains FAILED; reviewer verdict must reconcile it."
   ],
   "exit_gates": {
     "G1": true,
     "G2": true,
     "G3": true,
     "G4": true,
-    "G5": false,
+    "G5": true,
     "G6": true,
-    "G7": "local candidate written; live replace/readback pending"
+    "G7": true
   },
   "health_summary": {
     "blocked": [
@@ -297,7 +303,7 @@
     "owner": "Coordinator",
     "trigger": "next safe native-control readback"
   },
-  "observed_at": "2026-09-15T05:55:30Z",
+  "observed_at": "2026-09-15T06:26:50Z",
   "open_ledger_task_ids": [
     "09325a7b-afb5-4f54-b2a7-ceae217a7bee",
     "153cdbbe-beac-47b8-bc06-8dafdcc8ed80",
@@ -371,7 +377,7 @@
       "mergeable": "MERGEABLE"
     },
     "pr3158": {
-      "checks": "PENDING",
+      "checks": "SUCCESS",
       "head": "0da05686deaca3201c2969bfca51e4f1f58b0b33"
     },
     "pr3319": {
