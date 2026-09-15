@@ -1,5 +1,36 @@
 # Coordinator learning-cycle log
 
+## WAKE:LEARNING — 2026-09-15T07:39:21Z to 2026-09-15T12:50:11Z
+
+No durable lessons this cycle. The window's task movements, stalled and
+recovered cycles, provider observations, and exact delivery receipts all apply
+existing Coordinator procedures.
+
+Rejected by the filter:
+
+- A task-control stall that prevents plan writes or atomic movement already
+  follows the archive fallback, authoritative no-effect readback, deterministic
+  resume trigger, and no-blind-retry rules.
+- Later completion of an interrupted cycle through exact live/ledger parity,
+  current Blocked records, verified owner starts, and plan readback is an
+  application of the existing G1–G10 and continuity contracts.
+- Human-QA preview identities, pull-request heads, exact CI jobs, task lanes,
+  session IDs, tag corrections, and dependency states are transient delivery
+  evidence retained in plans and cycle archives.
+- GraphQL/REST quota inconsistencies and an unavailable queue census are already
+  covered by resource-specific provider verification and queue fail-closed
+  procedures.
+- Correcting a stale Review owner, completing R5 atomically, and preserving Done
+  resources with an unresolved cleanup capability are already covered by the
+  single-writer, unblock, and terminal-integrity rules.
+
+Files changed: `docs/LEARNING_LOG.md` only. `PROMPT.md` did not change in
+this learning window, and its complete current content still matches the live
+Coordinator task description exactly, so no mirror write was required. This
+receipt advances the next learning window to `2026-09-15T12:50:11Z`.
+Shared-main publication and final clean-tree verification are recorded by the
+commit containing this entry. Unresolved conflicts: none.
+
 ## WAKE:LEARNING — 2026-09-15T06:50:14Z to 2026-09-15T07:39:21Z
 
 No additional durable lessons this cycle.
