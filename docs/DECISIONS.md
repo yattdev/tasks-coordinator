@@ -2303,3 +2303,31 @@ an active repair/rerun owner.
 This supersedes the earlier treatment of destructive/irreversible work as an
 independent recurring Human-approval class and the earlier allowance to notify a
 reviewer while a conclusively unrelated pipeline failure remained active.
+
+## Runtime UI acceptance follows the visible control and output path (2026-09-15)
+
+For behavior implemented through dynamic widgets, acceptance evidence follows
+the exact live UI path and verifies the resulting artifact. Static template
+assertions and direct endpoint tests remain useful unit and integration evidence,
+but they cannot prove controls that a browser library clones, moves, reveals, or
+reuses. Export acceptance therefore includes the visible dialog, reopen behavior,
+applicable saved routes, the browser download, and semantic inspection of that
+download.
+
+Rationale: a direct request and rendered-template test both passed while the
+visible dialog read different DOM nodes. Only the browser-driven export exposed
+the defect. Treating the runtime control and its output as one acceptance path
+prevents a green surrogate from masking broken user behavior.
+
+## Ignored evidence remains input to working-tree scanners (2026-09-15)
+
+An ignored or untracked evidence file is not automatically outside lint, test
+discovery, packaging, or license-check scope. When a sealed artifact is the only
+incidental input to an otherwise canonical full-tree gate, preserve its hash,
+temporarily relocate it outside the scan under a restoration trap, run the
+unchanged gate, restore it, and prove byte equality. Editing or resealing closed
+evidence solely to satisfy the scanner is rejected.
+
+Rationale: version-control inclusion and tool input scope are independent facts.
+The relocation receipt preserves both the original evidence and the fidelity of
+the gate while making the exceptional boundary explicit and auditable.

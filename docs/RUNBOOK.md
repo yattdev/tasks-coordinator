@@ -87,6 +87,54 @@ label it stale and do not include it in a current human-testing inventory. Do
 not infer that a conflict-only merge is runtime-neutral: the merge result is the
 artifact under acceptance, even when the feature files did not conflict.
 
+## Verify dynamic UI through the visible runtime and produced artifact
+
+Rendered-template assertions and direct HTTP requests do not exercise a UI
+library that clones, reparents, reveals, or replaces controls at runtime. When
+the changed behavior crosses such a widget boundary, acceptance evidence must
+follow the same visible path as the user:
+
+1. Serve the exact tested head with its current compiled assets, representative
+   fixture, real authentication flow, and required permissions.
+2. Drive the visible control in a real browser, scoped to the active dialog or
+   widget. Cover reopen/reuse behavior and every applicable saved or dashboard
+   route; hidden source-template inputs are not substitutes for the controls the
+   user can interact with.
+3. Wait for the user-visible completion event. For an export, capture the actual
+   browser download and verify its file signature/container, parseability, and
+   scenario-specific content. A successful POST without the downloaded payload
+   is incomplete evidence.
+4. Preserve the exact-head script, screenshots, logs, output artifacts, hashes,
+   and scenario results. Keep environment or fixture limitations separate from
+   product failures.
+
+If a static or test-server harness cannot reveal the widget while the canonical
+live method can, classify the result as a harness gap until the same live path
+reproduces it. Do not change source to accommodate a harness-only DOM shape.
+
+## Keep sealed evidence outside incidental full-tree scans
+
+Git ignore rules do not remove files from tools that recursively scan the
+working tree. A task-local evidence script can therefore fail a full-tree lint,
+test discovery, packaging, or license check even though it is untracked and not
+part of the deliverable.
+
+Before running a repository-wide gate, inspect its real input scope. Prefer a
+supported command-line exclusion when it leaves the canonical gate unchanged.
+When a sealed evidence artifact is the only incidental input and no supported
+exclusion exists, preserve it without rewriting or resealing it:
+
+1. record its path, size, and cryptographic hash;
+2. move it temporarily to a task-owned path outside the scan scope;
+3. install a trap that restores it on success, failure, or interruption;
+4. run the otherwise unchanged canonical gate;
+5. restore the artifact and prove path, size, and hash equality.
+
+Retain the original failure receipt and the scoped rerun receipt. Do not call
+the rerun canonical when source, dependencies, configuration, or the gate
+command changed, and do not edit closed evidence merely to make a quality tool
+ignore it.
+
 ## Audit the bytes a manual deployment replaces
 
 A semantically narrow task is not necessarily a narrow deployment. A script or

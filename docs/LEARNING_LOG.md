@@ -1,5 +1,36 @@
 # Coordinator learning-cycle log
 
+## WAKE:LEARNING — 2026-09-14T21:49:19Z to 2026-09-15T02:52:38Z
+
+Captured two durable lessons. Dynamic UI acceptance now drives the actual
+visible runtime control, including reopen and saved-route behavior, and inspects
+the browser-produced artifact; rendered-template checks and direct requests are
+supporting evidence rather than substitutes when a widget library changes the
+DOM at runtime. Also, ignored evidence remains visible to recursive quality
+tools, so a sealed artifact that is the only incidental scan input is preserved
+by hash-bound temporary relocation, trap restoration, and byte-equality proof
+while the canonical gate command remains unchanged.
+
+Rejected by the filter:
+
+- Late authorization and revocation races are already covered by monotonic
+  decision generations plus active-process, repository, remote, and provider
+  containment readback.
+- Information-only delivery waking a parked task is already covered by the
+  parked-session rule and explicit resume packets.
+- Exact-SHA push exceptions after host-only hook failures are already covered by
+  the narrow operational-bypass and exact-head evidence procedures.
+- Provider rate limiting, pre-checkout runner failures, Docker address-pool and
+  standalone-port exhaustion, current task heads, pipeline IDs, and fixture
+  limitations are transient operational evidence or instances of existing
+  blocker and infrastructure-classification rules.
+
+Files changed: `docs/RUNBOOK.md`, `docs/DECISIONS.md`, and
+`docs/LEARNING_LOG.md`. `PROMPT.md` is unchanged, so live description mirroring
+is not required. This receipt advances the next learning window to
+`2026-09-15T02:52:38Z`. Shared-main publication and final clean-tree verification
+are recorded by the commit containing this entry. Unresolved conflicts: none.
+
 ## WAKE:LEARNING — 2026-09-14T20:50:14Z to 2026-09-14T21:49:19Z
 
 Captured one durable corrective lesson: asynchronous task delivery does not
