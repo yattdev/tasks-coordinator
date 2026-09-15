@@ -1398,6 +1398,10 @@ serializes every mutation after reconciling receipts. Independent messages are p
 serially only when real helper/profile/tool capacity, a dependency or conflict, or bounded
 startup cost requires it, and that reason is recorded.
 
+The Human reaffirmed on 2026-09-15 that this behavior must not depend on the
+primary model. SOL uses the same parallel monitoring pattern as ASTRA and
+selects SOL read-only helpers explicitly when independent slices exist.
+
 Human-facing status has a separate freshness barrier. Helper reports are timestamped
 evidence, not a final board snapshot. After parallel work returns and immediately before
 replying, the Coordinator re-reads the live lane and complete session census for every

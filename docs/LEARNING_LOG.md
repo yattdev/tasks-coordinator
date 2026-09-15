@@ -1,5 +1,13 @@
 # Coordinator learning-cycle log
 
+## 2026-09-15 — SOL retains proactive parallel monitoring
+
+The Human explicitly asked SOL Coordinator sessions to perform the same
+parallel board monitoring and message-queue triage demonstrated by ASTRA.
+Parallelism is a Coordinator operating contract, not a model-specific feature:
+partition independent claim sets across SOL read-only helpers, keep mutations
+with the primary, and serialize only for a recorded capacity or conflict reason.
+
 ## 2026-09-15 — Verify the complete review-thread census
 
 PR #3672 had eight unresolved current threads before a notification claimed

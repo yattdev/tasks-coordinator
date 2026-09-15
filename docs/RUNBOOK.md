@@ -1038,9 +1038,11 @@ park, block, override, replace, or reject Copilot or Claude work solely because
 its configured or dynamically selected model differs from the Codex mapping.
 
 Astra is reserved for the permanent Coordinator and its replacement primary
-sessions; Sol is also a standing authorized Coordinator selection. Read-only audit helpers retain Sol; explicitly select their model
-instead of inheriting the Coordinator's Astra. Delegated task agents retain
-their physical-lane model.
+sessions; Sol is also a standing authorized Coordinator selection. A Sol
+primary follows the same proactive parallel monitoring and queue-triage
+procedure as Astra. Read-only audit helpers retain Sol; explicitly select their
+model instead of inheriting the Coordinator's Astra. Delegated task agents
+retain their physical-lane model.
 
 When investigating historical model-routing evidence, audit from authoritative
 host and model mappings, not profile or model names. Do not use this historical
