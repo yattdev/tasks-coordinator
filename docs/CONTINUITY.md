@@ -4,6 +4,22 @@ The Coordinator is a long-lived role, not a particular model process or chat
 context. Sessions may stop, be compacted, switch models, or hit provider limits.
 Continuity therefore uses durable, model-neutral storage.
 
+## Pending live-plan recovery checkpoint — 2026-09-15
+
+The full board cycle reached a Kandev control-transport stall before its live
+plan replacement. Until authoritative plan readback proves synchronization,
+bootstrap must also read the committed
+[cycle recovery receipt](cycle-archives/2026-09-15T0510-control-plane-recovery.md)
+and [replacement ledger](cycle-archives/2026-09-15T0510-replacement-plan.md).
+They preserve the 63-task current inventory and the new Provider Usage recovery
+owner. The live plan may still contain the older 62-task inventory.
+
+Read the latest live plan before merging this checkpoint; preserve concurrent
+edits, reconcile the allocator message that timed out, and submit the compacted
+replacement exactly once with byte/hash readback. No live replacement write was
+submitted at this checkpoint. Remove this pending pointer only after successful
+readback and persistence of the resulting cycle receipt.
+
 ## Storage layers
 
 1. **Binding behavior — `PROMPT.md`.** Human operating rules and mandatory
