@@ -1,5 +1,36 @@
 # Coordinator learning-cycle log
 
+## WAKE:LEARNING — 2026-09-15T03:18:23Z to 2026-09-15T04:50:35Z
+
+No additional durable lessons this cycle. Three reusable findings from the
+window were already captured by event-driven learning before this pass:
+implementation delegation stays on persistent Kandev board tasks, a child for a
+repository absent from its parent's workspace needs a new workspace, and
+primary-role recovery does not prove queue or routine-target continuity.
+
+Rejected by the filter:
+
+- Task-control timeouts, failed atomic moves, stale stopped sessions, provider
+  quota observations, current task IDs, pull-request heads, and exact recovery
+  queues are live operational state preserved in cycle archives and task plans.
+- Replacing an unavailable board task with a native implementation helper is
+  already corrected by the binding board-only delegation rule and its registry,
+  runbook, and decision entries.
+- A cross-repository inherited-workspace failure is already covered by the new
+  workspace-inventory preflight and sole-recovery-owner procedure.
+- A successor becoming sole primary while queue census and routine targeting
+  remain unproved is already covered by the partial-rotation recovery rule.
+- The stale live task-description mirror was an instance of the existing
+  publication gate. This cycle restored the complete current `PROMPT.md`
+  content and verified byte-for-byte equality.
+
+Files changed by this pass: `docs/LEARNING_LOG.md` only. `PROMPT.md` changed
+earlier in the window, and its complete current content is now mirrored exactly
+to the live Coordinator task description. This receipt advances the next
+learning window to `2026-09-15T04:50:35Z`. Shared-main publication and final
+clean-tree verification are recorded by the commit containing this entry.
+Unresolved conflicts: none.
+
 ## 2026-09-15 — Primary recovery does not prove routine or queue continuity
 
 Both Coordinator sessions observed the successor become the sole primary without
