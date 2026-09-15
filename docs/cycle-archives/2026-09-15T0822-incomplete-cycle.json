@@ -1,0 +1,21 @@
+{
+  "schema": "coordinator-incomplete-cycle-v1",
+  "cycle_id": "wake-cycle-2026-09-15T0743Z",
+  "observed_at": "2026-09-15T08:21:55.029Z",
+  "cycle_complete": false,
+  "live_task_count": 66,
+  "open_ledger_count": 66,
+  "physical_blocked_count": 28,
+  "done_count": 18,
+  "queue_disposed": 0,
+  "provider_state": "authenticated rate-limit surface inconsistent",
+  "failed_gates": ["G5"],
+  "primary_unverified_transition": {
+    "task_id": "153cdbbe-beac-47b8-bc06-8dafdcc8ed80",
+    "lane": "CI Fixup",
+    "condition": "move lifecycle pending and no RUNNING/STARTING owner",
+    "trigger": "verified standalone capacity plus settled lifecycle"
+  },
+  "plan_expected_bytes": 103265,
+  "plan_expected_sha256": "f549d22769186fb38c1efc68f5825fece9fe56a45e8c34a1598811120c93a82e"
+}
