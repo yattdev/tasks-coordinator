@@ -1,0 +1,7 @@
+# Workflow-sync restart delta — 2026-09-15T00:50Z
+
+- Task `27b493a3-65b6-4d4a-8b68-73f2ffcf9621` remains physical Work (`069c6673-bc68-4015-9089-a4312bdddf92`), state FAILED, pending moves zero, active sessions zero.
+- Preservation: clean worktree `/data/tasks/fix-workflow-sync-gi_eo5i7833/kandev-source`, branch `feature/fix-workflow-sync-gi-d0x`, local and origin head `9560bc2b5ce93855adabb3dc37692406cab907bf`. Stored upstream main advanced to `941e7950d1a94e8c028bf5cb98744415e053bf74`; merge base is `753e5549ee730245e4124654052b8b9e364d630c`; the branch is 59 ahead and 20 behind. Every prior CI, Review, QA, and mergeability receipt is stale.
+- One fresh configured Work launch was attempted: session `920b00dc-c663-4a9d-b949-f7387583a6c2`, profile `c06ad00e-0da1-429a-8174-54f97164a289`, model `gpt-5.6-terra`. It failed before inference because no port was available in `[41001,41100]`.
+- Next action: after capacity owner `8a182e40-d99c-42e9-b9be-1f8f78cf8388` proves a free slot, obtain a fresh zero-pending/zero-active preflight and start exactly one configured Work owner. Preserve the clean head, integrate current canonical main additively without rewriting history, resolve conflicts semantically, rerun affected and race regressions plus diff checks, push a substantive successor only after green, then collect fresh exact-head CI, independent Review, and distinct QA.
+- No source, provider, tag, or repository mutation occurred during this reconciliation.
