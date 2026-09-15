@@ -1,7 +1,7 @@
 {
   "schema": "coordinator-cycle-receipt-v1",
   "cycle_id": "wake-cycle-2026-09-15T1216Z",
-  "observed_at": "2026-09-15T12:43:31Z",
+  "observed_at": "2026-09-15T12:53:21Z",
   "identity": {
     "primary_current": true,
     "profile_id": "ccd6113e-c1bd-4029-9d7d-f36f72272fa5",
@@ -79,6 +79,12 @@
       "session_id": "03ac3a1d-1e46-4ba1-8967-663f27fff920",
       "state": "RUNNING",
       "role": "sole configured CI Fixup exact-head classification owner"
+    },
+    {
+      "task_id": "1d3d7383-8dba-41f8-a794-7e3d51809143",
+      "session_id": "e7016e25-cd6a-4db5-9613-2ffc68053a9b",
+      "state": "RUNNING",
+      "role": "sole configured CI Fixup exact-head failure-classification owner after one verified message"
     }
   ],
   "actions": [
@@ -177,7 +183,10 @@
     "G4": true,
     "G5": true,
     "G6": true,
-    "G7": true
+    "G7": true,
+    "G8": true,
+    "G9": true,
+    "G10": true
   },
   "prepared_only": false,
   "post_barrier_actions": [
@@ -190,6 +199,16 @@
       "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
       "action": "Moved Work→CI Fixup and accepted one configured CI owner.",
       "verification": "Physical CI Fixup/IN_PROGRESS; 03ac3a1d RUNNING profile 7c6; prior 59ac7489 WFI; docs failure run 34969999730/job 104384643523 plus 13 pending."
+    },
+    {
+      "task_id": "1d3d7383-8dba-41f8-a794-7e3d51809143",
+      "action": "Caught the G10 report-freshness invalidation and sent exactly one instruction to the existing configured CI session.",
+      "verification": "Physical CI Fixup/IN_PROGRESS; lifecycle complete; pending projections null; e7016e25 RUNNING profile 7c6. Exact e3f893a fails run 34965159006/job 104375069527; initial gh log-failed command exited 1, but the session remained active and no source/provider mutation occurred."
     }
-  ]
+  ],
+  "gate_notes": {
+    "G8": "Every post-barrier message/move has authoritative lane, lifecycle, pending, session, and profile readback.",
+    "G9": "Live plan replacement read back below 200 KiB with 65/65/65 and 36/36 parity; artifacts validated and persisted additively.",
+    "G10": "The stale 1d WFI census was invalidated by the fresh task/session state; exactly one message was sent and e7016e25 RUNNING was verified before persistence."
+  }
 }
