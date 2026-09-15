@@ -20,6 +20,14 @@ replacement exactly once with byte/hash readback. No live replacement write was
 submitted at this checkpoint. Remove this pending pointer only after successful
 readback and persistence of the resulting cycle receipt.
 
+Human preference `2026-09-15b` is already durable in `PROMPT.md`: SOL primary
+sessions must use the same proactive parallel board-monitoring and independent
+queue-triage pattern as ASTRA, with explicitly selected SOL read-only helpers.
+Commit `a790f65` is synchronized to shared main. If live task-description or
+plan synchronization is still pending, mirror this exact `PROMPT.md` and carry
+the preference into the compacted live ledger after authoritative readback;
+never issue a duplicate write while an earlier control call is unresolved.
+
 ## Storage layers
 
 1. **Binding behavior — `PROMPT.md`.** Human operating rules and mandatory
