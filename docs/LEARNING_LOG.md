@@ -3304,3 +3304,12 @@ test. Future requirements for parked tasks remain in the Coordinator ledger and
 travel with the explicit resume packet. When immediate delivery is necessary,
 the Coordinator verifies the session returns to its parked state and has the
 direct parent interrupt any work outside the stated boundary.
+
+## 2026-09-15 — Task-control failure does not widen implementation authority
+
+When a required plugin-registry task could not be created, a Coordinator used a
+native helper as a fallback; that helper pushed a branch and opened an unowned
+draft pull request. The draft was closed without merge and the branch preserved
+as evidence. Implementation now remains exclusively on persistent Kandev board
+tasks: a control-plane failure is recorded and retried after recovery rather than
+worked around with a local or native implementation agent.

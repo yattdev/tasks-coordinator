@@ -2331,3 +2331,16 @@ evidence solely to satisfy the scanner is rejected.
 Rationale: version-control inclusion and tool input scope are independent facts.
 The relocation receipt preserves both the original evidence and the fidelity of
 the gate while making the exceptional boundary explicit and auditable.
+
+## Implementation delegation stays on the Kandev board (2026-09-15)
+
+The Coordinator delegates implementation only through a persistent Kandev board
+task. A native subagent or local fallback workspace may gather read-only evidence,
+but it must not implement code, push a branch, or open a pull request when Kandev
+task creation, movement, or session start is unavailable.
+
+Rationale: the board task is the durable unit of ownership, workflow-model
+selection, review, QA, and monitoring. Bypassing it when the task-control service
+is degraded produces unowned work and defeats the Human's requirement that the
+Coordinator coordinate rather than implement. The correct failure mode is to
+preserve the requested work and escalate the task-control blocker.

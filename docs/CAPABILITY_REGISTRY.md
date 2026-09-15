@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-09e -->
+<!-- registry-version: 2026-09-15a -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -249,6 +249,15 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Capability** [A Review or QA gate changed the deliverable it was auditing](RUNBOOK.md#a-review-or-qa-gate-changed-the-deliverable-it-was-auditing).
 - **Evidence** Exact pre-fix and successor heads, additive pushed fix, focused validation, physical lane readback, and fresh independent session/profile/head receipt.
 - **Never** Let the same gate turn author a fix and certify its own successor head, or label local post-fix checks as final Review/QA PASS.
+
+### B9b. Board task creation or launch is unavailable
+- **Trigger** Implementation work needs an owner, but persistent Kandev task creation, movement, or session start times out, fails, or cannot be verified by readback.
+- **Action** Preserve the work request and evidence, record the control-plane blocker and deterministic retry trigger, and resume only after a persistent board task and its workflow-configured session are verified.
+- **Capability** `create_task_kandev`, task/session readback, and the Coordinator continuity ledger.
+- **Authority** The Coordinator owns intake and staffing; implementation ownership begins only on the persistent board task.
+- **Evidence** Idempotency key, failed operation receipt, absence/presence readback, and—on recovery—the created task UUID plus running session identity.
+- **Escalate to** The canonical task-control platform repair owner when the failure persists.
+- **Never** Substitute a native subagent, local fallback agent, untracked workspace, direct push, or Coordinator-authored pull request for the missing board task.
 
 ### B10. Done-column integrity
 - **Trigger** Every cycle; deeply for new/changed/unreceipted/suspicious Done tasks.
