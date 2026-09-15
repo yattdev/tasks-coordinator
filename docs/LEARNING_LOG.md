@@ -1,5 +1,33 @@
 # Coordinator learning-cycle log
 
+## WAKE:LEARNING — 2026-09-15T06:50:14Z to 2026-09-15T07:39:21Z
+
+No additional durable lessons this cycle.
+
+Rejected by the filter:
+
+- The Human preference that SOL Coordinators use parallel read-only monitoring
+  helpers is already binding in `PROMPT.md` and synchronized across the
+  capability registry, runbook, decisions, and continuity guidance.
+- Deterministic no-model automation is product work with an approved generic
+  architecture and dependency graph. It does not add a Coordinator procedure.
+- A timed-out mutation with an unknown effect already requires authoritative
+  readback before retry. The repeated Kandev control-plane stalls and exact
+  affected task/session identities are transient operational evidence preserved
+  in the cycle continuation archives.
+- Independently reading task state through another healthy session during a
+  caller-local transport stall is an application of the existing fresh-readback
+  rule. It does not relax the primary's responsibility for mutation ordering or
+  reporting.
+- Exact task lanes, pull-request heads, running recovery sessions, and unfinished
+  cycle gates remain live ledger state rather than shared monthly guidance.
+
+Files changed by this pass: `docs/LEARNING_LOG.md` only. `PROMPT.md` did not
+change, so no live-description mirror was required. This receipt advances the
+next learning window to `2026-09-15T07:39:21Z`. Shared-main publication and
+final clean-tree verification are recorded by the commit containing this entry.
+Unresolved conflicts: none.
+
 ## WAKE:LEARNING — 2026-09-15T04:50:35Z to 2026-09-15T06:50:14Z
 
 No additional durable lessons this cycle. The window's reusable Human
