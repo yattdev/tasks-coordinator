@@ -1,7 +1,7 @@
 {
   "schema": "coordinator-cycle-receipt-v1",
   "cycle_id": "wake-cycle-2026-09-15T1216Z",
-  "observed_at": "2026-09-15T12:34:35Z",
+  "observed_at": "2026-09-15T12:43:31Z",
   "identity": {
     "primary_current": true,
     "profile_id": "ccd6113e-c1bd-4029-9d7d-f36f72272fa5",
@@ -30,9 +30,9 @@
     "r4": 36,
     "lanes": {
       "Backlogs": 1,
-      "Work": 2,
+      "Work": 1,
       "Review": 1,
-      "CI Fixup": 2,
+      "CI Fixup": 3,
       "Human-QA": 3,
       "PR": 1,
       "ToDeploy": 2,
@@ -76,9 +76,9 @@
     },
     {
       "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
-      "session_id": "59ac7489-d17d-4df3-8221-f705ae160f11",
+      "session_id": "03ac3a1d-1e46-4ba1-8967-663f27fff920",
       "state": "RUNNING",
-      "role": "sole configured Work conflict-repair owner"
+      "role": "sole configured CI Fixup exact-head classification owner"
     }
   ],
   "actions": [
@@ -179,5 +179,17 @@
     "G6": true,
     "G7": true
   },
-  "prepared_only": false
+  "prepared_only": false,
+  "post_barrier_actions": [
+    {
+      "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+      "action": "Work owner completed additive conflict remediation and pushed exact e9bf3f59.",
+      "verification": "59ac7489 WFI; lifecycle complete; pending null; focused tests/hooks passed; local/remote/PR heads matched."
+    },
+    {
+      "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+      "action": "Moved Work→CI Fixup and accepted one configured CI owner.",
+      "verification": "Physical CI Fixup/IN_PROGRESS; 03ac3a1d RUNNING profile 7c6; prior 59ac7489 WFI; docs failure run 34969999730/job 104384643523 plus 13 pending."
+    }
+  ]
 }

@@ -22,3 +22,10 @@ Set hashes:
   "blocked": "6edceb547353eb61ca4e183fba75d70c016c749edf6576370eea0d18efb50838"
 }
 ```
+
+## Post-barrier actions — 2026-09-15T12:43:31Z
+
+- `b007bb76-841e-4243-a251-c4f87a1ed1e4`: Work owner `59ac7489-d17d-4df3-8221-f705ae160f11` completed additive conflict remediation and pushed exact `e9bf3f59b500c312e35d5dfa94a2d35820ae6ee5`; lifecycle completed, pending projections remained null, and the owner returned WAITING_FOR_INPUT.
+- R5 continuation verified: moved Work → CI Fixup once; physical CI Fixup/IN_PROGRESS; sole configured profile `7c6be62e-6980-498a-a4fb-896947ff5402` primary `03ac3a1d-1e46-4ba1-8967-663f27fff920` RUNNING; prior Work owner remained WFI. Handoff carries documentation failure run `34969999730` / job `104384643523` plus 13 pending checks.
+- Final lanes: CI Fixup 3, Work 1, Blocked 36, total 65. The live/open/ledger set hash remains unchanged and physical Blocked/R4 parity remains 36/36.
+- Next: CI owner classifies terminal exact-head evidence; terminal green routes to fresh independent Review then distinct QA. No duplicate CI owner, synthetic retry, force, rewrite, or stale gate reuse.
