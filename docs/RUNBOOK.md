@@ -730,6 +730,10 @@ Before marking ready, bind the evidence to the canonical URL and exact head:
    owner until the current-head pipeline is terminal without failure.
 4. Every actionable review thread has a technical reply and is resolved; refresh
    reviews, checks, and mergeability after the last push or base update.
+   Read every review-thread page and verify the terminal pagination marker.
+   A partial result or a subset of answered findings cannot prove zero unresolved
+   threads. If an existing notification made that false claim, correct it in
+   place, staff the repair, and repeat the independent gates without a new ping.
 5. Visual changes include sanitized reviewer-facing screenshots or recordings of
    the meaningful before/after or state variants. Include responsive, theme, or
    error/loading states when those materially changed. Still images must render

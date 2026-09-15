@@ -1,0 +1,21 @@
+G5: 8f8a784d-92ea-421f-a368-154ef915fe4e is physically in ToDeploy without delivery_status='to_deploy_ready'
+G5: 01432319-aa8b-4c7d-9841-addcc6ab8e76 is physically in ToDeploy without delivery_status='to_deploy_ready'
+G7: 23a05db4-c7bf-4732-a390-08cb8f0a3a8d target lane does not match post lane
+G6: 23a05db4-c7bf-4732-a390-08cb8f0a3a8d transition to 'Review' lacks predecessor verdicts ['AUTHOR_TESTS=PASSED', 'HEAD_PUSHED=CLEAN']
+G7: 23a05db4-c7bf-4732-a390-08cb8f0a3a8d transition is not settled and verified
+G7: f169e54f-610b-4f35-bcdc-cf3dfe3baaab target lane does not match post lane
+G6: f169e54f-610b-4f35-bcdc-cf3dfe3baaab transition to 'Review' lacks predecessor verdicts ['AUTHOR_TESTS=PASSED', 'HEAD_PUSHED=CLEAN']
+G7: f169e54f-610b-4f35-bcdc-cf3dfe3baaab transition is not settled and verified
+G7: 7056a702-a3c3-4fe8-8535-c6b8d340ef6a target lane does not match post lane
+G7: 7056a702-a3c3-4fe8-8535-c6b8d340ef6a transition is not settled and verified
+G7: 46945aff-382a-41a4-9f35-bd5c2806911e transition is not settled and verified
+G7: 46945aff-382a-41a4-9f35-bd5c2806911e expected execution did not start
+G7: 76b4e3d4-ccb8-408c-a0de-5e5014c538be transition is not settled and verified
+G7: 76b4e3d4-ccb8-408c-a0de-5e5014c538be expected execution did not start
+G8: mutation 45 is not verified
+G8: mutation 46 is not verified
+G8: mutation 48 is not verified
+G8: mutation 54 is not verified
+G8: mutation 55 is not verified
+G9: continuity.write_readback_verified must be true
+gate_results: all declared gate results must be 'pass'

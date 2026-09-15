@@ -1,0 +1,15 @@
+[
+  {
+    "id": "3d1006bf-ff64-46a0-bff1-9cee8047b410",
+    "session_id": "1f88f830-91c1-4371-894b-cfaaa16a347c",
+    "task_id": "ecd8b857-42a6-417f-a7e4-084f50fc6956",
+    "workflow_id": "90f322ed-2159-424d-96e7-c2ad05668b8e",
+    "workflow_step_id": "485f61e8-33e7-4cc6-a170-6d1411cc5ebb",
+    "step_position": 0,
+    "queued_at": "2026-09-14 21:02:18.19025106+00:00",
+    "actor": "agent",
+    "sender_session_id": "da0761f2-cd4e-44d1-bccc-6f9c1119f534",
+    "move_id": "7dd95377-7a02-4276-836a-f991c832e0cb",
+    "session_incarnation_id": "6a61850e-0167-43e1-8932-d747512dbb89"
+  }
+]

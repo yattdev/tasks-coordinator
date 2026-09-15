@@ -1,5 +1,17 @@
 # Coordinator learning-cycle log
 
+## 2026-09-15 — Verify the complete review-thread census
+
+PR #3672 had eight unresolved current threads before a notification claimed
+zero. The complete paginated census and source inspection identified six
+repair concerns. The Coordinator corrected the existing comment in place,
+staffed Work, and required fresh independent Review and QA. Answering a known
+subset is not a complete census; verify its terminal pagination marker and head.
+
+The Human confirmed manual promotion of the successor Coordinator primary.
+That provenance explains the role change but does not prove FIFO transfer,
+routine targeting, or generation fencing. Automatic rotation remains open.
+
 ## WAKE:LEARNING — 2026-09-15T03:18:23Z to 2026-09-15T04:50:35Z
 
 No additional durable lessons this cycle. Three reusable findings from the

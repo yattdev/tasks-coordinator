@@ -1,0 +1,52 @@
+{
+  "archive_path": "docs/archive/coordinator-state-plan-preimage-2026-09-15T0509Z.md",
+  "archive_bytes": 199003,
+  "archive_sha256": "1f6b5c9a85d6a3b8d3def82c988377f63c19e81a3d3cf50001e24aa3d7bddee4",
+  "new_plan_bytes": 177755,
+  "prior_open_count": 57,
+  "prior_all_live_count": 62,
+  "new_open_count": 63,
+  "prior_live_ids_hash": "930ff0c7fe1beb7af10295917e5f6561cc6abe3d969d986e89921aea4b8ba736",
+  "new_live_ids_hash": "03e376d6a86deb70b81fbbe81c8676e0871d89d895cedcfeb0e460d9e8be1880",
+  "created_task_ids": [
+    "9d5fcce2-e02d-41a5-b8de-d3672254e199"
+  ],
+  "missing_prior_live_ids": [],
+  "literal_blocked_count": 22,
+  "literal_blocked_sha256": [
+    "856dd2801843548c805e94558ae0b978c0f918d2d903e973b3f1d5abf986cabb",
+    "88bc41ddbcce856b9e5ddd809db2c73a83dfa9c453172f660919f49ff1d90daa",
+    "892b659b2c6431a92402c56d577c8a1797da68dcfdfbbcbb188e2c3c0c1d2b8d",
+    "df8eda9c54996e492271de3f315fb2622311667c53ff67a5b489b87ba57533c7",
+    "5b8cd27aa7efecffb255a709c34d910f9c09d66cdfa49721fe0514b99cf9cca4",
+    "804374589d9eda5c3ee9c011f20ddbed595d19846ae318ddd7a475638a5e5460",
+    "2078d9a97741b718e6fea5326e6224b60f4b1e8c6f2dc7ec950a94542b67da97",
+    "862b49fd1a375a87bbc33cebf510802f7444fae7fd14f77e95c95aca2a69ff7b",
+    "a9911bdd201417c0be8b00768bc36ce44412ff543181d7b63a494abbfa11f600",
+    "5aa0dd82b8cd535fde8013e20401d40a8a165f3ca9c9f7bfca91cdc9aa4e09cc",
+    "66591dc7f3e963d632345995b3fa012b1054ed60a03d90b227a9df87cce88285",
+    "06efd952b59e18324078c30c91531ee3ac8bf173f519eca5800a23be3a0796a8",
+    "915942cfe5e385358c17215d1083d867be5cb7159b7221ebe70d16c9831defcf",
+    "229ed7d59e276e6f48b5a2924a67784164ecb181f12c7bb7629a667305af7ef0",
+    "271c5f1026dbd23cfbbd72f81c06f1cf5d21f129a8653d4331fd250f3551f4ea",
+    "9936e50a7882492496c8a1a0eb92b77f728ab6f0bb9acaf87dddb8f0b8ced79f",
+    "f852c9106d7b8c23ce6469289ee3a781e01b39376d8d9f17ab53c5acf45b7099",
+    "9fb574ad1235edb9a49fa495245928ee4f3867f251e9ac6c927c248b40720280",
+    "7f06643a4d6ced5f1d72322136ac8488a6e41e43635ee4fa591596a413e4937b",
+    "8f883358f1ea4ac67ae585471eb34be0afaa88a3c074faf8066ec32679e03af4",
+    "c264cfb1e9128b10894e3719a98680412a78802c188f41017f8ee886eb07e328",
+    "208c6a57c906772358f375d3745ab4db41719fb3770d76a2473da0cfa2295695"
+  ],
+  "all_literal_blocked_retained": true,
+  "all_prior_ledger_ids_retained": true,
+  "all_human_asks_retained": true,
+  "live_plan_replacement_submitted": false,
+  "live_plan_readback_verified": false,
+  "pending_control_calls": [
+    "message_task allocator session329b6bbb-00fe-47f3-9293-853b63efa65b",
+    "get_task_plan Coordinator before replacement"
+  ],
+  "candidate_sha256": "13f36917ce6f5746bf411dec0f6df33d4f31012db1c339070aa8d3f4a3861ecd",
+  "allocator_message_outcome": "MCP timeout after300seconds; do not assume unsent",
+  "queue_followup_submitted": false
+}
