@@ -3415,5 +3415,12 @@
       "task_id": "1e46d457-6869-4750-bf97-4640a8df3b68",
       "action": "Delivered program correction; ba236402RUNNING verified; no duplicate reviewer notification."
     }
-  ]
+  ],
+  "control_plane_final": {
+    "allocator_message": "timeout300s; delivery unknown",
+    "queue_followup": "not submitted",
+    "plan_read": "timeout300s; error text rejected as plan",
+    "plan_replace": "not submitted",
+    "repository_checkpoint": "shared main contains recovery ledger and bootstrap pointer"
+  }
 }

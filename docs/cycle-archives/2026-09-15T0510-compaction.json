@@ -2,7 +2,7 @@
   "archive_path": "docs/archive/coordinator-state-plan-preimage-2026-09-15T0509Z.md",
   "archive_bytes": 199003,
   "archive_sha256": "1f6b5c9a85d6a3b8d3def82c988377f63c19e81a3d3cf50001e24aa3d7bddee4",
-  "new_plan_bytes": 177755,
+  "new_plan_bytes": 177752,
   "prior_open_count": 57,
   "prior_all_live_count": 62,
   "new_open_count": 63,
@@ -42,11 +42,12 @@
   "all_human_asks_retained": true,
   "live_plan_replacement_submitted": false,
   "live_plan_readback_verified": false,
-  "pending_control_calls": [
-    "message_task allocator session329b6bbb-00fe-47f3-9293-853b63efa65b",
-    "get_task_plan Coordinator before replacement"
-  ],
-  "candidate_sha256": "13f36917ce6f5746bf411dec0f6df33d4f31012db1c339070aa8d3f4a3861ecd",
+  "pending_control_calls": [],
+  "candidate_sha256": "e3a95e088f0ac55db9d7d5a5593053115667cdd545354dfd039334801359a5a5",
   "allocator_message_outcome": "MCP timeout after300seconds; do not assume unsent",
-  "queue_followup_submitted": false
+  "queue_followup_submitted": false,
+  "coordinator_plan_read_outcome": "MCP get_task_plan timed out after300seconds; response was error text, never treated as plan content",
+  "unverified_delivery_calls": [
+    "allocator message_task after300second timeout"
+  ]
 }

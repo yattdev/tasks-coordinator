@@ -15,7 +15,7 @@ The full audit covered63 live tasks, including every Blocked and Done card. Curr
 
 The exact 199003-byte preimage is committed in shared main at 1ae92af. The replacement preserves all 63 current task IDs, all 22 literal prior Blocked objects, active asks/flags, protected rows, preservation receipts and live follow-ups. It is below 200000 bytes. Compaction is prepared, not live-applied.
 
-Allocator message_task timed out after 300 seconds; its delivery is unknown. The following queue-owner message was not submitted. The Coordinator pre-write get_task_plan is also stalled; no replacement write was submitted. Reconcile the timed-out contact and read the latest live plan before one replacement write; preserve concurrent edits and verify exact bytes/hash afterward. Do not replay contacts blindly.
+Allocator message_task timed out after 300 seconds; its delivery is unknown. The following queue-owner message was not submitted. The Coordinator pre-write get_task_plan also timed out after 300 seconds; no replacement write was submitted. Reconcile the timed-out contact and read the latest live plan before one replacement write; preserve concurrent edits and verify exact bytes/hash afterward. Do not replay contacts blindly.
 
 GitHub’s actual PR endpoint reports core remaining 0, reset 2026-09-15T05:20:45Z, although rate_limit reports 5000. One bounded recheck belongs to the next normal wake after 05:22:45Z. Do not schedule a new timer or manufacture CI commits.
 
