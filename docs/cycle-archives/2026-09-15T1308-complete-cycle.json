@@ -1,0 +1,143 @@
+{
+  "schema": "coordinator-cycle-receipt-v1",
+  "cycle_id": "wake-cycle-2026-09-15T1308Z",
+  "observed_at": "2026-09-15T13:26:27Z",
+  "prepared_only": false,
+  "identity": {
+    "primary_current": true,
+    "profile_id": "ccd6113e-c1bd-4029-9d7d-f36f72272fa5",
+    "runtime_model": "gpt-5.6-sol",
+    "session_id": "ca237c01-94de-49e7-9e62-14510a3e167f",
+    "task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+    "workflow_id": "90f322ed-2159-424d-96e7-c2ad05668b8e",
+    "workspace_id": "2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd"
+  },
+  "counts": {
+    "live": 65,
+    "open": 65,
+    "ledger": 65,
+    "r4": 35,
+    "lanes": {
+      "Backlogs": 1,
+      "Work": 1,
+      "Review": 2,
+      "CI Fixup": 3,
+      "Human-QA": 3,
+      "PR": 1,
+      "ToDeploy": 2,
+      "Blocked": 35,
+      "Done": 17
+    }
+  },
+  "set_hashes": {
+    "live": "755d4097d5982a759fdada5a9399fef167777ef3241ca65d2fc47bea90102e53",
+    "open": "755d4097d5982a759fdada5a9399fef167777ef3241ca65d2fc47bea90102e53",
+    "ledger": "755d4097d5982a759fdada5a9399fef167777ef3241ca65d2fc47bea90102e53",
+    "blocked": "3c6fed8e2967922b3e39c975742899ffa701fbd911350743700de15d41f864d7"
+  },
+  "initial_blocked_count": 36,
+  "initial_blocked_checked": true,
+  "cleared_transitions": [
+    {
+      "task_id": "9349b6e5-a167-4d88-af14-cb355015e3dd",
+      "from": "Blocked",
+      "through": "Work",
+      "to": "Review",
+      "exact_head": "2a514227b47c86a1871900758a8244d0090fa0ca",
+      "owner": "ae45e3d3-2533-4c02-a1ef-f9af807d33cc",
+      "verification": "RUNNING profile ab57f00e; lifecycle/pending settled; prior R4 preserved in exact preimage and action history."
+    }
+  ],
+  "actions": [
+    {
+      "task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+      "action": "Ran full 13:08 control/ledger census across all 65 tasks and every session list.",
+      "verification": "Live/open/ledger sets 65/65/65 exact; initial physical Blocked/R4 36/36 exact; workflow unchanged; only ca237c01 and stale fa3 session 5e4d4c27 were live before the 934 transition; zero pending task/session projections."
+    },
+    {
+      "task_id": "9349b6e5-a167-4d88-af14-cb355015e3dd",
+      "action": "R5: removed cleared provider blocker, moved Blocked→Work once, verified Work, then consumed the automatic Work→Review transition after additive current-main integration.",
+      "verification": "Physical Review/IN_PROGRESS at clean pushed exact 2a514227b47c86a1871900758a8244d0090fa0ca over base 6c5ab15980ab3d39660134073d724addae9c8579; lifecycle complete/pending null; Work owner 34f41bdd WFI; sole fresh Review owner ae45e3d3-2533-4c02-a1ef-f9af807d33cc RUNNING profile ab57f00e; CI 11 pending/0 bad and 0 actionable threads at handoff; tag readback verified."
+    },
+    {
+      "task_id": "9d5fcce2-e02d-41a5-b8de-d3672254e199",
+      "action": "Resolved the exact recovery worktree/path and strengthened preservation/one-resume routing.",
+      "verification": "Clean exact 26c78a756174de2375d1933800eee2e248193c60 at /data/tasks/recover-provider-usa_t7eqrgda/kdlbs-kandev-plugin-provider-usage; package SHA ac7492c69e51df9e92984c08b3fc671c402d541c665e9ba5885ff81de66e2351; HTTP403 blocker persists; WFI/zero live."
+    },
+    {
+      "task_id": "1e46d457-6869-4750-bf97-4640a8df3b68",
+      "action": "Reconciled parked program-owner disposition.",
+      "verification": "Physical Blocked/REVIEW, lifecycle/pending settled, c24d3d92 WFI/zero live; complete 8a four-surface trigger absent; no dispatch/contact/mutation."
+    },
+    {
+      "task_id": "DONE_COLUMN",
+      "action": "Revalidated all 17 physical Done rows against persisted terminal receipts.",
+      "verification": "All unchanged, zero RUNNING/STARTING sessions, null pending actions; ae8 guarded runtime-inspection gap and af3 outside-merge commit disposition remain explicit."
+    },
+    {
+      "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+      "action": "Reconciled agent-owned waiting-state tag.",
+      "verification": "tag-fd31f4056e8501f25c5d is agent-owned/Human=false and names exact e9bf3f59, pending CI, 0 unresolved threads, and terminal docs-provider classification trigger."
+    },
+    {
+      "task_id": "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+      "action": "Persisted terminal containment and corrected no-test-needed tag.",
+      "verification": "Plan SHA prefix 4d5ff502; accepted bd92d72aa and merge 262ecdf contain commits 2ba884ba5/bd92d72aa and their full unique delta; no recovery task required."
+    },
+    {
+      "task_id": "09325a7b-afb5-4f54-b2a7-ceae217a7bee",
+      "action": "Persisted terminal commit-tree reconciliation.",
+      "verification": "Plan SHA prefix eb9fb772; accepted b17dc78c merged as 39e3ce2d; no unique unfinished code; remaining stale relation/state metadata is a platform-normalization gap."
+    },
+    {
+      "task_id": "bdc56ccb-b1ea-4f22-a1e0-e81eac5fa06e",
+      "action": "Persisted archive-ready terminal release receipt.",
+      "verification": "Plan SHA prefix 86ad1ad5; PR #8 merged, v0.3.2 public, exact artifact and downstream QA hashes preserved, clean worktrees, zero live sessions."
+    }
+  ],
+  "provider": {
+    "observed_at": "2026-09-15T13:09:23Z",
+    "status": "operational",
+    "authenticated": "gh api rate_limit returned REST 5000/5000 and GraphQL 5000/5000.",
+    "reset_at": "2026-09-15T14:09:23Z",
+    "next": "Use exact per-task provider state; pending-count-only drift does not invalidate a settled classification."
+  },
+  "queue": {
+    "status": "degraded",
+    "error": "UNKNOWN_ACTION mcp.get_message_queue_census despite advertised tool",
+    "disposed": 0,
+    "replayed": 0,
+    "rule": "Preserve all entries; no blind duplicate delivery or disposal."
+  },
+  "done_integrity": {
+    "count": 17,
+    "live_sessions": 0,
+    "pending_actions": 0,
+    "special": [
+      "ae8 guarded runtime inspection/disposal capability gap remains",
+      "af3 full containment proved; no recovery",
+      "093 full implementation containment proved; metadata-normalization gap remains",
+      "bdc merged release and downstream QA preserved; archive-ready"
+    ]
+  },
+  "gates": {
+    "G1": true,
+    "G2": true,
+    "G3": true,
+    "G4": true,
+    "G5": true,
+    "G6": true,
+    "G7": true,
+    "G8": true,
+    "G9": true,
+    "G10": true
+  },
+  "preimage": {
+    "exact_preimage": "docs/cycle-archives/2026-09-15T1308-plan-preimage.md",
+    "bytes": 186567,
+    "sha256": "0fd18b43b61893fa33eaa8aea0fd0c7c31ed387df0018b3ac468d6d8ce0bd839",
+    "prior_cycle": "docs/cycle-archives/2026-09-15T1216-complete-cycle.json",
+    "current_cycle": "docs/cycle-archives/2026-09-15T1308-complete-cycle.json",
+    "replacement_observed_at": "2026-09-15T13:26:27Z"
+  }
+}
