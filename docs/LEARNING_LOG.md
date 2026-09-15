@@ -1,5 +1,40 @@
 # Coordinator learning-cycle log
 
+## WAKE:LEARNING — 2026-09-15T04:50:35Z to 2026-09-15T06:50:14Z
+
+No additional durable lessons this cycle. The window's reusable Human
+correction and review finding were already captured by event-driven learning:
+SOL retains the same proactive parallel monitoring contract as ASTRA, and a
+review-thread census is incomplete until every page, terminal pagination
+marker, and current head are verified.
+
+Rejected by the filter:
+
+- The SOL clarification is already synchronized across `PROMPT.md`, the
+  capability registry, runbook, decisions, continuity guidance, and the
+  event-driven learning receipt.
+- Complete review-thread pagination is already required by the readiness
+  runbook; the incident sharpened its application without creating another
+  rule.
+- Task-control timeouts, failed atomic moves, stopped or stale sessions,
+  provider quota state, exact pull-request heads, and route corrections are
+  live operational evidence preserved in current plans and cycle archives.
+- The deterministic no-model automation proposal is owned product work with a
+  saved specification and dependency graph, not a reusable Coordinator
+  procedure.
+- Live-plan compaction followed the existing preimage, size, set-preservation,
+  validation, and current-first recovery contract.
+- The live task-description mirror lag was an instance of the existing
+  publication gate. This cycle restored complete `PROMPT.md` version
+  `2026-09-15b` and verified exact equality.
+
+Files changed by this pass: `docs/LEARNING_LOG.md` only. `PROMPT.md` changed
+earlier in the window, and its complete current content is now mirrored exactly
+to the live Coordinator task description. This receipt advances the next
+learning window to `2026-09-15T06:50:14Z`. Shared-main publication and final
+clean-tree verification are recorded by the commit containing this entry.
+Unresolved conflicts: none.
+
 ## 2026-09-15 — SOL retains proactive parallel monitoring
 
 The Human explicitly asked SOL Coordinator sessions to perform the same
