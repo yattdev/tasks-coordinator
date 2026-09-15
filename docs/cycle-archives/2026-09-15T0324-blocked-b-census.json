@@ -1,0 +1,1660 @@
+{
+  "observed_at": "2026-09-15T03:26:53.833581Z",
+  "workflow_id": "90f322ed-2159-424d-96e7-c2ad05668b8e",
+  "physical_blocked_count": 24,
+  "partition": "sorted full UUID second half, first half gets ceil(n/2)",
+  "scope_ids": [
+    "6a5a2f73-87e1-4c08-a983-64f2456c3633",
+    "6d03f4a9-bf89-4882-bf43-5a584f986185",
+    "76b4e3d4-ccb8-408c-a0de-5e5014c538be",
+    "77353939-0ba8-40dd-b93c-57adc73a4011",
+    "86c8b47e-e7a5-4693-8e11-dce08899a0bf",
+    "96e27238-8b7d-476a-8c70-b8da0abae935",
+    "9e67c426-1300-46ef-a00f-e5603791212d",
+    "ae8fc022-5562-4f58-95dc-3dab9d4c179f",
+    "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+    "b8fc206c-9e3f-4497-9ac3-3b62593da258",
+    "ca015838-e5cf-4294-b3bb-9c50576a5fe6",
+    "e8728906-86de-4a75-960f-9da585485823"
+  ],
+  "records": {
+    "6a5a2f73-87e1-4c08-a983-64f2456c3633": {
+      "title": "Executor containers: allow unprivileged user namespaces",
+      "physical": {
+        "step": "Blocked",
+        "step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+        "state": "REVIEW",
+        "updated_at": "2026-09-14 03:13:21.757382368+00:00",
+        "pending_moves": 0
+      },
+      "previous_step": "Human-QA/Review",
+      "blocker": "Merged PR #2937 does not satisfy terminal runtime acceptance: Support request 16b0c902-464c-40e6-80b1-fc69b8f63ce4 still has no verified pushed remediation receipt; sole bounded probe remained unshare=0, bwrap=1, missing proc namespace.",
+      "blocker_owner": "Support/host runtime capability owner; Coordinator owns one acceptance handoff",
+      "preservation": "Worktree /data/tasks/executor-containers_7oiab541/kandev-source; branch feature/executor-containers-nll; head+backup d8af676da8852ea68dec1faedec8ed3baa8a236c; 5,649 unresolved/staged entries untouched; PR2937 merged accepted head 8b9395b0 with green checks.",
+      "next_action": "On verified pushed Support repair, move to Human-QA and start one configured owner for exactly one bounded task-owned probe.",
+      "trigger": "Positive Support remediation receipt plus supported probe capability.",
+      "fallback": "One incident follow-up at escalation cadence; no Docker/sudo/security workaround or repeat probe.",
+      "cleared": false,
+      "health": "blocked",
+      "tag": "waiting: Support investigates bounded bubblewrap namespace failure",
+      "sessions": {
+        "active_count": 0,
+        "all": [
+          {
+            "id": "5392b5ee-1843-4436-bd3a-50c9be5b9429",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "5b1dc511-64f7-448a-aa2c-5bf72e81f9e9",
+            "profile": "DI small",
+            "model": "savoirfairelinux/DeepInfra/deepseek-ai%2FDeepSeek-V4-Flash-0731",
+            "error": ""
+          },
+          {
+            "id": "bd0e2a4e-2357-42ea-8601-e5ea0a00a9d5",
+            "state": "COMPLETED",
+            "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "profile": "CI Fixup",
+            "model": "gpt-5.6-luna",
+            "error": ""
+          },
+          {
+            "id": "9551a5d6-41b7-43d1-b2ab-5bbf70769347",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "profile": "Worker",
+            "model": "gpt-5.6-terra",
+            "error": ""
+          },
+          {
+            "id": "289224cc-e691-48c2-aee4-584633205b7e",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "profile": "Worker",
+            "model": "gpt-5.6-terra",
+            "error": ""
+          },
+          {
+            "id": "894d80d3-60b4-44bf-9f26-41677572511c",
+            "state": "COMPLETED",
+            "profile_id": "06f0a558-84be-486e-a3ea-941b679dc87a",
+            "profile": "CI Fixup",
+            "model": "sonnet",
+            "error": ""
+          },
+          {
+            "id": "aa2f63e9-d529-4685-a2e7-e30e46de37ae",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+            "profile": "Terra 5.6",
+            "model": "gpt-5.6-terra",
+            "error": ""
+          },
+          {
+            "id": "414fc6a3-39d7-464b-ae1a-3b109e16b0a8",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "67ba38d7-89b5-40a8-a355-702e25d9e903",
+            "profile": "Kimi k3",
+            "model": "savoirfairelinux/DeepInfra/moonshotai%2FKimi-K3",
+            "error": ""
+          },
+          {
+            "id": "47c07400-da44-4ef3-bf02-08732758ca28",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "e31a57cb-06c0-46b1-b3eb-c82a72d9699c",
+            "profile": "DI DeepSeek Pro",
+            "model": "savoirfairelinux/DeepInfra/deepseek-ai%2FDeepSeek-V4-Pro-0813",
+            "error": ""
+          },
+          {
+            "id": "3542794d-5187-456f-a09c-48881978a274",
+            "state": "COMPLETED",
+            "profile_id": "e4a407ee-7476-4cc5-8dc6-22df525f2527",
+            "profile": "Spec",
+            "model": "opus[1m]",
+            "error": ""
+          }
+        ]
+      },
+      "relations": [],
+      "repository_rows": [
+        {
+          "id": "ff9d6c70-d996-46f8-99d8-211148c66473",
+          "task_id": "6a5a2f73-87e1-4c08-a983-64f2456c3633",
+          "repository_id": "b86ec283-13cd-4cee-baec-1b88457ec06b",
+          "base_branch": "upstream/main",
+          "checkout_branch": "",
+          "position": 0,
+          "metadata": "{\"comparison_target\":{\"version\":1,\"provider\":\"github\",\"kind\":\"pull_request\",\"number\":2937,\"head_branch\":\"feature/executor-containers-nll\",\"target_branch\":\"main\",\"head_repository\":{\"host\":\"github.com\",\"path\":\"yattdev/kandev\",\"provider_id\":\"1283544009\",\"remote_url\":\"https://github.com/yattdev/kandev.git\"},\"target_repository\":{\"host\":\"github.com\",\"path\":\"kdlbs/kandev\",\"provider_id\":\"1131388506\",\"remote_url\":\"https://github.com/kdlbs/kandev.git\"}}}",
+          "created_at": "2026-08-18 01:18:09.617576842+00:00",
+          "updated_at": "2026-08-29 02:47:29.810010729+00:00",
+          "branch_policy_id": "",
+          "branch_policy_name": "",
+          "branch_policy_base_branch": "",
+          "branch_policy_branch_template": "",
+          "branch_policy_pull_request_target": "",
+          "repository_name": "kandev-source",
+          "remote_url": "https://github.com/yattdev/kandev.git"
+        }
+      ],
+      "environment_rows": [
+        {
+          "id": "f9442909-54b9-4e24-a674-82de4579ea7a",
+          "task_id": "6a5a2f73-87e1-4c08-a983-64f2456c3633",
+          "executor_type": "worktree",
+          "executor_id": "exec-worktree",
+          "executor_profile_id": "64ab50d1-5500-48d9-b3d8-0ea22ea11027",
+          "control_port": 0,
+          "status": "ready",
+          "workspace_path": "/data/tasks/executor-containers_7oiab541/kandev-source",
+          "container_id": "",
+          "sandbox_id": "",
+          "task_dir_name": "executor-containers_7oiab541",
+          "created_at": "2026-08-18 01:18:11.350642158+00:00",
+          "updated_at": "2026-09-14 03:10:47.992079151+00:00",
+          "materialization_session_id": "",
+          "container_bootstrap_nonce_secret_id": "",
+          "container_control_auth_token_secret_id": "",
+          "ownership_generation": 1
+        }
+      ],
+      "last_checked": "2026-09-15T03:26:53.833581Z",
+      "r5_action_if_cleared": "On verified Support repair, move Blocked\u2192Human-QA, send d8af676d/5,649-entry preservation handoff for exactly one bounded probe, verify configured Human-QA owner RUNNING."
+    },
+    "6d03f4a9-bf89-4882-bf43-5a584f986185": {
+      "title": "Adopt exact profile assignment persistence",
+      "physical": {
+        "step": "Blocked",
+        "step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+        "state": "REVIEW",
+        "updated_at": "2026-09-14 21:05:40.022645978+00:00",
+        "pending_moves": 0
+      },
+      "previous_step": "Spec",
+      "blocker": "Adoption must layer on authoritative exact-profile contract PR #3473 and coordinate PR #3155/#3165 seams. #3473 remains OPEN/ready/mergeable at 0ce8992c while task e0dd8d19 remains Work with no active session; #3155 remains OPEN/ready/mergeable at 2c2f9fd8; #3165 remains OPEN/ready/mergeable at a199dcd4 and its task is Human-QA. None is delivered on canonical main. Fixed-model-only hold is suspended and excluded.",
+      "blocker_owner": "e0dd8d19/#3473 delivery owner, then #3155/#3165 seam owners",
+      "preservation": "Source /data/tasks/platform-exact-profi_k2tb6qj7/kdlbs-kandev branch feature/platform-exact-profi-dbo head 0c83f80fd90082aa4dc3b7baeb0b28cd6af77575; ref 2f753d219bfe96859d6f429b2272263dda0be52b; tree 3833932ed2516ed498d1d2f09ff81df11ae97f48; unique uncommitted session_launch.go +36/-10; canonical adoption worktree /data/tasks/adopt-exact-profile_aymu1kux/kandev-source frozen/clean.",
+      "next_action": "When #3473 is delivered on canonical main and #3155/#3165 seams are stable, move Blocked\u2192Work with eight-seam adoption plan and start one configured Work owner.",
+      "trigger": "Canonical-main exact-profile contract available at a stable delivered head, with #3155/#3165 integration seams resolved.",
+      "fallback": "Preserve source carrier/ref/tree byte-for-byte; do not copy or shadow-implement early.",
+      "cleared": false,
+      "health": "blocked",
+      "tag": "none",
+      "sessions": {
+        "active_count": 0,
+        "all": [
+          {
+            "id": "74f1590e-9dad-4dca-8a2c-0e1652bdccdf",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "5b1dc511-64f7-448a-aa2c-5bf72e81f9e9",
+            "profile": "DI small",
+            "model": "savoirfairelinux/DeepInfra/deepseek-ai%2FDeepSeek-V4-Flash-0731",
+            "error": ""
+          },
+          {
+            "id": "b27451e9-66cd-46e1-b67e-2e674fedb794",
+            "state": "COMPLETED",
+            "profile_id": "67ba38d7-89b5-40a8-a355-702e25d9e903",
+            "profile": "Kimi k3",
+            "model": "savoirfairelinux/DeepInfra/moonshotai%2FKimi-K3",
+            "error": ""
+          }
+        ]
+      },
+      "relations": [],
+      "repository_rows": [
+        {
+          "id": "5471908c-726c-4a93-94c7-d34c9774745f",
+          "task_id": "6d03f4a9-bf89-4882-bf43-5a584f986185",
+          "repository_id": "b86ec283-13cd-4cee-baec-1b88457ec06b",
+          "base_branch": "main",
+          "checkout_branch": "",
+          "position": 0,
+          "metadata": "{}",
+          "created_at": "2026-09-14 20:44:58.809860713+00:00",
+          "updated_at": "2026-09-14 20:44:58.809860713+00:00",
+          "branch_policy_id": "",
+          "branch_policy_name": "",
+          "branch_policy_base_branch": "",
+          "branch_policy_branch_template": "",
+          "branch_policy_pull_request_target": "",
+          "repository_name": "kandev-source",
+          "remote_url": "https://github.com/yattdev/kandev.git"
+        }
+      ],
+      "environment_rows": [
+        {
+          "id": "b0c23422-6f19-41cf-9b54-efed4ed5bcce",
+          "task_id": "6d03f4a9-bf89-4882-bf43-5a584f986185",
+          "executor_type": "worktree",
+          "executor_id": "exec-worktree",
+          "executor_profile_id": "64ab50d1-5500-48d9-b3d8-0ea22ea11027",
+          "control_port": 0,
+          "status": "ready",
+          "workspace_path": "/data/tasks/adopt-exact-profile_aymu1kux/kandev-source",
+          "container_id": "",
+          "sandbox_id": "",
+          "task_dir_name": "adopt-exact-profile_aymu1kux",
+          "created_at": "2026-09-14 20:44:58.819408903+00:00",
+          "updated_at": "2026-09-14 21:02:53.533744199+00:00",
+          "materialization_session_id": "",
+          "container_bootstrap_nonce_secret_id": "",
+          "container_control_auth_token_secret_id": "",
+          "ownership_generation": 1
+        }
+      ],
+      "last_checked": "2026-09-15T03:26:53.833581Z",
+      "r5_action_if_cleared": "After #3473/#3155/#3165 contracts land, move Blocked\u2192Work, send source-ref/tree and eight-seam adoption handoff, verify configured Work owner RUNNING."
+    },
+    "76b4e3d4-ccb8-408c-a0de-5e5014c538be": {
+      "title": "Make visible Human questions durable",
+      "physical": {
+        "step": "Blocked",
+        "step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+        "state": "REVIEW",
+        "updated_at": "2026-09-09 23:42:14.249572101+00:00",
+        "pending_moves": 0
+      },
+      "previous_step": "CI Fixup",
+      "blocker": "PR #3404 remains OPEN/draft/CONFLICTING at 654a7cdc with unchanged immutable GHCR/container failure and no direct rerun authority. Scoped dispatcher PR #3165 is OPEN/ready/mergeable at a199dcd4; its task reached Human-QA but is not merged/deployed.",
+      "blocker_owner": "PR #3165 delivery owner 9ee4be81; then kdlbs/kandev Actions maintainer and Work conflict owner",
+      "preservation": "Clean /data/tasks/make-visible-human-q_vhjkt1t6/kdlbs-kandev; branch feature/make-visible-human-q-u2t; local/fork/PR head 654a7cdc; no runtime or DB fixture.",
+      "next_action": "After dispatcher delivery and new #3404 event, resolve current-main conflict in Work if required, then CI Fixup for one scoped exact-head rerun.",
+      "trigger": "Deployed dispatcher plus new exact-head run, or provider head/base/mergeability change.",
+      "fallback": "Retain single denied rerun receipt; no duplicate admin contact or retry-only commit.",
+      "cleared": false,
+      "health": "blocked",
+      "tag": "waiting: resume after admin rerun/scoped dispatcher",
+      "sessions": {
+        "active_count": 0,
+        "all": [
+          {
+            "id": "d30978b2-e58e-4647-a687-0018172b1612",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "profile": "CI Fixup",
+            "model": "gpt-5.6-luna",
+            "error": ""
+          },
+          {
+            "id": "2c83cc7f-6d3b-4c1f-a9fc-c988485fd7cf",
+            "state": "COMPLETED",
+            "profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+            "profile": "Spec",
+            "model": "gpt-5.6-sol",
+            "error": ""
+          },
+          {
+            "id": "c031fc77-f998-4a93-95fe-c7248bcb63e0",
+            "state": "CANCELLED",
+            "profile_id": "ce9f96f7-4434-4729-b23b-926b4b72f417",
+            "profile": "Worker-claude",
+            "model": "gpt-5.6-terra",
+            "error": "stopped by parent task via MCP"
+          },
+          {
+            "id": "a3fcb767-ac94-4217-86fd-3a3529ea6552",
+            "state": "COMPLETED",
+            "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "profile": "CI Fixup",
+            "model": "gpt-5.6-luna",
+            "error": ""
+          }
+        ]
+      },
+      "relations": [],
+      "repository_rows": [
+        {
+          "id": "ad2a46dc-61ff-452f-a191-dac6f77a194f",
+          "task_id": "76b4e3d4-ccb8-408c-a0de-5e5014c538be",
+          "repository_id": "a462935c-6825-463e-aff0-60b20f87f6fb",
+          "base_branch": "main",
+          "checkout_branch": "",
+          "position": 0,
+          "metadata": "{}",
+          "created_at": "2026-09-01 03:37:43.57302886+00:00",
+          "updated_at": "2026-09-01 03:37:43.57302886+00:00",
+          "branch_policy_id": "",
+          "branch_policy_name": "",
+          "branch_policy_base_branch": "",
+          "branch_policy_branch_template": "",
+          "branch_policy_pull_request_target": "",
+          "repository_name": "kdlbs/kandev",
+          "remote_url": "https://github.com/kdlbs/kandev.git"
+        }
+      ],
+      "environment_rows": [
+        {
+          "id": "55e32619-6e2e-4f07-bba9-a3cf608dce08",
+          "task_id": "76b4e3d4-ccb8-408c-a0de-5e5014c538be",
+          "executor_type": "worktree",
+          "executor_id": "exec-worktree",
+          "executor_profile_id": "64ab50d1-5500-48d9-b3d8-0ea22ea11027",
+          "control_port": 0,
+          "status": "ready",
+          "workspace_path": "/data/tasks/make-visible-human-q_vhjkt1t6/kdlbs-kandev",
+          "container_id": "",
+          "sandbox_id": "",
+          "task_dir_name": "make-visible-human-q_vhjkt1t6",
+          "created_at": "2026-09-01 03:38:02.457249364+00:00",
+          "updated_at": "2026-09-09 04:01:15.647485327+00:00",
+          "materialization_session_id": "",
+          "container_bootstrap_nonce_secret_id": "",
+          "container_control_auth_token_secret_id": "",
+          "ownership_generation": 1
+        }
+      ],
+      "last_checked": "2026-09-15T03:26:53.833581Z",
+      "r5_action_if_cleared": "On dispatcher delivery/new run, move Blocked\u2192Work if conflict repair is needed, otherwise CI Fixup; send 654a7cdc preservation and no-duplicate-rerun handoff; verify configured owner RUNNING."
+    },
+    "77353939-0ba8-40dd-b93c-57adc73a4011": {
+      "title": "Implement provider-usage MCP tool",
+      "physical": {
+        "step": "Blocked",
+        "step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+        "state": "SCHEDULING",
+        "updated_at": "2026-09-08 04:53:53.155813648+00:00",
+        "pending_moves": 0
+      },
+      "previous_step": "Review",
+      "blocker": "No registered writable plugin checkout. Rejected permission projection still has no delivered executor-owned native sandbox and no native Git index write/rollback proof. Sandbox design task 92535de6 is Done/spec-only, not an implementation.",
+      "blocker_owner": "future executor-owned sandbox implementation owner; Coordinator for checkout rematerialization",
+      "preservation": "Provider Usage baseline a5c386b, package intent, four E2Es, failed children, workspace SDK-link layout; worktree /data/tasks/implement-provider-u_k97qa5oa retained; no cleanup authorized.",
+      "next_action": "After sandbox implementation and writable checkout proof, rematerialize/reconcile/commit and start one configured Work owner.",
+      "trigger": "Registered checkout passes native index write and rollback under delivered executor-owned sandbox.",
+      "fallback": "Preserve evidence; no Git-admin or permission bypass.",
+      "cleared": false,
+      "health": "blocked",
+      "tag": "waiting: stale PR3496 wording; real trigger is delivered sandbox",
+      "sessions": {
+        "active_count": 0,
+        "all": [
+          {
+            "id": "f44b042d-b4fb-4a4e-97d1-1b33f4e2c2ff",
+            "state": "FAILED",
+            "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "profile": "Worker",
+            "model": "gpt-5.6-terra",
+            "error": "workspace reuse is unsafe: canonical workspace repository inventory has no matching entry for repository \"***\" branch \"main\""
+          },
+          {
+            "id": "f1ae0de9-7974-455c-a5ca-4005954b869d",
+            "state": "FAILED",
+            "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "profile": "Worker",
+            "model": "gpt-5.6-terra",
+            "error": "environment preparation failed: git command failed: Preparing worktree (checking out '***')\nfatal: '***' already exists"
+          },
+          {
+            "id": "ec16aaa2-e194-48aa-b209-299ebde05122",
+            "state": "FAILED",
+            "profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+            "profile": "Terra 5.6",
+            "model": "gpt-5.6-terra",
+            "error": "environment preparation failed: git command failed: Preparing worktree (checking out '***')\nfatal: '***' already exists"
+          },
+          {
+            "id": "03a945b9-3602-40e9-947b-fad7ea22c80a",
+            "state": "COMPLETED",
+            "profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+            "profile": "Terra 5.6",
+            "model": "gpt-5.6-terra",
+            "error": ""
+          }
+        ]
+      },
+      "relations": [],
+      "repository_rows": [
+        {
+          "id": "74085b5b-dc3a-4f49-b7d6-d3a827672600",
+          "task_id": "77353939-0ba8-40dd-b93c-57adc73a4011",
+          "repository_id": "a462935c-6825-463e-aff0-60b20f87f6fb",
+          "base_branch": "main",
+          "checkout_branch": "",
+          "position": 1,
+          "metadata": "{}",
+          "created_at": "2026-08-19 08:08:58.717895537+00:00",
+          "updated_at": "2026-08-19 08:08:58.717895537+00:00",
+          "branch_policy_id": "",
+          "branch_policy_name": "",
+          "branch_policy_base_branch": "",
+          "branch_policy_branch_template": "",
+          "branch_policy_pull_request_target": "",
+          "repository_name": "kdlbs/kandev",
+          "remote_url": "https://github.com/kdlbs/kandev.git"
+        },
+        {
+          "id": "195ace8f-83a5-4c29-97b3-1f7e95862c51",
+          "task_id": "77353939-0ba8-40dd-b93c-57adc73a4011",
+          "repository_id": "d6b28edc-b13b-4c02-ac60-3f502e9ea3e6",
+          "base_branch": "main",
+          "checkout_branch": "",
+          "position": 0,
+          "metadata": "{}",
+          "created_at": "2026-08-19 08:02:53.649765229+00:00",
+          "updated_at": "2026-08-19 08:02:53.649765229+00:00",
+          "branch_policy_id": "",
+          "branch_policy_name": "",
+          "branch_policy_base_branch": "",
+          "branch_policy_branch_template": "",
+          "branch_policy_pull_request_target": "",
+          "repository_name": "kdlbs/kandev-plugin-provider-usage",
+          "remote_url": "https://github.com/kdlbs/kandev-plugin-provider-usage.git"
+        },
+        {
+          "id": "60d562b4-0e15-425d-91a0-5503b02d609e",
+          "task_id": "77353939-0ba8-40dd-b93c-57adc73a4011",
+          "repository_id": "d6b28edc-b13b-4c02-ac60-3f502e9ea3e6",
+          "base_branch": "main",
+          "checkout_branch": "branch-k5a",
+          "position": 2,
+          "metadata": "{}",
+          "created_at": "2026-08-19 09:45:23.166420376+00:00",
+          "updated_at": "2026-08-19 09:45:23.166420376+00:00",
+          "branch_policy_id": "",
+          "branch_policy_name": "",
+          "branch_policy_base_branch": "",
+          "branch_policy_branch_template": "",
+          "branch_policy_pull_request_target": "",
+          "repository_name": "kdlbs/kandev-plugin-provider-usage",
+          "remote_url": "https://github.com/kdlbs/kandev-plugin-provider-usage.git"
+        }
+      ],
+      "environment_rows": [
+        {
+          "id": "028d1cfa-9cd9-47b1-83f5-33aa2589efb8",
+          "task_id": "77353939-0ba8-40dd-b93c-57adc73a4011",
+          "executor_type": "worktree",
+          "executor_id": "exec-worktree",
+          "executor_profile_id": "64ab50d1-5500-48d9-b3d8-0ea22ea11027",
+          "control_port": 0,
+          "status": "ready",
+          "workspace_path": "/data/tasks/implement-provider-u_k97qa5oa",
+          "container_id": "",
+          "sandbox_id": "",
+          "task_dir_name": "implement-provider-u_k97qa5oa",
+          "created_at": "2026-08-19 08:02:54.817966558+00:00",
+          "updated_at": "2026-08-20 05:22:02.361476841+00:00",
+          "materialization_session_id": "",
+          "container_bootstrap_nonce_secret_id": "",
+          "container_control_auth_token_secret_id": "",
+          "ownership_generation": 1
+        }
+      ],
+      "last_checked": "2026-09-15T03:26:53.833581Z",
+      "r5_action_if_cleared": "After delivered native sandbox and writable index proof, move Blocked\u2192Work, rematerialize from a5c386b evidence without cleanup, and verify configured Work owner RUNNING."
+    },
+    "86c8b47e-e7a5-4693-8e11-dce08899a0bf": {
+      "title": "Preserve unread queue on session deletion",
+      "physical": {
+        "step": "Blocked",
+        "step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+        "state": "REVIEW",
+        "updated_at": "2026-09-08 04:53:53.274366614+00:00",
+        "pending_moves": 0
+      },
+      "previous_step": "CI Fixup",
+      "blocker": "Canonical primitive PR #3377 remains open/draft CONFLICTING at c990b51cb8dc758f35a702ee6ee017dd1c593c26; ca015838 clean successor 37ca515b cannot reach provider through invalid task lease.",
+      "blocker_owner": "ca015838 credential/publisher owner, then upstream integration owner",
+      "preservation": "Fork PR #15/branch feature/preserve-unread-queu-s0c at c4156e83b8379851f50ce6890a13b16720874df9; /data/tasks/preserve-unread-queu_ofb2j8xg and QA captures retained.",
+      "next_action": "After compatible #3377 successor lands, move to Work, integrate canonical main, then fresh CI/Review/QA before canonical PR.",
+      "trigger": "Compatible queue primitive merged on canonical main.",
+      "fallback": "Treat fork #15 as evidence only; no duplicate publication.",
+      "cleared": false,
+      "health": "blocked",
+      "tag": "waiting: after PR3377 merges",
+      "sessions": {
+        "active_count": 0,
+        "all": [
+          {
+            "id": "02b48c70-3ad9-461d-a5ca-7fe3c01dfe50",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "profile": "Review",
+            "model": "gpt-5.5",
+            "error": ""
+          },
+          {
+            "id": "2376d3fe-6818-4486-a1fb-7dc99c3bf433",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "profile": "CI Fixup",
+            "model": "gpt-5.6-luna",
+            "error": ""
+          },
+          {
+            "id": "fb3e5dd8-452b-4604-bd38-6c0ba9844d98",
+            "state": "COMPLETED",
+            "profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+            "profile": "Spec",
+            "model": "gpt-5.6-sol",
+            "error": ""
+          }
+        ]
+      },
+      "relations": [
+        {
+          "task_id": "86c8b47e-e7a5-4693-8e11-dce08899a0bf",
+          "blocker_task_id": "ca015838-e5cf-4294-b3bb-9c50576a5fe6",
+          "created_at": "2026-09-03 02:38:22.558519171+00:00"
+        },
+        {
+          "task_id": "b8fc206c-9e3f-4497-9ac3-3b62593da258",
+          "blocker_task_id": "86c8b47e-e7a5-4693-8e11-dce08899a0bf",
+          "created_at": "2026-09-05 04:52:06.655227345+00:00"
+        }
+      ],
+      "repository_rows": [
+        {
+          "id": "f5f3a837-32f2-4cb4-a69e-6ab9e48dce72",
+          "task_id": "86c8b47e-e7a5-4693-8e11-dce08899a0bf",
+          "repository_id": "a462935c-6825-463e-aff0-60b20f87f6fb",
+          "base_branch": "main",
+          "checkout_branch": "",
+          "position": 0,
+          "metadata": "{}",
+          "created_at": "2026-09-03 02:38:22.567685373+00:00",
+          "updated_at": "2026-09-03 02:38:22.567685373+00:00",
+          "branch_policy_id": "",
+          "branch_policy_name": "",
+          "branch_policy_base_branch": "",
+          "branch_policy_branch_template": "",
+          "branch_policy_pull_request_target": "",
+          "repository_name": "kdlbs/kandev",
+          "remote_url": "https://github.com/kdlbs/kandev.git"
+        },
+        {
+          "id": "6199f875-2ad8-47e2-86ae-66da23f4c893",
+          "task_id": "86c8b47e-e7a5-4693-8e11-dce08899a0bf",
+          "repository_id": "b86ec283-13cd-4cee-baec-1b88457ec06b",
+          "base_branch": "feature/add-guarded-queue-cl-sls",
+          "checkout_branch": "",
+          "position": 1,
+          "metadata": "{}",
+          "created_at": "2026-09-06 01:25:46.987374873+00:00",
+          "updated_at": "2026-09-06 01:25:46.987374873+00:00",
+          "branch_policy_id": "",
+          "branch_policy_name": "",
+          "branch_policy_base_branch": "",
+          "branch_policy_branch_template": "",
+          "branch_policy_pull_request_target": "",
+          "repository_name": "kandev-source",
+          "remote_url": "https://github.com/yattdev/kandev.git"
+        }
+      ],
+      "environment_rows": [
+        {
+          "id": "4b184d0b-79dd-4cc0-a9bb-680e83b93c12",
+          "task_id": "86c8b47e-e7a5-4693-8e11-dce08899a0bf",
+          "executor_type": "worktree",
+          "executor_id": "exec-worktree",
+          "executor_profile_id": "64ab50d1-5500-48d9-b3d8-0ea22ea11027",
+          "control_port": 0,
+          "status": "ready",
+          "workspace_path": "/data/tasks/preserve-unread-queu_ofb2j8xg",
+          "container_id": "",
+          "sandbox_id": "",
+          "task_dir_name": "preserve-unread-queu_ofb2j8xg",
+          "created_at": "2026-09-05 04:58:22.910756801+00:00",
+          "updated_at": "2026-09-06 08:07:44.606457036+00:00",
+          "materialization_session_id": "",
+          "container_bootstrap_nonce_secret_id": "",
+          "container_control_auth_token_secret_id": "",
+          "ownership_generation": 1
+        }
+      ],
+      "last_checked": "2026-09-15T03:26:53.833581Z",
+      "r5_action_if_cleared": "After canonical #3377 successor lands, move Blocked\u2192Work, hand off fork #15/c4156e evidence for additive integration, verify configured Work owner RUNNING."
+    },
+    "96e27238-8b7d-476a-8c70-b8da0abae935": {
+      "title": "Fix stale plugin-hook docs and template rename checklist",
+      "physical": {
+        "step": "Blocked",
+        "step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+        "state": "REVIEW",
+        "updated_at": "2026-09-08 04:53:52.748945269+00:00",
+        "pending_moves": 0
+      },
+      "previous_step": "Work/Review",
+      "blocker": "Template PR #4 remains open/non-draft MERGEABLE at f616642516372091f1a0aa6239bb693d3eb2839d, but external-contributor CI/Build still did not execute after approval expiry; current account lacks Actions approval authority.",
+      "blocker_owner": "kdlbs/kandev-plugin-template maintainer",
+      "preservation": "Clean Kandev /data/tasks/fix-stale-plugin-hoo_wb6/kandev-source branch feature/fix-stale-plugin-hoo-54w head 91e36603f33c0b004815e8ba6ec6c2163d7c3fd9; template fork fix/stale-plugin-hook-docs-and-release-id head f616642; no runtime.",
+      "next_action": "Event-driven provider recheck; on executed CI move to CI verification.",
+      "trigger": "New CI/Build run, maintainer approval, or review decision.",
+      "fallback": "No duplicate approval ping; preserve README-only scope and defer release workflow.",
+      "cleared": false,
+      "health": "blocked",
+      "tag": "waiting: maintainer approval/rerun",
+      "sessions": {
+        "active_count": 0,
+        "all": [
+          {
+            "id": "3990717f-3976-467b-8b30-a15065c1a1c1",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "profile": "Worker",
+            "model": "gpt-5.6-terra",
+            "error": ""
+          },
+          {
+            "id": "a462cd32-76ef-4df6-a2f8-8a080545791e",
+            "state": "COMPLETED",
+            "profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+            "profile": "Terra 5.6",
+            "model": "gpt-5.6-terra",
+            "error": ""
+          },
+          {
+            "id": "6a762d99-dcde-4bfb-b61d-bb274ebbba3d",
+            "state": "COMPLETED",
+            "profile_id": "06f0a558-84be-486e-a3ea-941b679dc87a",
+            "profile": "CI Fixup",
+            "model": "sonnet",
+            "error": ""
+          },
+          {
+            "id": "21800fc1-67cb-4589-ba4f-a9fc0c44f0bf",
+            "state": "COMPLETED",
+            "profile_id": "d05f88ca-4699-43c5-a558-70df3df45ec2",
+            "profile": "Review",
+            "model": "opus[1m]",
+            "error": ""
+          },
+          {
+            "id": "66bfd2c7-cb9b-4c3d-8829-ae51340318fa",
+            "state": "COMPLETED",
+            "profile_id": "3e3c9eca-7dd9-4dbf-9cf9-82d97fc935d3",
+            "profile": "Starter",
+            "model": "sonnet",
+            "error": ""
+          }
+        ]
+      },
+      "relations": [],
+      "repository_rows": [
+        {
+          "id": "17ec9e5a-f471-4ea4-9ef7-45c956ecd933",
+          "task_id": "96e27238-8b7d-476a-8c70-b8da0abae935",
+          "repository_id": "b86ec283-13cd-4cee-baec-1b88457ec06b",
+          "base_branch": "upstream/main",
+          "checkout_branch": "",
+          "position": 0,
+          "metadata": "{}",
+          "created_at": "2026-08-05 21:19:17.900511289+00:00",
+          "updated_at": "2026-08-05 21:19:17.900511289+00:00",
+          "branch_policy_id": "",
+          "branch_policy_name": "",
+          "branch_policy_base_branch": "",
+          "branch_policy_branch_template": "",
+          "branch_policy_pull_request_target": "",
+          "repository_name": "kandev-source",
+          "remote_url": "https://github.com/yattdev/kandev.git"
+        }
+      ],
+      "environment_rows": [
+        {
+          "id": "f4590e79-5f61-44c3-910c-a3061a7128c5",
+          "task_id": "96e27238-8b7d-476a-8c70-b8da0abae935",
+          "executor_type": "worktree",
+          "executor_id": "exec-worktree",
+          "executor_profile_id": "64ab50d1-5500-48d9-b3d8-0ea22ea11027",
+          "control_port": 0,
+          "status": "ready",
+          "workspace_path": "/data/tasks/fix-stale-plugin-hoo_wb6/kandev-source",
+          "container_id": "",
+          "sandbox_id": "",
+          "task_dir_name": "fix-stale-plugin-hoo_wb6",
+          "created_at": "2026-08-05 21:19:19.007126945+00:00",
+          "updated_at": "2026-09-07 19:12:37.405141172+00:00",
+          "materialization_session_id": "",
+          "container_bootstrap_nonce_secret_id": "",
+          "container_control_auth_token_secret_id": "",
+          "ownership_generation": 1
+        }
+      ],
+      "last_checked": "2026-09-15T03:26:53.833581Z",
+      "r5_action_if_cleared": "On executed template CI/review event, move Blocked\u2192CI Fixup and verify configured CI owner RUNNING with f616642/91e366 preservation."
+    },
+    "9e67c426-1300-46ef-a00f-e5603791212d": {
+      "title": "Plan coordinator plugin architecture",
+      "physical": {
+        "step": "Blocked",
+        "step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+        "state": "REVIEW",
+        "updated_at": "2026-09-14 04:13:00.971304398+00:00",
+        "pending_moves": 0
+      },
+      "previous_step": "Work",
+      "blocker": "Replacement program 1e46d457 remains Work with session ba236402 RUNNING. Exact-cancel PR #3155 remains OPEN/ready/mergeable at 2c2f9fd8. Historical pending rows are authoritatively absent, clearing that sub-blocker, but replacement/delivery and legacy PR #2793 disposition remain.",
+      "blocker_owner": "1e46d457 replacement owner and 7056a702/#3155 owner",
+      "preservation": "feature/create-a-plugin-that-kch at ee41197009dd00331b74ab6a1b9c1a66292f2c20, backup ref, tracked worktree and protected predecessor identities; legacy PR #2793 remains open/draft CONFLICTING at afd2b699bfe9b6af9353ea01728582f61a7be2be.",
+      "next_action": "Let replacement and exact-cancel delivery finish; then dispose/supersede #2793 and re-evaluate terminal containment. Do not contact protected sessions.",
+      "trigger": "Replacement completion, or exact-cancel merged/deployed; row-absence proof is already satisfied.",
+      "fallback": "Preserve carrier/ref and never message stopped protected sessions.",
+      "cleared": false,
+      "health": "blocked",
+      "tag": "waiting note stale: pending-row absence now proven",
+      "sessions": {
+        "active_count": 0,
+        "all": [
+          {
+            "id": "d770156a-416b-4134-9992-99b681782f37",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "5b1dc511-64f7-448a-aa2c-5bf72e81f9e9",
+            "profile": "DI small",
+            "model": "savoirfairelinux/DeepInfra/deepseek-ai%2FDeepSeek-V4-Flash-0731",
+            "error": ""
+          },
+          {
+            "id": "28e52f66-9f2c-44f8-8c7f-4eeaa05c8681",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+            "profile": "GLM-5.3",
+            "model": "savoirfairelinux/DeepInfra/zai-org%2FGLM-5.3",
+            "error": ""
+          },
+          {
+            "id": "6ce88dad-4143-40b8-a729-782d00354c99",
+            "state": "FAILED",
+            "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "profile": "Worker",
+            "model": "gpt-5.6-terra",
+            "error": "failed to resume session: validate launch workspace repository \"***\": required worktree is unavailable for reuse"
+          },
+          {
+            "id": "08558ba9-71d4-4f98-91d0-2418c583ebda",
+            "state": "FAILED",
+            "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "profile": "Review",
+            "model": "gpt-5.5",
+            "error": "failed to resume session: validate launch workspace repository \"***\": required worktree is unavailable for reuse"
+          },
+          {
+            "id": "c170ad39-5465-458c-8908-fd5b0787c1be",
+            "state": "COMPLETED",
+            "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "profile": "CI Fixup",
+            "model": "gpt-5.6-luna",
+            "error": ""
+          },
+          {
+            "id": "a31e535d-d674-4926-8d13-88fb24e945a8",
+            "state": "COMPLETED",
+            "profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+            "profile": "QA",
+            "model": "gpt-5.6-sol",
+            "error": ""
+          },
+          {
+            "id": "c6e9703e-611e-4739-ad78-c9aa597c554f",
+            "state": "COMPLETED",
+            "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "profile": "Review",
+            "model": "gpt-5.5",
+            "error": ""
+          },
+          {
+            "id": "3e60d669-6682-4c95-8b0e-7c2e95026584",
+            "state": "FAILED",
+            "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "profile": "Review",
+            "model": "gpt-5.5",
+            "error": "failed to resume session: validate launch workspace repository \"***\": required worktree is unavailable for reuse"
+          },
+          {
+            "id": "df881b0e-b4cc-4eb0-93a6-5b5a357ad60a",
+            "state": "FAILED",
+            "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "profile": "Review",
+            "model": "gpt-5.5",
+            "error": "failed to resume session: validate launch workspace repository \"***\": required worktree is unavailable for reuse"
+          },
+          {
+            "id": "f18da888-b2c6-4ce9-98f5-e53772d14237",
+            "state": "FAILED",
+            "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "profile": "Review",
+            "model": "gpt-5.5",
+            "error": "failed to resume session: validate launch workspace repository \"***\": required worktree is unavailable for reuse"
+          },
+          {
+            "id": "d3720d53-b4e7-490a-a494-a7f07e8bf7c7",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "profile": "Review",
+            "model": "gpt-5.5",
+            "error": ""
+          },
+          {
+            "id": "8e80bf3a-f5fb-4877-8e14-601a1e4c98aa",
+            "state": "COMPLETED",
+            "profile_id": "d05f88ca-4699-43c5-a558-70df3df45ec2",
+            "profile": "Review",
+            "model": "opus[1m]",
+            "error": ""
+          },
+          {
+            "id": "bb0a603e-dc09-446b-8ac0-e89e3aac2c89",
+            "state": "COMPLETED",
+            "profile_id": "06f0a558-84be-486e-a3ea-941b679dc87a",
+            "profile": "CI Fixup",
+            "model": "sonnet",
+            "error": ""
+          },
+          {
+            "id": "1b7487f0-7e09-4a80-af16-68ad86e7884e",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "67ba38d7-89b5-40a8-a355-702e25d9e903",
+            "profile": "Kimi k3",
+            "model": "savoirfairelinux/DeepInfra/moonshotai%2FKimi-K3",
+            "error": ""
+          },
+          {
+            "id": "e2e8979c-b369-4b21-a8bf-3027b0960e11",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "67ba38d7-89b5-40a8-a355-702e25d9e903",
+            "profile": "Kimi k3",
+            "model": "savoirfairelinux/DeepInfra/moonshotai%2FKimi-K3",
+            "error": ""
+          },
+          {
+            "id": "7057ae19-6559-465c-8a6c-0c72b7555e96",
+            "state": "COMPLETED",
+            "profile_id": "06f0a558-84be-486e-a3ea-941b679dc87a",
+            "profile": "CI Fixup",
+            "model": "sonnet",
+            "error": ""
+          },
+          {
+            "id": "98a2f246-f6fa-4bac-9633-caa1a7fdb8f3",
+            "state": "COMPLETED",
+            "profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+            "profile": "Terra 5.6",
+            "model": "gpt-5.6-terra",
+            "error": ""
+          },
+          {
+            "id": "8c486b7f-4b98-445a-ac28-2abd79f6f607",
+            "state": "COMPLETED",
+            "profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+            "profile": "Spec",
+            "model": "gpt-5.6-sol",
+            "error": ""
+          },
+          {
+            "id": "4183f996-7c7f-4c8f-9be1-fe38760be504",
+            "state": "COMPLETED",
+            "profile_id": "fdad3d04-4e52-4e41-8236-69bcfe643103",
+            "profile": "Fable5",
+            "model": "claude-fable-5[1m]",
+            "error": ""
+          }
+        ]
+      },
+      "relations": [],
+      "repository_rows": [
+        {
+          "id": "cd04a6d1-f465-45f8-93be-fc69aa30cd26",
+          "task_id": "9e67c426-1300-46ef-a00f-e5603791212d",
+          "repository_id": "b86ec283-13cd-4cee-baec-1b88457ec06b",
+          "base_branch": "upstream/main",
+          "checkout_branch": "",
+          "position": 0,
+          "metadata": "{\"comparison_target\":{\"version\":1,\"provider\":\"github\",\"kind\":\"pull_request\",\"number\":2793,\"head_branch\":\"feature/create-a-plugin-that-kch\",\"target_branch\":\"main\",\"head_repository\":{\"host\":\"github.com\",\"path\":\"yattdev/kandev\",\"provider_id\":\"1283544009\",\"remote_url\":\"https://github.com/yattdev/kandev.git\"},\"target_repository\":{\"host\":\"github.com\",\"path\":\"kdlbs/kandev\",\"provider_id\":\"1131388506\",\"remote_url\":\"https://github.com/kdlbs/kandev.git\"}}}",
+          "created_at": "2026-08-16 10:43:52.029464484+00:00",
+          "updated_at": "2026-08-29 02:46:23.795882117+00:00",
+          "branch_policy_id": "",
+          "branch_policy_name": "",
+          "branch_policy_base_branch": "",
+          "branch_policy_branch_template": "",
+          "branch_policy_pull_request_target": "",
+          "repository_name": "kandev-source",
+          "remote_url": "https://github.com/yattdev/kandev.git"
+        }
+      ],
+      "environment_rows": [
+        {
+          "id": "1f5709d3-a6b3-4ea6-ba21-aa48b6ac2d1a",
+          "task_id": "9e67c426-1300-46ef-a00f-e5603791212d",
+          "executor_type": "worktree",
+          "executor_id": "exec-worktree",
+          "executor_profile_id": "64ab50d1-5500-48d9-b3d8-0ea22ea11027",
+          "control_port": 0,
+          "status": "ready",
+          "workspace_path": "/data/tasks/create-a-plugin-that_wtf60hhd/kandev-source",
+          "container_id": "",
+          "sandbox_id": "",
+          "task_dir_name": "create-a-plugin-that_wtf60hhd",
+          "created_at": "2026-08-16 10:37:19.640506899+00:00",
+          "updated_at": "2026-09-14 04:11:52.80991638+00:00",
+          "materialization_session_id": "",
+          "container_bootstrap_nonce_secret_id": "",
+          "container_control_auth_token_secret_id": "",
+          "ownership_generation": 1
+        }
+      ],
+      "last_checked": "2026-09-15T03:26:53.833581Z",
+      "r5_action_if_cleared": "After replacement/exact-cancel delivery, move Blocked\u2192Work or Done based on containment proof, hand off ee411970/#2793/protected-session preservation, and verify the required owner session."
+    },
+    "ae8fc022-5562-4f58-95dc-3dab9d4c179f": {
+      "title": "Fix tag display and tags box UI",
+      "physical": {
+        "step": "Blocked",
+        "step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+        "state": "FAILED",
+        "updated_at": "2026-09-15 00:21:56.572644741+00:00",
+        "pending_moves": 0
+      },
+      "previous_step": "Done",
+      "blocker": "Unconsumed kandev-qa-9683 residue (~2.7GB) still lacks proven zero-consumer and safe cleanup/retention receipt. Immediate port exhaustion has eased (fresh bind probe found available ports), but canonical capacity task 8a182e40 remains Spec/SCHEDULING with only one FAILED pre-inference session and no repair owner run.",
+      "blocker_owner": "Coordinator cleanup owner after platform capacity task 8a182e40",
+      "preservation": "Merged PR delivery remains contained; exact residue identifier kandev-qa-9683 and ~2.7GB data preserved; no deletion. Historical worktree /data/tasks/show-tags-applied-to_ioop9bn6 retained.",
+      "next_action": "After a standalone slot is proven free, move to actionable cleanup step/start one configured owner to prove zero consumers, then explicitly retain with owner/expiry or perform authorized exact cleanup and verify.",
+      "trigger": "Start and verify capacity Spec owner while a bindable port exists; then obtain durable capacity/zero-consumer proof.",
+      "fallback": "Preserve residue unarchived and undeleted.",
+      "cleared": false,
+      "health": "failed",
+      "tag": "at-risk: preserve residue until capacity/consumer proof",
+      "sessions": {
+        "active_count": 0,
+        "all": [
+          {
+            "id": "8cb37243-044c-4c49-bb9c-fb6cc5fe9557",
+            "state": "FAILED",
+            "profile_id": "8a033819-d149-4dfc-9ab1-0c2f2a3911b5",
+            "profile": "Worker",
+            "model": "sonnet",
+            "error": "failed to create execution: failed to create standalone instance: failed to create instance: failed to create instance: failed to allocate port: no available ports in range [41001, 41100] (status 500)"
+          },
+          {
+            "id": "0da2da1d-3281-4b6b-9808-b0349d054085",
+            "state": "COMPLETED",
+            "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "profile": "Worker",
+            "model": "gpt-5.6-terra",
+            "error": ""
+          },
+          {
+            "id": "3af1b410-438d-4c0d-9f10-a674cce13618",
+            "state": "COMPLETED",
+            "profile_id": "c151363f-a48d-4955-b669-cab94470d04a",
+            "profile": "Pull request",
+            "model": "gpt-5.6-terra",
+            "error": ""
+          },
+          {
+            "id": "b1d26636-fc74-4b4b-8783-78221bd33e65",
+            "state": "COMPLETED",
+            "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "profile": "Worker",
+            "model": "gpt-5.6-terra",
+            "error": ""
+          },
+          {
+            "id": "9b87bf81-ae3b-42e5-97cd-6abcd130edae",
+            "state": "COMPLETED",
+            "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "profile": "CI Fixup",
+            "model": "gpt-5.6-luna",
+            "error": ""
+          },
+          {
+            "id": "f5ef08f4-65ec-41cf-88b9-7df4c9c01a96",
+            "state": "COMPLETED",
+            "profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+            "profile": "QA",
+            "model": "gpt-5.6-sol",
+            "error": ""
+          },
+          {
+            "id": "c325fbca-108b-4311-b95d-91508d4d60e6",
+            "state": "COMPLETED",
+            "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "profile": "Review",
+            "model": "gpt-5.5",
+            "error": ""
+          },
+          {
+            "id": "3e7a72b5-234c-4824-9c1f-ec5c29d9a15c",
+            "state": "COMPLETED",
+            "profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+            "profile": "Terra 5.6",
+            "model": "gpt-5.6-terra",
+            "error": ""
+          }
+        ]
+      },
+      "relations": [],
+      "repository_rows": [
+        {
+          "id": "86e8ffcf-140d-4b60-afc5-74ae2acc455c",
+          "task_id": "ae8fc022-5562-4f58-95dc-3dab9d4c179f",
+          "repository_id": "9facd69b-ac69-45cf-81d1-de520c6fb570",
+          "base_branch": "main",
+          "checkout_branch": "",
+          "position": 0,
+          "metadata": "{}",
+          "created_at": "2026-08-11 01:24:19.528613382+00:00",
+          "updated_at": "2026-08-11 01:24:19.528613382+00:00",
+          "branch_policy_id": "",
+          "branch_policy_name": "",
+          "branch_policy_base_branch": "",
+          "branch_policy_branch_template": "",
+          "branch_policy_pull_request_target": "",
+          "repository_name": "kandev-plugin-tags",
+          "remote_url": "git@github.com:yattdev/kandev-plugin-tags.git"
+        },
+        {
+          "id": "9a402130-5eca-4d5a-aa21-9f6bd5a723c0",
+          "task_id": "ae8fc022-5562-4f58-95dc-3dab9d4c179f",
+          "repository_id": "b86ec283-13cd-4cee-baec-1b88457ec06b",
+          "base_branch": "upstream/main",
+          "checkout_branch": "",
+          "position": 1,
+          "metadata": "{}",
+          "created_at": "2026-08-11 01:24:19.52878933+00:00",
+          "updated_at": "2026-08-11 01:24:19.52878933+00:00",
+          "branch_policy_id": "",
+          "branch_policy_name": "",
+          "branch_policy_base_branch": "",
+          "branch_policy_branch_template": "",
+          "branch_policy_pull_request_target": "",
+          "repository_name": "kandev-source",
+          "remote_url": "https://github.com/yattdev/kandev.git"
+        }
+      ],
+      "environment_rows": [
+        {
+          "id": "a710136b-5db3-45ef-b588-fe7fa51b1999",
+          "task_id": "ae8fc022-5562-4f58-95dc-3dab9d4c179f",
+          "executor_type": "worktree",
+          "executor_id": "exec-worktree",
+          "executor_profile_id": "64ab50d1-5500-48d9-b3d8-0ea22ea11027",
+          "control_port": 0,
+          "status": "ready",
+          "workspace_path": "/data/tasks/show-tags-applied-to_ioop9bn6",
+          "container_id": "",
+          "sandbox_id": "",
+          "task_dir_name": "show-tags-applied-to_ioop9bn6",
+          "created_at": "2026-08-11 01:24:21.831667974+00:00",
+          "updated_at": "2026-09-03 02:48:57.529882211+00:00",
+          "materialization_session_id": "",
+          "container_bootstrap_nonce_secret_id": "",
+          "container_control_auth_token_secret_id": "",
+          "ownership_generation": 1
+        }
+      ],
+      "last_checked": "2026-09-15T03:26:53.833581Z",
+      "r5_action_if_cleared": "First start exactly one configured Spec owner on capacity task 8a182e40 and verify RUNNING. After durable capacity and zero-consumer proof, move ae8 Blocked\u2192Work, send exact kandev-qa-9683 preservation/cleanup handoff, and verify one fresh configured Work owner RUNNING. No deletion before authorized receipt.",
+      "capacity_subtrigger_cleared": true
+    },
+    "afdb2ef3-06ca-4cd5-a074-c4e691679da9": {
+      "title": "Provision isolated Coordinator plugin end-to-end QA runtime",
+      "physical": {
+        "step": "Blocked",
+        "step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+        "state": "REVIEW",
+        "updated_at": "2026-09-14 05:42:01.362220534+00:00",
+        "pending_moves": 0
+      },
+      "previous_step": "QA",
+      "blocker": "Canonical Host conversation APIs remain undelivered. Dependency task a091649a reached Human-QA, and PR #3672 is OPEN/draft/MERGEABLE at af509f8f; open provider head is not canonical deployed Host.",
+      "blocker_owner": "a091649a/#3672 delivery owner, then upstream integration/deploy owner",
+      "preservation": "Immutable plugin package 5bfdbcf7d9608d1210453f95ebfc8f66c3179225; SHA-256 fc742be569bff2e27f967a0e11949a24f652c4f43809f32a240b04c062d76044; receipt ca4f38ef291b2364f9afef52ff2f8641c511f41c44ff92520a564ac8c276ac01; source contract 612f46f7; smoke/UI evidence and roots retained; no live runtime.",
+      "next_action": "After #3672 lands in canonical Host, move Blocked\u2192QA and start fresh isolated install/smoke/UI owner.",
+      "trigger": "Canonical deployed build contains maintained Ensure/Dispatch/Delete AgentConversation contract.",
+      "fallback": "Static comparison only; do not restart old runtime or substitute #3377.",
+      "cleared": false,
+      "health": "blocked",
+      "tag": "waiting note stale owner wording; #3672 is current dependency",
+      "sessions": {
+        "active_count": 0,
+        "all": [
+          {
+            "id": "c66159ec-9746-4485-9daf-8e757286b0ba",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+            "profile": "Spec",
+            "model": "gpt-5.6-sol",
+            "error": ""
+          }
+        ]
+      },
+      "relations": [],
+      "repository_rows": [
+        {
+          "id": "49afd623-6ecc-44da-9bee-9ec3c872614b",
+          "task_id": "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+          "repository_id": "a462935c-6825-463e-aff0-60b20f87f6fb",
+          "base_branch": "main",
+          "checkout_branch": "",
+          "position": 0,
+          "metadata": "{}",
+          "created_at": "2026-08-30 04:36:43.032616649+00:00",
+          "updated_at": "2026-08-30 04:36:43.032616649+00:00",
+          "branch_policy_id": "",
+          "branch_policy_name": "",
+          "branch_policy_base_branch": "",
+          "branch_policy_branch_template": "",
+          "branch_policy_pull_request_target": "",
+          "repository_name": "kdlbs/kandev",
+          "remote_url": "https://github.com/kdlbs/kandev.git"
+        }
+      ],
+      "environment_rows": [
+        {
+          "id": "0e3a05ec-e777-42a1-bdca-7dd4a8e75dbb",
+          "task_id": "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+          "executor_type": "worktree",
+          "executor_id": "exec-worktree",
+          "executor_profile_id": "64ab50d1-5500-48d9-b3d8-0ea22ea11027",
+          "control_port": 0,
+          "status": "ready",
+          "workspace_path": "/data/tasks/provision-isolated-c_lhtgd60a/kdlbs-kandev",
+          "container_id": "",
+          "sandbox_id": "",
+          "task_dir_name": "provision-isolated-c_lhtgd60a",
+          "created_at": "2026-08-30 04:36:43.039161697+00:00",
+          "updated_at": "2026-09-14 05:37:34.932861641+00:00",
+          "materialization_session_id": "",
+          "container_bootstrap_nonce_secret_id": "",
+          "container_control_auth_token_secret_id": "",
+          "ownership_generation": 1
+        }
+      ],
+      "last_checked": "2026-09-15T03:26:53.833581Z",
+      "r5_action_if_cleared": "After #3672 is merged/deployed, move Blocked\u2192QA, send immutable package hashes and saved smoke/UI assertions, verify fresh configured QA owner RUNNING."
+    },
+    "b8fc206c-9e3f-4497-9ac3-3b62593da258": {
+      "title": "Rotate Coordinator sessions before context exhaustion",
+      "physical": {
+        "step": "Blocked",
+        "step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+        "state": "SCHEDULING",
+        "updated_at": "2026-09-06 08:06:22.272933953+00:00",
+        "pending_moves": 0
+      },
+      "previous_step": "Scheduling",
+      "blocker": "Queue\u2192retirement chain remains undelivered: ca015838 cannot publish #3377 successor, 86c8b47e cannot deliver canonical cleanup, and guarded promotion/counters are unavailable.",
+      "blocker_owner": "ca015838, then 86c8b47e, then platform contract owner",
+      "preservation": "Approved plan, successor identity, recovered FIFO evidence; no implementation artifacts; repository inventory retained but no runnable environment.",
+      "next_action": "After callable contracts exist, move to Work and start exactly one configured owner.",
+      "trigger": "Canonical compatible queue/cleanup contracts plus guarded promotion/counters.",
+      "fallback": "Preserve current primary/queues and avoid duplicate implementation.",
+      "cleared": false,
+      "health": "blocked",
+      "tag": "waiting: dependency 86c8b47e",
+      "sessions": {
+        "active_count": 0,
+        "all": [
+          {
+            "id": "c0d09731-8fb6-4f7b-8cf9-92a1f1ebb561",
+            "state": "FAILED",
+            "profile_id": "ce9f96f7-4434-4729-b23b-926b4b72f417",
+            "profile": "Worker-claude",
+            "model": "gpt-5.6-terra",
+            "error": "workspace reuse is unsafe: canonical workspace repository inventory has no matching entry for repository \"***\" branch \"main\""
+          },
+          {
+            "id": "fcb1771c-de82-4975-9bb6-936de9c703bd",
+            "state": "FAILED",
+            "profile_id": "ce9f96f7-4434-4729-b23b-926b4b72f417",
+            "profile": "Worker-claude",
+            "model": "gpt-5.6-terra",
+            "error": "workspace reuse is unsafe: canonical workspace repository inventory has no matching entry for repository \"***\" branch \"main\""
+          }
+        ]
+      },
+      "relations": [
+        {
+          "task_id": "b8fc206c-9e3f-4497-9ac3-3b62593da258",
+          "blocker_task_id": "86c8b47e-e7a5-4693-8e11-dce08899a0bf",
+          "created_at": "2026-09-05 04:52:06.655227345+00:00"
+        }
+      ],
+      "repository_rows": [
+        {
+          "id": "53fe9e6f-57c7-4574-a541-4f971152360d",
+          "task_id": "b8fc206c-9e3f-4497-9ac3-3b62593da258",
+          "repository_id": "a462935c-6825-463e-aff0-60b20f87f6fb",
+          "base_branch": "main",
+          "checkout_branch": "",
+          "position": 0,
+          "metadata": "{}",
+          "created_at": "2026-09-05 04:52:06.680869205+00:00",
+          "updated_at": "2026-09-05 04:52:06.680869205+00:00",
+          "branch_policy_id": "",
+          "branch_policy_name": "",
+          "branch_policy_base_branch": "",
+          "branch_policy_branch_template": "",
+          "branch_policy_pull_request_target": "",
+          "repository_name": "kdlbs/kandev",
+          "remote_url": "https://github.com/kdlbs/kandev.git"
+        }
+      ],
+      "environment_rows": [],
+      "last_checked": "2026-09-15T03:26:53.833581Z",
+      "r5_action_if_cleared": "After queue/cleanup/promotion contracts land, move Blocked\u2192Work, send approved plan/FIFO preservation handoff, verify exactly one configured Work owner RUNNING."
+    },
+    "ca015838-e5cf-4294-b3bb-9c50576a5fe6": {
+      "title": "Add guarded queue claim and routine wake coalescing",
+      "physical": {
+        "step": "Blocked",
+        "step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+        "state": "REVIEW",
+        "updated_at": "2026-09-14 18:32:31.735851795+00:00",
+        "pending_moves": 0
+      },
+      "previous_step": "Work/CI Fixup",
+      "blocker": "Invalid task-scoped GitHub credential lease prevents normal push of newer clean local successor. PR #3377 remains open/draft CONFLICTING at stale c990b51cb8dc758f35a702ee6ee017dd1c593c26 with Backend Postgres plus aggregate failures.",
+      "blocker_owner": "task-scoped credential-lease/platform owner, then Work integration owner",
+      "preservation": "Clean /data/tasks/add-guarded-queue-cl_sf70tyvs/kdlbs-kandev; branch feature/add-guarded-queue-cl-sls; local 37ca515b0c8fd94cc98b38f898a9335765378ac2 containing 075b81ae and dual-session regression; no runtime/data/services.",
+      "next_action": "Once valid scoped write lease exists, compare local/provider/current main, integrate additively, publish one successor, then fresh CI/Review/QA and deployed acceptance.",
+      "trigger": "Valid scoped GitHub API/write lease plus safe current-main integration path.",
+      "fallback": "Preserve local head; no alternate credential, duplicate contact, rebase/force-push, or retry-only commit.",
+      "cleared": false,
+      "health": "blocked",
+      "tag": "agent note stale: claims active repair; all sessions parked",
+      "sessions": {
+        "active_count": 0,
+        "all": [
+          {
+            "id": "fe0512a7-d4e6-405b-8741-d2d42f8ebae8",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "profile": "Worker",
+            "model": "gpt-5.6-terra",
+            "error": ""
+          },
+          {
+            "id": "9210c156-0f56-4eba-b119-881c40615aa7",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "profile": "Review",
+            "model": "gpt-5.5",
+            "error": ""
+          },
+          {
+            "id": "260b4ddd-841f-40ec-9bd8-39535052dcc6",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "profile": "Worker",
+            "model": "gpt-5.6-terra",
+            "error": ""
+          },
+          {
+            "id": "77a3446f-1954-4c87-ac1d-5735d6db517d",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "profile": "Worker",
+            "model": "gpt-5.6-terra",
+            "error": ""
+          },
+          {
+            "id": "29501e9b-7ff9-47be-9f5e-69e0b4bb28d9",
+            "state": "COMPLETED",
+            "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "profile": "CI Fixup",
+            "model": "gpt-5.6-luna",
+            "error": ""
+          },
+          {
+            "id": "d8a3a51a-22f9-4e84-a551-7e6b0446c3cc",
+            "state": "COMPLETED",
+            "profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+            "profile": "QA",
+            "model": "gpt-5.6-sol",
+            "error": ""
+          },
+          {
+            "id": "fbf2bb40-c4ca-45a4-aa8a-42289cde8d6c",
+            "state": "COMPLETED",
+            "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "profile": "Review",
+            "model": "gpt-5.5",
+            "error": ""
+          },
+          {
+            "id": "486a00f3-be56-451d-824d-970682555856",
+            "state": "COMPLETED",
+            "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "profile": "Worker",
+            "model": "gpt-5.6-terra",
+            "error": ""
+          },
+          {
+            "id": "d7dbfdb5-5e20-482e-9440-900e6c9506bf",
+            "state": "COMPLETED",
+            "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "profile": "Review",
+            "model": "gpt-5.5",
+            "error": ""
+          },
+          {
+            "id": "7e1af85f-f0db-4a84-ab92-6c6d9eac6ab0",
+            "state": "COMPLETED",
+            "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "profile": "Worker",
+            "model": "gpt-5.6-terra",
+            "error": ""
+          },
+          {
+            "id": "7e3f50f5-05f4-47f1-be64-8be0be34aba4",
+            "state": "COMPLETED",
+            "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "profile": "CI Fixup",
+            "model": "gpt-5.6-luna",
+            "error": ""
+          },
+          {
+            "id": "d83affb2-d391-4142-be8a-de12d98939c1",
+            "state": "COMPLETED",
+            "profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+            "profile": "Spec",
+            "model": "gpt-5.6-sol",
+            "error": ""
+          }
+        ]
+      },
+      "relations": [
+        {
+          "task_id": "86c8b47e-e7a5-4693-8e11-dce08899a0bf",
+          "blocker_task_id": "ca015838-e5cf-4294-b3bb-9c50576a5fe6",
+          "created_at": "2026-09-03 02:38:22.558519171+00:00"
+        },
+        {
+          "task_id": "428d343e-c768-4bce-a5e7-efd3b10f363f",
+          "blocker_task_id": "ca015838-e5cf-4294-b3bb-9c50576a5fe6",
+          "created_at": "2026-09-03 14:09:46.744604362+00:00"
+        }
+      ],
+      "repository_rows": [
+        {
+          "id": "8453f443-bb98-4219-8cd1-1ba69924b82d",
+          "task_id": "ca015838-e5cf-4294-b3bb-9c50576a5fe6",
+          "repository_id": "a462935c-6825-463e-aff0-60b20f87f6fb",
+          "base_branch": "main",
+          "checkout_branch": "",
+          "position": 0,
+          "metadata": "{}",
+          "created_at": "2026-09-01 04:47:02.501296319+00:00",
+          "updated_at": "2026-09-01 04:47:02.501296319+00:00",
+          "branch_policy_id": "",
+          "branch_policy_name": "",
+          "branch_policy_base_branch": "",
+          "branch_policy_branch_template": "",
+          "branch_policy_pull_request_target": "",
+          "repository_name": "kdlbs/kandev",
+          "remote_url": "https://github.com/kdlbs/kandev.git"
+        }
+      ],
+      "environment_rows": [
+        {
+          "id": "5adfc0c5-6226-49b8-9b0f-a98a4dd5e5df",
+          "task_id": "ca015838-e5cf-4294-b3bb-9c50576a5fe6",
+          "executor_type": "worktree",
+          "executor_id": "exec-worktree",
+          "executor_profile_id": "64ab50d1-5500-48d9-b3d8-0ea22ea11027",
+          "control_port": 0,
+          "status": "ready",
+          "workspace_path": "/data/tasks/add-guarded-queue-cl_sf70tyvs/kdlbs-kandev",
+          "container_id": "",
+          "sandbox_id": "",
+          "task_dir_name": "add-guarded-queue-cl_sf70tyvs",
+          "created_at": "2026-09-01 04:47:36.509310814+00:00",
+          "updated_at": "2026-09-14 18:31:02.272698104+00:00",
+          "materialization_session_id": "",
+          "container_bootstrap_nonce_secret_id": "",
+          "container_control_auth_token_secret_id": "",
+          "ownership_generation": 1
+        }
+      ],
+      "last_checked": "2026-09-15T03:26:53.833581Z",
+      "r5_action_if_cleared": "On valid scoped lease, move Blocked\u2192Work, hand off clean local 37ca515b for additive current-main integration and one normal push, verify configured Work owner RUNNING."
+    },
+    "e8728906-86de-4a75-960f-9da585485823": {
+      "title": "Fix plugin task priority persistence",
+      "physical": {
+        "step": "Blocked",
+        "step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+        "state": "REVIEW",
+        "updated_at": "2026-09-09 23:42:14.649934465+00:00",
+        "pending_moves": 0
+      },
+      "previous_step": "CI Fixup",
+      "blocker": "PR #3468 remains OPEN/draft/MERGEABLE at unchanged 973a9d6 with shared SSH fixture/container failure and aggregates. Single rerun request 5584377539 already exists. Scoped dispatcher #3165 reached Human-QA but remains OPEN/unmerged at a199dcd4.",
+      "blocker_owner": "PR #3165 delivery owner 9ee4be81, then Actions maintainer",
+      "preservation": "Clean /data/tasks/fix-plugin-task-prio_rksfvx9c/kdlbs-kandev branch feature/fix-plugin-task-prio-w7w exact 973a9d6; focused gates retained; no runtime.",
+      "next_action": "After dispatcher delivery/new exact-head run, move to CI Fixup; on green route fresh Review then distinct QA.",
+      "trigger": "New exact-head #3468 run/status or head/review change.",
+      "fallback": "No duplicate comment 5584377539 or retry-only commit.",
+      "cleared": false,
+      "health": "blocked",
+      "tag": "waiting: rerun already requested",
+      "sessions": {
+        "active_count": 0,
+        "all": [
+          {
+            "id": "c8df81fc-3ebe-439f-91d5-1a5646a2dc36",
+            "state": "WAITING_FOR_INPUT",
+            "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "profile": "CI Fixup",
+            "model": "gpt-5.6-luna",
+            "error": ""
+          },
+          {
+            "id": "a56b4af9-6055-4fc1-ba75-8bd487b3669b",
+            "state": "COMPLETED",
+            "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "profile": "Review",
+            "model": "gpt-5.5",
+            "error": ""
+          },
+          {
+            "id": "40e9dc00-598b-486b-abe3-7d57f348b700",
+            "state": "COMPLETED",
+            "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "profile": "Worker",
+            "model": "gpt-5.6-terra",
+            "error": ""
+          },
+          {
+            "id": "9c4d2926-63e4-4035-8091-51201f93921a",
+            "state": "COMPLETED",
+            "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "profile": "CI Fixup",
+            "model": "gpt-5.6-luna",
+            "error": ""
+          },
+          {
+            "id": "813570e7-c914-4772-ba28-8c5a20a08aab",
+            "state": "COMPLETED",
+            "profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+            "profile": "QA",
+            "model": "gpt-5.6-sol",
+            "error": ""
+          },
+          {
+            "id": "0d80359b-e410-48c1-ac6b-8389226e5c03",
+            "state": "COMPLETED",
+            "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "profile": "Review",
+            "model": "gpt-5.5",
+            "error": ""
+          },
+          {
+            "id": "84f2792e-9904-40c1-807d-eef2aa026d2d",
+            "state": "COMPLETED",
+            "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "profile": "Worker",
+            "model": "gpt-5.6-terra",
+            "error": ""
+          },
+          {
+            "id": "87df7e0e-3790-45a5-bf0e-010c4219816e",
+            "state": "COMPLETED",
+            "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "profile": "Review",
+            "model": "gpt-5.5",
+            "error": ""
+          },
+          {
+            "id": "bc394377-9223-41d5-86a9-fc8a3579e74a",
+            "state": "COMPLETED",
+            "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "profile": "Worker",
+            "model": "gpt-5.6-terra",
+            "error": ""
+          },
+          {
+            "id": "943563ba-a947-4ec9-81ab-2fb827472a4b",
+            "state": "CANCELLED",
+            "profile_id": "c151363f-a48d-4955-b669-cab94470d04a",
+            "profile": "Pull request",
+            "model": "gpt-5.6-terra",
+            "error": "stopped by parent task via MCP"
+          },
+          {
+            "id": "f374764c-3be6-4516-9867-f8e8303c1f59",
+            "state": "CANCELLED",
+            "profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+            "profile": "QA",
+            "model": "gpt-5.6-sol",
+            "error": "stopped by parent task via MCP"
+          },
+          {
+            "id": "80d2cd5c-ffc9-4018-b31d-09c886fe5fc6",
+            "state": "CANCELLED",
+            "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "profile": "Review",
+            "model": "gpt-5.5",
+            "error": "stopped by parent task via MCP"
+          },
+          {
+            "id": "147cb905-15a8-4b48-9454-4449673cebbf",
+            "state": "CANCELLED",
+            "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "profile": "Worker",
+            "model": "gpt-5.6-terra",
+            "error": "stopped by parent task via MCP"
+          },
+          {
+            "id": "93c52e97-68bd-43da-8b6e-5aad1e01fc3b",
+            "state": "CANCELLED",
+            "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "profile": "CI Fixup",
+            "model": "gpt-5.6-luna",
+            "error": "stopped by parent task via MCP"
+          },
+          {
+            "id": "1d66df03-2f9f-4430-909f-ff4306755304",
+            "state": "COMPLETED",
+            "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "profile": "Worker",
+            "model": "gpt-5.6-terra",
+            "error": ""
+          }
+        ]
+      },
+      "relations": [],
+      "repository_rows": [
+        {
+          "id": "11ab89c7-56ba-4850-b731-4cf4fbe64a58",
+          "task_id": "e8728906-86de-4a75-960f-9da585485823",
+          "repository_id": "a462935c-6825-463e-aff0-60b20f87f6fb",
+          "base_branch": "main",
+          "checkout_branch": "",
+          "position": 0,
+          "metadata": "{}",
+          "created_at": "2026-09-07 09:59:14.707059109+00:00",
+          "updated_at": "2026-09-07 09:59:14.707059109+00:00",
+          "branch_policy_id": "",
+          "branch_policy_name": "",
+          "branch_policy_base_branch": "",
+          "branch_policy_branch_template": "",
+          "branch_policy_pull_request_target": "",
+          "repository_name": "kdlbs/kandev",
+          "remote_url": "https://github.com/kdlbs/kandev.git"
+        }
+      ],
+      "environment_rows": [
+        {
+          "id": "04c8fe7d-1c9e-487b-b690-3dcbe274a55c",
+          "task_id": "e8728906-86de-4a75-960f-9da585485823",
+          "executor_type": "worktree",
+          "executor_id": "exec-worktree",
+          "executor_profile_id": "64ab50d1-5500-48d9-b3d8-0ea22ea11027",
+          "control_port": 0,
+          "status": "ready",
+          "workspace_path": "/data/tasks/fix-plugin-task-prio_rksfvx9c/kdlbs-kandev",
+          "container_id": "",
+          "sandbox_id": "",
+          "task_dir_name": "fix-plugin-task-prio_rksfvx9c",
+          "created_at": "2026-09-07 10:03:20.513906795+00:00",
+          "updated_at": "2026-09-08 15:48:39.722241267+00:00",
+          "materialization_session_id": "",
+          "container_bootstrap_nonce_secret_id": "",
+          "container_control_auth_token_secret_id": "",
+          "ownership_generation": 1
+        }
+      ],
+      "last_checked": "2026-09-15T03:26:53.833581Z",
+      "r5_action_if_cleared": "On new exact-head run, move Blocked\u2192CI Fixup, hand off 973a9d6 and existing request 5584377539, verify configured CI owner RUNNING."
+    }
+  },
+  "cross_dependencies": {
+    "ca015838": [
+      "86c8b47e",
+      "b8fc206c"
+    ],
+    "86c8b47e": [
+      "b8fc206c"
+    ],
+    "a091649a/#3672": [
+      "afdb2ef3"
+    ],
+    "e0dd8d19/#3473 + #3155 + #3165": [
+      "6d03f4a9"
+    ],
+    "8a182e40 capacity": [
+      "ae8fc022"
+    ],
+    "1e46d457 + #3155": [
+      "9e67c426"
+    ],
+    "executor-owned sandbox implementation": [
+      "77353939"
+    ],
+    "#3165 dispatcher": [
+      "76b4e3d4",
+      "e8728906"
+    ]
+  },
+  "mutations_performed": [],
+  "standalone_capacity": {
+    "method": "sequential IPv4 loopback bind probes; sockets immediately closed",
+    "range": "41001-41100",
+    "free_count": 8,
+    "free_ports": [
+      41018,
+      41058,
+      41075,
+      41080,
+      41081,
+      41092,
+      41094,
+      41095
+    ],
+    "unavailable_count": 92,
+    "interpretation": "Immediate capacity exists, but no durable repair/proven cleanup owner exists; do not assume capacity remains available."
+  },
+  "summary": {
+    "assigned_count": 12,
+    "blocked_health": 11,
+    "failed_health": 1,
+    "full_blockers_cleared": 0,
+    "partial_triggers_cleared": [
+      "9e67 historical pending rows absent",
+      "ae8 immediate port availability restored by bind probe"
+    ],
+    "mutations": []
+  }
+}

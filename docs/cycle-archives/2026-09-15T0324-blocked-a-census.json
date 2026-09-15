@@ -1,0 +1,540 @@
+{
+  "observed_at": "2026-09-15T03:30:51Z",
+  "workflow_id": "90f322ed-2159-424d-96e7-c2ad05668b8e",
+  "physical_blocked_count": 24,
+  "scope_rule": "Physical Blocked tasks sorted lexicographically by full UUID; first ceil(24/2)=12",
+  "scope_ids": [
+    "01d6764d-b66d-46a0-a664-2caf4c3f4d98",
+    "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+    "0259d242-0a94-40ef-843e-385292796b64",
+    "212a68ce-7122-4cdb-ba68-764a5ebdb8c6",
+    "23a05db4-c7bf-4732-a390-08cb8f0a3a8d",
+    "375dcc90-9ff3-4064-ba27-a7f20b33e80c",
+    "428d343e-c768-4bce-a5e7-efd3b10f363f",
+    "46945aff-382a-41a4-9f35-bd5c2806911e",
+    "4b56a8b3-89fa-43ef-891d-c6b3a3b88e2a",
+    "51c2875b-48ae-4097-b985-b8a9584ca8c2",
+    "531a41cd-57ef-495a-8dfa-614d2a4d0d52",
+    "5c9f515d-e5f9-43c5-bf31-fb42276e5e15"
+  ],
+  "scope_count": 12,
+  "global_evidence": {
+    "pending_moves": "0 for every scoped task",
+    "active_sessions": "0 for every scoped task",
+    "standalone_capacity": "Read-only /proc listener census found 89/100 ports occupied and 11 unbound in [41001,41100]. Canonical repair task 8a182e40 remains Spec/SCHEDULING with an old failed-before-inference session; a separate task successfully launched after the earlier exhaustion event.",
+    "provider_projection": "Task-linked PR projection refreshed 2026-09-15T03:20:55Z\u201303:21:09Z; direct npm registry lookup performed this cycle for the maintained runtime package.",
+    "fixed_model_gate": "Suspended per current workflow policy; no blocker is model-only."
+  },
+  "records": [
+    {
+      "id": "01d6764d-b66d-46a0-a664-2caf4c3f4d98",
+      "title": "Make terminal workflow routing atomic",
+      "physical_lane": "Blocked",
+      "task_state": "IN_PROGRESS",
+      "health": "blocked",
+      "previous_step": "CI Fixup",
+      "blocker": "PR #3166 at exact head e30bd1f2e5008be93e11ede6b2d3827a74e68095 remains terminal-red only on Publish PR documentation coverage status (run 34886496085, job 104160061657). Local trusted evaluator evidence is covered/ok, so no source repair is justified.",
+      "blocker_owner": "GitHub Actions administrator/maintainer able to perform one legitimate rerun",
+      "preservation": {
+        "branch": "fix/atomic-terminal-routing",
+        "head": "fe21f495adf3c72fd3fc01de2fffc5541858e575",
+        "worktree": "/data/tasks/make-terminal-workfl_8z3b2nzr/kandev-source",
+        "worktree_state": "interrupted merge/index preserved; read-only git status still non-clean",
+        "successor": "isolated clean PR carrier e30bd1f2 is preserved by 02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+        "runtime": "none",
+        "data": "none"
+      },
+      "sessions": {
+        "active": 0,
+        "counts": {
+          "WAITING_FOR_INPUT": 9,
+          "COMPLETED": 8,
+          "CANCELLED": 1
+        },
+        "newest": {
+          "id": "f02f5828-691d-4cb5-bd8a-975920709659",
+          "state": "WAITING_FOR_INPUT",
+          "profile": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "model": "gpt-5.6-luna"
+        }
+      },
+      "pending_moves": 0,
+      "relations": "No formal dependency edge; operational successor/carrier is 02159e6a-726a-43b2-8d9a-f74c5c01fe11.",
+      "next_action": "After one new exact-head provider attempt, perform one census: green routes to fresh independent Review; reproducible branch-owned red routes to Work/CI Fixup; another generic evaluator failure remains provider-blocked.",
+      "deterministic_trigger": "A legitimate rerun or new documentation check attempt at e30bd1f2 reaches terminal state.",
+      "fallback": "Preserve both carriers; do not touch the contaminated checkout or duplicate the rerun request.",
+      "blocker_cleared": false,
+      "r5_action": null,
+      "last_checked": "2026-09-15T03:30:51Z"
+    },
+    {
+      "id": "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+      "title": "Recover atomic terminal routing in an isolated workspace",
+      "physical_lane": "Blocked",
+      "task_state": "REVIEW",
+      "health": "blocked",
+      "previous_step": "CI Fixup",
+      "blocker": "The same exact-head PR #3166 documentation publisher run 34886496085/job 104160061657 remains failed at e30bd1f2; an authorized rerun attempt was denied for lack of repository admin rights. Current provider projection is still 51/53 passing and failure.",
+      "blocker_owner": "Admin-capable GitHub Actions operator",
+      "preservation": {
+        "branch": "feature/recover-atomic-termi-7o7",
+        "head": "e30bd1f2e5008be93e11ede6b2d3827a74e68095",
+        "worktree": "/data/tasks/recover-atomic-termi_li7cmaa7/kandev-source",
+        "worktree_state": "clean; local exact head retained; original contaminated checkout untouched",
+        "runtime": "none",
+        "data": "none"
+      },
+      "sessions": {
+        "active": 0,
+        "counts": {
+          "COMPLETED": 14,
+          "CANCELLED": 2,
+          "WAITING_FOR_INPUT": 2,
+          "FAILED": 2
+        },
+        "newest_attempt": {
+          "ids": [
+            "d750149d-6732-4fbb-9558-32be471d1a98",
+            "4081e4fd-1269-4c27-a270-f2b18c05dc23"
+          ],
+          "state": "FAILED",
+          "profile": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "model": "gpt-5.6-luna",
+          "reason": "failed before inference on then-exhausted standalone ports"
+        }
+      },
+      "pending_moves": 0,
+      "relations": "Operational clean carrier for 01d6764d-b66d-46a0-a664-2caf4c3f4d98; no formal edge.",
+      "next_action": "On provider run/head/status activity, perform one exact-head census; green routes Review and an actionable branch-owned red routes Work/CI Fixup.",
+      "deterministic_trigger": "New exact-head check attempt, head change, or provider status change for PR #3166.",
+      "fallback": "Retain the clean isolated head and do not duplicate admin contact.",
+      "blocker_cleared": false,
+      "r5_action": null,
+      "last_checked": "2026-09-15T03:30:51Z"
+    },
+    {
+      "id": "0259d242-0a94-40ef-843e-385292796b64",
+      "title": "Plugin deterministic scale harness",
+      "physical_lane": "Blocked",
+      "task_state": "REVIEW",
+      "health": "blocked",
+      "previous_step": "Spec",
+      "blocker": "Required production runtime task 428d343e-c768-4bce-a5e7-efd3b10f363f remains physically Blocked. Its Host queue prerequisite ca015838-e5cf-4294-b3bb-9c50576a5fe6 remains Blocked with PR #3377 open/draft at c990b51c, 49/51 checks passing and overall failure; reviewed/deployed runtime contract v1.1 is unavailable. Other formal blockers a08ef33c and be077c0f are Done.",
+      "blocker_owner": "428d343e-c768-4bce-a5e7-efd3b10f363f, transitively ca015838-e5cf-4294-b3bb-9c50576a5fe6 and upstream delivery owner",
+      "preservation": {
+        "branch": "feature/plugin-deterministic-cyz",
+        "head": "6fb1fdd63c1728258c40a67df037116c5ca9bbb8",
+        "worktree": "/data/tasks/plugin-deterministic_mjefehl3/yattdev-kandev-plugin-coordinator",
+        "worktree_state": "clean",
+        "policy_source": "yattdev/tasks-coordinator@2ca27d00477dc298fc91187274968f1fc3970fef",
+        "runtime": "none",
+        "data": "none"
+      },
+      "sessions": {
+        "active": 0,
+        "counts": {
+          "WAITING_FOR_INPUT": 1
+        },
+        "newest": {
+          "id": "9699b6a1-f69c-432e-b626-b3eccaa56bf0",
+          "state": "WAITING_FOR_INPUT",
+          "profile": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "model": "gpt-5.6-terra"
+        }
+      },
+      "pending_moves": 0,
+      "relations": "Formal blockers: 428d343e active; a08ef33c and be077c0f terminal Done.",
+      "next_action": "When the compatible runtime is reviewed, deployed, and callable, atomically move Blocked to Work and start exactly one workflow-configured owner with the preserved plan.",
+      "deterministic_trigger": "428d343e supplies the reviewed/deployed exact runtime and dependency receipt.",
+      "fallback": "Do not substitute or duplicate the Host runtime.",
+      "blocker_cleared": false,
+      "r5_action": null,
+      "last_checked": "2026-09-15T03:30:51Z"
+    },
+    {
+      "id": "212a68ce-7122-4cdb-ba68-764a5ebdb8c6",
+      "title": "Finish Provider Usage plugin coverage",
+      "physical_lane": "Blocked",
+      "task_state": "FAILED",
+      "health": "blocked",
+      "previous_step": "Todo",
+      "blocker": "The task checkout still resolves to a missing external Git worktree-admin directory and is not a Git repository. The preservation checkout has the same missing-admin defect. Formal blocker b74833e7 is Done, but its completion did not materialize a writable replacement for this task, so the operational condition remains unmet.",
+      "blocker_owner": "Coordinator/platform managed-worktree materialization",
+      "preservation": {
+        "baseline": "a5c386b six-file implementation baseline",
+        "worktree": "/data/tasks/finish-provider-usag_8isp64fr/kdlbs-kandev-plugin-provider-usage",
+        "worktree_state": "files present; git commands fail because .git/worktrees/kdlbs-kandev-plugin-provider-usage1 is missing",
+        "evidence_root": "/data/tasks/expose-provider-usag_kjfkfyxi/kdlbs-kandev-plugin-provider-usage-main",
+        "artifact": "kandev-provider-usage-0.4.1.tar.gz sha256 6f9c76e46652d481c5ce3eebc9f9a18666b43b71d481d2627d1466ddfe383c83",
+        "runtime": "none",
+        "data": "none"
+      },
+      "sessions": {
+        "active": 0,
+        "counts": {
+          "COMPLETED": 1,
+          "FAILED": 1
+        },
+        "newest": {
+          "id": "501387d6-5c2c-4036-b768-2c568813d0f8",
+          "state": "FAILED",
+          "profile": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "model": "gpt-5.6-terra"
+        }
+      },
+      "pending_moves": 0,
+      "relations": "Formal predecessor b74833e7-a05f-4cdf-81cf-db5b4c02f368 is Done, but its promised trigger outcome is absent for this checkout.",
+      "next_action": "Provision and register a fresh writable task-owned checkout, prove a bounded index write/rollback, then atomically move to Work and start one configured owner to restore a5c386b and finish coverage.",
+      "deterministic_trigger": "A supported writable checkout exists and a configured Work session can start successfully.",
+      "fallback": "Preserve the baseline and artifact; never repair the broken external Git-admin path in place.",
+      "blocker_cleared": false,
+      "r5_action": null,
+      "last_checked": "2026-09-15T03:30:51Z"
+    },
+    {
+      "id": "23a05db4-c7bf-4732-a390-08cb8f0a3a8d",
+      "title": "H6: Add plugin capability approval and audit",
+      "physical_lane": "Blocked",
+      "task_state": "REVIEW",
+      "health": "anomalous",
+      "previous_step": "Human-QA",
+      "blocker": "Substantive maintainer head change from last-reviewed/QA head 9904d3d0 to current PR #3238 head d742006c2b215705a2897487cc7275c41a2e9624 invalidated old Review and QA. The new head is open, non-draft, clean, 55/55 checks passing, and has zero unresolved threads. The capacity component is now satisfied by 11 currently unbound listener ports in [41001,41100] and a successful fresh session launch elsewhere after the prior exhaustion incident.",
+      "blocker_owner": "Coordinator Review routing",
+      "preservation": {
+        "branch": "feature/h6-add-plugin-capabi-lca",
+        "local_head": "9904d3d0cecab66af6005e41b581b98021d0fbca",
+        "provider_head": "d742006c2b215705a2897487cc7275c41a2e9624",
+        "worktree": "/data/tasks/h6-add-plugin-capabi_ujha1a9q/kdlbs-kandev",
+        "worktree_state": "clean local prior head retained; provider successor untouched",
+        "runtime": "TEST_RUNTIME=NONE",
+        "data": "none"
+      },
+      "sessions": {
+        "active": 0,
+        "counts": {
+          "CANCELLED": 30,
+          "COMPLETED": 9,
+          "WAITING_FOR_INPUT": 5
+        },
+        "newest": {
+          "id": "e147103f-9067-4559-b4d0-1a461282a275",
+          "state": "WAITING_FOR_INPUT",
+          "profile": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "model": "gpt-5.6-terra"
+        }
+      },
+      "pending_moves": 0,
+      "relations": "No dependency edges; capacity root 8a182e40 is an operational dependency only.",
+      "next_action": "Atomically move Blocked to Review and verify exactly one new workflow-configured independent Review session binds to d742006c; Review PASS then routes to distinct QA before Human-QA.",
+      "deterministic_trigger": "Satisfied now: exact-head CI is green and standalone capacity evidence has changed from exhausted to 11 free listener slots.",
+      "fallback": "If start still fails because allocator reservations remain exhausted, keep Review preserved and link the exact failure to 8a182e40; any fresh CI failure routes CI Fixup.",
+      "blocker_cleared": true,
+      "r5_action": {
+        "move_to_step": "Review",
+        "step_id": "6c2e5bf5-57db-4682-8daa-d110f22b60da",
+        "handoff": "Review PR #3238 exact head d742006c independently; prior Review/QA at 9904d3d0 are stale; preserve clean local prior head and TEST_RUNTIME=NONE; report exact-head findings only.",
+        "verification": "Physical Review, pending moves 0, exactly one RUNNING/STARTING workflow-configured Review session."
+      },
+      "last_checked": "2026-09-15T03:30:51Z"
+    },
+    {
+      "id": "375dcc90-9ff3-4064-ba27-a7f20b33e80c",
+      "title": "Expose Provider Usage through read-only MCP",
+      "physical_lane": "Blocked",
+      "task_state": "SCHEDULING",
+      "health": "blocked",
+      "previous_step": "Review",
+      "blocker": "No registered writable implementation checkout exists. Both historical plugin worktrees still fail as Git repositories because their external .git/worktrees admin directories are missing; prior workspace starts failed reuse/materialization safety checks. Completed task b74833e7 did not clear this task-specific condition.",
+      "blocker_owner": "Coordinator/platform workspace materialization",
+      "preservation": {
+        "baseline": "a5c386b plus package and four host E2E receipts",
+        "worktree": "/data/tasks/expose-provider-usag_kjfkfyxi/kdlbs-kandev-plugin-provider-usage-main",
+        "worktree_state": "files and artifact remain, but git admin directory is missing",
+        "artifact": "kandev-provider-usage-0.4.1.tar.gz, 10787715 bytes, sha256 6f9c76e46652d481c5ce3eebc9f9a18666b43b71d481d2627d1466ddfe383c83",
+        "runtime": "none",
+        "data": "none"
+      },
+      "sessions": {
+        "active": 0,
+        "counts": {
+          "COMPLETED": 3,
+          "FAILED": 5
+        },
+        "newest": {
+          "id": "5fe851f9-7518-4066-8c00-607be9263d35",
+          "state": "FAILED",
+          "profile": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "model": "gpt-5.6-terra",
+          "reason": "workspace reuse safety failure"
+        }
+      },
+      "pending_moves": 0,
+      "relations": "No formal edge; operationally shares the checkout defect and baseline with 212a68ce.",
+      "next_action": "Create or attach a supported fresh writable plugin checkout, verify identity and bounded Git write rollback, then move to Work and staff the remaining coverage.",
+      "deterministic_trigger": "A registered writable checkout exists and one configured Work start succeeds.",
+      "fallback": "Keep a5c386b and the package immutable; do not reuse the broken worktrees.",
+      "blocker_cleared": false,
+      "r5_action": null,
+      "last_checked": "2026-09-15T03:30:51Z"
+    },
+    {
+      "id": "428d343e-c768-4bce-a5e7-efd3b10f363f",
+      "title": "Plugin fenced runtime and scheduler",
+      "physical_lane": "Blocked",
+      "task_state": "REVIEW",
+      "health": "blocked",
+      "previous_step": "Spec",
+      "blocker": "Required Host queue primitive ca015838-e5cf-4294-b3bb-9c50576a5fe6 remains Blocked. PR #3377 is still open/draft at c990b51cb8dc758f35a702ee6ee017dd1c593c26 with 49/51 checks passing and overall failure, so the reviewed/deployed/callable contract v1.1 is unavailable. Other formal blockers are Done.",
+      "blocker_owner": "ca015838-e5cf-4294-b3bb-9c50576a5fe6, then upstream maintainer/deployment owner",
+      "preservation": {
+        "branch": "feature/plugin-fenced-runtim-ck9",
+        "head": "6fb1fdd63c1728258c40a67df037116c5ca9bbb8",
+        "worktree": "/data/tasks/plugin-fenced-runtim_053sh4tb/yattdev-kandev-plugin-coordinator",
+        "worktree_state": "clean",
+        "policy_source": "yattdev/tasks-coordinator@2ca27d00477dc298fc91187274968f1fc3970fef",
+        "runtime": "none",
+        "data": "none"
+      },
+      "sessions": {
+        "active": 0,
+        "counts": {
+          "WAITING_FOR_INPUT": 1
+        },
+        "newest": {
+          "id": "e77fc2f7-6574-4f96-b654-6426e1805b15",
+          "state": "WAITING_FOR_INPUT",
+          "profile": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "model": "gpt-5.6-terra"
+        }
+      },
+      "pending_moves": 0,
+      "relations": "Formal active blocker ca015838; completed blockers a08ef33c and be077c0f.",
+      "next_action": "After the exact Host queue contract is reviewed, deployed, and callable, atomically move Blocked to Work and verify one configured owner starts.",
+      "deterministic_trigger": "ca015838 delivers and deploys compatible queue contract v1.1.",
+      "fallback": "Do not duplicate or guess the Host transport.",
+      "blocker_cleared": false,
+      "r5_action": null,
+      "last_checked": "2026-09-15T03:30:51Z"
+    },
+    {
+      "id": "46945aff-382a-41a4-9f35-bd5c2806911e",
+      "title": "Expose guarded TTY tool to ACP agents",
+      "physical_lane": "Blocked",
+      "task_state": "REVIEW",
+      "health": "blocked",
+      "previous_step": "QA",
+      "blocker": "The reviewed maintained runtime package is still unpublished: fresh npm registry lookup for @yattdev/codex-acp-kandev@1.7.0-kandev.1 returned E404. Live credentialed guarded-TTY plus non-TTY acceptance cannot run. PR #3497 remains open/draft at ae8fc93d with 49/49 checks passing but two unresolved threads.",
+      "blocker_owner": "Human release/deployment task 01432319-aa8b-4c7d-9841-addcc6ab8e76 and registry/protection owner",
+      "preservation": {
+        "branch": "feature/expose-guarded-tty-t-46l",
+        "head": "ae8fc93dfe7d84170921a2c074b9142876cc4b13",
+        "worktree": "/data/tasks/expose-guarded-tty-t_dxnio2ff/kdlbs-kandev",
+        "worktree_state": "clean; local/fork/PR exact head preserved",
+        "maintained_artifact": "f4df079-era reviewed package/export and recorded checksums retained by release task",
+        "runtime": "no approved published guarded-TTY runtime",
+        "data": "none"
+      },
+      "sessions": {
+        "active": 0,
+        "counts": {
+          "CANCELLED": 1,
+          "COMPLETED": 6,
+          "WAITING_FOR_INPUT": 1
+        },
+        "newest": {
+          "id": "3f3b00d7-8ba9-415c-a3f8-466f6fad716e",
+          "state": "WAITING_FOR_INPUT",
+          "profile": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "model": "gpt-5.6-terra"
+        }
+      },
+      "pending_moves": 0,
+      "relations": "Operational dependency on Human-owned ToDeploy task 01432319; upstream PR #451 is a separate watch-only proposal.",
+      "next_action": "After exact accepted package publication/provenance and trusted-publisher/protection evidence, route to the narrowest QA/Work step, pin the exact package, and run credentialed TTY plus non-TTY coexistence acceptance.",
+      "deterministic_trigger": "Registry resolves the exact reviewed artifact with required provenance and protection evidence.",
+      "fallback": "No autonomous publication, credential extraction, or security weakening.",
+      "blocker_cleared": false,
+      "r5_action": null,
+      "last_checked": "2026-09-15T03:30:51Z"
+    },
+    {
+      "id": "4b56a8b3-89fa-43ef-891d-c6b3a3b88e2a",
+      "title": "Propagate CI cleanup errors on workspace deletion",
+      "physical_lane": "Blocked",
+      "task_state": "REVIEW",
+      "health": "blocked",
+      "previous_step": "Spec",
+      "blocker": "Required scoped-CI store contract is not on canonical main. Dependency task 9ee4be81 is now Human-QA, but PR #3165 remains open/non-draft at a199dcd4, 57/57 checks passing, mergeable blocked with five unresolved threads. The task trigger requires merge or proof of the exact contract on canonical main.",
+      "blocker_owner": "9ee4be81-aa98-4e4d-bdd6-842fd918f00f and upstream integration owner",
+      "preservation": {
+        "branch": "feature/propagate-ci-cleanup-2jg",
+        "head": "1ddce606edefe44c517f1f8829391f2e25b2cbee",
+        "worktree": "/data/tasks/propagate-ci-cleanup_38s1stuy/kdlbs-kandev",
+        "worktree_state": "clean; approved consumer plan preserved",
+        "runtime": "none",
+        "data": "none"
+      },
+      "sessions": {
+        "active": 0,
+        "counts": {
+          "CANCELLED": 1,
+          "WAITING_FOR_INPUT": 1
+        },
+        "newest": {
+          "id": "339b7c88-b4ee-46fc-8b9f-bc3436bd08a3",
+          "state": "WAITING_FOR_INPUT",
+          "profile": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "model": "gpt-5.6-terra"
+        }
+      },
+      "pending_moves": 0,
+      "relations": "Formal blocker 9ee4be81 is Human-QA; its PR #3165 remains unmerged.",
+      "next_action": "When the contract is canonical, atomically move Blocked to Work and verify one configured owner starts on the landed base.",
+      "deterministic_trigger": "PR #3165 merges or deleteCIRunWorkspaceData and required scoped-CI tables are proven on canonical main.",
+      "fallback": "Do not stack on or copy the open feature branch.",
+      "blocker_cleared": false,
+      "r5_action": null,
+      "last_checked": "2026-09-15T03:30:51Z"
+    },
+    {
+      "id": "51c2875b-48ae-4097-b985-b8a9584ca8c2",
+      "title": "Bug: Notes settings agent utility doesn't load agents profil",
+      "physical_lane": "Blocked",
+      "task_state": "REVIEW",
+      "health": "blocked",
+      "previous_step": "QA",
+      "blocker": "The material product-contract scope decision remains unresolved. Host PR #2870 is now green/clean at 44bfc3a47601b3f55c412c90216713bfe039ffa7 while Notes PR #7 remains green/clean at 19035c9e9989e2372d8e4eaca99772b58eb76a96; prior Review/QA evidence is stale for the current Host head. Formal dependency 9ee4be81 has advanced to Human-QA but does not resolve the scope choice.",
+      "blocker_owner": "Human scope decision",
+      "preservation": {
+        "host": {
+          "branch": "feature/implement-host-agent-oav",
+          "local_head": "929c4c3cfeecc7a89eb960bd5474ddb731f019c7",
+          "provider_head": "44bfc3a47601b3f55c412c90216713bfe039ffa7",
+          "worktree": "/data/tasks/bug-notes-settings-a_imzafc8h/kandev-source",
+          "state": "clean local QA head retained"
+        },
+        "notes": {
+          "branch": "feature/bug-notes-settings-a-0s3",
+          "head": "19035c9e9989e2372d8e4eaca99772b58eb76a96",
+          "worktree": "/data/tasks/bug-notes-settings-a_imzafc8h/kandev-plugin-notes",
+          "state": "clean"
+        },
+        "artifacts": "qa-artifacts directory retained",
+        "runtime": "none intentionally retained",
+        "data": "none"
+      },
+      "sessions": {
+        "active": 0,
+        "counts": {
+          "COMPLETED": 19,
+          "FAILED": 2,
+          "WAITING_FOR_INPUT": 2
+        },
+        "newest": {
+          "id": "418654e6-ec5d-43e0-9c28-f2702f4a86a6",
+          "state": "WAITING_FOR_INPUT",
+          "profile": "5b1dc511-64f7-448a-aa2c-5bf72e81f9e9",
+          "model": "savoirfairelinux/DeepInfra/deepseek-ai%2FDeepSeek-V4-Flash-0731"
+        }
+      },
+      "pending_moves": 0,
+      "relations": "Formal blocker 9ee4be81 is Human-QA; scope decision remains the controlling blocker.",
+      "next_action": "At the unchanged-Human-blocker cadence, request the explicit contract-scope choice with the existing recommendation; after decision, return to Spec/Work as directed, reconcile both current heads, and require fresh Review and distinct QA.",
+      "deterministic_trigger": "Explicit Human scope decision on adopting the maintainer explicit-profile contract.",
+      "fallback": "Preserve both PRs and withhold readiness/reviewer notification.",
+      "blocker_cleared": false,
+      "r5_action": null,
+      "last_checked": "2026-09-15T03:30:51Z"
+    },
+    {
+      "id": "531a41cd-57ef-495a-8dfa-614d2a4d0d52",
+      "title": "Allow Coordinator dependency-edge mutation",
+      "physical_lane": "Blocked",
+      "task_state": "REVIEW",
+      "health": "blocked",
+      "previous_step": "CI Fixup",
+      "blocker": "A single canonical Coordinator authority model is still unavailable. PR #3048 is open/draft at 56531c6e with 51/54 passing and overall failure; PR #3155 is open/non-draft, clean and green 56/56 at 2c2f9fd8 but unmerged. Competing authority/design integration remains unresolved and canonical main contains neither proven unified result.",
+      "blocker_owner": "fa3fba49-2018-460b-a600-adae23b24cc8 / PR #3048 and 7056a702-a3c3-4fe8-8535-c6b8d340ef6a / PR #3155 delivery owners, then upstream maintainer",
+      "preservation": {
+        "branch": "feature/allow-coordinator-de-gaj",
+        "head": "cfd6bdf65ae6f631d7701c105791a099c0325cc3",
+        "worktree": "/data/tasks/allow-coordinator-de_au1g7cb7/kandev-source",
+        "worktree_state": "clean, zero task source delta, no own PR",
+        "runtime": "none",
+        "data": "none",
+        "grants": "none mutated"
+      },
+      "sessions": {
+        "active": 0,
+        "counts": {
+          "COMPLETED": 6,
+          "WAITING_FOR_INPUT": 3
+        },
+        "newest": {
+          "id": "5e0de349-8eaf-404f-9ae9-e5d102f70686",
+          "state": "WAITING_FOR_INPUT",
+          "profile": "5b1dc511-64f7-448a-aa2c-5bf72e81f9e9",
+          "model": "savoirfairelinux/DeepInfra/deepseek-ai%2FDeepSeek-V4-Flash-0731"
+        }
+      },
+      "pending_moves": 0,
+      "relations": "No formal dependency edge; operational prerequisite chain is #3048 plus #3155.",
+      "next_action": "Finish current-head #3048/#3155 reconciliation and integrate one reviewed canonical authority model; then route this carrier using fresh ownership evidence.",
+      "deterministic_trigger": "Canonical main contains one reviewed designation/authorization contract with the competing principal model resolved.",
+      "fallback": "Retain the clean zero-delta carrier and do not enable live grants.",
+      "blocker_cleared": false,
+      "r5_action": null,
+      "last_checked": "2026-09-15T03:30:51Z"
+    },
+    {
+      "id": "5c9f515d-e5f9-43c5-bf31-fb42276e5e15",
+      "title": "Add guarded TTY bridge to codex-acp",
+      "physical_lane": "Blocked",
+      "task_state": "REVIEW",
+      "health": "blocked",
+      "previous_step": "Review",
+      "blocker": "Upstream agentclientprotocol/codex-acp PR #451 remains open at unchanged exact head 0bd0f8fb74a0dfec93eb3a8e586dc0d7c0e8488d, mergeable unstable, with zero current checks and zero unresolved threads. The maintained fork is the downstream authority, so this task remains external watch-only.",
+      "blocker_owner": "agentclientprotocol/codex-acp maintainers",
+      "preservation": {
+        "branch": "feature/add-guarded-tty-brid-6q9",
+        "head": "0bd0f8fb74a0dfec93eb3a8e586dc0d7c0e8488d",
+        "worktree": "/data/tasks/add-guarded-tty-brid_10966pzf/agentclientprotocol-codex-acp",
+        "worktree_state": "clean; proposal unchanged",
+        "downstream": "maintained fork delivery retained separately",
+        "runtime": "none",
+        "data": "none"
+      },
+      "sessions": {
+        "active": 0,
+        "counts": {
+          "COMPLETED": 1,
+          "WAITING_FOR_INPUT": 2
+        },
+        "newest": {
+          "id": "0e345274-f015-417f-986a-fe727c7f61a7",
+          "state": "WAITING_FOR_INPUT",
+          "profile": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "model": "gpt-5.6-luna"
+        }
+      },
+      "pending_moves": 0,
+      "relations": "No formal dependency edge; must not block the maintained-fork route.",
+      "next_action": "Perform only an event-driven provider recheck.",
+      "deterministic_trigger": "New maintainer review, workflow approval/check, head change, merge, or upstream release event.",
+      "fallback": "Do not duplicate the maintainer ping and never make this upstream watch block maintained-fork delivery.",
+      "blocker_cleared": false,
+      "r5_action": null,
+      "last_checked": "2026-09-15T03:30:51Z"
+    }
+  ],
+  "cleared_blockers": [
+    "23a05db4-c7bf-4732-a390-08cb8f0a3a8d"
+  ],
+  "prioritized_actions": [
+    "P0: Atomically route 23a05db4-c7bf-4732-a390-08cb8f0a3a8d Blocked\u2192Review with the preservation-aware exact-head handoff, then verify exactly one workflow-configured Review session starts.",
+    "P1: Provision one supported fresh writable checkout for the shared Provider Usage blocker affecting 212a68ce-7122-4cdb-ba68-764a5ebdb8c6 and 375dcc90-9ff3-4064-ba27-a7f20b33e80c; preserve a5c386b and the package artifact.",
+    "P1: At cadence only, surface the material scope decision for 51c2875b-48ae-4097-b985-b8a9584ca8c2.",
+    "P2: Recheck external/provider/dependency tasks only on their deterministic triggers; do not duplicate rerun, registry, reviewer, or maintainer contact."
+  ],
+  "mutations": []
+}

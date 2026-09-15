@@ -1,0 +1,2445 @@
+{
+  "observed_at": "2026-09-15T03:24:59.367515+00:00",
+  "count": 60,
+  "ids_sha256": "30d6a14cf0f04ca113a7d236a79289863dc0d89b6504b5f0921e96165f929994",
+  "lane_counts": {
+    "ToDeploy": 2,
+    "Blocked": 24,
+    "Done": 16,
+    "Work": 5,
+    "Review": 2,
+    "CI Fixup": 7,
+    "Spec": 1,
+    "Human-QA": 2,
+    "Backlogs": 1
+  },
+  "tasks": [
+    {
+      "id": "01432319-aa8b-4c7d-9841-addcc6ab8e76",
+      "title": "Prepare maintained codex-acp fork fallback",
+      "state": "REVIEW",
+      "updated_at": "2026-09-08 04:53:53.208790246+00:00",
+      "lane": "ToDeploy",
+      "workflow_step_id": "0eca243d-ab32-4a7d-a96f-ddc7abfe559b",
+      "sessions": [
+        {
+          "id": "377d039d-2e87-447c-aa47-60640790e294",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-06 06:11:58.64187625+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "4f73a489-2c8d-42ee-bbc7-7cd558cddad5",
+          "state": "COMPLETED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-06 06:09:02.415683292+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "54b6019f-a71f-4ad4-b071-81e066cccb0f",
+          "state": "CANCELLED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-06 06:09:02.132756699+00:00",
+          "error_message": "stopped by parent task via MCP"
+        },
+        {
+          "id": "07414438-f2d6-4ed2-abfe-a5f7067ebaaa",
+          "state": "CANCELLED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-06 06:09:02.132756699+00:00",
+          "error_message": "stopped by parent task via MCP"
+        },
+        {
+          "id": "5aa96ff6-3f25-4ccf-b96d-8310ba79f8b3",
+          "state": "CANCELLED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-06 06:09:02.132756699+00:00",
+          "error_message": "stopped by parent task via MCP"
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "01d6764d-b66d-46a0-a664-2caf4c3f4d98",
+      "title": "Make terminal workflow routing atomic",
+      "state": "IN_PROGRESS",
+      "updated_at": "2026-09-14 22:47:34.489016009+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "f02f5828-691d-4cb5-bd8a-975920709659",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 22:47:46.075423605+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "dd84571f-314c-4c50-a45d-7e2405d3f634",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "updated_at": "2026-09-14 22:47:34.590140296+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "50375066-9810-4473-9840-93f9f3c16f45",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "updated_at": "2026-09-14 22:47:34.585555186+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "ac66a2c8-b869-44e8-9949-d2e50cd12627",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "updated_at": "2026-09-14 22:47:34.582143366+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "082026af-c09e-4dbb-87a7-4a445237bae2",
+          "state": "COMPLETED",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "updated_at": "2026-09-14 22:47:34.576790572+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+      "title": "Recover atomic terminal routing in an isolated workspace",
+      "state": "REVIEW",
+      "updated_at": "2026-09-15 02:32:23.796721204+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "2e3522e5-2c0c-4f08-ac53-156937339be8",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-15 02:32:23.73598862+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "981c6055-6281-4b48-b645-b2fddf243826",
+          "state": "COMPLETED",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-15 02:29:21.105526251+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "b68175ea-429d-4a1b-8c83-5885a9f85b33",
+          "state": "COMPLETED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-15 02:29:21.060522466+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "15db6ce2-bce0-407e-ab6a-0ce7d2f4d9ca",
+          "state": "COMPLETED",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "updated_at": "2026-09-15 02:29:21.060522466+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "164844d9-6402-4e05-84ad-fad9ad931603",
+          "state": "COMPLETED",
+          "agent_profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "updated_at": "2026-09-15 02:29:21.060522466+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "0259d242-0a94-40ef-843e-385292796b64",
+      "title": "Plugin deterministic scale harness",
+      "state": "REVIEW",
+      "updated_at": "2026-09-08 15:30:46.437971568+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "9699b6a1-f69c-432e-b626-b3eccaa56bf0",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-08 15:30:46.433286705+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "09325a7b-afb5-4f54-b2a7-ceae217a7bee",
+      "title": "Fix repository provider eligibility refresh regression",
+      "state": "REVIEW",
+      "updated_at": "2026-09-14 02:56:06.62936315+00:00",
+      "lane": "Done",
+      "workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f",
+      "sessions": [
+        {
+          "id": "98950b18-2311-4e2b-9eb6-db874bf83e4c",
+          "state": "COMPLETED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 02:56:10.918793054+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "74e2a2bb-cef7-4436-84de-5f36c72d7dce",
+          "state": "COMPLETED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 02:56:06.894182119+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "9f7b3784-706b-4699-851e-f4f8a026e589",
+          "state": "COMPLETED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 02:56:06.894182119+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "e7a8516d-ff28-4e74-ae8a-21f261d8eb21",
+          "state": "COMPLETED",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "updated_at": "2026-09-14 02:56:06.894182119+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "ce91a69b-b2cd-40c3-95be-9b87ed1fa3ac",
+          "state": "COMPLETED",
+          "agent_profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "updated_at": "2026-09-14 02:56:06.894182119+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "153cdbbe-beac-47b8-bc06-8dafdcc8ed80",
+      "title": "Fix/Improve task panel close/open",
+      "state": "REVIEW",
+      "updated_at": "2026-09-15 02:50:54.946866047+00:00",
+      "lane": "Done",
+      "workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f",
+      "sessions": [
+        {
+          "id": "1376e6db-24d2-46d5-a4bc-df04c4b2a6e7",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-15 02:50:54.840211594+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "ff002cdd-d91f-4b3f-9b55-212ba9c31cad",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-15 02:45:19.925832099+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "0afdd913-6052-4cc6-92a4-6ab955f019a4",
+          "state": "COMPLETED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-15 02:45:16.931321487+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "721893bc-d067-4a7a-93de-12a110803c79",
+          "state": "FAILED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 23:00:44.163905985+00:00",
+          "error_message": "failed to create execution: failed to create standalone instance: failed to create instance: failed to create instance: failed to allocate port: no available ports in range [41001, 41100] (status 500)"
+        },
+        {
+          "id": "b7c798f4-54e2-4c79-baf3-ceb358eaf817",
+          "state": "FAILED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 22:44:15.587800631+00:00",
+          "error_message": "failed to create execution: failed to create standalone instance: failed to create instance: failed to create instance: failed to allocate port: no available ports in range [41001, 41100] (status 500)"
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "1d3d7383-8dba-41f8-a794-7e3d51809143",
+      "title": "Repair Docker address-pool exhaustion",
+      "state": "IN_PROGRESS",
+      "updated_at": "2026-09-15 02:15:01.41600327+00:00",
+      "lane": "Work",
+      "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+      "sessions": [
+        {
+          "id": "170a24f1-0697-4ad6-b2d4-de53ec4810d2",
+          "state": "RUNNING",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-15 03:24:52.869933241+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "8fc25db5-28c9-48a6-acd4-90d23d991648",
+          "state": "FAILED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 23:40:51.162452397+00:00",
+          "error_message": "failed to create execution: failed to create standalone instance: failed to create instance: failed to create instance: failed to allocate port: no available ports in range [41001, 41100] (status 500)"
+        },
+        {
+          "id": "de6aaa4e-5dab-4b72-89f6-6668a7c541c7",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 22:46:55.97663014+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "b63ba10c-2aaa-4094-a09d-05d37098c8d2",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 21:48:48.630984813+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "9771b0a6-2377-4a73-bb62-72a165410f26",
+          "state": "COMPLETED",
+          "agent_profile_id": "67ba38d7-89b5-40a8-a355-702e25d9e903",
+          "updated_at": "2026-09-14 20:58:42.972480546+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [
+        {
+          "id": "170a24f1-0697-4ad6-b2d4-de53ec4810d2",
+          "state": "RUNNING",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-15 03:24:52.869933241+00:00",
+          "error_message": ""
+        }
+      ],
+      "pending_moves": 0
+    },
+    {
+      "id": "1e46d457-6869-4750-bf97-4640a8df3b68",
+      "title": "Coordinate plugin-first board supervision delivery",
+      "state": "IN_PROGRESS",
+      "updated_at": "2026-09-15 02:15:04.538264407+00:00",
+      "lane": "Work",
+      "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+      "sessions": [
+        {
+          "id": "ba236402-99ca-48ed-a812-ea0de6fdea3f",
+          "state": "RUNNING",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-15 03:20:31.217252644+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "c24d3d92-d745-4465-8252-f8a7a482e433",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 21:41:00.075683531+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "c18b8c82-7acc-4898-a571-d7cb017aab84",
+          "state": "FAILED",
+          "agent_profile_id": "52c71f7e-81cd-4134-9ca1-24a27bd5fca8",
+          "updated_at": "2026-09-14 06:01:57.907127982+00:00",
+          "error_message": "failed to initialize ACP: session/new failed: agent.session.new failed: failed to create session: {\"code\":-32603,\"message\":\"Internal error\",\"data\":{\"error\":\"context deadline exceeded\"}}"
+        },
+        {
+          "id": "2913e92b-a019-41cf-8e18-9fe6950a51e6",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "52c71f7e-81cd-4134-9ca1-24a27bd5fca8",
+          "updated_at": "2026-09-14 06:01:57.907127982+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "3f423a05-1002-4aee-af6e-46b6df0552ed",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 06:01:57.907127982+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [
+        {
+          "id": "ba236402-99ca-48ed-a812-ea0de6fdea3f",
+          "state": "RUNNING",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-15 03:20:31.217252644+00:00",
+          "error_message": ""
+        }
+      ],
+      "pending_moves": 0
+    },
+    {
+      "id": "1f8d4dc8-83ac-44d6-9fbd-b34bd46e044e",
+      "title": "Recover missing linked-worktree admin directories",
+      "state": "REVIEW",
+      "updated_at": "2026-09-14 02:56:09.124670224+00:00",
+      "lane": "Done",
+      "workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f",
+      "sessions": [
+        {
+          "id": "9049a4ed-c51b-4ab8-a023-cc2bfd709d9d",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 02:56:12.373146226+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "41082dc8-6f5a-45b1-b611-e011f4822d6c",
+          "state": "COMPLETED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 02:54:33.525668186+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "955885ae-f37b-4ad4-af56-180c8c81bfcc",
+          "state": "COMPLETED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 02:54:33.525668186+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "fda5da4f-e40f-4723-9c64-54407c805295",
+          "state": "COMPLETED",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "updated_at": "2026-09-14 02:54:33.525668186+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "9ef4d67c-5a5a-4f66-8472-46f9e751071c",
+          "state": "COMPLETED",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "updated_at": "2026-09-14 02:54:33.525668186+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "212a68ce-7122-4cdb-ba68-764a5ebdb8c6",
+      "title": "Finish Provider Usage plugin coverage",
+      "state": "FAILED",
+      "updated_at": "2026-09-08 04:53:53.044588029+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "501387d6-5c2c-4036-b768-2c568813d0f8",
+          "state": "FAILED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-08-30 19:40:36.453784001+00:00",
+          "error_message": "failed to initialize ACP: initialize failed: initialize failed: ACP initialize handshake failed: {\"code\":-32603,\"message\":\"Internal error\",\"data\":{\"error\":\"write |1: file already closed\"}}"
+        },
+        {
+          "id": "7f5387c2-f9b4-4a1e-abb6-4809efd5bc8b",
+          "state": "COMPLETED",
+          "agent_profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+          "updated_at": "2026-08-28 01:03:54.568121154+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "23a05db4-c7bf-4732-a390-08cb8f0a3a8d",
+      "title": "H6: Add plugin capability approval and audit",
+      "state": "REVIEW",
+      "updated_at": "2026-09-15 00:18:30.118729336+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "e147103f-9067-4559-b4d0-1a461282a275",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-15 00:18:29.985021737+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "d0d4d402-823b-4570-8086-694271f0766e",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-14 18:24:50.900470463+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "8f9dc760-ca50-4beb-84e2-fb5d36e686d4",
+          "state": "CANCELLED",
+          "agent_profile_id": "52c71f7e-81cd-4134-9ca1-24a27bd5fca8",
+          "updated_at": "2026-09-14 18:24:50.165516383+00:00",
+          "error_message": "stopped by parent task via MCP"
+        },
+        {
+          "id": "2ea4497b-9cfd-4f5c-acff-8f8ff79c5394",
+          "state": "COMPLETED",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "updated_at": "2026-09-14 18:24:50.165516383+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "b3fa930c-9bcb-4dda-8634-35174505958c",
+          "state": "CANCELLED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 18:24:50.165516383+00:00",
+          "error_message": "stopped by parent task via MCP"
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "27b493a3-65b6-4d4a-8b68-73f2ffcf9621",
+      "title": "Fix workflow-sync GitHub polling starving API quota",
+      "state": "IN_PROGRESS",
+      "updated_at": "2026-09-15 02:15:08.141071589+00:00",
+      "lane": "Work",
+      "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+      "sessions": [
+        {
+          "id": "cc2afa78-ca2d-4999-ad01-e2a2102451c4",
+          "state": "RUNNING",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-15 03:14:28.804167351+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "920b00dc-c663-4a9d-b949-f7387583a6c2",
+          "state": "FAILED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-15 00:48:45.323066068+00:00",
+          "error_message": "failed to create execution: failed to create standalone instance: failed to create instance: failed to create instance: failed to allocate port: no available ports in range [41001, 41100] (status 500)"
+        },
+        {
+          "id": "716ce6e7-d83d-4682-bd64-ec3383adc1ef",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 22:44:41.648633528+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "fa57331f-e73d-46bb-b6c1-8eb654dfc6df",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 21:41:22.720531154+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "6dcc8bc1-0bdb-47b4-9a5a-9b313c97a1ec",
+          "state": "COMPLETED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-14 19:02:27.955998959+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [
+        {
+          "id": "cc2afa78-ca2d-4999-ad01-e2a2102451c4",
+          "state": "RUNNING",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-15 03:14:28.804167351+00:00",
+          "error_message": ""
+        }
+      ],
+      "pending_moves": 0
+    },
+    {
+      "id": "375dcc90-9ff3-4064-ba27-a7f20b33e80c",
+      "title": "Expose Provider Usage through read-only MCP",
+      "state": "SCHEDULING",
+      "updated_at": "2026-09-07 13:43:28.568837117+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "5fe851f9-7518-4066-8c00-607be9263d35",
+          "state": "FAILED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-07 18:09:53.252039946+00:00",
+          "error_message": "workspace reuse is unsafe: canonical workspace repository inventory has no matching entry for repository \"***\" branch \"upstream-main\""
+        },
+        {
+          "id": "f9d35b47-a61c-42b0-9c01-fd1b6791d77f",
+          "state": "FAILED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-07 13:43:29.250198037+00:00",
+          "error_message": "workspace reuse is unsafe: canonical workspace repository inventory has no matching entry for repository \"***\" branch \"upstream-main\""
+        },
+        {
+          "id": "73f06bf2-4ebd-4bc7-9052-43086f126719",
+          "state": "FAILED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-08-27 19:38:06.02132272+00:00",
+          "error_message": "environment preparation failed: git command failed: Preparing worktree (checking out '***')\nfatal: '***' already exists"
+        },
+        {
+          "id": "d1f45279-3305-4edb-b5b9-56ecf030a310",
+          "state": "FAILED",
+          "agent_profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+          "updated_at": "2026-08-20 04:04:22.268016877+00:00",
+          "error_message": "environment preparation failed: git command failed: Preparing worktree (checking out 'feature/expose-provider-usag-fxd')\nfatal: '/data/tasks/expose-provider-usag_kjfkfyxi/kandev-source' already exists"
+        },
+        {
+          "id": "dbcd3a49-26c6-4e26-8700-0b89d5db2988",
+          "state": "FAILED",
+          "agent_profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+          "updated_at": "2026-08-19 10:02:38.178795312+00:00",
+          "error_message": "environment preparation failed: git command failed: Preparing worktree (checking out '***')\nfatal: '***' already exists"
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "37eca47b-cf05-47ee-b143-39408edbeed1",
+      "title": "Bound merged worktree branch accumulation",
+      "state": "REVIEW",
+      "updated_at": "2026-09-15 02:15:26.558651648+00:00",
+      "lane": "Work",
+      "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+      "sessions": [
+        {
+          "id": "e9e69e9d-2682-4fce-b513-976f213ed035",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-15 02:15:26.452407932+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "654ac2ed-26f6-4e8b-82ef-f95f3c55347d",
+          "state": "FAILED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-15 00:59:40.956929898+00:00",
+          "error_message": "failed to create execution: failed to create standalone instance: failed to create instance: failed to create instance: failed to allocate port: no available ports in range [41001, 41100] (status 500)"
+        },
+        {
+          "id": "b2f11ce7-f3a6-40af-9125-4e818cf55d37",
+          "state": "COMPLETED",
+          "agent_profile_id": "c151363f-a48d-4955-b669-cab94470d04a",
+          "updated_at": "2026-09-14 23:05:37.011754055+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "c47093eb-8203-4bf7-a04e-68da86989f07",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-14 23:05:36.500340889+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "9d3806c8-753e-4a24-a59e-bf320f3d4f73",
+          "state": "COMPLETED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-14 23:05:36.500340889+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "3f721d52-452b-4bc6-a61e-68d875baafbd",
+      "title": "Recover Redmine preflight in a dedicated workspace",
+      "state": "COMPLETED",
+      "updated_at": "2026-09-14 20:21:29.598625263+00:00",
+      "lane": "Done",
+      "workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f",
+      "sessions": [
+        {
+          "id": "b9cbd5de-854e-4fa5-97ac-975b3f7e7b98",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 20:20:59.565621974+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "94e8be25-4bae-4c28-a526-097f611cc62c",
+          "state": "CREATED",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "updated_at": "2026-09-14 20:20:59.56347876+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "60152966-6b89-4ac9-8a49-70eb2c90f771",
+          "state": "CREATED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 20:20:59.56347876+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "db8c671c-b019-4468-820e-ea1d64394e15",
+          "state": "FAILED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 20:20:59.56347876+00:00",
+          "error_message": "workspace reuse is unsafe: canonical workspace repository inventory has no matching entry for repository \"***\" branch \"main\""
+        },
+        {
+          "id": "e152181b-9375-4d7c-9d97-b02b8f985b26",
+          "state": "FAILED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 20:20:59.56347876+00:00",
+          "error_message": "workspace reuse is unsafe: canonical workspace repository inventory has no matching entry for repository \"***\" branch \"main\""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "428d343e-c768-4bce-a5e7-efd3b10f363f",
+      "title": "Plugin fenced runtime and scheduler",
+      "state": "REVIEW",
+      "updated_at": "2026-09-08 15:30:44.809426311+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "e77fc2f7-6574-4f96-b654-6426e1805b15",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-08 15:30:44.80436365+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "4640fd95-b7f9-4339-8836-cf03679eaf41",
+      "title": "Publish Redmine patch release",
+      "state": "REVIEW",
+      "updated_at": "2026-09-14 05:40:26.556929682+00:00",
+      "lane": "Done",
+      "workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f",
+      "sessions": [
+        {
+          "id": "fb346ffe-950a-48b1-b685-f7f1a03d11b4",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-14 05:40:26.044542442+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "e90158bb-d6ed-412c-b8a3-a2456e3a013b",
+          "state": "COMPLETED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 05:40:24.590701304+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "d018bfc2-40ca-47e8-9780-920d6f17452f",
+          "state": "COMPLETED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-14 05:40:23.851634878+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "38e10006-8d08-46bc-8d2a-c36161351951",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "d3fa5aa4-6161-4133-b863-919d0453a6aa",
+          "updated_at": "2026-09-14 05:40:21.576760063+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "684a7050-26bd-422b-b3d4-514f4cd410f9",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 05:40:20.78332116+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "46945aff-382a-41a4-9f35-bd5c2806911e",
+      "title": "Expose guarded TTY tool to ACP agents",
+      "state": "REVIEW",
+      "updated_at": "2026-09-08 15:07:51.525628943+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "3f3b00d7-8ba9-415c-a3f8-466f6fad716e",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-08 11:22:20.347787308+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "665dc89a-690e-4070-b578-9d4c3d10aaf6",
+          "state": "COMPLETED",
+          "agent_profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "updated_at": "2026-09-08 11:21:13.627176816+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "8613dd56-6c4c-4773-abd8-96eff83064cf",
+          "state": "CANCELLED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-08 11:21:13.330125251+00:00",
+          "error_message": "stopped by parent task via MCP"
+        },
+        {
+          "id": "d7fc06c6-e4de-43a9-9e77-219a69aae82b",
+          "state": "COMPLETED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-08 11:21:13.330125251+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "d6022d04-cfac-4864-98d2-10e74c5ccfd4",
+          "state": "COMPLETED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-08 11:21:13.330125251+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "4b56a8b3-89fa-43ef-891d-c6b3a3b88e2a",
+      "title": "Propagate CI cleanup errors on workspace deletion",
+      "state": "REVIEW",
+      "updated_at": "2026-09-08 04:53:52.488638081+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "339b7c88-b4ee-46fc-8b9f-bc3436bd08a3",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-07 00:28:35.710818987+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "96c16a68-b051-45a7-8936-30e2ba64ab58",
+          "state": "CANCELLED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-07 00:18:52.717782299+00:00",
+          "error_message": "stopped by parent task via MCP"
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "51c2875b-48ae-4097-b985-b8a9584ca8c2",
+      "title": "Bug: Notes settings agent utility doesn't load agents profil",
+      "state": "REVIEW",
+      "updated_at": "2026-09-14 18:31:01.104247879+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "c4258328-4239-4c6f-8a2f-dc26662c6c9c",
+          "state": "FAILED",
+          "agent_profile_id": "d3fa5aa4-6161-4133-b863-919d0453a6aa",
+          "updated_at": "2026-09-14 22:44:58.936341519+00:00",
+          "error_message": "failed to resume session: failed to create execution: failed to create standalone instance: failed to create instance: failed to create instance: failed to allocate port: no available ports in range [41001, 41100] (status 500)"
+        },
+        {
+          "id": "418654e6-ec5d-43e0-9c28-f2702f4a86a6",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "5b1dc511-64f7-448a-aa2c-5bf72e81f9e9",
+          "updated_at": "2026-09-14 18:31:01.057462118+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "b0f4b4ce-9447-4839-b755-3e5d849e48ff",
+          "state": "COMPLETED",
+          "agent_profile_id": "8a033819-d149-4dfc-9ab1-0c2f2a3911b5",
+          "updated_at": "2026-09-14 18:25:54.49503512+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "a795a6a7-06f1-4731-86e1-57093d83a72d",
+          "state": "COMPLETED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-14 18:25:54.49503512+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "b8ce5b48-7074-453e-a5e0-1738d25af52c",
+          "state": "COMPLETED",
+          "agent_profile_id": "67ba38d7-89b5-40a8-a355-702e25d9e903",
+          "updated_at": "2026-09-14 18:25:54.49503512+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "531a41cd-57ef-495a-8dfa-614d2a4d0d52",
+      "title": "Allow Coordinator dependency-edge mutation",
+      "state": "REVIEW",
+      "updated_at": "2026-09-14 05:27:40.891543506+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "5e0de349-8eaf-404f-9ae9-e5d102f70686",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "5b1dc511-64f7-448a-aa2c-5bf72e81f9e9",
+          "updated_at": "2026-09-14 05:27:39.993715317+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "403b66a8-5153-4fb8-9df1-922db6f9c29e",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-14 05:25:44.51707998+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "3a69c4d0-bbfe-4e26-a61a-a3b1ab8b993d",
+          "state": "COMPLETED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-14 05:25:41.438182343+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "fd7c90e7-5d2b-49d9-b6fb-702959be4df6",
+          "state": "COMPLETED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 05:25:41.438182343+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "f75d44e8-65a5-48a0-a648-1173dcd24e11",
+          "state": "COMPLETED",
+          "agent_profile_id": "ac31ed46-6af3-473f-a920-6d53482f8eea",
+          "updated_at": "2026-09-14 05:25:41.438182343+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "5c9f515d-e5f9-43c5-bf31-fb42276e5e15",
+      "title": "Add guarded TTY bridge to codex-acp",
+      "state": "REVIEW",
+      "updated_at": "2026-09-08 04:53:52.902204022+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "70ecf6f1-9d03-4435-a50e-acce577ec6ec",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-07 02:36:08.288098047+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "0e345274-f015-417f-986a-fe727c7f61a7",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-08-31 21:36:09.436603983+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "269f2d7f-5c9f-4170-8157-34d1b0f54426",
+          "state": "COMPLETED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-08-30 10:00:10.96400074+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "6a5a2f73-87e1-4c08-a983-64f2456c3633",
+      "title": "Executor containers: allow unprivileged user namespaces",
+      "state": "REVIEW",
+      "updated_at": "2026-09-14 03:13:21.757382368+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "5392b5ee-1843-4436-bd3a-50c9be5b9429",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "5b1dc511-64f7-448a-aa2c-5bf72e81f9e9",
+          "updated_at": "2026-09-14 03:13:21.629183558+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "bd0e2a4e-2357-42ea-8601-e5ea0a00a9d5",
+          "state": "COMPLETED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 03:10:49.255456817+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "3542794d-5187-456f-a09c-48881978a274",
+          "state": "COMPLETED",
+          "agent_profile_id": "e4a407ee-7476-4cc5-8dc6-22df525f2527",
+          "updated_at": "2026-09-14 03:10:48.120992536+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "47c07400-da44-4ef3-bf02-08732758ca28",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "e31a57cb-06c0-46b1-b3eb-c82a72d9699c",
+          "updated_at": "2026-09-14 03:10:48.120992536+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "414fc6a3-39d7-464b-ae1a-3b109e16b0a8",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "67ba38d7-89b5-40a8-a355-702e25d9e903",
+          "updated_at": "2026-09-14 03:10:48.120992536+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "6d03f4a9-bf89-4882-bf43-5a584f986185",
+      "title": "Adopt exact profile assignment persistence",
+      "state": "REVIEW",
+      "updated_at": "2026-09-14 21:05:40.022645978+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "74f1590e-9dad-4dca-8a2c-0e1652bdccdf",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "5b1dc511-64f7-448a-aa2c-5bf72e81f9e9",
+          "updated_at": "2026-09-14 21:05:40.014752615+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "b27451e9-66cd-46e1-b67e-2e674fedb794",
+          "state": "COMPLETED",
+          "agent_profile_id": "67ba38d7-89b5-40a8-a355-702e25d9e903",
+          "updated_at": "2026-09-14 21:02:53.548782821+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "7056a702-a3c3-4fe8-8535-c6b8d340ef6a",
+      "title": "Add exact pending-move cancellation",
+      "state": "REVIEW",
+      "updated_at": "2026-09-15 02:22:15.301163055+00:00",
+      "lane": "Review",
+      "workflow_step_id": "6c2e5bf5-57db-4682-8daa-d110f22b60da",
+      "sessions": [
+        {
+          "id": "0ba4a3ab-99ac-460d-95db-7f9800efd0db",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-15 02:22:17.950575125+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "75d4c8af-dc90-4e68-bc74-3d86e99e52cb",
+      "title": "Resolve C1 git-metadata projection disposition",
+      "state": "REVIEW",
+      "updated_at": "2026-09-14 20:19:59.553002577+00:00",
+      "lane": "Done",
+      "workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f",
+      "sessions": [
+        {
+          "id": "1f585cd0-1733-4cb6-8407-3affceecc6eb",
+          "state": "COMPLETED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 20:20:04.479004241+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "f6c34b64-0392-41ea-91a8-5cfd2b3ccead",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "67ba38d7-89b5-40a8-a355-702e25d9e903",
+          "updated_at": "2026-09-14 20:20:01.928521308+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "402f78ba-7fbd-471b-8382-9430ba82455f",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "5b1dc511-64f7-448a-aa2c-5bf72e81f9e9",
+          "updated_at": "2026-09-14 20:20:01.928521308+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "76b4e3d4-ccb8-408c-a0de-5e5014c538be",
+      "title": "Make visible Human questions durable",
+      "state": "REVIEW",
+      "updated_at": "2026-09-09 23:42:14.249572101+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "d30978b2-e58e-4647-a687-0018172b1612",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-09 04:11:53.006927506+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "2c83cc7f-6d3b-4c1f-a9fc-c988485fd7cf",
+          "state": "COMPLETED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-05 09:24:42.490524709+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "a3fcb767-ac94-4217-86fd-3a3529ea6552",
+          "state": "COMPLETED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-05 09:24:42.210904092+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "c031fc77-f998-4a93-95fe-c7248bcb63e0",
+          "state": "CANCELLED",
+          "agent_profile_id": "ce9f96f7-4434-4729-b23b-926b4b72f417",
+          "updated_at": "2026-09-05 09:24:42.210904092+00:00",
+          "error_message": "stopped by parent task via MCP"
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "77353939-0ba8-40dd-b93c-57adc73a4011",
+      "title": "Implement provider-usage MCP tool",
+      "state": "SCHEDULING",
+      "updated_at": "2026-09-08 04:53:53.155813648+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "f44b042d-b4fb-4a4e-97d1-1b33f4e2c2ff",
+          "state": "FAILED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-07 13:43:29.304606504+00:00",
+          "error_message": "workspace reuse is unsafe: canonical workspace repository inventory has no matching entry for repository \"***\" branch \"main\""
+        },
+        {
+          "id": "f1ae0de9-7974-455c-a5ca-4005954b869d",
+          "state": "FAILED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-08-27 21:57:54.720880532+00:00",
+          "error_message": "environment preparation failed: git command failed: Preparing worktree (checking out '***')\nfatal: '***' already exists"
+        },
+        {
+          "id": "03a945b9-3602-40e9-947b-fad7ea22c80a",
+          "state": "COMPLETED",
+          "agent_profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+          "updated_at": "2026-08-27 21:57:46.866420632+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "ec16aaa2-e194-48aa-b209-299ebde05122",
+          "state": "FAILED",
+          "agent_profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+          "updated_at": "2026-08-27 21:57:46.859845428+00:00",
+          "error_message": "environment preparation failed: git command failed: Preparing worktree (checking out '***')\nfatal: '***' already exists"
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "7a0454aa-c089-4365-8966-ad99775a46f8",
+      "title": "Fix Redmine derived custom-field fallback",
+      "state": "COMPLETED",
+      "updated_at": "2026-09-14 20:21:29.552556078+00:00",
+      "lane": "Done",
+      "workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f",
+      "sessions": [
+        {
+          "id": "ea654329-5c6f-4cff-96fb-34956e751bae",
+          "state": "COMPLETED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 20:21:23.877177274+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "4c4c8b57-e115-46ee-848c-67354d6cecc3",
+          "state": "CANCELLED",
+          "agent_profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "updated_at": "2026-09-08 00:18:58.653904148+00:00",
+          "error_message": "stopped by parent task via MCP"
+        },
+        {
+          "id": "7e00cff5-df81-47d8-ae10-d9f1d16a153f",
+          "state": "CANCELLED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-07 11:11:46.612971553+00:00",
+          "error_message": "stopped by parent task via MCP"
+        },
+        {
+          "id": "c9db2876-f072-4065-901d-2358f77ab222",
+          "state": "CANCELLED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-07 11:11:46.612971553+00:00",
+          "error_message": "stopped by parent task via MCP"
+        },
+        {
+          "id": "88bdb563-f227-45bb-a3b2-e7e025f6f7f1",
+          "state": "CANCELLED",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "updated_at": "2026-09-07 11:11:46.612971553+00:00",
+          "error_message": "stopped by parent task via MCP"
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "7ca86e53-249b-4b31-a866-e807afd9a962",
+      "title": "feat: Implement Redmine integration",
+      "state": "COMPLETED",
+      "updated_at": "2026-09-14 22:43:53.058180562+00:00",
+      "lane": "Done",
+      "workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f",
+      "sessions": [
+        {
+          "id": "bc5890dd-9063-4351-8e9d-01c8176a507e",
+          "state": "FAILED",
+          "agent_profile_id": "2653283e-3df4-48d6-8242-774b24b54f38",
+          "updated_at": "2026-09-14 22:43:42.899612704+00:00",
+          "error_message": "failed to create execution: failed to create standalone instance: failed to create instance: failed to create instance: failed to allocate port: no available ports in range [41001, 41100] (status 500)"
+        },
+        {
+          "id": "b9851cd9-37b0-435d-af5c-01fb779bd632",
+          "state": "FAILED",
+          "agent_profile_id": "5b1dc511-64f7-448a-aa2c-5bf72e81f9e9",
+          "updated_at": "2026-09-14 04:37:55.667362489+00:00",
+          "error_message": "failed to initialize ACP: initialize failed: initialize failed: ACP initialize handshake failed: {\"code\":-32603,\"message\":\"Internal error\",\"data\":{\"error\":\"write |1: file already closed\"}}"
+        },
+        {
+          "id": "499de3e5-5bb3-4c25-b755-7a67339aa08d",
+          "state": "FAILED",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-14 04:36:31.387173116+00:00",
+          "error_message": "failed to initialize ACP: initialize failed: initialize failed: ACP initialize handshake failed: {\"code\":-32603,\"message\":\"Internal error\",\"data\":{\"error\":\"write |1: file already closed\"}}"
+        },
+        {
+          "id": "d56cca9f-74aa-4c30-a873-db0e3cbc03d2",
+          "state": "FAILED",
+          "agent_profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+          "updated_at": "2026-08-30 18:48:16.918525699+00:00",
+          "error_message": "failed to initialize ACP: initialize failed: initialize failed: ACP initialize handshake failed: {\"code\":-32603,\"message\":\"Internal error\",\"data\":{\"error\":\"write |1: file already closed\"}}"
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "856898aa-d06a-43f7-9a87-f873665f19da",
+      "title": "The tags plugin update should preserve the existings tags",
+      "state": "REVIEW",
+      "updated_at": "2026-09-14 18:28:56.86052445+00:00",
+      "lane": "Done",
+      "workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f",
+      "sessions": [
+        {
+          "id": "c294d548-739c-4527-bc6f-89cbaeee5f42",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 18:28:56.673397754+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "07b3ac2e-6d6d-45cc-84db-b34a02374c24",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "d3fa5aa4-6161-4133-b863-919d0453a6aa",
+          "updated_at": "2026-09-14 18:28:23.624182633+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "09cd4e7c-5950-4f31-8eb7-627b092b316a",
+          "state": "COMPLETED",
+          "agent_profile_id": "8a033819-d149-4dfc-9ab1-0c2f2a3911b5",
+          "updated_at": "2026-09-14 18:28:23.158180832+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "8f665af6-3773-459a-bed8-c93b991518c8",
+          "state": "COMPLETED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-14 18:28:23.158180832+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "01edf2a8-e77c-40df-9e36-b740ec4b9143",
+          "state": "COMPLETED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 18:28:23.158180832+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "86a16fc1-6394-4fb0-898d-4d42948683f5",
+      "title": "Bound plugin registry release latency",
+      "state": "REVIEW",
+      "updated_at": "2026-09-15 02:36:03.851044981+00:00",
+      "lane": "CI Fixup",
+      "workflow_step_id": "347f3904-5972-44bf-92e8-a9a9a5efb96d",
+      "sessions": [
+        {
+          "id": "2159ffaa-cc67-45bd-bcba-35db29b21e9f",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-15 02:36:03.798822283+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "c6632154-cf10-4fb0-9c8b-72d9b36df611",
+          "state": "FAILED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 23:53:42.323399911+00:00",
+          "error_message": "failed to create execution: failed to create standalone instance: failed to create instance: failed to create instance: failed to allocate port: no available ports in range [41001, 41100] (status 500)"
+        },
+        {
+          "id": "32737c1d-07f7-465b-bb66-d5710ef28942",
+          "state": "FAILED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 22:44:16.376478252+00:00",
+          "error_message": "failed to create execution: failed to create standalone instance: failed to create instance: failed to create instance: failed to allocate port: no available ports in range [41001, 41100] (status 500)"
+        },
+        {
+          "id": "5f9d8bb2-1dcb-4ae0-9892-7b5cd560fdaa",
+          "state": "COMPLETED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-14 22:22:58.454335422+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "71e0a3ce-02fb-4a36-926c-a7e3c3e69621",
+          "state": "CANCELLED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 22:22:58.454335422+00:00",
+          "error_message": "stopped via API"
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "86c8b47e-e7a5-4693-8e11-dce08899a0bf",
+      "title": "Preserve unread queue on session deletion",
+      "state": "REVIEW",
+      "updated_at": "2026-09-08 04:53:53.274366614+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "2376d3fe-6818-4486-a1fb-7dc99c3bf433",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-06 08:46:10.548844609+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "02b48c70-3ad9-461d-a5ca-7fe3c01dfe50",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "updated_at": "2026-09-06 08:11:23.115805113+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "fb3e5dd8-452b-4604-bd38-6c0ba9844d98",
+          "state": "COMPLETED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-06 06:37:20.412715914+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "8a182e40-d99c-42e9-b9be-1f8f78cf8388",
+      "title": "Repair standalone execution port-pool exhaustion",
+      "state": "SCHEDULING",
+      "updated_at": "2026-09-15 02:27:21.118916244+00:00",
+      "lane": "Spec",
+      "workflow_step_id": "2352cf1e-3005-4602-9f4d-41215a5b399a",
+      "sessions": [
+        {
+          "id": "d0b7f9c7-7cab-4b88-baf0-e81b700b258c",
+          "state": "FAILED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-14 22:45:50.177897305+00:00",
+          "error_message": "failed to create execution: failed to create standalone instance: failed to create instance: failed to create instance: failed to allocate port: no available ports in range [41001, 41100] (status 500)"
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "8f8a784d-92ea-421f-a368-154ef915fe4e",
+      "title": "Register task runtimes with source broker",
+      "state": "REVIEW",
+      "updated_at": "2026-09-08 04:53:52.843321326+00:00",
+      "lane": "ToDeploy",
+      "workflow_step_id": "0eca243d-ab32-4a7d-a96f-ddc7abfe559b",
+      "sessions": [
+        {
+          "id": "39a616cd-7a6f-4a0c-9061-324cedd55fae",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-06 08:13:11.563570012+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "f73d7419-21e1-4233-95c6-3bbc637c821a",
+          "state": "COMPLETED",
+          "agent_profile_id": "b984bcf6-4dc7-4df5-b839-b3d2c53bdcb8",
+          "updated_at": "2026-09-06 08:11:48.123818785+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "04cee40f-ead3-48c5-b424-e8cc56f2924d",
+          "state": "CANCELLED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-06 08:11:48.112415146+00:00",
+          "error_message": "stopped by parent task via MCP"
+        },
+        {
+          "id": "f4f0770c-f928-4756-b4a5-e72e358c64cd",
+          "state": "CANCELLED",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "updated_at": "2026-09-06 08:11:48.112415146+00:00",
+          "error_message": "stopped by parent task via MCP"
+        },
+        {
+          "id": "7ef16298-247d-4e41-8d4b-38fd0f6a5202",
+          "state": "CANCELLED",
+          "agent_profile_id": "b984bcf6-4dc7-4df5-b839-b3d2c53bdcb8",
+          "updated_at": "2026-09-06 08:11:48.112415146+00:00",
+          "error_message": "stopped by parent task via MCP"
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "92535de6-7507-473c-b292-e69516d2434c",
+      "title": "Design executor-owned native sandbox",
+      "state": "COMPLETED",
+      "updated_at": "2026-09-14 23:26:21.515574105+00:00",
+      "lane": "Done",
+      "workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f",
+      "sessions": [
+        {
+          "id": "02f5249d-1206-4b53-b08d-42139136bad9",
+          "state": "COMPLETED",
+          "agent_profile_id": "67ba38d7-89b5-40a8-a355-702e25d9e903",
+          "updated_at": "2026-09-14 23:26:05.717277323+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "739a5bf2-0bff-4d63-9194-6cd4941919a6",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-14 23:26:05.717277323+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "edf2d9ea-fc73-41c9-8553-2f727ccde9b3",
+          "state": "COMPLETED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 23:26:05.717277323+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "2601afa6-e290-4b25-b162-ef9672720aaa",
+          "state": "FAILED",
+          "agent_profile_id": "c151363f-a48d-4955-b669-cab94470d04a",
+          "updated_at": "2026-09-14 23:26:05.717277323+00:00",
+          "error_message": "failed to create execution: failed to create standalone instance: failed to create instance: failed to create instance: failed to allocate port: no available ports in range [41001, 41100] (status 500)"
+        },
+        {
+          "id": "965ef214-2b76-4102-a049-ba86b13c48ff",
+          "state": "FAILED",
+          "agent_profile_id": "c151363f-a48d-4955-b669-cab94470d04a",
+          "updated_at": "2026-09-14 23:26:05.717277323+00:00",
+          "error_message": "failed to create execution: failed to create standalone instance: failed to create instance: failed to create instance: failed to allocate port: no available ports in range [41001, 41100] (status 500)"
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "9349b6e5-a167-4d88-af14-cb355015e3dd",
+      "title": "Allow coordinator relation inspection",
+      "state": "REVIEW",
+      "updated_at": "2026-09-15 02:36:11.839602731+00:00",
+      "lane": "CI Fixup",
+      "workflow_step_id": "347f3904-5972-44bf-92e8-a9a9a5efb96d",
+      "sessions": [
+        {
+          "id": "364cc979-268f-4b42-a386-b3e5afdf984a",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-15 02:36:11.755905421+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "67507b30-cefa-4edc-9849-2c1d51c5adb3",
+          "state": "COMPLETED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-14 21:31:55.796310838+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "925d6794-757d-4f00-92b5-5612309a2d3a",
+          "state": "COMPLETED",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "updated_at": "2026-09-14 21:31:55.796310838+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "6f04c7cf-a587-419c-91fd-18ec7d3ddb49",
+          "state": "COMPLETED",
+          "agent_profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "updated_at": "2026-09-14 21:31:55.796310838+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "e0d43585-0e30-4d30-8052-b6a338214c0b",
+          "state": "COMPLETED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 21:31:55.796310838+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "957da1cb-063b-4c2e-b406-6d04ad158fb9",
+      "title": "Reuse workspace for additional task sessions",
+      "state": "REVIEW",
+      "updated_at": "2026-09-14 02:55:58.535978283+00:00",
+      "lane": "Done",
+      "workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f",
+      "sessions": [
+        {
+          "id": "2c5243b6-e046-4fbc-b82b-1cbef6e8a835",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 02:56:03.815451206+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "a19f0580-6cfe-4d73-be85-223c05a91e1d",
+          "state": "COMPLETED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-14 02:54:32.959330778+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "b72162e3-0582-493c-8c8d-0260bcbfcbeb",
+          "state": "COMPLETED",
+          "agent_profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+          "updated_at": "2026-09-14 02:54:32.959330778+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "e53c28b5-9093-45ec-84ba-71a6a0d4eab7",
+          "state": "COMPLETED",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "updated_at": "2026-09-14 02:54:32.959330778+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "1c5f9138-1704-4d1a-9405-5276a41fbcd3",
+          "state": "COMPLETED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 02:54:32.959330778+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "96e27238-8b7d-476a-8c70-b8da0abae935",
+      "title": "Fix stale plugin-hook docs and template rename checklist",
+      "state": "REVIEW",
+      "updated_at": "2026-09-08 04:53:52.748945269+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "3990717f-3976-467b-8b30-a15065c1a1c1",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-08 04:10:26.568612141+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "a462cd32-76ef-4df6-a2f8-8a080545791e",
+          "state": "COMPLETED",
+          "agent_profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+          "updated_at": "2026-08-27 19:38:02.740740032+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "66bfd2c7-cb9b-4c3d-8829-ae51340318fa",
+          "state": "COMPLETED",
+          "agent_profile_id": "3e3c9eca-7dd9-4dbf-9cf9-82d97fc935d3",
+          "updated_at": "2026-08-27 19:38:02.731248765+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "21800fc1-67cb-4589-ba4f-a9fc0c44f0bf",
+          "state": "COMPLETED",
+          "agent_profile_id": "d05f88ca-4699-43c5-a558-70df3df45ec2",
+          "updated_at": "2026-08-27 19:38:02.731248765+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "6a762d99-dcde-4bfb-b61d-bb274ebbba3d",
+          "state": "COMPLETED",
+          "agent_profile_id": "06f0a558-84be-486e-a3ea-941b679dc87a",
+          "updated_at": "2026-08-27 19:38:02.731248765+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "9e67c426-1300-46ef-a00f-e5603791212d",
+      "title": "Plan coordinator plugin architecture",
+      "state": "REVIEW",
+      "updated_at": "2026-09-14 04:13:00.971304398+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "d770156a-416b-4134-9992-99b681782f37",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "5b1dc511-64f7-448a-aa2c-5bf72e81f9e9",
+          "updated_at": "2026-09-14 04:13:00.067304194+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "28e52f66-9f2c-44f8-8c7f-4eeaa05c8681",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-14 04:11:59.638631371+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "4183f996-7c7f-4c8f-9be1-fe38760be504",
+          "state": "COMPLETED",
+          "agent_profile_id": "fdad3d04-4e52-4e41-8236-69bcfe643103",
+          "updated_at": "2026-09-14 04:11:53.97818013+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "8c486b7f-4b98-445a-ac28-2abd79f6f607",
+          "state": "COMPLETED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-14 04:11:53.97818013+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "98a2f246-f6fa-4bac-9633-caa1a7fdb8f3",
+          "state": "COMPLETED",
+          "agent_profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+          "updated_at": "2026-09-14 04:11:53.97818013+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+      "title": "Allow scoped fresh CI dispatch",
+      "state": "REVIEW",
+      "updated_at": "2026-09-15 02:47:55.848983714+00:00",
+      "lane": "Human-QA",
+      "workflow_step_id": "814573a3-f2a3-4f42-8706-4f2997401fa6",
+      "sessions": [
+        {
+          "id": "b5bca7d5-b1b9-4f24-af85-ecc3745aaa89",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-15 02:47:55.838407153+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "c97f0b39-65b9-46a9-8c7b-990c0e22e409",
+          "state": "COMPLETED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-15 02:40:45.666788573+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "a091649a-79b0-40d6-a84d-84a3dc053e4a",
+      "title": "Port AgentConversation Host contract to canonical main",
+      "state": "REVIEW",
+      "updated_at": "2026-09-15 03:00:11.412348069+00:00",
+      "lane": "Human-QA",
+      "workflow_step_id": "814573a3-f2a3-4f42-8706-4f2997401fa6",
+      "sessions": [
+        {
+          "id": "9de2cb27-1c68-4abc-b283-4cb3eca6747c",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-15 03:00:11.395632834+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "44cf054b-2bb3-4a37-b31f-8270e74b885a",
+          "state": "COMPLETED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-15 02:29:18.059859871+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "c8e6ad70-91fb-4578-ada6-c43299802401",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-15 02:29:17.708490643+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "99932c6b-d0bd-42e7-a74e-779713a126a6",
+          "state": "COMPLETED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-15 02:29:17.708490643+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "c39df3e5-59bd-446e-b61a-e48298da7270",
+          "state": "COMPLETED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-15 02:29:17.708490643+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "a3f02302-12fa-4129-8985-116efb8fed66",
+      "title": "Recover workspace reuse inventory mismatches",
+      "state": "BLOCKED",
+      "updated_at": "2026-09-15 02:35:03.233534568+00:00",
+      "lane": "CI Fixup",
+      "workflow_step_id": "347f3904-5972-44bf-92e8-a9a9a5efb96d",
+      "sessions": [
+        {
+          "id": "f03bfcc5-01ed-4961-9859-bcdef0dd0210",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-15 02:35:03.24377073+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "cf99daae-8487-40da-be98-cb9643c9b214",
+          "state": "COMPLETED",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-15 02:32:15.758285477+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+      "title": "Coordinator: long-lived board orchestration",
+      "state": "IN_PROGRESS",
+      "updated_at": "2026-09-15 03:23:58.064431001+00:00",
+      "lane": "Backlogs",
+      "workflow_step_id": "b86a79e3-c84a-4d59-b498-ded681478d3d",
+      "sessions": [
+        {
+          "id": "da0761f2-cd4e-44d1-bccc-6f9c1119f534",
+          "state": "RUNNING",
+          "agent_profile_id": "ccd6113e-c1bd-4029-9d7d-f36f72272fa5",
+          "updated_at": "2026-09-15 03:24:49.3047098+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [
+        {
+          "id": "da0761f2-cd4e-44d1-bccc-6f9c1119f534",
+          "state": "RUNNING",
+          "agent_profile_id": "ccd6113e-c1bd-4029-9d7d-f36f72272fa5",
+          "updated_at": "2026-09-15 03:24:49.3047098+00:00",
+          "error_message": ""
+        }
+      ],
+      "pending_moves": 0
+    },
+    {
+      "id": "ae8fc022-5562-4f58-95dc-3dab9d4c179f",
+      "title": "Fix tag display and tags box UI",
+      "state": "FAILED",
+      "updated_at": "2026-09-15 00:21:56.572644741+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "8cb37243-044c-4c49-bb9c-fb6cc5fe9557",
+          "state": "FAILED",
+          "agent_profile_id": "8a033819-d149-4dfc-9ab1-0c2f2a3911b5",
+          "updated_at": "2026-09-15 00:21:56.522221499+00:00",
+          "error_message": "failed to create execution: failed to create standalone instance: failed to create instance: failed to create instance: failed to allocate port: no available ports in range [41001, 41100] (status 500)"
+        },
+        {
+          "id": "3e7a72b5-234c-4824-9c1f-ec5c29d9a15c",
+          "state": "COMPLETED",
+          "agent_profile_id": "5d7135f9-8b98-4168-856d-1b495e19b481",
+          "updated_at": "2026-09-14 18:20:39.773935107+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "c325fbca-108b-4311-b95d-91508d4d60e6",
+          "state": "COMPLETED",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "updated_at": "2026-09-14 18:20:39.770784064+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "f5ef08f4-65ec-41cf-88b9-7df4c9c01a96",
+          "state": "COMPLETED",
+          "agent_profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+          "updated_at": "2026-09-14 18:20:39.76763645+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "9b87bf81-ae3b-42e5-97cd-6abcd130edae",
+          "state": "COMPLETED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 18:20:39.76408171+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+      "title": "Manage task PR and MR links via MCP",
+      "state": "REVIEW",
+      "updated_at": "2026-09-14 18:21:06.123742892+00:00",
+      "lane": "Done",
+      "workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f",
+      "sessions": [
+        {
+          "id": "fe853dcd-0aaa-4fc5-be03-4c00a58b3585",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 18:21:09.946687802+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "5bbe95b5-875c-460b-ad4d-ec6210a4bac1",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "d3fa5aa4-6161-4133-b863-919d0453a6aa",
+          "updated_at": "2026-09-14 18:18:43.708044847+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "73c0e127-84ff-4892-a0eb-011f6f77f3c5",
+          "state": "COMPLETED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 18:18:42.462863535+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "2067abb3-313c-4778-803c-966792fabaa1",
+          "state": "COMPLETED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 18:18:42.462863535+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "e48e2582-24f0-41f1-9355-0fe6bfd6c651",
+          "state": "COMPLETED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 18:18:42.462863535+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+      "title": "Provision isolated Coordinator plugin end-to-end QA runtime",
+      "state": "REVIEW",
+      "updated_at": "2026-09-14 05:42:01.362220534+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "c66159ec-9746-4485-9daf-8e757286b0ba",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-14 05:42:05.522735357+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+      "title": "Fix PR-watch amplification, task-status, and unbounded",
+      "state": "REVIEW",
+      "updated_at": "2026-09-15 02:42:18.407210633+00:00",
+      "lane": "CI Fixup",
+      "workflow_step_id": "347f3904-5972-44bf-92e8-a9a9a5efb96d",
+      "sessions": [
+        {
+          "id": "8cd526c6-0a9e-49f4-bafc-97a49b455617",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-15 02:42:18.41914933+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+      "title": "Make managed task worktrees Git-writable",
+      "state": "REVIEW",
+      "updated_at": "2026-09-14 20:20:44.841063851+00:00",
+      "lane": "Done",
+      "workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f",
+      "sessions": [
+        {
+          "id": "3e1790eb-8f65-4226-8400-75b864971ca3",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 20:20:48.81510454+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "d2ab68a4-3309-483d-aa74-fa11fe0002c9",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "5b1dc511-64f7-448a-aa2c-5bf72e81f9e9",
+          "updated_at": "2026-09-14 20:18:56.376091978+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "87d9dc76-5da0-4618-9c0c-142067110683",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "updated_at": "2026-09-14 20:18:54.572448982+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "e45d9193-db07-40b9-ab17-409d599a9a7e",
+          "state": "COMPLETED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 20:18:54.572448982+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "e5ffa441-fda4-479b-9996-9c84e1fd6347",
+          "state": "COMPLETED",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "updated_at": "2026-09-14 20:18:54.572448982+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "b8fc206c-9e3f-4497-9ac3-3b62593da258",
+      "title": "Rotate Coordinator sessions before context exhaustion",
+      "state": "SCHEDULING",
+      "updated_at": "2026-09-06 08:06:22.272933953+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "c0d09731-8fb6-4f7b-8cf9-92a1f1ebb561",
+          "state": "FAILED",
+          "agent_profile_id": "ce9f96f7-4434-4729-b23b-926b4b72f417",
+          "updated_at": "2026-09-06 08:06:22.271955479+00:00",
+          "error_message": "workspace reuse is unsafe: canonical workspace repository inventory has no matching entry for repository \"***\" branch \"main\""
+        },
+        {
+          "id": "fcb1771c-de82-4975-9bb6-936de9c703bd",
+          "state": "FAILED",
+          "agent_profile_id": "ce9f96f7-4434-4729-b23b-926b4b72f417",
+          "updated_at": "2026-09-06 00:35:10.758553326+00:00",
+          "error_message": "workspace reuse is unsafe: canonical workspace repository inventory has no matching entry for repository \"***\" branch \"main\""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "bdc56ccb-b1ea-4f22-a1e0-e81eac5fa06e",
+      "title": "Fix plugin possible_values decode for Redmine 6.0",
+      "state": "COMPLETED",
+      "updated_at": "2026-09-14 22:16:03.714815447+00:00",
+      "lane": "Done",
+      "workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f",
+      "sessions": [
+        {
+          "id": "66c51f62-dae8-4d97-ad2d-2009e756c032",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 22:15:07.11018398+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "d333d262-0de4-4f69-86d2-4e44555f0242",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "67ba38d7-89b5-40a8-a355-702e25d9e903",
+          "updated_at": "2026-09-14 21:30:01.870782144+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "bc467e83-3083-4a01-bf0a-6c3832c3eaa5",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-14 21:30:01.870782144+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "68928113-2799-4c9c-8c1b-cdbbfbae2dcf",
+          "state": "COMPLETED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 21:30:01.870782144+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "6dd447af-38ee-4d76-9d2f-9273634bca80",
+          "state": "COMPLETED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-14 21:30:01.870782144+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "c642d57a-5a24-48ca-8f85-57d31115eeb5",
+      "title": "Prevent stale sessions blocking workflow",
+      "state": "REVIEW",
+      "updated_at": "2026-09-15 02:48:21.801709682+00:00",
+      "lane": "CI Fixup",
+      "workflow_step_id": "347f3904-5972-44bf-92e8-a9a9a5efb96d",
+      "sessions": [
+        {
+          "id": "5242ed7a-9492-4b63-93c5-b3fe09153b44",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-15 02:48:21.757754698+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "ca015838-e5cf-4294-b3bb-9c50576a5fe6",
+      "title": "Add guarded queue claim and routine wake coalescing",
+      "state": "REVIEW",
+      "updated_at": "2026-09-14 18:32:31.735851795+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "260b4ddd-841f-40ec-9bd8-39535052dcc6",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 18:32:31.685287357+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "fe0512a7-d4e6-405b-8741-d2d42f8ebae8",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-09 01:53:49.416099286+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "9210c156-0f56-4eba-b119-881c40615aa7",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "updated_at": "2026-09-09 00:30:49.052886729+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "d83affb2-d391-4142-be8a-de12d98939c1",
+          "state": "COMPLETED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-09 00:20:00.121686872+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "7e3f50f5-05f4-47f1-be64-8be0be34aba4",
+          "state": "COMPLETED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-09 00:20:00.121686872+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "cfccac4a-1c80-403f-b284-a673a26a321a",
+      "title": "Fix shared task-switch E2E failure",
+      "state": "REVIEW",
+      "updated_at": "2026-09-15 02:34:15.539555692+00:00",
+      "lane": "CI Fixup",
+      "workflow_step_id": "347f3904-5972-44bf-92e8-a9a9a5efb96d",
+      "sessions": [
+        {
+          "id": "b56c12f6-b98e-49dd-a613-d9b542790135",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-15 02:34:19.819660124+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "c30dcee1-a037-45af-b1a3-d0bcca127694",
+          "state": "COMPLETED",
+          "agent_profile_id": "d3fa5aa4-6161-4133-b863-919d0453a6aa",
+          "updated_at": "2026-09-15 02:25:52.910304141+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "107947ee-8642-45e2-b5bc-f2b63cec1932",
+          "state": "CANCELLED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-15 02:25:52.889274169+00:00",
+          "error_message": "stopped by parent task via MCP"
+        },
+        {
+          "id": "a95e8f13-982e-412f-9943-857ac9a230dc",
+          "state": "CANCELLED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-15 02:25:52.889274169+00:00",
+          "error_message": "stopped by parent task via MCP"
+        },
+        {
+          "id": "863fad3f-7132-4f5c-afd0-f60886e600e5",
+          "state": "CANCELLED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-15 02:25:52.889274169+00:00",
+          "error_message": "stopped by parent task via MCP"
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+      "title": "Fix PR lane profile executing wrong model",
+      "state": "IN_PROGRESS",
+      "updated_at": "2026-09-15 02:15:03.038033792+00:00",
+      "lane": "Work",
+      "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+      "sessions": [
+        {
+          "id": "6e1a23e9-323d-4c23-a9db-06ae6a444208",
+          "state": "RUNNING",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-15 03:17:06.978758795+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "daee0378-a58f-4eed-ab6d-f5a46bd0351a",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 22:46:45.871016499+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "d1484e62-5ee8-429f-9e0e-c4b397d2057b",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 21:41:57.067409743+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "c20211bb-6563-466a-a326-7e5636b08be4",
+          "state": "COMPLETED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 19:02:36.769342392+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "5063b77e-286d-442d-a657-7ee0c2d88b97",
+          "state": "CANCELLED",
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "updated_at": "2026-09-14 19:02:35.836393017+00:00",
+          "error_message": "stopped by parent task via MCP"
+        }
+      ],
+      "active_sessions": [
+        {
+          "id": "6e1a23e9-323d-4c23-a9db-06ae6a444208",
+          "state": "RUNNING",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-15 03:17:06.978758795+00:00",
+          "error_message": ""
+        }
+      ],
+      "pending_moves": 0
+    },
+    {
+      "id": "e8728906-86de-4a75-960f-9da585485823",
+      "title": "Fix plugin task priority persistence",
+      "state": "REVIEW",
+      "updated_at": "2026-09-09 23:42:14.649934465+00:00",
+      "lane": "Blocked",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "sessions": [
+        {
+          "id": "c8df81fc-3ebe-439f-91d5-1a5646a2dc36",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-08 22:41:34.452300385+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "a56b4af9-6055-4fc1-ba75-8bd487b3669b",
+          "state": "COMPLETED",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "updated_at": "2026-09-08 15:48:40.078978195+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "1d66df03-2f9f-4430-909f-ff4306755304",
+          "state": "COMPLETED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-08 15:48:39.723222659+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "93c52e97-68bd-43da-8b6e-5aad1e01fc3b",
+          "state": "CANCELLED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-08 15:48:39.723222659+00:00",
+          "error_message": "stopped by parent task via MCP"
+        },
+        {
+          "id": "147cb905-15a8-4b48-9454-4449673cebbf",
+          "state": "CANCELLED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-08 15:48:39.723222659+00:00",
+          "error_message": "stopped by parent task via MCP"
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "ecd8b857-42a6-417f-a7e4-084f50fc6956",
+      "title": "Run isolated Redmine first-version E2E",
+      "state": "REVIEW",
+      "updated_at": "2026-09-14 21:50:10.700164101+00:00",
+      "lane": "Done",
+      "workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f",
+      "sessions": [
+        {
+          "id": "8c36e143-8cc4-48d8-ba7d-6d663002da23",
+          "state": "COMPLETED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 21:50:14.960392119+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "24430474-ffd8-4b8b-8a3b-d972ef799c33",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "ce9f96f7-4434-4729-b23b-926b4b72f417",
+          "updated_at": "2026-09-14 21:50:12.766309041+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "53cde7f4-bae1-4cc4-9f70-9f09f61f92cb",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 21:50:12.766309041+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "03a5704f-6e87-41b0-8d9f-738c97950b16",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 21:50:12.766309041+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "1f88f830-91c1-4371-894b-cfaaa16a347c",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-14 21:50:12.766309041+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 1
+    },
+    {
+      "id": "f169e54f-610b-4f35-bcdc-cf3dfe3baaab",
+      "title": "Enable audited cross-workspace task transfer",
+      "state": "REVIEW",
+      "updated_at": "2026-09-15 02:30:27.277926593+00:00",
+      "lane": "CI Fixup",
+      "workflow_step_id": "347f3904-5972-44bf-92e8-a9a9a5efb96d",
+      "sessions": [
+        {
+          "id": "eb6eebee-5452-4a97-a9cd-abf1e8fa2b91",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-15 02:34:57.671827962+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "f2078d51-4dd4-435f-812a-f632328ccfb2",
+      "title": "Harden env-read guard against aliased os imports",
+      "state": "REVIEW",
+      "updated_at": "2026-09-14 18:20:34.661828686+00:00",
+      "lane": "Done",
+      "workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f",
+      "sessions": [
+        {
+          "id": "009e4854-03a6-48d2-8b52-85c410743e1a",
+          "state": "COMPLETED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 18:20:41.558490586+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "af89eda7-0b05-494b-8cb2-d0ad4ad3e45f",
+          "state": "COMPLETED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 18:20:34.825586564+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "0d1333fc-3c7b-4217-9d33-dd794152bc12",
+          "state": "COMPLETED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 18:20:34.825586564+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "8a3e2c80-c02b-4e25-a607-32842011f63e",
+          "state": "COMPLETED",
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "updated_at": "2026-09-14 18:20:34.825586564+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "e7388c57-2dad-4f3e-850d-7587a4bd4ce2",
+          "state": "COMPLETED",
+          "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+          "updated_at": "2026-09-14 18:20:34.825586564+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [],
+      "pending_moves": 0
+    },
+    {
+      "id": "fa3fba49-2018-460b-a600-adae23b24cc8",
+      "title": "Add coordinator grant management surfaces",
+      "state": "IN_PROGRESS",
+      "updated_at": "2026-09-15 02:30:54.062080671+00:00",
+      "lane": "Review",
+      "workflow_step_id": "6c2e5bf5-57db-4682-8daa-d110f22b60da",
+      "sessions": [
+        {
+          "id": "5e4d4c27-27c5-4380-8280-89ca109cb6cf",
+          "state": "RUNNING",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-15 03:21:06.926142169+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "d57acfc4-dc99-43b1-9241-05a6e3dbfff4",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 22:48:06.618066372+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "997b7b09-a53e-4a75-84f5-30c365a37ea9",
+          "state": "WAITING_FOR_INPUT",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 21:50:02.094343116+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "3c304113-fbea-436e-8c85-153b3b8fa567",
+          "state": "COMPLETED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 18:18:41.563952339+00:00",
+          "error_message": ""
+        },
+        {
+          "id": "be845043-f183-434c-b0d1-97480f5eab74",
+          "state": "COMPLETED",
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "updated_at": "2026-09-14 18:18:41.211911051+00:00",
+          "error_message": ""
+        }
+      ],
+      "active_sessions": [
+        {
+          "id": "5e4d4c27-27c5-4380-8280-89ca109cb6cf",
+          "state": "RUNNING",
+          "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+          "updated_at": "2026-09-15 03:21:06.926142169+00:00",
+          "error_message": ""
+        }
+      ],
+      "pending_moves": 0
+    }
+  ]
+}
