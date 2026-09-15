@@ -4713,6 +4713,28 @@ Two habits that catch it:
   earlier cycle; the ledger disagreed with the value I had just extracted, and the
   ledger was right.
 
+## A child targeting another repository needs a new workspace
+
+`create_task_kandev` inherits the parent's materialized workspace by default.
+Passing a different `repository_url` changes the task repository row, but it does
+not make that repository part of the inherited workspace inventory. The first
+session can therefore fail before inference with `workspace reuse is unsafe` and
+an inventory-mismatch error.
+
+Before creating a child, compare the requested repository and base branch with
+the parent's materialized workspace inventory. If they are not already present,
+set `workspace_mode="new_workspace"` on the initial create call. Then save the
+plan, move the child to its execution step, and verify the workflow-configured
+session reaches `RUNNING`.
+
+If an inherited-workspace carrier already failed, first prove it produced no
+worktree, source change, commit, pull request, runtime, or artifact. Preserve its
+failure receipt, create exactly one `new_workspace` recovery child with a new
+idempotency key, and make that child the sole implementation owner. Once the
+replacement is running, terminally supersede the empty carrier so it cannot be
+restarted. Do not repeatedly retry the same unsafe workspace or leave both cards
+as active implementation owners.
+
 ---
 
 ## An upstream PR is not a dead end — notify the maintainer
