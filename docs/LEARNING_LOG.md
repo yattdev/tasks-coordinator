@@ -1,5 +1,31 @@
 # Coordinator learning-cycle log
 
+## WAKE:LEARNING — 2026-09-15T02:52:38Z to 2026-09-15T03:18:23Z
+
+No durable lessons this cycle. The observed incidents either instantiate existing
+rules or are transient delivery state.
+
+Rejected by the filter:
+
+- Switching workflow steps to Codex while older sessions remain stopped or run a
+  previous profile is already covered by the workflow-configured model policy,
+  terminal-session fresh-replacement rule, and single-writer verification.
+- MCP task-control calls timing out while authoritative readback shows no commit,
+  with a separate UI action succeeding, is already covered by the bounded
+  task-control probe, post-action readback, selective capability classification,
+  and prohibition on database writes or shared-backend restarts.
+- Documentation-coverage evaluator failures, provider rate limits, exact PR
+  heads, release tags, active session IDs, and current plugin-program blockers
+  are transient operational state retained in task plans and cycle archives.
+- Redmine v0.3.2 completion and the Coordinator plugin delivery graph are product
+  status, not reusable orchestration policy.
+
+Files changed: `docs/LEARNING_LOG.md` only. `PROMPT.md` is unchanged, so live
+description mirroring is `NOT_REQUIRED`. Shared-main publication and clean-tree
+verification are recorded by the commit containing this entry. Unresolved
+conflicts: none. This receipt advances the next learning window to
+`2026-09-15T03:18:23Z`.
+
 ## WAKE:LEARNING — 2026-09-14T21:49:19Z to 2026-09-15T02:52:38Z
 
 Captured two durable lessons. Dynamic UI acceptance now drives the actual
