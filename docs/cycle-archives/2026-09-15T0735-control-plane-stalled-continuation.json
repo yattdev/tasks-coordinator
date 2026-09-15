@@ -1,0 +1,44 @@
+{
+  "schema": "coordinator-cycle-continuation-v1",
+  "cycle_id": "wake-cycle-2026-09-15T0647Z",
+  "observed_at": "2026-09-15T07:35:00Z",
+  "status": "blocked_on_control_plane_readback",
+  "live_count_at_last_authoritative_read": 64,
+  "lane_counts_at_last_authoritative_read": {
+    "Done": 18,
+    "Blocked": 26,
+    "Backlogs": 1,
+    "Review": 1,
+    "Human-QA": 3,
+    "CI Fixup": 5,
+    "PR": 1,
+    "Work": 6,
+    "QA": 1,
+    "ToDeploy": 2
+  },
+  "verified_recoveries": [
+    {
+      "task_id": "6d03f4a9-bf89-4882-bf43-5a584f986185",
+      "lane": "Work",
+      "session_id": "a413b9c8-3e84-4cb5-a33a-dc85bd8c84b4",
+      "session_state": "RUNNING"
+    },
+    {
+      "task_id": "153cdbbe-beac-47b8-bc06-8dafdcc8ed80",
+      "lane": "Spec",
+      "session_id": "35db8ad2-89d8-4019-9584-4f99d25eed37",
+      "session_state": "RUNNING"
+    }
+  ],
+  "unknown_effect_operations": [
+    "second publication-recovery message to 8a182e40-d99c-42e9-b9be-1f8f78cf8388 / 329b6bbb-00fe-47f3-9293-853b63efa65b"
+  ],
+  "queue": {
+    "census_available": false,
+    "disposed": 0,
+    "replayed": 0,
+    "coalesced": 0
+  },
+  "cycle_complete": false,
+  "failed_gates": ["G1", "G2", "G3", "G8", "G9", "G10"]
+}
