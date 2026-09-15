@@ -14608,6 +14608,11 @@
       "action": "append continuity plan",
       "task": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
       "result": "timed out; plan readback unchanged"
+    },
+    {
+      "action": "reply to heartbeat task",
+      "task": "4a21d4ae-4222-4cd8-978c-b7afc0caeda7",
+      "result": "timed out with no delivery receipt"
     }
   ],
   "control_plane": {

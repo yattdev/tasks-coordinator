@@ -15,3 +15,5 @@ Redmine marketplace registration remains mandatory but unowned: `create_task_kan
 Task-control evidence: `create_task`, `stop_task`, `spawn_session`, `move_task`, and `update_task_plan` timed out without expected database effects. The description-update broker remained healthy. No blind retries were made. Resume trigger is a verified successful task-control mutation plus readback; then execute the action queue above using each workflow step's configured Codex profile.
 
 Exit gates: G1, G2, G3, and G6 pass. G4, G5, and G7 fail because the cleared blocker was not atomically moved/started, attempted actions did not apply, and the live Coordinator plan could not be appended. The cycle is blocked rather than complete.
+
+The required reply to heartbeat task `4a21d4ae-4222-4cd8-978c-b7afc0caeda7` also timed out with no delivery receipt. The committed archive remains the durable handoff; retry task messaging only after the same control-plane recovery trigger.
