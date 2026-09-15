@@ -1,7 +1,7 @@
 {
   "schema": "coordinator-cycle-receipt-v1",
   "cycle_id": "wake-cycle-2026-09-15T1308Z",
-  "observed_at": "2026-09-15T13:39:07Z",
+  "observed_at": "2026-09-15T13:40:38Z",
   "prepared_only": false,
   "identity": {
     "primary_current": true,
@@ -104,6 +104,11 @@
       "task_id": "9349b6e5-a167-4d88-af14-cb355015e3dd",
       "action": "G12-G13 consumed QA PASS/new test-only head and verified automatic QA→CI Fixup routing.",
       "verification": "Exact clean local/tracking/fork/PR ec128a2cb7d47df441d0282a92b5a0354e19c5f3; production unchanged; TEST_RUNTIME=NONE; QA e556975d completed; physical CI Fixup/IN_PROGRESS with lifecycle/pending null; sole configured CI 0dbadd36-e86b-4979-bea9-991e5a71c032 RUNNING; fresh exact-head CI pending/no failures/0 actionable; at-risk tag updated and Human=false."
+    },
+    {
+      "task_id": "9349b6e5-a167-4d88-af14-cb355015e3dd",
+      "action": "G14 consumed the settled CI-owner classification and removed the stale RUNNING claim.",
+      "verification": "Physical CI Fixup/semantic REVIEW; lifecycle/pending settled; exact ec128a2 unchanged; 16 passed/0 failed/11 pending at barrier; 0 unresolved; required-status policy metadata unavailable; 0dbadd36 WFI/zero live; no source change."
     }
   ],
   "provider": {
@@ -144,7 +149,8 @@
     "G10": true,
     "G11": true,
     "G12": true,
-    "G13": true
+    "G13": true,
+    "G14": true
   },
   "preimage": {
     "exact_preimage": "docs/cycle-archives/2026-09-15T1308-plan-preimage.md",
@@ -155,16 +161,16 @@
     "replacement_observed_at": "2026-09-15T13:26:27Z"
   },
   "post_persistence_barrier": {
-    "observed_at": "2026-09-15T13:39:07Z",
+    "observed_at": "2026-09-15T13:40:38Z",
     "task_id": "9349b6e5-a167-4d88-af14-cb355015e3dd",
     "lane": "CI Fixup",
-    "state": "IN_PROGRESS",
+    "state": "REVIEW",
     "head": "ec128a2cb7d47df441d0282a92b5a0354e19c5f3",
-    "base": "6c5ab15980ab3d39660134073d724addae9c8579",
-    "qa": "PASS; test-only coverage commit; production unchanged; TEST_RUNTIME=NONE",
-    "ci_session": "0dbadd36-e86b-4979-bea9-991e5a71c032 RUNNING profile 7c6be62e",
-    "provider": "pending/no failures/0 actionable",
-    "tag": "at-risk updated to ec128a2 current-head instruction; Human=false",
-    "next": "Terminal green starts fresh independent Review; branch-owned red returns to narrow Work."
+    "health": "waiting",
+    "owner": "GitHub Actions current-head pipeline",
+    "session": "0dbadd36-e86b-4979-bea9-991e5a71c032 WFI; zero live",
+    "provider": "16 passed/0 failed/11 pending at barrier; 0 unresolved; pending count volatile",
+    "required_policy": "unavailable, so readiness not declared",
+    "next": "Terminal exact-head CI then fresh independent Review; branch red returns narrow Work."
   }
 }

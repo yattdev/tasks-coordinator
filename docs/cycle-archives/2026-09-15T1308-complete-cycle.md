@@ -16,3 +16,7 @@ At 13:31Z, exact-head Review completed with no findings and the workflow automat
 ## G12–G13 QA result and CI transition
 
 QA passed and committed a test-only coverage correction as clean exact head `ec128a2cb7d47df441d0282a92b5a0354e19c5f3`; production code was unchanged and `TEST_RUNTIME=NONE`. Prior Review and CI evidence became stale. The workflow settled in CI Fixup with null pending state and sole configured CI session `0dbadd36-e86b-4979-bea9-991e5a71c032` RUNNING. Fresh exact-head CI was pending with no failures and zero actionable threads. Terminal green starts fresh independent Review; a branch-owned failure returns to the narrowest Work fix.
+
+## G14 settled CI wait
+
+The configured CI owner completed its bounded classification and parked WFI with zero live sessions. Task 934 remains physically in CI Fixup at unchanged exact head `ec128a2cb7d47df441d0282a92b5a0354e19c5f3`; 16 checks passed, zero failed, and 11 were pending at the barrier, with zero unresolved threads. Required-status policy metadata was unavailable, so readiness was not declared. GitHub Actions owns the wait; terminal green starts fresh independent Review and a branch-owned failure returns to narrow Work.
