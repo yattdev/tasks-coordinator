@@ -1,7 +1,7 @@
 {
   "schema": "coordinator-cycle-receipt-v1",
   "cycle_id": "wake-cycle-2026-09-15T1308Z",
-  "observed_at": "2026-09-15T13:26:27Z",
+  "observed_at": "2026-09-15T13:31:00Z",
   "prepared_only": false,
   "identity": {
     "primary_current": true,
@@ -20,13 +20,14 @@
     "lanes": {
       "Backlogs": 1,
       "Work": 1,
-      "Review": 2,
+      "Review": 1,
       "CI Fixup": 3,
       "Human-QA": 3,
       "PR": 1,
       "ToDeploy": 2,
       "Blocked": 35,
-      "Done": 17
+      "Done": 17,
+      "QA": 1
     }
   },
   "set_hashes": {
@@ -42,10 +43,10 @@
       "task_id": "9349b6e5-a167-4d88-af14-cb355015e3dd",
       "from": "Blocked",
       "through": "Work",
-      "to": "Review",
+      "to": "QA",
       "exact_head": "2a514227b47c86a1871900758a8244d0090fa0ca",
-      "owner": "ae45e3d3-2533-4c02-a1ef-f9af807d33cc",
-      "verification": "RUNNING profile ab57f00e; lifecycle/pending settled; prior R4 preserved in exact preimage and action history."
+      "owner": "e556975d-6a50-4ed8-927f-3f881c8c2b88",
+      "verification": "Blocked→Work R5, automatic Work→Review, exact-head Review PASS, then automatic Review→QA; sole distinct QA RUNNING profile bd2c30cb; lifecycle/pending settled; prior R4 preserved in exact preimage/action history."
     }
   ],
   "actions": [
@@ -93,6 +94,11 @@
       "task_id": "bdc56ccb-b1ea-4f22-a1e0-e81eac5fa06e",
       "action": "Persisted archive-ready terminal release receipt.",
       "verification": "Plan SHA prefix 86ad1ad5; PR #8 merged, v0.3.2 public, exact artifact and downstream QA hashes preserved, clean worktrees, zero live sessions."
+    },
+    {
+      "task_id": "9349b6e5-a167-4d88-af14-cb355015e3dd",
+      "action": "G11 consumed the post-persistence automatic Review→QA transition.",
+      "verification": "Review ae45e3d3 completed with no findings at exact 2a514227; focused tests passed and broader failures were unrelated environment tests. Physical QA/IN_PROGRESS; sole distinct QA e556975d-6a50-4ed8-927f-3f881c8c2b88 RUNNING profile bd2c30cb; provider 10 pending/0 bad/0 actionable at 13:31Z; one uncommitted QA test file is under investigation."
     }
   ],
   "provider": {
@@ -130,7 +136,8 @@
     "G7": true,
     "G8": true,
     "G9": true,
-    "G10": true
+    "G10": true,
+    "G11": true
   },
   "preimage": {
     "exact_preimage": "docs/cycle-archives/2026-09-15T1308-plan-preimage.md",
@@ -139,5 +146,17 @@
     "prior_cycle": "docs/cycle-archives/2026-09-15T1216-complete-cycle.json",
     "current_cycle": "docs/cycle-archives/2026-09-15T1308-complete-cycle.json",
     "replacement_observed_at": "2026-09-15T13:26:27Z"
+  },
+  "post_persistence_barrier": {
+    "observed_at": "2026-09-15T13:31:00Z",
+    "task_id": "9349b6e5-a167-4d88-af14-cb355015e3dd",
+    "lane": "QA",
+    "state": "IN_PROGRESS",
+    "head": "2a514227b47c86a1871900758a8244d0090fa0ca",
+    "base": "6c5ab15980ab3d39660134073d724addae9c8579",
+    "review": "PASS/no findings",
+    "qa_session": "e556975d-6a50-4ed8-927f-3f881c8c2b88 RUNNING",
+    "provider": "10 pending/0 bad/0 actionable",
+    "next": "Consume QA verdict and classify its uncommitted test file; source/head change invalidates gates."
   }
 }
