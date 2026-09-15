@@ -8,6 +8,11 @@ semantics. Keep missing capability criteria open under their existing delivery
 owners after operational recovery, and close a corrected Support exchange
 without another unchanged provisioning request.
 
+The 2026-09-15 rotation corroborated this distinction: native session readback
+changed sole-primary ownership, but queue census remained unavailable and a
+routine wake still reached the predecessor. Preserve the old queue/session and
+do not equate the role change with safe retirement.
+
 ## Coordinator continuity is storage-backed, not session-backed (2026-08-24, human-directed)
 
 The long-lived Coordinator role must survive session termination, compaction,

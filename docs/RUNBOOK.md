@@ -3597,6 +3597,14 @@ replacement session was rejected with `CONFLICT`, proving the terminal-state gua
 
 ## Retire completed helper sessions and rotate the Coordinator primary
 
+If primary ownership changes outside the caller's tools, record the fresh sole-primary
+readback without issuing another promotion. On 2026-09-15 this happened while queue
+census still returned `UNKNOWN_ACTION`, and a later routine wake reached the old
+non-primary session. Preserve that session and its unread queue. Distinguish current
+role recovery from a verified atomic rotation; the latter still needs routine-target,
+queue-parity, and generation-fence receipts. The old session must not run a competing
+board cycle when the new primary is already operating.
+
 Treat additional Coordinator sessions as bounded workers. When a helper returns
 its requested result, first reconcile the result against live state and persist
 the durable receipt. Then inspect the exact helper session, pending actions, and

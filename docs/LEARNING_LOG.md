@@ -1,5 +1,15 @@
 # Coordinator learning-cycle log
 
+## 2026-09-15 — Primary recovery does not prove routine or queue continuity
+
+Both Coordinator sessions observed the successor become the sole primary without
+a caller-visible promotion transaction. Queue census still failed with
+`UNKNOWN_ACTION`, and a subsequent routine wake reached the old non-primary.
+Keep the successor as the observed role owner, preserve the predecessor and its
+queue, and retain routine-target, queue-parity, and generation-fence acceptance
+as open capability criteria. Never issue a second promotion or delete the old
+session merely because the primary flag changed.
+
 ## WAKE:LEARNING — 2026-09-15T02:52:38Z to 2026-09-15T03:18:23Z
 
 No durable lessons this cycle. The observed incidents either instantiate existing
