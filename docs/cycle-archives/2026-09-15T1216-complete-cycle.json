@@ -1,0 +1,183 @@
+{
+  "schema": "coordinator-cycle-receipt-v1",
+  "cycle_id": "wake-cycle-2026-09-15T1216Z",
+  "observed_at": "2026-09-15T12:34:35Z",
+  "identity": {
+    "primary_current": true,
+    "profile_id": "ccd6113e-c1bd-4029-9d7d-f36f72272fa5",
+    "runtime_model": "gpt-5.6-sol",
+    "session_id": "ca237c01-94de-49e7-9e62-14510a3e167f",
+    "task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+    "workflow_id": "90f322ed-2159-424d-96e7-c2ad05668b8e",
+    "workspace_id": "2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd"
+  },
+  "preimage": {
+    "path": ".cycle-plan-1216-pre.md",
+    "bytes": 168003,
+    "sha256": "63a2ce7d2909753ed3cd9446a23932534a79917098ed68ee1a065a8c27462c47"
+  },
+  "r4_reconstruction": {
+    "path": ".cycle-r4-reconstruction-1216.md",
+    "bytes": 9310,
+    "sha256": "1d22a5bfb65356d6bc64b67644876ab24ac8bdfb797221206eafc7d070965891",
+    "count": 20
+  },
+  "counts": {
+    "live": 65,
+    "open": 65,
+    "ledger": 65,
+    "blocked": 36,
+    "r4": 36,
+    "lanes": {
+      "Backlogs": 1,
+      "Work": 2,
+      "Review": 1,
+      "CI Fixup": 2,
+      "Human-QA": 3,
+      "PR": 1,
+      "ToDeploy": 2,
+      "Blocked": 36,
+      "Done": 17
+    }
+  },
+  "set_hashes": {
+    "live": "755d4097d5982a759fdada5a9399fef167777ef3241ca65d2fc47bea90102e53",
+    "open": "755d4097d5982a759fdada5a9399fef167777ef3241ca65d2fc47bea90102e53",
+    "ledger": "755d4097d5982a759fdada5a9399fef167777ef3241ca65d2fc47bea90102e53",
+    "blocked": "6edceb547353eb61ca4e183fba75d70c016c749edf6576370eea0d18efb50838"
+  },
+  "mismatches": [],
+  "provider": {
+    "observed_at": "2026-09-15T12:19:00Z",
+    "status": "operational",
+    "authenticated": "gh api rate_limit returned GraphQL 5000/5000 and REST 5000/5000.",
+    "reset_at": "2026-09-15T13:19:32Z",
+    "next": "Use the exact provider surface per task; do not carry stale quota summaries."
+  },
+  "queue": {
+    "status": "degraded",
+    "error": "UNKNOWN_ACTION mcp.get_message_queue_census",
+    "disposed": 0,
+    "replayed": 0,
+    "rule": "Preserve all entries; no blind duplicate delivery or disposal."
+  },
+  "active_sessions": [
+    {
+      "task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+      "session_id": "ca237c01-94de-49e7-9e62-14510a3e167f",
+      "state": "RUNNING",
+      "role": "primary/current Coordinator"
+    },
+    {
+      "task_id": "fa3fba49-2018-460b-a600-adae23b24cc8",
+      "session_id": "5e4d4c27-27c5-4380-8280-89ca109cb6cf",
+      "state": "RUNNING",
+      "role": "stale Review awaiting native/direct-parent fence"
+    },
+    {
+      "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+      "session_id": "59ac7489-d17d-4df3-8221-f705ae160f11",
+      "state": "RUNNING",
+      "role": "sole configured Work conflict-repair owner"
+    }
+  ],
+  "actions": [
+    {
+      "task_id": "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+      "action": "Updated the agent-owned tag once and verified readback.",
+      "verification": "PR #3165 beaf11fb is clean and terminal green with QA passed and 0 unresolved threads; awaiting Human/maintainer acceptance."
+    },
+    {
+      "task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+      "action": "Updated the agent-owned tag once and verified readback.",
+      "verification": "PR #3473 561d2a8 is green with Review/QA complete; Human-QA uses the preserved preview for desktop/mobile model-fallback acceptance."
+    },
+    {
+      "task_id": "09325a7b-afb5-4f54-b2a7-ceae217a7bee",
+      "action": "Updated the agent-owned tag once and verified readback.",
+      "verification": "PR #3498 is merged; clean task evidence is preserved, while obsolete dependency metadata still needs terminal reconciliation."
+    },
+    {
+      "task_id": "4640fd95-b7f9-4339-8836-cf03679eaf41",
+      "action": "Updated the agent-owned tag once and verified readback.",
+      "verification": "Public Redmine v0.3.1 is verified and immutable; PRs #4/#5 merged, clean source and release checksums preserved, no runtime remains."
+    },
+    {
+      "task_id": "75d4c8af-dc90-4e68-bc74-3d86e99e52cb",
+      "action": "Updated the agent-owned tag once and verified readback.",
+      "verification": "PR #3242 is closed; PR #3496 remains an intentional draft reference for the executor-owned sandbox design, with no further provider action due."
+    },
+    {
+      "task_id": "7a0454aa-c089-4365-8966-ad99775a46f8",
+      "action": "Updated the agent-owned tag once and verified readback.",
+      "verification": "Plugin PR #3 is merged; keep the diagnostic patch and QA evidence as preservation-only, with no release or runtime action on this Done task."
+    },
+    {
+      "task_id": "856898aa-d06a-43f7-9a87-f873665f19da",
+      "action": "Updated the agent-owned tag once and verified readback.",
+      "verification": "Plugin PR #17 is merged; six local QA artifacts remain intentionally preserved, no task QA runtime is live, and the shared installed process is untouched."
+    },
+    {
+      "task_id": "957da1cb-063b-4c2e-b406-6d04ad158fb9",
+      "action": "Updated the agent-owned tag once and verified readback.",
+      "verification": "PRs #2843 and #3501 are merged; clean head 97d980712 is preserved and the workspace-reuse regression is delivered with no task runtime."
+    },
+    {
+      "task_id": "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+      "action": "Updated the agent-owned tag once and verified readback.",
+      "verification": "PR #3506 is merged; pushed commits 2ba884ba5 and bd92d72aa remain outside the merge and require Coordinator disposition; no runtime remains."
+    },
+    {
+      "task_id": "b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+      "action": "Updated the agent-owned tag once and verified readback.",
+      "verification": "PR #3242 is closed; PR #3496 remains an intentional draft reference for the agreed executor-owned sandbox direction; preserve both, no further action."
+    },
+    {
+      "task_id": "f2078d51-4dd4-435f-812a-f632328ccfb2",
+      "action": "Updated the agent-owned tag once and verified readback.",
+      "verification": "PR #3505 is merged with implementation contained; the worktree is clean, remote-only post-merge history is preserved, and no task runtime remains."
+    },
+    {
+      "task_id": "7ca86e53-249b-4b31-a866-e807afd9a962",
+      "action": "Appended one terminal supersession correction to the task plan.",
+      "verification": "Readback 53,015 bytes; SHA-256 a442cc9dd3f4ac3d4240e97c5e706d1d991280ceafbedb54a07296f9a8248e51."
+    },
+    {
+      "task_id": "3f721d52-452b-4bc6-a61e-68d875baafbd",
+      "action": "Appended one terminal correction to the task plan.",
+      "verification": "Readback 8,120 bytes; SHA-256 b4c7edcbf03f97dcba6a566edf45ae1d83c2e1a774786aefebf657dfb8148ff7."
+    },
+    {
+      "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+      "action": "Cleared provider-only Blocked classification and executed atomic Blocked→Work handoff for the new branch conflict.",
+      "verification": "Physical Work/IN_PROGRESS at 12:34:35Z; sole configured c06 session 59ac7489 RUNNING, pending projections null, manual move lifecycle pending. PR #3319 exact dc9dd14a is OPEN/non-draft/CONFLICTING/DIRTY against base 8acb32c.",
+      "prior_blocked_record": {
+        "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+        "previous_workflow_step": "CI Fixup",
+        "exact_blocker_or_dependency": "PR #3319 exact dc9dd14a8a2939c4d23962c8e6bd8f3795db862e has all source checks green and sole docs publisher failure run 34931350827 job 104260065786.",
+        "blocker_owner": "GitHub Actions maintainer or delivered scoped rerun",
+        "preservation_receipt": "Clean feature/fix-pr-watch-amplifi-u6z at local/origin/PR dc9dd14a8a2939c4d23962c8e6bd8f3795db862e; no runtime.",
+        "next_action": "Run one legitimate docs status repair/rerun, then route terminal green to delivery gates.",
+        "deterministic_resume_trigger": "New attempt, head, status, or scoped capability.",
+        "fallback": "No source edit, synthetic commit, or duplicate contact.",
+        "last_checked": "2026-09-15T09:52:59Z",
+        "cleared": false
+      }
+    },
+    {
+      "task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+      "action": "Reconciled complete live board and prepared durable cycle persistence.",
+      "verification": "65 live/open/ledger IDs, 36 physical Blocked/R4 after b007 R5; no other move, wake, handoff, provider contact, source change, queue disposal, or cleanup."
+    }
+  ],
+  "gates": {
+    "G1": true,
+    "G2": true,
+    "G3": true,
+    "G4": true,
+    "G5": true,
+    "G6": true,
+    "G7": true
+  },
+  "prepared_only": false
+}
