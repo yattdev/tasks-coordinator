@@ -1,5 +1,38 @@
 # Coordinator learning-cycle log
 
+## WAKE:LEARNING — 2026-09-16T04:54:00Z to 2026-09-16T06:51:00Z
+
+Two durable corrections from this window were already captured by event-driven
+learning before this scheduled pass:
+
+- attribute an apparent competing writer to the exact checkout, process tree,
+  and tool/session receipt before stopping or replacing work; incomplete or
+  permission-denied process visibility is unknown rather than proof of absence;
+- prefer the discovered server-side task-plan append operation for progress
+  receipts, treat uncertain append retries as non-idempotent, and recover a lost
+  approved preimage only from exact native plan-read history with identity,
+  byte/digest, fragment-preservation, and readback checks.
+
+The scheduled pass found no additional durable lesson.
+
+Rejected by the filter:
+
+- exact task heads, review and QA verdicts, provider quota resets, active owner
+  identities, lifecycle markers, and remaining cycle gates are transient live
+  coordination state preserved in the current plan and cycle archives;
+- reconciling delayed receipts, retaining a single provider request, and
+  returning failed gates to the same configured owner apply existing
+  generation, no-duplicate-contact, and workflow ownership procedures;
+- the approved-plan restoration incidents and broad process-match stalls are
+  already fully represented by the two event-driven corrections above.
+
+Files changed by this scheduled pass: `docs/LEARNING_LOG.md` only. `PROMPT.md`
+did not change in this learning window, and its complete current content still
+matches the live Coordinator task description exactly, so no mirror write was
+required. This receipt advances the next learning window to
+`2026-09-16T06:51:00Z`. Shared-main publication and final clean-tree verification
+are recorded by the commit containing this entry. Unresolved conflicts: none.
+
 ## WAKE:LEARNING — 2026-09-15T12:50:11Z to 2026-09-16T04:54:00Z
 
 Two durable corrections from this window were already captured by event-driven
