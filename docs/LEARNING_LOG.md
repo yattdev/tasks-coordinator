@@ -3585,3 +3585,14 @@ authoritative lifecycle fields, exact mutation/tag readbacks and actual plan
 bytes. Schema validation remains necessary; it cannot prove facts manufactured
 by its caller. Task-owner histories must also be checked for later repairs when
 a full parent queue prevents delivery of their receipts.
+
+## 2026-09-16 — Preserve Human scope decisions across delayed receipts
+
+A delayed completion receipt exposed a Human instruction to end an old task
+and place changed scope in a new task. Later Coordinator recovery directions
+had mistakenly treated live unfinished work as authority to resume the old card.
+The runbook now requires checking the original Human message before superseding
+such a receipt, then separating successor ownership while preserving all inputs.
+Quoted predecessor restrictions must name their owner so the successor is not
+accidentally forbidden from completing its authorized work. No charter change
+or task-description mirror is needed; this clarifies the existing precedence.

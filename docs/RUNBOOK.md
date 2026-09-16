@@ -857,6 +857,16 @@ mutation, or readiness claim:
 The newest message is not automatically the newest evidence: compare timestamps
 and exact identities to source-of-truth readback, not conversation order alone.
 
+Before superseding a reported Human scope decision, read the original Human
+message and distinguish it from workflow-generated or Coordinator-authored
+directions. A later Coordinator restart cannot override a Human instruction to
+finish the original task and put changed scope in a new task. Preserve unfinished
+work, stop its old writer at a safe boundary, assign one successor, and verify
+the handoff. Keep predecessor resources protected until the successor verifies
+durable import. When quoting the old owner's handoff in a successor plan, bind
+each prohibition to its task ID so preservation rules do not accidentally forbid
+the successor's authorized implementation and publication.
+
 For any queued direction that grants mutation authority, the Coordinator records
 a monotonically increasing decision generation in the durable parent ledger and
 includes it in every replacement or revocation. Before executing, the receiver
