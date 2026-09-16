@@ -1,0 +1,197 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "status",
+  "cycle_id": "plugin-feedback-20260916T0441Z",
+  "observed_at": "2026-09-16T04:52:35Z",
+  "scope_task_ids": [
+    "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+    "9802e1d5-d6f5-4359-aa17-00afaa354ddb"
+  ],
+  "open_ledger_task_ids": [
+    "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+    "9802e1d5-d6f5-4359-aa17-00afaa354ddb"
+  ],
+  "ledger_entries": [
+    {
+      "task_id": "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+      "title": "Wire Coordinator monitoring policy to plugin storage",
+      "owner": "Fresh independent Reviewc2012c8c-ddca-4052-a7d1-ea13b2deb0eb configuredab57",
+      "health": "healthy",
+      "lane": "Review",
+      "last_action": "Review501bffe failed two residual findings; Work fixed both at clean pushed55db9133a961ba6b8eeffd8ec715754d5511cfd7. Fresh Reviewc2012 RUNNING; lifecycle settled.",
+      "next_action": "Consume independent55db913 Review then distinct QA/desktop-mobile evidence; Coordinator merges PR4 once exact-head gates/provider permission pass under Human authorization.",
+      "trigger": "Configured Work result; provider recovery after2026-09-16T04:59:36Z.",
+      "fallback": "No merge until complete gates; no duplicate permission request.",
+      "last_checked": "2026-09-16T04:52:35Z",
+      "evidence_generation": "2026-09-16T04:52:30.261863881Z",
+      "last_checked_cycle_id": "plugin-feedback-20260916T0441Z",
+      "anomalous": false,
+      "mutated": true,
+      "transitioned": true,
+      "delivery_status": "none"
+    },
+    {
+      "task_id": "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+      "title": "Expose managed conversation chat to plugin UI",
+      "owner": "Configured Work33dc72d9-5a10-4a4b-8d5d-cd80c3256b87; Coordinator owns Carlos issue ping",
+      "health": "healthy",
+      "lane": "Work",
+      "last_action": "Human cleared maintainer-feedback prerequisite; Work owner resumed, RPC audit exposed unhydrated ephemeral conversation. Directed complete existing-RPC resolution/submit adapter with unchanged authorization; owner RUNNING, move settled.",
+      "next_action": "Consume RPC-backed full-chat implementation and honest WIP draft publication; root posts one Carlos issue3713 ping after quota reset, then refine on feedback.",
+      "trigger": "Worker result or first normal routine after2026-09-16T04:59:36Z for provider actions.",
+      "fallback": "Preserve eedc47981b939cd42a4fa834efdde23b4e540fe4 history; no auth weakening, duplicate PR/ping, or claim of functioning UI before proof.",
+      "last_checked": "2026-09-16T04:52:35Z",
+      "evidence_generation": "2026-09-16T04:45:56.162692407Z",
+      "last_checked_cycle_id": "plugin-feedback-20260916T0441Z",
+      "anomalous": false,
+      "mutated": true,
+      "transitioned": true,
+      "delivery_status": "none"
+    }
+  ],
+  "blocked_task_ids": [],
+  "blocked_records": [],
+  "anomalies": [],
+  "delivery_claims": [],
+  "transitions": [
+    {
+      "task_id": "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+      "transition_id": "plugin-feedback-20260916T0441Z-0",
+      "pre": {
+        "source_lane": "Work",
+        "target_lane": "Review",
+        "authority": "Explicit Human feedback: merge PR4 when ready; open chat draft before issue feedback and follow existing RPC.",
+        "evidence_generation": "2026-09-16T04:52:30.261863881Z",
+        "pending_move_checked_at": "2026-09-16T04:52:35Z",
+        "expected_owner": "c2012c8c-ddca-4052-a7d1-ea13b2deb0eb",
+        "expected_model": "Workflow-configured profile; effective model not exposed in session listing",
+        "required_verdicts": [
+          "AUTHOR_TESTS=PASSED",
+          "HEAD_PUSHED=CLEAN"
+        ],
+        "invalidation_conditions": "Head change, additional owner, pending lifecycle or failed gate"
+      },
+      "post": {
+        "lane": "Review",
+        "state": "IN_PROGRESS",
+        "lifecycle_settled": true,
+        "session_id": "c2012c8c-ddca-4052-a7d1-ea13b2deb0eb",
+        "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+        "runtime_model": "Workflow-configured; effective model not exposed",
+        "head": "55db9133a961ba6b8eeffd8ec715754d5511cfd7",
+        "tag_aligned": true,
+        "pending_move_clear": true,
+        "execution_expected": true,
+        "execution_state": "RUNNING",
+        "verified": true
+      }
+    },
+    {
+      "task_id": "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+      "transition_id": "plugin-feedback-20260916T0441Z-1",
+      "pre": {
+        "source_lane": "Blocked",
+        "target_lane": "Work",
+        "authority": "Explicit Human feedback: merge PR4 when ready; open chat draft before issue feedback and follow existing RPC.",
+        "evidence_generation": "2026-09-16T04:45:56.162692407Z",
+        "pending_move_checked_at": "2026-09-16T04:52:35Z",
+        "expected_owner": "33dc72d9-5a10-4a4b-8d5d-cd80c3256b87",
+        "expected_model": "Workflow-configured profile; effective model not exposed in session listing",
+        "required_verdicts": [
+          "HUMAN_DRAFT_OVERRIDE=CONFIRMED"
+        ],
+        "invalidation_conditions": "Head change, additional owner, pending lifecycle or failed gate"
+      },
+      "post": {
+        "lane": "Work",
+        "state": "IN_PROGRESS",
+        "lifecycle_settled": true,
+        "session_id": "33dc72d9-5a10-4a4b-8d5d-cd80c3256b87",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "runtime_model": "Workflow-configured; effective model not exposed",
+        "head": "eedc47981b939cd42a4fa834efdde23b4e540fe4 (preserved handoff head; ongoing Work may change)",
+        "tag_aligned": true,
+        "pending_move_clear": true,
+        "execution_expected": true,
+        "execution_state": "RUNNING",
+        "verified": true
+      }
+    }
+  ],
+  "mutations": [
+    {
+      "task_id": "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+      "kind": "plan/handoff/workflow/tag",
+      "target": "Review",
+      "result": "Configured owner running; approved scope persisted",
+      "readback": "Board lifecycle complete, sole intended active owner and aligned agent tag; task plan readback",
+      "verified": true
+    },
+    {
+      "task_id": "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+      "kind": "plan/handoff/workflow/tag",
+      "target": "Work",
+      "result": "Configured owner running; approved scope persisted",
+      "readback": "Board lifecycle complete, sole intended active owner and aligned agent tag; task plan readback",
+      "verified": true
+    }
+  ],
+  "continuity": {
+    "plan_bytes": 137469,
+    "soft_limit_bytes": 200000,
+    "hard_limit_bytes": 240000,
+    "compaction_performed": false,
+    "write_readback_verified": true,
+    "current_snapshot_first": true,
+    "open_record_sets_preserved": true
+  },
+  "report": {
+    "mentioned_task_ids": [
+      "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+      "9802e1d5-d6f5-4359-aa17-00afaa354ddb"
+    ],
+    "barrier_at": "2026-09-16T04:52:35Z",
+    "fresh": true,
+    "task_barriers": [
+      {
+        "task_id": "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+        "lane_session_observed_at": "2026-09-16T04:52:35Z",
+        "provider_required": false
+      },
+      {
+        "task_id": "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+        "lane_session_observed_at": "2026-09-16T04:52:35Z",
+        "provider_required": false
+      }
+    ]
+  },
+  "gate_results": {
+    "G1": "pass",
+    "G2": "pass",
+    "G3": "pass",
+    "G4": "pass",
+    "G5": "pass",
+    "G6": "pass",
+    "G7": "pass",
+    "G8": "pass",
+    "G9": "pass",
+    "G10": "pass"
+  },
+  "pending_move_limitation": "Native pending row census unavailable. Used stable physical lane, complete sessions and completed manual lifecycle; no known armed row for either scoped task. Null projections alone were not treated as queue proof.",
+  "provider": {
+    "claim": "No current provider readiness/merge claim. Carlos issue ping NOT POSTED.",
+    "reason": "Exact authenticated operation403core quota exhausted despite inconsistent rate_limit summary.",
+    "retry_not_before": "2026-09-16T04:59:36Z",
+    "action": "First normal routine after reset: full issue3713 comments dedupe, post prepared authorized Carlos ping exactly once, verify body/URL.",
+    "prepared_comment": "docs/cycle-archives/2026-09-16T0441-issue3713-comment.md"
+  },
+  "transition_history": [
+    "Review c8a failed manual bookkeeping; Work fixed501bffe then Reviewc24da6 failed docs/late availability race.",
+    "Work36534e fixed both at55db913 then new independent Reviewc2012 started; sole owner verified.",
+    "Chat blocked draft-alignment hold superseded by Human. Work33dc audited RPC hydration gap, received complete-chat scope with unchanged authorization, verified RUNNING."
+  ],
+  "cleared_blocked_record": "Prior chat blocked record retained verbatim under live plan cleared_blocked_records.",
+  "policy_commit": "9b6415d0dc52a6a73406ed4ff89d467aad42f964; full PROMPT mirror compared equal; shared main fast-forwarded.",
+  "parallelism": "Read-only native policy_merge_gate audit alongside root chat coordination; helper performed no mutations.",
+  "scope_limit": "Scoped Human action sweep, not a full board cycle or delivery completion."
+}
