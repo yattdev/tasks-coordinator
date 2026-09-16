@@ -1,0 +1,144 @@
+{
+  "cycle_id": "wake-cycle-2026-09-16T0251Z",
+  "observed_at": "2026-09-16T03:52:35Z",
+  "authority": "Permanent Coordinator; approved plugin-first architecture; fresh duplicate/source audit",
+  "source_audit": {
+    "architecture_task": "9e67c426-1300-46ef-a00f-e5603791212d",
+    "program_task": "1e46d457-6869-4750-bf97-4640a8df3b68",
+    "plugin_repository": "https://github.com/yattdev/kandev-plugin-coordinator",
+    "plugin_main": "6fb1fdd63c1728258c40a67df037116c5ca9bbb8",
+    "canonical_host": "60aef37cbd8a043786393a56b603111eb3bd1f63",
+    "findings": [
+      "Host public plugin UI lacks generic WorkspaceAgentChat; delivered AgentConversation backend excludes UI.",
+      "Delivered plugin policy contract/SQLite engine exists; workflow_policy.go and scheduler.go still read obsolete core fields. Implement narrow integration, not duplicate engine."
+    ]
+  },
+  "new_tasks": [
+    {
+      "task_id": "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+      "title": "Expose managed conversation chat to plugin UI",
+      "repository": "https://github.com/kdlbs/kandev",
+      "session_id": "33dc72d9-5a10-4a4b-8d5d-cd80c3256b87",
+      "plan_bytes": 3029,
+      "parent_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+      "workspace_id": "2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd",
+      "created_at": "2026-09-16T03:50:56Z",
+      "create_step": "Todo",
+      "start_agent": false,
+      "plan_saved_at": "2026-09-16T03:51:18Z",
+      "plan_exact_readback": true,
+      "move_at": "2026-09-16T03:52:04Z",
+      "target_lane": "Work",
+      "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+      "session_state": "RUNNING",
+      "task_state": "IN_PROGRESS",
+      "tag_audit": "no tags; no Human tag modified",
+      "task_pending_action": null,
+      "primary_session_pending_action": null,
+      "runtime_model": "gpt-5.6-terra",
+      "preflight": "New idle Todo task, zero sessions, complete saved plan; authoritative pending-move census unavailable; no prior move.",
+      "runtime_provenance": "Fresh owning-session conversation metadata at 2026-09-16T03:56:17Z",
+      "worktree": "/data/tasks/expose-managed-conve_jkd2rbru/kdlbs-kandev"
+    },
+    {
+      "task_id": "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+      "title": "Wire Coordinator monitoring policy to plugin storage",
+      "repository": "https://github.com/yattdev/kandev-plugin-coordinator",
+      "session_id": "36534e47-723f-4a29-875f-5bd70e718782",
+      "plan_bytes": 3402,
+      "parent_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+      "workspace_id": "2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd",
+      "created_at": "2026-09-16T03:50:56Z",
+      "create_step": "Todo",
+      "start_agent": false,
+      "plan_saved_at": "2026-09-16T03:51:18Z",
+      "plan_exact_readback": true,
+      "move_at": "2026-09-16T03:52:04Z",
+      "target_lane": "Work",
+      "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+      "session_state": "RUNNING",
+      "task_state": "IN_PROGRESS",
+      "tag_audit": "no tags; no Human tag modified",
+      "task_pending_action": null,
+      "primary_session_pending_action": null,
+      "runtime_model": "gpt-5.6-terra",
+      "preflight": "New idle Todo task, zero sessions, complete saved plan; authoritative pending-move census unavailable; no prior move.",
+      "runtime_provenance": "Fresh owning-session conversation metadata at 2026-09-16T03:56:17Z",
+      "worktree": "/data/tasks/wire-coordinator-mon_j7x9invt/yattdev-kandev-plugin-coordinator"
+    }
+  ],
+  "afdb_correction": {
+    "task_id": "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+    "plan_append_verified": true,
+    "plan_bytes": 37345,
+    "lane": "Blocked",
+    "new_owners": [
+      "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+      "68bb60ed-14f7-47d1-b564-3a155ac6ae03"
+    ],
+    "obsolete_requirement": "CoordinatorMonitored/CoordinatorPrompt core fields rejected by approved architecture",
+    "preservation": "Historical immutable plugin/package5bfdbcf7 and all task QA artifacts/runtime roots preserved; stopped runtime not restarted",
+    "trigger": "Both reviewed compatible new Host+plugin deliveries available, then one distinct isolated QA at those exact new SHAs",
+    "dependencies": {
+      "attempted": 2,
+      "result": "Both native add_task_dependency calls rejected task_id must be your current task; no dependency edges added",
+      "fallback": "Explicit dependent plan/ledger gates; no scope bypass; supported owner-scope wiring later"
+    },
+    "tag": {
+      "id": "tag-445f942d5863b3ef35cc",
+      "human": false,
+      "note": "Host chat and plugin-owned monitoring policy now have separate Work owners. Preserve stopped QA evidence; retest compatible new Host/plugin heads after both deliveries.",
+      "readback_verified": true
+    }
+  },
+  "charter_mirror": {
+    "task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+    "action": "Supported docker kandev workspace description-update",
+    "prior_live_version": "2026-09-15a",
+    "current_local_version": "2026-09-15b",
+    "bytes": 138270,
+    "sha256": "a3b47f5e09daf9717ae38bc10b2655d26059eaa10d974b2d9331dfd6b11d5ebe",
+    "independent_list_tasks_readback": "Exact full PROMPT matches after API normalization removing only final newline",
+    "verified": true
+  },
+  "capabilities": {
+    "queue_census": "UNKNOWN_ACTION at03:46:19; no queue mutation",
+    "related_tasks": "Advertised list_related_tasks for program returned FORBIDDEN document access denied; fallback board parent graph/approved plans",
+    "pending_move_census": "Unavailable; null task projections are not authoritative row census",
+    "primary": "Sole listed current/primary ca237c01-94de-49e7-9e62-14510a3e167f RUNNING ccd profile; no claim old queues transferred or deleted"
+  },
+  "program_sync": {
+    "task_id": "1e46d457-6869-4750-bf97-4640a8df3b68",
+    "observed_at": "2026-09-16T04:01:16.883241241Z",
+    "action": "Appended new implementation owners and corrected plugin-owned policy architecture to existing program plan without waking its parked session",
+    "readback_exact": true,
+    "plan_bytes": 18103,
+    "tag_updated_and_verified": true,
+    "tag_note": "Resume only after lifecycle, queued delivery, allocatable capacity, and branch write scope are proven; separate Work owners already cover Host chat and plugin policy.",
+    "human_tags_changed": false
+  },
+  "continuation_dispatches": [
+    {
+      "task_id": "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+      "session_id": "33dc72d9-5a10-4a4b-8d5d-cd80c3256b87",
+      "action": "Resume existing Work owner: ordinary approved fork contribution; follow repository alignment requirements, duplicate search, one scope request and draft PR; no credential changes or policy bypass.",
+      "delivery_status": "sent",
+      "verified_state": "RUNNING",
+      "verified_at": "2026-09-16T04:11:38Z",
+      "session_updated_at": "2026-09-16T04:11:31.938075768Z",
+      "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+      "session_count": 1
+    },
+    {
+      "task_id": "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+      "session_id": "36534e47-723f-4a29-875f-5bd70e718782",
+      "action": "Resume existing Work owner: provision declared SDK and UI dependencies using supported task-owned setup; finish full validation and desktop/mobile evidence; report exact capability failure if blocked.",
+      "delivery_status": "sent",
+      "verified_state": "RUNNING",
+      "verified_at": "2026-09-16T04:11:38Z",
+      "session_updated_at": "2026-09-16T04:11:36.502129167Z",
+      "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+      "session_count": 1
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "schema": "coordinator-action-barrier/v1",
+  "observed_at": "2026-09-16T03:25:34.737Z",
+  "workflow_id": "90f322ed-2159-424d-96e7-c2ad05668b8e",
+  "source": "Fresh Kandev board, complete per-task session censuses, and bounded latest 1d primary conversation; no provider broad read",
+  "tasks": [
+    {
+      "task_id": "1d3d7383-8dba-41f8-a794-7e3d51809143",
+      "title": "Repair Docker address-pool exhaustion",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "lane": "Blocked",
+      "state": "REVIEW",
+      "lifecycle": "complete",
+      "task_pending_action": null,
+      "primary_session_pending_action": null,
+      "total_sessions": 11,
+      "live_sessions": [],
+      "primary_session": {
+        "session_id": "b63ba10c-2aaa-4094-a09d-05d37098c8d2",
+        "state": "WAITING_FOR_INPUT",
+        "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "updated_at": "2026-09-16T03:24:30.942498431Z"
+      },
+      "task_updated_at": "2026-09-16T03:24:30.975114416Z"
+    },
+    {
+      "task_id": "fa3fba49-2018-460b-a600-adae23b24cc8",
+      "title": "Add coordinator grant management surfaces",
+      "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+      "lane": "Work",
+      "state": "REVIEW",
+      "lifecycle": "no manual lifecycle field",
+      "task_pending_action": null,
+      "primary_session_pending_action": null,
+      "total_sessions": 19,
+      "live_sessions": [],
+      "primary_session": {
+        "session_id": "d57acfc4-dc99-43b1-9241-05a6e3dbfff4",
+        "state": "WAITING_FOR_INPUT",
+        "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "updated_at": "2026-09-16T03:15:41.941673095Z"
+      },
+      "task_updated_at": "2026-09-16T03:18:04.546727654Z"
+    },
+    {
+      "task_id": "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+      "title": "Provision isolated Coordinator plugin end-to-end QA runtime",
+      "workflow_step_id": "485f61e8-33e7-4cc6-a170-6d1411cc5ebb",
+      "lane": "QA",
+      "state": "IN_PROGRESS",
+      "lifecycle": {
+        "status": "pending",
+        "from_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab"
+      },
+      "task_pending_action": null,
+      "primary_session_pending_action": null,
+      "total_sessions": 1,
+      "live_sessions": [
+        {
+          "session_id": "c66159ec-9746-4485-9daf-8e757286b0ba",
+          "state": "RUNNING",
+          "is_primary": true,
+          "is_current": false,
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "started_at": "2026-08-30T04:36:43.038107816Z",
+          "updated_at": "2026-09-16T03:24:55.395184041Z"
+        }
+      ],
+      "primary_session": {
+        "session_id": "c66159ec-9746-4485-9daf-8e757286b0ba",
+        "state": "RUNNING",
+        "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+        "updated_at": "2026-09-16T03:24:55.395184041Z"
+      },
+      "task_updated_at": "2026-09-16T03:19:04.466196807Z"
+    },
+    {
+      "task_id": "23a05db4-c7bf-4732-a390-08cb8f0a3a8d",
+      "title": "H6: Add plugin capability approval and audit",
+      "workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f",
+      "lane": "Done",
+      "state": "COMPLETED",
+      "lifecycle": "no manual lifecycle field",
+      "task_pending_action": null,
+      "primary_session_pending_action": null,
+      "total_sessions": 47,
+      "live_sessions": [],
+      "primary_session": {
+        "session_id": "d0d4d402-823b-4570-8086-694271f0766e",
+        "state": "WAITING_FOR_INPUT",
+        "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+        "updated_at": "2026-09-16T03:07:34.498139818Z"
+      },
+      "task_updated_at": "2026-09-16T03:18:04.104499747Z"
+    },
+    {
+      "task_id": "a091649a-79b0-40d6-a84d-84a3dc053e4a",
+      "title": "Port AgentConversation Host contract to canonical main",
+      "workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f",
+      "lane": "Done",
+      "state": "COMPLETED",
+      "lifecycle": "no manual lifecycle field",
+      "task_pending_action": null,
+      "primary_session_pending_action": null,
+      "total_sessions": 15,
+      "live_sessions": [],
+      "primary_session": {
+        "session_id": "9de2cb27-1c68-4abc-b283-4cb3eca6747c",
+        "state": "WAITING_FOR_INPUT",
+        "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+        "updated_at": "2026-09-16T03:09:01.125728733Z"
+      },
+      "task_updated_at": "2026-09-16T03:19:01.663473221Z"
+    },
+    {
+      "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+      "title": "Fix PR-watch amplification, task-status, and unbounded",
+      "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+      "lane": "Blocked",
+      "state": "REVIEW",
+      "lifecycle": "no manual lifecycle field",
+      "task_pending_action": null,
+      "primary_session_pending_action": null,
+      "total_sessions": 7,
+      "live_sessions": [],
+      "primary_session": {
+        "session_id": "59ac7489-d17d-4df3-8221-f705ae160f11",
+        "state": "WAITING_FOR_INPUT",
+        "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "updated_at": "2026-09-16T03:15:06.842660082Z"
+      },
+      "task_updated_at": "2026-09-16T03:18:04.107929438Z"
+    },
+    {
+      "task_id": "27b493a3-65b6-4d4a-8b68-73f2ffcf9621",
+      "title": "Fix workflow-sync GitHub polling starving API quota",
+      "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+      "lane": "Work",
+      "state": "IN_PROGRESS",
+      "lifecycle": {
+        "status": "pending",
+        "from_step_id": "814573a3-f2a3-4f42-8706-4f2997401fa6"
+      },
+      "task_pending_action": null,
+      "primary_session_pending_action": null,
+      "total_sessions": 33,
+      "live_sessions": [
+        {
+          "session_id": "fa57331f-e73d-46bb-b6c1-8eb654dfc6df",
+          "state": "RUNNING",
+          "is_primary": true,
+          "is_current": false,
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "started_at": "2026-09-14T21:38:27.531265295Z",
+          "updated_at": "2026-09-16T03:24:22.293341686Z"
+        }
+      ],
+      "primary_session": {
+        "session_id": "fa57331f-e73d-46bb-b6c1-8eb654dfc6df",
+        "state": "RUNNING",
+        "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "updated_at": "2026-09-16T03:24:22.293341686Z"
+      },
+      "task_updated_at": "2026-09-16T03:18:18.59267901Z"
+    },
+    {
+      "task_id": "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+      "title": "Allow scoped fresh CI dispatch",
+      "workflow_step_id": "6c2e5bf5-57db-4682-8daa-d110f22b60da",
+      "lane": "Review",
+      "state": "IN_PROGRESS",
+      "lifecycle": "no manual lifecycle field",
+      "task_pending_action": null,
+      "primary_session_pending_action": null,
+      "total_sessions": 7,
+      "live_sessions": [
+        {
+          "session_id": "b2bd85ec-274f-42a5-8474-2671404aca7e",
+          "state": "RUNNING",
+          "is_primary": true,
+          "is_current": false,
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "started_at": "2026-09-16T03:22:33.314666941Z",
+          "updated_at": "2026-09-16T03:24:46.345495808Z"
+        }
+      ],
+      "primary_session": {
+        "session_id": "b2bd85ec-274f-42a5-8474-2671404aca7e",
+        "state": "RUNNING",
+        "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+        "updated_at": "2026-09-16T03:24:46.345495808Z"
+      },
+      "task_updated_at": "2026-09-16T03:22:38.602228204Z"
+    },
+    {
+      "task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+      "title": "Fix PR lane profile executing wrong model",
+      "workflow_step_id": "30ae45bd-e99e-455a-8eb7-10e7a038200f",
+      "lane": "Done",
+      "state": "FAILED",
+      "lifecycle": "no manual lifecycle field",
+      "task_pending_action": null,
+      "primary_session_pending_action": null,
+      "total_sessions": 68,
+      "live_sessions": [],
+      "primary_session": {
+        "session_id": "6e1a23e9-323d-4c23-a9db-06ae6a444208",
+        "state": "FAILED",
+        "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+        "updated_at": "2026-09-16T02:58:03.699904508Z"
+      },
+      "task_updated_at": "2026-09-16T03:18:04.534187388Z"
+    }
+  ],
+  "new_provider_comment_urls": [
+    "https://github.com/kdlbs/kandev/pull/3686#issuecomment-5691560638"
+  ],
+  "notes": [
+    "The 9ee4be81 lane label is normalized from workflow step 6c2e5bf5, which the current workflow snapshot names Review; the initial helper mapper called it Human-QA.",
+    "Only RUNNING sessions are classified as live.",
+    "A missing manual lifecycle field is reported literally and is not inferred as pending or complete.",
+    "No board, session, provider, task-plan, tag, or source mutation was performed by this barrier."
+  ]
+}

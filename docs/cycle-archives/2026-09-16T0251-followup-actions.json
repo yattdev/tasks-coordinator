@@ -1,0 +1,165 @@
+{
+  "schema_version": "1.0.0",
+  "cycle_id": "wake-cycle-2026-09-16T025155Z",
+  "observed_through": "2026-09-16T03:24:34.232Z",
+  "authority": {
+    "coordinator_task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+    "coordinator_session_id": "ca237c01-94de-49e7-9e62-14510a3e167f",
+    "workflow_id": "90f322ed-2159-424d-96e7-c2ad05668b8e"
+  },
+  "actions": [
+    {
+      "sequence": 1,
+      "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+      "title": "Fix PR-watch amplification, task-status, and unbounded",
+      "action": "correct premature Human-QA route to physical Blocked",
+      "precondition": "Human-QA/REVIEW, lifecycle complete, zero live sessions",
+      "preservation": {
+        "head": "e9bf3f59",
+        "failure_run": "34969999730",
+        "failure_job": "104384643523",
+        "local_validator": "52/52",
+        "canonical_request": "https://github.com/kdlbs/kandev/pull/3319#issuecomment-5691426490"
+      },
+      "result": {
+        "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+        "lane": "Blocked",
+        "task_state": "REVIEW",
+        "task_pending_action": null,
+        "primary_session_pending_action": null,
+        "parking_session_id": "59ac7489-d17d-4df3-8221-f705ae160f11",
+        "parking_session_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "parking_session_state": "WAITING_FOR_INPUT",
+        "verified_at": "2026-09-16T03:21:51.043Z"
+      },
+      "verification": "Physical Blocked readback; no live session; lifecycle projections null. The previously RUNNING parking owner has settled WFI.",
+      "next_action": "On a legitimate new attempt, head, or status change, classify exact-head evidence; otherwise preserve without duplicate provider contact."
+    },
+    {
+      "sequence": 2,
+      "task_id": "27b493a3-65b6-4d4a-8b68-73f2ffcf9621",
+      "title": "Fix workflow-sync GitHub polling starving API quota",
+      "action": "move Human-QA to Work for additive current-main conflict repair",
+      "precondition": "Human-QA/REVIEW, lifecycle complete, zero live sessions; reusable configured c06 Work session fa57331f was WFI",
+      "preservation": {
+        "head": "a2ea7aba6ff59b3d557d9bc9f551e2d65c11b21b",
+        "worktree": "/data/tasks/fix-workflow-sync-gi_eo5i7833/kandev-source",
+        "branch": "feature/fix-workflow-sync-gi-d0x",
+        "human_acceptance_to_preserve": [
+          "TEST_RUNTIME=NONE",
+          "security-sensitive rate coordination",
+          "restored task-bound MCP snapshot"
+        ]
+      },
+      "result": {
+        "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+        "lane": "Work",
+        "task_state": "IN_PROGRESS",
+        "task_pending_action": null,
+        "primary_session_pending_action": null,
+        "session_id": "fa57331f-e73d-46bb-b6c1-8eb654dfc6df",
+        "session_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "session_state": "RUNNING",
+        "verified_at": "2026-09-16T03:21:51.043Z"
+      },
+      "verification": "Physical Work readback and exact configured owner RUNNING; lifecycle projections null.",
+      "next_action": "Owner performs additive repair and normal publication; keep draft through fresh CI, independent Review, distinct QA, then Human-QA."
+    },
+    {
+      "sequence": 3,
+      "task_id": "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+      "title": "Allow scoped fresh CI dispatch",
+      "action": "move Human-QA to Work for additive current-main conflict repair",
+      "precondition": "Human-QA/REVIEW, lifecycle complete, zero live sessions; reusable configured c06 Work session 8b8e3afb was WFI",
+      "preservation": {
+        "head": "beaf11fbe8aa0ed21d83bc37a6c1af80f909ae20",
+        "worktree": "/data/tasks/allow-scoped-fresh-c_2p7fiyms/kandev-source",
+        "branch": "feature/allow-scoped-fresh-c-0k2",
+        "untracked_files": [
+          {
+            "path": ".task-comm/compose.host-network.yaml",
+            "sha256": "bed2ae047c2d6cc098aa7ff45352ac640c9a8cb2cf761d27149b4713254ea5b5"
+          },
+          {
+            "path": ".task-comm/compose.yaml",
+            "sha256": "f22b1c45b68fa4311449b474c88d4e133984afd106fb4e4d3bd9afde3deee549"
+          }
+        ]
+      },
+      "result": {
+        "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+        "lane": "Work",
+        "task_state": "IN_PROGRESS",
+        "task_pending_action": null,
+        "primary_session_pending_action": null,
+        "session_id": "8b8e3afb-5e8b-4dcb-808d-7b535905afe3",
+        "session_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "session_state": "RUNNING",
+        "verified_at": "2026-09-16T03:21:51.043Z"
+      },
+      "verification": "Physical Work readback and exact configured owner RUNNING; lifecycle projections null.",
+      "next_action": "Owner performs additive integration without touching preserved untracked files; fresh CI, independent Review, distinct QA, then Human/maintainer acceptance."
+    },
+    {
+      "sequence": 4,
+      "task_id": "1d3d7383-8dba-41f8-a794-7e3d51809143",
+      "title": "Repair Docker address-pool exhaustion",
+      "action": "wake exact configured CI owner once to verify and, if absent, post one e93-specific legitimate-rerun request",
+      "precondition": "CI Fixup/REVIEW, lifecycle complete, zero live sessions; configured e7016e25 WFI",
+      "preservation": {
+        "head": "e93f1f2d7064e8b794649aa64bd5ebcd9175b4b7",
+        "failure_run": "34971684802",
+        "failure_job": "104397221496",
+        "classification": "unrelated flaky E2E shard; all six Containers shards passed"
+      },
+      "result": {
+        "workflow_step_id": "347f3904-5972-44bf-92e8-a9a9a5efb96d",
+        "lane": "CI Fixup",
+        "task_state": "REVIEW",
+        "task_pending_action": null,
+        "primary_session_pending_action": null,
+        "session_id": "e7016e25-cd6a-4db5-9613-2ffc68053a9b",
+        "session_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+        "effective_model": "gpt-5.6-luna",
+        "session_state": "WAITING_FOR_INPUT",
+        "verified_at": "2026-09-16T03:21:51.043Z"
+      },
+      "verification": "The first bounded turn ended before contact. After fresh proof that no request existed, the primary authorized one final retry. That retry created exactly one canonical request, and a fresh exact-body census found one match. The complete R4 was appended, the task moved CI Fixup to Blocked once, lifecycle settled, and the CI owner completed.",
+      "outcome": "blocked_after_single_provider_request",
+      "canonical_request": "https://github.com/kdlbs/kandev/pull/3686#issuecomment-5691560638",
+      "next_action": "On a legitimate new attempt, head change, or run/job status change, perform one fresh exact-head provider census. Terminal green routes to independent Review then distinct QA; branch-owned red returns to Work.",
+      "contact_attempts": 2,
+      "duplicate_contacts": 0,
+      "final_result": {
+        "workflow_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab",
+        "lane": "Blocked",
+        "task_state": "REVIEW",
+        "manual_move_lifecycle_pending": null,
+        "task_pending_action": null,
+        "primary_session_pending_action": null,
+        "session_state": "COMPLETED",
+        "verified_at": "2026-09-16T03:24:34.232Z"
+      }
+    }
+  ],
+  "additional_evidence": {
+    "task_id": "8a182e40-d99c-42e9-b9be-1f8f78cf8388",
+    "observed_source": "peer receipt during this cycle",
+    "publication": {
+      "worktree": "/data/tasks/repair-standalone-ex_1ajz75pq/kdlbs-kandev",
+      "branch": "feature/repair-standalone-ex-zeh",
+      "head": "4bd6a950",
+      "clean": true,
+      "services_ports_artifacts": "none",
+      "push_result": "git push -u origin HEAD failed 403: Permission to kdlbs/kandev denied to yattdev",
+      "credential_result": "gh auth reported GH_TOKEN invalid",
+      "provider_result": "GitHub API rate-limited"
+    },
+    "classification": "Fresh publication evidence only. A direct kdlbs push is not assumed to be the approved fork path or credential lease.",
+    "unchanged_resume_trigger": "Require an exact approved remote/branch credential lease plus the existing queue, lifecycle, and allocator/capacity proofs before Work restart."
+  },
+  "excluded": {
+    "task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+    "reason": "Out of scope. Its independent deferred Done transition remains an UNKNOWN-actor reconciliation event."
+  }
+}

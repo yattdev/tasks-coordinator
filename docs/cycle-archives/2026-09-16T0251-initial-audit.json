@@ -1,0 +1,1540 @@
+{
+  "cycle_id": "wake-cycle-2026-09-16T025155Z",
+  "scope": "initial read-only census; later actions supersede these observations",
+  "blocked_count": 35,
+  "nonblocked_count": 30,
+  "blocked_audit": [
+    {
+      "id": "96e27238-8b7d-476a-8c70-b8da0abae935",
+      "title": "Fix stale plugin-hook docs and template rename checklist",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-08T04:53:52.748945269Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "number": 4,
+          "state": "open",
+          "title": "docs(readme): drop stale plugins feature-flag mention",
+          "url": "https://github.com/kdlbs/kandev-plugin-template/pull/4"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/fix-stale-plugin-hoo_wb6/kandev-source",
+          "readback": "0\nfeature/fix-stale-plugin-hoo-54w\n91e36603f33c0b004815e8ba6ec6c2163d7c3fd9\norigin/feature/fix-stale-plugin-hoo-54w\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 5,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "9e67c426-1300-46ef-a00f-e5603791212d",
+      "title": "Plan coordinator plugin architecture",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-14T04:13:00.971304398Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "number": 2793,
+          "state": "open",
+          "title": "feat(plugins): host contract for workspace agent conversations, automations, task relations, and coordinator monitoring",
+          "url": "https://github.com/kdlbs/kandev/pull/2793"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/create-a-plugin-that_wtf60hhd/kandev-source",
+          "readback": "19\nfeature/create-a-plugin-that-kch\nee41197009dd00331b74ab6a1b9c1a66292f2c20\norigin/feature/create-a-plugin-that-kch\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 19,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "6a5a2f73-87e1-4c08-a983-64f2456c3633",
+      "title": "Executor containers: allow unprivileged user namespaces",
+      "physical_lane": "Blocked",
+      "semantic_state": "FAILED",
+      "task_updated_at": "2026-09-15T05:07:00.390680117Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "merged_at": "2026-09-06T10:30:41Z",
+          "number": 2937,
+          "state": "merged",
+          "title": "feat(executor): per-profile opt-in for unprivileged user namespaces",
+          "url": "https://github.com/kdlbs/kandev/pull/2937"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/executor-containers_7oiab541/kandev-source",
+          "readback": "5649\nfeature/executor-containers-nll\nd8af676da8852ea68dec1faedec8ed3baa8a236c\nfatal: no upstream configured for branch 'feature/executor-containers-nll'\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 10,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "375dcc90-9ff3-4064-ba27-a7f20b33e80c",
+      "title": "Expose Provider Usage through read-only MCP",
+      "physical_lane": "Blocked",
+      "semantic_state": "SCHEDULING",
+      "task_updated_at": "2026-09-07T13:43:28.568837117Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/expose-provider-usag_kjfkfyxi/kdlbs-kandev-plugin-provider-usage-main",
+          "readback": "10\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 8,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "77353939-0ba8-40dd-b93c-57adc73a4011",
+      "title": "Implement provider-usage MCP tool",
+      "physical_lane": "Blocked",
+      "semantic_state": "SCHEDULING",
+      "task_updated_at": "2026-09-08T04:53:53.155813648Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/recover-provider-usa_t7eqrgda/kdlbs-kandev-plugin-provider-usage",
+          "readback": "0\nfeature/recover-provider-usa-aew\n26c78a756174de2375d1933800eee2e248193c60\nfatal: no upstream configured for branch 'feature/recover-provider-usa-aew'\n"
+        },
+        {
+          "path": "/data/tasks/implement-provider-u_k97qa5oa/kdlbs-kandev-plugin-provider-usage",
+          "readback": "31\nfeature/recover-provider-usa-aew\n26c78a756174de2375d1933800eee2e248193c60\nfatal: no upstream configured for branch 'feature/recover-provider-usa-aew'\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 4,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "c642d57a-5a24-48ca-8f85-57d31115eeb5",
+      "title": "Prevent stale sessions blocking workflow",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-15T05:04:32.06333366Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "number": 2909,
+          "state": "open",
+          "title": "fix(workflow): prevent stale administrative turns from blocking workflow progress",
+          "url": "https://github.com/kdlbs/kandev/pull/2909"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/prevent-stale-sessio_df5zabn0/kandev-recovery-pr2909",
+          "readback": "0\nfeature/prevent-stale-sessio-7n1\ncaee717b7c9d9c120e8dcbfcc77c7b08bfc9b697\nfork/feature/prevent-stale-sessio-7n1\n"
+        },
+        {
+          "path": "/data/tasks/prevent-stale-sessio_df5zabn0/kandev-source",
+          "readback": "5967\nfeature/prevent-stale-sessio-7n1\nb2dbf98a01b2bf6f20e21461d05c1f36627fd156\nfatal: no upstream configured for branch 'feature/prevent-stale-sessio-7n1'\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 2,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "212a68ce-7122-4cdb-ba68-764a5ebdb8c6",
+      "title": "Finish Provider Usage plugin coverage",
+      "physical_lane": "Blocked",
+      "semantic_state": "FAILED",
+      "task_updated_at": "2026-09-08T04:53:53.044588029Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/finish-provider-usag_8isp64fr/kdlbs-kandev-plugin-provider-usage",
+          "readback": "9\n"
+        },
+        {
+          "path": "/data/tasks/expose-provider-usag_kjfkfyxi/kdlbs-kandev-plugin-provider-usage-main",
+          "readback": "10\n"
+        },
+        {
+          "path": "/data/tasks/recover-provider-usa_t7eqrgda/kdlbs-kandev-plugin-provider-usage",
+          "readback": "0\nfeature/recover-provider-usa-aew\n26c78a756174de2375d1933800eee2e248193c60\nfatal: no upstream configured for branch 'feature/recover-provider-usa-aew'\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 2,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "51c2875b-48ae-4097-b985-b8a9584ca8c2",
+      "title": "Bug: Notes settings agent utility doesn't load agents profil",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-14T18:31:01.104247879Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "merged_at": "2026-09-15T08:40:39Z",
+          "number": 2870,
+          "state": "merged",
+          "title": "fix(plugins): support direct agent profile invocation",
+          "url": "https://github.com/kdlbs/kandev/pull/2870"
+        },
+        {
+          "number": 7,
+          "state": "open",
+          "title": "chore(notes): align plugin SDK dependencies",
+          "url": "https://github.com/yattdev/kandev-plugin-notes/pull/7"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/bug-notes-settings-a_imzafc8h/kandev-source",
+          "readback": "0\nfeature/implement-host-agent-oav\n929c4c3cfeecc7a89eb960bd5474ddb731f019c7\norigin/feature/implement-host-agent-oav\n"
+        },
+        {
+          "path": "/data/tasks/bug-notes-settings-a_imzafc8h/kandev-plugin-notes",
+          "readback": "0\nfeature/bug-notes-settings-a-0s3\n19035c9e9989e2372d8e4eaca99772b58eb76a96\nfatal: no upstream configured for branch 'feature/bug-notes-settings-a-0s3'\n"
+        },
+        {
+          "path": "/data/tasks/bug-notes-settings-a_imzafc8h/qa-artifacts/",
+          "readback": "20\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 23,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "37eca47b-cf05-47ee-b143-39408edbeed1",
+      "title": "Bound merged worktree branch accumulation",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-15T11:35:13.71861149Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "number": 3158,
+          "state": "open",
+          "title": "fix: compact fully integrated managed branches",
+          "url": "https://github.com/kdlbs/kandev/pull/3158"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/bound-merged-worktre_cgr6a5yd/kdlbs-kandev",
+          "readback": "0\nfeature/bound-merged-worktre-jii\n66facc7c4360b8a01dca827932dc19f137eb78f2\nfork/feature/bound-merged-worktre-jii\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 47,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+      "title": "Provision isolated Coordinator plugin end-to-end QA runtime",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-14T05:42:01.362220534Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/provision-isolated-c_lhtgd60a/kdlbs-kandev",
+          "readback": "0\nfeature/provision-isolated-c-325\n4d8763e4de852701f22345c7ac115ffdfac30664\nfatal: no upstream configured for branch 'feature/provision-isolated-c-325'\n"
+        },
+        {
+          "path": "/data/tasks/provision-isolated-c_lhtgd60a/artifacts-afdb2ef3/supplemental-5bfdbcf7/immutable-head-runtime-receipt.md",
+          "readback": "exec_command failed: CreateProcess { message: \"Rejected(\\\"Failed to create unified exec process: Not a directory (os error 20)\\\")\" }"
+        }
+      ],
+      "fresh_verdict": "cleared_actionable",
+      "fresh_evidence": "Its exact dependency trigger is a091 canonical API merged/contained and available on main. Live Kandev projection now reports dependency PR #3672 merged at 2026-09-15T22:17:42Z. Preserved QA worktree is clean; immutable receipt SHA-256 ca4f38ef291b2364f9afef52ff2f8641c511f41c44ff92520a564ac8c276ac01; zero live sessions.",
+      "required_action": "R5 atomic resume: move Blocked to QA, send exact merged-contract handoff, and verify exactly one configured QA owner starts (existing primary c66159ec is WFI and profile bd2c30cb).",
+      "sessions": {
+        "count": 1,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "86a16fc1-6394-4fb0-898d-4d42948683f5",
+      "title": "Bound plugin registry release latency",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-15T05:05:02.505871591Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "number": 3153,
+          "state": "open",
+          "title": "feat(plugins): publish curated releases promptly",
+          "url": "https://github.com/kdlbs/kandev/pull/3153"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/bound-plugin-registr_t9zhoda6/kandev-source",
+          "readback": "0\nfeature/bound-plugin-registr-x1v\n135a156acfaf24803e3938034acddada0f6b366a\norigin/feature/bound-plugin-registr-x1v\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 14,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "531a41cd-57ef-495a-8dfa-614d2a4d0d52",
+      "title": "Allow Coordinator dependency-edge mutation",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-14T05:27:40.891543506Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/allow-coordinator-de_au1g7cb7/kandev-source",
+          "readback": "0\nfeature/allow-coordinator-de-gaj\ncfd6bdf65ae6f631d7701c105791a099c0325cc3\nfatal: no upstream configured for branch 'feature/allow-coordinator-de-gaj'\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 9,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "7056a702-a3c3-4fe8-8535-c6b8d340ef6a",
+      "title": "Add exact pending-move cancellation",
+      "physical_lane": "Blocked",
+      "semantic_state": "FAILED",
+      "task_updated_at": "2026-09-15T09:40:57.90840123Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "number": 3155,
+          "state": "open",
+          "title": "feat: add exact pending-move cancellation",
+          "url": "https://github.com/kdlbs/kandev/pull/3155"
+        }
+      ],
+      "repository_readbacks": [],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 11,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "46945aff-382a-41a4-9f35-bd5c2806911e",
+      "title": "Expose guarded TTY tool to ACP agents",
+      "physical_lane": "Blocked",
+      "semantic_state": "FAILED",
+      "task_updated_at": "2026-09-15T08:07:24.078821798Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "merged_at": "2026-09-06T23:28:58Z",
+          "number": 1,
+          "state": "merged",
+          "title": "feat: add maintained Kandev guarded-TTY distribution",
+          "url": "https://github.com/yattdev/codex-acp/pull/1"
+        },
+        {
+          "number": 3497,
+          "state": "open",
+          "title": "feat(agent): add guarded TTY execution routing",
+          "url": "https://github.com/kdlbs/kandev/pull/3497"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/expose-guarded-tty-t_dxnio2ff/kdlbs-kandev",
+          "readback": "0\nfeature/expose-guarded-tty-t-46l\n44568d466c59bcda66083b3f44eeea82febf71a0\nfatal: no upstream configured for branch 'feature/expose-guarded-tty-t-46l'\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 11,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "5c9f515d-e5f9-43c5-bf31-fb42276e5e15",
+      "title": "Add guarded TTY bridge to codex-acp",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-08T04:53:52.902204022Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "number": 451,
+          "state": "open",
+          "title": "feat: add bounded TTY command execution",
+          "url": "https://github.com/agentclientprotocol/codex-acp/pull/451"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/add-guarded-tty-brid_10966pzf/agentclientprotocol-codex-acp",
+          "readback": "0\nfeature/add-guarded-tty-brid-6q9\n0bd0f8fb74a0dfec93eb3a8e586dc0d7c0e8488d\nfork/feature/add-guarded-tty-brid-6q9\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 3,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "01d6764d-b66d-46a0-a664-2caf4c3f4d98",
+      "title": "Make terminal workflow routing atomic",
+      "physical_lane": "Blocked",
+      "semantic_state": "IN_PROGRESS",
+      "task_updated_at": "2026-09-14T22:47:34.489016009Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "number": 3166,
+          "state": "open",
+          "title": "fix(workflow): serialize terminal routing through one arbiter",
+          "url": "https://github.com/kdlbs/kandev/pull/3166"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/make-terminal-workfl_8z3b2nzr/kandev-source",
+          "readback": "2200\nfix/atomic-terminal-routing\nfe21f495adf3c72fd3fc01de2fffc5541858e575\norigin/fix/atomic-terminal-routing\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 18,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "1e46d457-6869-4750-bf97-4640a8df3b68",
+      "title": "Coordinate plugin-first board supervision delivery",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-15T11:01:10.020490962Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [],
+      "repository_readbacks": [],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 6,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "23a05db4-c7bf-4732-a390-08cb8f0a3a8d",
+      "title": "H6: Add plugin capability approval and audit",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-15T08:56:51.272274472Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "merged_at": "2026-09-15T22:16:07Z",
+          "number": 3238,
+          "state": "merged",
+          "title": "feat(plugins): add generic approval ledger and receipts",
+          "url": "https://github.com/kdlbs/kandev/pull/3238"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/h6-add-plugin-capabi_ujha1a9q/kdlbs-kandev",
+          "readback": "0\nfeature/h6-add-plugin-capabi-lca\n3b5b6f2a9594fca6908fb3fc58a12c764c69d64f\nfatal: no upstream configured for branch 'feature/h6-add-plugin-capabi-lca'\n"
+        }
+      ],
+      "fresh_verdict": "cleared_terminal",
+      "fresh_evidence": "Live Kandev linked-PR projection reports PR #3238 merged at 2026-09-15T22:16:07Z; preserved worktree is clean at exact 3b5b6f2a9594fca6908fb3fc58a12c764c69d64f; zero live sessions.",
+      "required_action": "Atomically remove from Blocked to Done after terminal cleanup/readback; do not restart CI or contact provider.",
+      "sessions": {
+        "count": 47,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "f169e54f-610b-4f35-bcdc-cf3dfe3baaab",
+      "title": "Enable audited cross-workspace task transfer",
+      "physical_lane": "Blocked",
+      "semantic_state": "FAILED",
+      "task_updated_at": "2026-09-15T09:32:02.144404014Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "number": 3243,
+          "state": "open",
+          "title": "feat: add audited cross-workspace task transfers",
+          "url": "https://github.com/kdlbs/kandev/pull/3243"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/enable-audited-cross_u8f3wi6u/kdlbs-kandev",
+          "readback": "0\nfeature/enable-audited-cross-ec4\na00221495a34511287ddce154d5d926e0d5cbd21\nfork/feature/enable-audited-cross-ec4\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 9,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "76b4e3d4-ccb8-408c-a0de-5e5014c538be",
+      "title": "Make visible Human questions durable",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-15T06:59:46.314743444Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "number": 3404,
+          "state": "open",
+          "title": "fix: make clarification retries durable across interruptions",
+          "url": "https://github.com/kdlbs/kandev/pull/3404"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/make-visible-human-q_vhjkt1t6/kdlbs-kandev",
+          "readback": "0\nfeature/make-visible-human-q-u2t\n94d3f603d1f919b0a6cf24929e8f943399acf481\nfork/feature/make-visible-human-q-u2t\n"
+        }
+      ],
+      "fresh_verdict": "record_stale_trigger_not_proven",
+      "fresh_evidence": "Fresh local read shows clean branch/upstream/fork at 94d3f603d1f919b0a6cf24929e8f943399acf481, an additive current-main merge, superseding R4 head 654a7cd. Task report says fresh exact-head CI began. Both GitHub GraphQL and exact REST PR reads are currently provider-rate-limited, so terminal outcome cannot be established.",
+      "required_action": "Correct R4 preservation/blocker to exact 94d3f603 and current-head CI wait. When provider quota works, perform one exact-head census; green routes fresh independent Review then distinct QA; red routes narrowest owner. No duplicate contact or retry.",
+      "sessions": {
+        "count": 6,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "ca015838-e5cf-4294-b3bb-9c50576a5fe6",
+      "title": "Add guarded queue claim and routine wake coalescing",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-15T08:21:01.601320572Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "number": 3377,
+          "state": "open",
+          "title": "feat: add guarded queue claim and routine wake coalescing",
+          "url": "https://github.com/kdlbs/kandev/pull/3377"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/add-guarded-queue-cl_sf70tyvs/kdlbs-kandev",
+          "readback": "0\nfeature/add-guarded-queue-cl-sls\n37ca515b0c8fd94cc98b38f898a9335765378ac2\nfork/feature/add-guarded-queue-cl-sls\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 14,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "a3f02302-12fa-4129-8985-116efb8fed66",
+      "title": "Recover workspace reuse inventory mismatches",
+      "physical_lane": "Blocked",
+      "semantic_state": "FAILED",
+      "task_updated_at": "2026-09-15T05:03:57.165702625Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "number": 3310,
+          "state": "open",
+          "title": "fix: preserve worktrees during inventory repair",
+          "url": "https://github.com/kdlbs/kandev/pull/3310"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/recover-workspace-re_5cxmeho1/kandev-source",
+          "readback": "0\nfeature/recover-workspace-repair\ndb0118b473d1ae3e31b1a63263ce625c7d22c5ae\norigin/feature/recover-workspace-repair\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 3,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "86c8b47e-e7a5-4693-8e11-dce08899a0bf",
+      "title": "Preserve unread queue on session deletion",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-08T04:53:53.274366614Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "number": 15,
+          "state": "open",
+          "title": "fix: preserve queued work during session cleanup",
+          "url": "https://github.com/yattdev/kandev/pull/15"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/preserve-unread-queu_ofb2j8xg/kdlbs-kandev",
+          "readback": "1\nfeature/preserve-unread-queu-s0c\nc4156e83b8379851f50ce6890a13b16720874df9\nfatal: no upstream configured for branch 'feature/preserve-unread-queu-s0c'\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_with_preservation_detail",
+      "fresh_evidence": "Fresh local read: head c4156e83b8379851f50ce6890a13b16720874df9, branch feature/preserve-unread-queu-s0c, exactly one untracked directory apps/web/.qa-artifacts containing the six already-recorded captures; zero live sessions.",
+      "required_action": "No action; dependency remains canonical #3377 plus reviewed queue-safe cleanup. Preserve fork PR #15 as evidence only.",
+      "sessions": {
+        "count": 3,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "428d343e-c768-4bce-a5e7-efd3b10f363f",
+      "title": "Plugin fenced runtime and scheduler",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-08T15:30:44.809426311Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/plugin-fenced-runtim_053sh4tb/yattdev-kandev-plugin-coordinator",
+          "readback": "0\nfeature/plugin-fenced-runtim-ck9\n6fb1fdd63c1728258c40a67df037116c5ca9bbb8\nfatal: no upstream configured for branch 'feature/plugin-fenced-runtim-ck9'\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 1,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "0259d242-0a94-40ef-843e-385292796b64",
+      "title": "Plugin deterministic scale harness",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-08T15:30:46.437971568Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [],
+      "repository_readbacks": [],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 1,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "b8fc206c-9e3f-4497-9ac3-3b62593da258",
+      "title": "Rotate Coordinator sessions before context exhaustion",
+      "physical_lane": "Blocked",
+      "semantic_state": "SCHEDULING",
+      "task_updated_at": "2026-09-06T08:06:22.272933953Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [],
+      "repository_readbacks": [],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 2,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "4b56a8b3-89fa-43ef-891d-c6b3a3b88e2a",
+      "title": "Propagate CI cleanup errors on workspace deletion",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-08T04:53:52.488638081Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [],
+      "repository_readbacks": [],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 2,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "cfccac4a-1c80-403f-b284-a673a26a321a",
+      "title": "Fix shared task-switch E2E failure",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-15T09:34:13.736239475Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "number": 3476,
+          "state": "open",
+          "title": "test(e2e): stabilize cancel-progress task switch",
+          "url": "https://github.com/kdlbs/kandev/pull/3476"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/fix-shared-task-swit_z7nmqn27/kdlbs-kandev",
+          "readback": "0\nfeature/fix-shared-task-swit-zks\n16e6c21bdc0009732d988329f687d1e8eacc5322\nfatal: upstream branch 'refs/heads/feature/fix-shared-task-swit-zks' not stored as a remote-tracking branch\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 17,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "e8728906-86de-4a75-960f-9da585485823",
+      "title": "Fix plugin task priority persistence",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-09T23:42:14.649934465Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "number": 3468,
+          "state": "open",
+          "title": "test(plugins): cover external priority persistence",
+          "url": "https://github.com/kdlbs/kandev/pull/3468"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/fix-plugin-task-prio_rksfvx9c/kdlbs-kandev",
+          "readback": "0\nfeature/fix-plugin-task-prio-w7w\n973a9d6d367b2c9a50c6ecd0557d70b23817d8b6\nfatal: upstream branch 'refs/heads/feature/fix-plugin-task-prio-w7w' not stored as a remote-tracking branch\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 15,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+      "title": "Recover atomic terminal routing in an isolated workspace",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-15T02:32:23.796721204Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/recover-atomic-termi_li7cmaa7/kandev-source",
+          "readback": "0\nfeature/recover-atomic-termi-7o7\ne30bd1f2e5008be93e11ede6b2d3827a74e68095\nfatal: no upstream configured for branch 'feature/recover-atomic-termi-7o7'\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 20,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "a091649a-79b0-40d6-a84d-84a3dc053e4a",
+      "title": "Port AgentConversation Host contract to canonical main",
+      "physical_lane": "Blocked",
+      "semantic_state": "FAILED",
+      "task_updated_at": "2026-09-15T08:45:31.656768772Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "merged_at": "2026-09-15T22:17:42Z",
+          "number": 3672,
+          "state": "merged",
+          "title": "feat(plugins): port agent_conversation Host contract from the maintained fork",
+          "url": "https://github.com/kdlbs/kandev/pull/3672"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/port-agentconversati_8ap51cib/kdlbs-kandev",
+          "readback": "0\nfeature/port-agentconversati-40w\nbb3f8243c120405dad8a74bc82713d681a309af5\nfatal: no upstream configured for branch 'feature/port-agentconversati-40w'\n"
+        }
+      ],
+      "fresh_verdict": "cleared_terminal",
+      "fresh_evidence": "Live Kandev linked-PR projection reports PR #3672 merged at 2026-09-15T22:17:42Z; preserved worktree is clean at exact bb3f8243c120405dad8a74bc82713d681a309af5; zero live sessions. Merge supersedes conflict/startup blocker.",
+      "required_action": "Atomically remove from Blocked to Done after terminal cleanup/readback; do not restart conflict repair or contact provider.",
+      "sessions": {
+        "count": 14,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "6d03f4a9-bf89-4882-bf43-5a584f986185",
+      "title": "Adopt exact profile assignment persistence",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-15T11:24:58.582090846Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "number": 3688,
+          "state": "open",
+          "title": "feat(tasks): persist exact profile assignments",
+          "url": "https://github.com/kdlbs/kandev/pull/3688"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/adopt-exact-profile_aymu1kux/kandev-source",
+          "readback": "0\nfeature/adopt-exact-profile-9cd\n57caf218de54d82e54f27556224640e2f19d5659\norigin/feature/adopt-exact-profile-9cd\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 5,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "8a182e40-d99c-42e9-b9be-1f8f78cf8388",
+      "title": "Repair standalone execution port-pool exhaustion",
+      "physical_lane": "Blocked",
+      "semantic_state": "FAILED",
+      "task_updated_at": "2026-09-15T09:23:28.546708656Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/repair-standalone-ex_1ajz75pq/kdlbs-kandev",
+          "readback": "0\nfeature/repair-standalone-ex-zeh\n4bd6a9502b1bdd673b60b9935013b71ea2b083f0\nfatal: no upstream configured for branch 'feature/repair-standalone-ex-zeh'\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 4,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "9d5fcce2-e02d-41a5-b8de-d3672254e199",
+      "title": "Recover Provider Usage coverage in a registered workspace",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-15T09:24:04.298138903Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/recover-provider-usa_t7eqrgda/kdlbs-kandev-plugin-provider-usage",
+          "readback": "0\nfeature/recover-provider-usa-aew\n26c78a756174de2375d1933800eee2e248193c60\nfatal: no upstream configured for branch 'feature/recover-provider-usa-aew'\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 1,
+        "live_count": 0
+      }
+    },
+    {
+      "id": "7035f7a9-e860-4c4f-9e6c-5dc1cb13101c",
+      "title": "QA exact profile assignment persistence PR #3688",
+      "physical_lane": "Blocked",
+      "semantic_state": "REVIEW",
+      "task_updated_at": "2026-09-15T08:27:36.600820074Z",
+      "audit_checked_at": "2026-09-16T02:57:51Z",
+      "pending_move_projection": null,
+      "linked_pr_projection": [
+        {
+          "number": 3688,
+          "state": "open",
+          "title": "feat(tasks): persist exact profile assignments",
+          "url": "https://github.com/kdlbs/kandev/pull/3688"
+        }
+      ],
+      "repository_readbacks": [
+        {
+          "path": "/data/tasks/adopt-exact-profile_aymu1kux/kandev-source",
+          "readback": "0\nfeature/adopt-exact-profile-9cd\n57caf218de54d82e54f27556224640e2f19d5659\norigin/feature/adopt-exact-profile-9cd\n"
+        }
+      ],
+      "fresh_verdict": "unchanged_or_not_falsified",
+      "fresh_evidence": "No newer task conversation than prior ledger check; no live session; live dependency/PR projection does not itself satisfy the recorded deterministic trigger. Exact provider check/thread verification is unavailable because both GitHub GraphQL and exact REST PR endpoints returned rate-limit errors.",
+      "required_action": "Refresh last_checked only; preserve existing R4 next action/trigger/fallback; apply no-duplicate-contact rule.",
+      "sessions": {
+        "count": 1,
+        "live_count": 0
+      }
+    }
+  ],
+  "nonblocked_audit": {
+    "board_observed_at": "2026-09-16T02:53:01Z",
+    "coordinator_primary": "ca237c01-94de-49e7-9e62-14510a3e167f",
+    "counts": {
+      "Backlogs": 1,
+      "CI Fixup": 4,
+      "Done": 17,
+      "Human-QA": 3,
+      "PR": 1,
+      "Review": 1,
+      "ToDeploy": 2,
+      "Work": 1,
+      "total_non_blocked": 30
+    },
+    "cycle_requested_at": "2026-09-16T02:51:55Z",
+    "exit_notes": [
+      "No mutations or contacts performed.",
+      "ToDeploy respected inventory+tags boundary."
+    ],
+    "generated_at": "2026-09-16T02:59:00Z",
+    "provider_limit": "Authenticated REST/GraphQL quota exhausted at 02:53:44Z (HTTP403). Anonymous REST succeeded; actionable review-thread state is not fresh and is marked unknown unless durable evidence is cited.",
+    "provider_observed_at": "2026-09-16T02:54:14Z",
+    "rows": [
+      {
+        "evidence": "Primary/current Sol session verified; permanent task must never move or complete.",
+        "health": "healthy",
+        "lane": "Backlogs",
+        "last_action": "Running this complete board cycle",
+        "next_action": "Finish decisions/actions and persist ledger/cycle log",
+        "owner": "Coordinator primary ca237c01-94de-49e7-9e62-14510a3e167f",
+        "state": "IN_PROGRESS",
+        "tag": "",
+        "task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+        "title": "Coordinator: long-lived board orchestration",
+        "trigger": "Current cycle completion"
+      },
+      {
+        "evidence": "No sessions; task pending null. Relations: ca015838 state REVIEW/PR3377 and b8fc206c state SCHEDULING. Duplicate creation unnecessary.",
+        "health": "blocked",
+        "lane": "Work",
+        "last_action": "Generic architecture and minimum tests are fully specified; no session has started",
+        "next_action": "After ca015838 and b8fc206c dependencies deliver, start exactly one configured Work owner",
+        "owner": "Coordinator after dependencies",
+        "state": "CREATED",
+        "tag": "",
+        "task_id": "b94f9c54-b2fc-41f7-9c01-09ff2ef9d9c0",
+        "title": "Add deterministic no-model automation actions",
+        "trigger": "Both dependency contracts complete and available"
+      },
+      {
+        "evidence": "PR2841 open draft DIRTY vs base 6c5ab159; 77 checks:52 success/22 skip/3 failure/0 pending. Root E2E Shard11 run34975871908 job104407763442; aggregates104423084967/104423764169. No live session. Fresh GraphQL threads unavailable due quota.",
+        "health": "failed",
+        "lane": "CI Fixup",
+        "last_action": "QA-authored exact head ec128a2 reached CI Fixup",
+        "next_action": "Route to Work for additive current-main integration and exact Shard11 failure classification; new head needs CI, independent Review, distinct QA",
+        "owner": "Coordinator / CI owner 0dbadd36 WFI",
+        "state": "REVIEW",
+        "tag": "",
+        "task_id": "9349b6e5-a167-4d88-af14-cb355015e3dd",
+        "title": "Allow coordinator relation inspection",
+        "trigger": "Fresh conflict repair owner can start"
+      },
+      {
+        "evidence": "PR3319 open non-draft MERGEABLE/UNSTABLE; 77 checks:58 success/18 skip/1 failure/0 pending; docs run34969999730 job104384643523. Prior request5677271646 was stale dc9 head. No live owner.",
+        "health": "failed",
+        "lane": "CI Fixup",
+        "last_action": "Conflict repaired and published at e9bf3f59",
+        "next_action": "Resume existing CI owner once to classify docs evaluator; provider-only without current-head request -> one canonical request then Blocked; branch-owned -> fix",
+        "owner": "Coordinator / CI primary 03ac WFI",
+        "state": "REVIEW",
+        "tag": "",
+        "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+        "title": "Fix PR-watch amplification, task-status, and unbounded",
+        "trigger": "Exact job classification"
+      },
+      {
+        "evidence": "PR3686 open draft MERGEABLE/UNSTABLE exact e93f1f2; 77 checks:53 success/21 skip/3 failure/0 pending. Leaf Shard4 run34971684802 job104397221496; aggregates104412470914/104413275519. No live owner; fresh threads unavailable.",
+        "health": "failed",
+        "lane": "CI Fixup",
+        "last_action": "Branch-owned prior E2E fixed and pushed as e93f1f2",
+        "next_action": "Resume CI primary once to classify current Shard4 failure; branch-owned -> Work, provider/flaky -> exact evidence/request/Blocked",
+        "owner": "Coordinator / CI primary e7016e25 WFI",
+        "state": "REVIEW",
+        "tag": "",
+        "task_id": "1d3d7383-8dba-41f8-a794-7e3d51809143",
+        "title": "Docker address-pool cleanup / standalone execution",
+        "trigger": "Exact run/job classification"
+      },
+      {
+        "evidence": "PR3690 open draft exact d0fc9a0; 85 checks:49 success/26 skip/10 failure/0 pending incl frontend/backend/docs/Postgres/static/Windows/harness. No live session. Preserve old b385a560 and screenshot SHA c46947d... plus refined clone.",
+        "health": "anomalous",
+        "lane": "CI Fixup",
+        "last_action": "Draft follow-up PR3690 d0fc9a0 created; lifecycle remained historically pending",
+        "next_action": "Settle lifecycle/control plane, then move to Work/resume 07057749 once with exact failures/threads and preserve old evidence",
+        "owner": "Coordinator / saved Work primary 07057749 after lifecycle repair",
+        "state": "FAILED",
+        "tag": "",
+        "task_id": "153cdbbe-beac-47b8-bc06-8dafdcc8ed80",
+        "title": "Fix/improve task panel tab close",
+        "trigger": "Lifecycle settled plus capacity/startup verified"
+      },
+      {
+        "evidence": "PR3048 open draft DIRTY exact56531c6e; 77 checks:53 success/21 skip/3 failure/0 pending. Leaf Shard8 run34905778591 job104187654238; aggregates104201300354/104201768323. Zero live sessions; tag falsely says owner RUNNING.",
+        "health": "stalled",
+        "lane": "Review",
+        "last_action": "Former anomalous session 5e4d4c27 is now WFI, not running",
+        "next_action": "Move Review to Work for additive main integration and exact Shard8 failure repair; then CI/Review/QA",
+        "owner": "Coordinator",
+        "state": "REVIEW",
+        "tag": "",
+        "task_id": "fa3fba49-2018-460b-a600-adae23b24cc8",
+        "title": "Review lane task with stale owner",
+        "trigger": "One configured Work owner available"
+      },
+      {
+        "evidence": "PR3684 OPEN non-draft CLEAN exact c5837cb5; 63 checks:27 success/36 skip/0 bad/pending. Durable 0-thread evidence and canonical comment5678039243. No live session.",
+        "health": "waiting",
+        "lane": "PR",
+        "last_action": "Exact-head Review/QA and readiness completed; canonical notification posted",
+        "next_action": "Recheck only on upstream state/head/check/thread change; do not duplicate contact",
+        "owner": "Upstream maintainer",
+        "state": "FAILED",
+        "tag": "",
+        "task_id": "b7cb6fe6-3766-4b81-a7ee-f5e9c16627cf",
+        "title": "Register Redmine plugin marketplace",
+        "trigger": "PR merge/review/provider change"
+      },
+      {
+        "evidence": "PR3143 OPEN draft DIRTY exact a2ea7aba; 77 checks:55 success/22 skip/0 bad/pending. Existing Human acceptance requirement remains, but clean/readiness evidence is stale after base movement.",
+        "health": "anomalous",
+        "lane": "Human-QA",
+        "last_action": "Exact-head gates passed; waiting TEST_RUNTIME=NONE/security acceptance",
+        "next_action": "Because PR is now DIRTY, route to Work for additive conflict repair, fresh CI/Review/QA, then return to Human-QA",
+        "owner": "Human acceptance then Coordinator",
+        "state": "REVIEW",
+        "tag": "",
+        "task_id": "27b493a3-65b6-4d4a-8b68-73f2ffcf9621",
+        "title": "Restore task-bound MCP snapshot",
+        "trigger": "Configured Work owner/capacity"
+      },
+      {
+        "evidence": "PR3165 OPEN non-draft DIRTY exact beaf11fb; 87 checks:59 success/28 skip/0 bad/pending. Existing notification5668673099 was on older cd80029 head. No live session.",
+        "health": "anomalous",
+        "lane": "Human-QA",
+        "last_action": "Current head passed QA/CI and awaited acceptance",
+        "next_action": "Route to Work for additive current-main conflict repair, fresh gates, then Human-QA; preserve maintainer context",
+        "owner": "Human/maintainer then Coordinator",
+        "state": "REVIEW",
+        "tag": "",
+        "task_id": "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+        "title": "Scoped CI rerun capability",
+        "trigger": "Configured Work owner/capacity"
+      },
+      {
+        "evidence": "PR3473 MERGED 2026-09-15T22:11:44Z accepted head acc12b62; 95 checks:61 success/34 skip. Local clean at561d2a8, no upstream configured, live fork acc12b62. Tag/Human-QA handoff stale.",
+        "health": "anomalous",
+        "lane": "Human-QA",
+        "last_action": "Upstream merged PR3473",
+        "next_action": "Write terminal integrity receipt proving accepted remote includes task and no unique local work; move Human-QA to Done and reconcile tag",
+        "owner": "Coordinator terminal cleanup",
+        "state": "REVIEW",
+        "tag": "",
+        "task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+        "title": "Fix PR lane profile executing wrong model",
+        "trigger": "Terminal receipt verified"
+      },
+      {
+        "evidence": "Boundary observed only: yattdev/kandev-service PR1 merged; agent tag says you deploy. No task-specific plan/session/provider reads performed.",
+        "health": "waiting",
+        "lane": "ToDeploy",
+        "last_action": "Merged provider artifact awaits deployment",
+        "next_action": "Human deploy merged source-broker runtime registration, verify provenance, then advance",
+        "owner": "Human deployer",
+        "state": "REVIEW",
+        "tag": "",
+        "task_id": "8f8a784d-f31d-4a2b-918d-726010315ca9",
+        "title": "Deploy source-broker runtime registration",
+        "trigger": "Human deployment receipt"
+      },
+      {
+        "evidence": "Boundary observed only: yattdev/codex-acp PR1 merged; agent tag says you deploy. No task-specific reads performed.",
+        "health": "waiting",
+        "lane": "ToDeploy",
+        "last_action": "Maintained fork PR merged; deployment pending",
+        "next_action": "Human complete release/integration deployment and report",
+        "owner": "Human deployer",
+        "state": "REVIEW",
+        "tag": "",
+        "task_id": "01432319-aa8b-4c7d-9841-addcc6ab8e76",
+        "title": "Publish maintained guarded-TTY runtime",
+        "trigger": "Published/deployed runtime advertises guarded_tty_exec_kandev"
+      },
+      {
+        "evidence": "Original PR2724 closed; delivery superseded by live b7 and merged plugin PR1; never restart.",
+        "health": "healthy",
+        "lane": "Done",
+        "last_action": "Terminal evidence retained",
+        "next_action": "Keep Done; normal archive/cleanup only, never restart",
+        "owner": "Closed ledger/archive timer",
+        "state": "COMPLETED",
+        "tag": "",
+        "task_id": "7ca86e53-249b-4b31-a866-e807afd9a962",
+        "title": "Legacy Redmine registration carrier",
+        "trigger": "New contrary evidence or separately authorized recovery"
+      },
+      {
+        "evidence": "Plugin PR4/7 and host PR2609 merged; plan notes preserved old QA runtime/data kandev-qa-9683 as cleanup limitation.",
+        "health": "healthy",
+        "lane": "Done",
+        "last_action": "Terminal evidence retained",
+        "next_action": "Keep Done; normal archive/cleanup only, never restart",
+        "owner": "Closed ledger/archive timer",
+        "state": "COMPLETED",
+        "tag": "",
+        "task_id": "ae8fc022-5562-4f58-95dc-3dab9d4c179f",
+        "title": "Plugin delivery / QA residue",
+        "trigger": "New contrary evidence or separately authorized recovery"
+      },
+      {
+        "evidence": "PR3505 merged/contained, clean, no runtime; remote-only postmerge history preserved.",
+        "health": "healthy",
+        "lane": "Done",
+        "last_action": "Terminal evidence retained",
+        "next_action": "Keep Done; normal archive/cleanup only, never restart",
+        "owner": "Closed ledger/archive timer",
+        "state": "REVIEW",
+        "tag": "",
+        "task_id": "f2078d51-4dd4-435f-812a-f632328ccfb2",
+        "title": "Merged PR3505 task",
+        "trigger": "New contrary evidence or separately authorized recovery"
+      },
+      {
+        "evidence": "PRs merged, clean preserved checkout, no runtime.",
+        "health": "healthy",
+        "lane": "Done",
+        "last_action": "Terminal evidence retained",
+        "next_action": "Keep Done; normal archive/cleanup only, never restart",
+        "owner": "Closed ledger/archive timer",
+        "state": "REVIEW",
+        "tag": "",
+        "task_id": "957da1cb-063b-4c2e-b406-6d04ad158fb9",
+        "title": "Merged PR2843/3501 task",
+        "trigger": "New contrary evidence or separately authorized recovery"
+      },
+      {
+        "evidence": "PR3242 closed; PR3496 intentionally retained as draft reference; child task owns disposition.",
+        "health": "healthy",
+        "lane": "Done",
+        "last_action": "Terminal evidence retained",
+        "next_action": "Keep Done; normal archive/cleanup only, never restart",
+        "owner": "Closed ledger/archive timer",
+        "state": "REVIEW",
+        "tag": "",
+        "task_id": "b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+        "title": "Umbrella for PR3242/3496",
+        "trigger": "New contrary evidence or separately authorized recovery"
+      },
+      {
+        "evidence": "PR3506 accepted bd92d72 including2ba/bd92; current main contains unique delta; local clean behind remote; no recovery/runtime.",
+        "health": "healthy",
+        "lane": "Done",
+        "last_action": "Terminal evidence retained",
+        "next_action": "Keep Done; normal archive/cleanup only, never restart",
+        "owner": "Closed ledger/archive timer",
+        "state": "REVIEW",
+        "tag": "",
+        "task_id": "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+        "title": "Merged PR3506 task",
+        "trigger": "New contrary evidence or separately authorized recovery"
+      },
+      {
+        "evidence": "Plugin PR17 merged; six QA artifacts preserved; no task runtime; shared installed process intentionally untouched.",
+        "health": "healthy",
+        "lane": "Done",
+        "last_action": "Terminal evidence retained",
+        "next_action": "Keep Done; normal archive/cleanup only, never restart",
+        "owner": "Closed ledger/archive timer",
+        "state": "REVIEW",
+        "tag": "",
+        "task_id": "856898aa-d06a-43f7-9a87-f873665f19da",
+        "title": "Plugin PR17 delivery",
+        "trigger": "New contrary evidence or separately authorized recovery"
+      },
+      {
+        "evidence": "PR3137 merged; clean; no unique resource. Only obsolete metadata reconciliation limitation remains.",
+        "health": "healthy",
+        "lane": "Done",
+        "last_action": "Terminal evidence retained",
+        "next_action": "Keep Done; normal archive/cleanup only, never restart",
+        "owner": "Closed ledger/archive timer",
+        "state": "REVIEW",
+        "tag": "",
+        "task_id": "1f8d4dc8-83ac-44d6-9fbd-b34bd46e044e",
+        "title": "Merged PR3137 task",
+        "trigger": "New contrary evidence or separately authorized recovery"
+      },
+      {
+        "evidence": "E2E passed; runtime disposed; no task diff/PR. Historical stale move text has no current pending projection.",
+        "health": "healthy",
+        "lane": "Done",
+        "last_action": "Terminal evidence retained",
+        "next_action": "Keep Done; normal archive/cleanup only, never restart",
+        "owner": "Closed ledger/archive timer",
+        "state": "REVIEW",
+        "tag": "",
+        "task_id": "ecd8b857-42a6-417f-a7e4-084f50fc6956",
+        "title": "Redmine isolated E2E",
+        "trigger": "New contrary evidence or separately authorized recovery"
+      },
+      {
+        "evidence": "Plugin PR3 merged; diagnostic patch/QA preserved; no action.",
+        "health": "healthy",
+        "lane": "Done",
+        "last_action": "Terminal evidence retained",
+        "next_action": "Keep Done; normal archive/cleanup only, never restart",
+        "owner": "Closed ledger/archive timer",
+        "state": "COMPLETED",
+        "tag": "",
+        "task_id": "7a0454aa-c089-4365-8966-ad99775a46f8",
+        "title": "Plugin PR3 delivery",
+        "trigger": "New contrary evidence or separately authorized recovery"
+      },
+      {
+        "evidence": "PR4 merged 2026-09-14T05:23:43Z; old dependency narrative obsolete; clean head980dead/no runtime; never restart.",
+        "health": "healthy",
+        "lane": "Done",
+        "last_action": "Terminal evidence retained",
+        "next_action": "Keep Done; normal archive/cleanup only, never restart",
+        "owner": "Closed ledger/archive timer",
+        "state": "COMPLETED",
+        "tag": "",
+        "task_id": "3f721d52-452b-4bc6-a61e-68d875baafbd",
+        "title": "Plugin PR4 task",
+        "trigger": "New contrary evidence or separately authorized recovery"
+      },
+      {
+        "evidence": "PR3498 merged/contained; clean local behind accepted remote; obsolete dependency metadata cannot be normalized.",
+        "health": "healthy",
+        "lane": "Done",
+        "last_action": "Terminal evidence retained",
+        "next_action": "Keep Done; normal archive/cleanup only, never restart",
+        "owner": "Closed ledger/archive timer",
+        "state": "REVIEW",
+        "tag": "",
+        "task_id": "09325a7b-afb5-4f54-b2a7-ceae217a7bee",
+        "title": "Merged PR3498 task",
+        "trigger": "New contrary evidence or separately authorized recovery"
+      },
+      {
+        "evidence": "Clean/no unpublished work; PR3496 retained draft by design; PR3242 closed; future design is outside task.",
+        "health": "healthy",
+        "lane": "Done",
+        "last_action": "Terminal evidence retained",
+        "next_action": "Keep Done; normal archive/cleanup only, never restart",
+        "owner": "Closed ledger/archive timer",
+        "state": "REVIEW",
+        "tag": "",
+        "task_id": "75d4c8af-dc90-4e68-bc74-3d86e99e52cb",
+        "title": "PR3496 reference owner",
+        "trigger": "New contrary evidence or separately authorized recovery"
+      },
+      {
+        "evidence": "Release assets/checksums verified; PR4/5 merged; clean/no runtime.",
+        "health": "healthy",
+        "lane": "Done",
+        "last_action": "Terminal evidence retained",
+        "next_action": "Keep Done; normal archive/cleanup only, never restart",
+        "owner": "Closed ledger/archive timer",
+        "state": "REVIEW",
+        "tag": "",
+        "task_id": "4640fd95-b7f9-4339-8836-cf03679eaf41",
+        "title": "Redmine v0.3.1 release task",
+        "trigger": "New contrary evidence or separately authorized recovery"
+      },
+      {
+        "evidence": "Merged/released/QA evidenced; three clean worktrees; no runtime; archive-ready.",
+        "health": "healthy",
+        "lane": "Done",
+        "last_action": "Terminal evidence retained",
+        "next_action": "Keep Done; normal archive/cleanup only, never restart",
+        "owner": "Closed ledger/archive timer",
+        "state": "COMPLETED",
+        "tag": "",
+        "task_id": "bdc56ccb-b1ea-4f22-a1e0-e81eac5fa06e",
+        "title": "Redmine v0.3.2 release task",
+        "trigger": "New contrary evidence or separately authorized recovery"
+      },
+      {
+        "evidence": "Plan-only; prototype preserved outside checkout with checksum; repository clean at cfd6; terminal receipt supersedes older routing text.",
+        "health": "healthy",
+        "lane": "Done",
+        "last_action": "Terminal evidence retained",
+        "next_action": "Keep Done; normal archive/cleanup only, never restart",
+        "owner": "Closed ledger/archive timer",
+        "state": "COMPLETED",
+        "tag": "",
+        "task_id": "92535de6-7507-473c-b292-e69516d2434c",
+        "title": "Executor sandbox plan task",
+        "trigger": "New contrary evidence or separately authorized recovery"
+      },
+      {
+        "evidence": "Failed before inference; b7 recovery owns delivery; no workspace/source/runtime; never restart.",
+        "health": "healthy",
+        "lane": "Done",
+        "last_action": "Terminal evidence retained",
+        "next_action": "Keep Done; normal archive/cleanup only, never restart",
+        "owner": "Closed ledger/archive timer",
+        "state": "COMPLETED",
+        "tag": "",
+        "task_id": "3d456f24-73e7-4c0b-8821-ee49a3fa0f31",
+        "title": "Superseded Redmine carrier",
+        "trigger": "New contrary evidence or separately authorized recovery"
+      }
+    ],
+    "workflow_id": "90f322ed-2159-424d-96e7-c2ad05668b8e"
+  },
+  "control": {
+    "schema": "coordinator-control-evidence-v1",
+    "observed_at": "2026-09-16T02:58:30Z",
+    "identity": {
+      "task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+      "workspace_id": "2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd",
+      "workflow_id": "90f322ed-2159-424d-96e7-c2ad05668b8e",
+      "session_id": "ca237c01-94de-49e7-9e62-14510a3e167f",
+      "profile_id": "ccd6113e-c1bd-4029-9d7d-f36f72272fa5"
+    },
+    "queue_census": {
+      "callable": true,
+      "attempts": 1,
+      "result": "error",
+      "error_code": "UNKNOWN_ACTION",
+      "error": "Unknown action: mcp.get_message_queue_census",
+      "read_entries": 0,
+      "disposed": 0,
+      "inference": "The client advertises the callable, but this backend does not implement its action. No queue state was inferred."
+    },
+    "native_capability_discovery": {
+      "pending_move": {
+        "callable_in_current_tool_catalog": false,
+        "evidence": "No Kandev callable name or description in ALL_TOOLS matched pending-move inspection/cancellation. This is a client-surface result, not proof the backend has no internal capability."
+      },
+      "rotation": {
+        "callable_in_current_tool_catalog": false,
+        "evidence": "No Kandev callable exposes primary/current promotion, routine-target update/readback, generation fencing, queue-preserving handoff, usage counter, or exact-session retirement. list_task_sessions remains identity readback only."
+      },
+      "support": {
+        "callable_in_current_tool_catalog": false,
+        "evidence": "No Kandev Support request/status callable is exposed in the current tool catalog; diagnostic bundle is exposed but is not a Support-request surface."
+      }
+    },
+    "provider_quota": {
+      "surface": "gh api rate_limit",
+      "authenticated": true,
+      "rest": {
+        "limit": 5000,
+        "remaining": 5000,
+        "used": 0
+      },
+      "graphql": {
+        "limit": 5000,
+        "remaining": 5000,
+        "used": 0
+      },
+      "reset_at": "2026-09-16T03:57:47Z"
+    },
+    "workflow_profiles": {
+      "Review": {
+        "step_id": "6c2e5bf5-57db-4682-8daa-d110f22b60da",
+        "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+        "on_enter": [
+          "reset_agent_context",
+          "auto_start_agent"
+        ],
+        "on_turn_complete": [
+          "move_to_next"
+        ],
+        "start_policy": "new",
+        "end_policy": "complete",
+        "auto_advance_requires_signal": true
+      },
+      "QA": {
+        "step_id": "485f61e8-33e7-4cc6-a170-6d1411cc5ebb",
+        "profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+        "on_enter": [
+          "auto_start_agent"
+        ],
+        "on_turn_complete": [
+          "move_to_next"
+        ],
+        "start_policy": "new",
+        "end_policy": "complete",
+        "auto_advance_requires_signal": true
+      },
+      "CI Fixup": {
+        "step_id": "347f3904-5972-44bf-92e8-a9a9a5efb96d",
+        "profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+        "on_enter": [
+          "auto_start_agent"
+        ],
+        "on_turn_complete": [
+          "move_to_next"
+        ],
+        "start_policy": "reuse",
+        "end_policy": "complete",
+        "auto_advance_requires_signal": true
+      }
+    },
+    "continuity_checkpoint": {
+      "current_text_status": "Obsolete pending pointer still says the live plan may have 62 tasks and requires the 0510 replacement.",
+      "recovery_proof": {
+        "plan_path": ".cycle-plan-20260916T0251-live.md",
+        "bytes": 129251,
+        "sha256": "034e67c4494efc2c3e314c81c84a369719dc408e8117fd39cb2b4191742484e4",
+        "live_open_ledger": "65/65/65",
+        "blocked_r4": "35/35"
+      },
+      "proposed_exact_replacement": "## Resolved live-plan recovery checkpoint — 2026-09-16\\n\\nThe 2026-09-15T05:10 control-transport stall is superseded. Authoritative live-plan readback at 2026-09-16T02:52:39Z returned 129,251 UTF-8 bytes with SHA-256 `034e67c4494efc2c3e314c81c84a369719dc408e8117fd39cb2b4191742484e4`, exact live/open/ledger parity `65/65/65`, and physical Blocked/R4 parity `35/35`. The immutable 05:10 recovery artifacts remain historical evidence and are no longer bootstrap dependencies. Read the current live plan under the normal bootstrap contract; no pending 05:10 replacement remains.\\n",
+      "edit_performed": false
+    },
+    "to_deploy_historical_containment": [
+      {
+        "task_id": "01432319-aa8b-4c7d-9841-addcc6ab8e76",
+        "source": "docs/cycle-archives/2026-09-08T1423-cycle-receipt.json delivery_claims[11]",
+        "claim": "to_deploy_ready",
+        "task_head": "3352b02c95627707ee1a71dc705cc19e80451f6d",
+        "remote_ref": "https://github.com/yattdev/codex-acp/pull/1#3352b02c95627707ee1a71dc705cc19e80451f6d",
+        "canonical_delivery": "https://github.com/yattdev/codex-acp/pull/1",
+        "provider_state": "merged",
+        "remote_reachable": true,
+        "contained": true,
+        "observed_at": "2026-09-07T18:17:25Z",
+        "limitation": "Cached immutable receipt only; no fresh ToDeploy task/provider content read. Publication/deployment remains Human-owned and unproved."
+      },
+      {
+        "task_id": "8f8a784d-92ea-421f-a368-154ef915fe4e",
+        "source": "docs/cycle-archives/2026-09-08T1423-cycle-receipt.json delivery_claims[10]",
+        "claim": "to_deploy_ready",
+        "task_head": "6e3595efb1a6053bb3543bf41fd7fd7eaa22ceb4",
+        "remote_ref": "https://github.com/yattdev/kandev-service/pull/1#6e3595efb1a6053bb3543bf41fd7fd7eaa22ceb4",
+        "canonical_delivery": "https://github.com/yattdev/kandev-service/pull/1",
+        "provider_state": "merged",
+        "remote_reachable": true,
+        "contained": true,
+        "observed_at": "2026-09-07T18:17:25Z",
+        "limitation": "Cached immutable receipt only; no fresh ToDeploy task/provider content read. Deployment remains Human-owned and unproved."
+      }
+    ]
+  },
+  "known_corrections": [
+    "76b4 Coordinator R4 already used94d3; stale654 belonged to child history, not live Coordinator record.",
+    "FAILED wording in initial helper narrative was corrected to actual semantic REVIEW for934,1d,b007.",
+    "e0dd later independent transition has unknown actor; it was not a primary action."
+  ]
+}
