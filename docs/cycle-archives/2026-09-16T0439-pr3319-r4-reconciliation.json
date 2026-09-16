@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "status",
+  "cycle_id": "pr3319-r4-reconciliation-20260916T0439Z",
+  "observed_at": "2026-09-16T04:39:31Z",
+  "scope_task_ids": [
+    "b007bb76-841e-4243-a251-c4f87a1ed1e4"
+  ],
+  "open_ledger_task_ids": [
+    "b007bb76-841e-4243-a251-c4f87a1ed1e4"
+  ],
+  "ledger_entries": [
+    {
+      "fallback": "Preserve e9bf3f59/local 52/52 evidence; no duplicate request or source change.",
+      "health": "blocked",
+      "lane": "Blocked",
+      "last_action": "Late exact-head R4 receipt matches already-persisted request5691426490 and Blocked placement. Seven sessions, zero active, primary59ac7489 parked; correct tag retained. No duplicate provider contact, wake, or move.",
+      "last_checked": "2026-09-16T04:40:15Z",
+      "next_action": "First normal cycle at/after2026-09-16T04:59:36Z retry one current PR/head/docs-run census; legitimate new attempt/head/status change routes fresh CI classification, otherwise retain canonical request.",
+      "owner": "GitHub Actions maintainer via canonical request 5691426490",
+      "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+      "title": "Fix PR-watch amplification, task-status, and unbounded",
+      "trigger": "Buffered authenticated core reset04:59:36Z or legitimate provider/head/status change.",
+      "last_checked_cycle_id": "pr3319-r4-reconciliation-20260916T0439Z",
+      "evidence_generation": "2026-09-16T03:18:04.107929438Z",
+      "anomalous": false,
+      "mutated": false,
+      "transitioned": false,
+      "delivery_status": "none"
+    }
+  ],
+  "blocked_task_ids": [
+    "b007bb76-841e-4243-a251-c4f87a1ed1e4"
+  ],
+  "blocked_records": [
+    {
+      "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+      "previous_step": "CI Fixup",
+      "blocker_proof": "Existing R4 and canonical request match inbound receipt; live card remains Blocked. This turn does not re-certify latest provider failure.",
+      "falsification_query": "Saved R4, complete sessions, tag, local and origin refs; provider clearance query deferred under verified core quota reset.",
+      "falsification_result": "Receipt already consumed previously; no new clearance evidence. Zero live sessions; clean local/origin e9bf3f59. Latest provider state unknown until reset-aware refresh.",
+      "blocker_owner": "GitHub Actions maintainer via https://github.com/kdlbs/kandev/pull/3319#issuecomment-5691426490",
+      "preservation_receipt": "Clean exact e9bf3f59 branch/worktree and local 52/52 validator evidence preserved; no source edit, rerun, or duplicate contact.",
+      "removal_action": "Preserve canonical request; Coordinator retries exact provider census on first routine after buffered reset.",
+      "expected_evidence": "Fresh authenticated exact-head attempt/status census",
+      "trigger": "Buffered authenticated core reset04:59:36Z or legitimate provider/head/status change.",
+      "attempt_count": 0,
+      "fallback": "Preserve head/evidence and canonical request; no duplicate contact or retry-only change.",
+      "last_checked_cycle_id": "pr3319-r4-reconciliation-20260916T0439Z"
+    }
+  ],
+  "anomalies": [],
+  "delivery_claims": [],
+  "transitions": [],
+  "mutations": [],
+  "continuity": {
+    "plan_bytes": 134770,
+    "soft_limit_bytes": 200000,
+    "hard_limit_bytes": 240000,
+    "compaction_performed": false,
+    "write_readback_verified": true,
+    "current_snapshot_first": true,
+    "open_record_sets_preserved": true
+  },
+  "report": {
+    "mentioned_task_ids": [
+      "b007bb76-841e-4243-a251-c4f87a1ed1e4"
+    ],
+    "barrier_at": "2026-09-16T04:40:15Z",
+    "fresh": true,
+    "task_barriers": [
+      {
+        "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+        "lane_session_observed_at": "2026-09-16T04:40:15Z",
+        "provider_required": false
+      }
+    ]
+  },
+  "gate_results": {
+    "G1": "pass",
+    "G2": "pass",
+    "G3": "pass",
+    "G4": "pass",
+    "G5": "pass",
+    "G6": "pass",
+    "G7": "pass",
+    "G8": "pass",
+    "G9": "pass",
+    "G10": "pass"
+  },
+  "scope_limit": "Reconcile late inbound receipt only. No current CI/PR readiness or provider-clearance claim; no provider mutation or duplicate contact. Next provider verification explicitly deferred to active quota reset.",
+  "queue": "Census UNKNOWN_ACTION; no entries disposed.",
+  "parallelism": "One already-accounted-for report; no independent helper slice."
+}
