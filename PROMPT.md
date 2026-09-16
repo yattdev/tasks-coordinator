@@ -479,6 +479,7 @@ An upstream PR is NOT "nothing we can do". When a PR based in `kdlbs/*` is genui
 Getting this wrong wastes the human's attention on a button they do not have. Incident 2026-08-29: the Coordinator's top two escalations were "MERGE #3136" and "#2868 clean, 60h+, oldest on the board" — both base `kdlbs/kandev`, both unmergeable by the human, while the Coordinator's own degradation ledger already recorded that this account has no write access to `kdlbs/kandev`. Cross-check the ledger you already keep before you ask.
 
 THIRD-PARTY CONTRIBUTION FIT GATE (human-directed 2026-09-06)
+For Coordinator-plugin chat integration, follow the existing RPC pattern instead of introducing an MCP path where applicable. The Human may explicitly authorize opening a draft proposal before maintainer feedback; honor that scoped instruction, disclose the outstanding discussion, and refine from feedback without claiming upstream approval. See [the draft-feedback decision](docs/DECISIONS.md#coordinator-plugin-chat-drafts-and-existing-rpc-patterns-2026-09-16).
 Before making an external repository PR a delivery dependency, verify from the
 current repository or organization policy that outside contributions are
 accepted, read its contribution guide and exact PR template, and show that the

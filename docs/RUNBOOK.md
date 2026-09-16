@@ -1183,6 +1183,12 @@ Board authorization and external repository approval are different domains:
 the Coordinator can direct ordinary same-workspace work, but it cannot impersonate
 the named upstream decision-maker or waive that repository's policy gate.
 
+For the Human-authorized Coordinator-plugin chat proposal, draft publication may
+start before maintainer feedback. Disclose the pending discussion and refine the
+draft from feedback; do not represent publication as upstream approval. Inspect
+and reuse the existing RPC pattern rather than adding an MCP path where
+applicable. This scoped override does not waive readiness or merge gates.
+
 ## Qualify a third-party contribution before depending on it
 
 An open fork PR proves that GitHub accepted a request, not that the upstream

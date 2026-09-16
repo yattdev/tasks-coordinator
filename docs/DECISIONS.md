@@ -2354,3 +2354,17 @@ selection, review, QA, and monitoring. Bypassing it when the task-control servic
 is degraded produces unowned work and defeats the Human's requirement that the
 Coordinator coordinate rather than implement. The correct failure mode is to
 preserve the requested work and escalate the task-control blocker.
+
+## Coordinator-plugin chat drafts and existing RPC patterns (2026-09-16)
+
+The Human authorized beginning the managed-conversation chat draft PR while the
+linked architecture issue is still awaiting maintainer feedback, and requested
+following the existing RPC pattern rather than MCP where applicable. Inspect the
+actual transport, identity and authorization boundaries before choosing; this is
+not permission to introduce a parallel interface or weaken isolation. Keep the
+proposal draft, disclose pending discussion, and refine it when feedback arrives.
+
+This scoped instruction supersedes the publication hold for that chat proposal.
+It does not claim upstream architecture approval or waive independent Review,
+distinct QA, visual evidence, or merge/readiness gates. The Human also reaffirmed
+Coordinator authority to merge the policy integration when those gates pass.
