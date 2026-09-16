@@ -4,30 +4,6 @@ The Coordinator is a long-lived role, not a particular model process or chat
 context. Sessions may stop, be compacted, switch models, or hit provider limits.
 Continuity therefore uses durable, model-neutral storage.
 
-## Pending live-plan recovery checkpoint — 2026-09-15
-
-The full board cycle reached a Kandev control-transport stall before its live
-plan replacement. Until authoritative plan readback proves synchronization,
-bootstrap must also read the committed
-[cycle recovery receipt](cycle-archives/2026-09-15T0510-control-plane-recovery.md)
-and [replacement ledger](cycle-archives/2026-09-15T0510-replacement-plan.md).
-They preserve the 63-task current inventory and the new Provider Usage recovery
-owner. The live plan may still contain the older 62-task inventory.
-
-Read the latest live plan before merging this checkpoint; preserve concurrent
-edits, reconcile the allocator message that timed out, and submit the compacted
-replacement exactly once with byte/hash readback. No live replacement write was
-submitted at this checkpoint. Remove this pending pointer only after successful
-readback and persistence of the resulting cycle receipt.
-
-Human preference `2026-09-15b` is already durable in `PROMPT.md`: SOL primary
-sessions must use the same proactive parallel board-monitoring and independent
-queue-triage pattern as ASTRA, with explicitly selected SOL read-only helpers.
-Commit `a790f65` is synchronized to shared main. If live task-description or
-plan synchronization is still pending, mirror this exact `PROMPT.md` and carry
-the preference into the compacted live ledger after authoritative readback;
-never issue a duplicate write while an earlier control call is unresolved.
-
 ## Storage layers
 
 1. **Binding behavior — `PROMPT.md`.** Human operating rules and mandatory

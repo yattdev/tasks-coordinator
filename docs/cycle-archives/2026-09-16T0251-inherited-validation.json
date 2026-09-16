@@ -1,0 +1,11 @@
+{
+  "observed_at": "2026-09-16T03:03:05.003707+00:00",
+  "command": [
+    "python3",
+    "docs/contracts/validate_cycle_receipt.py",
+    "docs/cycle-archives/2026-09-15T1308-complete-cycle.json"
+  ],
+  "exit_code": 1,
+  "stderr": "schema_version: must be '1.0.0'\nscope: must be 'cycle' or 'status'\nscope_task_ids: must be a list of non-empty task IDs\nopen_ledger_task_ids: must be a list of non-empty task IDs\nledger_entries: must be a list\nG9: continuity.plan_bytes must be a non-negative integer\nG9: continuity size limits must be 200000/240000\nG9: live plan is at or above hard stop\nG9: continuity.write_readback_verified must be true\nG9: continuity.current_snapshot_first must be true\nG9: continuity.open_record_sets_preserved must be true\nG10: report barrier is missing, invalid, or stale\ngate_results: must contain exactly G1 through G10\n",
+  "disposition": "Prior completion claim is not a validated receipt. Preserve it as historical evidence; current cycle must produce actual validation output."
+}

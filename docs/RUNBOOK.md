@@ -2377,6 +2377,11 @@ Start from `docs/contracts/fixtures/valid_cycle_receipt.json`; replace its
 single-task example with the exact current scope instead of inventing field
 names or omitting empty-but-required collections.
 
+Retain the actual validator command, exit status, and output alongside the
+receipt hash. Hand-written gate booleans are not a validation result. If an
+inherited receipt fails validation, preserve it as historical evidence and
+record the failure; validate a fresh receipt before claiming this cycle passed.
+
 The validator is deliberately fail-closed. `unknown`, omitted fields, unequal
 task-ID sets, incomplete Blocked records, optimistic delivery claims, an
 unverified mutation/transition, a stale Human-report barrier, or a plan at or

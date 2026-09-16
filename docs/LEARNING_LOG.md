@@ -1,5 +1,22 @@
 # Coordinator learning-cycle log
 
+## 2026-09-16 — Validate inherited completion claims
+
+An inherited cycle archive declared every gate passed but failed the repository
+validator because it did not use the required receipt schema. The existing
+validation rule now explicitly requires the command, exit status, and output
+beside the receipt hash. This sharpens an existing rule; it does not introduce
+a second validation procedure. Failed historical receipts remain preserved.
+
+Removed an obsolete continuity recovery pointer after authoritative live-plan
+readback proved that later replacements had already synchronized. The old
+recovery artifacts remain in history. Transient board state, provider limits,
+and task startup failures belong in the cycle ledger, not shared guidance.
+
+Files changed: `docs/RUNBOOK.md`, `docs/CONTINUITY.md`, and this log.
+`PROMPT.md` is unchanged, so no description mirror write is required. Publication
+and clean-tree verification are recorded by the commit containing this entry.
+
 ## WAKE:LEARNING — 2026-09-15T07:39:21Z to 2026-09-15T12:50:11Z
 
 No durable lessons this cycle. The window's task movements, stalled and
