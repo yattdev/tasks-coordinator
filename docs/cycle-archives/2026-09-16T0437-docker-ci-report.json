@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "status",
+  "cycle_id": "docker-ci-report-20260916T0437Z",
+  "observed_at": "2026-09-16T04:37:14Z",
+  "scope_task_ids": [
+    "1d3d7383-8dba-41f8-a794-7e3d51809143"
+  ],
+  "open_ledger_task_ids": [
+    "1d3d7383-8dba-41f8-a794-7e3d51809143"
+  ],
+  "ledger_entries": [
+    {
+      "fallback": "Preserve exact e93f1f2d and Docker pass evidence; no duplicate request or synthetic retry.",
+      "health": "blocked",
+      "lane": "Blocked",
+      "last_action": "Late CI classification matches existing 03:24 blocker and single maintainer request. Fresh run/job read confirms E2E Shard4/14 attempt1 failure at e93f1f2d; clean local head unchanged; parked owner zero live. PR/comment refresh HTTP403 core quota; latest PR state not re-certified.",
+      "last_checked": "2026-09-16T04:38:23Z",
+      "next_action": "First normal cycle at/after 2026-09-16T04:59:36Z: one exact PR/head/run census; changed legitimate attempt or status routes fresh classification, unchanged failure preserves canonical request without duplicate ping.",
+      "owner": "GitHub Actions maintainer via canonical request 5691560638",
+      "task_id": "1d3d7383-8dba-41f8-a794-7e3d51809143",
+      "title": "Repair Docker address-pool exhaustion",
+      "trigger": "Legitimate new run or state change for run 34971684802/job 104397221496.",
+      "last_checked_cycle_id": "docker-ci-report-20260916T0437Z",
+      "evidence_generation": "2026-09-16T03:24:30.975114416Z",
+      "anomalous": false,
+      "mutated": false,
+      "transitioned": false,
+      "delivery_status": "none"
+    }
+  ],
+  "blocked_task_ids": [
+    "1d3d7383-8dba-41f8-a794-7e3d51809143"
+  ],
+  "blocked_records": [
+    {
+      "task_id": "1d3d7383-8dba-41f8-a794-7e3d51809143",
+      "previous_step": "CI Fixup",
+      "blocker_proof": "PR #3686 exact e93f1f2d has unrelated E2E Shard 4 failure run 34971684802/job 104397221496; one canonical legitimate-rerun request was posted.",
+      "falsification_query": "Authenticated run34971684802 and job104397221496 read; PR/comment attempted bounded refresh",
+      "falsification_result": "Cited run/job still attempt1 completed failure. PR/comment HTTP403: no fresh overall PR claim; local e93f1f2d clean, no live sessions.",
+      "blocker_owner": "GitHub Actions maintainer via https://github.com/kdlbs/kandev/pull/3686#issuecomment-5691560638",
+      "preservation_receipt": "Clean exact e93f1f2d7064e8b794649aa64bd5ebcd9175b4b7; branch-owned root/fixture fix and Containers 1-6 pass evidence preserved; no source/provider mutation after request.",
+      "removal_action": "Existing single rerun request preserved; next bounded read after buffered quota reset",
+      "expected_evidence": "Legitimate new attempt/head/status change and fresh exact-head census",
+      "trigger": "First normal cycle at/after 2026-09-16T04:59:36Z: one exact PR/head/run census; changed legitimate attempt or status routes fresh classification, unchanged failure preserves canonical request without duplicate ping.",
+      "attempt_count": 1,
+      "fallback": "No duplicate request, synthetic retry, or guessed fixture patch.",
+      "last_checked_cycle_id": "docker-ci-report-20260916T0437Z"
+    }
+  ],
+  "anomalies": [],
+  "delivery_claims": [],
+  "transitions": [],
+  "mutations": [],
+  "continuity": {
+    "plan_bytes": 133621,
+    "soft_limit_bytes": 200000,
+    "hard_limit_bytes": 240000,
+    "compaction_performed": false,
+    "write_readback_verified": true,
+    "current_snapshot_first": true,
+    "open_record_sets_preserved": true
+  },
+  "report": {
+    "mentioned_task_ids": [
+      "1d3d7383-8dba-41f8-a794-7e3d51809143"
+    ],
+    "barrier_at": "2026-09-16T04:39:03Z",
+    "fresh": true,
+    "task_barriers": [
+      {
+        "task_id": "1d3d7383-8dba-41f8-a794-7e3d51809143",
+        "lane_session_observed_at": "2026-09-16T04:39:03Z",
+        "provider_required": true,
+        "provider_observed_at": "2026-09-16T04:37:50Z"
+      }
+    ]
+  },
+  "gate_results": {
+    "G1": "pass",
+    "G2": "pass",
+    "G3": "pass",
+    "G4": "pass",
+    "G5": "pass",
+    "G6": "pass",
+    "G7": "pass",
+    "G8": "pass",
+    "G9": "pass",
+    "G10": "pass"
+  },
+  "limitations": [
+    "Latest overall PR/head/comment not re-certified because specific authenticated REST endpoints are rate-limited. No readiness or cleared-blocker claim.",
+    "Queue census UNKNOWN_ACTION; no queue mutation.",
+    "Single late report already reflected in persisted blocker; no independent helper slice required."
+  ],
+  "provider": {
+    "repos/kdlbs/kandev/pulls/3686": {
+      "error": "gh: API rate limit exceeded for user ID 79718216. If you reach out to GitHub Support for help, please include the request ID 6EAA:13BBBB:9E757E:20FD039:6AAA1D0F and timestamp 2026-09-16 04:37:35 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (HTTP 403)\n"
+    },
+    "repos/kdlbs/kandev/actions/runs/34971684802": {
+      "state": null,
+      "draft": null,
+      "merged": null,
+      "head_sha": "e93f1f2d7064e8b794649aa64bd5ebcd9175b4b7",
+      "run_attempt": 1,
+      "name": "E2E Tests",
+      "status": "completed",
+      "conclusion": "failure",
+      "updated_at": "2026-09-15T14:02:06Z",
+      "html_url": "https://github.com/kdlbs/kandev/actions/runs/34971684802",
+      "body": null,
+      "head": null
+    },
+    "repos/kdlbs/kandev/actions/jobs/104397221496": {
+      "state": null,
+      "draft": null,
+      "merged": null,
+      "head_sha": "e93f1f2d7064e8b794649aa64bd5ebcd9175b4b7",
+      "run_attempt": 1,
+      "name": "E2E Shard 4/14",
+      "status": "completed",
+      "conclusion": "failure",
+      "updated_at": null,
+      "html_url": "https://github.com/kdlbs/kandev/actions/runs/34971684802/job/104397221496",
+      "body": null,
+      "head": null
+    },
+    "repos/kdlbs/kandev/issues/comments/5691560638": {
+      "error": "gh: API rate limit exceeded for user ID 79718216. If you reach out to GitHub Support for help, please include the request ID F4C9:1E738B:99AF27:200A6A9:6AAA1D0F and timestamp 2026-09-16 04:37:35 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) (HTTP 403)\n"
+    }
+  },
+  "reset": {
+    "resource": "core",
+    "remaining": 0,
+    "reset_at": "2026-09-16T04:58:36Z",
+    "retry_after": "2026-09-16T04:59:36Z"
+  }
+}
