@@ -1,0 +1,528 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "status",
+  "cycle_id": "status-redmine-coordinator-20260916T0419Z",
+  "observed_at": "2026-09-16T04:32:00Z",
+  "scope_task_ids": [
+    "b7cb6fe6-3766-4b81-a7ee-f5e9c16627cf",
+    "4640fd95-b7f9-4339-8836-cf03679eaf41",
+    "ecd8b857-42a6-417f-a7e4-084f50fc6956",
+    "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+    "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+    "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+    "1e46d457-6869-4750-bf97-4640a8df3b68"
+  ],
+  "open_ledger_task_ids": [
+    "b7cb6fe6-3766-4b81-a7ee-f5e9c16627cf",
+    "4640fd95-b7f9-4339-8836-cf03679eaf41",
+    "ecd8b857-42a6-417f-a7e4-084f50fc6956",
+    "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+    "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+    "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+    "1e46d457-6869-4750-bf97-4640a8df3b68"
+  ],
+  "ledger_entries": [
+    {
+      "fallback": "Preserve clean /data/tasks/register-redmine-plu_03jpa2en/kdlbs-kandev on branch feature/register-redmine-plu-95z at exact c5837cb5/tree bbf74152; no re-notification, source restart, merge, or deploy.",
+      "health": "waiting",
+      "lane": "PR",
+      "last_action": "Fresh authenticated REST: unchangedc5837cb5,63terminalchecks+2successstatuses,non-draft/clean; existingnotificationpreserved. SemanticFAILED is historicalfailedlaunch, not currentCI/productdefect.",
+      "last_checked": "2026-09-16T04:32:33Z",
+      "next_action": "On review/head/check/merge change refresh exacthead; aftermerge verifycanonicalregistryentryandBrowse discovery.",
+      "owner": "Upstream kdlbs maintainers",
+      "task_id": "b7cb6fe6-3766-4b81-a7ee-f5e9c16627cf",
+      "title": "Register Redmine plugin in marketplace",
+      "trigger": "Upstream review, head/check/status change or merge.",
+      "last_checked_cycle_id": "status-redmine-coordinator-20260916T0419Z",
+      "evidence_generation": "2026-09-16T03:19:16.968298176Z",
+      "anomalous": false,
+      "mutated": false,
+      "transitioned": false,
+      "delivery_status": "none"
+    },
+    {
+      "fallback": "Preserve task-owned refs, artifacts, runtimes, and audit history; no destructive cleanup from uncertainty.",
+      "health": "terminal",
+      "lane": "Done",
+      "last_action": "Fresh Done terminal-integrity audit: physical Done, zero RUNNING/STARTING sessions, no board change since the prior audit, and no new evidence requiring reopening or cleanup.",
+      "last_checked": "2026-09-16T04:32:33Z",
+      "next_action": "Apply normal Done retention while preserving the recorded task-owned evidence; reopen only on concrete unique unfinished work.",
+      "owner": "Coordinator terminal retention and recovery tracking",
+      "task_id": "4640fd95-b7f9-4339-8836-cf03679eaf41",
+      "title": "Publish Redmine patch release",
+      "trigger": "Normal 72-hour archive timer or new concrete terminal-integrity evidence.",
+      "last_checked_cycle_id": "status-redmine-coordinator-20260916T0419Z",
+      "evidence_generation": "2026-09-16T03:18:04.256848965Z",
+      "anomalous": false,
+      "mutated": false,
+      "transitioned": false,
+      "delivery_status": "delivered"
+    },
+    {
+      "fallback": "Preserve task-owned refs, artifacts, runtimes, and audit history; no destructive cleanup from uncertainty.",
+      "health": "terminal",
+      "lane": "Done",
+      "last_action": "Fresh Done terminal-integrity audit: physical Done, zero RUNNING/STARTING sessions, no board change since the prior audit, and no new evidence requiring reopening or cleanup.",
+      "last_checked": "2026-09-16T04:32:33Z",
+      "next_action": "Apply normal Done retention while preserving the recorded task-owned evidence; reopen only on concrete unique unfinished work.",
+      "owner": "Coordinator terminal retention and recovery tracking",
+      "task_id": "ecd8b857-42a6-417f-a7e4-084f50fc6956",
+      "title": "Run isolated Redmine first-version E2E",
+      "trigger": "Normal 72-hour archive timer or new concrete terminal-integrity evidence.",
+      "last_checked_cycle_id": "status-redmine-coordinator-20260916T0419Z",
+      "evidence_generation": "2026-09-16T03:18:04.440490404Z",
+      "anomalous": false,
+      "mutated": false,
+      "transitioned": false,
+      "delivery_status": "none"
+    },
+    {
+      "task_id": "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+      "title": "Expose managed conversation chat to plugin UI",
+      "owner": "kdlbs maintainer alignment; Coordinator publication handoff",
+      "health": "blocked",
+      "lane": "Blocked",
+      "last_action": "Opened scope issue3713; authenticated REST confirms0comments. Work\u2192Blocked settled with clean pushed eedc47981b939cd42a4fa834efdde23b4e540fe4; parking receipt returned.",
+      "next_action": "On maintainer alignment or explicitly approved delivery fallback, preflight one Work publication owner and renew independentReview/QA.",
+      "trigger": "Maintainer direction on https://github.com/kdlbs/kandev/issues/3713 or approved fallback.",
+      "fallback": "Preserve clean pushed branch and no runtime; no duplicate contact or credential changes.",
+      "last_checked": "2026-09-16T04:32:33Z",
+      "last_checked_cycle_id": "status-redmine-coordinator-20260916T0419Z",
+      "evidence_generation": "2026-09-16T04:21:50.697336913Z",
+      "anomalous": false,
+      "mutated": true,
+      "transitioned": true,
+      "delivery_status": "none"
+    },
+    {
+      "task_id": "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+      "title": "Wire Coordinator monitoring policy to plugin storage",
+      "owner": "Fresh Review c1b8d28e-1fbe-4995-9954-2754c901e7d3, configured ab57 profile",
+      "health": "healthy",
+      "lane": "Review",
+      "last_action": "Author pushed clean c8a447d6c59b0a983301cf31add4a6f2d51c8ce2 fixing three review findings; Work\u2192Review settled and fresh independent owner verified RUNNING.",
+      "next_action": "Consume independent Review at c8a447d; on PASS route distinct QA, on FAILED return Work without automatic QA advancement.",
+      "trigger": "Review verdict at exact c8a447d head.",
+      "fallback": "Preserve draft PR4 and evidence; do not claim full plugin readiness before compatible Host delivery and distinct desktop/mobile QA.",
+      "last_checked": "2026-09-16T04:32:33Z",
+      "last_checked_cycle_id": "status-redmine-coordinator-20260916T0419Z",
+      "evidence_generation": "2026-09-16T04:24:18.585453772Z",
+      "anomalous": false,
+      "mutated": true,
+      "transitioned": true,
+      "delivery_status": "none"
+    },
+    {
+      "fallback": "Preserve historical 5bfdbcf7 failure evidence and stopped runtime roots; never add obsolete core fields or restart stale QA.",
+      "health": "blocked",
+      "lane": "Blocked",
+      "last_action": "Updated saved plan and agent tag: policy failedReview and has activeWorkremediation; Hostchat awaits issue3713alignment. Parked owner not woken; prior preservation/root gates retained.",
+      "last_checked": "2026-09-16T04:32:33Z",
+      "next_action": "After both reviewed compatible deliveries exist at immutable Host and plugin SHAs, run one distinct isolated QA against the new compatible package.",
+      "owner": "Host chat task 9802e1d5-d6f5-4359-aa17-00afaa354ddb and plugin policy task 68bb60ed-14f7-47d1-b564-3a155ac6ae03; Coordinator gates QA",
+      "task_id": "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+      "title": "Provision isolated Coordinator plugin end-to-end QA runtime",
+      "trigger": "Tasks 9802e1d5-d6f5-4359-aa17-00afaa354ddb and 68bb60ed-14f7-47d1-b564-3a155ac6ae03 deliver reviewed compatible heads and lifecycle/owner preflight is clear.",
+      "last_checked_cycle_id": "status-redmine-coordinator-20260916T0419Z",
+      "evidence_generation": "2026-09-16T03:33:45.23237312Z",
+      "anomalous": false,
+      "mutated": true,
+      "transitioned": false,
+      "delivery_status": "none"
+    },
+    {
+      "fallback": "Preserve program graph and parked owner; no overlapping dispatch, duplicate wake, or collapse of the four-surface trigger.",
+      "health": "blocked",
+      "lane": "Blocked",
+      "last_action": "Updated saved plan and agent tag: policy failedReview and has activeWorkremediation; Hostchat awaits issue3713alignment. Parked owner not woken; prior preservation/root gates retained.",
+      "last_checked": "2026-09-16T04:32:33Z",
+      "next_action": "Remain dormant until the full 8a four-surface receipt clears; separately consume 9802e1d5-d6f5-4359-aa17-00afaa354ddb and 68bb60ed-14f7-47d1-b564-3a155ac6ae03 only through their own task gates.",
+      "owner": "Human/platform operator through 8a182e40; Coordinator synchronizes after the complete receipt.",
+      "task_id": "1e46d457-6869-4750-bf97-4640a8df3b68",
+      "title": "Coordinate plugin-first board supervision delivery",
+      "trigger": "Complete 8a four-surface receipt for program resume; recovery child results are tracked independently and do not clear it.",
+      "last_checked_cycle_id": "status-redmine-coordinator-20260916T0419Z",
+      "evidence_generation": "2026-09-16T03:29:38.227384217Z",
+      "anomalous": false,
+      "mutated": true,
+      "transitioned": false,
+      "delivery_status": "none"
+    }
+  ],
+  "blocked_task_ids": [
+    "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+    "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+    "1e46d457-6869-4750-bf97-4640a8df3b68"
+  ],
+  "blocked_records": [
+    {
+      "task_id": "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+      "previous_step": "Work",
+      "blocker_proof": "CONTRIBUTING requires maintainer alignment before new public SDK contribution; issue3713open with0comments.",
+      "falsification_query": "Authenticated issue3713comments and contribution policy",
+      "falsification_result": "OPEN,0comments; alignmentnotcleared",
+      "blocker_owner": "kdlbs maintainers; Coordinator publication resume",
+      "preservation_receipt": "Clean /data/tasks/expose-managed-conve_jkd2rbru/kdlbs-kandev branchfeature/expose-managed-conve-svj; pushed eedc47981b939cd42a4fa834efdde23b4e540fe4; TEST_RUNTIME=NONE, no services/ports/artifacts retained.",
+      "removal_action": "One canonical scopeissuealreadycreated; no duplicatecontact.",
+      "expected_evidence": "Maintainer direction or separately approved delivery fallback",
+      "trigger": "Maintainer alignment on issue3713 or explicitly approved maintained-fork/adapter fallback.",
+      "attempt_count": 1,
+      "fallback": "Preserve evidence; no duplicatecontact/polling/publication/credentialchange.",
+      "last_checked_cycle_id": "status-redmine-coordinator-20260916T0419Z"
+    },
+    {
+      "task_id": "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+      "previous_step": "QA",
+      "blocker_proof": "Historical plugin 5bfdbcf7 cannot complete E2E until generic Host WorkspaceAgentChat and plugin-owned monitoring-policy storage/settings/scheduler integration are delivered. Core CoordinatorMonitored/CoordinatorPrompt fields are explicitly obsolete under approved architecture.",
+      "falsification_query": "Fresh lane/session/dependency/provider or preservation-surface audit in this cycle.",
+      "falsification_result": "Fresh dependency audit: policy c8a447d in independent Review; Host chat issue3713 alignment absent; program four-surface repair receipt remains absent. Parked owners remain WFI.",
+      "blocker_owner": "Host delivery task 9802e1d5-d6f5-4359-aa17-00afaa354ddb and plugin integration task 68bb60ed-14f7-47d1-b564-3a155ac6ae03; Coordinator gates distinct QA.",
+      "preservation_receipt": "Plugin 5bfdbcf7d9608d1210453f95ebfc8f66c3179225; package SHA-256 fc742be569bff2e27f967a0e11949a24f652c4f43809f32a240b04c062d76044; canonical Host archive 60aef37cbd8a043786393a56b603111eb3bd1f63; screenshots and artifact/runtime roots preserved. Recorded PIDs/listeners absent; filesystem retained and stopped.",
+      "removal_action": "After both reviewed compatible deliveries exist, build a fresh isolated Host and run one distinct QA against the new compatible plugin package.",
+      "expected_evidence": "Named trigger evidence plus settled lifecycle/session readback.",
+      "trigger": "Both recovery tasks deliver immutable reviewed compatible Host/plugin SHAs, followed by supported lifecycle/zero-owner preflight.",
+      "attempt_count": 0,
+      "fallback": "Remain Blocked and preserve evidence; never add obsolete core fields, restart stale runtime, or claim historical package passed.",
+      "last_checked_cycle_id": "status-redmine-coordinator-20260916T0419Z"
+    },
+    {
+      "task_id": "1e46d457-6869-4750-bf97-4640a8df3b68",
+      "previous_step": "Work",
+      "blocker_proof": "Program coordination cannot safely resume until 8a182e40 receives the complete structured four-surface receipt for lifecycle/generation settlement, exact queue-row preservation/disposition, authenticated allocator capacity, and the branch-scoped credential lease.",
+      "falsification_query": "Fresh lane/session/dependency/provider or preservation-surface audit in this cycle.",
+      "falsification_result": "Fresh dependency audit: policy c8a447d in independent Review; Host chat issue3713 alignment absent; program four-surface repair receipt remains absent. Parked owners remain WFI.",
+      "blocker_owner": "Human/platform operator through 8a182e40; Coordinator synchronizes after the complete receipt.",
+      "preservation_receipt": "Clean coordination checkout/head 380ad1f retained; program graph and child receipts preserved. Primary c24d3d92 is WFI with zero RUNNING/STARTING sessions; lifecycle complete and task/session pending projections null. Exact response message 9c4a2e65 and acknowledgement 8c049f18 remain preserved; no overlapping dispatch or task-owned runtime/data mutation.",
+      "removal_action": "Remain dormant. After the complete 8a182e40 four-surface receipt, reconcile the current child graph and resume exactly one configured program owner.",
+      "expected_evidence": "Named trigger evidence plus settled lifecycle/session readback.",
+      "trigger": "Complete 8a182e40 structured receipt covering lifecycle/generation, queue row 5b14c416 preservation/disposition, authenticated allocatable capacity, and the branch-scoped credential lease.",
+      "attempt_count": 0,
+      "fallback": "Preserve coordination head, program graph, child receipts, and queued directive; no overlapping dispatch, duplicate response/contact, blind queue action, session stop, or manufactured readiness.",
+      "last_checked_cycle_id": "status-redmine-coordinator-20260916T0419Z"
+    }
+  ],
+  "anomalies": [],
+  "delivery_claims": [
+    {
+      "task_id": "4640fd95-b7f9-4339-8836-cf03679eaf41",
+      "claim": "delivered",
+      "task_head": "b843ce5345e8a11ade7f0d4d33386c746465a049",
+      "remote_ref": "yattdev/kandev-plugin-redmine refs/tags/v0.3.2",
+      "canonical_delivery": "https://github.com/yattdev/kandev-plugin-redmine/releases/tag/v0.3.2",
+      "provider_state": "published",
+      "observed_at": "2026-09-16T04:32:33Z",
+      "remote_reachable": true,
+      "contained": true,
+      "package_sha256": "0d85b2663dac8a1ddf9d7b933d0ccfccb9cf0615a9d3a81b020a1c1583801612"
+    }
+  ],
+  "transitions": [
+    {
+      "task_id": "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+      "transition_id": "status-redmine-coordinator-20260916T0419Z/68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+      "pre": {
+        "source_lane": "Work",
+        "target_lane": "Review",
+        "authority": "Standing same-workspace Coordinator grant; exact-head review remediation/preservation.",
+        "evidence_generation": "2026-09-16T04:24:18.585453772Z",
+        "pending_move_checked_at": "2026-09-16T04:31:50Z",
+        "expected_owner": "Fresh configured ab57 independent Review",
+        "expected_model": "workflow-configured; no override",
+        "required_verdicts": [
+          "AUTHOR_TESTS=PASSED",
+          "HEAD_PUSHED=CLEAN"
+        ],
+        "invalidation_conditions": "Changed source/head, new owner, lifecycle conflict, or clearedblocker requiresfreshpreflight."
+      },
+      "post": {
+        "lane": "Review",
+        "state": "IN_PROGRESS",
+        "lifecycle_settled": true,
+        "session_id": "c1b8d28e-1fbe-4995-9954-2754c901e7d3",
+        "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+        "runtime_model": "Workflow configured; effective model not exposed in session listing",
+        "head": "c8a447d6c59b0a983301cf31add4a6f2d51c8ce2",
+        "tag_aligned": true,
+        "pending_move_clear": true,
+        "execution_expected": true,
+        "execution_state": "RUNNING",
+        "verified": true
+      }
+    },
+    {
+      "task_id": "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+      "transition_id": "status-redmine-coordinator-20260916T0419Z/9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+      "pre": {
+        "source_lane": "Work",
+        "target_lane": "Blocked",
+        "authority": "Standing same-workspace Coordinator grant; exact-head review remediation/preservation.",
+        "evidence_generation": "2026-09-16T04:21:50.697336913Z",
+        "pending_move_checked_at": "2026-09-16T04:23:43Z",
+        "expected_owner": "Blocked c06 preservation owner",
+        "expected_model": "workflow-configured; no override",
+        "required_verdicts": [
+          "BLOCKER_PROOF=ISSUE3713_ALIGNMENT_PENDING"
+        ],
+        "invalidation_conditions": "Changed source/head, new owner, lifecycle conflict, or clearedblocker requiresfreshpreflight."
+      },
+      "post": {
+        "lane": "Blocked",
+        "state": "REVIEW",
+        "lifecycle_settled": true,
+        "session_id": "33dc72d9-5a10-4a4b-8d5d-cd80c3256b87",
+        "profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+        "runtime_model": "gpt-5.6-terra",
+        "head": "eedc47981b939cd42a4fa834efdde23b4e540fe4",
+        "tag_aligned": true,
+        "pending_move_clear": true,
+        "execution_expected": false,
+        "execution_state": "WAITING_FOR_INPUT",
+        "verified": true
+      }
+    }
+  ],
+  "mutations": [
+    {
+      "task_id": "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+      "kind": "workflow move/handoff, tag and plan reconciliation",
+      "target": "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+      "result": "Corrective Work completed; fresh Review owner RUNNING, lifecycle settled, exact-head handoff received.",
+      "readback": "Fresh board/session census plus plan and agent-tag readback; no Human tags changed.",
+      "verified": true
+    },
+    {
+      "task_id": "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+      "kind": "workflow move/handoff, tag and plan reconciliation",
+      "target": "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+      "result": "Applied; parked resources preserved",
+      "readback": "Fresh board/session census plus plan and agent-tag readback; no Human tags changed.",
+      "verified": true
+    },
+    {
+      "task_id": "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+      "kind": "plan and agent tag correction",
+      "target": "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+      "result": "Applied; parked resources preserved",
+      "readback": "Fresh board/session census plus plan and agent-tag readback; no Human tags changed.",
+      "verified": true
+    },
+    {
+      "task_id": "1e46d457-6869-4750-bf97-4640a8df3b68",
+      "kind": "plan and agent tag correction",
+      "target": "1e46d457-6869-4750-bf97-4640a8df3b68",
+      "result": "Applied; parked resources preserved",
+      "readback": "Fresh board/session census plus plan and agent-tag readback; no Human tags changed.",
+      "verified": true
+    }
+  ],
+  "continuity": {
+    "plan_bytes": 131415,
+    "soft_limit_bytes": 200000,
+    "hard_limit_bytes": 240000,
+    "compaction_performed": false,
+    "write_readback_verified": true,
+    "current_snapshot_first": true,
+    "open_record_sets_preserved": true
+  },
+  "report": {
+    "mentioned_task_ids": [
+      "b7cb6fe6-3766-4b81-a7ee-f5e9c16627cf",
+      "4640fd95-b7f9-4339-8836-cf03679eaf41",
+      "ecd8b857-42a6-417f-a7e4-084f50fc6956",
+      "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+      "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+      "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+      "1e46d457-6869-4750-bf97-4640a8df3b68"
+    ],
+    "barrier_at": "2026-09-16T04:32:33Z",
+    "fresh": true,
+    "task_barriers": [
+      {
+        "task_id": "b7cb6fe6-3766-4b81-a7ee-f5e9c16627cf",
+        "lane_session_observed_at": "2026-09-16T04:32:15Z",
+        "provider_required": true,
+        "provider_observed_at": "2026-09-16T04:32:33Z"
+      },
+      {
+        "task_id": "4640fd95-b7f9-4339-8836-cf03679eaf41",
+        "lane_session_observed_at": "2026-09-16T04:32:15Z",
+        "provider_required": true,
+        "provider_observed_at": "2026-09-16T04:32:33Z"
+      },
+      {
+        "task_id": "ecd8b857-42a6-417f-a7e4-084f50fc6956",
+        "lane_session_observed_at": "2026-09-16T04:32:15Z",
+        "provider_required": false,
+        "provider_observed_at": "2026-09-16T04:32:33Z"
+      },
+      {
+        "task_id": "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+        "lane_session_observed_at": "2026-09-16T04:32:15Z",
+        "provider_required": true,
+        "provider_observed_at": "2026-09-16T04:32:33Z"
+      },
+      {
+        "task_id": "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+        "lane_session_observed_at": "2026-09-16T04:32:15Z",
+        "provider_required": true,
+        "provider_observed_at": "2026-09-16T04:32:33Z"
+      },
+      {
+        "task_id": "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+        "lane_session_observed_at": "2026-09-16T04:32:15Z",
+        "provider_required": false,
+        "provider_observed_at": "2026-09-16T04:32:33Z"
+      },
+      {
+        "task_id": "1e46d457-6869-4750-bf97-4640a8df3b68",
+        "lane_session_observed_at": "2026-09-16T04:32:15Z",
+        "provider_required": false,
+        "provider_observed_at": "2026-09-16T04:32:33Z"
+      }
+    ]
+  },
+  "gate_results": {
+    "G1": "pass",
+    "G2": "pass",
+    "G3": "pass",
+    "G4": "pass",
+    "G5": "pass",
+    "G6": "pass",
+    "G7": "pass",
+    "G8": "pass",
+    "G9": "pass",
+    "G10": "pass"
+  },
+  "provider": {
+    "observed_at": "2026-09-16T04:24:59.319760+00:00",
+    "reads": {
+      "repos/kdlbs/kandev/pulls/3684": {
+        "html_url": "https://github.com/kdlbs/kandev/pull/3684",
+        "state": "open",
+        "draft": false,
+        "merged": false,
+        "mergeable": true,
+        "mergeable_state": "clean",
+        "updated_at": "2026-09-15T09:41:02Z",
+        "comments": 4,
+        "tag_name": null,
+        "published_at": null,
+        "head": "c5837cb5f64a34445ab5814f62b65a3b575b7755",
+        "base": "941e7950d1a94e8c028bf5cb98744415e053bf74"
+      },
+      "repos/yattdev/kandev-plugin-coordinator/pulls/4": {
+        "html_url": "https://github.com/yattdev/kandev-plugin-coordinator/pull/4",
+        "state": "open",
+        "draft": true,
+        "merged": false,
+        "mergeable": true,
+        "mergeable_state": "clean",
+        "updated_at": "2026-09-16T04:13:31Z",
+        "comments": 0,
+        "tag_name": null,
+        "published_at": null,
+        "head": "7d1384364ab394ac3485c07e0326e061f805d151",
+        "base": "6fb1fdd63c1728258c40a67df037116c5ca9bbb8"
+      },
+      "repos/kdlbs/kandev/issues/3713": {
+        "html_url": "https://github.com/kdlbs/kandev/issues/3713",
+        "state": "open",
+        "draft": null,
+        "merged": null,
+        "mergeable": null,
+        "mergeable_state": null,
+        "updated_at": "2026-09-16T04:12:17Z",
+        "comments": 0,
+        "tag_name": null,
+        "published_at": null
+      },
+      "repos/yattdev/kandev-plugin-redmine/releases/tags/v0.3.2": {
+        "html_url": "https://github.com/yattdev/kandev-plugin-redmine/releases/tag/v0.3.2",
+        "state": null,
+        "draft": false,
+        "merged": null,
+        "mergeable": null,
+        "mergeable_state": null,
+        "updated_at": "2026-09-14T20:08:02Z",
+        "comments": null,
+        "tag_name": "v0.3.2",
+        "published_at": "2026-09-14T20:08:02Z",
+        "assets": [
+          {
+            "name": "checksums.txt",
+            "digest": "sha256:615969b6442a3badd39db29b5c7d61a76f422914e1ade337b1d7621ae8a24e7d"
+          },
+          {
+            "name": "kandev-plugin-redmine-0.3.2.tar.gz",
+            "digest": "sha256:0d85b2663dac8a1ddf9d7b933d0ccfccb9cf0615a9d3a81b020a1c1583801612"
+          }
+        ]
+      },
+      "repos/yattdev/kandev-plugin-coordinator/releases": {
+        "count": 0
+      }
+    },
+    "marketplace_checks": {
+      "total_count": 63,
+      "returned": 63,
+      "pending": [],
+      "failed": []
+    },
+    "marketplace_status": {
+      "state": "success",
+      "contexts": [
+        {
+          "context": "PR documentation coverage",
+          "state": "success"
+        },
+        {
+          "context": "CodeRabbit",
+          "state": "success"
+        }
+      ]
+    },
+    "final_refresh": {
+      "observed_at": "2026-09-16T04:32:33Z",
+      "redmine_release": "v0.3.2 published; asset digests unchanged",
+      "marketplace": "3684 unchanged c5837cb5, open non-draft clean,63terminal checks, no failures/pending",
+      "coordinator": "No releases; PR4 open draft clean at c8a447d6c59b0a983301cf31add4a6f2d51c8ce2",
+      "chat": "Issue3713 OPEN zero comments"
+    }
+  },
+  "helpers": [
+    "/root/redmine_status",
+    "/root/coordinator_plugin_status"
+  ],
+  "limitations": [
+    "Queue census UNKNOWN_ACTION; no row disposition.",
+    "Pending-move row census unavailable; stable lane/all-session preflight and immediate readback fallback used, not authoritative zero-row proof."
+  ],
+  "review_findings": [
+    "Empty/fully unavailable policy becomes dispatch error and status can falsely say ready.",
+    "Policy uses Host GetState/SetState instead of integrating delivered durable SQLite engine.",
+    "Existing deleted-step selections cannot be resaved."
+  ],
+  "transition_history": [
+    {
+      "task_id": "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+      "source": "Work",
+      "target": "Review",
+      "session": "1cc96439-a2ec-46bb-ba55-5b64e779f4f1",
+      "head": "7d1384364ab394ac3485c07e0326e061f805d151",
+      "result": "Fresh gpt-5.5 review failed3findings; step_complete incorrectly advancedtoQA."
+    },
+    {
+      "task_id": "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+      "source": "Review",
+      "target": "QA",
+      "session": "fefe7e91-4105-45b8-9bd9-419c23932c4d",
+      "result": "Automatic advance invalid; Coordinator interrupt delivered, QA ended withoutpass, reroutedWork."
+    },
+    {
+      "task_id": "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+      "source": "QA",
+      "target": "Work",
+      "result": "Corrective move settled at04:28:15; author completed fixes and clean push c8a447d."
+    }
+  ]
+}

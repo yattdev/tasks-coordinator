@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python3",
+    "docs/contracts/validate_cycle_receipt.py",
+    "docs/cycle-archives/2026-09-16T0419-plugin-status.json",
+    "--max-age-seconds",
+    "300"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "",
+  "receipt_sha256": "c4c0b3d2edb38a7a61f8b3f95be764b6dc5d9b55094368ca28c95f8ac26c2488",
+  "checked_at": "2026-09-16T04:34:34.510462+00:00"
+}
