@@ -1,5 +1,40 @@
 # Coordinator learning-cycle log
 
+## WAKE:LEARNING — 2026-09-15T12:50:11Z to 2026-09-16T04:54:00Z
+
+Two durable corrections from this window were already captured by event-driven
+learning before this scheduled pass:
+
+- inherited cycle or transition completion claims require the actual validator
+  command, exit status, and output beside the receipt identity; narrative gate
+  booleans do not establish validation;
+- the Human-authorized Coordinator-plugin chat proposal may open as a draft
+  before maintainer feedback and should reuse the existing RPC pattern where
+  applicable, while keeping the pending discussion explicit and preserving all
+  normal readiness and merge gates.
+
+The scheduled pass found no additional durable lesson.
+
+Rejected by the filter:
+
+- board movements, exact task and session identities, pull-request heads,
+  provider quotas, startup-capacity failures, late delivery receipts, and
+  current blocker states are transient operational evidence retained in the
+  live plan and cycle archives;
+- plan reconciliation, delayed-report deduplication, exact-head CI ownership,
+  and preserving an existing canonical request apply the current continuity,
+  provider, and no-duplicate-contact procedures;
+- retiring a stale continuity pointer after authoritative plan readback and
+  rejecting an invalid inherited receipt are already covered by the event-driven
+  validation correction above.
+
+Files changed by this scheduled pass: `docs/LEARNING_LOG.md` only. `PROMPT.md`
+changed earlier in the window for the scoped chat/RPC instruction; its complete
+current content was mirrored to the live Coordinator task description and exact
+equality was verified. This receipt advances the next learning window to
+`2026-09-16T04:54:00Z`. Shared-main publication and final clean-tree verification
+are recorded by the commit containing this entry. Unresolved conflicts: none.
+
 ## 2026-09-16 — Validate inherited completion claims
 
 An inherited cycle archive declared every gate passed but failed the repository
