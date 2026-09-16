@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-15a -->
+<!-- registry-version: 2026-09-16a -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -398,11 +398,12 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Action** No charter mirror is required unless `PROMPT.md` itself changed. Bump `registry-version` and record the change in [LEARNING_LOG](LEARNING_LOG.md).
 
 ### F3. The state plan will not save
+- **Truncation recovery** Prefer discovered server-side `mode="append"` for progress. Replacement requires the complete preimage and exact readback. A prior native tool-call plan-read response can recover a lost preimage; preserve newer fragments and verify bytes/digest before restoring and resuming. See [plan preservation](RUNBOOK.md#a-large-task-plan-is-append-only-by-hand-not-by-tool).
 - **Trigger** Plan reaches 200,000 UTF-8 bytes, a rewrite/readback fails, or the 240,000-byte hard stop is reached.
 - **Action** At 200,000 bytes, archive the exact preimage and compact resolved/superseded history before unrelated work. At 240,000 bytes, perform only urgent preservation plus compaction. Preserve all open records inline, verify pre/post ID-set equality, rewrite the whole plan once, and read it back below 200,000 bytes.
 - **Capability** [State-plan hygiene](RUNBOOK.md#state-plan-hygiene-keep-it-under-the-api-rewrite-limit).
 - **Evidence** Archive path, bytes, SHA-256, pre/post open-record set hashes, live-plan bytes, and successful readback.
-- **Never** Send only a new section, remove unresolved records, keep duplicate superseded ledgers inline, append above the hard stop, or invent an external actor to explain state you failed to persist.
+- **Never** Send only a new section in replacement mode, remove unresolved records, keep duplicate superseded ledgers inline, append above the hard stop, or invent an external actor to explain state you failed to persist.
 
 ---
 

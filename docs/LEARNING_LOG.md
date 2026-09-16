@@ -3531,3 +3531,13 @@ match set was also insufficient. The runbook now directs the same owner to
 reconcile command results and ownership before serial continuation. It also
 records that an on-entry lifecycle marker can legitimately await the running
 turn, without authorizing a duplicate start or an early completion claim.
+
+## 2026-09-16 — Recover full plans without regenerating requirements
+
+Two progress-only replacements removed approved plans. Exact earlier plan-read
+responses in native session tool metadata retained the complete preimages.
+Recovery preserved newer fragments, verified bytes/digests, restored both parts,
+and required exact readback before dependent work resumed. The runbook now
+prefers discovered server-side append mode, warns that append retries are not
+idempotent, and documents native-history recovery when no local preimage survives.
+This supersedes the historical replacement-only API assumption.

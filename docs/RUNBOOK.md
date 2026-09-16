@@ -868,12 +868,12 @@ queued grant disappeared or that no mutation ran. Uncertain ordering fails close
 with the exact state preserved.
 
 ## A large task plan is append-only BY HAND, not by tool
-`update_task_plan_kandev` and `create_task_plan_kandev` take FULL CONTENT — every
-write regenerates the whole document through token output, with no byte-fidelity
-guarantee. That is harmless for a plan you authored and can re-derive. It is
-dangerous once a plan holds material that cannot be regenerated: verbatim source
-comments, transcribed requirements, exact quotes, anything whose value is that it
-is a faithful copy.
+The heading describes the historical replacement-only API. Discover the current
+schema: `update_task_plan_kandev` now supports `mode="append"`, which preserves
+the existing document server-side. Prefer it for progress receipts. Append is
+not idempotent: after an uncertain response, read before retrying. Default
+`mode="replace"` still overwrites the entire document; a progress fragment is
+never a valid replacement for an approved plan or verbatim requirements.
 
 Even for a rewritable plan, replacement is not complete when the write call returns
 success. Retain the exact full pre-write read and its byte count or digest. Immediately
@@ -881,6 +881,12 @@ read the plan back and verify its task identity, expected section anchors, and c
 size/content. If anything is missing, truncated, or belongs to another task, stop all
 dependent work, restore the exact prior plan, and verify that restoration by readback.
 Never reconstruct missing normative text from memory or a partial receipt.
+If a full preimage was not retained locally, inspect the task's native session
+tool-call history for an exact earlier plan-read response. Preserve the current
+fragment separately, verify the recovered text's identity, timestamp, byte count
+and digest, then restore the preimage plus the newer fragment and read it back.
+Resume dependent work only after that verification. If no exact preimage is
+available, record the preservation blocker; do not invent the missing contract.
 
 Observed 2026-08-19 on `3c2a0d34`: a 692-line plan held the only verbatim
 transcription of 39 source comments. Appending one acceptance criterion would
@@ -890,7 +896,8 @@ irreplaceable requirements artifact to record a criterion about not losing
 artifacts is exactly backwards.
 Before rewriting any plan, ask what in it cannot be regenerated. If the answer is
 "nothing", rewrite freely. If it holds copied source material, treat it as
-append-only by hand and put new material somewhere else.
+append-only through the supported server operation, or put new material elsewhere
+when that operation is unavailable. Do not regenerate copied source material.
 **Somewhere else does NOT mean an untracked file.** The same agent first parked
 the criterion in an untracked `SPEC_ADDENDUM_INTERNAL.md` at repo root — a worse
 failure mode than the one it avoided: it dies with the worktree, is invisible to
