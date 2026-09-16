@@ -1,0 +1,173 @@
+{
+  "cycle_id": "2026-09-16T0455",
+  "observed_at": "2026-09-16 07:09:27 UTC",
+  "cycle_complete": false,
+  "records": [
+    {
+      "task_id": "153cdbbe-beac-47b8-bc06-8dafdcc8ed80",
+      "row": {
+        "id": "153cdbbe-beac-47b8-bc06-8dafdcc8ed80",
+        "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+        "state": "IN_PROGRESS",
+        "updated_at": "2026-09-16T07:07:21.764483819Z",
+        "metadata": {
+          "manual_move_lifecycle_completed": true
+        }
+      },
+      "sessions": [
+        {
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "is_current": false,
+          "is_primary": true,
+          "session_id": "bcc3ee65-4348-48dd-b930-555377dc0fb0",
+          "started_at": "2026-09-14T19:33:49.230903774Z",
+          "state": "RUNNING",
+          "updated_at": "2026-09-16T07:08:53.276650258Z"
+        }
+      ],
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#0f766e",
+          "human": false,
+          "id": "tag-fd31f4056e8501f25c5d",
+          "name": "agent",
+          "note": "Finish active-tab successor repair already underway after production-browser QA failure; renew exact-head gates.",
+          "owner": "agent",
+          "updatedAt": "2026-09-16T06:55:40.803797178Z"
+        }
+      ]
+    },
+    {
+      "task_id": "fa3fba49-2018-460b-a600-adae23b24cc8",
+      "row": {
+        "id": "fa3fba49-2018-460b-a600-adae23b24cc8",
+        "workflow_step_id": "485f61e8-33e7-4cc6-a170-6d1411cc5ebb",
+        "state": "IN_PROGRESS",
+        "updated_at": "2026-09-16T07:02:35.559848852Z",
+        "metadata": {
+          "manual_move_lifecycle_completed": true
+        }
+      },
+      "sessions": [
+        {
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "is_current": false,
+          "is_primary": true,
+          "session_id": "96789efa-e78e-4e26-b179-87dcff5db459",
+          "started_at": "2026-09-16T07:02:30.1373248Z",
+          "state": "RUNNING",
+          "updated_at": "2026-09-16T07:08:40.589904997Z"
+        }
+      ],
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#0f766e",
+          "human": false,
+          "id": "tag-fd31f4056e8501f25c5d",
+          "name": "agent",
+          "note": "Obtain independent Review of b5137954; prior reviewer authored that repair, so its gate is invalid.",
+          "owner": "agent",
+          "updatedAt": "2026-09-16T07:08:37.355793312Z"
+        }
+      ]
+    },
+    {
+      "task_id": "cfccac4a-1c80-403f-b284-a673a26a321a",
+      "row": {
+        "id": "cfccac4a-1c80-403f-b284-a673a26a321a",
+        "workflow_step_id": "6c2e5bf5-57db-4682-8daa-d110f22b60da",
+        "state": "IN_PROGRESS",
+        "updated_at": "2026-09-16T07:08:40.956443789Z",
+        "metadata": {
+          "manual_move_lifecycle_completed": true
+        }
+      },
+      "sessions": [
+        {
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "is_current": false,
+          "is_primary": true,
+          "session_id": "b70c7faf-ff1e-469a-a15f-93725fa8d044",
+          "started_at": "2026-09-16T07:08:36.527677489Z",
+          "state": "RUNNING",
+          "updated_at": "2026-09-16T07:08:49.168113608Z"
+        }
+      ],
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#0f766e",
+          "human": false,
+          "id": "tag-fd31f4056e8501f25c5d",
+          "name": "agent",
+          "note": "Fresh independent Review of published 23d9c20e documentation repair, then distinct QA.",
+          "owner": "agent",
+          "updatedAt": "2026-09-16T07:08:36.806159012Z"
+        }
+      ]
+    },
+    {
+      "task_id": "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+      "row": {
+        "id": "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+        "workflow_step_id": "485f61e8-33e7-4cc6-a170-6d1411cc5ebb",
+        "state": "IN_PROGRESS",
+        "updated_at": "2026-09-16T06:54:30.877560265Z",
+        "metadata": {
+          "manual_move_lifecycle_completed": true
+        }
+      },
+      "sessions": [
+        {
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "is_current": false,
+          "is_primary": true,
+          "session_id": "465aaf61-9f07-4942-b601-685ab00daf74",
+          "started_at": "2026-09-16T06:54:26.690810469Z",
+          "state": "RUNNING",
+          "updated_at": "2026-09-16T07:08:33.544294374Z"
+        }
+      ],
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#0f766e",
+          "human": false,
+          "id": "tag-fd31f4056e8501f25c5d",
+          "name": "agent",
+          "note": "Finish canonical plugin fixture and desktop/mobile proof; authoring QA changes require fresh independent gates.",
+          "owner": "agent",
+          "updatedAt": "2026-09-16T07:08:37.887326601Z"
+        }
+      ]
+    }
+  ],
+  "helper_receipts": {
+    "chat": {
+      "review_message": "7d62ad27-d7d7-4258-a01b-5f1bc52249ca",
+      "review_result": "FAILED",
+      "head": "f0689dc41dce23d3f883f9ae566d2fcfa5d345c8",
+      "repair_head": "dac8cb83deabab033014a289108e28cc08af5b99",
+      "authoring_qa": "465aaf61-9f07-4942-b601-685ab00daf74",
+      "work_move": "requested, deferred"
+    },
+    "switch": {
+      "message": "6e5f1cba-80c2-408f-80f1-cc8dffb84049",
+      "head": "23d9c20e59c71b549aaa6881e6e1d2eee894445e",
+      "provider_verified": true
+    },
+    "grant": {
+      "message": "b8f4bfb9-a9fa-44b7-a104-e083e7eecab2",
+      "head": "b5137954362a8ae1b80bd49b8027475557228bbc",
+      "reviewer_authored": true,
+      "review_move": "requested, deferred"
+    }
+  },
+  "queue": "UNKNOWN_ACTION, no entry disposition"
+}

@@ -1,67 +1,57 @@
 # Coordinator cycle 2026-09-16T0455
 
-Started 04:55:25 UTC. Checkpoint 06:23:03 UTC. **Incomplete: G7/G8 remain open.**
+Started 04:55:25 UTC. Checkpoint 07:12 UTC. **OPEN; no completion claimed.**
 
-Reconciled all 67 live task IDs, including all 20 Done tasks and every initial
-Blocked task. Fourteen initial Blocked tasks received verified configured owners;
-guarded TTY subsequently returned to Blocked on actual runtime evidence, and the
-approved no-model automation plan moved to its prerequisite hold. The current
-26 Blocked records retain their preservation receipts, owners and resume triggers.
-No Done resources, protected pending row/session, routine, or queue entry changed.
+The cycle reconciled 67 live tasks, all 20 Done tasks and all 38 initial Blocked
+tasks. Fourteen initial Blocked tasks received configured owners; guarded TTY
+returned to Blocked on actual runtime evidence and approved no-model automation
+entered its prerequisite hold. All 26 current Blocked records remain inline and
+unchanged in the live plan. No routine, queue entry, protected row/session or
+unique preserved resource was modified.
 
-## Actions and evidence
+## Current recovery handoffs
 
-- Recovered the exact full approved plans for
-  6d03f4a9-bf89-4882-bf43-5a584f986185 and
-  9802e1d5-d6f5-4359-aa17-00afaa354ddb from native plan-read history. Preserved newer
-  progress and verified both complete writes. The fresh profile Work owner
-  completed and pushed 30ba3923b33e14959d5edbc662c593ddee61fb89; fresh Review follows.
-- Returned failed Review/QA findings to their owners. Task-panel hidden-session
-  restoration repair is published at 7c7c2673cff939965e59ec647ccd49a18f895063.
-  Isolated terminal-routing repair is published at
-  bda644f1dcb9ff4f5c4ac84ab690211a0879d735. Both have fresh Review owners.
-- Chat integration 9802e1d5-d6f5-4359-aa17-00afaa354ddb passed fresh Review at
-  0cd65512533ae5c1b5f9e271cc280cba58ef6bf4 and has distinct QA. QA was directed to
-  retain screenshots under the task root because the author's temporary paths
-  were unavailable to Review. Existing Carlos issue notification was preserved.
-- Coordinator policy PR4 passed independent Review and real-bundle desktop/mobile
-  QA at b3cc8cc9778c5a3a0e3ae2353bcdf5932cfb0d23. Merge authorization remains valid;
-  published screenshot evidence and final provider checks remain outstanding.
-- PR3165 maintainer notification was posted once and verified at
-  https://github.com/kdlbs/kandev/pull/3165#issuecomment-5692597408.
+- Task-panel task 153cdbbe-beac-47b8-bc06-8dafdcc8ed80 is physically Work.
+  Failed production-browser QA at 18db0f4a303e1e84c9c55091120a3b7576815a9d
+  found active selection still pointing at a hidden tab. Owner
+  bcc3ee65-4348-48dd-b930-555377dc0fb0 was resumed after an incomplete stop and
+  verified RUNNING. Preserve refined changes and the original b385a560 checkout
+  with its screenshot; require normal publication and fresh gates.
+- Grant task fa3fba49-2018-460b-a600-adae23b24cc8 published
+  b5137954362a8ae1b80bd49b8027475557228bbc. Its Review owner authored that repair,
+  so it supplies no independent verdict. Fresh read-only Review was requested
+  at 07:08; QA owner 96789efa-e78e-4e26-b179-87dcff5db459 was still RUNNING at
+  07:09. Verify the deferred move and independent verdict before distinct QA.
+- Chat task 9802e1d5-d6f5-4359-aa17-00afaa354ddb failed Review at f0689dc4.
+  QA owner 465aaf61-9f07-4942-b601-685ab00daf74 authored
+  dac8cb83deabab033014a289108e28cc08af5b99 and is repairing the real plugin fixture.
+  Work alignment was requested at 07:08 and remains deferred. Preserve that work;
+  actual desktop/mobile captures, fresh independent Review and distinct QA remain.
+- Task-switch task cfccac4a-1c80-403f-b284-a673a26a321a published documentation
+  repair 23d9c20e59c71b549aaa6881e6e1d2eee894445e. Exact PR3476 REST verification
+  succeeded at 07:08. Fresh Review b70c7faf-ff1e-469a-a15f-93725fa8d044 is verified
+  RUNNING in settled Review. Consume its verdict before distinct QA.
 
-## Outstanding transition and next action
+Two read-only helpers recovered exact Review/QA and publication messages. Their
+receipts exposed automatic advances without valid independent gates. No lane
+position or authoring gate was credited as PASS. Targeted tag readbacks are in
+[open handoffs](2026-09-16T0709-open-handoffs.json).
 
-Grant-management task fa3fba49-2018-460b-a600-adae23b24cc8 settled in Work with
-configured owner d57acfc4-dc99-43b1-9241-05a6e3dbfff4. It preserved uncommitted
-repairs after a broad sandbox-local-directory test failure; the same owner was
-resumed with exact classification, focused regression, and normal publication
-instructions.
+## Continuity and next action
 
-Two later Review findings were returned to Work. Task-panel restoration now has
-published import-cycle repair c40b965018a027756bf1aa43e121f69037ee417b and fresh
-Review. Profile task 6d03f4a9-bf89-4882-bf43-5a584f986185 remains in Work with
-configured owner a413b9c8-3e84-4cb5-a33a-dc85bd8c84b4 RUNNING, repairing the
-missing exact_profile_generation in ListPendingMoves/reaper recovery after
-Review rejected 30ba3923b33e14959d5edbc662c593ddee61fb89. Its on-entry lifecycle
-marker remains pending. **Do not duplicate this move or start another author.**
-On its result or the next normal routine, inspect complete sessions/lane,
-verify lifecycle settlement, consume the exact repair receipt, and route the
-next appropriate gate. This cycle remains open; no validator pass is claimed.
+Live plan exact readback: 193,894 UTF-8 bytes, 67 ledger entries, 26 unchanged
+Blocked records. Keep below the 200,000-byte compaction trigger. Queue census
+again returned UNKNOWN_ACTION; no queue entries were disposed or replayed.
+PR3476 REST access succeeded; this is not proof of global quota recovery.
 
-## Provider and continuity
+Actual receipt validation still fails G7/G8 for the two deferred corrections.
+The previous report barrier also expired; refresh before any completion claim.
+Continue this cycle by consuming existing owners' results, verifying requested
+lane/session handoffs, updating exact evidence and rerunning validation. Do not
+start duplicate implementation or gate owners while current owners are active.
 
-Exact authenticated PR REST access returned rate-limit HTTP 403 at 05:51:54 UTC.
-The generic quota endpoint's 5000-remaining response contradicted that actual
-resource and was not treated as clearance. First normal cycle at or after
-06:50 UTC makes one bounded exact-resource retry; no polling or synthetic reruns.
-
-The live plan write at 06:23:03 contains 184,158 bytes and matched exact readback.
-Reusable learning is committed and shared-main synchronized at
-102f195a57251f30af561d34b89dbb3dbce52f59. PROMPT.md did not change, so no mirror was
-needed. Queue census remains unavailable; surfaced reports are reconciled without
-claiming the queue was drained. The machine receipt records the failed G7/G8 gate.
-
-Evidence: [cycle receipt](2026-09-16T0455-cycle-receipt.json),
-[closing audit](2026-09-16T0455-closing-audit.json), and the linked Done, dependency,
-provider and gate audits preserved in the live plan.
+Reusable receipt-construction learning is retained in RUNBOOK, CAPABILITY_REGISTRY
+and LEARNING_LOG. PROMPT.md is unchanged; no description mirror is required.
+The [machine receipt](2026-09-16T0455-cycle-receipt.json) deliberately records open
+corrections. Prior audit artifacts and preservation receipts remain linked from
+the live plan.

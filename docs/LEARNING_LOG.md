@@ -3574,3 +3574,14 @@ and required exact readback before dependent work resumed. The runbook now
 prefers discovered server-side append mode, warns that append retries are not
 idempotent, and documents native-history recovery when no local preimage survives.
 This supersedes the historical replacement-only API assumption.
+
+## 2026-09-16 — Validate receipt inputs as well as receipt structure
+
+A closing audit found a temporary receipt builder deriving PASS from the current
+lane and execution expectations from the presence of a running owner. Explicit
+review and QA messages contained failures that automatic advances had hidden.
+The runbook now requires independent inventory sets, message/head-bound verdicts,
+authoritative lifecycle fields, exact mutation/tag readbacks and actual plan
+bytes. Schema validation remains necessary; it cannot prove facts manufactured
+by its caller. Task-owner histories must also be checked for later repairs when
+a full parent queue prevents delivery of their receipts.

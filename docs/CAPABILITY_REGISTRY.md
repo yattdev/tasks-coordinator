@@ -34,6 +34,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Capability** `date -u`; tool discovery; `list_tasks_kandev`, `get_task_plan_kandev`, `get_task_conversation_kandev`, `list_task_sessions_kandev`.
 - **Authority** Standing duty. Routine schedules are operator-owned.
 - **Evidence** A cycle log appended to the state plan.
+- **Receipt evidence** Independently derive board/ledger sets and bind verdicts to exact messages and heads; never generate PASS from lane placement or default verification flags. See [receipt construction](RUNBOOK.md#build-and-validate-the-cycletransition-gate-receipt).
 - **Escalate to** Human (visible ask) if a CRITICAL tool is missing.
 - **Never** Create, heal, or modify any routine/cron/scheduler; never let a ping create a board task.
 

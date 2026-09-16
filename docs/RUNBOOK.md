@@ -2395,6 +2395,16 @@ receipt hash. Hand-written gate booleans are not a validation result. If an
 inherited receipt fails validation, preserve it as historical evidence and
 record the failure; validate a fresh receipt before claiming this cycle passed.
 
+Receipt construction must not manufacture its own evidence. Derive live IDs
+from the board and ledger IDs independently from the saved entries. Bind each
+predecessor verdict to its message, session and immutable head; automatic lane
+advance is never a verdict. Derive execution expectations from the requested
+work, not from whether a running session happens to exist. Retain authoritative
+lifecycle metadata, exact tag readbacks and mutation outcomes. Keep source
+evidence timestamps separate from the final inventory refresh. Measure G9 from
+the actual plan write and exact readback. A syntactically valid receipt can still
+be false when its builder defaults these facts to success.
+
 The validator is deliberately fail-closed. `unknown`, omitted fields, unequal
 task-ID sets, incomplete Blocked records, optimistic delivery claims, an
 unverified mutation/transition, a stale Human-report barrier, or a plan at or
