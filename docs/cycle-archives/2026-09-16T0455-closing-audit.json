@@ -1,0 +1,65 @@
+{
+  "observed_at": "2026-09-16T06:02:03Z",
+  "plan_recovery": [
+    {
+      "task_id": "6d03f4a9-bf89-4882-bf43-5a584f986185",
+      "preimage_bytes": 33687,
+      "preimage_sha256": "b746f437d46617d8c21dbda4fdd504b031765cb47f727b6dd961eb9103dae9a9",
+      "native_message": "4cce4778-ce86-45f2-b117-49a48086bf92",
+      "native_observed_at": "2026-09-16T05:06:11.346484143Z",
+      "restored_bytes": 35293,
+      "readback_exact": true,
+      "new_owner": "60c6c7ea-171f-4881-93cf-ab6b13543951",
+      "profile": "c06ad00e-0da1-429a-8174-54f97164a289",
+      "state": "RUNNING"
+    },
+    {
+      "task_id": "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+      "preimage_bytes": 17162,
+      "preimage_sha256": "03ec049d7035307bca3c346d4f07269300f49569f7301415aa8533cce4683e71",
+      "restored_bytes": 19668,
+      "readback_exact": true,
+      "new_head": "0cd65512533ae5c1b5f9e271cc280cba58ef6bf4",
+      "review_owner": "e7da6f3b-aa92-4991-91d2-79f4320e1604"
+    }
+  ],
+  "gates": [
+    {
+      "task_id": "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+      "head": "b3cc8cc9778c5a3a0e3ae2353bcdf5932cfb0d23",
+      "review": "11440824-b001-4fad-b96b-fa96d0e995b2 PASS",
+      "qa": "60b403eb-1deb-4d81-b7c9-df1b80e56a11 PASS; real bundle six assertions;1440x1000 and390x844; nooverflow",
+      "remaining": "Published reviewer-facing images plus exact provider gate after quota reset; merge authorized, not performed."
+    },
+    {
+      "task_id": "76b4e3d4-ccb8-408c-a0de-5e5014c538be",
+      "head": "07814c1bc7462b212e4ccfabf4b4cc0920e4f222",
+      "review": "acc90736-20c6-4886-a17e-e56f4df0c1e2 PASS",
+      "qa": "ce69bfb6-4c13-4cc0-bac7-c0f7abbcd4a0 PASS",
+      "remaining": "Exact CI; optional local PostgreSQL skipped, not falsely certified."
+    }
+  ],
+  "provider": {
+    "failed_resource": "GET repos/yattdev/kandev-plugin-coordinator/pulls/4",
+    "http_status": 403,
+    "reason": "API rate limit exceeded",
+    "observed_at": "2026-09-16T05:51:54Z",
+    "generic_rate_limit_response": "5000 remaining contradicted by exact resource; not clearance",
+    "retry": "First normal routine at/after06:50Z, one bounded exact-resource preflight; no continuous polling."
+  },
+  "notifications": [
+    {
+      "url": "https://github.com/kdlbs/kandev/pull/3165#issuecomment-5692597408",
+      "head": "fcef955d0baf563d543440d7dae2d7fa17c6b097",
+      "verified": true
+    },
+    {
+      "url": "https://github.com/kdlbs/kandev/issues/3713#issuecomment-5692280732",
+      "verified": true
+    }
+  ],
+  "pending_lifecycle": [
+    "153cdbbe-beac-47b8-bc06-8dafdcc8ed80",
+    "02159e6a-726a-43b2-8d9a-f74c5c01fe11"
+  ]
+}
