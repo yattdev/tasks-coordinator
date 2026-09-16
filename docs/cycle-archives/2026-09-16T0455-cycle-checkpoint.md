@@ -55,3 +55,20 @@ and LEARNING_LOG. PROMPT.md is unchanged; no description mirror is required.
 The [machine receipt](2026-09-16T0455-cycle-receipt.json) deliberately records open
 corrections. Prior audit artifacts and preservation receipts remain linked from
 the live plan.
+
+
+## 07:14 continuation supersedes the pending-owner details above
+
+Grant Review settled with fresh independent owner
+5d4cee82-fe15-4599-a28e-86035c29be0b RUNNING. Task-switch Review returned a blocker
+(message de45158d-0d52-46c0-bc7d-afe7a8f1033a at07:12:20): the mock cancel-hold
+wait/timer ignores prompt cancellation and CloseSession does not release it.
+Documentation coverage is fixed. Work correction was requested at07:13:55 and
+remains deferred while QA8f648b05-6726-4195-8ed6-7d18f4a5209c is active.
+Chat's actual integrated test now exposes a false send error for a successful
+dispatch status; its same owner is repairing it. Its Work move remains pending.
+Task-panel Work remains RUNNING. These are owned open corrections, not completed
+transitions. Plan exact readback is now194384 bytes. Independent final inventory
+still has67 live IDs matching67 ledger IDs;26 Blocked records were unchanged.
+Shared-main learning publication is d0aad3537e41952ddec1e8ec9b07441454a9e59a;
+this additional readback is preserved in0714-handoff-readback.json.

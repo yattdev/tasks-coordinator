@@ -1,0 +1,286 @@
+{
+  "observed_at": "2026-09-16T07:14:30Z",
+  "live_task_ids": [
+    "01432319-aa8b-4c7d-9841-addcc6ab8e76",
+    "01d6764d-b66d-46a0-a664-2caf4c3f4d98",
+    "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+    "0259d242-0a94-40ef-843e-385292796b64",
+    "09325a7b-afb5-4f54-b2a7-ceae217a7bee",
+    "153cdbbe-beac-47b8-bc06-8dafdcc8ed80",
+    "1d3d7383-8dba-41f8-a794-7e3d51809143",
+    "1e46d457-6869-4750-bf97-4640a8df3b68",
+    "1f8d4dc8-83ac-44d6-9fbd-b34bd46e044e",
+    "212a68ce-7122-4cdb-ba68-764a5ebdb8c6",
+    "23a05db4-c7bf-4732-a390-08cb8f0a3a8d",
+    "27b493a3-65b6-4d4a-8b68-73f2ffcf9621",
+    "375dcc90-9ff3-4064-ba27-a7f20b33e80c",
+    "37eca47b-cf05-47ee-b143-39408edbeed1",
+    "3d456f24-73e7-4c0b-8821-ee49a3fa0f31",
+    "3f721d52-452b-4bc6-a61e-68d875baafbd",
+    "428d343e-c768-4bce-a5e7-efd3b10f363f",
+    "4640fd95-b7f9-4339-8836-cf03679eaf41",
+    "46945aff-382a-41a4-9f35-bd5c2806911e",
+    "4b56a8b3-89fa-43ef-891d-c6b3a3b88e2a",
+    "51c2875b-48ae-4097-b985-b8a9584ca8c2",
+    "531a41cd-57ef-495a-8dfa-614d2a4d0d52",
+    "5c9f515d-e5f9-43c5-bf31-fb42276e5e15",
+    "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+    "6a5a2f73-87e1-4c08-a983-64f2456c3633",
+    "6d03f4a9-bf89-4882-bf43-5a584f986185",
+    "7035f7a9-e860-4c4f-9e6c-5dc1cb13101c",
+    "7056a702-a3c3-4fe8-8535-c6b8d340ef6a",
+    "75d4c8af-dc90-4e68-bc74-3d86e99e52cb",
+    "76b4e3d4-ccb8-408c-a0de-5e5014c538be",
+    "77353939-0ba8-40dd-b93c-57adc73a4011",
+    "7a0454aa-c089-4365-8966-ad99775a46f8",
+    "7ca86e53-249b-4b31-a866-e807afd9a962",
+    "856898aa-d06a-43f7-9a87-f873665f19da",
+    "86a16fc1-6394-4fb0-898d-4d42948683f5",
+    "86c8b47e-e7a5-4693-8e11-dce08899a0bf",
+    "8a182e40-d99c-42e9-b9be-1f8f78cf8388",
+    "8f8a784d-92ea-421f-a368-154ef915fe4e",
+    "92535de6-7507-473c-b292-e69516d2434c",
+    "9349b6e5-a167-4d88-af14-cb355015e3dd",
+    "957da1cb-063b-4c2e-b406-6d04ad158fb9",
+    "96e27238-8b7d-476a-8c70-b8da0abae935",
+    "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+    "9d5fcce2-e02d-41a5-b8de-d3672254e199",
+    "9e67c426-1300-46ef-a00f-e5603791212d",
+    "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+    "a091649a-79b0-40d6-a84d-84a3dc053e4a",
+    "a3f02302-12fa-4129-8985-116efb8fed66",
+    "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+    "ae8fc022-5562-4f58-95dc-3dab9d4c179f",
+    "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+    "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+    "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+    "b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+    "b7cb6fe6-3766-4b81-a7ee-f5e9c16627cf",
+    "b8fc206c-9e3f-4497-9ac3-3b62593da258",
+    "b94f9c54-b2fc-41f7-9c01-09ff2ef9d9c0",
+    "bdc56ccb-b1ea-4f22-a1e0-e81eac5fa06e",
+    "c642d57a-5a24-48ca-8f85-57d31115eeb5",
+    "ca015838-e5cf-4294-b3bb-9c50576a5fe6",
+    "cfccac4a-1c80-403f-b284-a673a26a321a",
+    "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+    "e8728906-86de-4a75-960f-9da585485823",
+    "ecd8b857-42a6-417f-a7e4-084f50fc6956",
+    "f169e54f-610b-4f35-bcdc-cf3dfe3baaab",
+    "f2078d51-4dd4-435f-812a-f632328ccfb2",
+    "fa3fba49-2018-460b-a600-adae23b24cc8"
+  ],
+  "open_ledger_task_ids": [
+    "01432319-aa8b-4c7d-9841-addcc6ab8e76",
+    "01d6764d-b66d-46a0-a664-2caf4c3f4d98",
+    "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+    "0259d242-0a94-40ef-843e-385292796b64",
+    "09325a7b-afb5-4f54-b2a7-ceae217a7bee",
+    "153cdbbe-beac-47b8-bc06-8dafdcc8ed80",
+    "1d3d7383-8dba-41f8-a794-7e3d51809143",
+    "1e46d457-6869-4750-bf97-4640a8df3b68",
+    "1f8d4dc8-83ac-44d6-9fbd-b34bd46e044e",
+    "212a68ce-7122-4cdb-ba68-764a5ebdb8c6",
+    "23a05db4-c7bf-4732-a390-08cb8f0a3a8d",
+    "27b493a3-65b6-4d4a-8b68-73f2ffcf9621",
+    "375dcc90-9ff3-4064-ba27-a7f20b33e80c",
+    "37eca47b-cf05-47ee-b143-39408edbeed1",
+    "3d456f24-73e7-4c0b-8821-ee49a3fa0f31",
+    "3f721d52-452b-4bc6-a61e-68d875baafbd",
+    "428d343e-c768-4bce-a5e7-efd3b10f363f",
+    "4640fd95-b7f9-4339-8836-cf03679eaf41",
+    "46945aff-382a-41a4-9f35-bd5c2806911e",
+    "4b56a8b3-89fa-43ef-891d-c6b3a3b88e2a",
+    "51c2875b-48ae-4097-b985-b8a9584ca8c2",
+    "531a41cd-57ef-495a-8dfa-614d2a4d0d52",
+    "5c9f515d-e5f9-43c5-bf31-fb42276e5e15",
+    "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+    "6a5a2f73-87e1-4c08-a983-64f2456c3633",
+    "6d03f4a9-bf89-4882-bf43-5a584f986185",
+    "7035f7a9-e860-4c4f-9e6c-5dc1cb13101c",
+    "7056a702-a3c3-4fe8-8535-c6b8d340ef6a",
+    "75d4c8af-dc90-4e68-bc74-3d86e99e52cb",
+    "76b4e3d4-ccb8-408c-a0de-5e5014c538be",
+    "77353939-0ba8-40dd-b93c-57adc73a4011",
+    "7a0454aa-c089-4365-8966-ad99775a46f8",
+    "7ca86e53-249b-4b31-a866-e807afd9a962",
+    "856898aa-d06a-43f7-9a87-f873665f19da",
+    "86a16fc1-6394-4fb0-898d-4d42948683f5",
+    "86c8b47e-e7a5-4693-8e11-dce08899a0bf",
+    "8a182e40-d99c-42e9-b9be-1f8f78cf8388",
+    "8f8a784d-92ea-421f-a368-154ef915fe4e",
+    "92535de6-7507-473c-b292-e69516d2434c",
+    "9349b6e5-a167-4d88-af14-cb355015e3dd",
+    "957da1cb-063b-4c2e-b406-6d04ad158fb9",
+    "96e27238-8b7d-476a-8c70-b8da0abae935",
+    "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+    "9d5fcce2-e02d-41a5-b8de-d3672254e199",
+    "9e67c426-1300-46ef-a00f-e5603791212d",
+    "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+    "a091649a-79b0-40d6-a84d-84a3dc053e4a",
+    "a3f02302-12fa-4129-8985-116efb8fed66",
+    "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+    "ae8fc022-5562-4f58-95dc-3dab9d4c179f",
+    "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+    "afdb2ef3-06ca-4cd5-a074-c4e691679da9",
+    "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+    "b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+    "b7cb6fe6-3766-4b81-a7ee-f5e9c16627cf",
+    "b8fc206c-9e3f-4497-9ac3-3b62593da258",
+    "b94f9c54-b2fc-41f7-9c01-09ff2ef9d9c0",
+    "bdc56ccb-b1ea-4f22-a1e0-e81eac5fa06e",
+    "c642d57a-5a24-48ca-8f85-57d31115eeb5",
+    "ca015838-e5cf-4294-b3bb-9c50576a5fe6",
+    "cfccac4a-1c80-403f-b284-a673a26a321a",
+    "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+    "e8728906-86de-4a75-960f-9da585485823",
+    "ecd8b857-42a6-417f-a7e4-084f50fc6956",
+    "f169e54f-610b-4f35-bcdc-cf3dfe3baaab",
+    "f2078d51-4dd4-435f-812a-f632328ccfb2",
+    "fa3fba49-2018-460b-a600-adae23b24cc8"
+  ],
+  "records": [
+    {
+      "task_id": "153cdbbe-beac-47b8-bc06-8dafdcc8ed80",
+      "row": {
+        "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+        "state": "IN_PROGRESS",
+        "updated_at": "2026-09-16T07:07:21.764483819Z",
+        "metadata": {
+          "manual_move_lifecycle_completed": true
+        }
+      },
+      "sessions": [
+        {
+          "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+          "is_current": false,
+          "is_primary": true,
+          "session_id": "bcc3ee65-4348-48dd-b930-555377dc0fb0",
+          "started_at": "2026-09-14T19:33:49.230903774Z",
+          "state": "RUNNING",
+          "updated_at": "2026-09-16T07:14:03.45366901Z"
+        }
+      ],
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#0f766e",
+          "human": false,
+          "id": "tag-fd31f4056e8501f25c5d",
+          "name": "agent",
+          "note": "Finish active-tab successor repair already underway after production-browser QA failure; renew exact-head gates.",
+          "owner": "agent",
+          "updatedAt": "2026-09-16T06:55:40.803797178Z"
+        }
+      ]
+    },
+    {
+      "task_id": "fa3fba49-2018-460b-a600-adae23b24cc8",
+      "row": {
+        "workflow_step_id": "6c2e5bf5-57db-4682-8daa-d110f22b60da",
+        "state": "IN_PROGRESS",
+        "updated_at": "2026-09-16T07:09:53.99804735Z",
+        "metadata": {
+          "manual_move_lifecycle_completed": true
+        }
+      },
+      "sessions": [
+        {
+          "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+          "is_current": false,
+          "is_primary": true,
+          "session_id": "5d4cee82-fe15-4599-a28e-86035c29be0b",
+          "started_at": "2026-09-16T07:09:46.841432385Z",
+          "state": "RUNNING",
+          "updated_at": "2026-09-16T07:14:03.98586917Z"
+        }
+      ],
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#0f766e",
+          "human": false,
+          "id": "tag-fd31f4056e8501f25c5d",
+          "name": "agent",
+          "note": "Fresh independent Review of b5137954 is running; require explicit verdict before distinct QA.",
+          "owner": "agent",
+          "updatedAt": "2026-09-16T07:13:55.773409472Z"
+        }
+      ]
+    },
+    {
+      "task_id": "cfccac4a-1c80-403f-b284-a673a26a321a",
+      "row": {
+        "workflow_step_id": "485f61e8-33e7-4cc6-a170-6d1411cc5ebb",
+        "state": "IN_PROGRESS",
+        "updated_at": "2026-09-16T07:12:31.503350485Z",
+        "metadata": {
+          "manual_move_lifecycle_completed": true
+        }
+      },
+      "sessions": [
+        {
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "is_current": false,
+          "is_primary": true,
+          "session_id": "8f648b05-6726-4195-8ed6-7d18f4a5209c",
+          "started_at": "2026-09-16T07:12:27.150625597Z",
+          "state": "RUNNING",
+          "updated_at": "2026-09-16T07:14:03.621185816Z"
+        }
+      ],
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#0f766e",
+          "human": false,
+          "id": "tag-fd31f4056e8501f25c5d",
+          "name": "agent",
+          "note": "Repair mock cancel-hold teardown leak from failed Review; documentation coverage is fixed.",
+          "owner": "agent",
+          "updatedAt": "2026-09-16T07:13:55.493335213Z"
+        }
+      ]
+    },
+    {
+      "task_id": "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+      "row": {
+        "workflow_step_id": "485f61e8-33e7-4cc6-a170-6d1411cc5ebb",
+        "state": "IN_PROGRESS",
+        "updated_at": "2026-09-16T06:54:30.877560265Z",
+        "metadata": {
+          "manual_move_lifecycle_completed": true
+        }
+      },
+      "sessions": [
+        {
+          "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+          "is_current": false,
+          "is_primary": true,
+          "session_id": "465aaf61-9f07-4942-b601-685ab00daf74",
+          "started_at": "2026-09-16T06:54:26.690810469Z",
+          "state": "RUNNING",
+          "updated_at": "2026-09-16T07:14:08.855846044Z"
+        }
+      ],
+      "tags": [
+        {
+          "agent": true,
+          "agentApplied": true,
+          "color": "#0f766e",
+          "human": false,
+          "id": "tag-fd31f4056e8501f25c5d",
+          "name": "agent",
+          "note": "Finish canonical plugin fixture and desktop/mobile proof; authoring QA changes require fresh independent gates.",
+          "owner": "agent",
+          "updatedAt": "2026-09-16T07:08:37.887326601Z"
+        }
+      ]
+    }
+  ],
+  "plan_bytes": 194384,
+  "plan_exact_readback": true,
+  "cycle_complete": false
+}

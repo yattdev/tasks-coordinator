@@ -242,7 +242,7 @@
       "fallback": "Preserve all original R4 work/head/artifacts; no competing owner, synthetic retry or bypass.",
       "health": "healthy",
       "lane": "Work",
-      "last_action": "07:08 corrective handoff; see 2026-09-16T0709-open-handoffs.json",
+      "last_action": "07:14 handoff readback; task-switch new Review failed teardown safety, Work correction pending",
       "last_checked": "2026-09-16T07:00:21Z",
       "next_action": "Consume current owner result, verify requested Work settlement, then require independent head-bound gates",
       "owner": "bcc3ee65-4348-48dd-b930-555377dc0fb0",
@@ -957,7 +957,7 @@
       "owner": "465aaf61-9f07-4942-b601-685ab00daf74",
       "health": "anomalous",
       "lane": "QA",
-      "last_action": "07:08 corrective handoff; see 2026-09-16T0709-open-handoffs.json",
+      "last_action": "07:14 handoff readback; task-switch new Review failed teardown safety, Work correction pending",
       "next_action": "Consume current owner result, verify requested Work settlement, then require independent head-bound gates",
       "trigger": "Current owner result or next normal wake",
       "fallback": "Preserve eedc47981b939cd42a4fa834efdde23b4e540fe4 history; no auth weakening, duplicate PR/ping, or claim of functioning UI before proof.",
@@ -1299,20 +1299,20 @@
     },
     {
       "fallback": "Preserve all original R4 work/head/artifacts; no competing owner, synthetic retry or bypass.",
-      "health": "healthy",
-      "lane": "Review",
-      "last_action": "07:08 corrective handoff; see 2026-09-16T0709-open-handoffs.json",
+      "health": "anomalous",
+      "lane": "QA",
+      "last_action": "07:14 handoff readback; task-switch new Review failed teardown safety, Work correction pending",
       "last_checked": "2026-09-16T07:00:21Z",
-      "next_action": "Consume current owner result, verify requested Review settlement, then require independent head-bound gates",
-      "owner": "b70c7faf-ff1e-469a-a15f-93725fa8d044",
+      "next_action": "Consume current owner result, verify requested Work settlement, then require independent head-bound gates",
+      "owner": "8f648b05-6726-4195-8ed6-7d18f4a5209c",
       "task_id": "cfccac4a-1c80-403f-b284-a673a26a321a",
       "title": "Fix shared task-switch E2E failure",
       "trigger": "Current owner result or next normal wake",
       "head": "e1e888be860029cb540026b8ea95ff9c93a0db4a",
       "inventory_checked_at": "2026-09-16T07:00:21Z",
       "last_checked_cycle_id": "2026-09-16T0455",
-      "evidence_generation": "2026-09-16T07:08:40.956443789Z",
-      "anomalous": false,
+      "evidence_generation": "2026-09-16T07:12:31.503350485Z",
+      "anomalous": true,
       "mutated": true,
       "transitioned": true,
       "delivery_status": "none"
@@ -1415,20 +1415,20 @@
     },
     {
       "fallback": "Preserve a1648b88 and mobile evidence SHA 9c0ed7e0; no permission expansion, duplicate owner, reviewer contact, force, merge, or deploy.",
-      "health": "anomalous",
-      "lane": "QA",
-      "last_action": "07:08 corrective handoff; see 2026-09-16T0709-open-handoffs.json",
+      "health": "healthy",
+      "lane": "Review",
+      "last_action": "07:14 handoff readback; task-switch new Review failed teardown safety, Work correction pending",
       "last_checked": "2026-09-16T07:00:21Z",
       "next_action": "Consume current owner result, verify requested Review settlement, then require independent head-bound gates",
-      "owner": "96789efa-e78e-4e26-b179-87dcff5db459",
+      "owner": "5d4cee82-fe15-4599-a28e-86035c29be0b",
       "task_id": "fa3fba49-2018-460b-a600-adae23b24cc8",
       "title": "Add coordinator grant management surfaces",
       "trigger": "Current owner result or next normal wake",
       "head": "5a8b284dd1db60787fdb5ae25b31641fb642d640",
       "inventory_checked_at": "2026-09-16T07:00:21Z",
       "last_checked_cycle_id": "2026-09-16T0455",
-      "evidence_generation": "2026-09-16T07:02:35.559848852Z",
-      "anomalous": true,
+      "evidence_generation": "2026-09-16T07:09:53.99804735Z",
+      "anomalous": false,
       "mutated": true,
       "transitioned": true,
       "delivery_status": "none"
@@ -1856,12 +1856,12 @@
   ],
   "anomalies": [
     {
-      "task_id": "fa3fba49-2018-460b-a600-adae23b24cc8",
+      "task_id": "cfccac4a-1c80-403f-b284-a673a26a321a",
       "owner_contact": "obtained",
       "owner_account": "Current gate owner is authoring or testing; preserve work until deferred move settles.",
       "independent_surfaces": [
         "Native board/session census",
-        "Explicit author/reviewer messages in open-handoffs artifact"
+        "Explicit author/reviewer messages in open-handoffs and checkpoint artifacts"
       ],
       "verification_result": "Requested correction remains deferred; no independent gate pass claimed."
     },
@@ -1871,7 +1871,7 @@
       "owner_account": "Current gate owner is authoring or testing; preserve work until deferred move settles.",
       "independent_surfaces": [
         "Native board/session census",
-        "Explicit author/reviewer messages in open-handoffs artifact"
+        "Explicit author/reviewer messages in open-handoffs and checkpoint artifacts"
       ],
       "verification_result": "Requested correction remains deferred; no independent gate pass claimed."
     }
@@ -1948,7 +1948,7 @@
         "target_lane": "Work",
         "authority": "Standing Coordinator recovery and exact workflow profile; fresh task/session preflight before each dispatch",
         "evidence_generation": "2026-09-16T07:07:21.764483819Z",
-        "pending_move_checked_at": "2026-09-16T07:09:00Z",
+        "pending_move_checked_at": "2026-09-16T07:14:30Z",
         "expected_owner": "Exactly one current workflow-configured owner, or terminal gate owner in legitimate waiting state",
         "expected_model": "Current configured lane profile; effective model from task transcript where available",
         "required_verdicts": [],
@@ -1972,7 +1972,7 @@
         "lifecycle_evidence": {
           "manual_move_lifecycle_completed": true,
           "requested_target": "Work",
-          "observed_at": "2026-09-16T07:09:00Z"
+          "observed_at": "2026-09-16T07:14:30Z"
         }
       }
     },
@@ -2302,7 +2302,7 @@
         "target_lane": "Work",
         "authority": "Standing Coordinator recovery and exact workflow profile; fresh task/session preflight before each dispatch",
         "evidence_generation": "2026-09-16T06:54:30.877560265Z",
-        "pending_move_checked_at": "2026-09-16T07:09:00Z",
+        "pending_move_checked_at": "2026-09-16T07:14:30Z",
         "expected_owner": "Exactly one current workflow-configured owner, or terminal gate owner in legitimate waiting state",
         "expected_model": "Current configured lane profile; effective model from task transcript where available",
         "required_verdicts": [],
@@ -2326,7 +2326,7 @@
         "lifecycle_evidence": {
           "manual_move_lifecycle_completed": true,
           "requested_target": "Work",
-          "observed_at": "2026-09-16T07:09:00Z"
+          "observed_at": "2026-09-16T07:14:30Z"
         }
       }
     },
@@ -2475,37 +2475,34 @@
       "transition_id": "2026-09-16T0455:cfccac4a-1c80-403f-b284-a673a26a321a",
       "pre": {
         "source_lane": "Prior lane and intermediate transitions retained in action/audit receipts",
-        "target_lane": "Review",
+        "target_lane": "Work",
         "authority": "Standing Coordinator recovery and exact workflow profile; fresh task/session preflight before each dispatch",
-        "evidence_generation": "2026-09-16T07:08:40.956443789Z",
-        "pending_move_checked_at": "2026-09-16T07:09:00Z",
+        "evidence_generation": "2026-09-16T07:12:31.503350485Z",
+        "pending_move_checked_at": "2026-09-16T07:14:30Z",
         "expected_owner": "Exactly one current workflow-configured owner, or terminal gate owner in legitimate waiting state",
         "expected_model": "Current configured lane profile; effective model from task transcript where available",
-        "required_verdicts": [
-          "AUTHOR_TESTS=PASSED",
-          "HEAD_PUSHED=CLEAN"
-        ],
+        "required_verdicts": [],
         "invalidation_conditions": "Changed head, failed predecessor gate, task/session generation, provider status or pending transition",
         "pending_move_evidence": "Direct row census unavailable; stable lane, all sessions and lifecycle projection used under documented fallback; known armed rows excluded",
         "verdict_evidence": "QA5525e799 at e1e888be found missingchangedworkorder and stalePRbody; author ef442792 actively publishingdocsrepair, successor requiresfreshgates"
       },
       "post": {
-        "lane": "Review",
+        "lane": "QA",
         "state": "IN_PROGRESS",
-        "lifecycle_settled": true,
-        "session_id": "b70c7faf-ff1e-469a-a15f-93725fa8d044",
-        "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+        "lifecycle_settled": false,
+        "session_id": "8f648b05-6726-4195-8ed6-7d18f4a5209c",
+        "profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
         "runtime_model": "Workflow-configured profile; see exact session and transcript in audit",
         "head": "23d9c20e59c71b549aaa6881e6e1d2eee894445e",
         "tag_aligned": true,
-        "pending_move_clear": true,
+        "pending_move_clear": false,
         "execution_expected": true,
         "execution_state": "RUNNING",
-        "verified": true,
+        "verified": false,
         "lifecycle_evidence": {
           "manual_move_lifecycle_completed": true,
-          "requested_target": "Review",
-          "observed_at": "2026-09-16T07:09:00Z"
+          "requested_target": "Work",
+          "observed_at": "2026-09-16T07:14:30Z"
         }
       }
     },
@@ -2551,8 +2548,8 @@
         "source_lane": "Prior lane and intermediate transitions retained in action/audit receipts",
         "target_lane": "Review",
         "authority": "Standing Coordinator recovery and exact workflow profile; fresh task/session preflight before each dispatch",
-        "evidence_generation": "2026-09-16T07:02:35.559848852Z",
-        "pending_move_checked_at": "2026-09-16T07:09:00Z",
+        "evidence_generation": "2026-09-16T07:09:53.99804735Z",
+        "pending_move_checked_at": "2026-09-16T07:14:30Z",
         "expected_owner": "Exactly one current workflow-configured owner, or terminal gate owner in legitimate waiting state",
         "expected_model": "Current configured lane profile; effective model from task transcript where available",
         "required_verdicts": [
@@ -2564,22 +2561,22 @@
         "verdict_evidence": "Exact successor author receipt in native task plan, focused tests/normal hooks and clean published ref; broad environmental limitations not claimed green."
       },
       "post": {
-        "lane": "QA",
+        "lane": "Review",
         "state": "IN_PROGRESS",
-        "lifecycle_settled": false,
-        "session_id": "96789efa-e78e-4e26-b179-87dcff5db459",
-        "profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+        "lifecycle_settled": true,
+        "session_id": "5d4cee82-fe15-4599-a28e-86035c29be0b",
+        "profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
         "runtime_model": "Workflow-configured profile; see exact session and transcript in audit",
         "head": "b5137954362a8ae1b80bd49b8027475557228bbc",
         "tag_aligned": true,
-        "pending_move_clear": false,
+        "pending_move_clear": true,
         "execution_expected": true,
         "execution_state": "RUNNING",
-        "verified": false,
+        "verified": true,
         "lifecycle_evidence": {
           "manual_move_lifecycle_completed": true,
           "requested_target": "Review",
-          "observed_at": "2026-09-16T07:09:00Z"
+          "observed_at": "2026-09-16T07:14:30Z"
         }
       }
     }
@@ -2597,8 +2594,8 @@
       "task_id": "153cdbbe-beac-47b8-bc06-8dafdcc8ed80",
       "kind": "Authorized move/message/plan/tag reconciliation as applicable",
       "target": "Task-owned workflow, exact receiving session, plan or agent tag",
-      "result": "07:08 corrective handoff; see 2026-09-16T0709-open-handoffs.json",
-      "readback": "Native board, complete sessions and targeted tags at07:09; see open-handoffs artifact",
+      "result": "07:14 handoff readback; task-switch new Review failed teardown safety, Work correction pending",
+      "readback": "Native board, complete sessions and targeted tags at07:14; see handoff-readback artifact",
       "verified": true
     },
     {
@@ -2733,8 +2730,8 @@
       "task_id": "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
       "kind": "Authorized move/message/plan/tag reconciliation as applicable",
       "target": "Task-owned workflow, exact receiving session, plan or agent tag",
-      "result": "07:08 corrective handoff; see 2026-09-16T0709-open-handoffs.json",
-      "readback": "Native board, complete sessions and targeted tags at07:09; see open-handoffs artifact",
+      "result": "07:14 handoff readback; task-switch new Review failed teardown safety, Work correction pending",
+      "readback": "Native board, complete sessions and targeted tags at07:14; see handoff-readback artifact",
       "verified": false
     },
     {
@@ -2789,9 +2786,9 @@
       "task_id": "cfccac4a-1c80-403f-b284-a673a26a321a",
       "kind": "Authorized move/message/plan/tag reconciliation as applicable",
       "target": "Task-owned workflow, exact receiving session, plan or agent tag",
-      "result": "07:08 corrective handoff; see 2026-09-16T0709-open-handoffs.json",
-      "readback": "Native board, complete sessions and targeted tags at07:09; see open-handoffs artifact",
-      "verified": true
+      "result": "07:14 handoff readback; task-switch new Review failed teardown safety, Work correction pending",
+      "readback": "Native board, complete sessions and targeted tags at07:14; see handoff-readback artifact",
+      "verified": false
     },
     {
       "task_id": "e8728906-86de-4a75-960f-9da585485823",
@@ -2821,13 +2818,13 @@
       "task_id": "fa3fba49-2018-460b-a600-adae23b24cc8",
       "kind": "Authorized move/message/plan/tag reconciliation as applicable",
       "target": "Task-owned workflow, exact receiving session, plan or agent tag",
-      "result": "07:08 corrective handoff; see 2026-09-16T0709-open-handoffs.json",
-      "readback": "Native board, complete sessions and targeted tags at07:09; see open-handoffs artifact",
-      "verified": false
+      "result": "07:14 handoff readback; task-switch new Review failed teardown safety, Work correction pending",
+      "readback": "Native board, complete sessions and targeted tags at07:14; see handoff-readback artifact",
+      "verified": true
     }
   ],
   "continuity": {
-    "plan_bytes": 193894,
+    "plan_bytes": 194384,
     "soft_limit_bytes": 200000,
     "hard_limit_bytes": 240000,
     "write_readback_verified": true,
@@ -2837,7 +2834,7 @@
   },
   "report": {
     "mentioned_task_ids": [],
-    "barrier_at": "2026-09-16T07:00:21Z",
+    "barrier_at": "2026-09-16T07:14:30Z",
     "fresh": true,
     "task_barriers": []
   },
@@ -3039,5 +3036,5 @@
       "mutation 25 is not verified"
     ]
   ],
-  "continuation_audit": "07:09 source messages reveal authoring Review/QA; corrected latest transition targets and retained actual failed/deferred results."
+  "continuation_audit": "07:14 grant fresh Review settled; task-switch failed23d9c20e mock teardown; chat/task-switch deferred Work corrections remain. No queue mutation."
 }
