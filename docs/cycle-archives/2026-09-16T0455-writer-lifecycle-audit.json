@@ -1,0 +1,93 @@
+{
+  "02159-writers": {
+    "task_id": "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+    "observed_at": "2026-09-16T05:13:06.819067+00:00",
+    "git": {
+      "head": "e30bd1f2e5008be93e11ede6b2d3827a74e68095",
+      "merge_head": "60aef37cbd8a043786393a56b603111eb3bd1f63",
+      "staged_entries": 1821,
+      "unstaged_entries": 0,
+      "untracked_entries": 0,
+      "unmerged_entries": 0,
+      "index_lock": false,
+      "note": "Historical 05:13\u201305:14 read-only snapshot; later owner completed integration and entered a fresh repair."
+    },
+    "index": {
+      "path": "/data/home/Code/kandev-source/.git/worktrees/kandev-source8/index",
+      "present": true,
+      "size": 2384928,
+      "mtime": "2026-09-16T05:06:30.845245+00:00",
+      "sha256": "886f12b1900bc4cbe3a91f45ea846c28796ffe13b614c5ba9592838df23de790"
+    },
+    "verdict": "No present competing writer observed in visible PID namespace. Historical three-writer assertion is unproven: unscoped pgrep cannot establish cwd or agent/session ownership, and all named PIDs are now absent. One attempt was explicitly owned by the reporting session. Parent ancestry cannot be reconstructed after PID disappearance.",
+    "safe_resume": "Resume the same existing Work owner6c820e23-770f-46b6-8f74-01e65d307fc7 first for read-only verification in its own execution context: consume original commit/hook terminal result and inspect cwd plus parent ancestry for any currently matching Git/hook processes. The helper view had323cwd permission denials and is not a zero-writer clearance. Only after the owner establishes no active writer in this checkout may it complete one normal commit/hook attempt. Preserve staged merge; no concurrent retries, abort/reset/unlock or hook bypass. If exact writer ownership cannot be established, preserve state and return the narrow denial.",
+    "limitations": [
+      "323 PID cwd reads were permission denied. Therefore this helper cannot certify zero writers; no attempt was made to bypass those denials.",
+      "Current process view is PID namespace pid:[4026534775]; no assertion about invisible host/other namespace writers.",
+      "No environment or secret reads; no process termination, Git mutation, task message, or provider operation.",
+      "Only this audit artifact was written."
+    ]
+  },
+  "c642-writers": {
+    "task_id": "c642d57a-5a24-48ca-8f85-57d31115eeb5",
+    "checked_at": "2026-09-16T05:13:18Z",
+    "classification": "No proven independent writer. Owner's own asynchronous full-suite launch and subsequent successful staging explain the observed command names and index timing. Exact current PID/cwd/ancestry could not be certified because /proc cwd is permission-denied for most visible processes.",
+    "resume_decision": "Resume only the existing intended owner for read-only accounting/completion of its own outstanding command first. Once it confirms no live conflicting writer/job, continue serially in the preserved recovery checkout. This is not unconditional proof of writer absence.",
+    "recommended_parent_action": "Provide own tool IDs/timestamps and unchanged index receipt to session 3df169fa-a215-4f8e-a440-11315d6bd206; require exact PID/cwd/parent evidence before attributing another writer. Do not spawn a second writer, kill processes, abort merge, remove locks, reset, or clean.",
+    "index_stability": {
+      "first_at": "2026-09-16T05:12:34Z",
+      "last_at": "2026-09-16T05:13:18Z",
+      "unchanged": true,
+      "index_lock_absent_at": "2026-09-16T05:12:34Z"
+    },
+    "preservation": "Original source HEAD and MERGE_HEAD match saved preservation receipt; original index mtime remains 2026-08-30. Both checkouts retained; no mutation by this audit.",
+    "limitations": [
+      "No tests run; source behavior not accepted.",
+      "Zero unmerged index entries and no markers refute current unmerged-index claim but do not by themselves prove semantic merge correctness.",
+      "No global argv or process environment read; most cwd links denied, cannot prove zero live processes or exact owner PID.",
+      "No board/plan/provider/contact mutation; primary owns continuity persistence."
+    ]
+  },
+  "lifecycle": {
+    "observed_at": "2026-09-16T05:12:40Z",
+    "semantics": {
+      "conclusion": "Manual move lifecycle may remain pending through the reused owner's entry turn. Completion is persisted only after synchronous step entry/autostart returns. This is consistent with two observed pending-to-completed turn-end transitions. Not a guarantee every pending marker will clear successfully.",
+      "source_checkout": "/data/tasks/adopt-exact-profile_aymu1kux/kandev-source",
+      "source_head": "57caf218de54d82e54f27556224640e2f19d5659",
+      "deployed_source_match": "Not proven; source behavior corroborated by current deployed observations, not asserted exact deployment identity.",
+      "source_evidence": [
+        {
+          "path": "apps/backend/internal/orchestrator/event_handlers_workflow.go",
+          "lines": "2443\u20132450",
+          "finding": "Comment documents processOnEnter/auto_start_agent may block waiting for agent turn; move handler dispatches lifecycle asynchronously."
+        },
+        {
+          "path": "apps/backend/internal/orchestrator/event_handlers_workflow.go",
+          "lines": "2753\u20132795",
+          "finding": "processManualMoveLifecycleWithFeederBarrier holds per-task lock, executes step exit/enter, then persists completed and removes pending."
+        },
+        {
+          "path": "apps/backend/internal/orchestrator/event_handlers_workflow.go",
+          "lines": "2840\u20132905",
+          "finding": "finalizeStepEnter synchronously invokes processOnEnter."
+        },
+        {
+          "path": "apps/backend/internal/orchestrator/event_handlers_workflow.go",
+          "lines": "4225\u20134296",
+          "finding": "processOnEnter calls launchAfterOnEnterDispatch; ACP hasAutoStart path directly invokes autoStartStepPrompt."
+        },
+        {
+          "path": "apps/backend/internal/orchestrator/event_handlers_workflow.go",
+          "lines": "1390\u20131520",
+          "finding": "Internal startup recovery exists; no corresponding callable settlement tool was advertised."
+        }
+      ],
+      "native_settlement_capability": {
+        "advertised": false,
+        "searched": "Current ALL_TOOLS names/descriptions for lifecycle, pending move, settle, recover, resume; no dedicated settle/reconcile. move_task is a new/deferred move, step_complete means completed lane requirements and is not a repair operation.",
+        "safe_action": "Allow sole healthy running entry turn to finish and re-read lane, metadata and complete sessions; if marker survives owner completion, retain anomaly under existing 02159 owner. Do not emulate internal cleanup, same-lane move, metadata write, or spawn duplicate owner."
+      }
+    },
+    "continuity_handoff": "Parent serializes all changes, persists this evidence and executable follow-up in current Coordinator plan. No claim that 8a182 four-surface blocker is cleared."
+  }
+}

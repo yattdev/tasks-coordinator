@@ -1,0 +1,125 @@
+{
+  "observed_at": "2026-09-16T05:20:50Z",
+  "gate_summary": "No actionable wrong-gate or silent stall proven. One Review owner explicitly parked for running CI; three active independent Review/QA owners; one active configured CI owner. Preserve missing runtime/Human gates and exact-head pipeline holds.",
+  "tasks": [
+    {
+      "task_id": "86a16fc1-6394-4fb0-898d-4d42948683f5",
+      "title": "Bound plugin registry release latency",
+      "head": "27f958b4adca086188a92f66aa228b21e7b41e0e",
+      "author_session": "19334df2-3797-4bcd-86a6-7ed619786fbc",
+      "author_completion": "05:14:48 Work complete; merge of current upstream/main and both conflicts resolved/pushed. Fixture package build, 43 registry tests, focused Go tests and diff checks passed.",
+      "review": "Fresh independent bfffb5a5-bb26-4af3-aff2-9facd0f16ae2 at exact head: no code blockers; 43 registry tests and four Go packages pass; final verdict code review clean, delivery pending CI. No full terminal gate pass asserted.",
+      "qa": "No fresh QA at successor head yet.",
+      "classification": "Freshly parked Review owner with explicit external CI trigger; not a silent stall.",
+      "action": "Parent record code-review-clean and wait for one terminal exact-head CI census on natural completion/normal cycle; then obtain final gate disposition or route distinct QA. Do not re-run implementation or claim fully green. Reconcile old Work tag.",
+      "provider": {
+        "pr": 3153,
+        "url": "https://github.com/kdlbs/kandev/pull/3153",
+        "head": "27f958b4adca086188a92f66aa228b21e7b41e0e",
+        "ref": "feature/bound-plugin-registr-x1v",
+        "base": "60aef37cbd8a043786393a56b603111eb3bd1f63",
+        "draft": true,
+        "state": "open",
+        "mergeable": true,
+        "mergeable_state": "blocked"
+      },
+      "tag_recommendation": "Parent reconcile agent-owned note with current gate/owner; all five retained older instructions.",
+      "lifecycle": "No manual pending marker in final row; exact pending-move rows not read. Null projections are not authoritative row census."
+    },
+    {
+      "task_id": "7056a702-a3c3-4fe8-8535-c6b8d340ef6a",
+      "title": "Add exact pending-move cancellation",
+      "head": "d6cf841fb9522f702393bce955383792d1e8e2bd",
+      "author_session": "98d509e7-78dd-42d9-a343-665bc574a7f6",
+      "author_completion": "Published additive current-main merge (plan and detailed messages say merge; final author shorthand said rebased). Five focused Go packages, diff-check and active hooks passed; clean tree.",
+      "review": "Fresh independent e209b8dd-c01e-488b-8c7a-016c5510abe0 completed read-only review at exact head05:19:31, no blockers/suggestions, focused checks passed; CI still pending.",
+      "qa": "Distinct bd2c session a306f527-1ebb-49d3-b855-a6c677db2d70 RUNNING since05:19:36; no verdict yet.",
+      "classification": "Healthy current exact-head QA; no wrong-gate or stall.",
+      "action": "Let current QA finish; independently refresh exact-head CI before delivery/readiness; reconcile old Work tag. Preserve review note about tracking ref lag rather than assuming publication missing, since REST head matches.",
+      "provider": {
+        "pr": 3155,
+        "url": "https://github.com/kdlbs/kandev/pull/3155",
+        "head": "d6cf841fb9522f702393bce955383792d1e8e2bd",
+        "ref": "feature/add-exact-pending-mo-ia6",
+        "base": "60aef37cbd8a043786393a56b603111eb3bd1f63",
+        "draft": false,
+        "state": "open",
+        "mergeable": true,
+        "mergeable_state": "blocked"
+      },
+      "tag_recommendation": "Parent reconcile agent-owned note with current gate/owner; all five retained older instructions.",
+      "lifecycle": "No manual pending marker in final row; exact pending-move rows not read. Null projections are not authoritative row census."
+    },
+    {
+      "task_id": "46945aff-382a-41a4-9f35-bd5c2806911e",
+      "title": "Expose guarded TTY tool to ACP agents",
+      "head": "4dd75206a1136f12c643caa124d546fc98c09a8b",
+      "author_session": "c286df67-0bd0-4b64-9963-ab730485efbb",
+      "author_completion": "05:15:05 current-main merge pushed; guarded-TTY focused tests and repository hooks pass.",
+      "review": "eab8c408-d700-4e6e-8e89-3f583538f9c1 explicit REVIEW_RESULT=PASSED at exact head05:19:51. Guarded-adjacent packages and narrow task/service GuardedTTY test pass; broader unrelated parent-directory accessibility failures disclosed.",
+      "qa": "Distinct bd2c session54ce1275-0277-4e77-9b7e-db3f85a4b29a RUNNING since05:19:55; no verdict yet.",
+      "classification": "Healthy distinct QA after exact-head independent Review PASS.",
+      "action": "Let QA complete scoped checks. Preserve later ordinary-agent guarded TTY/non-TTY runtime acceptance and release/deployment prerequisite; source Review is not runtime capability proof. Reconcile old Work tag.",
+      "provider": {
+        "pr": 3497,
+        "url": "https://github.com/kdlbs/kandev/pull/3497",
+        "head": "4dd75206a1136f12c643caa124d546fc98c09a8b",
+        "ref": "feature/expose-guarded-tty-t-46l",
+        "base": "60aef37cbd8a043786393a56b603111eb3bd1f63",
+        "draft": true,
+        "state": "open",
+        "mergeable": true,
+        "mergeable_state": "blocked"
+      },
+      "tag_recommendation": "Parent reconcile agent-owned note with current gate/owner; all five retained older instructions.",
+      "lifecycle": "No manual pending marker in final row; exact pending-move rows not read. Null projections are not authoritative row census."
+    },
+    {
+      "task_id": "76b4e3d4-ccb8-408c-a0de-5e5014c538be",
+      "title": "Make visible Human questions durable",
+      "head": "2fdcec8d9fdb8088d3bdcb63b48117395889c740",
+      "author_session": "77689a7b-36fa-4a08-9937-b1a680169612",
+      "author_completion": "05:15:45 published current-main merge; only review-notes conflict retained both entries; clean fork-matched worktree. Clarification focused race and hooks pass.",
+      "review": "Fresh ab57 ad861548-f8e0-43ff-81e7-eb93c3cb10a3 RUNNING. Suspected durable-delivery restart gap: answered response_delivery_pending bundle needs in-memory delivery-miss receipt; crash/restart may lose retry/adoption. Clarification/handlers/server race pass; SQLite race suite still active05:20:37. No final verdict.",
+      "qa": "Not reached at successor head.",
+      "classification": "Healthy active Review investigating potential actionable defect; do not preempt or falsely pass.",
+      "action": "Consume final Review result. If confirmed blocker, route exact finding to Work after settlement; if clear, proceed current gates. No duplicate owner; reconcile old Work tag.",
+      "provider": {
+        "pr": 3404,
+        "url": "https://github.com/kdlbs/kandev/pull/3404",
+        "head": "2fdcec8d9fdb8088d3bdcb63b48117395889c740",
+        "ref": "feature/make-visible-human-q-u2t",
+        "base": "60aef37cbd8a043786393a56b603111eb3bd1f63",
+        "draft": true,
+        "state": "open",
+        "mergeable": true,
+        "mergeable_state": "blocked"
+      },
+      "tag_recommendation": "Parent reconcile agent-owned note with current gate/owner; all five retained older instructions.",
+      "lifecycle": "No manual pending marker in final row; exact pending-move rows not read. Null projections are not authoritative row census."
+    },
+    {
+      "task_id": "27b493a3-65b6-4d4a-8b68-73f2ffcf9621",
+      "title": "Fix workflow-sync GitHub polling starving API quota",
+      "head": "fa960ef6edff762a0a768c4e4a60b531dc199921",
+      "author_completion": "Preserved existing exact merged-current-main candidate; no new source edits in this review/QA sequence.",
+      "review": "Fresh independent925872ff-e900-4c5b-8c91-e36bff3ddb0d exact Review PASS05:05:41; github/workflowsync/MCP tests pass.",
+      "qa": "Distinct b4e2c2e4-dfb4-47b1-a840-b68d10ba15f5 exact QA PASS05:18:39. Backend/race/repeated scheduler/concurrency/MCP, SQL guard/spec/docs/diff and branch-scoped lint pass. Three inherited unchanged-file lint issues disclosed. No live-runtime/security acceptance exercised.",
+      "classification": "Healthy configured PR\u2192CI sequence after exact-head Review and QA passes. QA prose claimed Human-QA, but native workflow next is PR then CI; this is not a missing-gate incident.",
+      "action": "Allow current CI profile7c6 session5f9b75dd-9227-4a01-ae63-30e411ee11c6 single exact-head read-only census, then preserve Human security/runtime acceptance boundary. Reconcile obsolete Review tag; no automated source/retry/reviewer mutation warranted.",
+      "provider": {
+        "pr": 3143,
+        "url": "https://github.com/kdlbs/kandev/pull/3143",
+        "head": "fa960ef6edff762a0a768c4e4a60b531dc199921",
+        "ref": "feature/fix-workflow-sync-gi-d0x",
+        "base": "60aef37cbd8a043786393a56b603111eb3bd1f63",
+        "draft": true,
+        "state": "open",
+        "mergeable": true,
+        "mergeable_state": "clean"
+      },
+      "tag_recommendation": "Parent reconcile agent-owned note with current gate/owner; all five retained older instructions.",
+      "lifecycle": "No manual pending marker in final row; exact pending-move rows not read. Null projections are not authoritative row census."
+    }
+  ]
+}

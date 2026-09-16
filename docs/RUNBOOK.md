@@ -5179,3 +5179,23 @@ The live dependency-removal endpoint rejected another dependent task ID as
 current-task-only on 2026-09-09. Preserve reciprocal before/after projections
 and the rejected operation. Do not emulate removal through SQL, wake unsafe
 Done sessions, or treat harmless stale edges as unique unfinished work.
+
+## Attribute apparent concurrent writers before restarting work
+
+A broad `ps` or `pgrep` match proves only that a command exists somewhere.
+Before treating it as a competing writer, bind its PID, working directory,
+parent process, and tool/session receipt to the exact task checkout. Include
+the owner's own outstanding test, formatter, staging, commit, and hook commands
+in that accounting. A stable index and absent lock support preservation but do
+not prove all subprocesses stopped. Permission-denied process reads are unknown,
+not an empty census; a WAITING_FOR_INPUT projection can also outlive tool work.
+
+Resume the same intended owner first for read-only command-result and ownership
+reconciliation. Continue serially only after that owner establishes no conflicting
+writer. Do not create a replacement writer, kill processes, remove locks, or
+abort a preserved merge merely to clear an unscoped process-list observation.
+
+An on-entry move marker may remain pending while its started agent turn runs:
+the workflow can await the auto-start call before marking lifecycle completion.
+Verify the exact running owner and continuing output, then wait for the marker
+to settle; do not duplicate the start or label the transition complete early.

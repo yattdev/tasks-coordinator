@@ -1,0 +1,450 @@
+{
+  "kind": "provider",
+  "observed_at": "2026-09-16T04:58:00Z",
+  "tasks": [
+    {
+      "task_id": "01d6764d-b66d-46a0-a664-2caf4c3f4d98",
+      "falsification_query": "Fresh board + complete session census + task plan/latest primary conversation + native relations + complete tags; authenticated REST PR/head, all check/status/run pages once after buffered reset.",
+      "falsification_time": "2026-09-16T05:02:44.473054+00:00",
+      "falsification_result": "Recorded provider run/head trigger remains uncleared; exact historical failed attempt is still current. Full Review/QA/thread/required-policy gate not asserted. Provider now reports dirty/mergeable=false; this is an integration anomaly needing owner verification, not proof from source.",
+      "next_action": "Coordinator obtains owner account and verifies provider-reported conflict against canonical main 60aef37cbd8a043786393a56b603111eb3bd1f63; if concrete conflict is confirmed, route one narrow Work integration owner, then renew CI/Review/QA. Preserve prior failed-run and R4 evidence.",
+      "tag_audit": "Current ownership/trigger mostly aligned; no mutations performed.",
+      "fresh_local_preservation": {
+        "path": "/data/tasks/make-terminal-workfl_8z3b2nzr/kandev-source",
+        "observed_at": "2026-09-16T05:03:27.060279+00:00",
+        "head": "fe21f495adf3c72fd3fc01de2fffc5541858e575",
+        "branch": "fix/atomic-terminal-routing",
+        "status": {
+          "clean": false,
+          "porcelain_nul_entries": 2200
+        }
+      },
+      "historical_r4": {
+        "blocker_owner": "Actions maintainer; isolated delivery owner 02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+        "cleared": false,
+        "deterministic_resume_trigger": "On legitimate rerun/head/status change classify once; green routes isolated recovery to fresh Review then QA.",
+        "exact_blocker_or_dependency": "Sole docs failure at e30bd1f2, run 34886496085 attempt 1/job 104160061657; validator replay passed per owner. Legacy checkout remains interrupted merge.",
+        "fallback": "Preserve old merge and isolated clean checkout; no duplicate request.",
+        "last_checked": "2026-09-16T04:04:28.120Z",
+        "next_action": "On legitimate rerun/head/status change classify once; green routes isolated recovery to fresh Review then QA.",
+        "preservation_receipt": "`/data/tasks/make-terminal-workfl_8z3b2nzr/kandev-source`; branch `fix/atomic-terminal-routing`; HEAD `fe21f495adf3c72fd3fc01de2fffc5541858e575`; upstream `origin/fix/atomic-terminal-routing`; interrupted merge with exactly 2,200 porcelain entries preserved. PR/delivery head is separately `e30bd1f2e5008be93e11ede6b2d3827a74e68095`. No services/ports/runtime/data/artifacts changed.",
+        "previous_workflow_step": "CI Fixup",
+        "task_id": "01d6764d-b66d-46a0-a664-2caf4c3f4d98"
+      }
+    },
+    {
+      "task_id": "02159e6a-726a-43b2-8d9a-f74c5c01fe11",
+      "falsification_query": "Fresh board + complete session census + task plan/latest primary conversation + native relations + complete tags; authenticated REST PR/head, all check/status/run pages once after buffered reset.",
+      "falsification_time": "2026-09-16T05:02:44.473054+00:00",
+      "falsification_result": "Recorded provider run/head trigger remains uncleared; exact historical failed attempt is still current. Full Review/QA/thread/required-policy gate not asserted. Provider now reports dirty/mergeable=false; this is an integration anomaly needing owner verification, not proof from source.",
+      "next_action": "Coordinator obtains owner account and verifies provider-reported conflict against canonical main 60aef37cbd8a043786393a56b603111eb3bd1f63; if concrete conflict is confirmed, route one narrow Work integration owner, then renew CI/Review/QA. Preserve prior failed-run and R4 evidence.",
+      "tag_audit": "Current ownership/trigger mostly aligned; no mutations performed.",
+      "fresh_local_preservation": {
+        "path": "/data/tasks/recover-atomic-termi_li7cmaa7/kandev-source",
+        "observed_at": "2026-09-16T05:03:27.485483+00:00",
+        "head": "e30bd1f2e5008be93e11ede6b2d3827a74e68095",
+        "branch": "feature/recover-atomic-termi-7o7",
+        "status": {
+          "clean": true,
+          "porcelain_nul_entries": 0
+        }
+      },
+      "historical_r4": {
+        "blocker_owner": "Actions maintainer / Coordinator",
+        "cleared": false,
+        "deterministic_resume_trigger": "New legitimate docs attempt/head/status then one exact CI census; terminal green -> Review.",
+        "exact_blocker_or_dependency": "PR3166 exact e30bd1f2 unchanged; docs run 34886496085 attempt1 failed, all other checks pass/skip, zero unresolved threads.",
+        "fallback": "Preserve both refs and contaminated original; no retry-only edit.",
+        "last_checked": "2026-09-16T04:04:28.120Z",
+        "next_action": "New legitimate docs attempt/head/status then one exact CI census; terminal green -> Review.",
+        "preservation_receipt": "clean `/data/tasks/recover-atomic-termi_li7cmaa7/kandev-source`; branch `feature/recover-atomic-termi-7o7`; HEAD `e30bd1f2e5008be93e11ede6b2d3827a74e68095`; task plan says canonical and recovery remote refs equal this head. Original dirty checkout above stays untouched. No services/ports/runtime/data/artifact changes.",
+        "previous_workflow_step": "CI Fixup",
+        "task_id": "02159e6a-726a-43b2-8d9a-f74c5c01fe11"
+      }
+    },
+    {
+      "task_id": "1d3d7383-8dba-41f8-a794-7e3d51809143",
+      "falsification_query": "Fresh board + complete session census + task plan/latest primary conversation + native relations + complete tags; authenticated REST PR/head, all check/status/run pages once after buffered reset.",
+      "falsification_time": "2026-09-16T05:02:44.473054+00:00",
+      "falsification_result": "Recorded provider run/head trigger remains uncleared; exact historical failed attempt is still current. Full Review/QA/thread/required-policy gate not asserted.",
+      "next_action": "First normal cycle at/after 2026-09-16T04:59:36Z: one exact PR/head/run census; changed legitimate attempt or status routes fresh classification, unchanged failure preserves canonical request without duplicate ping.",
+      "tag_audit": "Current ownership/trigger mostly aligned; no mutations performed.",
+      "fresh_local_preservation": null,
+      "historical_r4": {
+        "task_id": "1d3d7383-8dba-41f8-a794-7e3d51809143",
+        "previous_step": "CI Fixup",
+        "exact_blocker_or_dependency": "PR #3686 exact e93f1f2d has unrelated E2E Shard 4 failure run 34971684802/job 104397221496; one canonical legitimate-rerun request was posted.",
+        "blocker_owner": "GitHub Actions maintainer via https://github.com/kdlbs/kandev/pull/3686#issuecomment-5691560638",
+        "preservation_receipt": "Clean exact e93f1f2d7064e8b794649aa64bd5ebcd9175b4b7; branch-owned root/fixture fix and Containers 1-6 pass evidence preserved; no source/provider mutation after request.",
+        "next_action": "First normal cycle at/after 2026-09-16T04:59:36Z: one exact PR/head/run census; changed legitimate attempt or status routes fresh classification, unchanged failure preserves canonical request without duplicate ping.",
+        "deterministic_resume_trigger": "Legitimate new run or status/head change for run 34971684802/job 104397221496.",
+        "fallback": "No duplicate request, synthetic retry, or guessed fixture patch.",
+        "last_checked": "2026-09-16T04:38:23Z"
+      }
+    },
+    {
+      "task_id": "27b493a3-65b6-4d4a-8b68-73f2ffcf9621",
+      "falsification_query": "Fresh board + complete session census + task plan/latest primary conversation + native relations + complete tags; authenticated REST PR/head, all check/status/run pages once after buffered reset.",
+      "falsification_time": "2026-09-16T05:02:44.473054+00:00",
+      "falsification_result": "CI wait falsified: 77 check-runs terminal clear, all latest statuses successful and no bad/pending runs at unchanged fa960ef6; provider clean. Review/QA/readiness/thread gates remain.",
+      "next_action": "Primary refreshes live lifecycle/owner state and applicable readiness gates, then routes fresh independent Review and distinct QA; no repeated CI auto-pass owner.",
+      "tag_audit": "Current ownership/trigger mostly aligned; no mutations performed.",
+      "fresh_local_preservation": null,
+      "historical_r4": {
+        "task_id": "27b493a3-65b6-4d4a-8b68-73f2ffcf9621",
+        "previous_workflow_step": "CI Fixup",
+        "exact_blocker_or_dependency": "Workflow automation twice routed PR #3143 to Human-QA before exact-head CI was terminal. CI owners af3a011f and c1abc2ec completed while public REST still showed 15 in-progress/zero failed checks. This is a routing anomaly, not a proved CI/source failure.",
+        "blocker_owner": "Coordinator for the next normal public exact-head census; workflow terminal-routing owner for the premature advancement.",
+        "preservation_receipt": "PR #3143 OPEN/draft exact fa960ef6edff762a0a768c4e4a60b531dc199921, base 60aef37cbd8a043786393a56b603111eb3bd1f63. Last public read: 74 checks, 37 success, 22 skipped, 15 in progress, zero failures; E2E 35051495818 and Backend 35051495751/job104652720975 active. Human acceptance evidence preserved; zero live owners.",
+        "next_action": "On next normal wake perform one public exact-head census; terminal green routes directly to fresh Review then distinct QA, proved red to narrow repair.",
+        "deterministic_resume_trigger": "All exact-head checks terminal plus settled zero-live ownership.",
+        "fallback": "Remain Blocked; no repeated CI auto-pass loop, rerun, source/provider edit, contact, merge, or deploy.",
+        "last_checked": "2026-09-16T04:04:28.120Z",
+        "cleared": false
+      }
+    },
+    {
+      "task_id": "46945aff-382a-41a4-9f35-bd5c2806911e",
+      "falsification_query": "Fresh board + complete session census + task plan/latest primary conversation + native relations + complete tags; authenticated REST PR/head, all check/status/run pages once after buffered reset.",
+      "falsification_time": "2026-09-16T05:02:44.473054+00:00",
+      "falsification_result": "Source checks remain clear, but current exposed tool catalog still lacks guarded_tty_exec_kandev. Approved publication/deployment provenance not newly supplied; Human ToDeploy boundary retained. Provider also now dirty; credentialed QA cannot be claimed.",
+      "next_action": "Coordinator obtains owner account and verifies provider-reported conflict against canonical main 60aef37cbd8a043786393a56b603111eb3bd1f63; if concrete conflict is confirmed, route one narrow Work integration owner, then renew CI/Review/QA. Preserve prior failed-run and R4 evidence.",
+      "tag_audit": "Current ownership/trigger mostly aligned; no mutations performed.",
+      "fresh_local_preservation": {
+        "path": "/data/tasks/expose-guarded-tty-t_dxnio2ff/kdlbs-kandev",
+        "observed_at": "2026-09-16T05:03:27.658645+00:00",
+        "head": "44568d466c59bcda66083b3f44eeea82febf71a0",
+        "branch": "feature/expose-guarded-tty-t-46l",
+        "status": {
+          "clean": true,
+          "porcelain_nul_entries": 0
+        }
+      },
+      "historical_r4": {
+        "blocker_owner": "Maintained-package publication/runtime deployment owner 01432319-aa8b-4c7d-9841-addcc6ab8e76 plus Human release boundary; Coordinator synchronizes.",
+        "cleared": false,
+        "deterministic_resume_trigger": "Approved published package provenance and deployed tool-list positive advertisement of guarded_tty_exec_kandev.",
+        "exact_blocker_or_dependency": "PR #3497 exact clean/pushed head 44568d466c59bcda66083b3f44eeea82febf71a0 has source Review PASS and 75 terminal-clear checks, but required credentialed QA cannot run because canonical runtime pins upstream @agentclientprotocol/codex-acp 1.11.0 and does not advertise guarded_tty_exec_kandev. Public @yattdev/codex-acp-kandev is absent (npm E404; no GitHub release). No source defect is established by that external absence.",
+        "fallback": "Preserve head/history/evidence; no pre-trigger retry, credential extraction, security weakening, duplicate publication, merge, or deploy.",
+        "last_checked": "2026-09-16T04:04:28.120Z",
+        "next_action": "After reviewed publication/deployment, move to QA and run one fresh distinct credentialed acceptance; then reply/resolve the two already-fixed threads and continue exact-head gates.",
+        "preservation_receipt": "Clean /data/tasks/expose-guarded-tty-t_dxnio2ff/kdlbs-kandev on branch feature/expose-guarded-tty-t-46l at exact 44568d466c59bcda66083b3f44eeea82febf71a0; authoritative SSH remote branch matches exact head, base 54e2e21f320601dc2e0702a03ec3dc499a98411c. Source Review passed; 56 success/19 skipped/0 bad or pending. Two addressed-in-source threads r3956400022/r3956401411 remain unresolved for later reply. TEST_RUNTIME=TRANSIENT; no runtime/service/port/container/database/credential retained.",
+        "previous_workflow_step": "QA",
+        "task_id": "46945aff-382a-41a4-9f35-bd5c2806911e"
+      }
+    },
+    {
+      "task_id": "4b56a8b3-89fa-43ef-891d-c6b3a3b88e2a",
+      "falsification_query": "Fresh board + complete session census + task plan/latest primary conversation + native relations + complete tags; authenticated REST PR/head, all check/status/run pages once after buffered reset.",
+      "falsification_time": "2026-09-16T05:02:44.473054+00:00",
+      "falsification_result": "Prerequisite PR3165 remains open/unmerged at new head fcef955d0baf563d543440d7dae2d7fa17c6b097 despite terminal-clear checks; required canonical-main store contract remains unproven. Native dependency points to scoped CI owner.",
+      "next_action": "When contract merged/contained in main -> Work configured owner.",
+      "tag_audit": "Current ownership/trigger mostly aligned; no mutations performed.",
+      "fresh_local_preservation": null,
+      "historical_r4": {
+        "blocker_owner": "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+        "cleared": false,
+        "deterministic_resume_trigger": "When contract merged/contained in main -> Work configured owner.",
+        "exact_blocker_or_dependency": "Needs scoped CI store tables and deleteCIRunWorkspaceData in canonical main. Native relation confirms owner.",
+        "fallback": "Preserve approved plan; no branch allocated.",
+        "last_checked": "2026-09-16T04:04:28.120Z",
+        "next_action": "When contract merged/contained in main -> Work configured owner.",
+        "preservation_receipt": "no implementation session/worktree/source/branch/runtime/database/provider/credential/CI mutation exists; approved plan is the complete preserved product. Dependency PR #3165 exact recorded head `a9db12a00a8415a33e40586ab6d2cfd08376fc21` is evidence only.",
+        "previous_workflow_step": "Spec",
+        "task_id": "4b56a8b3-89fa-43ef-891d-c6b3a3b88e2a"
+      }
+    },
+    {
+      "task_id": "51c2875b-48ae-4097-b985-b8a9584ca8c2",
+      "falsification_query": "Fresh board + complete session census + task plan/latest primary conversation + native relations + complete tags; authenticated REST PR/head, all check/status/run pages once after buffered reset.",
+      "falsification_time": "2026-09-16T05:02:44.473054+00:00",
+      "falsification_result": "Notes PR7 unchanged/open/clean with3clear checks and no reviews/comments. Latest task conversation contains no Human contract decision. Visible pending-ask status unavailable via current read tools; primary must verify/re-raise exact ask if needed.",
+      "next_action": "Human chooses the maintainer-recommended plugin-owned saved-profile contract or explicitly retains Host-selected behavior; then move Work for the chosen contract and fresh Review/QA.",
+      "tag_audit": "Current ownership/trigger mostly aligned; no mutations performed.",
+      "fresh_local_preservation": null,
+      "historical_r4": {
+        "blocker_owner": "Human material-contract decision owner.",
+        "cleared": false,
+        "deterministic_resume_trigger": "Explicit Human contract decision.",
+        "exact_blocker_or_dependency": "Host PR #2870 is merged; remaining blocker is the explicit material-contract decision between plugin-owned saved-profile dispatch with Utility Agents fallback and the preserved Host-selected contract. Notes PR #7 remains open.",
+        "fallback": "Preserve both clean local heads and QA artifacts; old host QA not current.",
+        "last_checked": "2026-09-16T04:04:28.120Z",
+        "next_action": "Human chooses the maintainer-recommended plugin-owned saved-profile contract or explicitly retains Host-selected behavior; then move Work for the chosen contract and fresh Review/QA.",
+        "preservation_receipt": "Host local clean `/data/tasks/bug-notes-settings-a_imzafc8h/kandev-source`, branch `feature/implement-host-agent-oav`, local `929c4c3cfeecc7a89eb960bd5474ddb731f019c7`; plan records remote/merged PR #2870 head `4af514930a417809eddd7ab2df76e8ec146ba773` (local intentionally behind). Notes clean `/data/tasks/bug-notes-settings-a_imzafc8h/kandev-plugin-notes`, branch `feature/bug-notes-settings-a-0s3`, exact local/PR `19035c9e9989e2372d8e4eaca99772b58eb76a96`. QA artifacts under `/data/tasks/bug-notes-settings-a_imzafc8h/qa-artifacts/`; no retained services/runtime.",
+        "previous_workflow_step": "QA",
+        "task_id": "51c2875b-48ae-4097-b985-b8a9584ca8c2"
+      }
+    },
+    {
+      "task_id": "5c9f515d-e5f9-43c5-bf31-fb42276e5e15",
+      "falsification_query": "Fresh board + complete session census + task plan/latest primary conversation + native relations + complete tags; authenticated REST PR/head, all check/status/run pages once after buffered reset.",
+      "falsification_time": "2026-09-16T05:02:44.473054+00:00",
+      "falsification_result": "Same3action_required runs at0bd0f8fb, zero reviews and no new maintainer response; downstream maintained fork remains independent.",
+      "next_action": "New maintainer review/approval/result/merge/release -> bounded census.",
+      "tag_audit": "Current ownership/trigger mostly aligned; no mutations performed.",
+      "fresh_local_preservation": null,
+      "historical_r4": {
+        "blocker_owner": "agentclientprotocol/codex-acp maintainer",
+        "cleared": false,
+        "deterministic_resume_trigger": "New maintainer review/approval/result/merge/release -> bounded census.",
+        "exact_blocker_or_dependency": "PR451 unchanged0bd0f8fb non-draft; three exact-head action_required runs34178209597/33910495965/33910495905; no threads.",
+        "fallback": "Downstream maintained fork proceeds; no duplicate ping.",
+        "last_checked": "2026-09-16T04:04:28.120Z",
+        "next_action": "New maintainer review/approval/result/merge/release -> bounded census.",
+        "preservation_receipt": "clean `/data/tasks/add-guarded-tty-brid_10966pzf/agentclientprotocol-codex-acp`; branch `feature/add-guarded-tty-brid-6q9`; local/upstream `0bd0f8fb74a0dfec93eb3a8e586dc0d7c0e8488d`; no running services/ports/runtime/data or preservation artifacts. PR #451 remains provider evidence.",
+        "previous_workflow_step": "Work",
+        "task_id": "5c9f515d-e5f9-43c5-bf31-fb42276e5e15"
+      }
+    },
+    {
+      "task_id": "7056a702-a3c3-4fe8-8535-c6b8d340ef6a",
+      "falsification_query": "Fresh board + complete session census + task plan/latest primary conversation + native relations + complete tags; authenticated REST PR/head, all check/status/run pages once after buffered reset.",
+      "falsification_time": "2026-09-16T05:02:44.473054+00:00",
+      "falsification_result": "Recorded provider run/head trigger remains uncleared; exact historical failed attempt is still current. Full Review/QA/thread/required-policy gate not asserted. Provider now reports dirty/mergeable=false; this is an integration anomaly needing owner verification, not proof from source. Full issue-comment census proves no current-head rerun request. Coordinator can post an authorized routine provider request without launching a task; decide after integration classification.",
+      "next_action": "Coordinator obtains owner account and verifies provider-reported conflict against canonical main 60aef37cbd8a043786393a56b603111eb3bd1f63; if concrete conflict is confirmed, route one narrow Work integration owner, then renew CI/Review/QA. Preserve prior failed-run and R4 evidence.",
+      "tag_audit": "Current ownership/trigger mostly aligned; no mutations performed.",
+      "fresh_local_preservation": {
+        "path": "/data/tasks/add-exact-pending-mo_p9bciunm/kdlbs-kandev",
+        "observed_at": "2026-09-16T05:03:27.827085+00:00",
+        "head": "25e1e027ef7afcb1ba02dccc9f2ce6483171b95c",
+        "branch": "feature/add-exact-pending-mo-ia6",
+        "status": {
+          "clean": true,
+          "porcelain_nul_entries": 0
+        }
+      },
+      "historical_r4": {
+        "blocker_owner": "GitHub Actions maintainer plus capacity root 8a182e40-d99c-42e9-b9be-1f8f78cf8388; Coordinator tracks.",
+        "cleared": false,
+        "deterministic_resume_trigger": "New attempt/head/job-state change or verified capacity plus resumable task owner.",
+        "exact_blocker_or_dependency": "PR #3155 exact 25e1e027ef7afcb1ba02dccc9f2ce6483171b95c has provider Windows job 104278874466 timed out/cancelled at 30 minutes; aggregate 104286192061 failed only from it. All other checks green, zero threads, no source defect. Terminal primary cannot post the first request and configured launch capacity is exhausted.",
+        "fallback": "No protected-session contact, source edit, synthetic commit, repeated launch, or duplicate request.",
+        "last_checked": "2026-09-16T04:04:28.120Z",
+        "next_action": "On new legitimate attempt classify once; otherwise after safe resumable capacity, post one canonical rerun request if census still shows none.",
+        "preservation_receipt": "PR/source exact head 25e1e027ef7afcb1ba02dccc9f2ce6483171b95c preserved; task worktree/branch path was unavailable in current read-only audit, provider and conversation receipts retained; no runtime/data. Protected row/session untouched.",
+        "previous_workflow_step": "CI Fixup",
+        "task_id": "7056a702-a3c3-4fe8-8535-c6b8d340ef6a"
+      }
+    },
+    {
+      "task_id": "76b4e3d4-ccb8-408c-a0de-5e5014c538be",
+      "falsification_query": "Fresh board + complete session census + task plan/latest primary conversation + native relations + complete tags; authenticated REST PR/head, all check/status/run pages once after buffered reset.",
+      "falsification_time": "2026-09-16T05:02:44.473054+00:00",
+      "falsification_result": "Recorded provider run/head trigger remains uncleared; exact historical failed attempt is still current. Full Review/QA/thread/required-policy gate not asserted. Provider now reports dirty/mergeable=false; this is an integration anomaly needing owner verification, not proof from source.",
+      "next_action": "Coordinator obtains owner account and verifies provider-reported conflict against canonical main 60aef37cbd8a043786393a56b603111eb3bd1f63; if concrete conflict is confirmed, route one narrow Work integration owner, then renew CI/Review/QA. Preserve prior failed-run and R4 evidence.",
+      "tag_audit": "Current ownership/trigger mostly aligned; no mutations performed.",
+      "fresh_local_preservation": {
+        "path": "/data/tasks/make-visible-human-q_vhjkt1t6/kdlbs-kandev",
+        "observed_at": "2026-09-16T05:03:27.929286+00:00",
+        "head": "94d3f603d1f919b0a6cf24929e8f943399acf481",
+        "branch": "feature/make-visible-human-q-u2t",
+        "status": {
+          "clean": true,
+          "porcelain_nul_entries": 0
+        }
+      },
+      "historical_r4": {
+        "blocker_owner": "GitHub Actions maintainer or scoped dispatch owner",
+        "cleared": false,
+        "deterministic_resume_trigger": "New exact-head docs attempt, head, or status.",
+        "exact_blocker_or_dependency": "PR #3404 exact 94d3f603d1f919b0a6cf24929e8f943399acf481 has source checks green and sole docs publisher failure run 34939451714 job 104284552036.",
+        "fallback": "Preserve exact head; no synthetic commit or duplicate contact.",
+        "last_checked": "2026-09-16T04:04:28.120Z",
+        "next_action": "Obtain one legitimate exact-head docs rerun/status repair and classify.",
+        "preservation_receipt": "/data/tasks/make-visible-human-q_vhjkt1t6/kdlbs-kandev, feature/make-visible-human-q-u2t, clean local/fork/PR exact 94d3f603d1f919b0a6cf24929e8f943399acf481; no runtime.",
+        "previous_workflow_step": "CI Fixup",
+        "task_id": "76b4e3d4-ccb8-408c-a0de-5e5014c538be"
+      }
+    },
+    {
+      "task_id": "86a16fc1-6394-4fb0-898d-4d42948683f5",
+      "falsification_query": "Fresh board + complete session census + task plan/latest primary conversation + native relations + complete tags; authenticated REST PR/head, all check/status/run pages once after buffered reset.",
+      "falsification_time": "2026-09-16T05:02:44.473054+00:00",
+      "falsification_result": "Recorded provider run/head trigger remains uncleared; exact historical failed attempt is still current. Full Review/QA/thread/required-policy gate not asserted. Provider now reports dirty/mergeable=false; this is an integration anomaly needing owner verification, not proof from source.",
+      "next_action": "Coordinator obtains owner account and verifies provider-reported conflict against canonical main 60aef37cbd8a043786393a56b603111eb3bd1f63; if concrete conflict is confirmed, route one narrow Work integration owner, then renew CI/Review/QA. Preserve prior failed-run and R4 evidence.",
+      "tag_audit": "Current ownership/trigger mostly aligned; no mutations performed.",
+      "fresh_local_preservation": {
+        "path": "/data/tasks/bound-plugin-registr_t9zhoda6/kandev-source",
+        "observed_at": "2026-09-16T05:03:28.025082+00:00",
+        "head": "135a156acfaf24803e3938034acddada0f6b366a",
+        "branch": "feature/bound-plugin-registr-x1v",
+        "status": {
+          "clean": true,
+          "porcelain_nul_entries": 0
+        }
+      },
+      "historical_r4": {
+        "blocker_owner": "Scoped-CI task 9ee4be81-aa98-4e4d-bdd6-842fd918f00f plus reported flake tasks 1a7ff717-2b27-4dbe-941e-18f4deaf74a9 and efc70b0b-48e2-4c54-91b9-70ddcf74a0e9, or GitHub Actions authority",
+        "cleared": false,
+        "deterministic_resume_trigger": "On verified scoped dispatch plus both flake remediations, or any legitimate new exact-head/merge-ref attempt/head/job-state change, run one exact census; green -> fresh Review then distinct QA; new task-owned failure -> Work.",
+        "exact_blocker_or_dependency": "PR #3153 exact head 135a156acfaf24803e3938034acddada0f6b366a has terminal Backend Tests run 34885041870 attempt 1: Backend Tests (2/2) job 104119967316 failed and dependent aggregate Run Backend Tests job 104130513966 failed; all other checks success/intentional skip and all 10 threads resolved. Heads 54ee6b1e and cbcd3722 are historical.",
+        "fallback": "Preserve clean feature/bound-plugin-registr-x1v at 135a156acfaf24803e3938034acddada0f6b366a; no parked polling, rerun, source edit, synthetic commit, or duplicate contact.",
+        "last_checked": "2026-09-16T04:04:28.120Z",
+        "next_action": "On verified scoped dispatch plus both flake remediations, or any legitimate new exact-head/merge-ref attempt/head/job-state change, run one exact census; green -> fresh Review then distinct QA; new task-owned failure -> Work.",
+        "preservation_receipt": "Clean /data/tasks/bound-plugin-registr_t9zhoda6/kandev-source; branch and origin feature/bound-plugin-registr-x1v at 135a156acfaf24803e3938034acddada0f6b366a; no runtime/services/data.",
+        "previous_workflow_step": "CI Fixup",
+        "task_id": "86a16fc1-6394-4fb0-898d-4d42948683f5"
+      }
+    },
+    {
+      "task_id": "96e27238-8b7d-476a-8c70-b8da0abae935",
+      "falsification_query": "Fresh board + complete session census + task plan/latest primary conversation + native relations + complete tags; authenticated REST PR/head, all check/status/run pages once after buffered reset.",
+      "falsification_time": "2026-09-16T05:02:44.473054+00:00",
+      "falsification_result": "Same CI/Build failure runs atf6166425, no formal reviews/new maintainer response. One successful check-run does not clear failed approval-gated workflows.",
+      "next_action": "Maintainer approval/rerun/review -> once exact census.",
+      "tag_audit": "Current ownership/trigger mostly aligned; no mutations performed.",
+      "fresh_local_preservation": null,
+      "historical_r4": {
+        "blocker_owner": "kdlbs/kandev-plugin-template maintainer",
+        "cleared": false,
+        "deterministic_resume_trigger": "Maintainer approval/rerun/review -> once exact census.",
+        "exact_blocker_or_dependency": "Template4 f6166425 unchanged; CI/Build31053652395/31053652448 attempt1 failures from expired approval, no executable checks; clean carrier91e36603.",
+        "fallback": "Keep user-deferred release.yml outside scope.",
+        "last_checked": "2026-09-16T04:04:28.120Z",
+        "next_action": "Maintainer approval/rerun/review -> once exact census.",
+        "preservation_receipt": "clean `/data/tasks/fix-stale-plugin-hoo_wb6/kandev-source`; branch `feature/fix-stale-plugin-hoo-54w`; local/upstream `91e36603f33c0b004815e8ba6ec6c2163d7c3fd9`; separate template branch `fix/stale-plugin-hook-docs-and-release-id` exact `f616642516372091f1a0aa6239bb693d3eb2839d`; `TEST_RUNTIME=NONE`, no ports/DB/artifacts; deferred release workflow stays out of scope.",
+        "previous_workflow_step": "Work",
+        "task_id": "96e27238-8b7d-476a-8c70-b8da0abae935"
+      }
+    },
+    {
+      "task_id": "a3f02302-12fa-4129-8985-116efb8fed66",
+      "falsification_query": "Fresh board + complete session census + task plan/latest primary conversation + native relations + complete tags; authenticated REST PR/head, all check/status/run pages once after buffered reset.",
+      "falsification_time": "2026-09-16T05:02:44.473054+00:00",
+      "falsification_result": "Recorded provider run/head trigger remains uncleared; exact historical failed attempt is still current. Full Review/QA/thread/required-policy gate not asserted. Provider now reports dirty/mergeable=false; this is an integration anomaly needing owner verification, not proof from source.",
+      "next_action": "Coordinator obtains owner account and verifies provider-reported conflict against canonical main 60aef37cbd8a043786393a56b603111eb3bd1f63; if concrete conflict is confirmed, route one narrow Work integration owner, then renew CI/Review/QA. Preserve prior failed-run and R4 evidence.",
+      "tag_audit": "Current ownership/trigger mostly aligned; no mutations performed.",
+      "fresh_local_preservation": {
+        "path": "/data/tasks/recover-workspace-re_5cxmeho1/kandev-source",
+        "observed_at": "2026-09-16T05:03:28.098268+00:00",
+        "head": "db0118b473d1ae3e31b1a63263ce625c7d22c5ae",
+        "branch": "feature/recover-workspace-repair",
+        "status": {
+          "clean": true,
+          "porcelain_nul_entries": 0
+        }
+      },
+      "historical_r4": {
+        "blocker_owner": "Actions maintainer request5661623450; scopedCI fallback",
+        "cleared": false,
+        "deterministic_resume_trigger": "Legitimate rerun/head/status -> one exactCI census. Correct own plan R4 from retired model policy to actualCI.",
+        "exact_blocker_or_dependency": "PR3310 clean db0118b4 same run34810899170 attempt1 leaf2/14 and10/14 fail plus aggregates; no threads. New failed start has zero messages. Native relation to merged Redmine4 is stale/unrelated.",
+        "fallback": "Preserve clean checkout; no retry-only commit.",
+        "last_checked": "2026-09-16T04:04:28.120Z",
+        "next_action": "Legitimate rerun/head/status -> one exactCI census. Correct own plan R4 from retired model policy to actualCI.",
+        "preservation_receipt": "fresh filesystem/provider correction is required. Clean `/data/tasks/recover-workspace-re_5cxmeho1/kandev-source`; branch `feature/recover-workspace-repair`; local/upstream and current PR #3310 head are `db0118b473d1ae3e31b1a63263ce625c7d22c5ae` (fresh `gh pr view`), OPEN draft/BLOCKED. This supersedes stale plan preservation heads a1fb/e89. Last commit `docs: add workspace inventory repair delivery package`. No active task services; disposable PostgreSQL was removed; retained mode-0600 support receipt/DSN files exist and must not be exposed/deleted without authority. This is a substantive R4 preservation drift, not merely missing detail.",
+        "previous_workflow_step": "CI Fixup",
+        "task_id": "a3f02302-12fa-4129-8985-116efb8fed66"
+      }
+    },
+    {
+      "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+      "falsification_query": "Fresh board + complete session census + task plan/latest primary conversation + native relations + complete tags; authenticated REST PR/head, all check/status/run pages once after buffered reset.",
+      "falsification_time": "2026-09-16T05:02:44.473054+00:00",
+      "falsification_result": "Recorded provider run/head trigger remains uncleared; exact historical failed attempt is still current. Full Review/QA/thread/required-policy gate not asserted.",
+      "next_action": "First normal cycle at/after2026-09-16T04:59:36Z retry one current PR/head/docs-run census; legitimate new attempt/head/status change routes fresh CI classification, otherwise retain canonical request.",
+      "tag_audit": "Current ownership/trigger mostly aligned; no mutations performed.",
+      "fresh_local_preservation": null,
+      "historical_r4": {
+        "task_id": "b007bb76-841e-4243-a251-c4f87a1ed1e4",
+        "previous_step": "CI Fixup",
+        "exact_blocker_or_dependency": "PR #3319 exact e9bf3f59 has terminal docs-provider/API failure run 34969999730/job 104384643523 despite local validator 52/52; premature Human-QA route corrected.",
+        "blocker_owner": "GitHub Actions maintainer via https://github.com/kdlbs/kandev/pull/3319#issuecomment-5691426490",
+        "preservation_receipt": "Clean exact e9bf3f59 branch/worktree and local 52/52 validator evidence preserved; no source edit, rerun, or duplicate contact.",
+        "next_action": "First normal cycle at/after2026-09-16T04:59:36Z retry one current PR/head/docs-run census; legitimate new attempt/head/status change routes fresh CI classification, otherwise retain canonical request.",
+        "deterministic_resume_trigger": "New legitimate attempt for run 34969999730/job 104384643523 or head/status change.",
+        "fallback": "Preserve head/evidence and canonical request; no duplicate contact or retry-only change.",
+        "last_checked": "2026-09-16T04:54:40Z"
+      }
+    },
+    {
+      "task_id": "c642d57a-5a24-48ca-8f85-57d31115eeb5",
+      "falsification_query": "Fresh board + complete session census + task plan/latest primary conversation + native relations + complete tags; authenticated REST PR/head, all check/status/run pages once after buffered reset.",
+      "falsification_time": "2026-09-16T05:02:44.473054+00:00",
+      "falsification_result": "Recorded provider run/head trigger remains uncleared; exact historical failed attempt is still current. Full Review/QA/thread/required-policy gate not asserted. Provider now reports dirty/mergeable=false; this is an integration anomaly needing owner verification, not proof from source.",
+      "next_action": "Coordinator obtains owner account and verifies provider-reported conflict against canonical main 60aef37cbd8a043786393a56b603111eb3bd1f63; if concrete conflict is confirmed, route one narrow Work integration owner, then renew CI/Review/QA. Preserve prior failed-run and R4 evidence.",
+      "tag_audit": "Current ownership/trigger mostly aligned; no mutations performed.",
+      "fresh_local_preservation": {
+        "path": "/data/tasks/prevent-stale-sessio_df5zabn0/kandev-recovery-pr2909",
+        "observed_at": "2026-09-16T05:03:28.163086+00:00",
+        "head": "caee717b7c9d9c120e8dcbfcc77c7b08bfc9b697",
+        "branch": "feature/prevent-stale-sessio-7n1",
+        "status": {
+          "clean": true,
+          "porcelain_nul_entries": 0
+        }
+      },
+      "historical_r4": {
+        "blocker_owner": "Actions/GHCR maintainer; existing single request",
+        "cleared": false,
+        "deterministic_resume_trigger": "New legit attempt/head change -> exactCIcensus then freshReview/QA.",
+        "exact_blocker_or_dependency": "PR2909 cleanrecoverycaee717b, run34888832549 attempt1 sixcontainer failures; ordinary shards cancelled;0threads. Oldsourceb2dbf98a5967dirty preserved.",
+        "fallback": "Keep originalmidmerge andcleanrecovery; no synthetic push.",
+        "last_checked": "2026-09-16T04:04:28.120Z",
+        "next_action": "New legit attempt/head change -> exactCIcensus then freshReview/QA.",
+        "preservation_receipt": "clean recovery `/data/tasks/prevent-stale-sessio_df5zabn0/kandev-recovery-pr2909`; branch `feature/prevent-stale-sessio-7n1`; local/upstream/current PR #2909 exact `caee717b7c9d9c120e8dcbfcc77c7b08bfc9b697` (fresh `gh pr view`), OPEN draft/BLOCKED. Original `/data/tasks/prevent-stale-sessio_df5zabn0/kandev-source` remains branch same, HEAD `b2dbf98a01b2bf6f20e21461d05c1f36627fd156`, interrupted merge with 5,967 entries and recorded MERGE_HEAD `2f722bb93053483db842ff8236d880073bd957b2`; no services/ports/DB/credentials/artifacts. This supersedes older 298/6ec receipts.",
+        "previous_workflow_step": "CI Fixup",
+        "task_id": "c642d57a-5a24-48ca-8f85-57d31115eeb5"
+      }
+    },
+    {
+      "task_id": "e8728906-86de-4a75-960f-9da585485823",
+      "falsification_query": "Fresh board + complete session census + task plan/latest primary conversation + native relations + complete tags; authenticated REST PR/head, all check/status/run pages once after buffered reset.",
+      "falsification_time": "2026-09-16T05:02:44.473054+00:00",
+      "falsification_result": "Recorded provider run/head trigger remains uncleared; exact historical failed attempt is still current. Full Review/QA/thread/required-policy gate not asserted.",
+      "next_action": "Newlegitimateattempt -> exactCI; greenfreshReview/QA.",
+      "tag_audit": "Stale fixed-model text in agent note (resume Luna CI Fixup) should say workflow-configured CI Fixup owner; primary reconcile.",
+      "fresh_local_preservation": null,
+      "historical_r4": {
+        "blocker_owner": "Actions maintainer; fallback9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+        "cleared": false,
+        "deterministic_resume_trigger": "Newlegitimateattempt -> exactCI; greenfreshReview/QA.",
+        "exact_blocker_or_dependency": "PR3468 unchangedclean973a9d6d run34197413540attempt1 SSHfixtureleaf101969065371 andaggregates;0threads.",
+        "fallback": "Preserve clean head; retain sole maintainer request 5584377539.",
+        "last_checked": "2026-09-16T04:04:28.120Z",
+        "next_action": "Newlegitimateattempt -> exactCI; greenfreshReview/QA.",
+        "preservation_receipt": "clean `/data/tasks/fix-plugin-task-prio_rksfvx9c/kdlbs-kandev`; branch `feature/fix-plugin-task-prio-w7w`; HEAD `973a9d6d367b2c9a50c6ecd0557d70b23817d8b6`; plan records fork ref same. No task services/ports/runtime/data; sole request comment 5584377539 retained.",
+        "previous_workflow_step": "CI Fixup",
+        "task_id": "e8728906-86de-4a75-960f-9da585485823"
+      }
+    },
+    {
+      "task_id": "f169e54f-610b-4f35-bcdc-cf3dfe3baaab",
+      "falsification_query": "Fresh board + complete session census + task plan/latest primary conversation + native relations + complete tags; authenticated REST PR/head, all check/status/run pages once after buffered reset.",
+      "falsification_time": "2026-09-16T05:02:44.473054+00:00",
+      "falsification_result": "Recorded provider run/head trigger remains uncleared; exact historical failed attempt is still current. Full Review/QA/thread/required-policy gate not asserted. Provider now reports dirty/mergeable=false; this is an integration anomaly needing owner verification, not proof from source.",
+      "next_action": "Coordinator obtains owner account and verifies provider-reported conflict against canonical main 60aef37cbd8a043786393a56b603111eb3bd1f63; if concrete conflict is confirmed, route one narrow Work integration owner, then renew CI/Review/QA. Preserve prior failed-run and R4 evidence.",
+      "tag_audit": "Current ownership/trigger mostly aligned; no mutations performed.",
+      "fresh_local_preservation": {
+        "path": "/data/tasks/enable-audited-cross_u8f3wi6u/kdlbs-kandev",
+        "observed_at": "2026-09-16T05:03:28.300002+00:00",
+        "head": "a00221495a34511287ddce154d5d926e0d5cbd21",
+        "branch": "feature/enable-audited-cross-ec4",
+        "status": {
+          "clean": true,
+          "porcelain_nul_entries": 0
+        }
+      },
+      "historical_r4": {
+        "blocker_owner": "Capacity/startup root 8a182e40-d99c-42e9-b9be-1f8f78cf8388, then exactly one configured CI Fixup owner using profile 7c6be62e.",
+        "cleared": false,
+        "deterministic_resume_trigger": "Verified capacity/startup repair plus settled lifecycle with zero live/pending owner; then exactly one configured CI Fixup owner classifies persistent shard-10 job 104323013698 and docs job 104321283747 at unchanged a00221495.",
+        "exact_blocker_or_dependency": "PR #3243 is OPEN, non-draft, and mergeable_state=blocked against base 8acb32c at exact a00221495a34511287ddce154d5d926e0d5cbd21. Terminal census has 81 checks: 54 success, 23 skipped, 0 pending, and 4 failures: docs job 104321283747; E2E shard 10 job 104323013698 persistently failing task/autopilot-mode.spec.ts:169 because a queued parent answer fails to resume a WFI child; dependent merge job 104330811615; aggregate job 104331305570. Review has 26 threads/0 unresolved. Capacity/startup prevents the one configured CI Fixup owner needed to classify/reproduce both independent leaf failures.",
+        "fallback": "Preserve exact clean pushed head and history; no premature Review/contact, source edit, synthetic retry, duplicate launch, force, or rewrite.",
+        "last_checked": "2026-09-16T04:04:28.120Z",
+        "next_action": "After verified capacity/startup repair and settled zero-live/zero-pending ownership, atomically move Blocked→CI Fixup once and start exactly one configured profile 7c6be62e owner to classify/reproduce jobs 104323013698 and 104321283747. Branch-owned findings route Work/new head; proved provider/canonical flake routes one legitimate rerun/request; terminal-clear only routes fresh ab57 Review then distinct QA.",
+        "preservation_receipt": "Clean /data/tasks/enable-audited-cross_u8f3wi6u/kdlbs-kandev on branch feature/enable-audited-cross-ec4; local HEAD, tracking ref, and live fork head are exact a00221495a34511287ddce154d5d926e0d5cbd21. PR #3243 is open/non-draft with 26 threads/0 unresolved; no runtime/data.",
+        "previous_workflow_step": "CI Fixup",
+        "task_id": "f169e54f-610b-4f35-bcdc-cf3dfe3baaab"
+      }
+    }
+  ],
+  "limitations": [
+    "Read-only evidence audit, not complete gate certification.",
+    "Native relations denied on6tasks; no bypass.",
+    "No fresh review-thread census or required-status policy obtained.",
+    "No visible pending-Human-ask read capability; Human decision gate status not fully certified.",
+    "Provider dirty projection independently paired with actual main ref, but no source conflict reproduction.",
+    "Fresh head/branch/status checked for8integration candidates plus legacy original; other preservation receipts remain historical."
+  ]
+}

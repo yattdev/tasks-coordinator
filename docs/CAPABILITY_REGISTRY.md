@@ -49,6 +49,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 - **Action** Either state in the cycle log why it is healthy and merely *looks* parked, or act on it. Those are the only two outcomes.
 - **Evidence** Session state and `updated_at`, not the column — see [read session state, not the column](RUNBOOK.md#a-task-looks-active-but-is-idle--read-session-state-not-the-column).
 - **Never** Let the Human have to ask "what is going on with this task".
+- **Process/lifecycle evidence:** an unscoped process match is not a competing writer, and an unreadable process directory is not zero writers. Reconcile the same owner's outstanding command before restarting. A pending on-entry lifecycle marker may await the running turn; preserve it until settled. See [writer attribution](RUNBOOK.md#attribute-apparent-concurrent-writers-before-restarting-work).
 
 ### A3a. Any task is inspected, mentioned, or included in a status update
 - **Trigger** Every task touch, regardless of whether it came from a routine wake, task report, Human question, board-status request, or follow-up.

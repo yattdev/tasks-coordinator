@@ -3520,3 +3520,14 @@ draft pull request. The draft was closed without merge and the branch preserved
 as evidence. Implementation now remains exclusively on persistent Kandev board
 tasks: a control-plane failure is recorded and retried after recovery rather than
 worked around with a local or native implementation agent.
+
+## 2026-09-16 — Attribute process ownership before declaring competing writers
+
+Two Work owners stopped preserved merges after broad process searches matched
+their own outstanding commands or unrelated activity. Read-only comparison of
+tool receipts, index timestamps, and scoped process evidence did not prove an
+independent writer. Some process directories were unreadable, so an empty visible
+match set was also insufficient. The runbook now directs the same owner to
+reconcile command results and ownership before serial continuation. It also
+records that an on-entry lifecycle marker can legitimately await the running
+turn, without authorizing a duplicate start or an early completion claim.

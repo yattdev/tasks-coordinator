@@ -1,0 +1,947 @@
+{
+  "checked_at": "2026-09-16 05:20:23 UTC",
+  "limitations": [
+    "Fresh provider PR identity only; no check/thread recount or local repository verification in this bounded audit.",
+    "Reported tests and local cleanliness are owner evidence.",
+    "No task/plan/provider mutation; only this audit JSON written. Primary owns next actions and continuity."
+  ],
+  "tasks": [
+    {
+      "task_id": "9349b6e5-a167-4d88-af14-cb355015e3dd",
+      "title": "Allow coordinator relation inspection",
+      "lane": "Work",
+      "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+      "state": "IN_PROGRESS",
+      "checked_at": "2026-09-16 05:20:23 UTC",
+      "lifecycle_pending": null,
+      "lifecycle_completed": true,
+      "pending_action_projection": null,
+      "prs": [
+        {
+          "number": 2841,
+          "state": "open",
+          "title": "fix(mcp): allow coordinator relation inspection",
+          "url": "https://github.com/kdlbs/kandev/pull/2841"
+        }
+      ],
+      "health": "healthy",
+      "owner": "d34b0cef-8e20-43ba-b3d0-7f7c7397916a",
+      "head": "bcd006ff8c47b39f6efb5cbb342330ddc3dbaea7",
+      "next_action": "Consume terminal exact-head CI result from running owner, then fresh independent Review and distinct QA.",
+      "trigger": "Current CI run completion or owner receipt",
+      "fallback": "Keep exact pushed head; no duplicate owner or source change without concrete defect.",
+      "anomalies": [],
+      "sessions": {
+        "sessions": [
+          {
+            "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "is_current": false,
+            "is_primary": true,
+            "session_id": "d34b0cef-8e20-43ba-b3d0-7f7c7397916a",
+            "started_at": "2026-09-16T05:00:57.307309185Z",
+            "state": "RUNNING",
+            "updated_at": "2026-09-16T05:19:55.180034441Z"
+          },
+          {
+            "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "completed_at": "2026-09-16T03:02:53.546555799Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "822224e8-285c-4785-8cc6-89e0d09ad9fd",
+            "started_at": "2026-09-16T03:02:52.779307793Z",
+            "state": "FAILED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "completed_at": "2026-09-16T03:01:11.996143102Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "cdfa40b0-57bc-46d3-83d9-005a561b7632",
+            "started_at": "2026-09-16T03:01:11.373344356Z",
+            "state": "FAILED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "0dbadd36-e86b-4979-bea9-991e5a71c032",
+            "started_at": "2026-09-15T13:36:09.649745679Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+            "completed_at": "2026-09-15T13:35:20.766855483Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "e556975d-6a50-4ed8-927f-3f881c8c2b88",
+            "started_at": "2026-09-15T13:26:49.369562203Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "completed_at": "2026-09-15T13:26:50.154649282Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "ae45e3d3-2533-4c02-a1ef-f9af807d33cc",
+            "started_at": "2026-09-15T13:21:32.074267501Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "completed_at": "2026-09-15T05:03:55.890818126Z",
+            "is_current": false,
+            "is_primary": false,
+            "name": "codex-ci-restart",
+            "session_id": "364cc979-268f-4b42-a386-b3e5afdf984a",
+            "started_at": "2026-09-14T21:27:44.795157796Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "dce85e41-5555-4037-8cef-291af40671f6",
+            "started_at": "2026-09-14T04:10:42.67049741Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "d3fa5aa4-6161-4133-b863-919d0453a6aa",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "f2672f4b-4ea8-49a8-8f27-8a036e8a8ac0",
+            "started_at": "2026-09-14T02:55:57.131065848Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "completed_at": "2026-09-15T13:36:10.387849365Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "34f41bdd-b8a0-4e1f-917c-cc70d2a75595",
+            "started_at": "2026-09-08T15:22:47.962348464Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "completed_at": "2026-09-08T15:22:49.041654483Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "8586b582-50ab-43e8-8298-23c05842619e",
+            "started_at": "2026-09-08T14:22:43.029021859Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "completed_at": "2026-09-08T14:22:44.370994375Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "d784f466-da75-421e-bda8-0a3ad485f0d2",
+            "started_at": "2026-09-08T14:14:13.716264871Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "completed_at": "2026-09-08T14:14:14.423766048Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "efa7b9df-7b72-4d2b-93cb-0c815a7d21d2",
+            "started_at": "2026-09-08T11:28:38.412370233Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+            "completed_at": "2026-09-08T11:28:39.094463418Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "e4940f11-534b-499b-920c-22ca19a5aafb",
+            "started_at": "2026-09-08T09:21:34.506818649Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "completed_at": "2026-09-08T09:21:35.188395588Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "8af30bdf-c4da-41a1-86a6-61b38bd8f131",
+            "started_at": "2026-09-08T09:09:48.435062979Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+            "completed_at": "2026-09-08T08:56:59.576551144Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "d86e6574-db20-49a6-8d32-8ceabc1f0e4c",
+            "started_at": "2026-09-08T06:59:51.205935342Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "1606e51e-fcd1-41fc-b431-948e1a7e9c64",
+            "is_current": false,
+            "is_primary": false,
+            "name": "fresh-qa-pr2841-6bb0c552",
+            "session_id": "a7c5d8eb-4505-4ce4-ac8d-5a9bb62a9d02",
+            "started_at": "2026-09-03T06:06:06.803502049Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "completed_at": "2026-09-08T06:59:52.071232648Z",
+            "is_current": false,
+            "is_primary": false,
+            "name": "fresh-review-pr2841-6bb0c552",
+            "session_id": "0714be65-1e0d-4e13-8d1e-b0ae7fe361af",
+            "started_at": "2026-09-03T05:39:31.036926605Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "completed_at": "2026-09-08T05:57:04.79676696Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "6ea4effa-3fd1-4e12-9ac1-6c897be8afe3",
+            "started_at": "2026-09-03T04:58:47.81890747Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "1606e51e-fcd1-41fc-b431-948e1a7e9c64",
+            "is_current": false,
+            "is_primary": false,
+            "name": "independent-qa-pr2841-4c458f7",
+            "session_id": "1f359d48-fa84-4d6b-9cff-fdc3352b7d4f",
+            "started_at": "2026-09-03T04:24:20.357321406Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "ce9f96f7-4434-4729-b23b-926b4b72f417",
+            "completed_at": "2026-09-03T04:58:48.477189009Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "568b99ad-dfe8-4cc7-ba16-f39da3020ce6",
+            "started_at": "2026-09-01T05:17:01.609648944Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "completed_at": "2026-09-01T05:17:01.734350925Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "252ab0e8-b81f-4390-9069-af8890dc6614",
+            "started_at": "2026-08-30T02:44:06.60235357Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "completed_at": "2026-09-08T09:09:49.32971375Z",
+            "is_current": false,
+            "is_primary": false,
+            "name": "independent-policy-review",
+            "session_id": "5f5fd500-96aa-4670-9e41-b82deaaa0109",
+            "started_at": "2026-08-30T00:50:27.649824038Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "completed_at": "2026-08-30T02:44:06.701109673Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "6001e533-5764-4a8d-9c72-b134e96a1120",
+            "started_at": "2026-08-27T19:38:03.136952439Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "completed_at": "2026-08-20T07:30:46.882445543Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "e0d43585-0e30-4d30-8052-b6a338214c0b",
+            "started_at": "2026-08-20T06:50:24.164876433Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "24eff7cc-14c2-4147-b635-5be3df285af3",
+            "completed_at": "2026-08-20T06:50:24.170804026Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "6f04c7cf-a587-419c-91fd-18ec7d3ddb49",
+            "started_at": "2026-08-20T06:29:30.935425532Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "completed_at": "2026-08-27T19:38:03.1618837Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "925d6794-757d-4f00-92b5-5612309a2d3a",
+            "started_at": "2026-08-20T06:07:44.40281603Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          },
+          {
+            "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+            "completed_at": "2026-08-20T06:07:44.411719513Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "67507b30-cefa-4edc-9849-2c1d51c5adb3",
+            "started_at": "2026-08-20T05:20:50.794185525Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:00:58.161705686Z"
+          }
+        ],
+        "task_id": "9349b6e5-a167-4d88-af14-cb355015e3dd",
+        "total": 28
+      }
+    },
+    {
+      "task_id": "153cdbbe-beac-47b8-bc06-8dafdcc8ed80",
+      "title": "Fix/Improve task panel close/open",
+      "lane": "Work",
+      "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+      "state": "REVIEW",
+      "checked_at": "2026-09-16 05:20:23 UTC",
+      "lifecycle_pending": null,
+      "lifecycle_completed": true,
+      "pending_action_projection": null,
+      "prs": [
+        {
+          "number": 2868,
+          "state": "closed",
+          "title": "fix(web): close session tabs without deleting sessions",
+          "url": "https://github.com/kdlbs/kandev/pull/2868"
+        }
+      ],
+      "health": "stalled",
+      "owner": "bcc3ee65-4348-48dd-b930-555377dc0fb0",
+      "head_reported": "99811e5e1",
+      "head_provider": "d0fc9a0874583b968aa88abe0870c5ef9e154671",
+      "next_action": "Same owner resumes to collect its active desktop build, finish opt-in hide E2E, verify intended local head and normal push to PR3690; then fresh gates.",
+      "trigger": "Immediate owner continuation after primary preflight",
+      "fallback": "Preserve both checkouts and original screenshot; no competing writer, no premature Review.",
+      "anomalies": [
+        "WFI with explicit unfinished implementation/test work.",
+        "Reported new local commit is absent from current PR3690 head.",
+        "Card PR association still closed2868; tag names replacement3690."
+      ],
+      "sessions": {
+        "sessions": [
+          {
+            "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "completed_at": "2026-09-15T08:13:53.657567567Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "58c9a675-a5a7-41d4-b29a-82e3f11309fb",
+            "started_at": "2026-09-15T08:13:53.047428541Z",
+            "state": "FAILED",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "completed_at": "2026-09-16T03:18:04.33706506Z",
+            "is_current": false,
+            "is_primary": false,
+            "name": "work-opt-in-panel-hide-recovery",
+            "session_id": "07057749-69d2-48ee-80cb-21730baaa2ad",
+            "started_at": "2026-09-15T07:49:36.09319989Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+            "completed_at": "2026-09-15T07:47:46.760520227Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "35db8ad2-89d8-4019-9584-4f99d25eed37",
+            "started_at": "2026-09-15T07:26:02.163156956Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "completed_at": "2026-09-14T23:00:44.162991503Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "721893bc-d067-4a7a-93de-12a110803c79",
+            "started_at": "2026-09-14T23:00:43.379457005Z",
+            "state": "FAILED",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "completed_at": "2026-09-14T22:44:15.58687287Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "b7c798f4-54e2-4c79-baf3-ceb358eaf817",
+            "started_at": "2026-09-14T22:44:14.67407494Z",
+            "state": "FAILED",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "completed_at": "2026-09-14T21:50:29.773537165Z",
+            "is_current": false,
+            "is_primary": false,
+            "name": "codex-review-restart",
+            "session_id": "54ea0234-f185-45f4-a392-3885242851f2",
+            "started_at": "2026-09-14T21:27:35.005597823Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "is_current": false,
+            "is_primary": true,
+            "session_id": "bcc3ee65-4348-48dd-b930-555377dc0fb0",
+            "started_at": "2026-09-14T19:33:49.230903774Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T05:16:47.865432405Z"
+          },
+          {
+            "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "completed_at": "2026-09-14T18:51:59.432258596Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "9bdd8121-5bed-4400-b1a6-caa9634cd8f7",
+            "started_at": "2026-09-14T18:48:50.39212413Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "completed_at": "2026-09-14T18:22:38.91064053Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "12f6081f-776a-460d-b43c-3132fa1f51c8",
+            "started_at": "2026-09-14T18:18:40.813463754Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "8cbb0bd5-26b5-44c1-a774-465602fab987",
+            "started_at": "2026-09-14T04:12:03.250134498Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "completed_at": "2026-09-08T16:18:02.531798014Z",
+            "is_current": false,
+            "is_primary": false,
+            "name": "human-qa-handoff-6dbd4f36",
+            "session_id": "60e68e7e-28ab-4bc3-8a1f-995ab985dcc8",
+            "started_at": "2026-09-05T14:10:19.354195769Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "completed_at": "2026-09-15T07:26:03.078194985Z",
+            "is_current": false,
+            "is_primary": false,
+            "name": "distinct-qa-6dbd4f36",
+            "session_id": "1376e6db-24d2-46d5-a4bc-df04c4b2a6e7",
+            "started_at": "2026-09-05T14:03:12.451990614Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "completed_at": "2026-09-08T15:51:04.479982886Z",
+            "is_current": false,
+            "is_primary": false,
+            "name": "independent-review-6dbd4f36",
+            "session_id": "60c7829b-fdde-44ea-80aa-b301d188f12b",
+            "started_at": "2026-09-05T13:59:27.915810647Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "completed_at": "2026-09-16T03:19:17.247263947Z",
+            "is_current": false,
+            "is_primary": false,
+            "name": "distinct-qa-pr2868-4d43c38d",
+            "session_id": "c94a3d66-9c1b-4749-a657-7ebe95d6b98d",
+            "started_at": "2026-09-05T10:57:34.917687321Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T03:19:17.661838911Z"
+          },
+          {
+            "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "is_current": false,
+            "is_primary": false,
+            "name": "independent-review-pr2868-4d43c38d",
+            "session_id": "e1063d06-8284-40eb-922a-55f1a09a8ac7",
+            "started_at": "2026-09-05T10:53:03.868977067Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "completed_at": "2026-09-08T16:06:52.87649553Z",
+            "is_current": false,
+            "is_primary": false,
+            "name": "fresh-codex-review-pr2868-787c53a0",
+            "session_id": "d16abbbb-efc3-4f16-b305-6c730aed00ac",
+            "started_at": "2026-09-05T10:25:01.040937434Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "d05f88ca-4699-43c5-a558-70df3df45ec2",
+            "is_current": false,
+            "is_primary": false,
+            "name": "fresh-review-pr2868-787c53a0",
+            "session_id": "98e3e9ca-1366-4711-9e7b-b64348d49066",
+            "started_at": "2026-09-05T10:24:07.090352445Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "is_current": false,
+            "is_primary": false,
+            "name": "fresh-review-8f289bb5",
+            "session_id": "b3d26a45-f9df-4274-bd26-620decf83600",
+            "started_at": "2026-09-04T23:32:14.78819333Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "1606e51e-fcd1-41fc-b431-948e1a7e9c64",
+            "is_current": false,
+            "is_primary": false,
+            "name": "distinct-qa-3093d549",
+            "session_id": "193efb6d-86c2-4d7e-8855-bc31b2e1a7c7",
+            "started_at": "2026-09-04T23:10:25.763322333Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "is_current": false,
+            "is_primary": false,
+            "name": "fresh-review-3093d549",
+            "session_id": "ba8d4f66-bc4a-46dd-9379-9357f93d8786",
+            "started_at": "2026-09-04T23:06:48.296127492Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "is_current": false,
+            "is_primary": false,
+            "name": "fresh-review-8db14a9d",
+            "session_id": "261282f3-63a1-41db-bc6b-5e596df1e166",
+            "started_at": "2026-09-04T23:01:32.67626955Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "1606e51e-fcd1-41fc-b431-948e1a7e9c64",
+            "is_current": false,
+            "is_primary": false,
+            "name": "distinct-qa-ae893022",
+            "session_id": "2e4cd104-e0b4-472f-a00f-f159a9d25931",
+            "started_at": "2026-09-04T22:49:15.488017977Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "is_current": false,
+            "is_primary": false,
+            "name": "fresh-review-ae893022",
+            "session_id": "e32f4c39-5751-44c3-85b5-8647537f349c",
+            "started_at": "2026-09-04T22:42:36.743625143Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "is_current": false,
+            "is_primary": false,
+            "name": "fresh-review-27b3a93b",
+            "session_id": "d9094776-891d-45fe-a61a-69a59968f808",
+            "started_at": "2026-09-04T22:17:38.509121627Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "is_current": false,
+            "is_primary": false,
+            "name": "qa-4b67956",
+            "session_id": "0bc55c5d-e014-475f-9f9c-20d3248ffa67",
+            "started_at": "2026-08-30T17:21:15.594152544Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "is_current": false,
+            "is_primary": false,
+            "name": "immutable-review-4b67956",
+            "session_id": "27c004eb-dbe1-42b8-8b91-30d6fdd50add",
+            "started_at": "2026-08-30T17:21:15.443949746Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "completed_at": "2026-09-08T22:34:01.962336202Z",
+            "is_current": false,
+            "is_primary": false,
+            "name": "exact-head-review-68ab",
+            "session_id": "1e067d52-a595-43fb-991b-d9e70fb9dea3",
+            "started_at": "2026-08-30T15:45:45.467293276Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "completed_at": "2026-09-08T15:28:52.871478799Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "0afdd913-6052-4cc6-92a4-6ab955f019a4",
+            "started_at": "2026-08-30T14:15:53.753539161Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T03:19:17.15672457Z"
+          },
+          {
+            "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "is_current": false,
+            "is_primary": false,
+            "name": "exact-head-reviewer",
+            "session_id": "ff002cdd-d91f-4b3f-9b55-212ba9c31cad",
+            "started_at": "2026-08-30T13:57:49.076745112Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T03:22:12.857733696Z"
+          }
+        ],
+        "task_id": "153cdbbe-beac-47b8-bc06-8dafdcc8ed80",
+        "total": 29
+      }
+    },
+    {
+      "task_id": "f169e54f-610b-4f35-bcdc-cf3dfe3baaab",
+      "title": "Enable audited cross-workspace task transfer",
+      "lane": "Work",
+      "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+      "state": "REVIEW",
+      "checked_at": "2026-09-16 05:20:23 UTC",
+      "lifecycle_pending": null,
+      "lifecycle_completed": null,
+      "pending_action_projection": null,
+      "prs": [
+        {
+          "number": 3243,
+          "state": "open",
+          "title": "feat: add audited cross-workspace task transfers",
+          "url": "https://github.com/kdlbs/kandev/pull/3243"
+        }
+      ],
+      "health": "waiting",
+      "owner": "Coordinator exact-head CI/gate routing; Work owner0c444619-9227-4b19-b68a-3873ad8fbe2a returned receipt",
+      "head": "53345cb0a3e4900dc7935fc67fdb337a4609b8a5",
+      "next_action": "Census current CI at pushed head, staff CI repair if needed or fresh independent Review/distinct QA after required terminal checks.",
+      "trigger": "Exact-head CI terminal event",
+      "fallback": "Preserve branch and no duplicate implementation retry.",
+      "anomalies": [
+        "Primary session points to obsolete completed eed57e35; latest owner is nonprimary.",
+        "Owner reports notification queue_full; this read recovers receipt without proving queue disposition.",
+        "Owner disclosed HTTPS lease denial followed by SSH fallback; primary should retain this provenance and assess against authorized push guidance.",
+        "Tag still instructs already-finished conflict resolution."
+      ],
+      "sessions": {
+        "sessions": [
+          {
+            "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "0c444619-9227-4b19-b68a-3873ad8fbe2a",
+            "started_at": "2026-09-16T05:03:21.2368771Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T05:17:31.696106922Z"
+          },
+          {
+            "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "completed_at": "2026-09-15T09:32:02.126411899Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "cc58ad84-53fb-4879-8d13-0554a4e3fac0",
+            "started_at": "2026-09-15T09:32:02.031593634Z",
+            "state": "FAILED",
+            "updated_at": "2026-09-15T09:32:02.127258272Z"
+          },
+          {
+            "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "completed_at": "2026-09-15T09:24:55.618246143Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "dbb7dfc2-1cf6-40eb-9603-5d6430141b5a",
+            "started_at": "2026-09-15T09:24:55.316952579Z",
+            "state": "FAILED",
+            "updated_at": "2026-09-15T09:31:41.845310536Z"
+          },
+          {
+            "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "completed_at": "2026-09-15T09:21:57.455764935Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "1728f292-55a7-4205-af6e-3c8c97ac229b",
+            "started_at": "2026-09-15T09:21:57.369141658Z",
+            "state": "FAILED",
+            "updated_at": "2026-09-15T09:31:41.845310536Z"
+          },
+          {
+            "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "completed_at": "2026-09-15T09:09:20.74237231Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "71e5b5c9-4bc7-4494-8471-a8c8d9584930",
+            "started_at": "2026-09-15T09:09:20.64918623Z",
+            "state": "FAILED",
+            "updated_at": "2026-09-15T09:31:41.845310536Z"
+          },
+          {
+            "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "completed_at": "2026-09-15T09:09:20.794274903Z",
+            "is_current": false,
+            "is_primary": true,
+            "session_id": "eed57e35-e8e6-4afb-8724-e88020ec608c",
+            "started_at": "2026-09-15T07:55:01.107936314Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-15T09:31:41.846642165Z"
+          },
+          {
+            "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+            "completed_at": "2026-09-15T07:55:01.291449429Z",
+            "is_current": false,
+            "is_primary": false,
+            "name": "qa-recovery-20260915T0652Z",
+            "session_id": "28fe969a-e749-443d-aa8c-9a8a139c9c16",
+            "started_at": "2026-09-15T06:52:30.230959844Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-15T09:31:41.849273302Z"
+          },
+          {
+            "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+            "completed_at": "2026-09-15T05:06:23.446703165Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "96fd7c49-2fd0-4be3-9114-6acc9bcd1545",
+            "started_at": "2026-09-15T05:06:23.346663228Z",
+            "state": "FAILED",
+            "updated_at": "2026-09-15T09:31:41.850194064Z"
+          },
+          {
+            "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "completed_at": "2026-09-15T05:06:23.738835323Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "85a85090-8513-4b49-ada5-9c75f14b88ab",
+            "started_at": "2026-09-15T05:00:22.615271828Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-15T09:31:41.852648053Z"
+          },
+          {
+            "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "completed_at": "2026-09-15T05:00:22.796111018Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "eb6eebee-5452-4a97-a9cd-abf1e8fa2b91",
+            "started_at": "2026-09-08T22:32:37.849458517Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-15T09:31:41.878182963Z"
+          }
+        ],
+        "task_id": "f169e54f-610b-4f35-bcdc-cf3dfe3baaab",
+        "total": 10
+      }
+    },
+    {
+      "task_id": "a3f02302-12fa-4129-8985-116efb8fed66",
+      "title": "Recover workspace reuse inventory mismatches",
+      "lane": "Work",
+      "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+      "state": "REVIEW",
+      "checked_at": "2026-09-16 05:20:23 UTC",
+      "lifecycle_pending": null,
+      "lifecycle_completed": true,
+      "pending_action_projection": null,
+      "prs": [
+        {
+          "number": 3310,
+          "state": "open",
+          "title": "fix: preserve worktrees during inventory repair",
+          "url": "https://github.com/kdlbs/kandev/pull/3310"
+        }
+      ],
+      "health": "waiting",
+      "owner": "Coordinator exact-head CI/gate routing; Work owner1abaf8a5-adec-4d4a-81e6-2493391b07fb returned receipt",
+      "head": "66df487e19c6012ca712fba6838e4ac33a15b254",
+      "next_action": "Census current CI at pushed head, staff CI repair if needed or fresh independent Review/distinct QA after required terminal checks.",
+      "trigger": "Exact-head CI terminal event",
+      "fallback": "Preserve clean reported branch; no duplicate implementation retry.",
+      "anomalies": [
+        "Tag still instructs already-finished conflict resolution."
+      ],
+      "sessions": {
+        "sessions": [
+          {
+            "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "is_current": false,
+            "is_primary": true,
+            "session_id": "1abaf8a5-adec-4d4a-81e6-2493391b07fb",
+            "started_at": "2026-09-16T05:03:20.064115729Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T05:17:08.68483338Z"
+          },
+          {
+            "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "completed_at": "2026-09-15T05:03:57.121735521Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "0a3a26db-4bca-44d0-bc62-489000da0e03",
+            "started_at": "2026-09-15T05:03:56.084864458Z",
+            "state": "FAILED",
+            "updated_at": "2026-09-16T05:03:20.915944612Z"
+          },
+          {
+            "agent_profile_id": "7c6be62e-6980-498a-a4fb-896947ff5402",
+            "is_current": false,
+            "is_primary": false,
+            "name": "codex-ci-restart",
+            "session_id": "f03bfcc5-01ed-4961-9859-bcdef0dd0210",
+            "started_at": "2026-09-14T21:27:54.251384077Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-16T05:03:20.915944612Z"
+          },
+          {
+            "agent_profile_id": "38b00822-c449-4f68-8e8a-034af450dbc1",
+            "completed_at": "2026-09-15T02:29:24.578946188Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "cf99daae-8487-40da-be98-cb9643c9b214",
+            "started_at": "2026-09-14T04:11:55.876759325Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-16T05:03:20.915944612Z"
+          }
+        ],
+        "task_id": "a3f02302-12fa-4129-8985-116efb8fed66",
+        "total": 4
+      }
+    },
+    {
+      "task_id": "6d03f4a9-bf89-4882-bf43-5a584f986185",
+      "title": "Adopt exact profile assignment persistence",
+      "lane": "Work",
+      "workflow_step_id": "069c6673-bc68-4015-9089-a4312bdddf92",
+      "state": "IN_PROGRESS",
+      "checked_at": "2026-09-16 05:20:23 UTC",
+      "lifecycle_pending": {
+        "from_step_id": "89985050-d740-4421-bbbe-4aa018d8c7ab"
+      },
+      "lifecycle_completed": null,
+      "pending_action_projection": null,
+      "prs": [
+        {
+          "number": 3688,
+          "state": "open",
+          "title": "feat(tasks): persist exact profile assignments",
+          "url": "https://github.com/kdlbs/kandev/pull/3688"
+        }
+      ],
+      "health": "healthy",
+      "owner": "a413b9c8-3e84-4cb5-a33a-dc85bd8c84b4",
+      "next_action": "Running owner finishes current-main integration, trusted MCP-principal check and repository behavior matrix; consume pushed-head receipt and verify lifecycle settlement.",
+      "trigger": "Owner result and manual_move_lifecycle_pending clears",
+      "fallback": "Preserve ongoing merge; no duplicate owner or move before lifecycle settles.",
+      "anomalies": [
+        "manual_move_lifecycle_pending still set from Blocked while existing Work owner RUNNING; transition not fully certified."
+      ],
+      "sessions": {
+        "sessions": [
+          {
+            "agent_profile_id": "bd2c30cb-f2b6-4202-9a9b-0212632c15fe",
+            "completed_at": "2026-09-15T08:02:02.8463938Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "c290fb54-eb57-451f-897e-003a9a12ab2a",
+            "started_at": "2026-09-15T07:52:36.544318948Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-15T08:02:03.287006254Z"
+          },
+          {
+            "agent_profile_id": "ab57f00e-ed8d-4205-bada-8be63fc4cd7d",
+            "completed_at": "2026-09-15T07:52:37.447785452Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "d0d9da10-fd59-4fbd-b61f-ae6bfd4a1036",
+            "started_at": "2026-09-15T07:34:36.677047537Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-15T08:02:02.832480928Z"
+          },
+          {
+            "agent_profile_id": "c06ad00e-0da1-429a-8174-54f97164a289",
+            "is_current": false,
+            "is_primary": true,
+            "session_id": "a413b9c8-3e84-4cb5-a33a-dc85bd8c84b4",
+            "started_at": "2026-09-15T07:25:19.599799827Z",
+            "state": "RUNNING",
+            "updated_at": "2026-09-16T05:20:07.181836362Z"
+          },
+          {
+            "agent_profile_id": "5b1dc511-64f7-448a-aa2c-5bf72e81f9e9",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "74f1590e-9dad-4dca-8a2c-0e1652bdccdf",
+            "started_at": "2026-09-14T21:02:52.866930435Z",
+            "state": "WAITING_FOR_INPUT",
+            "updated_at": "2026-09-15T08:02:02.832480928Z"
+          },
+          {
+            "agent_profile_id": "67ba38d7-89b5-40a8-a355-702e25d9e903",
+            "completed_at": "2026-09-14T21:02:53.548782821Z",
+            "is_current": false,
+            "is_primary": false,
+            "session_id": "b27451e9-66cd-46e1-b67e-2e674fedb794",
+            "started_at": "2026-09-14T20:44:58.818926127Z",
+            "state": "COMPLETED",
+            "updated_at": "2026-09-15T08:02:02.832480928Z"
+          }
+        ],
+        "task_id": "6d03f4a9-bf89-4882-bf43-5a584f986185",
+        "total": 5
+      }
+    }
+  ]
+}

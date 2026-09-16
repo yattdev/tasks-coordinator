@@ -1,0 +1,1575 @@
+{
+  "kind": "done",
+  "observed_at": "2026-09-16 05:02:04 UTC",
+  "tasks": [
+    {
+      "task_id": "7ca86e53-249b-4b31-a866-e807afd9a962",
+      "title": "feat: Implement Redmine integration",
+      "lane": "Done",
+      "state": "COMPLETED",
+      "owner": "Coordinator terminal retention and recovery tracking",
+      "health": "terminal",
+      "last_action": "Read current plan, primary/latest-session messages, every session and all tags; compared retained worktree with terminal preservation record.",
+      "next_action": "Keep Done and never restart; live Redmine marketplace delivery remains owned by b7cb6fe6-3766-4b81-a7ee-f5e9c16627cf.",
+      "trigger": "Normal Done retention timer only.",
+      "fallback": "Preserve task-owned refs, artifacts, runtimes, and audit history; no destructive cleanup from uncertainty.",
+      "checked_at": "2026-09-16T04:57:11.451Z",
+      "session_count": 4,
+      "live_owners": [],
+      "archive": {
+        "auto_archive_after_hours": 72,
+        "entered_done_at": null,
+        "status": "72-hour setting freshly confirmed; no authoritative per-task entered-at/due-at exposed; do not derive from updated_at"
+      },
+      "missing_fields": [
+        "Current related-task census denied; preserve prior terminal relation evidence",
+        "Authoritative pending-move census unavailable; null task/session projections do not prove no queued moves",
+        "Per-task authoritative archive deadline unavailable"
+      ],
+      "anomalies": [],
+      "local_repositories": [
+        {
+          "path": "/data/tasks/feat-implement-redmi_zf5/yattdev-kandev-plugin-redmine-feature-redmine-plugin-build-i3m",
+          "exists": true,
+          "head": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/yattdev/kandev-plugin-redmine/.git/worktrees/yattdev-kandev-plugin-redmine-feature-redmine-plugin-build-i3m"
+          },
+          "branch": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/yattdev/kandev-plugin-redmine/.git/worktrees/yattdev-kandev-plugin-redmine-feature-redmine-plugin-build-i3m"
+          },
+          "upstream": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/yattdev/kandev-plugin-redmine/.git/worktrees/yattdev-kandev-plugin-redmine-feature-redmine-plugin-build-i3m"
+          },
+          "status": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/yattdev/kandev-plugin-redmine/.git/worktrees/yattdev-kandev-plugin-redmine-feature-redmine-plugin-build-i3m"
+          },
+          "ahead_behind": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: not a git repository: /data/repos/workspaces/2e62401b-5ffe-4050-bc1b-d49ea5d5dbcd/github/yattdev/kandev-plugin-redmine/.git/worktrees/yattdev-kandev-plugin-redmine-feature-redmine-plugin-build-i3m"
+          }
+        }
+      ],
+      "provider_readback": [
+        {
+          "closed_at": "2026-08-21T05:06:18Z",
+          "draft": true,
+          "head": "b0feb95dd74e1f48eb8b00bc38761b11fc5ea4ff",
+          "merge_commit_sha": null,
+          "merged": false,
+          "merged_at": null,
+          "state": "closed",
+          "url": "https://github.com/kdlbs/kandev/pull/2724"
+        },
+        {
+          "closed_at": "2026-09-04T06:54:31Z",
+          "draft": false,
+          "head": "0b884b249cac0b1e09ebf87fdea99bf56177b4d0",
+          "merge_commit_sha": "9ab567715b9a224f52625e403d8f52483fcbdae0",
+          "merged": true,
+          "merged_at": "2026-09-04T06:54:31Z",
+          "state": "closed",
+          "url": "https://github.com/yattdev/kandev-plugin-redmine/pull/1"
+        }
+      ],
+      "provider_checked_at": "2026-09-16 05:02:04 UTC"
+    },
+    {
+      "task_id": "ae8fc022-5562-4f58-95dc-3dab9d4c179f",
+      "title": "Fix tag display and tags box UI",
+      "lane": "Done",
+      "state": "COMPLETED",
+      "owner": "Coordinator terminal retention",
+      "health": "terminal",
+      "last_action": "Read current plan, primary/latest-session messages, every session and all tags; compared retained worktree with terminal preservation record.",
+      "next_action": "Retain the historical receipt; perform no disposal unless fresh evidence proves an owned unique runtime and a guarded exact cleanup surface.",
+      "trigger": "Normal Done archive timer or new positive ownership/runtime evidence.",
+      "fallback": "Preserve merged delivery and historical receipt; never delete uncertain data.",
+      "checked_at": "2026-09-16T04:57:11.452Z",
+      "session_count": 9,
+      "live_owners": [],
+      "archive": {
+        "auto_archive_after_hours": 72,
+        "entered_done_at": null,
+        "status": "72-hour setting freshly confirmed; no authoritative per-task entered-at/due-at exposed; do not derive from updated_at"
+      },
+      "missing_fields": [
+        "Current related-task census denied; preserve prior terminal relation evidence",
+        "Authoritative pending-move census unavailable; null task/session projections do not prove no queued moves",
+        "Per-task authoritative archive deadline unavailable",
+        "85 unchanged untracked files preserved; this audit did not re-establish provider reachability for their exact content. No cleanup safety claim."
+      ],
+      "anomalies": [],
+      "local_repositories": [
+        {
+          "path": "/data/tasks/show-tags-applied-to_ioop9bn6/.qa",
+          "exists": true,
+          "git_root": false
+        },
+        {
+          "path": "/data/tasks/show-tags-applied-to_ioop9bn6/kandev-source",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "4a3e50b159fab1a06e3b52274c6c52f6d2942176",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "feature/fix-tag-display-and-e00",
+            "error": ""
+          },
+          "upstream": {
+            "code": 0,
+            "output": "origin/feature/fix-tag-display-and-e00",
+            "error": ""
+          },
+          "status": {
+            "code": 0,
+            "output": "?? apps/backend/internal/system/storage/tempartifacts/process_alive_unix.go\n?? apps/backend/internal/system/storage/tempartifacts/process_alive_windows.go\n?? apps/backend/internal/voice/handlers/transcribe_handlers.go\n?? apps/backend/internal/voice/handlers/transcribe_handlers_test.go",
+            "error": "",
+            "entry_count": 85,
+            "classification": "Full census read; preserved existing residue; filenames omitted from compact handoff"
+          },
+          "ahead_behind": {
+            "code": 0,
+            "output": "0\t17",
+            "error": ""
+          }
+        }
+      ],
+      "provider_readback": [
+        {
+          "closed_at": "2026-08-18T05:42:24Z",
+          "draft": false,
+          "head": "443ac38c38415f0da186305356230c7530b74524",
+          "merge_commit_sha": "900b345c007ef22e0d2082641285c4871f988fdf",
+          "merged": true,
+          "merged_at": "2026-08-18T05:42:24Z",
+          "state": "closed",
+          "url": "https://github.com/yattdev/kandev-plugin-tags/pull/4"
+        },
+        {
+          "closed_at": "2026-08-21T17:12:31Z",
+          "draft": false,
+          "head": "8f33ba28ed5cdd88d4fce785db6bd3d9a5ad5c78",
+          "merge_commit_sha": "64bc820c45b5353a2bd1cf2aa63c9effe3fa08c9",
+          "merged": true,
+          "merged_at": "2026-08-21T17:12:31Z",
+          "state": "closed",
+          "url": "https://github.com/kdlbs/kandev/pull/2609"
+        },
+        {
+          "closed_at": "2026-08-21T05:47:58Z",
+          "draft": false,
+          "head": "0c120b3f7e19505c488ebb4b06fda5355afb7a3f",
+          "merge_commit_sha": "6f4a127d2984210c4b2f724aca70f59c8a8f821d",
+          "merged": true,
+          "merged_at": "2026-08-21T05:47:58Z",
+          "state": "closed",
+          "url": "https://github.com/yattdev/kandev-plugin-tags/pull/7"
+        }
+      ],
+      "provider_checked_at": "2026-09-16 05:02:04 UTC"
+    },
+    {
+      "task_id": "f2078d51-4dd4-435f-812a-f632328ccfb2",
+      "title": "Harden env-read guard against aliased os imports",
+      "lane": "Done",
+      "state": "REVIEW",
+      "owner": "Coordinator terminal retention and recovery tracking",
+      "health": "terminal",
+      "last_action": "Read current plan, primary/latest-session messages, every session and all tags; compared retained worktree with terminal preservation record.",
+      "next_action": "Apply normal Done retention while preserving the recorded task-owned evidence; reopen only on concrete unique unfinished work.",
+      "trigger": "Normal 72-hour archive timer or new concrete terminal-integrity evidence.",
+      "fallback": "Preserve task-owned refs, artifacts, runtimes, and audit history; no destructive cleanup from uncertainty.",
+      "checked_at": "2026-09-16T04:57:11.453Z",
+      "session_count": 15,
+      "live_owners": [],
+      "archive": {
+        "auto_archive_after_hours": 72,
+        "entered_done_at": null,
+        "status": "72-hour setting freshly confirmed; no authoritative per-task entered-at/due-at exposed; do not derive from updated_at"
+      },
+      "missing_fields": [
+        "Current related-task census denied; preserve prior terminal relation evidence",
+        "Authoritative pending-move census unavailable; null task/session projections do not prove no queued moves",
+        "Per-task authoritative archive deadline unavailable"
+      ],
+      "anomalies": [
+        "Historical terminal plan calls remote7be6b34 post-merge; fresh provider says exact accepted head7be6b34 at the recorded squash4fde4f7c. Clarify receipt; no unique local work or recovery."
+      ],
+      "local_repositories": [
+        {
+          "path": "/data/tasks/harden-env-read-guar_xm7nu8dv/kandev-source",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "a97029044aa549a049a87efaac57f23d628ee5c1",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "feature/harden-env-read-guar-uw9",
+            "error": ""
+          },
+          "upstream": {
+            "code": 0,
+            "output": "origin/feature/harden-env-read-guar-uw9",
+            "error": ""
+          },
+          "status": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 0,
+            "output": "0\t1",
+            "error": ""
+          }
+        }
+      ],
+      "provider_readback": [
+        {
+          "closed_at": "2026-09-14T13:45:16Z",
+          "draft": false,
+          "head": "7be6b34cb6c89db1149c8db869a585ce0e7dbde3",
+          "merge_commit_sha": "4fde4f7cb4e26a9efb9a31059a0494169196597a",
+          "merged": true,
+          "merged_at": "2026-09-14T13:45:15Z",
+          "state": "closed",
+          "url": "https://github.com/kdlbs/kandev/pull/3505"
+        }
+      ],
+      "provider_checked_at": "2026-09-16 05:02:04 UTC"
+    },
+    {
+      "task_id": "957da1cb-063b-4c2e-b406-6d04ad158fb9",
+      "title": "Reuse workspace for additional task sessions",
+      "lane": "Done",
+      "state": "REVIEW",
+      "owner": "Coordinator terminal retention and recovery tracking",
+      "health": "terminal",
+      "last_action": "Read current plan, primary/latest-session messages, every session and all tags; compared retained worktree with terminal preservation record.",
+      "next_action": "Apply normal Done retention while preserving the recorded task-owned evidence; reopen only on concrete unique unfinished work.",
+      "trigger": "Normal 72-hour archive timer or new concrete terminal-integrity evidence.",
+      "fallback": "Preserve task-owned refs, artifacts, runtimes, and audit history; no destructive cleanup from uncertainty.",
+      "checked_at": "2026-09-16T04:57:11.454Z",
+      "session_count": 15,
+      "live_owners": [],
+      "archive": {
+        "auto_archive_after_hours": 72,
+        "entered_done_at": null,
+        "status": "72-hour setting freshly confirmed; no authoritative per-task entered-at/due-at exposed; do not derive from updated_at"
+      },
+      "missing_fields": [
+        "Current related-task census denied; preserve prior terminal relation evidence",
+        "Authoritative pending-move census unavailable; null task/session projections do not prove no queued moves",
+        "Per-task authoritative archive deadline unavailable"
+      ],
+      "anomalies": [
+        "Card links older merged #2843 but final merged delivery is #3501; preserve both history and add canonical #3501 association when supported."
+      ],
+      "local_repositories": [
+        {
+          "path": "/data/tasks/reuse-workspace-for_gbd0pbtw/kandev-source",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "97d9807121bcd6f05b8021043734579daf3eba41",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "upstream": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: HEAD does not point to a branch"
+          },
+          "status": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: HEAD does not point to a branch"
+          }
+        }
+      ],
+      "provider_readback": [
+        {
+          "closed_at": "2026-08-23T23:13:21Z",
+          "draft": false,
+          "head": "7110bb3fa9b93e9df47233f1dfaae0ab9025adc2",
+          "merge_commit_sha": "0a45728753c6534a5a615e381fcb0e660b9e7568",
+          "merged": true,
+          "merged_at": "2026-08-23T23:13:21Z",
+          "state": "closed",
+          "url": "https://github.com/kdlbs/kandev/pull/2843"
+        },
+        {
+          "head": "97d9807121bcd6f05b8021043734579daf3eba41",
+          "merge_commit_sha": "796bf5853fd2eb40992cbffca471ab5e745e77ec",
+          "merged": true,
+          "merged_at": "2026-09-09T21:55:21Z",
+          "state": "closed",
+          "url": "https://github.com/kdlbs/kandev/pull/3501"
+        }
+      ],
+      "provider_checked_at": "2026-09-16 05:02:04 UTC"
+    },
+    {
+      "task_id": "b74833e7-a05f-4cdf-81cf-db5b4c02f368",
+      "title": "Make managed task worktrees Git-writable",
+      "lane": "Done",
+      "state": "REVIEW",
+      "owner": "Coordinator terminal retention and recovery tracking",
+      "health": "terminal",
+      "last_action": "Read current plan, primary/latest-session messages, every session and all tags; compared retained worktree with terminal preservation record.",
+      "next_action": "Apply normal Done retention while preserving the recorded task-owned evidence; reopen only on concrete unique unfinished work.",
+      "trigger": "Normal 72-hour archive timer or new concrete terminal-integrity evidence.",
+      "fallback": "Preserve task-owned refs, artifacts, runtimes, and audit history; no destructive cleanup from uncertainty.",
+      "checked_at": "2026-09-16T04:57:11.455Z",
+      "session_count": 18,
+      "live_owners": [],
+      "archive": {
+        "auto_archive_after_hours": 72,
+        "entered_done_at": null,
+        "status": "72-hour setting freshly confirmed; no authoritative per-task entered-at/due-at exposed; do not derive from updated_at"
+      },
+      "missing_fields": [
+        "Current related-task census denied; preserve prior terminal relation evidence",
+        "Authoritative pending-move census unavailable; null task/session projections do not prove no queued moves",
+        "Per-task authoritative archive deadline unavailable"
+      ],
+      "anomalies": [],
+      "local_repositories": [
+        {
+          "path": "/data/tasks/make-managed-task-wo_yflmo5lg/kandev-source",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "9f71cb00667c331487bd0dd78f6b8e1045e07879",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "reconcile/managed-task-git-metadata",
+            "error": ""
+          },
+          "upstream": {
+            "code": 0,
+            "output": "origin/reconcile/managed-task-git-metadata",
+            "error": ""
+          },
+          "status": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 0,
+            "output": "0\t17",
+            "error": ""
+          }
+        }
+      ],
+      "provider_readback": [
+        {
+          "closed_at": "2026-09-10T10:28:26Z",
+          "draft": false,
+          "head": "9a6f28293b4345dcb30bbdbc7eee4455e5b1902b",
+          "merge_commit_sha": "0087c472458f073dab1a3fa0ede204a9a4aef482",
+          "merged": false,
+          "merged_at": null,
+          "state": "closed",
+          "url": "https://github.com/kdlbs/kandev/pull/3242"
+        },
+        {
+          "closed_at": null,
+          "draft": true,
+          "head": "5504448a57da825d279adcc57170a0a9b252b4da",
+          "merge_commit_sha": "5e1e082e40f51a3a7b0d7c73b4d7fcf114027c69",
+          "merged": false,
+          "merged_at": null,
+          "state": "open",
+          "url": "https://github.com/kdlbs/kandev/pull/3496"
+        }
+      ],
+      "provider_checked_at": "2026-09-16 05:02:04 UTC"
+    },
+    {
+      "task_id": "af3d7a12-5fc2-408e-ab36-bb4bba6fed22",
+      "title": "Manage task PR and MR links via MCP",
+      "lane": "Done",
+      "state": "REVIEW",
+      "owner": "Coordinator terminal retention and recovery tracking",
+      "health": "terminal",
+      "last_action": "Read current plan, primary/latest-session messages, every session and all tags; compared retained worktree with terminal preservation record.",
+      "next_action": "Apply normal Done retention; preserve remote accepted head bd92d72aa1c25eb875982c9d0c47bbc83f01d1bf and local clean historical worktree. No follow-up task is required.",
+      "trigger": "Normal 72-hour archive timer or concrete evidence that main no longer contains either task-owned commit.",
+      "fallback": "Keep Done and preserve refs/history; never rewrite or delete remote history.",
+      "checked_at": "2026-09-16T04:57:11.456Z",
+      "session_count": 14,
+      "live_owners": [],
+      "archive": {
+        "auto_archive_after_hours": 72,
+        "entered_done_at": null,
+        "status": "72-hour setting freshly confirmed; no authoritative per-task entered-at/due-at exposed; do not derive from updated_at"
+      },
+      "missing_fields": [
+        "Current related-task census denied; preserve prior terminal relation evidence",
+        "Authoritative pending-move census unavailable; null task/session projections do not prove no queued moves",
+        "Per-task authoritative archive deadline unavailable"
+      ],
+      "anomalies": [],
+      "local_repositories": [
+        {
+          "path": "/data/tasks/manage-task-pr-and-m_lnhqofsd/kandev-source",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "591589bae9b9fd14298aea3986c309793c653c1c",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "feature/manage-task-pr-and-m-e6i",
+            "error": ""
+          },
+          "upstream": {
+            "code": 0,
+            "output": "origin/feature/manage-task-pr-and-m-e6i",
+            "error": ""
+          },
+          "status": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 0,
+            "output": "0\t2",
+            "error": ""
+          }
+        }
+      ],
+      "provider_readback": [
+        {
+          "closed_at": "2026-09-14T14:00:36Z",
+          "draft": false,
+          "head": "bd92d72aa1c25eb875982c9d0c47bbc83f01d1bf",
+          "merge_commit_sha": "262ecdf270b5171538a68e9937dda7894ee01673",
+          "merged": true,
+          "merged_at": "2026-09-14T14:00:36Z",
+          "state": "closed",
+          "url": "https://github.com/kdlbs/kandev/pull/3506"
+        }
+      ],
+      "provider_checked_at": "2026-09-16 05:02:04 UTC"
+    },
+    {
+      "task_id": "856898aa-d06a-43f7-9a87-f873665f19da",
+      "title": "The tags plugin update should preserve the existings tags",
+      "lane": "Done",
+      "state": "REVIEW",
+      "owner": "Coordinator terminal retention and recovery tracking",
+      "health": "terminal",
+      "last_action": "Read current plan, primary/latest-session messages, every session and all tags; compared retained worktree with terminal preservation record.",
+      "next_action": "Apply normal Done retention while preserving the recorded task-owned evidence; reopen only on concrete unique unfinished work.",
+      "trigger": "Normal 72-hour archive timer or new concrete terminal-integrity evidence.",
+      "fallback": "Preserve task-owned refs, artifacts, runtimes, and audit history; no destructive cleanup from uncertainty.",
+      "checked_at": "2026-09-16T04:57:11.457Z",
+      "session_count": 19,
+      "live_owners": [],
+      "archive": {
+        "auto_archive_after_hours": 72,
+        "entered_done_at": null,
+        "status": "72-hour setting freshly confirmed; no authoritative per-task entered-at/due-at exposed; do not derive from updated_at"
+      },
+      "missing_fields": [
+        "Current related-task census denied; preserve prior terminal relation evidence",
+        "Authoritative pending-move census unavailable; null task/session projections do not prove no queued moves",
+        "Per-task authoritative archive deadline unavailable"
+      ],
+      "anomalies": [],
+      "local_repositories": [
+        {
+          "path": "/data/tasks/the-tags-plugin-upda_737amf4x/kandev-plugin-tags",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "9e6faf0cb71c8ff78bcae5c28d5fbbf11e882c86",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "feature/the-tags-plugin-upda-sww",
+            "error": ""
+          },
+          "upstream": {
+            "code": 0,
+            "output": "origin/feature/the-tags-plugin-upda-sww",
+            "error": ""
+          },
+          "status": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 0,
+            "output": "1\t0",
+            "error": ""
+          }
+        }
+      ],
+      "provider_readback": [
+        {
+          "closed_at": "2026-09-14T04:29:21Z",
+          "draft": false,
+          "head": "a630cb9c44e7a7b4467b531fbeb35a56e119c601",
+          "merge_commit_sha": "31c17d1947bd7785d0d24b98bd2fefc3d5f94916",
+          "merged": true,
+          "merged_at": "2026-09-14T04:29:21Z",
+          "state": "closed",
+          "url": "https://github.com/yattdev/kandev-plugin-tags/pull/17"
+        }
+      ],
+      "provider_checked_at": "2026-09-16 05:02:04 UTC"
+    },
+    {
+      "task_id": "1f8d4dc8-83ac-44d6-9fbd-b34bd46e044e",
+      "title": "Recover missing linked-worktree admin directories",
+      "lane": "Done",
+      "state": "REVIEW",
+      "owner": "Coordinator terminal retention and recovery tracking",
+      "health": "terminal",
+      "last_action": "Read current plan, primary/latest-session messages, every session and all tags; compared retained worktree with terminal preservation record.",
+      "next_action": "Apply normal Done retention while preserving the recorded task-owned evidence; reopen only on concrete unique unfinished work.",
+      "trigger": "Normal 72-hour archive timer or new concrete terminal-integrity evidence.",
+      "fallback": "Preserve task-owned refs, artifacts, runtimes, and audit history; no destructive cleanup from uncertainty.",
+      "checked_at": "2026-09-16T04:57:11.458Z",
+      "session_count": 23,
+      "live_owners": [],
+      "archive": {
+        "auto_archive_after_hours": 72,
+        "entered_done_at": null,
+        "status": "72-hour setting freshly confirmed; no authoritative per-task entered-at/due-at exposed; do not derive from updated_at"
+      },
+      "missing_fields": [
+        "Current related-task census denied; preserve prior terminal relation evidence",
+        "Authoritative pending-move census unavailable; null task/session projections do not prove no queued moves",
+        "Per-task authoritative archive deadline unavailable"
+      ],
+      "anomalies": [],
+      "local_repositories": [
+        {
+          "path": "/data/tasks/recover-missing-link_596r7wik/kandev-source",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "32d10e8d696a0b536e74e3dd9d84ba308638cead",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "feature/recover-missing-link-wm4",
+            "error": ""
+          },
+          "upstream": {
+            "code": 0,
+            "output": "origin/feature/recover-missing-link-wm4",
+            "error": ""
+          },
+          "status": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 0,
+            "output": "0\t92",
+            "error": ""
+          }
+        }
+      ],
+      "provider_readback": [
+        {
+          "closed_at": "2026-09-11T11:52:34Z",
+          "draft": false,
+          "head": "eb83bbe3d36e50abd04ecfaddbc21138c067e49b",
+          "merge_commit_sha": "21a639b726f89de9a2253ecf813cb03c1e72e1ff",
+          "merged": true,
+          "merged_at": "2026-09-11T11:52:34Z",
+          "state": "closed",
+          "url": "https://github.com/kdlbs/kandev/pull/3137"
+        }
+      ],
+      "provider_checked_at": "2026-09-16 05:02:04 UTC"
+    },
+    {
+      "task_id": "23a05db4-c7bf-4732-a390-08cb8f0a3a8d",
+      "title": "H6: Add plugin capability approval and audit",
+      "lane": "Done",
+      "state": "COMPLETED",
+      "owner": "Coordinator terminal retention",
+      "health": "terminal",
+      "last_action": "Read current plan, primary/latest-session messages, every session and all tags; compared retained worktree with terminal preservation record.",
+      "next_action": "Retain the merged delivery and clean worktree through the normal Done archive timer.",
+      "trigger": "Normal Done archive timer or concrete evidence invalidating merged containment.",
+      "fallback": "Preserve all three exact SHAs, merge receipt, and prior request; do not restart CI or duplicate contact.",
+      "checked_at": "2026-09-16T04:57:11.459Z",
+      "session_count": 47,
+      "live_owners": [],
+      "archive": {
+        "auto_archive_after_hours": 72,
+        "entered_done_at": null,
+        "status": "72-hour setting freshly confirmed; no authoritative per-task entered-at/due-at exposed; do not derive from updated_at"
+      },
+      "missing_fields": [
+        "Current related-task census denied; preserve prior terminal relation evidence",
+        "Authoritative pending-move census unavailable; null task/session projections do not prove no queued moves",
+        "Per-task authoritative archive deadline unavailable"
+      ],
+      "anomalies": [],
+      "local_repositories": [
+        {
+          "path": "/data/tasks/h6-add-plugin-capabi_ujha1a9q/kdlbs-kandev",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "3b5b6f2a9594fca6908fb3fc58a12c764c69d64f",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "feature/h6-add-plugin-capabi-lca",
+            "error": ""
+          },
+          "upstream": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/h6-add-plugin-capabi-lca'"
+          },
+          "status": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/h6-add-plugin-capabi-lca'"
+          }
+        }
+      ],
+      "provider_readback": [
+        {
+          "closed_at": "2026-09-15T22:16:07Z",
+          "draft": false,
+          "head": "3fba3b0a6b17709ccaf11c4f871415a11d990380",
+          "merge_commit_sha": "cb9752b1a2e4d3d5db7f4d0c411a84eae2b6deed",
+          "merged": true,
+          "merged_at": "2026-09-15T22:16:07Z",
+          "state": "closed",
+          "url": "https://github.com/kdlbs/kandev/pull/3238"
+        }
+      ],
+      "provider_checked_at": "2026-09-16 05:02:04 UTC"
+    },
+    {
+      "task_id": "ecd8b857-42a6-417f-a7e4-084f50fc6956",
+      "title": "Run isolated Redmine first-version E2E",
+      "lane": "Done",
+      "state": "REVIEW",
+      "owner": "Coordinator terminal retention and recovery tracking",
+      "health": "terminal",
+      "last_action": "Read current plan, primary/latest-session messages, every session and all tags; compared retained worktree with terminal preservation record.",
+      "next_action": "Apply normal Done retention while preserving the recorded task-owned evidence; reopen only on concrete unique unfinished work.",
+      "trigger": "Normal 72-hour archive timer or new concrete terminal-integrity evidence.",
+      "fallback": "Preserve task-owned refs, artifacts, runtimes, and audit history; no destructive cleanup from uncertainty.",
+      "checked_at": "2026-09-16T04:56:40.394Z",
+      "session_count": 8,
+      "live_owners": [],
+      "archive": {
+        "auto_archive_after_hours": 72,
+        "entered_done_at": null,
+        "status": "72-hour setting freshly confirmed; no authoritative per-task entered-at/due-at exposed; do not derive from updated_at"
+      },
+      "missing_fields": [
+        "Authoritative pending-move census unavailable; null task/session projections do not prove no queued moves",
+        "Per-task authoritative archive deadline unavailable"
+      ],
+      "anomalies": [],
+      "local_repositories": [
+        {
+          "path": "/data/tasks/run-isolated-redmine_dfcy6fbj/kandev-source",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "cfd6bdf65ae6f631d7701c105791a099c0325cc3",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "feature/run-isolated-redmine-vlw",
+            "error": ""
+          },
+          "upstream": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/run-isolated-redmine-vlw'"
+          },
+          "status": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/run-isolated-redmine-vlw'"
+          }
+        },
+        {
+          "path": "/data/tasks/run-isolated-redmine_dfcy6fbj/kdlbs-kandev-main",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "fed90594d38138eee709ae94eef4766ae6ee3386",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "feature/run-isolated-redmine-854",
+            "error": ""
+          },
+          "upstream": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/run-isolated-redmine-854'"
+          },
+          "status": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/run-isolated-redmine-854'"
+          }
+        },
+        {
+          "path": "/data/tasks/run-isolated-redmine_dfcy6fbj/yattdev-kandev-plugin-redmine-main",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "9ab567715b9a224f52625e403d8f52483fcbdae0",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "feature/run-isolated-redmine-nbz",
+            "error": ""
+          },
+          "upstream": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/run-isolated-redmine-nbz'"
+          },
+          "status": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/run-isolated-redmine-nbz'"
+          }
+        },
+        {
+          "path": "/data/tasks/run-isolated-redmine_dfcy6fbj/e2e-runtime",
+          "exists": true,
+          "git_root": false
+        },
+        {
+          "path": "/data/tasks/run-isolated-redmine_dfcy6fbj/e2e-v031",
+          "exists": true,
+          "git_root": false
+        }
+      ],
+      "provider_readback": [],
+      "provider_checked_at": "2026-09-16 05:02:04 UTC"
+    },
+    {
+      "task_id": "7a0454aa-c089-4365-8966-ad99775a46f8",
+      "title": "Fix Redmine derived custom-field fallback",
+      "lane": "Done",
+      "state": "COMPLETED",
+      "owner": "Coordinator terminal retention and recovery tracking",
+      "health": "terminal",
+      "last_action": "Read current plan, primary/latest-session messages, every session and all tags; compared retained worktree with terminal preservation record.",
+      "next_action": "Apply normal Done retention while preserving the recorded task-owned evidence; reopen only on concrete unique unfinished work.",
+      "trigger": "Normal 72-hour archive timer or new concrete terminal-integrity evidence.",
+      "fallback": "Preserve task-owned refs, artifacts, runtimes, and audit history; no destructive cleanup from uncertainty.",
+      "checked_at": "2026-09-16T04:56:40.446Z",
+      "session_count": 38,
+      "live_owners": [],
+      "archive": {
+        "auto_archive_after_hours": 72,
+        "entered_done_at": null,
+        "status": "72-hour setting freshly confirmed; no authoritative per-task entered-at/due-at exposed; do not derive from updated_at"
+      },
+      "missing_fields": [
+        "Authoritative pending-move census unavailable; null task/session projections do not prove no queued moves",
+        "Per-task authoritative archive deadline unavailable"
+      ],
+      "anomalies": [],
+      "local_repositories": [
+        {
+          "path": "/data/tasks/fix-redmine-derived_xuuee0er/h2",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "66b41c896890d8b5be06f6920eb81dc85f4ac35c",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "upstream": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: HEAD does not point to a branch"
+          },
+          "status": {
+            "code": 0,
+            "output": "?? .e2e-prod/.kandev-backend.lock\n?? .e2e-prod/data/master.key\n?? .e2e-prod/plugins/kandev-plugin-redmine.yml\n?? .e2e-prod/plugins/kandev-plugin-redmine/0.2.103/checksums.txt\n?? .e2e-prod/plugins/kandev-plugin-redmine/0.2.103/manifest.yaml\n?? .e2e-prod/plugins/kandev-plugin-redmine/0.2.103/server/plugin-linux-amd64\n?? .e2e-prod/plugins/kandev-plugin-redmine/0.2.103/ui/bundle.js\n?? .e2e-prod/supervisor/launch.json",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: HEAD does not point to a branch"
+          }
+        },
+        {
+          "path": "/data/tasks/fix-redmine-derived_xuuee0er/yattdev-kandev-plugin-redmine",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "caf0112739375dc5e4ecce5a09456096a8566110",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "feature/fix-redmine-derived-rue",
+            "error": ""
+          },
+          "upstream": {
+            "code": 0,
+            "output": "origin/feature/fix-redmine-derived-rue",
+            "error": ""
+          },
+          "status": {
+            "code": 0,
+            "output": "?? .playwright-cli/console-2026-09-07T10-42-48-245Z.log\n?? .playwright-cli/page-2026-09-07T06-58-26-619Z.yml\n?? .playwright-cli/page-2026-09-07T10-42-49-098Z.yml\n?? .playwright-cli/page-2026-09-07T10-43-02-921Z.yml",
+            "error": "",
+            "entry_count": 72,
+            "classification": "Full census read; preserved existing residue; filenames omitted from compact handoff"
+          },
+          "ahead_behind": {
+            "code": 0,
+            "output": "0\t0",
+            "error": ""
+          }
+        },
+        {
+          "path": "/data/tasks/fix-redmine-derived_xuuee0er/p3",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "caf0112739375dc5e4ecce5a09456096a8566110",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "upstream": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: HEAD does not point to a branch"
+          },
+          "status": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: HEAD does not point to a branch"
+          }
+        }
+      ],
+      "provider_readback": [
+        {
+          "closed_at": "2026-09-07T14:10:17Z",
+          "draft": false,
+          "head": "caf0112739375dc5e4ecce5a09456096a8566110",
+          "merge_commit_sha": "92c54d338034be588e855ed111305c276e073d50",
+          "merged": true,
+          "merged_at": "2026-09-07T14:10:17Z",
+          "state": "closed",
+          "url": "https://github.com/yattdev/kandev-plugin-redmine/pull/3"
+        }
+      ],
+      "provider_checked_at": "2026-09-16 05:02:04 UTC"
+    },
+    {
+      "task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+      "title": "Fix PR lane profile executing wrong model",
+      "lane": "Done",
+      "state": "COMPLETED",
+      "owner": "Coordinator terminal ledger",
+      "health": "terminal",
+      "last_action": "Read current plan, primary/latest-session messages, every session and all tags; compared retained worktree with terminal preservation record.",
+      "next_action": "Retain through normal Done archive timer.",
+      "trigger": "Normal Done archive timer expires.",
+      "fallback": "Restore only from terminal receipt if a separately authorized task needs it.",
+      "checked_at": "2026-09-16T04:56:40.566Z",
+      "session_count": 68,
+      "live_owners": [],
+      "archive": {
+        "auto_archive_after_hours": 72,
+        "entered_done_at": null,
+        "status": "72-hour setting freshly confirmed; no authoritative per-task entered-at/due-at exposed; do not derive from updated_at"
+      },
+      "missing_fields": [
+        "Authoritative pending-move census unavailable; null task/session projections do not prove no queued moves",
+        "Per-task authoritative archive deadline unavailable"
+      ],
+      "anomalies": [],
+      "local_repositories": [
+        {
+          "path": "/data/tasks/fix-pr-lane-profile_9b6mhh8i/kdlbs-kandev",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "561d2a8cf0d5c30224696304839a550952331ebe",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "feature/fix-pr-lane-profile-bt7",
+            "error": ""
+          },
+          "upstream": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/fix-pr-lane-profile-bt7'"
+          },
+          "status": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/fix-pr-lane-profile-bt7'"
+          }
+        }
+      ],
+      "provider_readback": [
+        {
+          "closed_at": "2026-09-15T22:11:44Z",
+          "draft": false,
+          "head": "acc12b62b9867db0cc17238cf5c8ca618a046b4f",
+          "merge_commit_sha": "739eabc49acb3a2f2db212c280ec118ffdbdffd7",
+          "merged": true,
+          "merged_at": "2026-09-15T22:11:44Z",
+          "state": "closed",
+          "url": "https://github.com/kdlbs/kandev/pull/3473"
+        }
+      ],
+      "provider_checked_at": "2026-09-16 05:02:04 UTC"
+    },
+    {
+      "task_id": "3f721d52-452b-4bc6-a61e-68d875baafbd",
+      "title": "Recover Redmine preflight in a dedicated workspace",
+      "lane": "Done",
+      "state": "COMPLETED",
+      "owner": "Coordinator terminal retention and recovery tracking",
+      "health": "terminal",
+      "last_action": "Read current plan, primary/latest-session messages, every session and all tags; compared retained worktree with terminal preservation record.",
+      "next_action": "Keep Done and never restart; merged plugin PR #4 supersedes the obsolete OPEN/DRAFT inventory-dependency narrative.",
+      "trigger": "Normal Done retention timer only.",
+      "fallback": "Preserve task-owned refs, artifacts, runtimes, and audit history; no destructive cleanup from uncertainty.",
+      "checked_at": "2026-09-16T04:56:40.627Z",
+      "session_count": 5,
+      "live_owners": [],
+      "archive": {
+        "auto_archive_after_hours": 72,
+        "entered_done_at": null,
+        "status": "72-hour setting freshly confirmed; no authoritative per-task entered-at/due-at exposed; do not derive from updated_at"
+      },
+      "missing_fields": [
+        "Authoritative pending-move census unavailable; null task/session projections do not prove no queued moves",
+        "Per-task authoritative archive deadline unavailable"
+      ],
+      "anomalies": [],
+      "local_repositories": [
+        {
+          "path": "/data/tasks/recover-redmine-pref_yol21o82/yattdev-kandev-plugin-redmine",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "980dead49f3af23ab10c16c4a2c49ae5887ee7fa",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "feature/recover-redmine-pref-5hj",
+            "error": ""
+          },
+          "upstream": {
+            "code": 0,
+            "output": "origin/feature/recover-redmine-pref-5hj",
+            "error": ""
+          },
+          "status": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 0,
+            "output": "0\t0",
+            "error": ""
+          }
+        }
+      ],
+      "provider_readback": [
+        {
+          "closed_at": "2026-09-14T05:23:43Z",
+          "draft": false,
+          "head": "980dead49f3af23ab10c16c4a2c49ae5887ee7fa",
+          "merge_commit_sha": "7073f34f0c0788eef488ae27e0253d84a241a585",
+          "merged": true,
+          "merged_at": "2026-09-14T05:23:43Z",
+          "state": "closed",
+          "url": "https://github.com/yattdev/kandev-plugin-redmine/pull/4"
+        }
+      ],
+      "provider_checked_at": "2026-09-16 05:02:04 UTC"
+    },
+    {
+      "task_id": "09325a7b-afb5-4f54-b2a7-ceae217a7bee",
+      "title": "Fix repository provider eligibility refresh regression",
+      "lane": "Done",
+      "state": "REVIEW",
+      "owner": "Coordinator terminal retention and recovery tracking",
+      "health": "terminal",
+      "last_action": "Read current plan, primary/latest-session messages, every session and all tags; compared retained worktree with terminal preservation record.",
+      "next_action": "Apply normal Done retention. When the platform metadata-normalization capability exists, remove the stale dependency edge and normalize semantic state without reopening implementation.",
+      "trigger": "Normal archive timer, availability of the metadata-normalization capability, or concrete evidence invalidating accepted head b17dc78c56ded02e66d1f49a4eb37df6411e2ed0.",
+      "fallback": "Keep Done and preserve accepted/local refs and task history; no implementation recovery or destructive cleanup.",
+      "checked_at": "2026-09-16T04:56:40.690Z",
+      "session_count": 12,
+      "live_owners": [],
+      "archive": {
+        "auto_archive_after_hours": 72,
+        "entered_done_at": null,
+        "status": "72-hour setting freshly confirmed; no authoritative per-task entered-at/due-at exposed; do not derive from updated_at"
+      },
+      "missing_fields": [
+        "Authoritative pending-move census unavailable; null task/session projections do not prove no queued moves",
+        "Per-task authoritative archive deadline unavailable"
+      ],
+      "anomalies": [],
+      "local_repositories": [
+        {
+          "path": "/data/tasks/fix-repository-provi_wbjt7f13/kandev-source",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "cb7b887e6ad482006097a61feb4083dde81fbe36",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "feature/fix-repository-provi-bdm",
+            "error": ""
+          },
+          "upstream": {
+            "code": 0,
+            "output": "origin/feature/fix-repository-provi-bdm",
+            "error": ""
+          },
+          "status": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 0,
+            "output": "0\t1",
+            "error": ""
+          }
+        }
+      ],
+      "provider_readback": [
+        {
+          "closed_at": "2026-09-10T10:09:26Z",
+          "draft": false,
+          "head": "b17dc78c56ded02e66d1f49a4eb37df6411e2ed0",
+          "merge_commit_sha": "39e3ce2d52ea8befc930b264d2f0d54a1be4825f",
+          "merged": true,
+          "merged_at": "2026-09-10T10:09:26Z",
+          "state": "closed",
+          "url": "https://github.com/kdlbs/kandev/pull/3498"
+        }
+      ],
+      "provider_checked_at": "2026-09-16 05:02:04 UTC"
+    },
+    {
+      "task_id": "75d4c8af-dc90-4e68-bc74-3d86e99e52cb",
+      "title": "Resolve C1 git-metadata projection disposition",
+      "lane": "Done",
+      "state": "REVIEW",
+      "owner": "Coordinator terminal retention and recovery tracking",
+      "health": "terminal",
+      "last_action": "Read current plan, primary/latest-session messages, every session and all tags; compared retained worktree with terminal preservation record.",
+      "next_action": "Apply normal Done retention while preserving the recorded task-owned evidence; reopen only on concrete unique unfinished work.",
+      "trigger": "Normal 72-hour archive timer or new concrete terminal-integrity evidence.",
+      "fallback": "Preserve task-owned refs, artifacts, runtimes, and audit history; no destructive cleanup from uncertainty.",
+      "checked_at": "2026-09-16T04:57:11.462Z",
+      "session_count": 3,
+      "live_owners": [],
+      "archive": {
+        "auto_archive_after_hours": 72,
+        "entered_done_at": null,
+        "status": "72-hour setting freshly confirmed; no authoritative per-task entered-at/due-at exposed; do not derive from updated_at"
+      },
+      "missing_fields": [
+        "Current related-task census denied; preserve prior terminal relation evidence",
+        "Authoritative pending-move census unavailable; null task/session projections do not prove no queued moves",
+        "Per-task authoritative archive deadline unavailable",
+        "Exact materialized worktree path absent from exposed plan; clean checkout evidence reused from immutable terminal session."
+      ],
+      "anomalies": [],
+      "local_repositories": [],
+      "provider_readback": [
+        {
+          "closed_at": null,
+          "draft": true,
+          "head": "5504448a57da825d279adcc57170a0a9b252b4da",
+          "merge_commit_sha": "5e1e082e40f51a3a7b0d7c73b4d7fcf114027c69",
+          "merged": false,
+          "merged_at": null,
+          "state": "open",
+          "url": "https://github.com/kdlbs/kandev/pull/3496"
+        }
+      ],
+      "provider_checked_at": "2026-09-16 05:02:04 UTC"
+    },
+    {
+      "task_id": "4640fd95-b7f9-4339-8836-cf03679eaf41",
+      "title": "Publish Redmine patch release",
+      "lane": "Done",
+      "state": "REVIEW",
+      "owner": "Coordinator terminal retention and recovery tracking",
+      "health": "terminal",
+      "last_action": "Read current plan, primary/latest-session messages, every session and all tags; compared retained worktree with terminal preservation record.",
+      "next_action": "Apply normal Done retention while preserving the recorded task-owned evidence; reopen only on concrete unique unfinished work.",
+      "trigger": "Normal 72-hour archive timer or new concrete terminal-integrity evidence.",
+      "fallback": "Preserve task-owned refs, artifacts, runtimes, and audit history; no destructive cleanup from uncertainty.",
+      "checked_at": "2026-09-16T04:56:40.830Z",
+      "session_count": 7,
+      "live_owners": [],
+      "archive": {
+        "auto_archive_after_hours": 72,
+        "entered_done_at": null,
+        "status": "72-hour setting freshly confirmed; no authoritative per-task entered-at/due-at exposed; do not derive from updated_at"
+      },
+      "missing_fields": [
+        "Authoritative pending-move census unavailable; null task/session projections do not prove no queued moves",
+        "Per-task authoritative archive deadline unavailable"
+      ],
+      "anomalies": [],
+      "local_repositories": [
+        {
+          "path": "/data/tasks/publish-redmine-patc_7q00ybr7/yattdev-kandev-plugin-redmine",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "03b2754db637331caa585b5e4a7f9b397bd5c925",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "feature/publish-redmine-patc-nfq",
+            "error": ""
+          },
+          "upstream": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/publish-redmine-patc-nfq'"
+          },
+          "status": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/publish-redmine-patc-nfq'"
+          }
+        }
+      ],
+      "provider_readback": [
+        {
+          "closed_at": "2026-09-14T05:24:08Z",
+          "draft": false,
+          "head": "03b2754db637331caa585b5e4a7f9b397bd5c925",
+          "merge_commit_sha": "5a5e97564bc36f23f4eeaf29c9b643c8f5e6a631",
+          "merged": true,
+          "merged_at": "2026-09-14T05:24:08Z",
+          "state": "closed",
+          "url": "https://github.com/yattdev/kandev-plugin-redmine/pull/5"
+        }
+      ],
+      "provider_checked_at": "2026-09-16 05:02:04 UTC"
+    },
+    {
+      "task_id": "bdc56ccb-b1ea-4f22-a1e0-e81eac5fa06e",
+      "title": "Fix plugin possible_values decode for Redmine 6.0",
+      "lane": "Done",
+      "state": "COMPLETED",
+      "owner": "Coordinator terminal retention and recovery tracking",
+      "health": "terminal",
+      "last_action": "Read current plan, primary/latest-session messages, every session and all tags; compared retained worktree with terminal preservation record.",
+      "next_action": "Archive on the normal Done timer while preserving the public release, three clean worktrees, six session records, provider history, and downstream QA evidence.",
+      "trigger": "Normal archive timer or concrete evidence invalidating merged head 2192918e13fdeb8a0641eb240cc27f8286cb4da5, v0.3.2, or consumed downstream QA.",
+      "fallback": "Keep Done and preserve all recorded refs/evidence; do not recreate the disposed runtime or restart terminal sessions.",
+      "checked_at": "2026-09-16T04:57:11.463Z",
+      "session_count": 6,
+      "live_owners": [],
+      "archive": {
+        "auto_archive_after_hours": 72,
+        "entered_done_at": null,
+        "status": "72-hour setting freshly confirmed; no authoritative per-task entered-at/due-at exposed; do not derive from updated_at"
+      },
+      "missing_fields": [
+        "Current related-task census denied; preserve prior terminal relation evidence",
+        "Authoritative pending-move census unavailable; null task/session projections do not prove no queued moves",
+        "Per-task authoritative archive deadline unavailable"
+      ],
+      "anomalies": [],
+      "local_repositories": [
+        {
+          "path": "/data/tasks/run-isolated-redmine_dfcy6fbj/e2e-v031",
+          "exists": true,
+          "git_root": false
+        },
+        {
+          "path": "/data/tasks/run-isolated-redmine_dfcy6fbj/...",
+          "exists": false
+        },
+        {
+          "path": "/data/tasks/fix-plugin-possible_04rbz8xl/yattdev-kandev-plugin-redmine",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "2192918e13fdeb8a0641eb240cc27f8286cb4da5",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "feature/fix-plugin-possible-pn1",
+            "error": ""
+          },
+          "upstream": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/fix-plugin-possible-pn1'"
+          },
+          "status": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/fix-plugin-possible-pn1'"
+          }
+        },
+        {
+          "path": "/data/tasks/fix-plugin-possible_04rbz8xl/kandev-source",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "cfd6bdf65ae6f631d7701c105791a099c0325cc3",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "feature/fix-plugin-possible-22d",
+            "error": ""
+          },
+          "upstream": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/fix-plugin-possible-22d'"
+          },
+          "status": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/fix-plugin-possible-22d'"
+          }
+        },
+        {
+          "path": "/data/tasks/fix-plugin-possible_04rbz8xl/kdlbs-kandev",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "753e5549ee730245e4124654052b8b9e364d630c",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "feature/fix-plugin-possible-bde",
+            "error": ""
+          },
+          "upstream": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/fix-plugin-possible-bde'"
+          },
+          "status": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/fix-plugin-possible-bde'"
+          }
+        },
+        {
+          "path": "/data/tasks/run-isolated-redmine_dfcy6fbj/e2e-v032",
+          "exists": true,
+          "git_root": false
+        }
+      ],
+      "provider_readback": [
+        {
+          "closed_at": "2026-09-14T20:06:23Z",
+          "draft": false,
+          "head": "2192918e13fdeb8a0641eb240cc27f8286cb4da5",
+          "merge_commit_sha": "5f2d10ad76b6a135aee74bdaf2e6430b2d1403ed",
+          "merged": true,
+          "merged_at": "2026-09-14T20:06:23Z",
+          "state": "closed",
+          "url": "https://github.com/yattdev/kandev-plugin-redmine/pull/8"
+        }
+      ],
+      "provider_checked_at": "2026-09-16 05:02:04 UTC"
+    },
+    {
+      "task_id": "a091649a-79b0-40d6-a84d-84a3dc053e4a",
+      "title": "Port AgentConversation Host contract to canonical main",
+      "lane": "Done",
+      "state": "REVIEW",
+      "owner": "Coordinator terminal retention",
+      "health": "terminal",
+      "last_action": "Read current plan, primary/latest-session messages, every session and all tags; compared retained worktree with terminal preservation record.",
+      "next_action": "Retain the merged containment receipt through the normal Done archive timer.",
+      "trigger": "Normal Done archive timer or concrete evidence invalidating accepted/squash containment.",
+      "fallback": "Preserve all three exact SHAs and terminal evidence; do not restart conflict repair or duplicate notification.",
+      "checked_at": "2026-09-16T04:57:11.463Z",
+      "session_count": 15,
+      "live_owners": [],
+      "archive": {
+        "auto_archive_after_hours": 72,
+        "entered_done_at": null,
+        "status": "72-hour setting freshly confirmed; no authoritative per-task entered-at/due-at exposed; do not derive from updated_at"
+      },
+      "missing_fields": [
+        "Current related-task census denied; preserve prior terminal relation evidence",
+        "Authoritative pending-move census unavailable; null task/session projections do not prove no queued moves",
+        "Per-task authoritative archive deadline unavailable"
+      ],
+      "anomalies": [],
+      "local_repositories": [
+        {
+          "path": "/data/tasks/port-agentconversati_8ap51cib/kdlbs-kandev",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "bb3f8243c120405dad8a74bc82713d681a309af5",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "feature/port-agentconversati-40w",
+            "error": ""
+          },
+          "upstream": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/port-agentconversati-40w'"
+          },
+          "status": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/port-agentconversati-40w'"
+          }
+        }
+      ],
+      "provider_readback": [
+        {
+          "closed_at": "2026-09-15T22:17:42Z",
+          "draft": false,
+          "head": "7abb1643b28afbc4cc156a7afbc2dc686f0d127a",
+          "merge_commit_sha": "60aef37cbd8a043786393a56b603111eb3bd1f63",
+          "merged": true,
+          "merged_at": "2026-09-15T22:17:42Z",
+          "state": "closed",
+          "url": "https://github.com/kdlbs/kandev/pull/3672"
+        }
+      ],
+      "provider_checked_at": "2026-09-16 05:02:04 UTC"
+    },
+    {
+      "task_id": "92535de6-7507-473c-b292-e69516d2434c",
+      "title": "Design executor-owned native sandbox",
+      "lane": "Done",
+      "state": "COMPLETED",
+      "owner": "Coordinator terminal retention and recovery tracking",
+      "health": "terminal",
+      "last_action": "Read current plan, primary/latest-session messages, every session and all tags; compared retained worktree with terminal preservation record.",
+      "next_action": "Apply normal Done retention while preserving the recorded task-owned evidence; reopen only on concrete unique unfinished work.",
+      "trigger": "Normal 72-hour archive timer or new concrete terminal-integrity evidence.",
+      "fallback": "Preserve task-owned refs, artifacts, runtimes, and audit history; no destructive cleanup from uncertainty.",
+      "checked_at": "2026-09-16T04:56:41.087Z",
+      "session_count": 5,
+      "live_owners": [],
+      "archive": {
+        "auto_archive_after_hours": 72,
+        "entered_done_at": null,
+        "status": "72-hour setting freshly confirmed; no authoritative per-task entered-at/due-at exposed; do not derive from updated_at"
+      },
+      "missing_fields": [
+        "Authoritative pending-move census unavailable; null task/session projections do not prove no queued moves",
+        "Per-task authoritative archive deadline unavailable"
+      ],
+      "anomalies": [
+        "Task plan ends with obsolete non-terminal prototype hold; verified preservation and terminal conversation supersede it. Append-only terminal correction is due."
+      ],
+      "local_repositories": [
+        {
+          "path": "/data/tasks/design-executor-owne_6qnvuo1l/kandev-source",
+          "exists": true,
+          "head": {
+            "code": 0,
+            "output": "cfd6bdf65ae6f631d7701c105791a099c0325cc3",
+            "error": ""
+          },
+          "branch": {
+            "code": 0,
+            "output": "feature/design-executor-owne-zsl",
+            "error": ""
+          },
+          "upstream": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/design-executor-owne-zsl'"
+          },
+          "status": {
+            "code": 0,
+            "output": "",
+            "error": ""
+          },
+          "ahead_behind": {
+            "code": 128,
+            "output": "",
+            "error": "fatal: no upstream configured for branch 'feature/design-executor-owne-zsl'"
+          }
+        }
+      ],
+      "provider_readback": [],
+      "provider_checked_at": "2026-09-16 05:02:04 UTC"
+    },
+    {
+      "task_id": "3d456f24-73e7-4c0b-8821-ee49a3fa0f31",
+      "title": "Register Redmine plugin in marketplace",
+      "lane": "Done",
+      "state": "COMPLETED",
+      "owner": "Coordinator terminal retention and recovery tracking",
+      "health": "terminal",
+      "last_action": "Read current plan, primary/latest-session messages, every session and all tags; compared retained worktree with terminal preservation record.",
+      "next_action": "Apply normal Done retention while preserving the recorded task-owned evidence; reopen only on concrete unique unfinished work.",
+      "trigger": "Normal 72-hour archive timer or new concrete terminal-integrity evidence.",
+      "fallback": "Preserve task-owned refs, artifacts, runtimes, and audit history; no destructive cleanup from uncertainty.",
+      "checked_at": "2026-09-16T04:56:41.136Z",
+      "session_count": 2,
+      "live_owners": [],
+      "archive": {
+        "auto_archive_after_hours": 72,
+        "entered_done_at": null,
+        "status": "72-hour setting freshly confirmed; no authoritative per-task entered-at/due-at exposed; do not derive from updated_at"
+      },
+      "missing_fields": [
+        "Authoritative pending-move census unavailable; null task/session projections do not prove no queued moves",
+        "Per-task authoritative archive deadline unavailable"
+      ],
+      "anomalies": [],
+      "local_repositories": [],
+      "provider_readback": [],
+      "provider_checked_at": "2026-09-16 05:02:04 UTC"
+    }
+  ],
+  "limitations": [
+    "12 relation surfaces returned FORBIDDEN; no bypass used",
+    "Per-task archive deadline not exposed; workflow72h setting verified",
+    "Authoritative pending move census unavailable; no contact made",
+    "No runtime probes or tests run; retained immutable disposition receipts compared with unchanged worktrees/session census",
+    "Logical terminal retention preserved; cleanup eligibility is not granted"
+  ]
+}

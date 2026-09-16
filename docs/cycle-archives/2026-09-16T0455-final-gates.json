@@ -1,0 +1,181 @@
+{
+  "recorded_at": "2026-09-16T05:22:42Z",
+  "provider_scope": "No new provider requests needed to establish gate failures/passes; provider figures below are explicitly attributed historical receipts, not a newly certified full gate.",
+  "policy_followup": {
+    "checked_at": "2026-09-16T05:24:32Z",
+    "exact_head": "cc5b8137bef900d480f214a837adf3816db14891",
+    "path": "/data/tasks/wire-coordinator-mon_j7x9invt/yattdev-kandev-plugin-coordinator",
+    "branch": "feature/wire-coordinator-mon-w2g",
+    "identity_result": "local HEAD = tracking ref = live remote ref = provider PR head; clean status",
+    "provider": {
+      "base": {
+        "ref": "main",
+        "repo": "yattdev/kandev-plugin-coordinator",
+        "sha": "6fb1fdd63c1728258c40a67df037116c5ca9bbb8"
+      },
+      "draft": true,
+      "head": {
+        "ref": "feature/wire-coordinator-mon-w2g",
+        "repo": "yattdev/kandev-plugin-coordinator",
+        "sha": "cc5b8137bef900d480f214a837adf3816db14891"
+      },
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "merged": false,
+      "state": "open",
+      "url": "https://github.com/yattdev/kandev-plugin-coordinator/pull/4"
+    },
+    "remote": {
+      "ref": "refs/heads/feature/wire-coordinator-mon-w2g",
+      "sha": "cc5b8137bef900d480f214a837adf3816db14891"
+    },
+    "checks": {
+      "checks": [
+        {
+          "conclusion": "success",
+          "head_sha": "cc5b8137bef900d480f214a837adf3816db14891",
+          "html_url": "https://github.com/yattdev/kandev-plugin-coordinator/actions/runs/35059174883/job/104675654231",
+          "id": 104675654231,
+          "name": "Coordinator policy contract \u2014 vendored tree matches pinned source",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "head_sha": "cc5b8137bef900d480f214a837adf3816db14891",
+          "html_url": "https://github.com/yattdev/kandev-plugin-coordinator/actions/runs/35059174892/job/104675654208",
+          "id": 104675654208,
+          "name": "Build plugin packages",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "head_sha": "cc5b8137bef900d480f214a837adf3816db14891",
+          "html_url": "https://github.com/yattdev/kandev-plugin-coordinator/actions/runs/35059174883/job/104675654202",
+          "id": 104675654202,
+          "name": "Tidy, format, vet, and test",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "head_sha": "cc5b8137bef900d480f214a837adf3816db14891",
+          "html_url": "https://github.com/yattdev/kandev-plugin-coordinator/actions/runs/35059174883/job/104675654040",
+          "id": 104675654040,
+          "name": "Coordinator policy contract \u2014 vendored validation",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "head_sha": "cc5b8137bef900d480f214a837adf3816db14891",
+          "html_url": "https://github.com/yattdev/kandev-plugin-coordinator/runs/104675651937",
+          "id": 104675651937,
+          "name": "GitGuardian Security Checks",
+          "status": "completed"
+        }
+      ],
+      "total_count": 5
+    },
+    "author_session": "36534e47-723f-4a29-875f-5bd70e718782",
+    "author_state": "WAITING_FOR_INPUT",
+    "active_gate_owner": false,
+    "author_validation_claim": "10 UI tests, typecheck and bundle build pass; helper did not run tests",
+    "review_readiness": "Ready for a fresh independent Review at this exact new head. No merge readiness claimed.",
+    "review_focus": "Actual createCoordinatorSettings is invoked through a handwritten React hooks harness, not a real React DOM renderer. Diff lacks explicit Save-request payload/workspace assertion and B-disabled-before-load assertion. Reviewer must decide whether original mounted regression blocker is satisfied.",
+    "remaining": "Fresh Review verdict, distinct QA, visual evidence, complete provider readiness gate and post-ready refresh.",
+    "prior_snapshot": "Earlier policy FAIL at f15857d is superseded as candidate identity, not converted to PASS. Prior five-task census retained intact."
+  },
+  "tasks": [
+    {
+      "id": "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+      "title": "Wire Coordinator monitoring policy to plugin storage",
+      "head": "f15857dcea234ec5ce124fe88e35d788928803d3",
+      "review": "FAIL",
+      "qa": "Old-head failure; fresh QA required after repair",
+      "gate_bypass": "None on initial Review placement; parent reroute to Work observed.",
+      "findings": [
+        "Mounted createCoordinatorSettings regression missing; pure acceptPolicyResponse helper test does not prove deferred A/B loads, disabled state, or Save isolation."
+      ],
+      "next_action": "Resume sole author for deterministic mounted component/browser regression; push additive fix, fresh Review, distinct QA and desktop/mobile visual evidence before authorized merge.",
+      "tag_note": "Work: fix mounted workspace race regression, then fresh Review and distinct QA.",
+      "head_limit": "Exact head asserted in gate receipts; no independent local/provider revalidation in this bounded census."
+    },
+    {
+      "id": "9802e1d5-d6f5-4359-aa17-00afaa354ddb",
+      "title": "Expose managed conversation chat to plugin UI",
+      "head": "d0c4e0f3d75e1af86e899bb38bddc3cf26c4525a",
+      "review": "FAIL/BLOCKED",
+      "qa": "BLOCKED",
+      "gate_bypass": "Review FAIL advanced to QA; QA BLOCKED advanced to PR. Current author RUNNING.",
+      "findings": [
+        "Resolve and dispatch omit X-Kandev-Plugin-Binding; binding-enforcing probe reproduces 401/unavailable.",
+        "Indefinite loading for terminal/error state, no send-failure feedback.",
+        "Authorization capability differs from documented agent_conversation; dispatch bypasses normal capability gate.",
+        "Focused backend ownership/auth/lifecycle tests missing.",
+        "Real ready-state desktop/mobile screenshots impossible; six unresolved PR threads reported by QA."
+      ],
+      "next_action": "Primary safely reroute current sole author to Work; repair binding, capability and state/error paths with backend and real-transport regression tests. New head needs independent Review, distinct QA, desktop/mobile runtime screenshots. Keep draft.",
+      "tag_note": "Work: repair Review and QA blockers at d0c4e0f; draft remains unready.",
+      "head_limit": "Exact head asserted in gate receipts; no independent local/provider revalidation in this bounded census."
+    },
+    {
+      "id": "37eca47b-cf05-47ee-b143-39408edbeed1",
+      "title": "Bound merged worktree branch accumulation",
+      "head": "66facc7c4360b8a01dca827932dc19f137eb78f2",
+      "review": "PASS",
+      "qa": "PASS",
+      "gate_bypass": "None found; receipts bind same head.",
+      "findings": [],
+      "next_action": "Remain Human-QA awaiting upstream reviewers; maintainers already notified at current head, avoid duplicate ping. Recheck exact head/provider immediately before any new readiness or merge action.",
+      "tag_note": "Human-QA: exact-head Review and QA passed; awaiting upstream review.",
+      "provider_receipt": {
+        "source": "Task plan and delivery conversation, not fresh provider read by helper",
+        "checks": 70,
+        "success": 55,
+        "skipped": 15,
+        "failed": 0,
+        "pending": 0,
+        "unresolved_threads": 0,
+        "state": "OPEN non-draft CLEAN",
+        "required_status_policy": "Unavailable"
+      },
+      "head_limit": "Exact head asserted in gate receipts; no independent local/provider revalidation in this bounded census."
+    },
+    {
+      "id": "9ee4be81-aa98-4e4d-bdd6-842fd918f00f",
+      "title": "Allow scoped fresh CI dispatch",
+      "head": "fcef955d0baf563d543440d7dae2d7fa17c6b097",
+      "review": "PASS",
+      "qa": "PASS",
+      "gate_bypass": "None found; receipts bind same head.",
+      "findings": [],
+      "next_action": "Remain Human-QA; primary dedupe reviewer-notification state and perform exact-head provider readback before any newly authorized readiness action. No merge/deploy authorization inferred.",
+      "tag_note": "Human-QA: fcef955d independent Review and distinct QA passed; current CI green.",
+      "provider_receipt": {
+        "source": "QA 05:15:31 and later task plan/CI delivery receipt, not fresh provider read by helper",
+        "checks": 70,
+        "success": 61,
+        "skipped": 9,
+        "failed": 0,
+        "pending": 0,
+        "unresolved_threads": 0,
+        "state": "OPEN non-draft CLEAN mergeable",
+        "required_status_policy": "Unavailable"
+      },
+      "head_limit": "Exact head asserted in gate receipts; no independent local/provider revalidation in this bounded census."
+    },
+    {
+      "id": "cfccac4a-1c80-403f-b284-a673a26a321a",
+      "title": "Fix shared task-switch E2E failure",
+      "head": "16e6c21bdc0009732d988329f687d1e8eacc5322",
+      "review": "PASS",
+      "qa": "BLOCKED",
+      "gate_bypass": "Failed QA automatically advanced to PR; primary corrective reroute to Work now observed.",
+      "findings": [
+        "Desktop repeat 2/5 pass; mobile 0/2 pass.",
+        "Mock /sleep 30 ignores cancellation while ACP ends unacknowledged cancellation after 3 seconds; invalid pending-window fixture."
+      ],
+      "next_action": "Continue sole author in Work on purpose-built mock cancellation hold/barrier with unit coverage; preserve production behavior and assertions. Then fresh Review and distinct QA with five desktop and five mobile repetitions.",
+      "tag_note": "Work: replace invalid sleep-based cancellation fixture; fresh gates required.",
+      "head_limit": "Exact head asserted in gate receipts; no independent local/provider revalidation in this bounded census."
+    }
+  ]
+}
