@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "status",
+  "cycle_id": "pr3473-late-merge-20260916T0435Z",
+  "observed_at": "2026-09-16T04:36:16Z",
+  "scope_task_ids": [
+    "e0dd8d19-278c-4d38-aafa-c3e866d92cfb"
+  ],
+  "open_ledger_task_ids": [
+    "e0dd8d19-278c-4d38-aafa-c3e866d92cfb"
+  ],
+  "ledger_entries": [
+    {
+      "fallback": "Restore only from terminal receipt if a separately authorized task needs it.",
+      "health": "terminal",
+      "lane": "Done",
+      "last_action": "Late merge report reconciled: authenticated REST confirms PR3473 merged at acc12b62 as739eabc; already Done/COMPLETED, zero live sessions, unchanged clean retained561d2a8, fork acceptedhead matches. Existing terminal receipt and tag preserved; no move or wake.",
+      "last_checked": "2026-09-16T04:36:16Z",
+      "next_action": "Retain through normal Done archive timer.",
+      "owner": "Coordinator terminal ledger",
+      "task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+      "title": "Fix PR lane profile executing wrong model",
+      "trigger": "Normal Done archive timer expires.",
+      "evidence_generation": "2026-09-16T03:31:30.923841739Z",
+      "last_checked_cycle_id": "pr3473-late-merge-20260916T0435Z",
+      "anomalous": false,
+      "mutated": false,
+      "transitioned": false,
+      "delivery_status": "terminal"
+    }
+  ],
+  "blocked_task_ids": [],
+  "blocked_records": [],
+  "anomalies": [],
+  "transitions": [],
+  "mutations": [],
+  "delivery_claims": [
+    {
+      "task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+      "claim": "terminal",
+      "task_head": "acc12b62b9867db0cc17238cf5c8ca618a046b4f",
+      "remote_ref": "yattdev/kandev refs/heads/feature/fix-pr-lane-profile-bt7",
+      "canonical_delivery": "https://github.com/kdlbs/kandev/pull/3473",
+      "provider_state": "merged",
+      "observed_at": "2026-09-16T04:36:45Z",
+      "remote_reachable": true,
+      "contained": true
+    }
+  ],
+  "continuity": {
+    "plan_bytes": 132047,
+    "soft_limit_bytes": 200000,
+    "hard_limit_bytes": 240000,
+    "compaction_performed": false,
+    "write_readback_verified": true,
+    "current_snapshot_first": true,
+    "open_record_sets_preserved": true
+  },
+  "report": {
+    "mentioned_task_ids": [
+      "e0dd8d19-278c-4d38-aafa-c3e866d92cfb"
+    ],
+    "barrier_at": "2026-09-16T04:36:45Z",
+    "fresh": true,
+    "task_barriers": [
+      {
+        "task_id": "e0dd8d19-278c-4d38-aafa-c3e866d92cfb",
+        "lane_session_observed_at": "2026-09-16T04:36:45Z",
+        "provider_required": true,
+        "provider_observed_at": "2026-09-16T04:36:45Z"
+      }
+    ]
+  },
+  "gate_results": {
+    "G1": "pass",
+    "G2": "pass",
+    "G3": "pass",
+    "G4": "pass",
+    "G5": "pass",
+    "G6": "pass",
+    "G7": "pass",
+    "G8": "pass",
+    "G9": "pass",
+    "G10": "pass"
+  },
+  "evidence": {
+    "local_head": "561d2a8cf0d5c30224696304839a550952331ebe",
+    "worktree_clean": true,
+    "total_sessions": 68,
+    "active_sessions": 0,
+    "existing_terminal_receipt": "Task plan Terminal containment receipt 2026-09-16T03:35Z",
+    "merge_commit": "739eabc49acb3a2f2db212c280ec118ffdbdffd7",
+    "disposition": "Late duplicate merge report; already terminal, no task/provider/resource/tag mutation",
+    "queue": "UNKNOWN_ACTION; no entries read or disposed",
+    "parallelism": "One bounded message; no independent helper slice required"
+  }
+}
