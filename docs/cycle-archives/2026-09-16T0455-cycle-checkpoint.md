@@ -1,6 +1,6 @@
 # Coordinator cycle 2026-09-16T0455
 
-Started 04:55:25 UTC. Checkpoint 06:11:52 UTC. **Incomplete: G7/G8 remain open.**
+Started 04:55:25 UTC. Checkpoint 06:23:03 UTC. **Incomplete: G7/G8 remain open.**
 
 Reconciled all 67 live task IDs, including all 20 Done tasks and every initial
 Blocked task. Fourteen initial Blocked tasks received verified configured owners;
@@ -32,16 +32,22 @@ No Done resources, protected pending row/session, routine, or queue entry change
 
 ## Outstanding transition and next action
 
-Grant-management task fa3fba49-2018-460b-a600-adae23b24cc8 automatically entered QA
-despite two actionable Review findings at 4d81167ad58d88f938018b3444cd5c9c4ec3df7f:
-workspace grant scope validation and stale stop-task denial metadata. Coordinator
-requested Work with the exact repair handoff. Physical QA and running session
-97f36ac0-c82b-4b0b-9592-b787e10877e1 still persisted at the checkpoint. A queued
-instruction asks QA to preserve its findings and end normally, without forward
-completion. **Do not duplicate this move or start a competing author.** On the
-next delivered result/routine, first inspect full sessions and lane, verify the
-requested c06 Work owner starts, or recover the failed handoff after fresh exact
-preflight. Until then, this cycle is not complete and no validator pass is claimed.
+Grant-management task fa3fba49-2018-460b-a600-adae23b24cc8 settled in Work with
+configured owner d57acfc4-dc99-43b1-9241-05a6e3dbfff4. It preserved uncommitted
+repairs after a broad sandbox-local-directory test failure; the same owner was
+resumed with exact classification, focused regression, and normal publication
+instructions.
+
+Two later Review findings were returned to Work. Task-panel restoration now has
+published import-cycle repair c40b965018a027756bf1aa43e121f69037ee417b and fresh
+Review. Profile task 6d03f4a9-bf89-4882-bf43-5a584f986185 remains in Work with
+configured owner a413b9c8-3e84-4cb5-a33a-dc85bd8c84b4 RUNNING, repairing the
+missing exact_profile_generation in ListPendingMoves/reaper recovery after
+Review rejected 30ba3923b33e14959d5edbc662c593ddee61fb89. Its on-entry lifecycle
+marker remains pending. **Do not duplicate this move or start another author.**
+On its result or the next normal routine, inspect complete sessions/lane,
+verify lifecycle settlement, consume the exact repair receipt, and route the
+next appropriate gate. This cycle remains open; no validator pass is claimed.
 
 ## Provider and continuity
 
@@ -50,7 +56,7 @@ The generic quota endpoint's 5000-remaining response contradicted that actual
 resource and was not treated as clearance. First normal cycle at or after
 06:50 UTC makes one bounded exact-resource retry; no polling or synthetic reruns.
 
-The live plan write at 06:11:52 contains 183,378 bytes and matched exact readback.
+The live plan write at 06:23:03 contains 184,158 bytes and matched exact readback.
 Reusable learning is committed and shared-main synchronized at
 102f195a57251f30af561d34b89dbb3dbce52f59. PROMPT.md did not change, so no mirror was
 needed. Queue census remains unavailable; surfaced reports are reconciled without
