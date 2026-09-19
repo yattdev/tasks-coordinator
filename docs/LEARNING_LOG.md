@@ -3643,3 +3643,19 @@ Files changed: `docs/RUNBOOK.md`, `docs/LEARNING_LOG.md`. `PROMPT.md` is
 unchanged, so no task-description mirror is required. Shared-main publication
 and final clean-tree verification are recorded by the commit containing this
 entry. Unresolved conflicts: none.
+
+## WAKE:LEARNING — 2026-09-19T09:02:09Z to 2026-09-19T12:01:11Z
+
+No additional durable lessons this cycle.
+
+Rejected by the filter:
+
+- The fresh ledger and Blocked-index reconciliation apply the just-published
+  identity-indexed receipt rule; they do not change Coordinator policy.
+- Current task states, model-control gaps, recovery outcomes, and gate results
+  remain live operational state in the Coordinator plan.
+
+Files changed: `docs/LEARNING_LOG.md` only. `PROMPT.md` is unchanged, so no
+live-description mirror is required. Shared-main publication and final
+clean-tree verification are recorded by the commit containing this entry.
+Unresolved conflicts: none.
