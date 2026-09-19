@@ -1,0 +1,59 @@
+{
+  "schema": "coordinator-rollout-observation/v1",
+  "scope": "Support acceptance and bounded cost-rollout micro-cycle; not a full board cycle",
+  "started_at": "2026-09-19T03:01:00Z",
+  "observed_through": "2026-09-19T03:20:00Z",
+  "wake_reason": "support_result:plan_cas_repair; continuing human-authorized cost optimization",
+  "coordinator_task_id": "a68df3ae-aaf5-4591-a46d-9d73db62e46d",
+  "primary_session_id": "ca237c01-94de-49e7-9e62-14510a3e167f",
+  "primary_model": "gpt-6-astra",
+  "input_tokens": null,
+  "cached_input_tokens": null,
+  "output_tokens": null,
+  "credits": null,
+  "estimated_cost": null,
+  "usage_coverage": "No authoritative per-turn usage/cost capability exposed in this tool binding; unavailable fields are not zero.",
+  "inspected_tasks_excluding_coordinator": [
+    "51bc1a2c-2f88-45e1-a723-aaeeda30627f",
+    "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+    "b8fc206c-9e3f-4497-9ac3-3b62593da258"
+  ],
+  "verified_delivery_gate_advances": [
+    {
+      "task_id": "68bb60ed-14f7-47d1-b564-3a155ac6ae03",
+      "milestone": "terminal preservation verified after merge; no unique work or live resource consumer",
+      "accepted_head": "b3cc8cc9778c5a3a0e3ae2353bcdf5932cfb0d23",
+      "merge_commit": "24a2733f533a36bcaab311e60a0848c73c3f5d11",
+      "verifier": "independent Sol read-only source/provider audit plus Coordinator readback",
+      "board_move_alone_is_progress": false
+    }
+  ],
+  "verified_blocked_to_runnable_recoveries": [],
+  "human_intervention_requests": 0,
+  "primary_model_switches": 0,
+  "live_governor_dispatches": 0,
+  "helper_model": "gpt-5.6-sol",
+  "helper_invocation_receipts": [
+    {"task": "/root/bootstrap_audit", "reason": "bounded technical policy retrieval design", "outcome": "completed"},
+    {"task": "/root/bootstrap_audit", "reason": "simpler one-file extraction design", "outcome": "completed"},
+    {"task": "/root/bootstrap_audit", "reason": "independent extraction safety review", "outcome": "completed; one finding corrected before publication"},
+    {"task": "/root/policy_terminal_audit", "reason": "independent terminal preservation audit", "outcome": "completed; source/provider evidence verified"},
+    {"task": "/root/policy_terminal_audit", "reason": "technical review of corrected governor head f13bfd0", "outcome": "completed; six blockers retained"},
+    {"task": "/root/policy_terminal_audit", "reason": "bounded recovery and acknowledgment implementation specification", "outcome": "completed; pending implementation/effect verification"}
+  ],
+  "false_progress_prevented": "Passing owner tests and a pushed head did not clear six independently verified defects, including missing ineffective-Sol escalation and omitted strategic digest context.",
+  "context_artifacts": {
+    "plan_before_bytes": 204737,
+    "plan_after_initial_compaction_bytes": 164516,
+    "mandatory_charter_before_bytes": 144579,
+    "mandatory_charter_after_bytes": 14121,
+    "full_monitoring_policy_still_loaded": true,
+    "realized_token_or_cost_savings": null
+  },
+  "remaining_limitations": [
+    "No full-board throughput or recovery-rate inference from this bounded sample.",
+    "No live automated trigger, stale-worker action fence or cheaper-primary handoff verified.",
+    "Queue census returns UNKNOWN_ACTION; queue disposition/drainage is unproven.",
+    "Support owns workspace restoration and reusable guarded model controls; results awaited without polling."
+  ]
+}
