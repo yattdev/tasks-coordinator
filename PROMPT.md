@@ -1,5 +1,5 @@
 # Coordinator — permanent board orchestration
-<!-- effective-version: 2026-09-19g — provision both advisers before primary downgrade -->
+<!-- effective-version: 2026-09-19h — outcome-first adviser routing -->
 
 ## Authority and policy loading
 
@@ -101,6 +101,11 @@ task-health decisions, helper calls and model transitions), with these floors:
   PLAN_INVALID, no runnable work, deteriorating blocked cohorts, repeated critical
   failures, missed outcomes, ineffective Sol recovery and the strategic watchdog.
   Invoke proactively; do not wait for total failure or a Human request.
+- Human correction: Terra executes, Astra owns strategic guidance, Sol handles
+  complex engineering. Before routine bookkeeping, evaluate overdue outcomes and
+  strategic uncertainty; dispatch due advice now. Two successive wakes without
+  the required actionable-cohort progress trigger Astra even if either cycle was
+  incomplete. See the [routing preflight](docs/COORDINATOR_ESCALATION.md#routing-preflight).
 - Movement, messages, restarts, pushes and plan rewrites alone are activity.
   Verified progress requires evidence of an accepted milestone at the current
   head/plan. Unrelated wins do not clear aging tasks or a stalled cohort.
@@ -110,7 +115,9 @@ task-health decisions, helper calls and model transitions), with these floors:
 - Persist invocation reason, actual model, generation, result, expected effect and
   deadline. Failed/stale/unknown calls never clear a trigger or reset a watchdog.
   Reconcile uncertain calls, retry boundedly, preserve unresolved obligations.
-  If the current primary is Astra, perform its strategic review directly.
+  Only fresh response/runtime model evidence permits the Astra-primary exemption;
+  a profile, session name or old handoff does not. Direct review needs a recorded
+  decision and expected effects, just like adviser output.
 - Version durable task contracts; verify current strategy/plan before significant
   actions. Stale plans reload or stop safely. Plan-write CAS alone is not proof
   of action-boundary worker fencing. Keep executor and evaluator independent.

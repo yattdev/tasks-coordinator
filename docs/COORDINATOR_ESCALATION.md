@@ -36,6 +36,45 @@ extensions require an evidence-backed reason recorded separately from progress;
 repeated extensions are a strategic exception. Unknown evidence is unknown,
 never green. Missing instrumentation cannot justify suppressing a review.
 
+## Routing preflight
+
+Before routine ledger maintenance on every wake, check the current runtime model,
+last accepted Astra decision, overdue outcomes, unresolved strategic uncertainty
+and failed advice effects. Persist this compact routing record at the front of
+the live handoff: model evidence and timestamp; strategic decision ID/time;
+cohort progress baseline; consecutive wakes missing required progress; next
+outcome/owner/deadline; and pending adviser request/result/effect. Unknown model
+or review time cannot justify the Astra-primary exemption or reset the watchdog.
+Use fresh response/runtime metadata, not the configured profile or session name;
+a model can change while those identities remain unchanged.
+On an active board, an unknown last strategic review requires Astra now. A
+missing routing receipt forbids a cycle-PASS claim or strategic plan change;
+safe execution of existing valid contracts may continue. Use the canonical
+G1–G10 gate meanings, not local substitutes for evidence or completion.
+
+Dispatch triggered advice before another unchanged recheck or generic nudge.
+Strategic uncertainty triggers Astra immediately. Two successive wakes without
+the required progress on an actionable stalled cohort are a backstop, including
+incomplete cycles; do not wait three hours or require two fully completed cycles.
+The three-hour watchdog is an upper bound on active-board strategic review, not
+a minimum delay. Existing equivalent in-flight advice is reconciled, not duplicated.
+
+An implementation owner returning only another plan and becoming idle after an
+execution handoff has not delivered its requested outcome. Route the unresolved
+technical question to Sol; route priority, ownership, dependency or repeated
+ineffectiveness to Astra. A positive claim of external waiting must name the
+specific blocked action; continue independent authorized work. Do not turn a
+publication or integration gate into a blanket stop on local proof.
+
+Accept advice against current evidence, send the resulting executable action to
+its sole owner, verify execution starts, and check the predicted effect at its
+deadline. Start/response/decision/effect are separate receipts. A failed effect
+returns to Astra without another unchanged cheap-model loop. No-duplicate-ping
+rules suppress redundant messages, never escalation or due follow-through.
+This is an operational obligation now; unfinished routing automation does not
+excuse missed calls. Keep Terra as the normal operator and advisers bounded;
+do not interpret the correction as permanent Astra operation.
+
 ## When to invoke which model
 
 Evaluate on each incoming automation wake and meaningful event. Thresholds are
@@ -48,7 +87,7 @@ initial configurable defaults. Do not wait for the watchdog when a trigger fires
 | Sol after bounded operational failure | One attempted operational remediation did not resolve the same blocker, or the worker stops on an obstacle while independent authorized work remains. | Break the local technical loop; do not keep nudging the same worker with the same instructions. |
 | Astra immediately | PLAN_INVALID; cross-task conflict; dependency cycle/change that affects execution; contradictory/stale strategy; significant scope/priority change; no runnable work despite unfinished actionable tasks; or a configured budget breach. | Decide priority, dependency order, ownership, scope and a versioned recovery plan. No need to exhaust cheaper models first. |
 | Astra on deterioration | Two new actionable blocked tasks in a rolling hour; two critical-task failures without verified recovery; or two WIP/Blocked round trips for the same root since the last reviewed baseline. | Prevent accumulation and repeated rerouting. Unrelated completed tasks do not cancel this trigger. |
-| Astra on apparent progress | At least two actionable tasks remain past their evidence deadlines on two consecutive complete wakes, even while cards move or other tasks advance. | Reassess the stalled cohort and its critical path rather than rewarding board activity. |
+| Astra on apparent progress | An actionable stalled cohort misses required progress on two successive wakes, including incomplete cycles, even while cards move or other tasks advance. | Reassess the cohort and critical path; a single missed deadline or uncertainty may already require an earlier route. |
 | Astra after ineffective advice | One completed Sol recovery attempt reaches its outcome deadline without verified improvement, or the same failure recurs. | Reconsider plan/owner/dependency assumptions. A technically valid answer without its predicted effect is not recovery. |
 | Astra on visibility failure | Critical decision evidence is missing now, or board evidence remains incomplete across two wakes after an owned collection attempt. | Restore observability and choose safe action; never classify an unread board as healthy. |
 | Astra watchdog | Three hours since the last successful strategic review on an active board, including an unchanged board. | Check priorities, aging, critical path, rising blocked cohorts and whether the last strategy produced its expected effects. |
@@ -64,9 +103,12 @@ When both technical and strategic triggers fire, Astra owns the strategy now.
 Sol may gather a bounded technical fact in parallel only where that read-only
 scope is independent; otherwise sequence it under Astra's question. Do not delay
 a hard strategic trigger until Sol finishes. If the current primary is already
-Astra, perform and record that strategic review directly; do not invoke a second
-Astra solely to satisfy the tier name. A Sol primary still escalates board-wide
+Astra according to fresh runtime evidence, perform and record that strategic
+review directly; do not invoke a second Astra solely to satisfy the tier name.
+A Sol primary still escalates board-wide
 strategy to Astra. Model authority does not exempt any primary from outcome checks.
+Direct review must record the same decision, owner, expected effect and deadline
+as adviser output. Merely recording an Astra model or bootstrap is not a review.
 
 ## Compact call contract and failure handling
 

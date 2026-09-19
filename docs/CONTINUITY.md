@@ -35,6 +35,8 @@ credentials, or unnecessary sensitive data in any layer.
    workflow/workstep-configured agent profile and record its effective model as
    provenance. Fixed per-step model gates are suspended; do not recreate the
    former lane map during bootstrap or replacement.
+   Resolve effective model from fresh response/runtime evidence, never profile
+   identity or a historical handoff; unknown model cannot suppress escalation.
 4. Read the current-first Coordinator state snapshot and latest validated
    G1–G10 receipt, including every open ledger entry, complete Blocked record,
    follow-up, Human ask, active flag, degradation, and unresolved obligation.
@@ -46,6 +48,9 @@ credentials, or unnecessary sensitive data in any layer.
 6. Reconcile the handoff against live task/session/PR/worktree state before
    mutating anything. If they disagree, trust current source evidence and repair
    the plan.
+7. Execute the [routing preflight](COORDINATOR_ESCALATION.md#routing-preflight)
+   before routine bookkeeping. Preserve unresolved requests, decision IDs,
+   progress baselines and effect deadlines across model changes.
 
 Compatibility loaders (`AGENT.md`, `CLAUDE.md`, and Copilot instructions) point
 different agent clients back to the same contract. The Kandev task description

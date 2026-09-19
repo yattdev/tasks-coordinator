@@ -1,5 +1,22 @@
 # Design decisions
 
+## Adviser routing precedes bookkeeping (2026-09-19, Human correction)
+
+The intended division remains Terra for ordinary orchestration, Astra for
+strategy and decisions, and Sol for complex engineering guidance. Existing
+escalation prose did not prevent repeated observations from substituting for
+outcomes. A profile or stale handoff also cannot establish the active model:
+runtime model selection can change without changing session/profile identity.
+
+The routing preflight in COORDINATOR_ESCALATION.md now runs before routine
+bookkeeping, requires fresh model evidence for direct-Astra review, and carries
+accepted decisions through owner execution to effect verification. It supersedes
+the requirement for two *complete* wakes before stalled-cohort escalation;
+incomplete observation must not postpone strategic help. Immediate uncertainty
+triggers remain earlier than that backstop. This clarifies the operational
+contract, not a claim that automated enforcement has shipped. It does not
+replace the preferred inexpensive primary with permanent Astra operation.
+
 ## Cost optimization starts with shadow observation (2026-09-19)
 
 Human clarification: Kandev Automation remains the periodic wake source. The

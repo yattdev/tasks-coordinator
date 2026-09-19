@@ -1,5 +1,21 @@
 # Coordinator learning-cycle log
 
+## Human correction — 2026-09-19
+
+Window: prior learning checkpoint through the current Human escalation audit.
+Captured two corrective lessons: consult advisers before repeating stalled
+observations, then verify the advice's effect; and derive routing model identity
+from fresh runtime evidence rather than profile or historical handoff. Tightened
+the existing rules in place and documented the superseded complete-cycle
+threshold. Retained Terra/Astra/Sol division of responsibility.
+
+Rejected: individual task heads, deadlines, session identities and current
+blocker states belong in the live plan. Existing activity-versus-progress rules
+were sharpened, not duplicated. Files: PROMPT.md, COORDINATOR_ESCALATION.md,
+CONTINUITY.md, DECISIONS.md and this log. Publication/mirror verification and
+commit identity are recorded in the live plan after execution; no completion
+is inferred from this entry. No known knowledge conflict.
+
 ## WAKE:LEARNING — 2026-09-16T06:51:00Z to 2026-09-19T07:03:12Z
 
 One durable correction was captured:
