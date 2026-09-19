@@ -2579,6 +2579,12 @@ and a `changed` flag:
 Verify afterwards rather than trusting the receipt: read the description back and
 diff it against `PROMPT.md`. Run this after **every** `PROMPT.md` change.
 
+If the broker drops a terminal newline, do not claim byte equality. A supported
+fallback is to load the complete file programmatically and pass that exact string
+to `update_task_kandev(description=...)` for this Coordinator task only, then
+compare the complete readback again. This avoids hand transcription and hidden
+API access; it was verified to preserve the final newline.
+
 **"Every change" includes changes you did not make.** `PROMPT.md` is shared, so it also
 advances when you merge or fast-forward another Coordinator's work — and your mirror goes
 stale without you touching the file. On 2026-08-29 a mirror verified at 64,483 bytes was

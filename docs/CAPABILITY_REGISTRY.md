@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-19a -->
+<!-- registry-version: 2026-09-19b -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -421,12 +421,22 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 
 ## G. Contacting autonomous Kandev Support
 
-**2026-09-19 model-handoff caller verification:** Support reports the overlay
-deployed, but this existing Coordinator still lacks callable exact-selection
-and primary-handoff tools; queue census returns `UNKNOWN_ACTION`. Session
+**2026-09-19 model-handoff caller verification:** the earlier primary catalog
+omission is superseded: exact-selection and primary-handoff schemas are now
+visible. Schema visibility is not execution proof. A guarded exact-selection
+attempt returned `VALIDATION_ERROR: exact profile assignment is no longer valid`;
+queue census still returns `UNKNOWN_ACTION`. Primary handoff is untested. Session
 queue-incarnation projection works. Do not treat these partial checks as a
 successful handoff. See the [caller acceptance receipt](cycle-archives/2026-09-19-model-handoff-catalog-acceptance.md)
 and live plan for the current repair owner and permanent source successor.
+
+Requested helper profiles may be overridden by a task's physical workflow lane:
+a requested Sol engineering session launched as Terra. Verify response metadata
+before claiming the requested model. Same-task Coordinator advisers remain a
+separate verified route. When exact worker selection fails, Astra may authorize
+bounded Terra execution under actual-Sol technical guidance while the reusable
+selector is repaired; do not silently call that a Sol worker or change global
+workflow profiles. Keep one implementation writer and all independent gates.
 
 **2026-09-19 same-task adviser verification:** `spawn_session_kandev` honored
 the requested Sol profile on this Coordinator task without changing its primary.
@@ -439,10 +449,9 @@ strict no-substitution guarantees or a primary transition. The adviser found no
 callable in-place primary model switch; future-launch selection and handoff are
 different capabilities. Keep full handoff acceptance requirements unchanged.
 
-The new Sol adviser's catalog does expose exact future-launch assignment and
-guarded primary handoff while the existing primary's catalog still omits them
-(06:09 UTC readback). Catalog visibility can therefore differ across sessions;
-do not describe a primary-client omission as universal backend absence. Neither
+The earlier Sol-adviser-only catalog visibility showed that schemas can differ
+across sessions; the primary visibility correction above supersedes that snapshot.
+Do not describe a primary-client omission as universal backend absence. Neither
 schema supplies an in-place model change for an existing session. Support owns
 reconciliation of the existing-client catalog and stable-session requirement;
 source handoff implementation remains with its established task owner.

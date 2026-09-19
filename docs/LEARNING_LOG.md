@@ -16,6 +16,12 @@ CONTINUITY.md, DECISIONS.md and this log. Publication/mirror verification and
 commit identity are recorded in the live plan after execution; no completion
 is inferred from this entry. No known knowledge conflict.
 
+Execution also corrected the capability registry: tool visibility can recover
+while assignment still rejects, and workflow precedence can override a requested
+worker model. Record model evidence and use an explicitly chosen adviser/worker
+pairing when appropriate. Added the verified complete-string mirror fallback
+for broker newline loss to RUNBOOK.md. Incident identities remain in the plan.
+
 ## WAKE:LEARNING — 2026-09-16T06:51:00Z to 2026-09-19T07:03:12Z
 
 One durable correction was captured:
