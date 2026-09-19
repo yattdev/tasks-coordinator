@@ -3794,3 +3794,19 @@ Files changed: `docs/LEARNING_LOG.md` only. `PROMPT.md` is unchanged, so no
 live-description mirror is required. Unresolved conflicts: none. The final
 commit and shared-main fast-forward are verified in the Coordinator cycle
 receipt.
+
+## WAKE:LEARNING — 2026-09-19T21:05:00Z to 2026-09-19T21:30:00Z
+
+No durable lessons passed the filter.
+
+Rejected: a Support worker's usage exhaustion, branch-lease outcomes, task
+heads, CI states, and evaluator receipts are live operational state. The
+existing Support failure procedure already preserves unresolved repairs, and
+the documented Support path rule already requires a file relative to the
+Coordinator task root or an absolute path. Delayed task reports that describe
+a superseded plan or head are governed by the existing current-first
+reconciliation rule.
+
+Files changed: this log only. PROMPT.md did not change, so no task-description
+mirror is required. This entry advances the next learning window to
+2026-09-19T21:30:00Z. Unresolved knowledge conflicts: none.
