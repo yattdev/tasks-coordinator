@@ -3749,3 +3749,13 @@ nudge loops are forbidden.
 
 Files: `PROMPT.md`, `docs/COORDINATOR_OPERATING_STRATEGY.md`,
 `docs/COORDINATOR_ESCALATION.md`, `docs/RUNBOOK.md`, and this log.
+
+## 2026-09-19 — Human escalation is evidence of a missed automatic action
+
+When a Human points out that Work, CI Fixup, or Blocked cards are parked, treat
+it as proof that the Coordinator failed to apply its existing automatic trigger.
+The correction is not another reminder loop: at the next wake or relevant task
+or provider event, Terra must classify every overdue actionable card, route
+strategy to Astra or technical uncertainty to Sol, send the resulting bounded
+owner action, and verify its start or exact external block. Persist the missed
+trigger and keep its age until a verified effect occurs.
