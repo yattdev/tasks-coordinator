@@ -1,5 +1,20 @@
 # Coordinator learning-cycle log
 
+## Continuity learning — 2026-09-19T18:27:22Z to 2026-09-19T21:05:00Z
+
+Sharpened the existing completion-signal procedure in `docs/RUNBOOK.md`:
+a rejected evaluation must not trigger automatic forward routing, and an
+inherited repair instruction must not turn the next evaluator into a writer.
+The containment uses a current evaluation-only contract and Coordinator-owned
+transitions. This corrects the older unconditional advice to nudge a finished
+step for its completion signal; no workflow configuration is changed.
+
+Rejected duplicate lessons: explicit session identity, receipt consumption,
+safe credential transport, and current-first plans are already covered.
+Task-specific heads, capacity incidents and deadlines remain in task plans.
+No PROMPT change or mirror required; no new reference files or conflicts.
+Commit/shared-main fast-forward receipt is recorded in the Coordinator plan.
+
 ## WAKE:LEARNING — 2026-09-19T07:03:12Z to 2026-09-19T15:18:00Z
 
 No additional durable lessons passed the filter. The current recovery confirmed

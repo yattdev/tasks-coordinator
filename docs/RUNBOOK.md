@@ -1634,6 +1634,22 @@ Before calling it a replay, apply the transcript check in the next section — l
 shape alone is not enough.
 
 ## A step posts its verdict then sits still (no forward move)
+Before nudging a completion signal, read the verdict and the configured
+`on_turn_complete` action. Reporting a rejected review is not acceptance of that
+step. A completion API without a structured verdict can execute `move_to_next`
+even when its summary says REJECT. Do not send the rejected findings downstream
+as implementation instructions to a QA evaluator.
+
+For recovery from this mismatch, replace the executable plan front with an
+exact-head, evaluation-only contract before starting either independent gate.
+Require the evaluator to return its verdict without source edits, lane changes,
+or a completion signal; the Coordinator consumes the verdict and controls the
+next transition. REJECT/UNKNOWN preserves the work for a bounded Work repair;
+PASS permits the next distinct evaluator after readback. If a QA agent already
+contributed a repair, preserve that contribution and exclude its author from
+both independent gates. Inspect the completion payload, workflow action, startup
+instructions and current plan before blaming a routing race or the model.
+
 A healthy turn logs `on_turn_complete consuming explicit signal` for the task id
 in /data/logs/backend-logs.log. A step with `auto_advance_requires_signal: true`
 that posts its result and then stops moving, with that line ABSENT for the turn,
@@ -1658,8 +1674,10 @@ done, or reply with one line saying what you are waiting on." A question costs
 nothing when the diagnosis is wrong and still unblocks when it is right.
 Asserting "your session never received the contract" would have been confidently
 incorrect and would have taught the agent to discount the next message.
-Remedy while that fix is unmerged, and for any residual case: nudge the step's
-own session with an explicit trigger/action/fallback naming step_complete_kandev.
+Remedy while that fix is unmerged, and for any residual case where the verdict
+accepts forward routing and no Coordinator-controlled recovery fence applies:
+nudge the step's own session with an explicit trigger/action/fallback naming
+step_complete_kandev.
 It costs one message and moves the task immediately, because the agent's work is
 genuinely finished — only the instruction was missing.
 Only after a nudge produces a signal that IS logged as consumed and the task
