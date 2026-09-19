@@ -3724,3 +3724,7 @@ ordinary publication when eligible, and independent review, with an owner,
 evidence deadline, and stop condition. A stale publication fence must be
 reconciled against the current branch, merge, index, and worktree state before
 it is repeated; uncertainty preserves the work for independent review.
+
+## 2026-09-19 — distinguish Coordinator handoff routing from task-executor routing
+
+An explicit `session_id` survives a Coordinator primary promotion. A report sent to a former Coordinator session therefore proves only its explicit destination, not that promotion failed. For cross-task operational reports addressed to the Coordinator task, omit `session_id` so Kandev resolves the current Coordinator primary. Before directing a bounded task-local action, list that task’s sessions: its primary and its authorized executor can differ. Address a known executor explicitly only for that executor-bound action, and do not infer a task-level ownership transfer from delivery to the primary.
