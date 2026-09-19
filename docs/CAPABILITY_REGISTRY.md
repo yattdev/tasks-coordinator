@@ -439,6 +439,14 @@ strict no-substitution guarantees or a primary transition. The adviser found no
 callable in-place primary model switch; future-launch selection and handoff are
 different capabilities. Keep full handoff acceptance requirements unchanged.
 
+The new Sol adviser's catalog does expose exact future-launch assignment and
+guarded primary handoff while the existing primary's catalog still omits them
+(06:09 UTC readback). Catalog visibility can therefore differ across sessions;
+do not describe a primary-client omission as universal backend absence. Neither
+schema supplies an in-place model change for an existing session. Support owns
+reconciliation of the existing-client catalog and stable-session requirement;
+source handoff implementation remains with its established task owner.
+
 ### G1. Platform repair or reusable capability provisioning is required
 - **Trigger** Normal task tools, one bounded retry, and documented fallbacks cannot repair an unresumable/dead task session, damaged task environment, host/container permission or mount failure, or provision a missing external package, Android emulator, or guarded platform capability.
 - **Action** Deduplicate by root incident and contact Support **yourself** once. The requested outcome must repair the platform or provide a reusable guarded capability, not perform a one-off operation on the Coordinator's behalf. For a disposable external test service, require task/worktree binding, least-privilege reachability, a non-secret receipt and exact cleanup command; the task agent then runs the acceptance check itself and cleans up only as authorized by that receipt. Write four non-empty strings: `problem`, `evidence`, `expected_outcome`, `security_constraints`.
