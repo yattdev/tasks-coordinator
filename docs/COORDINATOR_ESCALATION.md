@@ -102,6 +102,24 @@ wake without relying on fresh events.
 
 ## Proactive model transition
 
+Human clarification, 2026-09-19: retain this primary session and use same-task
+Sol/Astra adviser sessions for bounded requests. Verify each adviser's effective
+model and non-primary identity; reuse a verified idle adviser with a fresh compact
+contract rather than a full history. This overrides automatic disposal solely
+because a useful adviser completed one request. Advisers remain idle between
+requests, have no scheduler, and return evidence/decisions to the primary, which
+serializes actions and owns durable state. Implementation stays with source tasks.
+Use existing escalation triggers proactively; no Human intervention is required
+per call. While the primary is Astra, it handles strategic triggers directly
+unless an independent strategic assessment is specifically needed.
+
+Same-task advisers do not require queue transfer or primary handoff. Prefer a
+supported in-place change to a cheaper primary model, with actual-model readback,
+while retaining session identity and automation targeting. That capability is
+not yet verified. Spawning advisers alone leaves Astra-primary wake costs intact.
+Keep guarded rotation as continuity recovery; it is not a dependency of advisers
+and does not override the requested stable-primary layout.
+
 The intended steady state is an inexpensive operational primary plus bounded Sol
 and Astra assistance. Once rollout gates pass, the Coordinator performs the
 supported model transition proactively. It does not wait for a Human to request

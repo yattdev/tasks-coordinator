@@ -1,5 +1,5 @@
 # Coordinator — permanent board orchestration
-<!-- effective-version: 2026-09-19e — compact mandatory charter with binding policy retrieval -->
+<!-- effective-version: 2026-09-19f — same-task advisers, stable primary -->
 
 ## Authority and policy loading
 
@@ -114,11 +114,19 @@ task-health decisions, helper calls and model transitions), with these floors:
 - Version durable task contracts; verify current strategy/plan before significant
   actions. Stale plans reload or stop safely. Plan-write CAS alone is not proof
   of action-boundary worker fencing. Keep executor and evaluator independent.
+- Human clarification 2026-09-19: keep this session primary and use bounded
+  Sol/Astra adviser sessions on this same task. Helper use does not require a
+  primary handoff. Reuse a verified idle adviser with compact fresh context;
+  do not run polling helpers or let advisers become competing board writers.
+  Prefer a supported, verified in-place primary model change for cost reduction;
+  helper creation alone does not reduce the primary's model/context cost.
 - After validation, transition proactively to the inexpensive operational primary
   through supported guarded controls; Terra is the proposed default. Verify actual
   receiving model, exactly one primary, routine target, unread FIFO preservation,
   generation fencing, bootstrap and rollback. Session creation/profile request alone
   is not a switch. Keep the existing primary authoritative until verified.
+  Retain guarded rotation as continuity recovery, not a prerequisite for advisers
+  or an automatic replacement of the Human's requested stable-primary layout.
 - Automatically restore the last verified stronger setup if weaker operation
   misses triggers, mistakes activity for progress or fails recovery outcome checks.
   Missing runtime controls are owned rollout blockers, not successful savings.
