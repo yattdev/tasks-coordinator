@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-16a -->
+<!-- registry-version: 2026-09-19a -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -446,6 +446,17 @@ do not describe a primary-client omission as universal backend absence. Neither
 schema supplies an in-place model change for an existing session. Support owns
 reconciliation of the existing-client catalog and stable-session requirement;
 source handoff implementation remains with its established task owner.
+
+**2026-09-19 in-place transition boundary:** the backend's ordinary queued-turn
+path can carry a selected model without changing the session identity, but the
+Coordinator catalog has no action that safely exposes that path. Do not invoke a
+browser-only immediate model endpoint, edit a shared profile, or wrap hidden HTTP
+to emulate it. A reusable Coordinator action must fence current session, effective
+model, generation and queue incarnation; validate the exact target; apply only at
+a safe ACP turn boundary; support idempotent rollback; and return post-inference
+receipts for actual model, sole primary, FIFO queue and Automation targeting.
+Until that action is source-delivered and accepted, retain the current primary and
+do not claim a cost-saving transition.
 
 ### G1. Platform repair or reusable capability provisioning is required
 - **Trigger** Normal task tools, one bounded retry, and documented fallbacks cannot repair an unresumable/dead task session, damaged task environment, host/container permission or mount failure, or provision a missing external package, Android emulator, or guarded platform capability.

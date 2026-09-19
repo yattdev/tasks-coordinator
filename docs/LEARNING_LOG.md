@@ -1,5 +1,31 @@
 # Coordinator learning-cycle log
 
+## WAKE:LEARNING — 2026-09-16T06:51:00Z to 2026-09-19T07:03:12Z
+
+One durable correction was captured:
+
+- a backend capability that can carry a model through ordinary turn admission is
+  not automatically safe Coordinator authority. A stable in-place primary
+  transition needs an explicit, fenced Coordinator action and post-inference
+  identity/effective-model/queue/Automation receipts; browser-only immediate
+  endpoints, shared-profile edits and hidden HTTP wrappers do not substitute.
+
+Rejected by the filter:
+
+- current task heads, Support request IDs, PR outcomes, provider rate limits,
+  worker states, and exact test failures remain live coordination state in task
+  plans and receipts;
+- durable plan CAS/readback, exact-profile versus handoff distinctions,
+  Support BLOCKED handling, task-scoped Git metadata isolation, and stale-plan
+  preservation were already covered by existing policy, runbook, or registry
+  entries.
+
+Files changed: `docs/CAPABILITY_REGISTRY.md` and this log. `PROMPT.md` did not
+change, so no task-description mirror is required. This entry advances the next
+learning window to `2026-09-19T07:03:12Z`. Shared-main publication, clean-tree
+verification, and any conflict result are recorded by the containing commit.
+
+
 ## WAKE:LEARNING — 2026-09-16T04:54:00Z to 2026-09-16T06:51:00Z
 
 Two durable corrections from this window were already captured by event-driven
