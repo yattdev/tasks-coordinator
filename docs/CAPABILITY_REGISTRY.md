@@ -428,6 +428,17 @@ queue-incarnation projection works. Do not treat these partial checks as a
 successful handoff. See the [caller acceptance receipt](cycle-archives/2026-09-19-model-handoff-catalog-acceptance.md)
 and live plan for the current repair owner and permanent source successor.
 
+**2026-09-19 same-task adviser verification:** `spawn_session_kandev` honored
+the requested Sol profile on this Coordinator task without changing its primary.
+For bounded read-only advice, verify actual execution through an agent message's
+server-returned `metadata.model` in `get_task_conversation_kandev`, bound to the
+exact session, together with non-primary session readback. A profile alone is
+insufficient; absent `effective_model` fields in the session list do not negate
+available conversation model evidence. This proves that invocation's model, not
+strict no-substitution guarantees or a primary transition. The adviser found no
+callable in-place primary model switch; future-launch selection and handoff are
+different capabilities. Keep full handoff acceptance requirements unchanged.
+
 ### G1. Platform repair or reusable capability provisioning is required
 - **Trigger** Normal task tools, one bounded retry, and documented fallbacks cannot repair an unresumable/dead task session, damaged task environment, host/container permission or mount failure, or provision a missing external package, Android emulator, or guarded platform capability.
 - **Action** Deduplicate by root incident and contact Support **yourself** once. The requested outcome must repair the platform or provide a reusable guarded capability, not perform a one-off operation on the Coordinator's behalf. For a disposable external test service, require task/worktree binding, least-privilege reachability, a non-secret receipt and exact cleanup command; the task agent then runs the acceptance check itself and cleans up only as authorized by that receipt. Write four non-empty strings: `problem`, `evidence`, `expected_outcome`, `security_constraints`.
