@@ -3759,3 +3759,23 @@ or provider event, Terra must classify every overdue actionable card, route
 strategy to Astra or technical uncertainty to Sol, send the resulting bounded
 owner action, and verify its start or exact external block. Persist the missed
 trigger and keep its age until a verified effect occurs.
+
+## WAKE:LEARNING — 2026-09-19T12:18:50Z to 2026-09-19T18:27:22Z
+
+No additional durable lessons this cycle.
+
+Rejected by the filter:
+
+- Outcome-based cycle closure, proactive Terra→Astra/Sol routing, and the
+  distinction between activity and verified delivery are already binding rules.
+- Current-first handoffs, explicit session routing, provider-rate-limit handling,
+  and the distinction between automated reviews and maintainer obligations are
+  already covered by the operating runbook and decisions.
+- Individual task moves, provider states, PR heads, capacity conditions, and
+  preservation receipts are task-specific operational state and belong in the
+  Coordinator plan, not shared knowledge.
+
+Files changed: `docs/LEARNING_LOG.md` only. `PROMPT.md` is unchanged, so no
+live-description mirror is required. Unresolved conflicts: none. The final
+commit and shared-main fast-forward are verified in the Coordinator cycle
+receipt.
