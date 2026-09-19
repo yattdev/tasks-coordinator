@@ -29,6 +29,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 ## A. Board monitoring and adaptive polling
 
 ### A0. Cost-governor shadow rollout
+- **Proactive authority and progress test** [Escalation policy](COORDINATOR_ESCALATION.md) defines automatic Sol/Astra calls and validated primary switching. Track verified outcomes and stalled cohorts independently of moves/messages; failed calls remain pending. A weaker primary cannot mask deteriorating blocked work with unrelated activity. Runtime enforcement remains unverified until implementation and real-board gates pass.
 - **Primary target** THIS permanent board Coordinator task. Plugin shadow delivery is a supporting component, not completion. After validation, perform the guarded inexpensive-primary transition and verify actual model, sole primary, unread queue continuity and routine targeting under A7; current tools do not prove automatic handoff capability.
 - **Wake ownership** Kandev Automation delivers periodic wakes; the Coordinator-side gate then asks compact-context Sol/Astra subagents for technical/strategic help. The watchdog is elapsed-time logic on incoming wakes, never a model scheduler. One operational Coordinator serializes actions.
 - **Trigger** Human-authorized incremental cost optimization (2026-09-19).

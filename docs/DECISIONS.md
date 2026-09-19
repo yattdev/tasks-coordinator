@@ -2406,3 +2406,14 @@ through supported Kandev controls. Terra remains the proposed starting point.
 A successful cutover proves the actual model, sole primary, unread-message
 continuity and future routine targeting; spawning a sibling alone proves none
 of the latter three. Keep the prior owner authoritative until those checks pass.
+
+## Proactive models must preserve real board improvement (2026-09-19)
+
+Human directs automatic model routing/switching and early Sol/Astra help.
+Card movements can conceal accumulating blocked work, so activity is not
+progress. The binding policy in COORDINATOR_ESCALATION.md separates verified
+outcomes from activity, evaluates affected cohorts independently of unrelated
+successes, and requires the predicted effect of every recovery decision.
+A failed helper call retains its escalation; a completed call without its
+expected effect is not recovery. The inexpensive-primary rollout includes
+automatic guarded rollback when its outcome checks fail.

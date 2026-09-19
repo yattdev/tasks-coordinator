@@ -1450,6 +1450,10 @@ never use a model sleep, timer, cron or extra scheduler to arrange the next turn
 For the Human-authorized cost-governor migration, use
 [the incremental rollout](rfcs/COST_OPTIMIZED_GOVERNOR.md). Shadow evaluation
 records what would be routed or suppressed without changing routine delivery.
+Use [the proactive escalation policy](COORDINATOR_ESCALATION.md) to select Sol
+or Astra without a Human prompt. Test verified outcomes and each stalled cohort,
+not movement totals. Keep helper-call success separate from effect verification;
+failed or unknown calls retain their obligations and follow bounded retry rules.
 The primary rollout target is this permanent board Coordinator, including its
 bootstrap/context cost and operational model. Plugin delivery is supporting
 work. Once validation passes, use the guarded model/session handoff procedure:

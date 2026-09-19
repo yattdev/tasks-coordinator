@@ -190,6 +190,12 @@ blind replay. No plugin table becomes a second authoritative task board.
 
 ## Routing and triggers
 
+The binding policy is [proactive escalation and verified progress](../COORDINATOR_ESCALATION.md).
+Routing, retries and validated model handoffs are automatic Coordinator duties.
+In particular, task movements cannot reset outcome clocks, unrelated successes
+cannot conceal stalled cohorts, and failed calls cannot clear strategic attention.
+The implementation must distinguish activity, verified progress and delivery.
+
 | Route | Concrete criterion | Escalation boundary |
 | --- | --- | --- |
 | L0 code | Complete unchanged observation, known expected external wait, deterministic comparison or already-authorized typed action | Missing/stale/contradictory evidence prevents silent suppression; gather or flag attention. |
@@ -198,12 +204,16 @@ blind replay. No plugin table becomes a second authoritative task board.
 | Sol | Task-local investigation, architecture, debugging or independent code review | Cross-task conflict, invalid plan, changed priority/scope or unresolved dependency strategy goes to Astra. |
 | Astra | Board prioritization, dependency changes, scope/reprioritization comments, `PLAN_INVALID`, conflicts, cyclic blockers or stale/contradictory strategy | Human retains existing security/material-scope and explicit workflow boundaries. |
 
-Initial tunable recommendations: two newly blocked tasks in one observation
-window; two failed attempts on an explicitly critical task; two WIP/Blocked
+Initial tunable recommendations: two newly actionable blocked tasks in a rolling
+hour; two failed attempts on an explicitly critical task; two WIP/Blocked
 round trips since last successful strategy review; no runnable unfinished
 work; explicit dependency/scope/conflict/invalid-plan signal; and crossing a
 configured time/cost envelope. Absence of budget, criticality or runnable
 evidence is unknown, not an invented threshold or permission to act.
+Also invoke Astra when two actionable tasks remain overdue across two complete
+wakes despite board movements, or one completed Sol recovery misses its expected
+outcome. The linked policy defines wait-proof exclusions, independent evidence,
+call deduplication, failed-invocation handling and automatic rollback criteria.
 
 Three hours is a reasonable **strategic watchdog pilot default**, conditional
 on continuous operational detection. It is longer than the current roughly
