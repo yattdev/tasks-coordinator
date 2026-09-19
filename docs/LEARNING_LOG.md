@@ -3713,3 +3713,14 @@ Rejected by the filter:
 
 Files changed: `docs/LEARNING_LOG.md` only. `PROMPT.md` is unchanged, so no
 live-description mirror is required. Unresolved conflicts: none.
+
+## Delivery contracts must follow bounded green batches (2026-09-19)
+
+The board audit found valid test-only and narrowly scoped implementation batches
+parked behind outdated STOP or `no commit` instructions, while provider evidence
+and branch state had moved. A bounded green result remains a milestone, not a
+delivery gate. The runbook now requires a finite continuation through validation,
+ordinary publication when eligible, and independent review, with an owner,
+evidence deadline, and stop condition. A stale publication fence must be
+reconciled against the current branch, merge, index, and worktree state before
+it is repeated; uncertainty preserves the work for independent review.

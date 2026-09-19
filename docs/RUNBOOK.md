@@ -678,6 +678,24 @@ another shard in the same run is broken by infrastructure. Do not let the infra
 failure dismiss the product failure, and do not ask code changes for the infra
 shard. Record the exact job/artifact boundary and rerun both after remediation.
 
+### Close a bounded implementation batch with a delivery contract
+
+A green bounded code or test batch proves only its stated milestone. Before the
+owner parks, record the next delivery action, owner, exact evidence due time,
+and stop condition. The continuation normally names validation of the preserved
+diff, ordinary commit and remote publication when eligible, then independent
+review; each remains subject to the existing provider, Review, and QA gates.
+Do not require another Coordinator turn for every passing command inside that
+contract.
+
+An earlier `no commit` or STOP instruction is a scope fence, not a permanent
+publication hold. Before repeating it, re-read the exact branch/HEAD, merge
+state, index, worktree manifest, and the instruction's original stop condition.
+If the claimed state and the old instruction cannot both be true, preserve the
+work and obtain an independent acceptance decision. Never resolve that mismatch
+by resetting, cleaning, force-pushing, or treating an uncommitted green batch as
+delivered.
+
 If an agent nevertheless rebases, force-pushes, or otherwise rewrites history
 against an explicit handoff constraint, freeze further mutation rather than
 trying to undo it destructively. Record the prior and new heads, parents, push
