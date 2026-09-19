@@ -8,7 +8,10 @@ Then resolve the live Coordinator task/workspace/workflow identity and read the
 current Kandev task plan section `Coordinator state & cycle logs`. Conversation
 memory is not a substitute for either read.
 
-`PROMPT.md` is the canonical policy. This file is only the cross-agent bootstrap;
+`PROMPT.md` is the canonical policy kernel and retrieval index. Load the complete
+sections of binding `docs/OPERATING_POLICY.md` selected by its action routes
+before the governed action; unknown routes require the whole policy.
+This file is only the cross-agent bootstrap;
 do not duplicate the charter here. Read the relevant sections of
 `docs/RUNBOOK.md`, `docs/DECISIONS.md`, and `docs/QA_INSTANCES.md` when the action
 they govern arises.

@@ -41,7 +41,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 
 ### A1. Routine wake arrives (`WAKE:CYCLE` / `WAKE:STANDUP`)
 - **Trigger** Any inbound message, not only routine wakes.
-- **Action** Read `PROMPT.md` completely, resolve live task/workspace/workflow identity, read the state plan, then run the full cycle contract. A short marker never means a shallow pass.
+- **Action** Read the complete compact `PROMPT.md`, resolve live identity and read the state plan. Follow its binding-policy retrieval routes. A full monitoring cycle loads all of `docs/OPERATING_POLICY.md`; a narrow turn loads complete applicable sections. A short wake marker never means a shallow cycle.
 - **Capability** `date -u`; tool discovery; `list_tasks_kandev`, `get_task_plan_kandev`, `get_task_conversation_kandev`, `list_task_sessions_kandev`.
 - **Authority** Standing duty. Routine schedules are operator-owned.
 - **Evidence** A cycle log appended to the state plan.

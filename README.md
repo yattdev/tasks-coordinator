@@ -9,7 +9,8 @@ human, and produces a daily standup document.
 
 - [Cost-governor assessment and rollout](docs/rfcs/COST_OPTIMIZED_GOVERNOR.md) — existing architecture, smallest safe pilot, model routing, metrics, and deferred live integration
 
-- [PROMPT.md](PROMPT.md) — live Coordinator charter and source of truth
+- [PROMPT.md](PROMPT.md) — mandatory compact charter, safety floor and policy retrieval index
+- [docs/OPERATING_POLICY.md](docs/OPERATING_POLICY.md) — complete binding operating rules, preserved verbatim; retrieve relevant sections through the charter routes
 - [AGENTS.md](AGENTS.md) — model-neutral per-turn bootstrap into the charter
 - [CLAUDE.md](CLAUDE.md) and [.github/copilot-instructions.md](.github/copilot-instructions.md) — thin compatibility loaders; policy remains in `PROMPT.md`
 - [docs/CAPABILITY_REGISTRY.md](docs/CAPABILITY_REGISTRY.md) — canonical situation-to-action registry: what a Coordinator may do in each situation, with which capability, authority, evidence, and escalation route
@@ -69,7 +70,7 @@ for the request schema, delivery contract, and known host-side faults.
 
 ## Routine protocol
 
-- `WAKE:CYCLE` — run the complete action-oriented monitoring contract in `PROMPT.md`, including exact-head PR readiness and Done terminal-integrity checks, then persist the cycle log.
+- `WAKE:CYCLE` — load the full operating policy through `PROMPT.md` and run its complete action-oriented monitoring contract, including exact-head PR readiness and Done terminal-integrity checks, then persist the cycle log.
 - `WAKE:STANDUP` — run one monitoring cycle, then write
   `standups/standup-YYYY-MM-DD.md` using the Montreal calendar date.
 

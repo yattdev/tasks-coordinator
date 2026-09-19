@@ -2417,3 +2417,25 @@ successes, and requires the predicted effect of every recovery decision.
 A failed helper call retains its escalation; a completed call without its
 expected effect is not recovery. The inexpensive-primary rollout includes
 automatic guarded rollback when its outcome checks fail.
+
+
+## Compact mandatory charter with binding policy retrieval (2026-09-19)
+
+The Human explicitly directs cost optimization primarily for this board
+Coordinator. Replace repeated loading of the 144579-byte charter on every
+bounded turn with a compact mandatory safety kernel and action-to-section
+retrieval table. Preserve the complete old charter byte-for-byte in
+`docs/OPERATING_POLICY.md`; its non-conflicting rules remain binding. Full
+monitoring cycles still load the entire policy, including Done coverage.
+Unknown, missing or contradictory routes load the whole policy before action.
+This supersedes the monolithic loading interpretation of the earlier canonical
+charter decision, without changing scope, workflow gates, routine ownership or
+implementation delegation. The mirrored kernel fails closed when detailed
+policy is unavailable. Contract 1.2.0 semantics/digest remain unchanged; its old
+provenance is not evidence of newer runtime routing enforcement.
+
+Live plan CAS was independently verified after Support repaired the client
+projection: metadata/body separation, guarded full replacement and stale-token
+CONFLICT with no mutation. See `cycle-archives/2026-09-19-plan-cas-verification.md`.
+This removes the plan-compaction blocker, not worker-fencing or model-handoff
+requirements. Byte reduction alone is not measured token/credit savings.

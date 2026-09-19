@@ -6,10 +6,13 @@ Continuity therefore uses durable, model-neutral storage.
 
 ## Storage layers
 
-1. **Binding behavior — `PROMPT.md`.** Human operating rules and mandatory
-   Coordinator behavior. It is mirrored completely into the live Coordinator
-   task description so a replacement session can bootstrap even before reading
-   repository history.
+1. **Binding behavior — `PROMPT.md` and `docs/OPERATING_POLICY.md`.** The compact
+   mandatory charter contains the safety floor and action-to-policy retrieval
+   routes; the detailed policy remains jointly binding. The entire compact
+   charter is mirrored into the task description. Without the repository/policy,
+   a replacement preserves state and diagnoses access; it does not mutate from
+   the shorter mirror alone. The 2026-09-19e retrieval rule supersedes historical
+   instructions to load the full detailed charter on every narrow turn.
 2. **Reusable capability — `docs/`.** Operational playbooks in `RUNBOOK.md`,
    rationale in `DECISIONS.md`, QA safety in `QA_INSTANCES.md`, and learning
    receipts in `LEARNING_LOG.md`. These files are committed and fast-forwarded
@@ -36,7 +39,10 @@ credentials, or unnecessary sensitive data in any layer.
    G1–G10 receipt, including every open ledger entry, complete Blocked record,
    follow-up, Human ask, active flag, degradation, and unresolved obligation.
    Measure its UTF-8 size before unrelated work.
-5. Load only the relevant runbook/decision/reference sections.
+5. Load complete operating-policy sections required by every applicable charter
+   route, then relevant runbook/decision/reference sections. Full monitoring
+   cycles load the entire operating policy; unknown/missing/contradictory routes
+   also require the whole policy. Never let selective loading remove a gate.
 6. Reconcile the handoff against live task/session/PR/worktree state before
    mutating anything. If they disagree, trust current source evidence and repair
    the plan.
