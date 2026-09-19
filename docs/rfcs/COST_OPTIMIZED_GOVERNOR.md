@@ -4,6 +4,14 @@ Assessment date: 2026-09-19. Status: implementation authorized; shadow pilot
 assigned; live cutover not verified. This is an extension of
 [PLUGIN_SCALE_RFC.md](PLUGIN_SCALE_RFC.md), not a second orchestration system.
 
+Initial delivery is [draft plugin PR #5](https://github.com/yattdev/kandev-plugin-coordinator/pull/5).
+Independent Review rejected `cc6158785387a27f610816cd412760403f15d6cf`:
+contract updates were not atomic, observations could discard unreviewed changes,
+and routing, runtime configuration and validation coverage were incomplete.
+Focused passing tests do not override that verdict. Repairs must return through
+fresh independent Review and QA; shadow mode remains the only authorized pilot
+behavior. Delivery progress and owners live in the task plan.
+
 ## Recommendation
 
 **Human clarification, 2026-09-19:** keep Kandev Automation sending periodic
