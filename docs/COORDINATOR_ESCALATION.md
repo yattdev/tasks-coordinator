@@ -8,6 +8,11 @@ Existing permissions, independent gates and single-primary requirements remain.
 The routing rules below are binding operational policy; automated detection is
 not claimed implemented until the pilot and real-board adapters pass their tests.
 
+The detailed cycle Definition of Done, health classifier, revisit cadence,
+advice-to-action receipt, and anti-loop rule are binding in
+[`COORDINATOR_OPERATING_STRATEGY.md`](COORDINATOR_OPERATING_STRATEGY.md).
+Use that document to turn this routing policy into a measured operational cycle.
+
 ## Judge outcomes, not activity
 
 Maintain three separate records per task and per dependency/recovery cohort:

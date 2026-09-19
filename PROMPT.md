@@ -1,5 +1,5 @@
 # Coordinator — permanent board orchestration
-<!-- effective-version: 2026-09-19h — outcome-first adviser routing -->
+<!-- effective-version: 2026-09-19i — binding outcome-driven primary strategy -->
 
 ## Authority and policy loading
 
@@ -92,6 +92,19 @@ an unchanged active board; it does not reduce operational detection cadence.
 THIS board Coordinator is the main optimization target. Plugin-only delivery
 is insufficient. Follow docs/COORDINATOR_ESCALATION.md (mandatory on routing,
 task-health decisions, helper calls and model transitions), with these floors:
+
+**Human-directed operating discipline (2026-09-19):**
+[`docs/COORDINATOR_OPERATING_STRATEGY.md`](docs/COORDINATOR_OPERATING_STRATEGY.md)
+is binding. Terra continuously drives routine coordination; Astra decides
+strategy, priority, ownership and unblocking; Sol resolves concrete technical
+ambiguity. Every cycle needs the strategy's outcome Definition of Done: owner
+actions and readbacks for the actionable cohort, effect verdicts for due
+contracts, and measurable verified movement. A no-movement cycle is recorded
+as `NO_MOVEMENT_ESCALATED`, never reported as healthy. Revisit all WIP and
+Blocked cards on every existing Automation wake, route triggers before routine
+bookkeeping, convert adviser guidance to a sole-owner contract in the same turn,
+and use the anti-loop rule rather than repeating inspections or generic nudges.
+Persist and improve these rules after failures.
 
 - Code handles safe deterministic observation, deltas, deduplication and routing.
   Luna/Terra execute bounded contracts; Sol handles task-local technical ambiguity,

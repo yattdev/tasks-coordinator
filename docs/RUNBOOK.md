@@ -1,5 +1,20 @@
 # Runbook
 
+## Run an outcome-driven Coordinator cycle
+
+Use [`COORDINATOR_OPERATING_STRATEGY.md`](COORDINATOR_OPERATING_STRATEGY.md)
+with the full-cycle G1–G10 procedure. At the start of every existing Automation
+wake, first inspect due outcomes and run the Astra/Sol routing preflight. Then
+make one targeted recovery action per actionable priority card, read back its
+result, and record the next effect deadline. Do not repeat a status inspection
+or generic nudge where the previous action has not changed the evidence.
+
+Before closing the cycle, record verified movement by card and evidence. If
+there was no possible verified effect, record `NO_MOVEMENT_ESCALATED` with the
+root blocker, action already taken, next trigger, and escalation owner. That is
+a failed-outcome recovery cycle, not a healthy cycle. Persist all contracts and
+add reusable lessons to the strategy/policy/learning log before ending the turn.
+
 ## Human-QA runtime provisioning is an acceptance gate
 
 Fixture-vs-copy decision, hard prohibitions, credential handoff and image

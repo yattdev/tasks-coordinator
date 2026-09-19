@@ -3728,3 +3728,24 @@ it is repeated; uncertainty preserves the work for independent review.
 ## 2026-09-19 — distinguish Coordinator handoff routing from task-executor routing
 
 An explicit `session_id` survives a Coordinator primary promotion. A report sent to a former Coordinator session therefore proves only its explicit destination, not that promotion failed. For cross-task operational reports addressed to the Coordinator task, omit `session_id` so Kandev resolves the current Coordinator primary. Before directing a bounded task-local action, list that task’s sessions: its primary and its authorized executor can differ. Address a known executor explicitly only for that executor-bound action, and do not infer a task-level ownership transfer from delivery to the primary.
+
+## 2026-09-19 — outcome-driven Terra coordination with mandatory sidecars
+
+Seven hours of status-heavy monitoring showed that ledger coverage, WFI
+readbacks, plan writes, and delegated starts can coexist with an unmoving board.
+The durable correction is a binding per-cycle outcome contract: actionable
+cards receive an owner action and result readback; every due contract receives
+an effect verdict; a successful cycle identifies exact verified movement; and
+no effect is recorded as `NO_MOVEMENT_ESCALATED`, never as health. WIP and
+Blocked cards are revisited on every existing Automation wake.
+
+Terra is the continuous operator. Astra is invoked proactively for strategic
+uncertainty, stalled cohorts, repeated missed effects, ownership/dependency
+conflicts, and failed recovery mechanisms. Sol is invoked for a concrete
+technical failure, ambiguity, integration conflict, or ineffective technical
+remedy. Advice becomes a sole-owner, bounded contract in the same turn, with a
+start readback and later effect check. Repeated status-only passes and identical
+nudge loops are forbidden.
+
+Files: `PROMPT.md`, `docs/COORDINATOR_OPERATING_STRATEGY.md`,
+`docs/COORDINATOR_ESCALATION.md`, `docs/RUNBOOK.md`, and this log.
