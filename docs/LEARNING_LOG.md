@@ -3622,3 +3622,24 @@ such a receipt, then separating successor ownership while preserving all inputs.
 Quoted predecessor restrictions must name their owner so the successor is not
 accidentally forbidden from completing its authorized work. No charter change
 or task-description mirror is needed; this clarifies the existing precedence.
+
+## WAKE:LEARNING — 2026-09-15T12:50:11Z to 2026-09-19T09:02:09Z
+
+Captured one durable corrective lesson: a full-cycle ledger must persist the
+complete current sorted open task-ID set, or a lossless referenced artifact and
+its digest. A task count is not sufficient to reconcile a later board change or
+to identify a card that disappeared between cycles. The cycle-receipt runbook
+now states this requirement explicitly.
+
+Rejected by the filter:
+
+- Exact task counts, lanes, blocked records, model sessions, pull-request
+  heads, and current recovery owners remain task-plan state, not shared
+  guidance.
+- The guarded same-session model-transition gap is already covered by the
+  current cost-optimization charter and existing learning commits.
+
+Files changed: `docs/RUNBOOK.md`, `docs/LEARNING_LOG.md`. `PROMPT.md` is
+unchanged, so no task-description mirror is required. Shared-main publication
+and final clean-tree verification are recorded by the commit containing this
+entry. Unresolved conflicts: none.

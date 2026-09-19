@@ -2442,9 +2442,11 @@ inherited receipt fails validation, preserve it as historical evidence and
 record the failure; validate a fresh receipt before claiming this cycle passed.
 
 Receipt construction must not manufacture its own evidence. Derive live IDs
-from the board and ledger IDs independently from the saved entries. Bind each
-predecessor verdict to its message, session and immutable head; automatic lane
-advance is never a verdict. Derive execution expectations from the requested
+from the board and ledger IDs independently from the saved entries. Persist the
+complete sorted open-ID set (or a lossless referenced artifact plus its digest)
+with every full-cycle receipt; a cardinality alone cannot reconcile a later
+board change. Bind each predecessor verdict to its message, session and immutable
+head; automatic lane advance is never a verdict. Derive execution expectations from the requested
 work, not from whether a running session happens to exist. Retain authoritative
 lifecycle metadata, exact tag readbacks and mutation outcomes. Keep source
 evidence timestamps separate from the final inventory refresh. Measure G9 from
