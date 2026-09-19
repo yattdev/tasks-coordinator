@@ -149,3 +149,36 @@ Each cycle ends with a compact outcome table: due/met/missed contracts, verified
 advances by cohort, blocker removals, overdue owners, and next checks. Costs are
 recorded as unknown when not available. This is evidence for the cycle result,
 not an automated enforcement claim.
+
+## Auditable cycle receipts
+
+For each open card, the cycle receipt includes `task_id`, evidence generation
+(head, provider run, or preservation digest), current class, owner and executor
+session, last verified time, outcome deadline, next check, fallback, and wake
+count since the last verified effect. For each verified movement, persist a
+record with `{task_id, baseline, evidence_generation, event_type, before,
+after, source_receipt, verified_at}`. Allowed event types are an accepted
+current-head milestone, a blocker removed with execution resumed, an independent
+gate pass, published delivery, or terminal-integrity repair. An unrelated event
+cannot reset another cohort's age.
+
+Advice chains record the request, actual adviser model/start, decision,
+accept/reject decision, dispatched owner contract, owner-start readback, and
+effect verdict. An adviser response without dispatch or effect leaves the
+incident open. Cohort trigger watermarks persist missed outcomes and failed
+mechanisms across restarts and plan rewrites.
+
+Use exactly one current class: `PROGRESSING`, `EXTERNAL_WAIT`, `STALLED`,
+`BLOCKED`, or `ANOMALY`. `EXTERNAL_WAIT` needs a source, external owner,
+condition, expiry, and fallback; otherwise it is actionable. `BLOCKED` needs a
+root prerequisite, recovery owner/action, resume trigger, and deadline. Two
+wakes without an effect, a missed outcome deadline, or an expired wait is
+`STALLED`. Two same-incident cycles containing only analysis/activity is an
+`ANOMALY` and requires a changed mechanism or escalation.
+
+A cycle remains open unless G1–G10 and its due-action receipts validate. It may
+close without a movement event only when every open card is proven to be an
+unexpired external wait or an explicit safety fence; record that zero-movement
+proof and the next trigger. Otherwise zero movement is
+`NO_MOVEMENT_ESCALATED`. These fields are currently evidence requirements; do
+not claim automatic validation until a separately reviewed validator exists.
