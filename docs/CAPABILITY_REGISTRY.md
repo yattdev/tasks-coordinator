@@ -421,6 +421,13 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 
 ## G. Contacting autonomous Kandev Support
 
+**2026-09-19 model-handoff caller verification:** Support reports the overlay
+deployed, but this existing Coordinator still lacks callable exact-selection
+and primary-handoff tools; queue census returns `UNKNOWN_ACTION`. Session
+queue-incarnation projection works. Do not treat these partial checks as a
+successful handoff. See the [caller acceptance receipt](cycle-archives/2026-09-19-model-handoff-catalog-acceptance.md)
+and live plan for the current repair owner and permanent source successor.
+
 ### G1. Platform repair or reusable capability provisioning is required
 - **Trigger** Normal task tools, one bounded retry, and documented fallbacks cannot repair an unresumable/dead task session, damaged task environment, host/container permission or mount failure, or provision a missing external package, Android emulator, or guarded platform capability.
 - **Action** Deduplicate by root incident and contact Support **yourself** once. The requested outcome must repair the platform or provide a reusable guarded capability, not perform a one-off operation on the Coordinator's behalf. For a disposable external test service, require task/worktree binding, least-privilege reachability, a non-secret receipt and exact cleanup command; the task agent then runs the acceptance check itself and cleans up only as authorized by that receipt. Write four non-empty strings: `problem`, `evidence`, `expected_outcome`, `security_constraints`.
