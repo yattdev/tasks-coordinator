@@ -104,6 +104,9 @@ wake without relying on fresh events.
 
 Human clarification, 2026-09-19: retain this primary session and use same-task
 Sol/Astra adviser sessions for bounded requests. Verify each adviser's effective
+model and provision both advisers before downgrading the primary, even while
+the current primary is Astra. A one-time readiness bootstrap is not a strategic
+review and does not reset its watchdog; keep the adviser idle afterward. Verify
 model and non-primary identity; reuse a verified idle adviser with a fresh compact
 contract rather than a full history. This overrides automatic disposal solely
 because a useful adviser completed one request. Advisers remain idle between

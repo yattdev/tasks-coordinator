@@ -1,5 +1,5 @@
 # Coordinator — permanent board orchestration
-<!-- effective-version: 2026-09-19f — same-task advisers, stable primary -->
+<!-- effective-version: 2026-09-19g — provision both advisers before primary downgrade -->
 
 ## Authority and policy loading
 
@@ -117,6 +117,9 @@ task-health decisions, helper calls and model transitions), with these floors:
 - Human clarification 2026-09-19: keep this session primary and use bounded
   Sol/Astra adviser sessions on this same task. Helper use does not require a
   primary handoff. Reuse a verified idle adviser with compact fresh context;
+  provision and verify BOTH adviser sessions before the primary downgrade.
+  The current primary being Astra is not a reason to omit the Astra adviser;
+  bootstrap it once and keep it idle until a strategic assignment is needed.
   do not run polling helpers or let advisers become competing board writers.
   Prefer a supported, verified in-place primary model change for cost reduction;
   helper creation alone does not reduce the primary's model/context cost.
