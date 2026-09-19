@@ -1471,6 +1471,13 @@ report the schema mismatch. A bounded append can preserve a live obligation
 below the size ceiling; verify readback. Do not bypass CAS, infer a version
 from timestamps, or describe a rejected replacement as compaction.
 
+The deployed projection was repaired and live-tested on 2026-09-19. The read
+response now has two text blocks: `Plan metadata:` followed by JSON, then the
+exact Markdown body. Do not mistake block 1 for the plan. Use the opaque
+metadata `version` as `expected_version`; an intentional large reduction also
+sets `allow_truncation=true`. On CONFLICT reread and reconcile, never blindly
+retry an old body with a new token. See the [live verification receipt](cycle-archives/2026-09-19-plan-cas-verification.md).
+
 The Coordinator never installs or maintains cron, heartbeat scripts, local
 credentials, or session-bound scheduler jobs. An operator-owned KanDev routine
 targets the existing Coordinator task every 15–30 minutes with `WAKE:CYCLE`.
@@ -2531,7 +2538,10 @@ perform only urgent state preservation and compaction until readback is below
    executable handoff. Remove only resolved or superseded history.
 3. Compare pre/post sets for open task IDs, Blocked IDs, Human asks, active
    flags, and follow-up IDs. Any loss aborts the rewrite.
-4. Rewrite the whole plan once, read it back, compare bytes/hash and the same ID
+4. Submit the whole plan with `mode=replace`, the just-read opaque
+   `expected_version`, and `allow_truncation=true` for intentional compaction.
+   On a stale-token conflict, reread and rebuild from the new preimage.
+   Read it back, compare bytes/hash and the same ID
    sets, and record the archive path/hash plus post-write result.
 
 Never send only a new section, keep duplicate superseded ledgers inline, or

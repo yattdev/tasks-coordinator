@@ -102,7 +102,7 @@ changes belong to registered Kandev Host or Coordinator-plugin task worktrees.
 | How are wakes delivered? | Existing Host automation has cron/event triggers and persisted runs. The current legacy agent branch creates a hidden task and starts it. Existing no-model delivery work owns the alternative branch before model startup. The plugin has its own configured calendar runner, distinct from the permanent task's routine schedule. |
 | How are models selected? | Workflow step profiles govern task launches. Plugin managed conversation uses one configured/default profile and stable conversation key; its dispatch API has no per-call tier or fresh-context selector. Routing proposals cannot silently override workflow configuration. |
 | How do workers report? | Existing task state, explicit step-complete signal, messages/plans, dependency state and exact-head Review/QA receipts. A generic `PLAN_INVALID` protocol and typed execution results need additive contracts. |
-| Can plans be versioned? | Host plan history exists, but edits may coalesce into the same revision. Current create/update interfaces lack expected-revision CAS. Use a separate monotonic contract generation and atomic compare-and-swap; later enforce it at action admission. |
+| Can plans be versioned? | Host plan history exists; repaired live MCP now exposes opaque plan CAS versions, verified 2026-09-19. Keep explicit contract generations and enforce freshness at action admission; plan-write CAS alone does not fence workers. |
 | Lowest-risk first change? | Actual dispatch telemetry plus a side-effect-free shadow evaluator, compact digests, durable contract validation and tests. Preserve live dispatch and all existing gates. |
 
 Plugin source anchors: `server/coordinator/scheduler.go` (`RunDue`,
@@ -142,7 +142,13 @@ partially present but inaccessible through this tool binding; do not claim
 that the running Host has no CAS, guess a version, or bypass it. Contract
 action-boundary fencing remains a separate, unverified requirement. An exact
 198,247-byte plan preimage was archived before the rejected replacement;
-the original live plan was preserved and **no compaction occurred**.
+the original live plan was preserved and **no compaction occurred at that attempt**.
+
+Subsequent Support repair `103af197-ff16-45a9-a9af-176244d588d3` fixed the
+client schema/projection. Live acceptance on 2026-09-19 verified metadata version
+plus exact Markdown, matching-version replacement, exact readback and stale-token
+CONFLICT without mutation. The plan was safely compacted from 204,737 to 164,516
+bytes; all open records were preserved. See the [receipt](../cycle-archives/2026-09-19-plan-cas-verification.md).
 
 The plugin's default 45-minute weekday/daytime schedule differs from the
 permanent Coordinator's 15–30-minute continuous routines. Do not conflate them
