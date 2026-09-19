@@ -7,6 +7,8 @@ human, and produces a daily standup document.
 
 ## Components
 
+- [Cost-governor assessment and rollout](docs/rfcs/COST_OPTIMIZED_GOVERNOR.md) — existing architecture, smallest safe pilot, model routing, metrics, and deferred live integration
+
 - [PROMPT.md](PROMPT.md) — live Coordinator charter and source of truth
 - [AGENTS.md](AGENTS.md) — model-neutral per-turn bootstrap into the charter
 - [CLAUDE.md](CLAUDE.md) and [.github/copilot-instructions.md](.github/copilot-instructions.md) — thin compatibility loaders; policy remains in `PROMPT.md`

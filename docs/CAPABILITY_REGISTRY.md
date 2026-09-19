@@ -28,6 +28,14 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 
 ## A. Board monitoring and adaptive polling
 
+### A0. Cost-governor shadow rollout
+- **Trigger** Human-authorized incremental cost optimization (2026-09-19).
+- **Action** Follow [the assessed rollout](rfcs/COST_OPTIMIZED_GOVERNOR.md). Reuse Host usage/automation and plugin durable state; compare deterministic digest/routing proposals with actual outcomes before changing live wakes.
+- **Evidence** Versioned normalized observations, completeness/freshness, shadow decisions, actual dispatch telemetry, explicit unknown cost fields, and independent tests/review.
+- **Current limit** Plugin state mutations are not board events; plan history is not an action fence; a compact prompt does not reset managed-conversation history. Queue census returned `UNKNOWN_ACTION` on 2026-09-19.
+- **Plan compatibility probe** Existing-plan replacement requires `expected_version` in the live backend, but current advertised MCP read/write schemas do not expose the token. Append succeeded and was read back. Preserve preimages and use bounded append for urgent continuity below the size ceiling; do not guess versions or claim failed compaction succeeded.
+- **Never** Claim savings from hypothetical suppressed wakes, replace operational monitoring with a three-hour interval, or let missing evidence silently suppress Astra. Live routing requires supported Host capabilities and verified rollback.
+
 ### A1. Routine wake arrives (`WAKE:CYCLE` / `WAKE:STANDUP`)
 - **Trigger** Any inbound message, not only routine wakes.
 - **Action** Read `PROMPT.md` completely, resolve live task/workspace/workflow identity, read the state plan, then run the full cycle contract. A short marker never means a shallow pass.

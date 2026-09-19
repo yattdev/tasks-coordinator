@@ -1442,6 +1442,19 @@ passed. Prefer this recoverable, auditable disposition over deletion. Deletion
 still requires separate explicit human authorization.
 
 ## Wake delivery through KanDev routines
+For the Human-authorized cost-governor migration, use
+[the incremental rollout](rfcs/COST_OPTIMIZED_GOVERNOR.md). Shadow evaluation
+records what would be routed or suppressed without changing routine delivery.
+Keep operational cadence separate from the configurable three-hour strategic
+watchdog. On incomplete observations, persistence/dispatch failure, stale
+contract, or missing Host capability, retain the legacy monitoring path and
+record the reason. A sent/queued wake is not a completed strategic review.
+If plan replacement returns `expected_version is required` but the available
+tool binding cannot read or submit that token, preserve the exact preimage and
+report the schema mismatch. A bounded append can preserve a live obligation
+below the size ceiling; verify readback. Do not bypass CAS, infer a version
+from timestamps, or describe a rejected replacement as compaction.
+
 The Coordinator never installs or maintains cron, heartbeat scripts, local
 credentials, or session-bound scheduler jobs. An operator-owned KanDev routine
 targets the existing Coordinator task every 15–30 minutes with `WAKE:CYCLE`.

@@ -1,5 +1,24 @@
 # Design decisions
 
+## Cost optimization starts with shadow observation (2026-09-19)
+
+The Human now authorizes incremental implementation, superseding the earlier
+discussion-only scope. Preserve Astra as strategic governor and reuse the
+existing Host automation, usage ledger, task/session lifecycle, and plugin
+durable-state engine. Begin with a callable, opt-in shadow evaluator, bounded
+digest, observable routing reasons, versioned contracts, and regression tests.
+Do not duplicate the existing queue, rotation, no-model automation, or plugin
+runtime work. A no-model wake delivery still invokes its recipient; it does not
+alone solve Coordinator inference cost. Live wake suppression and cheaper
+execution require complete evidence and supported dispatch/action fencing.
+See [the assessment and rollout](rfcs/COST_OPTIMIZED_GOVERNOR.md).
+
+The three-hour default concerns strategic reviews only. Existing operational
+detection continues while shadow evidence is gathered. A successful enqueue
+does not advance the successful-review watermark. Host plan revision history
+can coalesce edits and is not a monotonic execution generation. Unknown usage
+or price is reported as unavailable, never zero. No safety invariant is relaxed.
+
 ## Primary recovery and atomic rotation are separate claims (2026-09-09)
 
 A live sole-primary/current receipt proves who coordinates now. It does not
