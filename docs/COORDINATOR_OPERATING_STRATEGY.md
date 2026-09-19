@@ -112,3 +112,40 @@ to this document, `docs/COORDINATOR_ESCALATION.md`, the runbook, and the
 learning log as appropriate; commit and fast-forward shared main. Keep only
 rules that can be checked from board evidence, and retain task-specific facts
 in the live plan.
+
+## Execution records and failure control
+
+Each active contract records the task and sole executor session, strategy/plan
+generation, source or provider head, expected measurable artifact or behavior,
+due time, last independently verified effect, blocker owner, stop condition, and
+fallback. Requested, started, reported, verified, and delivered are separate
+states. Proof records before-and-after state, an exact head or dirty-tree
+digest, test/job/artifact identity, observer, and timestamp. Messages, wakes,
+plan revisions, lane moves, pushes, and repeated old tests are activity only.
+
+A parking receipt is valid only when it names the stop-contract result, next
+decision owner, and deterministic trigger. A provider wait is valid only with
+fresh exact-head evidence and an expiry/recheck trigger. Unknown or expired
+evidence is anomalous, never green. Preserve a task's last verified progress
+age across reassignment, messages, and plan edits.
+
+At the first existing Automation wake after a contract is due, consume evidence
+before routine observation. A first technical miss preserves the work and goes
+to Sol. A failed Sol recovery or recurrence goes to Astra for a changed
+mechanism, owner, or dependency. A capability/auth/usage denial is deduplicated
+as a named incident; no blind resume or credential bypass is allowed. Two
+consecutive missed effects for the same actionable cohort, or a repeated stale
+dispatch or false-progress claim, triggers Astra and suspends the cheaper-primary
+trial until stronger-operation recovery is verified or explicitly recorded as
+unavailable.
+
+Before calling a worker silent, read its exact executor session and distinguish
+an intentional stop receipt from a missing effect. Never resend an identical
+failed direction without changed evidence. A proven transient can have one
+bounded retry; after that, use a different mechanism or escalate capability or
+authority. Convert a completed batch into its finite next delivery step at once.
+
+Each cycle ends with a compact outcome table: due/met/missed contracts, verified
+advances by cohort, blocker removals, overdue owners, and next checks. Costs are
+recorded as unknown when not available. This is evidence for the cycle result,
+not an automated enforcement claim.
