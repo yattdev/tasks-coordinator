@@ -3659,3 +3659,18 @@ Files changed: `docs/LEARNING_LOG.md` only. `PROMPT.md` is unchanged, so no
 live-description mirror is required. Shared-main publication and final
 clean-tree verification are recorded by the commit containing this entry.
 Unresolved conflicts: none.
+
+## WAKE:LEARNING — 2026-09-19T12:01:11Z to 2026-09-19T12:18:50Z
+
+No additional durable lessons this cycle.
+
+Rejected by the filter:
+
+- Current-main merge conflicts, semantic integration maps, exact PR heads, test
+  results, and task-owner recovery receipts remain delivery-specific operational
+  state in the Coordinator plan.
+- The need to preserve both sides of a semantic conflict and validate the merged
+  result is already covered by the existing reconciliation and continuity rules.
+
+Files changed: `docs/LEARNING_LOG.md` only. `PROMPT.md` is unchanged, so no
+live-description mirror is required. Unresolved conflicts: none.
