@@ -1,5 +1,22 @@
 # Coordinator learning-cycle log
 
+## WAKE:LEARNING — 2026-09-19T07:03:12Z to 2026-09-19T15:18:00Z
+
+No additional durable lessons passed the filter. The current recovery confirmed
+the existing rule: when a supported capability is absent, preserve the affected
+state and create one guarded reusable capability-repair path rather than
+guessing at runtime or lock intervention.
+
+Rejected: task IDs, exact environment-admission errors, worker/session states,
+merge hashes, provider results, and test outputs are live operational evidence
+and remain in the Coordinator plan. Adviser routing, runtime-model evidence,
+single-writer fencing, and the missing-capability fallback are already covered
+by the current charter, escalation procedure, and capability registry.
+
+Files changed: this log only. `PROMPT.md` did not change, so no task-description
+mirror is required. This entry advances the next learning window to
+`2026-09-19T15:18:00Z`. Unresolved knowledge conflicts: none.
+
 ## Human correction — 2026-09-19
 
 Window: prior learning checkpoint through the current Human escalation audit.
