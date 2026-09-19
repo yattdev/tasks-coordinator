@@ -2395,3 +2395,14 @@ This scoped instruction supersedes the publication hold for that chat proposal.
 It does not claim upstream architecture approval or waive independent Review,
 distinct QA, visual evidence, or merge/readiness gates. The Human also reaffirmed
 Coordinator authority to merge the policy integration when those gates pass.
+
+## Cost optimization must reach the permanent board Coordinator (2026-09-19)
+
+The Human clarified that this board Coordinator is the main cost-optimization
+target. Plugin shadow evaluation is supporting implementation, not the full
+deliverable. Adopt compact operational state and bounded Sol/Astra assistance
+on this task, then transition to the validated inexpensive operational model
+through supported Kandev controls. Terra remains the proposed starting point.
+A successful cutover proves the actual model, sole primary, unread-message
+continuity and future routine targeting; spawning a sibling alone proves none
+of the latter three. Keep the prior owner authoritative until those checks pass.

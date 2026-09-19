@@ -14,6 +14,22 @@ behavior. Delivery progress and owners live in the task plan.
 
 ## Recommendation
 
+**Primary target, reaffirmed by the Human:** this permanent board Coordinator
+task must adopt the optimization. Plugin work supplies reusable components;
+plugin delivery alone does not complete the request. Acceptance includes lower
+context consumption on this task's real wakes, a verified inexpensive operational
+primary, bounded Sol/Astra helpers, preserved board progress and rollback.
+
+Current tools allow requesting a profile when spawning a sibling session, but
+do not expose a verified atomic primary/routine-target handoff. A workflow can
+override a requested profile. Therefore distinguish requested model, actual
+runtime model, primary ownership and routine routing. Reuse the existing
+Coordinator rotation/queue capability owners before introducing another path.
+After the implementation and board trial pass, perform the supported transition
+to the proposed Terra primary and prove all four identities; until then the
+current primary stays authoritative. Do not count an unchanged Astra primary
+plus a new plugin library as realized savings.
+
 **Human clarification, 2026-09-19:** keep Kandev Automation sending periodic
 wake messages. Put the gate **after wake receipt, inside the Coordinator**.
 The intended operational primary is Terra; bounded technical exceptions ask
@@ -296,12 +312,14 @@ adapter integration, exact-entry queue/fencing fault injection, and a
 representative board/burst comparison. Require zero lost actions/entries,
 zero stale-plan effects and no missed strategic exceptions in that trial.
 
-## Deferred work
+## Remaining rollout work
 
-Complete scoped Host task/session/event observation; generic model-tier or
+Required for adoption on this board, beyond the shadow pilot: complete scoped
+Host task/session/event observation; generic model-tier or
 fresh-session dispatch; safe queue/primary handoff; live significant-action
 contract enforcement; policy-parity repair; automated usage-to-strategy
-attribution and measured savings; production enablement and tuning. Existing
+attribution and measured savings; board-Coordinator enablement and tuning.
+These remain part of the requested outcome, not optional plugin follow-ups. Existing
 owners retain queue, rotation, no-model delivery, policy integration and the
 full runtime/harness. Track exact live task ownership in the Coordinator plan,
 not in reusable policy.

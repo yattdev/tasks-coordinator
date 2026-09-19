@@ -1450,6 +1450,13 @@ never use a model sleep, timer, cron or extra scheduler to arrange the next turn
 For the Human-authorized cost-governor migration, use
 [the incremental rollout](rfcs/COST_OPTIMIZED_GOVERNOR.md). Shadow evaluation
 records what would be routed or suppressed without changing routine delivery.
+The primary rollout target is this permanent board Coordinator, including its
+bootstrap/context cost and operational model. Plugin delivery is supporting
+work. Once validation passes, use the guarded model/session handoff procedure:
+verify actual model, sole primary, preserved unread messages and future routine
+targeting. A requested profile or sibling launch is not a verified switch.
+Missing handoff controls remain required rollout work under the existing
+rotation/queue owners, not grounds to declare plugin-only completion.
 Keep operational cadence separate from the configurable three-hour strategic
 watchdog. On incomplete observations, persistence/dispatch failure, stale
 contract, or missing Host capability, retain the legacy monitoring path and
