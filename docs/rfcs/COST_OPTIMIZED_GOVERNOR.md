@@ -6,11 +6,34 @@ assigned; live cutover not verified. This is an extension of
 
 ## Recommendation
 
+**Human clarification, 2026-09-19:** keep Kandev Automation sending periodic
+wake messages. Put the gate **after wake receipt, inside the Coordinator**.
+The intended operational primary is Terra; bounded technical exceptions ask
+Sol, and board-wide strategic exceptions ask Astra, as short-lived subagents.
+Both receive a compact explicit input rather than inherited full history.
+The operational primary retains the single mutation lane and persists results.
+The current primary has not been switched by this rollout; an Astra primary
+still incurs Astra wake cost. The inspected Host pipelines below are reuse
+evidence, not a request to replace Kandev's working wake delivery.
+
+```text
+Kandev Automation → periodic wake → operational Coordinator + gate
+                                    ├─ bounded routine action
+                                    ├─ Sol technical helper
+                                    └─ Astra strategic helper
+                                          ↓
+                               durable decision → Coordinator action
+```
+
+The watchdog checks elapsed time on an arriving wake. It cannot wake a model
+itself, and needs no new timer/cron/scheduler. Its actual latency is the chosen
+strategic interval plus at most the external wake cadence under healthy delivery.
+
 Keep Astra responsible for board strategy. First measure real dispatches and
-run a deterministic digest/router alongside existing monitoring. Then insert
-that evaluator before model dispatch using the existing Host automation and
-plugin runtime. Do not introduce another scheduler, queue, database engine,
-or permanent model operator. Use task-scoped model work only when code cannot
+run a deterministic digest/router alongside existing monitoring. Then use
+that evaluator after the incoming automation wake to select bounded helper
+work using supported model-selection capabilities. Do not introduce another
+scheduler, queue, database engine, or extra permanent operator. Use task-scoped model work only when code cannot
 safely decide the bounded next action.
 
 The largest potential saving is avoiding unnecessary **recipient** inference

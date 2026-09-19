@@ -2,6 +2,14 @@
 
 ## Cost optimization starts with shadow observation (2026-09-19)
 
+Human clarification: Kandev Automation remains the periodic wake source. The
+gate is inside the Coordinator after wake receipt, calling compact-context Sol
+technical helpers or Astra strategy helpers as needed. Prefer an inexpensive
+operational primary (Terra is the pilot recommendation); do not claim savings
+while the primary still runs Astra. The watchdog is evaluated on external
+wakes and never schedules a model's future execution. This simpler helper
+gate supersedes any implication that the pilot should replace wake delivery.
+
 The Human now authorizes incremental implementation, superseding the earlier
 discussion-only scope. Preserve Astra as strategic governor and reuse the
 existing Host automation, usage ledger, task/session lifecycle, and plugin

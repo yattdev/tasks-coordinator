@@ -1442,6 +1442,11 @@ passed. Prefer this recoverable, auditable disposition over deletion. Deletion
 still requires separate explicit human authorization.
 
 ## Wake delivery through KanDev routines
+Human clarification (2026-09-19): retain Kandev Automation as the periodic wake
+sender. Run the helper-selection gate after receipt inside the Coordinator;
+send only a compact digest and bounded assignment to Sol or Astra. Persist the
+reply before applying actions. Check the strategic watchdog on that wake;
+never use a model sleep, timer, cron or extra scheduler to arrange the next turn.
 For the Human-authorized cost-governor migration, use
 [the incremental rollout](rfcs/COST_OPTIMIZED_GOVERNOR.md). Shadow evaluation
 records what would be routed or suppressed without changing routine delivery.
