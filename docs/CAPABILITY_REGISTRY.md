@@ -1,6 +1,6 @@
 # Coordinator capability & situation registry
 
-<!-- registry-version: 2026-09-19b -->
+<!-- registry-version: 2026-09-20a -->
 
 Canonical, actionable decision reference: **given this situation, what may a
 Coordinator do, with which exact capability, under whose authority, and what
@@ -29,10 +29,10 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 ## A. Board monitoring and adaptive polling
 
 ### A0. Cost-governor shadow rollout
-- **Proactive authority and progress test** [Escalation policy](COORDINATOR_ESCALATION.md) defines automatic Sol/Astra calls and validated primary switching. Track verified outcomes and stalled cohorts independently of moves/messages; failed calls remain pending. A weaker primary cannot mask deteriorating blocked work with unrelated activity. Runtime enforcement remains unverified until implementation and real-board gates pass.
-- **Primary target** THIS permanent board Coordinator task. Plugin shadow delivery is a supporting component, not completion. After validation, perform the guarded inexpensive-primary transition and verify actual model, sole primary, unread queue continuity and routine targeting under A7; current tools do not prove automatic handoff capability.
-- **Wake ownership** Kandev Automation delivers periodic wakes; the Coordinator-side gate then asks compact-context Sol/Astra subagents for technical/strategic help. The watchdog is elapsed-time logic on incoming wakes, never a model scheduler. One operational Coordinator serializes actions.
-- **Trigger** Human-authorized incremental cost optimization (2026-09-19).
+- **Proactive authority and progress test** [Escalation policy](COORDINATOR_ESCALATION.md) keeps Astra PRIMARY and defines bounded Terra/Luna execution with optional Sol investigation. Track verified outcomes and stalled cohorts independently of moves/messages. Runtime enforcement remains unverified until implementation and real-board gates pass.
+- **Primary target** THIS permanent board Coordinator task. The Human's 2026-09-20 architecture supersedes the inexpensive-primary transition: reduce execution/context cost while retaining Astra's strategic and follow-through ownership. Plugin shadow delivery is supporting work, not completed optimization. Generic future continuity rotation still requires A7 evidence.
+- **Wake ownership** Kandev Automation delivers periodic wakes. Astra decides and delegates compact bounded execution; its strategic watchdog is elapsed-time logic on incoming wakes, never a helper scheduler. One primary serializes action contracts.
+- **Trigger** Human-authorized cost optimization, revised architecture 2026-09-20.
 - **Action** Follow [the assessed rollout](rfcs/COST_OPTIMIZED_GOVERNOR.md). Reuse Host usage/automation and plugin durable state; compare deterministic digest/routing proposals with actual outcomes before changing live wakes.
 - **Evidence** Versioned normalized observations, completeness/freshness, shadow decisions, actual dispatch telemetry, explicit unknown cost fields, and independent tests/review.
 - **Current limit** Plugin state mutations are not board events; plan history is not an action fence; a compact prompt does not reset managed-conversation history. Queue census returned `UNKNOWN_ACTION` on 2026-09-19.
@@ -284,6 +284,15 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 ---
 
 ## C. Coordinator filesystem and workspace capabilities
+
+### C0. Astra-primary delegated coordination (Human-directed 2026-09-20)
+- **Trigger** A routine action or bounded investigation does not require the primary's strategic reasoning.
+- **Action** Follow [the operating strategy](COORDINATOR_OPERATING_STRATEGY.md): Astra specifies exact targets, preconditions, authorized actions, deadline and receipt; Terra executes conditional coordination, Luna mechanical recipes, Sol optional complex investigation.
+- **Capability** Native helper model selection is exposed in this client. Task/session capabilities retain their live schemas and workflow constraints. Availability is not verified healthy execution; record actual runtime evidence when available, and verify delegated caller scope before board mutations.
+- **Authority** The Human's new architecture explicitly permits bounded execution delegation. Astra remains the sole decision owner; one coordination mutation batch at a time. Helpers cannot expand scope, waive gates or become untracked source writers for another board task.
+- **Evidence** Exact action/strategy identity, before/after source readbacks, independently checked consequential decisions and outcome verdict. Requested profile, session start and plan edits alone prove neither progress nor savings.
+- **Fallback** On scope/tool denial, preserve the receipt; primary performs a small authorized operation or routes one existing capability incident. Unknown mutation outcomes require reconciliation, not replay. No workflow/profile edits or silent model substitution to manufacture readiness.
+- **Limits** This policy does not establish atomic action fencing, queue transfer, live capacity recovery or billing telemetry. See [CONTINUITY.md](CONTINUITY.md) for primary handoff requirements.
 
 ### C1. Reading and writing inside the workspace
 - **Trigger** Any filesystem action.

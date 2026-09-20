@@ -1,5 +1,40 @@
 # Design decisions
 
+## Astra owns decisions and effects; cheaper models execute (2026-09-20)
+
+The Human promoted the existing Astra session to PRIMARY after the Terra-primary
+trial repeatedly left actionable work parked despite adviser access. The new
+steady state keeps Astra responsible for prioritization, dependencies, concrete
+contracts and follow-through. Terra executes bounded coordination, Luna exact
+mechanical recipes, and Sol is optional for substantial independent technical
+investigation. This supersedes the inexpensive-primary and mandatory-adviser
+recommendations below; their historical evidence remains intact.
+
+The observed gap was not just obtaining advice: converting it to execution and
+checking its effect repeatedly failed. Those decisions now stay with the primary.
+Capacity, authentication, environment admission, stale workflow prompts and
+missing queue capabilities remain separate platform/workflow causes; changing
+the primary model alone does not repair them. This is a chosen operating design,
+not evidence of an inherent inability of every Terra run or proven cost savings.
+
+Delegation minimizes primary context and routine work without adding a mandatory
+Astra→Terra→Sol→Astra chain. Prefer deterministic tools, then the least expensive
+verified executor adequate for the exact batch. Use compact explicit context and
+source receipts. One coordination mutation batch runs at a time; parallel readers
+have disjoint scopes. Astra accepts decisions and verifies consequential effects.
+Other tasks' implementation still belongs to their tracked sole writer.
+
+The binding recipe, failure responses and first-three-cycle measurements live in
+COORDINATOR_OPERATING_STRATEGY.md and COORDINATOR_ESCALATION.md. Model selection
+and action contracts are operational controls, not an implemented atomic lease or
+automatic validator. Never equate a requested profile with actual runtime model.
+
+Official documentation supports compact independent subagents and warns that
+their aggregate token use can exceed a comparable single-agent run:
+[Subagents](https://learn.chatgpt.com/docs/agent-configuration/subagents).
+Measure whole-team cost per verified outcome, including retry and review cost.
+Sol is retained as an option, not pre-provisioned as a mandatory step on every wake.
+
 ## Adviser routing precedes bookkeeping (2026-09-19, Human correction)
 
 The intended division remains Terra for ordinary orchestration, Astra for

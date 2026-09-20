@@ -1,5 +1,25 @@
 # Coordinator learning-cycle log
 
+## Human architecture correction — 2026-09-20
+
+Made Astra the stable PRIMARY decision and follow-through owner, with Terra for
+bounded execution, Luna for mechanical operations and Sol optional for complex
+technical investigation. Removed the contradictory cheap-primary transition and
+mandatory-adviser requirements from the current charter/routing contract. Kept
+all independent gates, task-bound source ownership, platform boundaries, existing
+Automation cadence and continuity obligations.
+
+The reusable lesson is to separate strategic accountability from execution cost:
+an adviser receipt cannot substitute for the primary turning a decision into a
+verified effect. Compact exact batches and a single mutation executor make this
+delegation reviewable. Whole-team cost per verified outcome is the optimization
+metric; no savings or general model-capability conclusion is established yet.
+
+Updated PROMPT, operating strategy, escalation, continuity, capability registry
+and decisions. The live plan carries promotion/runtime evidence, untouched prior
+obligations and rollout checks. Charter mirror and shared-main synchronization
+are required before reporting the change applied.
+
 ## Continuity learning — 2026-09-19T18:27:22Z to 2026-09-19T21:05:00Z
 
 Sharpened the existing completion-signal procedure in `docs/RUNBOOK.md`:

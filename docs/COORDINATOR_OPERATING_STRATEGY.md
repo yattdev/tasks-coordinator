@@ -1,24 +1,30 @@
 # Outcome-driven Coordinator operating strategy
 
 This is the binding operating contract for the permanent board Coordinator.
-It implements the Human direction of 2026-09-19: Terra operates continuously,
-Astra makes strategic board decisions, and Sol resolves technical uncertainty.
+It implements the current Human direction: Astra is the stable PRIMARY; Terra
+executes bounded coordination; Luna performs mechanical exact recipes; and Sol
+is an optional independent investigator for complex technical ambiguity.
 It supplements the safety, authority, and terminal-gate rules in `PROMPT.md`
-and `docs/OPERATING_POLICY.md`; those rules still control when they are stricter.
+and `docs/OPERATING_POLICY.md`. The 2026-09-20 Human architecture override in
+PROMPT supersedes contradictory historical role/routing instructions; existing
+preservation, permissions and delivery gates remain binding.
 
 ## Roles
 
-- **Terra, the primary:** performs every routine board action that is safe and
-  authorized: inspect, classify, choose the next owner, send a bounded handoff,
-  move a card when its evidence permits, verify the result, and persist the
-  receipt. Terra does not use a waiting session, a plan update, or a generic
-  status request as a substitute for an action.
-- **Astra, strategic sidecar:** decides priority, dependency, ownership,
-  recovery mechanism, material contract conflict, and whether a cohort has
-  failed to make progress. Astra does not become a competing board writer.
-- **Sol, technical sidecar:** diagnoses a concrete engineering ambiguity and
-  returns a bounded repair or verification contract. Sol does not approve its
-  own implementation or replace independent Review and QA.
+- **Astra, the PRIMARY:** owns priority, dependencies, authorization, effect
+  acceptance, overdue follow-through, and durable receipts. It serializes
+  board mutations and makes direct strategic decisions; helpers do not redefine
+  strategy, scope, or gates.
+- **Terra, bounded coordination/execution sidecar:** executes a precise,
+  authorized coordination batch and returns required source readbacks. It may
+  not widen the assignment, change priority or scope, declare a gate, or mark
+  incomplete/rejected evaluation complete.
+- **Luna, mechanical sidecar:** uses deterministic tools and exact recipes for
+  bounded collection, deduplication, formatting, or other allowlisted mechanics.
+- **Sol, optional independent technical sidecar:** investigates one complex
+  technical question only when parallel offload is better than Astra's direct
+  reasoning. It is not a mandatory intermediary and does not replace Review or
+  QA. Prefer supported deterministic tools to model work.
 
 ## Cycle Definition of Done
 
@@ -27,8 +33,8 @@ A coordination cycle is complete only after all of the following are true.
 1. The live board and the open ledger have been reconciled. Every active card
    has an owner, health class, last verified milestone, next action, trigger,
    and fallback. Every physical Blocked card has a complete blocker record.
-2. Terra has acted on every actionable overdue, stalled, failed, or anomalous
-   card in the priority cohort. An action is a targeted owner handoff, a safe
+2. Astra has authorized and caused action on every actionable overdue, stalled,
+   failed, or anomalous card in the priority cohort. An action is a targeted owner handoff, a safe
    move, a dependency decision, an adviser request, a provider action, or a
    concrete Human request. Reading the same state again is not an action.
 3. Each action has a result readback: a started owner, a recorded external
@@ -66,42 +72,51 @@ cycle. This contract adds an outcome gate; it does not weaken them.
   trigger, and fallback. A blocked card with an actionable root and no active
   recovery owner is a Coordinator failure.
 
-Revisit every Work, CI Fixup, Review, QA, PR, Spec, Todo, and Blocked card on
-every existing Automation wake. Revisit a WIP card immediately when its
-evidence deadline passes or a relevant task/provider event arrives. No new
-timer, poller, or cron is authorized. Provider waits are rechecked on the next
-existing wake and after any provider event; they are never carried forward as
-assumptions.
+Every existing Automation wake covers the full board, including Done and Blocked;
+ToDeploy remains tag-only scope. Cheap collection must provide complete ID
+coverage plus a compact delta and due-exception set. Astra then orders actions
+and captures their expected effects. A census-only cycle cannot finish while an
+actionable root is unstaffed. Revisit every Work, CI Fixup, Review, QA, PR, Spec,
+Todo, and Blocked card on every existing Automation wake. Revisit a WIP card
+immediately when its evidence deadline passes or a relevant task/provider event
+arrives. No new timer, poller, or cron is authorized; continuous work is event-
+and wake-driven. Provider waits are rechecked on the next existing wake and
+after any provider event; they are never carried forward as assumptions.
 
 ## Mandatory routing and action conversion
 
-Before routine bookkeeping, Terra performs the routing preflight and calls:
+Before routine bookkeeping, Astra performs the routing preflight. It issues
+bounded Terra or Luna contracts serially, and may use Sol for the optional
+independent technical investigation described above.
 
-- **Astra now** for unknown/expired strategic review; priority, dependency,
-  ownership, or scope conflict; no runnable work; a deteriorating blocked
-  cohort; one critical failed recovery; two missed required effects for the
-  same actionable cohort across wakes; a stale/contradictory contract; or any
-  proposed stronger-primary restoration.
-- **Sol now** for a concrete failing test/CI/job, integration conflict,
-  technical ambiguity, unexplained runtime fault, lock/concurrency concern, or
-  one bounded technical remedy that failed to produce its intended effect.
+Order action batches by: active safety/ownership conflict; due or failed outcome;
+recoverable shared root that releases the critical path; ready delivery/gate
+transition; then other independent useful work. A cheap quick win does not defer
+an overdue cohort. Task implementation owners may work in parallel; the single
+mutation-executor limit concerns Coordinator board/provider actions, not a
+one-task WIP limit. Astra advances the next ready batch after verifying the prior
+one rather than waiting for another wake solely because a batch ended.
 
-Terra packages the relevant current evidence, asks for a decision with a stop
-condition, and records its deadline. On receipt, Terra must in the same turn
-either (a) translate the advice into one versioned, sole-owner contract and
-verify the owner started, or (b) record the exact authority/preservation reason
-it cannot be acted on and escalate that decision to Astra. The owner contract
-states target evidence, deadline, permitted scope, and stop condition. Terra
-checks the effect at that deadline. Adviser advice, a started session, and a
-verified effect are three distinct receipts.
+Ambiguous health/error, strategic uncertainty, failed effect, scope or priority
+question goes directly to Astra with exact evidence. A first executor miss makes
+Astra change the recipe, scope, or model; a second same-cohort missed effect
+withdraws the batch pending a changed owner or mechanism while preserving its
+original age. Capability, authorization, and usage denials are deduplicated as
+root incidents; never blind-start again.
+
+Every executor receives a versioned, sole-owner contract. Astra verifies its
+start and its effect at the stated deadline. Advice, start, and verified effect
+remain distinct receipts. A sidecar cannot replay stale state; an unknown
+mutation outcome is reconciled before any retry.
 
 ## Anti-loop guard
 
 Do not make two status-only inspections of the same stalled cohort without an
 intervening changed provider state, owner result, or decision. After the first
 inspection, the next touch must take the named recovery action. After an
-unchanged or failed bounded action, route technical cause to Sol or strategy to
-Astra; do not resend the same nudge or extend the same deadline. A plan/message
+unchanged or failed bounded action, return exact evidence to Astra, which may
+use Sol for a substantial technical investigation. Do not resend the same nudge
+or extend the same deadline. A plan/message
 receipt never clears an overdue outcome. Repeated `NO_MOVEMENT_ESCALATED` for
 the same cohort is a mandatory Astra decision on ownership or mechanism.
 
@@ -123,6 +138,16 @@ states. Proof records before-and-after state, an exact head or dirty-tree
 digest, test/job/artifact identity, observer, and timestamp. Messages, wakes,
 plan revisions, lane moves, pushes, and repeated old tests are activity only.
 
+Initial mutation batches contain at most five actions and expire within ten
+minutes. The per-card source milestone is separately set; the 30-minute small
+first-evidence default never changes an existing contract deadline without its
+evidence-backed revision. One mutation-batch executor runs globally at once and
+the PRIMARY refrains from overlapping writes; parallel helpers may collect
+disjoint read-only evidence. This is a logical lease, not a claim of
+platform-atomic locking. Before a board write, an executor must verify its
+caller task, workspace, and tool authority. Wrong or unknown identity returns a
+read-only result.
+
 A parking receipt is valid only when it names the stop-contract result, next
 decision owner, and deterministic trigger. A provider wait is valid only with
 fresh exact-head evidence and an expiry/recheck trigger. Unknown or expired
@@ -130,14 +155,10 @@ evidence is anomalous, never green. Preserve a task's last verified progress
 age across reassignment, messages, and plan edits.
 
 At the first existing Automation wake after a contract is due, consume evidence
-before routine observation. A first technical miss preserves the work and goes
-to Sol. A failed Sol recovery or recurrence goes to Astra for a changed
-mechanism, owner, or dependency. A capability/auth/usage denial is deduplicated
-as a named incident; no blind resume or credential bypass is allowed. Two
-consecutive missed effects for the same actionable cohort, or a repeated stale
-dispatch or false-progress claim, triggers Astra and suspends the cheaper-primary
-trial until stronger-operation recovery is verified or explicitly recorded as
-unavailable.
+before routine observation. Astra handles a technical miss directly or elects
+Sol where its independent investigation is useful. A failed investigation or
+recurrence requires Astra to change mechanism, owner, or dependency. No blind
+resume or credential bypass is allowed.
 
 Before calling a worker silent, read its exact executor session and distinguish
 an intentional stop receipt from a missing effect. Never resend an identical
@@ -146,9 +167,34 @@ bounded retry; after that, use a different mechanism or escalate capability or
 authority. Convert a completed batch into its finite next delivery step at once.
 
 Each cycle ends with a compact outcome table: due/met/missed contracts, verified
-advances by cohort, blocker removals, overdue owners, and next checks. Costs are
-recorded as unknown when not available. This is evidence for the cycle result,
-not an automated enforcement claim.
+advances by cohort, blocker removals, overdue owners, and next checks. For the
+next three complete cycles, measure whole-team tokens/cost (Astra, reviews and
+retries included), accepted milestones per cost, deadline misses, unowned
+actionable work/coverage, duplicate or unsafe moves (target zero), Human rescues
+and latency. Costs remain unknown when unavailable; this pilot proves neither
+savings nor an automatic enforcement claim.
+
+The first evaluation is after the next three Automation wakes, even if cycles
+remain incomplete. Incomplete coverage or overdue action without a disposition
+fails that evaluation; it cannot postpone it indefinitely. Continue measurement
+through three completed cycles, comparing matched available prior evidence.
+Success requires complete coverage, no unsafe/duplicate action, every actionable
+root assigned or concretely escalated, and verified effects rather than activity.
+Compare throughput, overdue age and intervention rate as well as total cost;
+when pricing/usage is unavailable, report token/work counters without inventing
+a monetary saving. No arbitrary cheaper-model utilization quota applies.
+
+## Compact executor directive and receipt
+
+`{action_id, strategy_revision, preconditions:{task,session,lane,head},
+allowlisted_action_or_conditional_recipe, measurable_outcome, deadline_or_expiry,
+preservation_and_forbidden_actions, stop_and_fallback, required_readback}`
+
+Example receipt: `{action_id:"A-42", state:"source_observed", preconditions_match:true,
+source_receipt:"provider-run@head", outcome:"required CI checks green", observed_at:"UTC",
+fallback:null}`. A stale precondition stops execution. A rejected or incomplete
+evaluation is reported as such and never becomes `step_complete`. Astra records
+the consequential gate/effect verdict after validating the source receipt.
 
 ## Auditable cycle receipts
 

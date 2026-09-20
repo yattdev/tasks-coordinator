@@ -28,6 +28,12 @@ credentials, or unnecessary sensitive data in any layer.
 
 ## Load protocol for every new, resumed, or switched session
 
+This is the PRIMARY load/save protocol. A bounded sidecar instead follows
+PROMPT's role-specific bootstrap, its exact contract and the assigned current
+records; it returns receipts to the primary without rewriting the shared plan.
+It does not inherit full-board monitoring or continuity ownership. Routine
+primary rotation preserves the Astra role under the 2026-09-20 Human direction.
+
 1. Read the actual UTC time and discover the current tools.
 2. Read `AGENTS.md` and all of `PROMPT.md`.
 3. Resolve the live Coordinator task, workspace, and workflow identity; never
@@ -127,15 +133,15 @@ Rotation is complete only when all of these hold:
 5. Only after the new primary and queue continuity are verified may the old
    primary be closed, archived, or deleted.
 
-Additional helper sessions should be retired immediately after their result is
-consumed and durably preserved. Prefer deletion only when the helper is
-non-primary, has no live execution or pending action, has no unread queue (or
-the queue was safely transferred/dispositioned), and its transcript is not the
-sole evidence copy. Otherwise archive it and hide archived/terminal helpers by
-default. When the required token counter, atomic promotion, queue transfer, or
-session-specific close/archive/delete operation is unavailable, record the
-capability gap and do not emulate it with task deletion, database writes, or
-broad cancellation.
+Keep designated, verified sidecars idle for reuse when their compact contracts
+remain relevant. Retire an ad-hoc helper only after its result is consumed and
+durably preserved, when it is non-primary, has no live execution or pending
+action, has no unread queue (or the queue was safely transferred/dispositioned),
+and its transcript is not the sole evidence copy. Otherwise archive it and hide
+archived/terminal helpers by default. When the required token counter, atomic
+promotion, queue transfer, or session-specific close/archive/delete operation is
+unavailable, record the capability gap and do not emulate it with task deletion,
+database writes, or broad cancellation.
 The old primary must not stop merely because it reached the threshold: it
 remains authoritative and continues safe work after checkpointing until a
 successor is proven primary or the session is genuinely unable to continue.

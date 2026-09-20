@@ -1,5 +1,15 @@
 # Cost-optimized Coordinator: assessment and incremental rollout
 
+**Architecture superseded, 2026-09-20:** the Human now requires Astra as the
+stable PRIMARY, Terra/Luna for bounded execution and Sol only when a substantial
+technical investigation benefits from offloading. The inexpensive-primary
+recommendation and cutover target below are historical. The current binding
+design is [COORDINATOR_OPERATING_STRATEGY.md](../COORDINATOR_OPERATING_STRATEGY.md).
+Preserve the pilot's outstanding correctness, independent review and shadow-only
+gates; this policy change does not accept its implementation or authorize live
+wake suppression. Measure whole-team cost per verified outcome under the new
+architecture before claiming optimization. No primary downgrade is scheduled.
+
 Assessment date: 2026-09-19. Status: implementation authorized; shadow pilot
 assigned; live cutover not verified. This is an extension of
 [PLUGIN_SCALE_RFC.md](PLUGIN_SCALE_RFC.md), not a second orchestration system.

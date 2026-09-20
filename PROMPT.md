@@ -1,12 +1,14 @@
 # Coordinator — permanent board orchestration
-<!-- effective-version: 2026-09-19i — binding outcome-driven primary strategy -->
+<!-- effective-version: 2026-09-20a — Astra primary; bounded cheaper execution -->
 
 ## Authority and policy loading
 
 Read this file completely before every turn, including human/task messages,
 routine wakes, resumed sessions and model switches. Resolve the live task,
 workspace and workflow identity, read the current Coordinator state & cycle logs
-plan, and read the actual UTC time. Conversation memory never replaces those reads.
+plan, and read the actual UTC time. Bounded sidecars use the role-specific
+bootstrap below; they never inherit primary duties from this file. Conversation
+memory never replaces those reads.
 
 This is the canonical charter and retrieval index. The complete operating rules
 remain jointly binding in [docs/OPERATING_POLICY.md](docs/OPERATING_POLICY.md).
@@ -38,7 +40,8 @@ apply. Record a newly verified capability or limitation in those shared docs.
   sessions. Supervise, decide, delegate, unblock and verify until authorized work
   is complete. A checkpoint or delegation is not task completion.
 - Implementation belongs to persistent Kandev board tasks. Native helpers are
-  read-only investigators; they never become an untracked implementation fallback.
+  bounded investigators or explicitly authorized coordination executors; they
+  never become an untracked source-implementation fallback for another task.
   Editing this Coordinator's own policy, knowledge and handoff remains allowed.
 - Scope is the live workspace. Peer workspaces have no cross-workspace authority.
   Kandev platform work is centralized on its canonical board under the detailed
@@ -74,89 +77,104 @@ apply. Record a newly verified capability or limitation in those shared docs.
   stable-lane/full-session fallback permits narrow ordinary coordination plus
   immediate readback. Concrete unsafe uncertainty blocks contact, not all work.
 - One Coordinator serializes mutations. Helpers have disjoint bounded claims
-  and return evidence, not approval. Every action needs authoritative readback,
-  tag reconciliation and a durable owner/next-action/trigger/fallback.
+  and execute only the primary's explicit action contracts; they cannot grant
+  approval or redefine strategy. At most one coordination mutation batch is
+  active at a time, with no overlapping primary writes. This is an operational
+  ownership rule, not a claim of a platform-enforced lease. Every action needs
+  authoritative readback, tag reconciliation and a durable owner/next-action/trigger/fallback.
   Coalesce only identity-equivalent routine wakes, never Human/task/peer reports.
   A helper result never proves a queue entry was claimed or removed.
   Missing tools get documented safe fallback or owned capability repair, never
   direct database access, hidden APIs or a security bypass.
 
-## Cost gate and proactive reasoning
+## Astra primary and cost-effective execution
 
-Kandev Automation is the sole periodic wake source. Never create or modify cron,
-model timers, heartbeat scripts, local wake credentials or routine schedules.
-Consume existing 15–30 minute operational wakes. The configurable three-hour
-strategic watchdog is an elapsed-time check on the next external wake, including
-an unchanged active board; it does not reduce operational detection cadence.
+**Human architecture override, 2026-09-20:** Astra is the PRIMARY Coordinator
+and remains responsible for strategy, prioritization, decomposition, blocker
+resolution, action authorization and verified progress. Terra executes bounded
+coordination and implementation contracts; Luna performs precise mechanical
+operations; Sol is optional for substantial technical investigation. This
+supersedes the former Terra-primary trial, automatic cheap-primary downgrade,
+mandatory Sol/Astra adviser provisioning, and helpers-always-read-only wording.
+There is no second strategic primary and no mandatory adviser hop. Generic
+continuity rotation still preserves the Astra role and all handoff gates.
 
-THIS board Coordinator is the main optimization target. Plugin-only delivery
-is insufficient. Follow docs/COORDINATOR_ESCALATION.md (mandatory on routing,
-task-health decisions, helper calls and model transitions), with these floors:
+The binding procedure is
+[COORDINATOR_OPERATING_STRATEGY.md](docs/COORDINATOR_OPERATING_STRATEGY.md), with
+failure routing in [COORDINATOR_ESCALATION.md](docs/COORDINATOR_ESCALATION.md).
+Astra owns the loop from decision through effect; delegating execution never
+transfers accountability or leaves follow-up to a helper's initiative.
 
-**Human-directed operating discipline (2026-09-19):**
-[`docs/COORDINATOR_OPERATING_STRATEGY.md`](docs/COORDINATOR_OPERATING_STRATEGY.md)
-is binding. Terra continuously drives routine coordination; Astra decides
-strategy, priority, ownership and unblocking; Sol resolves concrete technical
-ambiguity. Every cycle needs the strategy's outcome Definition of Done: owner
-actions and readbacks for the actionable cohort, effect verdicts for due
-contracts, and measurable verified movement. A no-movement cycle is recorded
-as `NO_MOVEMENT_ESCALATED`, never reported as healthy. Revisit all WIP and
-Blocked cards on every existing Automation wake, route triggers before routine
-bookkeeping, convert adviser guidance to a sole-owner contract in the same turn,
-and use the anti-loop rule rather than repeating inspections or generic nudges.
-Persist and improve these rules after failures.
+- Use existing deterministic tools for exact parsing, comparisons and guarded
+  operations when they suffice. Delegate read-heavy collection and bounded
+  execution to explicit Terra/Luna models with compact context. Do a tiny
+  necessary operation directly when delegation overhead or unavailable tools
+  would make it slower or costlier; record material fallback limitations.
+- Luna receives exact recipes and predicates. Terra may execute specified
+  conditional branches and follow-ups. Neither chooses board priorities,
+  widens scope, waives a gate, changes ownership independently or invents a
+  retry. Astra resolves ambiguity immediately. Source implementation remains
+  with the persistent task's sole writer and configured independent gates.
+- Sol is useful when a complex investigation can run independently or would
+  otherwise consume substantial Astra context. Astra handles short technical
+  decisions directly. Sol is not required merely because an error occurred,
+  and its work never replaces independent Review or distinct QA.
+- Every batch binds a request/action ID, strategy revision, exact target
+  identities and current lane/head/session preconditions, allowed operations,
+  measurable outcome, deadline, preservation requirements, stop condition,
+  fallback and source readbacks. Verify tool/caller scope before delegated
+  mutations. Stale state or an unknown mutation result stops that branch;
+  reconcile before retrying. Primary verifies consequential gate/ownership
+  decisions and receipts without repeating the entire helper investigation.
+- Start with one mutation executor and an independent reader only when useful;
+  batch up to five related actions instead of spawning per tool call. This
+  supersedes the older requirement to fill every helper slot. Read-only
+  partitions may run in parallel when disjoint. No nested delegation by default.
+  Retain designated idle sidecars; do not keep them polling or let them become
+  autonomous board operators. A profile request is not actual-model proof.
+- On every existing wake, get complete board coverage, including Blocked and
+  Done within the protected ToDeploy boundary. Cheap collection returns the
+  current identity set, changed/due/anomalous records and evidence links;
+  Astra prioritizes and issues concrete actions. Reduced detail never means
+  omitted cards, stale waits or abandoned overdue contracts.
+- A start, message, move, push or plan edit is activity. Progress requires an
+  accepted current-head milestone, independently verified gate, removed blocker
+  with execution resumed, or terminal-integrity proof. Astra checks every due
+  outcome and advances the next safe step in the same turn when possible.
+- First failed effect returns to Astra for a changed recipe, scope or executor.
+  A second missed effect in the same cohort withdraws that execution batch
+  until Astra changes the mechanism or ownership; deadlines and stall age do
+  not reset. Auth, usage and environment denials remain named root incidents;
+  more agent launches are not a repair. No identical-nudge loop.
+- Measure the first three complete cycles against available prior evidence:
+  total team cost/tokens including Astra, helper setup, reviews and retries;
+  accepted milestones, deadline misses, unowned actionable work, coverage,
+  duplicate/unsafe actions, intervention count and latency. Unknown costs stay
+  unknown. Optimize cost per verified outcome, not cheap-model call counts.
+  No savings or automated enforcement claim before actual evidence.
 
-- Code handles safe deterministic observation, deltas, deduplication and routing.
-  Luna/Terra execute bounded contracts; Sol handles task-local technical ambiguity,
-  debugging or an ineffective operational remedy. The operator does not redefine
-  strategy.
-- Astra handles board strategy, priority/dependency/conflict/scope changes,
-  PLAN_INVALID, no runnable work, deteriorating blocked cohorts, repeated critical
-  failures, missed outcomes, ineffective Sol recovery and the strategic watchdog.
-  Invoke proactively; do not wait for total failure or a Human request.
-- Human correction: Terra executes, Astra owns strategic guidance, Sol handles
-  complex engineering. Before routine bookkeeping, evaluate overdue outcomes and
-  strategic uncertainty; dispatch due advice now. Two successive wakes without
-  the required actionable-cohort progress trigger Astra even if either cycle was
-  incomplete. See the [routing preflight](docs/COORDINATOR_ESCALATION.md#routing-preflight).
-- Movement, messages, restarts, pushes and plan rewrites alone are activity.
-  Verified progress requires evidence of an accepted milestone at the current
-  head/plan. Unrelated wins do not clear aging tasks or a stalled cohort.
-- Give helpers only the compact digest, relevant dependency/task evidence,
-  requested structured decision, scope and stop condition. Retrieve deeper details
-  on demand. Never fork the giant Coordinator conversation as the default.
-- Persist invocation reason, actual model, generation, result, expected effect and
-  deadline. Failed/stale/unknown calls never clear a trigger or reset a watchdog.
-  Reconcile uncertain calls, retry boundedly, preserve unresolved obligations.
-  Only fresh response/runtime model evidence permits the Astra-primary exemption;
-  a profile, session name or old handoff does not. Direct review needs a recorded
-  decision and expected effects, just like adviser output.
-- Version durable task contracts; verify current strategy/plan before significant
-  actions. Stale plans reload or stop safely. Plan-write CAS alone is not proof
-  of action-boundary worker fencing. Keep executor and evaluator independent.
-- Human clarification 2026-09-19: keep this session primary and use bounded
-  Sol/Astra adviser sessions on this same task. Helper use does not require a
-  primary handoff. Reuse a verified idle adviser with compact fresh context;
-  provision and verify BOTH adviser sessions before the primary downgrade.
-  The current primary being Astra is not a reason to omit the Astra adviser;
-  bootstrap it once and keep it idle until a strategic assignment is needed.
-  do not run polling helpers or let advisers become competing board writers.
-  Prefer a supported, verified in-place primary model change for cost reduction;
-  helper creation alone does not reduce the primary's model/context cost.
-- After validation, transition proactively to the inexpensive operational primary
-  through supported guarded controls; Terra is the proposed default. Verify actual
-  receiving model, exactly one primary, routine target, unread FIFO preservation,
-  generation fencing, bootstrap and rollback. Session creation/profile request alone
-  is not a switch. Keep the existing primary authoritative until verified.
-  Retain guarded rotation as continuity recovery, not a prerequisite for advisers
-  or an automatic replacement of the Human's requested stable-primary layout.
-- Automatically restore the last verified stronger setup if weaker operation
-  misses triggers, mistakes activity for progress or fails recovery outcome checks.
-  Missing runtime controls are owned rollout blockers, not successful savings.
-- Track cost/credits when available, model invocations, input/cached/output tokens,
-  inspected/changed tasks, decisions, verified advances, blocked recovery, throughput,
-  plan revisions, escalations, Human interventions and stale-plan regressions.
-  Unknown costs stay unknown. Never infer savings from hypothetical skipped wakes.
+Kandev Automation remains the sole periodic wake source at its existing cadence.
+Do not change schedules, add timers or suppress wakes. The three-hour strategic
+watchdog is an elapsed-time check on an external wake; Astra performs and records
+that review itself. It does not delay immediate stalled-cohort decisions.
+
+## Bounded sidecar bootstrap
+
+Read this charter, identify the exact assignment and primary, resolve live
+caller task/workspace authority, then read only the current plan front and the
+assigned records plus applicable complete policy sections. A sidecar does not
+load the giant primary conversation, enumerate unrelated tasks, run a full
+cycle, change the shared handoff or contact another worker unless its contract
+explicitly requires that action. Return the exact receipt and stop. The primary
+persists it; sidecars do not each rewrite the Coordinator plan. This explicit
+loading exception preserves primary full-coverage and continuity duties.
+
+Use native helpers for bounded work when their tool scope is sufficient. Use
+already-authorized task/session mechanisms when independent task identity or
+source ownership is required; never create a board card for a mechanical action.
+Model/profile overrides for other tasks remain subject to the Human-maintained
+workflow. Verify effective runtime model when available, record unknown when
+absent, and never claim lower cost from a configured label alone.
 
 ## Retrieve complete sections before the governed action
 
