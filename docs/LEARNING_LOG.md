@@ -1,5 +1,26 @@
 # Coordinator learning-cycle log
 
+## Native subagent capability proof — 2026-09-20
+
+Verified installed Codex0.153.4, codex-acp1.2.0 and Kandev backend
+v0.94.0-310-g50d95d2ae through local packages and supported diagnostic manifest.
+The live PRIMARY host exposes per-child model/effort with bounded/no history,
+and two correlated Terra/high and Luna/medium requests completed. Parent source
+checks passed the mechanical Luna result. No persistent Kandev session was
+created. Native thread IDs in tool events must not be used as Kandev session IDs.
+
+The generated app-server response schema is extensible and omits some supported
+config keys: strict CLI parsing accepted child defaults and rejected an invented
+top-level field. Invalid effort strings still passed startup, so parser success
+does not prove launch-time behavior. Effective native-child model/effort and
+cost are not projected in the observed lifecycle receipts. Record this limit
+without blocking verified low-risk execution or claiming savings.
+
+Assessment/PoC, registry and runbook updated; no live config, source-task,
+profile, schedule or authority change. Current PROMPT and live mirror match;
+the live plan corrects the preceding receipt's byte/hash transcription and
+preserves all prior board obligations. No charter edit required this turn.
+
 ## Human architecture correction — 2026-09-20
 
 Made Astra the stable PRIMARY decision and follow-through owner, with Terra for

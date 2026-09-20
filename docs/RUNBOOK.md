@@ -2607,6 +2607,36 @@ G9 as failed; do not invent continuity.
 Cycle logs on the task grow; have the coordinator roll up old logs into a
 weekly summary comment (or do it manually) to keep its context lean.
 
+## Bounded native workers with model selection
+
+Use the live host schema, not a similarly named tool from another Codex client.
+The 2026-09-20 verified interface is `collaboration.spawn_agent` with `task_name`,
+`message`, `model`, `reasoning_effort` and `fork_turns`. Choose explicit model and
+effort and `fork_turns="none"` for compact packets. Default/full-history forks
+inherit parent settings and do not accept overrides. No custom `agent_type`,
+cwd, isolated sandbox or hard token budget is exposed by this wrapper.
+
+Supply request/strategy identity, task/workspace/source identity, scope, exact
+actions, expected outcome, deadline, stop condition and receipt format. Track
+the returned canonical agent path and native thread ID. `list_agents` tracks
+native liveness; Kandev session inventory tracks persistent sessions. A native
+thread ID in a normalized `child_session_id` field is not a Kandev session ID.
+Do not retry a failed Kandev conversation read using that native ID.
+
+Verify results at source and persist accepted receipts in the primary plan.
+Do not infer child model/effort from self-description or parent profile. Current
+native lifecycle receipts omit effective model/effort and cost, while supported
+Kandev persistent-session agent messages can expose `metadata.model`. Distinguish
+verified execution from complete cost attribution. See the reproducible
+[capability assessment](CODEX_SUBAGENT_CAPABILITIES.md) and operating strategy.
+
+The optional CLI `[agents]` defaults pass installed strict parsing; generated
+app-server response schemas omit them under an extensible Config object.
+Neither omission nor parser acceptance proves a live host override. Keep the
+working explicit-override path and test any alternate client's behavior before
+changing persistent configuration. Task source ownership and existing heartbeat
+rules remain unchanged.
+
 ## Mirroring PROMPT.md into the live task description
 
 The charter requires the Coordinator task description to carry the complete current

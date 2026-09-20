@@ -286,6 +286,8 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 ## C. Coordinator filesystem and workspace capabilities
 
 ### C0. Astra-primary delegated coordination (Human-directed 2026-09-20)
+- **Verified native path (2026-09-20)** Current `collaboration.spawn_agent` exposes `model`, `reasoning_effort` and `fork_turns`; explicit Terra/high and Luna/medium bounded requests completed. Overrides require `none` or a positive turn count; full-history/default forks inherit parent settings. Four active host slots include PRIMARY. Native thread identity is not a persistent Kandev session. See [installed versions, PoC and limits](CODEX_SUBAGENT_CAPABILITIES.md).
+- **Attestation limit** Parent source checks verified the Luna result. Native activity receipts lack effective child model/effort and token/cost fields; model requests are not measured savings. CLI strict parsing accepts child-default config, but its effect on this host wrapper is unverified. No config change is needed for explicit calls.
 - **Trigger** A routine action or bounded investigation does not require the primary's strategic reasoning.
 - **Action** Follow [the operating strategy](COORDINATOR_OPERATING_STRATEGY.md): Astra specifies exact targets, preconditions, authorized actions, deadline and receipt; Terra executes conditional coordination, Luna mechanical recipes, Sol optional complex investigation.
 - **Capability** Native helper model selection is exposed in this client. Task/session capabilities retain their live schemas and workflow constraints. Availability is not verified healthy execution; record actual runtime evidence when available, and verify delegated caller scope before board mutations.
