@@ -1,9 +1,12 @@
 # Outcome-driven Coordinator operating strategy
 
 This is the binding operating contract for the permanent board Coordinator.
-It implements the current Human direction: Astra is the stable PRIMARY; Terra
-executes bounded coordination; Luna performs mechanical exact recipes; and Sol
-is an optional independent investigator for complex technical ambiguity.
+Effective **2026-09-20b**, it implements the Human's native-first direction:
+Astra is the stable PRIMARY and uses native collaboration helpers for bounded
+work. Terra executes bounded coordination; Luna performs mechanical exact
+recipes; and Sol is an optional independent investigator for complex technical
+ambiguity. This trial begins on the **next** Automation wake; no cycle is
+deemed executed merely by adopting this document.
 It supplements the safety, authority, and terminal-gate rules in `PROMPT.md`
 and `docs/OPERATING_POLICY.md`. The 2026-09-20 Human architecture override in
 PROMPT supersedes contradictory historical role/routing instructions; existing
@@ -15,16 +18,57 @@ preservation, permissions and delivery gates remain binding.
   acceptance, overdue follow-through, and durable receipts. It serializes
   board mutations and makes direct strategic decisions; helpers do not redefine
   strategy, scope, or gates.
-- **Terra, bounded coordination/execution sidecar:** executes a precise,
+- **Terra, native bounded coordination/execution helper:** spawn with
+  `collaboration.spawn_agent`, `model: gpt-5.6-terra`,
+  `reasoning_effort: medium`, and `fork_turns: "none"`. It executes a precise,
   authorized coordination batch and returns required source readbacks. It may
   not widen the assignment, change priority or scope, declare a gate, or mark
   incomplete/rejected evaluation complete.
-- **Luna, mechanical sidecar:** uses deterministic tools and exact recipes for
-  bounded collection, deduplication, formatting, or other allowlisted mechanics.
-- **Sol, optional independent technical sidecar:** investigates one complex
-  technical question only when parallel offload is better than Astra's direct
-  reasoning. It is not a mandatory intermediary and does not replace Review or
-  QA. Prefer supported deterministic tools to model work.
+- **Luna, native mechanical helper:** spawn with `collaboration.spawn_agent`,
+  `model: gpt-5.6-luna`, `reasoning_effort: medium`, and `fork_turns: "none"`.
+  It uses deterministic tools and exact recipes for bounded collection,
+  deduplication, formatting, or other allowlisted mechanics.
+- **Sol, optional native independent technical helper:** use
+  `model: gpt-5.6-sol`, `reasoning_effort: high`, and `fork_turns: "none"` only
+  for a substantial, justified technical investigation. It does not replace
+  Review or QA. Astra may raise effort for a batch only with a recorded reason.
+  A requested model/profile is not effective-model attestation: record verified
+  runtime metadata when available, otherwise record it as unknown.
+
+Source implementation remains with the persistent source task's sole writer.
+Native helpers do not replace that card owner. Do not create a new Kandev
+session for routine coordination. Previously created Terra/Sol sessions remain
+idle as preserved fallback only: use one only when the native path is unavailable
+or a supported scope requires durable task identity/execution; do not delete or
+wake one merely to implement this policy.
+
+## Native contract, lifecycle, and next-wake trial
+
+Every native helper packet contains the exact request/action ID, current working
+directory, action generation, exact target identities, preconditions, operation
+allowlist, measurable outcome, deadline, stop condition, required source
+readback, and fallback/preservation rules. It uses compact target context, never
+the giant parent history by default. The canonical minimum is:
+
+`{request_id, action_id, action_generation, cwd, targets, preconditions, allowlist, outcome, deadline, stop, readback, fallback}`
+
+Reuse a native child only for a related compact follow-up; otherwise let it
+finish after receipt. Four active slots including Astra do not create a fill-the-slots
+requirement. Retain one board-mutation executor globally, while disjoint
+read-only help may be used when useful. Deterministic tools and direct tiny
+actions remain permitted when they are safer or cheaper than delegation.
+
+On the next Automation wake, Astra must: (1) run the normal full-cycle preflight
+and preserve every existing gate; (2) select a concrete bounded native action
+only if one is currently needed; (3) issue its compact packet with the required
+requested model and effort; (4) consume the readback, verify the actual effect
+at its source, and let the helper finish; and (5) persist the receipt before ending
+the wake. The first-wake outcome report must show actual before/after effect, or
+the specific external denial. Documentation edits and messages alone do not
+count as effects. It records the assigned native worker, requested model/effort,
+verified runtime metadata (or `unknown`), action/result, overdue or remaining
+root, and usage/cost when known. Continue the existing three-wake assessment;
+this first report is evidence for it, not a claim that the assessment passed.
 
 ## Cycle Definition of Done
 
@@ -130,7 +174,7 @@ in the live plan.
 
 ## Execution records and failure control
 
-Each active contract records the task and sole executor session, strategy/plan
+Each active contract records the task and sole executor identity, strategy/plan
 generation, source or provider head, expected measurable artifact or behavior,
 due time, last independently verified effect, blocker owner, stop condition, and
 fallback. Requested, started, reported, verified, and delivered are separate
@@ -186,7 +230,8 @@ a monetary saving. No arbitrary cheaper-model utilization quota applies.
 
 ## Compact executor directive and receipt
 
-`{action_id, strategy_revision, preconditions:{task,session,lane,head},
+`{request_id, action_id, action_generation, cwd, strategy_revision,
+preconditions:{task,session_or_thread,lane,head},
 allowlisted_action_or_conditional_recipe, measurable_outcome, deadline_or_expiry,
 preservation_and_forbidden_actions, stop_and_fallback, required_readback}`
 
@@ -200,7 +245,7 @@ the consequential gate/effect verdict after validating the source receipt.
 
 For each open card, the cycle receipt includes `task_id`, evidence generation
 (head, provider run, or preservation digest), current class, owner and executor
-session, last verified time, outcome deadline, next check, fallback, and wake
+identity, last verified time, outcome deadline, next check, fallback, and wake
 count since the last verified effect. For each verified movement, persist a
 record with `{task_id, baseline, evidence_generation, event_type, before,
 after, source_receipt, verified_at}`. Allowed event types are an accepted

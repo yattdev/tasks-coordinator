@@ -1,5 +1,22 @@
 # Design decisions
 
+## Adopt native workers as the default (2026-09-20b)
+
+After the installed-schema audit and bounded-worker PoC, the Human explicitly
+adopted native subagents for routine Coordinator assistance. Astra retains
+strategy and verified follow-through; explicit Terra/Luna requests execute
+compact packets, with Sol optional for substantial technical investigation.
+Default context is `fork_turns="none"`, not inherited primary history. Existing
+persistent Coordinator sidecars stay idle as fallbacks. Persistent board-task
+implementation ownership and independent gates remain unchanged.
+
+This makes the previously verified path the binding default, not merely an
+available option. No global model config, workflow or heartbeat change is needed.
+The next wake must produce an evidence-backed first-cycle report; later multi-wake
+evaluation does not postpone that feedback. Native effective-model/effort/cost
+projection remains incomplete and is not a prerequisite for proven low-risk
+work. Report those unknowns without claiming savings or inventing a blocker.
+
 ## Astra owns decisions and effects; cheaper models execute (2026-09-20)
 
 The Human promoted the existing Astra session to PRIMARY after the Terra-primary

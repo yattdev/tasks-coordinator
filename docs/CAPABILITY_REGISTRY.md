@@ -286,6 +286,7 @@ Related: [PROMPT.md](../PROMPT.md) (binding authority) ·
 ## C. Coordinator filesystem and workspace capabilities
 
 ### C0. Astra-primary delegated coordination (Human-directed 2026-09-20)
+- **Adopted default (2026-09-20b)** Use native bounded workers with explicit model/effort and `fork_turns="none"` for routine Coordinator assistance. Existing persistent Coordinator sidecars remain idle fallbacks; board-task source owners remain persistent. Evaluate the very next wake using source effects and exact blockers; do not claim a rollout result from this policy update.
 - **Verified native path (2026-09-20)** Current `collaboration.spawn_agent` exposes `model`, `reasoning_effort` and `fork_turns`; explicit Terra/high and Luna/medium bounded requests completed. Overrides require `none` or a positive turn count; full-history/default forks inherit parent settings. Four active host slots include PRIMARY. Native thread identity is not a persistent Kandev session. See [installed versions, PoC and limits](CODEX_SUBAGENT_CAPABILITIES.md).
 - **Attestation limit** Parent source checks verified the Luna result. Native activity receipts lack effective child model/effort and token/cost fields; model requests are not measured savings. CLI strict parsing accepts child-default config, but its effect on this host wrapper is unverified. No config change is needed for explicit calls.
 - **Trigger** A routine action or bounded investigation does not require the primary's strategic reasoning.

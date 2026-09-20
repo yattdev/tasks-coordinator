@@ -1,12 +1,12 @@
 # Coordinator — permanent board orchestration
-<!-- effective-version: 2026-09-20a — Astra primary; bounded cheaper execution -->
+<!-- effective-version: 2026-09-20b — native subagents by default; Astra primary -->
 
 ## Authority and policy loading
 
 Read this file completely before every turn, including human/task messages,
 routine wakes, resumed sessions and model switches. Resolve the live task,
 workspace and workflow identity, read the current Coordinator state & cycle logs
-plan, and read the actual UTC time. Bounded sidecars use the role-specific
+plan, and read the actual UTC time. Bounded workers use the role-specific
 bootstrap below; they never inherit primary duties from this file. Conversation
 memory never replaces those reads.
 
@@ -105,6 +105,27 @@ failure routing in [COORDINATOR_ESCALATION.md](docs/COORDINATOR_ESCALATION.md).
 Astra owns the loop from decision through effect; delegating execution never
 transfers accountability or leaves follow-up to a helper's initiative.
 
+**Native-first adoption, Human-approved 2026-09-20:** routine Coordinator
+assistance uses task-bounded native subagents, not standing Kandev sidecar
+sessions. Use `collaboration.spawn_agent` with an explicit model, reasoning
+effort and `fork_turns="none"`. Default Terra (`gpt-5.6-terra`, medium) handles
+bounded execution/investigation; Luna (`gpt-5.6-luna`, medium) handles mechanical
+recipes; optional Sol (`gpt-5.6-sol`, high) handles a justified substantial
+technical investigation. Astra may tune effort for the particular batch.
+These are requested execution settings, not proof of effective model or cost.
+Do not use full-history forks for these calls: they inherit the parent settings
+and reject overrides. Pass the precise execution packet instead. Reuse a native
+worker only for related bounded follow-up; otherwise let it finish after its
+receipt. This supersedes the historical same-task-session helper preference.
+
+Persistent Kandev sessions remain the owners of board-task source, branches,
+independent gates and durable execution. Preserve existing Coordinator sidecar
+sessions idle as fallbacks; do not restart, replace or delete them merely to
+adopt this structure. Use such a fallback only for a named native-path limitation
+or required task identity/continuity. Do not create a persistent tab per routine
+action. The [verified capability assessment](docs/CODEX_SUBAGENT_CAPABILITIES.md)
+records native/session identity differences and the remaining telemetry limits.
+
 - Use existing deterministic tools for exact parsing, comparisons and guarded
   operations when they suffice. Delegate read-heavy collection and bounded
   execution to explicit Terra/Luna models with compact context. Do a tiny
@@ -130,7 +151,7 @@ transfers accountability or leaves follow-up to a helper's initiative.
   batch up to five related actions instead of spawning per tool call. This
   supersedes the older requirement to fill every helper slot. Read-only
   partitions may run in parallel when disjoint. No nested delegation by default.
-  Retain designated idle sidecars; do not keep them polling or let them become
+  Retain existing idle fallback sessions; do not keep them polling or let them become
   autonomous board operators. A profile request is not actual-model proof.
 - On every existing wake, get complete board coverage, including Blocked and
   Done within the protected ToDeploy boundary. Cheap collection returns the
@@ -152,26 +173,32 @@ transfers accountability or leaves follow-up to a helper's initiative.
   duplicate/unsafe actions, intervention count and latency. Unknown costs stay
   unknown. Optimize cost per verified outcome, not cheap-model call counts.
   No savings or automated enforcement claim before actual evidence.
+  The very next wake reports its first-cycle evidence: selected workers,
+  before/after outcomes, failed effects or exact external waits, and available
+  usage. Do not defer that report until the three-wake assessment.
 
 Kandev Automation remains the sole periodic wake source at its existing cadence.
 Do not change schedules, add timers or suppress wakes. The three-hour strategic
 watchdog is an elapsed-time check on an external wake; Astra performs and records
 that review itself. It does not delay immediate stalled-cohort decisions.
 
-## Bounded sidecar bootstrap
+## Bounded worker bootstrap
 
 Read this charter, identify the exact assignment and primary, resolve live
 caller task/workspace authority, then read only the current plan front and the
-assigned records plus applicable complete policy sections. A sidecar does not
+assigned records plus applicable complete policy sections. A worker does not
 load the giant primary conversation, enumerate unrelated tasks, run a full
 cycle, change the shared handoff or contact another worker unless its contract
 explicitly requires that action. Return the exact receipt and stop. The primary
-persists it; sidecars do not each rewrite the Coordinator plan. This explicit
+persists it; workers do not each rewrite the Coordinator plan. This explicit
 loading exception preserves primary full-coverage and continuity duties.
 
-Use native helpers for bounded work when their tool scope is sufficient. Use
-already-authorized task/session mechanisms when independent task identity or
-source ownership is required; never create a board card for a mechanical action.
+Use native helpers by default when their tool scope is sufficient. Use
+already-authorized task/session mechanisms only for the named fallback needs
+above; never create a board card for a mechanical action. Persist request ID,
+native agent path/thread ID, source receipt and next owner/trigger in the plan;
+a native thread ID is not a persistent Kandev session ID. Shared tools and
+filesystem do not grant a helper independent ownership or an isolated sandbox.
 Model/profile overrides for other tasks remain subject to the Human-maintained
 workflow. Verify effective runtime model when available, record unknown when
 absent, and never claim lower cost from a configured label alone.

@@ -1,5 +1,19 @@
 # Coordinator learning-cycle log
 
+## Native-first adoption — 2026-09-20b
+
+Human approved native subagents as the default Coordinator execution mechanism
+after the capability PoC. Updated PROMPT and operating/routing/continuity
+structure to require explicit model/effort and compact packets, preserve idle
+Kandev fallbacks and task-owned source work, and report effects on the next wake.
+The next wake is the first trial cycle; this policy change does not count as
+board movement. Capability and decision records now distinguish adopted default
+from available fallback. No global config, workflow, primary or schedule change.
+
+The continuity checkpoint archives the exact near-limit plan and replaces only
+the resolved A32/A33 setup narrative with the current executable handoff; all
+earlier board records and open architecture/queue obligations are retained.
+
 ## Native subagent capability proof — 2026-09-20
 
 Verified installed Codex0.153.4, codex-acp1.2.0 and Kandev backend

@@ -28,7 +28,7 @@ credentials, or unnecessary sensitive data in any layer.
 
 ## Load protocol for every new, resumed, or switched session
 
-This is the PRIMARY load/save protocol. A bounded sidecar instead follows
+This is the PRIMARY load/save protocol. A bounded native helper instead follows
 PROMPT's role-specific bootstrap, its exact contract and the assigned current
 records; it returns receipts to the primary without rewriting the shared plan.
 It does not inherit full-board monitoring or continuity ownership. Routine
@@ -90,6 +90,11 @@ For durable learning:
 For the live handoff, record at minimum: last completed action; all open
 obligations; exact evidence identity; owner; next safe action; follow-up
 trigger/time and attempt count; fallback; and whether partial work is preserved.
+For each native helper, also record its request/action ID, action generation,
+thread identity when available, requested model/effort, verified runtime metadata
+or `unknown`, compact packet/target reference, receipt, effect-verification
+verdict, stop state, and request-to-thread mapping. Native threads are volatile;
+never substitute or require a Kandev session UUID for that mapping.
 
 The live plan has an operational budget. At 200,000 UTF-8 bytes, archive the
 exact preimage and compact resolved/superseded history before unrelated work. At
@@ -105,6 +110,26 @@ Every completed cycle and scoped status sweep persists a machine-readable
 G1–G10 receipt validated by `docs/contracts/validate_cycle_receipt.py`. A
 replacement session treats a missing, failed, or stale receipt as an explicit
 reconciliation task, never as evidence that the prior cycle succeeded.
+
+## Native-first continuity and helper cleanup
+
+Effective 2026-09-20b, native collaboration helpers are the routine bounded
+execution path. Astra remains permanent PRIMARY and sole decision, approval,
+verification, and follow-through owner. Spawn Terra (`gpt-5.6-terra`, medium)
+for normal bounded work, Luna (`gpt-5.6-luna`, medium) for mechanical work, and
+Sol (`gpt-5.6-sol`, high) only for substantial justified technical work, always
+with `fork_turns: "none"`. Astra may raise effort per batch with a preserved
+reason. Requested settings are not actual-model proof.
+
+No new Kandev session is created for routine coordination. Existing old
+Terra/Sol sessions remain idle and preserved as fallback; use them only when the
+native path is unavailable or a supported scope verifies that durable task
+identity/execution is required. Do not wake or delete those sessions merely to
+implement this policy. Source implementation remains owned by its persistent
+task and sole writer. Reuse a native child only for related compact follow-up;
+otherwise consume its receipt, persist it, and let it finish. The four active slots
+including Astra are capacity, not a utilization quota. Keep the one-mutation-
+executor rule and direct deterministic/tiny-action exceptions.
 
 ## Proactive primary-session rotation and helper cleanup
 
@@ -133,9 +158,14 @@ Rotation is complete only when all of these hold:
 5. Only after the new primary and queue continuity are verified may the old
    primary be closed, archived, or deleted.
 
-Keep designated, verified sidecars idle for reuse when their compact contracts
-remain relevant. Retire an ad-hoc helper only after its result is consumed and
-durably preserved, when it is non-primary, has no live execution or pending
+Keep designated, verified fallback sessions idle for reuse when their compact
+contracts remain relevant. Native helpers finish and return idle after their
+receipt; interrupt only a still-running child that must stop under its contract.
+There is no exposed native close/delete operation, and native completion does
+not require a Kandev queue census or persistent session UUID.
+
+Retire an ad-hoc persistent Kandev helper session only after its result is consumed
+and durably preserved, when it is non-primary, has no live execution or pending
 action, has no unread queue (or the queue was safely transferred/dispositioned),
 and its transcript is not the sole evidence copy. Otherwise archive it and hide
 archived/terminal helpers by default. When the required token counter, atomic

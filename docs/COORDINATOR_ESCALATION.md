@@ -1,8 +1,8 @@
 # Proactive Coordinator escalation and verified progress
 
-Human-directed policy, revised 2026-09-20. Applies primarily to this permanent board
+Human-directed policy, revised 2026-09-20b. Applies primarily to this permanent board
 Coordinator and also to its reusable plugin implementation. The Coordinator
-selects bounded helpers while Astra remains PRIMARY; generic continuity handoffs
+selects native bounded helpers while Astra remains PRIMARY; generic continuity handoffs
 retain their guarded requirements. Kandev Automation remains the sole periodic wake source.
 Existing permissions, independent gates and single-primary requirements remain.
 The routing rules below are binding operational policy; automated detection is
@@ -82,7 +82,29 @@ returns to Astra without another unchanged cheap-model loop. No-duplicate-ping
 rules suppress redundant messages, never escalation or due follow-through.
 This is an operational obligation now; unfinished routing automation does not
 excuse missed calls. Astra remains stable PRIMARY; Terra, Luna, and Sol are
-bounded sidecars.
+bounded native workers; persistent Coordinator sessions are fallbacks.
+
+## Native-first model routing
+
+Use `collaboration.spawn_agent` as the routine helper mechanism, with
+`fork_turns: "none"`: Terra at `gpt-5.6-terra` / medium for normal bounded work,
+Luna at `gpt-5.6-luna` / medium for mechanical work, and Sol at
+`gpt-5.6-sol` / high only for a substantial justified technical investigation.
+Astra is permanent PRIMARY and decides, approves, verifies, and follows through
+on every consequence. Astra can raise a batch's effort when it records why.
+Requested model/effort is configuration evidence, never an attestation of the
+model actually running; preserve verified runtime metadata where exposed and
+otherwise mark it unknown.
+
+The packet must include exact IDs, `cwd`, action generation, preconditions,
+allowlist, outcome, deadline, stop/fallback, and required readback. Native
+threads are volatile: persist the request-to-thread mapping and receipt in the
+live plan; do not assume a Kandev session UUID exists. Reuse a child only for a
+related compact follow-up and let it finish after receipt. One Coordinator board-mutation executor
+remains global. Existing old Terra/Sol Kandev sessions stay idle and preserved
+as fallback; no routine coordination session is created. Use one only when the
+native path is unavailable or a supported scope actually requires durable task
+identity/execution.
 
 ## When to invoke which model
 
@@ -91,9 +113,9 @@ initial configurable defaults. Do not wait for the watchdog when a trigger fires
 
 | Route | Trigger | Why / required output |
 | --- | --- | --- |
-| Deterministic tools / Luna | Exact supported collection or mechanical recipe is current and allowlisted. | Produce the requested readback; do not make board writes outside a current authorized batch. |
-| Terra | Astra has issued a bounded coordination/execution contract with current preconditions. | Execute only its allowlisted recipe, return source readback, and stop on stale state. |
-| Sol optional | A complex independent technical investigation can usefully run in parallel with Astra's direct reasoning. | Diagnose one task; return evidence and a testable next action. No priority, scope, or gate decision. |
+| Deterministic tools / native Luna | Exact supported collection or mechanical recipe is current and allowlisted. | Produce the requested readback; do not make board writes outside a current authorized batch. |
+| Native Terra | Astra has issued a bounded coordination/execution contract with current preconditions. | Execute only its allowlisted recipe, return source readback, and stop on stale state. |
+| Native Sol optional | A substantial complex independent technical investigation can usefully run in parallel with Astra's direct reasoning. | Diagnose one task; return evidence and a testable next action. No priority, scope, or gate decision. |
 | Astra directly | PLAN_INVALID; ambiguous health/error; cross-task conflict; dependency change; stale strategy; missed effect; no runnable work; or budget breach. | Decide priority, dependency order, ownership, scope and a versioned recovery plan. |
 | Astra on deterioration | Two new actionable blocked tasks in a rolling hour; two critical-task failures without verified recovery; or two WIP/Blocked round trips for the same root since the last reviewed baseline. | Prevent accumulation and repeated rerouting. Unrelated completed tasks do not cancel this trigger. |
 | Astra on apparent progress | An actionable stalled cohort misses required progress on two successive wakes, including incomplete cycles, even while cards move or other tasks advance. | Reassess the cohort and critical path; a single missed deadline or uncertainty may already require an earlier route. |
@@ -115,10 +137,10 @@ effect and deadline. Recording a model or bootstrap is not a review.
 
 ## Compact call contract and failure handling
 
-Each sidecar request carries `action_id`, strategy revision, exact task/session/
-lane/head preconditions, an allowlisted action or conditional recipe, measurable
-outcome, deadline/expiry, preservation and forbidden actions, stop/fallback, and
-required readback. Helpers read `PROMPT.md` once per turn, their designated
+Each native-helper request carries `request_id`, `action_id`, action generation,
+`cwd`, strategy revision, exact task/session-or-thread/lane/head preconditions,
+an allowlisted action or conditional recipe, measurable outcome, deadline/expiry,
+preservation and forbidden actions, stop/fallback, and required readback. Helpers read `PROMPT.md` once per turn, their designated
 strategy sections, that compact context, current target rows and only necessary
 policy sections; never the giant whole-board plan or primary history. Startup
 verifies caller task, workspace and tool authority before board writes; wrong or
@@ -149,11 +171,23 @@ Event deduplication may suppress duplicate calls, never the obligation, deadline
 or newly worsened evidence. Existing unresolved incidents are re-evaluated on every
 wake without relying on fresh events.
 
+## Next-wake evidence recipe
+
+The native-first trial starts at the next Automation wake. Before declaring that
+wake complete, Astra records: baseline and after-state source evidence; each
+assigned native worker plus requested model/effort and verified runtime metadata
+(or specific unavailable metadata); its action and observed result; any overdue
+or remaining root; and usage/cost if known. The report must evidence a real
+effect or name the specific external denial. A policy edit, helper launch,
+message, plan update, or placement alone is not an effect. Preserve all normal
+timers, heartbeat, G1–G10, terminal-integrity, and continuity requirements.
+
 ## Stable primary and future handoff
 
 Astra is the stable PRIMARY. There is no automatic cheap-primary downgrade and
-no mandatory Astra or Sol adviser. Reuse relevant idle designated sidecars; do
-not give them timers, infinite loops, or daisy-chained/nested delegation absent
+no mandatory Astra or Sol adviser. Reuse native workers for related bounded
+follow-up; retain existing persistent fallback sessions idle. Do not give helpers
+timers, infinite loops, or daisy-chained/nested delegation absent
 exact authorization. Default to one executor plus an independent read-only
 helper only when useful. Native helpers may execute authorized coordination or
 documentation batches; implementation of other board tasks remains task-bound
