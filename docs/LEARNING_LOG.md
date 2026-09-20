@@ -3865,3 +3865,24 @@ reconciliation rule.
 Files changed: this log only. PROMPT.md did not change, so no task-description
 mirror is required. This entry advances the next learning window to
 2026-09-19T21:30:00Z. Unresolved knowledge conflicts: none.
+
+## Native-worker receipt validation — 2026-09-20
+
+The first native wake exposed collection errors that precise execution packets
+prevented: lifecycle `state=REVIEW` was mistaken for physical lane, unrelated
+PR gate evidence was copied across task IDs, and a first check-run page was
+treated as complete. Primary verification rejected those conclusions before
+using them as gate evidence.
+
+Require exact task/repository/head keys, physical `workflow_step_id`, full
+`session_id` census, structured tag fields, and explicit pagination completeness
+in collection receipts. A tool/parser failure is an evidence error, not proof
+of a task blocker. Keep raw bounded source receipts so corrections do not
+require another broad audit. Reuse a worker for a precise changed recipe; do
+not ask it to repeat the same broad investigation.
+
+A successful owner start is provisional: consume the first resulting receipt
+to distinguish implementation from immediate model-capacity failure. Preserve
+source before a supported lane/profile change and verify successor readiness
+before enabling writes. Requested native model/effort and effective runtime
+metadata remain distinct; unknown billing cannot support a savings claim.
